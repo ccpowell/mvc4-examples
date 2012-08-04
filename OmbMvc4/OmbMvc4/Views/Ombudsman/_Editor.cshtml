@@ -1,0 +1,28 @@
+﻿<div class="overlay" data-bind="visible: editingOmbudsman">
+    <form action="#" data-bind="validate: validationRules, with: editingOmbudsman">
+        <fieldset>
+            <legend>Ombudsman</legend>
+
+            <p data-bind="visible: OmbudsmanId">
+                OmbudsmanId:
+                <strong data-bind="text: OmbudsmanId"></strong>
+            </p>
+            <p>
+                Name: 
+                <input name="Name" data-bind="value: Name, autovalidate: true" />
+                <span class="error" data-bind="text: Name.ValidationError"></span>
+            </p>
+            <p>
+                UserName: 
+                <input name="UserName" data-bind="value: UserName, autovalidate: true" />
+                <span class="error" data-bind="text: UserName.ValidationError"></span>
+            </p>
+            <p>
+                <button type="submit">OK</button>
+                <a href="#" data-bind="click: $parent.rejectEdit, visible: IsChanged">Undo changes</a>
+                <a href="#" data-bind="click: $parent.deleteCurrentOmbudsman, visible: CanDelete">Delete</a>
+            </p>
+        </fieldset>
+    </form>
+</div>
+

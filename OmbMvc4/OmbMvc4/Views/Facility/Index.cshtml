@@ -1,0 +1,20 @@
+﻿@using OmbMvc4.Models
+@{
+    ViewBag.Title = "Facilities";
+    Layout = "~/Views/Shared/_SpaLayout.cshtml";
+}
+
+@Html.Partial("_Grid")
+@Html.Partial("_Editor")
+
+@(Html.UpshotContext(bufferChanges: true)
+      .DataSource<OmbMvc4.Controllers.TodoController>(x => x.GetFacilities())
+      .DataSource<OmbMvc4.Controllers.TodoController>(x => x.GetOmbudsmanOptionsForFacility())
+      .ClientMapping<Facility>("Facility"))
+
+<script type="text/javascript" src="~/Scripts/FacilitiesViewModel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        ko.applyBindings(new FacilitiesViewModel());
+    });
+</script>

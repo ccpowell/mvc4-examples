@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "TodoItems";
+    Layout = "~/Views/Shared/_SpaLayout.cshtml";
+}
+
+<div data-bind="visible: editingTodoItem">
+    @Html.Partial("_Editor")
+</div>
+
+<div data-bind="visible: !editingTodoItem()">
+    @Html.Partial("_Grid")
+</div>
+
+<div class="message-info message-success" data-bind="flash: { text: successMessage, duration: 5000 }"></div>
+<div class="message-info message-error" data-bind="flash: { text: errorMessage, duration: 20000 }"></div>
+<div>@(Html.Metadata<OmbMvc4.Controllers.TodoController>())</div>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/TodoItemsViewModel.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        upshot.metadata(@(Html.Metadata<OmbMvc4.Controllers.TodoController>()));
+
+        var viewModel = new MyApp.TodoItemsViewModel({
+            serviceUrl: "@Url.Content("~/api/Todo")"
+        });
+        ko.applyBindings(viewModel);
+    });
+</script>

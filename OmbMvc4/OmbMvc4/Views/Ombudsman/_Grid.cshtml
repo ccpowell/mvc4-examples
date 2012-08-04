@@ -1,0 +1,24 @@
+﻿<h2>Ombudsmen (<span data-bind="text: ombudsmen().length"></span>)</h2>
+
+<table>
+    <thead>
+        <tr>
+             <th>OmbudsmanId</th>
+             <th>Name</th>
+             <th>UserName</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: ombudsmen">
+        <tr data-bind="css: { added: IsAdded, updated: IsUpdated, deleted: IsDeleted, error: EntityError }">
+            <td data-bind="text: OmbudsmanId"></td>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: UserName"></td>
+            <td><a href="#" data-bind="click: $parent.openEditor">Edit</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<p><a href="#" data-bind="click: createOmbudsman">Create new</a></p>
+<button data-bind="click: saveAll">Save all</button>
+<button data-bind="click: revertAll">Revert all</button>
+

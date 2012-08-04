@@ -1,0 +1,30 @@
+﻿<div class="overlay" data-bind="visible: editingFacility">
+    <form action="#" data-bind="validate: validationRules, with: editingFacility">
+        <fieldset>
+            <legend>Facility</legend>
+
+            <p data-bind="visible: FacilityId">
+                FacilityId:
+                <strong data-bind="text: FacilityId"></strong>
+            </p>
+            <p>
+                Name: 
+                <input name="Name" data-bind="value: Name, autovalidate: true" />
+                <span class="error" data-bind="text: Name.ValidationError"></span>
+            </p>
+            <p data-bind="if: $parent.ombudsmanOptions().length">
+                Ombudsman:
+                <select name="OmbudsmanId" data-bind="value: OmbudsmanId, options: $parent.ombudsmanOptions, 
+                    optionsText: 'Name', optionsValue: 'OmbudsmanId', 
+                    optionsCaption: 'Choose...', autovalidate: true"></select>
+                <span class="error" data-bind="text: Ombudsman.ValidationError"></span>
+            </p>
+            <p>
+                <button type="submit">OK</button>
+                <a href="#" data-bind="click: $parent.rejectEdit, visible: IsChanged">Undo changes</a>
+                <a href="#" data-bind="click: $parent.deleteCurrentFacility, visible: CanDelete">Delete</a>
+            </p>
+        </fieldset>
+    </form>
+</div>
+
