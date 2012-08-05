@@ -21,10 +21,21 @@ App.ui = (function ($) {
             bSort: false,
             bAutoWidth: true,
             bPaginate: true,
+            sPaginationType: "full_numbers",
+            bJQueryUI: true,
             sAjaxSource: "/page/getombudsmen",
             aoColumns: [
                 { sTitle: "ID", mDataProp: "OmbudsmanId" },
-                { sTitle: "Name", mDataProp: "Name" }
+                { sTitle: "Name", mDataProp: "Name" },
+                { mDataProp: null, fnRender: function (oObj) {
+                    // Ombudsman is oObj.aData
+                    var id = oObj.aData.OmbudsmanId,
+                        editButton, deleteButton;
+                    editButton = '<a href="/Ombudsman/Edit?id=' + id + '">Edit</a>';
+                    deleteButton = '<a href="/Ombudsman/Delete?id=' + id + '">Delete</a>';
+                    return editButton + ' | ' + deleteButton;
+                }
+                }
             ]
         };
         $dt = $("#ombudsman-table").dataTable(dtoptions);
@@ -42,19 +53,29 @@ App.ui = (function ($) {
             bSort: false,
             bAutoWidth: true,
             bPaginate: true,
+            sPaginationType: "full_numbers",
+            bJQueryUI: true,
             sAjaxSource: "/page/getfacilities",
             /*
             fnServerData: function (sSource, aoData, fnCallback) {
-                $.getJSON(sSource, function (page) {
-                    $("#message").append("<div>facilities table fetched</div>");
-                    fnCallback(page);
-                });
+            $.getJSON(sSource, function (page) {
+            $("#message").append("<div>facilities table fetched</div>");
+            fnCallback(page);
+            });
             },
             */
             aoColumns: [
                 { sTitle: "ID", mDataProp: "FacilityId" },
                 { sTitle: "Name", mDataProp: "Name" },
-                { sTitle: "Ombudsman Name", mDataProp: "OmbudsmanName" }
+                { sTitle: "Ombudsman Name", mDataProp: null, fnRender: function (oObj) {
+                    // Facility is oObj.aData
+                    var omb = oObj.aData.Ombudsman;
+                    if (omb) {
+                        return omb.Name;
+                    }
+                    return "";
+                }
+                }
             ]
         };
         $dt = $("#facility-table").dataTable(dtoptions);

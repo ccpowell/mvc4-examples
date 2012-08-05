@@ -140,11 +140,9 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DataTablesQuery.cs" />
-    <Compile Include="Models\Ombudsman.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Ombudsman.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Facility.cs" />
+    <Compile Include="Models\Ombudsman.cs" />
+    <Compile Include="Models\OmbudsmanDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +175,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Ombudsman.edmx.sql" />
+    <Content Include="Db\Ombudsman.edmx.sql" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
@@ -243,10 +241,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Ombudsman.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Ombudsman.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <EntityDeploy Include="Db\Ombudsman.edmx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Ombudsman\Index.cshtml" />

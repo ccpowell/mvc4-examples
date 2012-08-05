@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/04/2012 10:33:39
--- Generated from EDMX file: C:\GIT\OmbudsmanMap\OmbMvc4\OmbMf\Models\Ombudsman.edmx
+-- Date Created: 08/04/2012 18:29:31
+-- Generated from EDMX file: C:\GIT\OmbudsmanMap\OmbMvc4\OmbMf\Db\Ombudsman.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,6 +17,9 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Facilities_Ombudsmen]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Facilities] DROP CONSTRAINT [FK_Facilities_Ombudsmen];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables

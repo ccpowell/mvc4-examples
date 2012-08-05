@@ -8,12 +8,13 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using OmbMf.Models;
+using System.Data.Entity.Migrations;
 
 namespace OmbMf.Controllers.Api
 {
     public class FacilityController : ApiController
     {
-        private OmbudsmanEntities db = new OmbudsmanEntities();
+        private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         // GET api/Facility
         [Queryable]
@@ -40,8 +41,7 @@ namespace OmbMf.Controllers.Api
         {
             if (ModelState.IsValid && id == facility.FacilityId)
             {
-                db.Facilities.Attach(facility);
-                db.ObjectStateManager.ChangeObjectState(facility, EntityState.Modified);
+                db.Facilities.AddOrUpdate(facility);
 
                 try
                 {
@@ -65,7 +65,7 @@ namespace OmbMf.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                db.Facilities.AddObject(facility);
+                db.Facilities.AddOrUpdate(facility);
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, facility);
@@ -81,13 +81,13 @@ namespace OmbMf.Controllers.Api
         // DELETE api/Facility/5
         public HttpResponseMessage DeleteFacility(int id)
         {
-            Facility facility = db.Facilities.Single(f => f.FacilityId == id);
+            var facility = db.Facilities.Single(f => f.FacilityId == id);
             if (facility == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Facilities.DeleteObject(facility);
+            db.Facilities.Remove(facility);
 
             try
             {

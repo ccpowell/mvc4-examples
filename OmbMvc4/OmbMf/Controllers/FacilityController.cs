@@ -7,12 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using OmbMf.Models;
 using System.Diagnostics;
+using System.Data.Entity.Migrations;
 
 namespace OmbMf.Controllers
 {
     public class FacilityController : Controller
     {
-        private OmbudsmanEntities db = new OmbudsmanEntities();
+        private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         //
         // GET: /Facility/
@@ -28,7 +29,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Facility facility = db.Facilities.Single(f => f.FacilityId == id);
+            var facility = db.Facilities.Single(f => f.FacilityId == id);
             if (facility == null)
             {
                 return HttpNotFound();
@@ -53,7 +54,7 @@ namespace OmbMf.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Facilities.AddObject(facility);
+                db.Facilities.Add(facility);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,7 +68,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Facility facility = db.Facilities.Single(f => f.FacilityId == id);
+            var facility = db.Facilities.Single(f => f.FacilityId == id);
             if (facility == null)
             {
                 return HttpNotFound();
@@ -84,8 +85,7 @@ namespace OmbMf.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Facilities.Attach(facility);
-                db.ObjectStateManager.ChangeObjectState(facility, EntityState.Modified);
+                db.Entry(facility).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +98,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Facility facility = db.Facilities.Single(f => f.FacilityId == id);
+            var facility = db.Facilities.Single(f => f.FacilityId == id);
             if (facility == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace OmbMf.Controllers
         {
             try
             {
-                Facility facility = db.Facilities.Single(f => f.FacilityId == id);
-                db.Facilities.DeleteObject(facility);
+                var facility = db.Facilities.Single(f => f.FacilityId == id);
+                db.Facilities.Remove(facility);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

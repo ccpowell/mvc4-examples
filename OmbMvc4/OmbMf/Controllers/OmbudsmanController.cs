@@ -7,12 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using OmbMf.Models;
 using System.Diagnostics;
+using System.Data.Entity.Migrations;
 
 namespace OmbMf.Controllers
 {
     public class OmbudsmanController : Controller
     {
-        private OmbudsmanEntities db = new OmbudsmanEntities();
+        private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         //
         // GET: /Ombudsman/
@@ -27,7 +28,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             if (ombudsman == null)
             {
                 return HttpNotFound();
@@ -51,7 +52,7 @@ namespace OmbMf.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Ombudsmen.AddObject(ombudsman);
+                db.Ombudsmen.Add(ombudsman);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -64,7 +65,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             if (ombudsman == null)
             {
                 return HttpNotFound();
@@ -80,8 +81,7 @@ namespace OmbMf.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Ombudsmen.Attach(ombudsman);
-                db.ObjectStateManager.ChangeObjectState(ombudsman, EntityState.Modified);
+                db.Entry(ombudsman).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -93,7 +93,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             if (ombudsman == null)
             {
                 return HttpNotFound();
@@ -107,10 +107,10 @@ namespace OmbMf.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             try
             {
-                db.Ombudsmen.DeleteObject(ombudsman);
+                db.Ombudsmen.Remove(ombudsman);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

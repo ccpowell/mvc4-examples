@@ -8,12 +8,12 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using OmbMf.Models;
-
+using System.Data.Entity.Migrations;
 namespace OmbMf.Controllers.Api
 {
     public class OmbudsmanController : ApiController
     {
-        private OmbudsmanEntities db = new OmbudsmanEntities();
+        private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         // GET api/Ombudsman
         public IEnumerable<Ombudsman> GetOmbudsmen()
@@ -24,7 +24,7 @@ namespace OmbMf.Controllers.Api
         // GET api/Ombudsman/5
         public Ombudsman GetOmbudsman(int id)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             if (ombudsman == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -38,8 +38,7 @@ namespace OmbMf.Controllers.Api
         {
             if (ModelState.IsValid && id == ombudsman.OmbudsmanId)
             {
-                db.Ombudsmen.Attach(ombudsman);
-                db.ObjectStateManager.ChangeObjectState(ombudsman, EntityState.Modified);
+                db.Ombudsmen.AddOrUpdate(ombudsman);
 
                 try
                 {
@@ -63,7 +62,7 @@ namespace OmbMf.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                db.Ombudsmen.AddObject(ombudsman);
+                db.Ombudsmen.AddOrUpdate(ombudsman);
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, ombudsman);
@@ -79,13 +78,13 @@ namespace OmbMf.Controllers.Api
         // DELETE api/Ombudsman/5
         public HttpResponseMessage DeleteOmbudsman(int id)
         {
-            Ombudsman ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
+            var ombudsman = db.Ombudsmen.Single(o => o.OmbudsmanId == id);
             if (ombudsman == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Ombudsmen.DeleteObject(ombudsman);
+            db.Ombudsmen.Remove(ombudsman);
 
             try
             {

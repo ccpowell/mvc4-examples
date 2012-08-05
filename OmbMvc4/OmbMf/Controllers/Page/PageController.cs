@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -19,46 +20,25 @@ namespace OmbMf.Controllers.Page
         public IEnumerable<T> aaData { get; set; }
     }
 
-    public class FacilityModel
-    {
-        public int FacilityId { get; set; }
-        public string Name { get; set; }
-        public string OmbudsmanName { get; set; }
-        public int OmbudsmanId { get; set; }
-    }
-
-    public class OmbudsmanModel
-    {
-        public int OmbudsmanId { get; set; }
-        public string Name { get; set; }
-        public string UserName { get; set; }
-    }
-
-
 
     /// <summary>
     /// This controller handles paged data requests for a jquery datatable.
     /// </summary>
     public class PageController : ApiController
     {
-        private OmbudsmanEntities db = new OmbudsmanEntities();
+        private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         // GET page/Facilities
-        public PageModel<FacilityModel> GetFacilities(string iDisplayStart = "0", string iDisplayLength = "25")
+        public PageModel<Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10)
         {
-            var items = db.Facilities.Include("Ombudsman")
-                .Skip("it.Name", iDisplayStart)
-                .Top(iDisplayLength)
-                .AsEnumerable()
-                .Select(f => new FacilityModel()
-                {
-                    FacilityId = f.FacilityId,
-                    Name = f.Name,
-                    OmbudsmanId = f.OmbudsmanId ?? 0,
-                    OmbudsmanName = f.Ombudsman != null ? f.Ombudsman.Name : ""
-                });
+            var foo = db.Facilities.Include(f => f.Ombudsman).First();
+            var items = db.Facilities.Include(f => f.Ombudsman)
+                .OrderBy(f => f.Name)
+                .Skip(iDisplayStart)
+                .Take(iDisplayLength)
+                .AsEnumerable();
             var totalRecords = db.Facilities.Count();
-            var page = new PageModel<FacilityModel>()
+            var page = new PageModel<Facility>()
             {
                 aaData = items,
                 iTotalDisplayRecords = totalRecords,
@@ -68,20 +48,15 @@ namespace OmbMf.Controllers.Page
         }
 
         // GET page/Ombudsmen
-        public PageModel<OmbudsmanModel> GetOmbudsmen(string iDisplayLength = "10", string iDisplayStart = "0")
+        public PageModel<Ombudsman> GetOmbudsmen(int iDisplayStart = 0, int iDisplayLength = 10)
         {
             var items = db.Ombudsmen
-                .Skip("it.Name", iDisplayStart)
-                .Top(iDisplayLength)
-                .AsEnumerable()
-                .Select(f => new OmbudsmanModel()
-                {
-                    Name = f.Name,
-                    OmbudsmanId = f.OmbudsmanId,
-                    UserName = f.UserName
-                });
+                .OrderBy(f => f.Name)
+                .Skip(iDisplayStart)
+                .Take(iDisplayLength)
+                .AsEnumerable();
             var totalRecords = db.Ombudsmen.Count();
-            var page = new PageModel<OmbudsmanModel>()
+            var page = new PageModel<Ombudsman>()
                 {
                     aaData = items,
                     iTotalDisplayRecords = totalRecords,
