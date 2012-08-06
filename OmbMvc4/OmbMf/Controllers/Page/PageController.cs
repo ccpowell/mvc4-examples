@@ -29,20 +29,24 @@ namespace OmbMf.Controllers.Page
         private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         // GET page/Facilities
-        public PageModel<Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10)
+        public PageModel<Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, int onlyOmbudsmanid = 0, int onlyFacilityTypeId = 0)
         {
-            var items = db.Facilities.Include(f => f.Ombudsman).Include(x => x.FacilityType)
+            var filtered = db.Facilities.Include(f => f.Ombudsman).Include(x => x.FacilityType)
+                .Where(f => (onlyOmbudsmanid == 0 || f.OmbudsmanId == onlyOmbudsmanid))
+                .Where(f => (onlyFacilityTypeId == 0 || f.FacilityTypeId == onlyFacilityTypeId));
+            var filteredCount = filtered.Count();
+            var items = filtered
                 .OrderBy(f => f.Name)
                 .Skip(iDisplayStart)
                 .Take(iDisplayLength)
                 .AsEnumerable();
-            var totalRecords = db.Facilities.Count();
+            var totalCount = db.Facilities.Count();
 
             var page = new PageModel<Facility>()
             {
                 aaData = items,
-                iTotalDisplayRecords = totalRecords,
-                iTotalRecords = totalRecords
+                iTotalDisplayRecords = filteredCount,
+                iTotalRecords = totalCount
             };
             return page;
         }

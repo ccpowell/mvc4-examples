@@ -4,17 +4,24 @@
 // Do NOT remove them!
 // see http://www.jslint.com/
 /*jslint browser: true, debug: true, devel: true, white: true, plusplus: true, maxerr: 100, unparam: true, indent: 4 */
-/*global jQuery: false, Microsoft: false */
+/*global jQuery: false, Microsoft: false, ko: false */
 
 var App = App || {};
 
+App.ViewModel = function ($) {
+    "use strict";
+    var self = this;
+    self.filterOmbudsmanId = ko.observable(0);
+    self.filterFacilityTypeId = ko.observable(0);
+};
+
+
 App.ui = (function ($) {
     "use strict";
+    var facilityDataTable;
 
     function initializeFacilityTable() {
-        var dtoptions, $dt;
-
-        dtoptions = {
+        var dtoptions = {
             bStateSave: false,
             bServerSide: true,
             bProcessing: true,
@@ -25,6 +32,11 @@ App.ui = (function ($) {
             sPaginationType: "full_numbers",
             bJQueryUI: true,
             sAjaxSource: "/page/getfacilities",
+            fnServerParams: function (aoData) {
+                aoData.push({ name: 'onlyOmbudsmanId', value: App.viewmodel.filterOmbudsmanId() });
+                aoData.push({ name: 'onlyFacilityTypeId', value: App.viewmodel.filterFacilityTypeId() });
+            },
+
             aoColumns: [
                 { sTitle: "ID", mDataProp: "FacilityId" },
                 { sTitle: "Name", mDataProp: "Name" },
@@ -49,11 +61,15 @@ App.ui = (function ($) {
                 }
             ]
         };
-        $dt = $("#facility-table").dataTable(dtoptions);
+        facilityDataTable = $("#facility-table").dataTable(dtoptions);
     }
 
+    function reloadTable() {
+        facilityDataTable.fnDraw();
+    }
 
     function initialize() {
+        $("#debug").click(function () { debugger; });
 
         $.ajaxSetup({
             // Disable caching of AJAX responses
@@ -63,6 +79,14 @@ App.ui = (function ($) {
                 alert("ajax error " + errorThrown.toString());
             }
         });
+
+
+        App.viewmodel = new App.ViewModel($);
+        ko.applyBindings(App.viewmodel, document.body);
+
+        App.viewmodel.filterFacilityTypeId.subscribe(reloadTable);
+        App.viewmodel.filterOmbudsmanId.subscribe(reloadTable);
+
         initializeFacilityTable();
     }
 

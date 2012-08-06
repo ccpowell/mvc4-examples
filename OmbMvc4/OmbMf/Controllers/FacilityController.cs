@@ -21,6 +21,8 @@ namespace OmbMf.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.FacilityTypeId = new SelectList(db.FacilityTypes, "FacilityTypeId", "Name");
+            ViewBag.OmbudsmanId = new SelectList(db.Ombudsmen, "OmbudsmanId", "Name");
             return View();
         }
 

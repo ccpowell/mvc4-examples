@@ -1,14 +1,35 @@
 ﻿@{
     ViewBag.Title = "Facilities";
 }
-
-<h2>Facilities</h2>
-
+<div id="debug">debug</div>
+<h2>
+    Facilities</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div>
+    Filter by Type
+    <select data-bind="selectedOptions: filterFacilityTypeId">
+        <option value='0'>Any</option>
+    @foreach (var item in ViewBag.FacilityTypeId)
+    {
+        <option value='@item.Value'>@item.Text</option>
+    }
+    </select>
+</div>
+<div>
+    Filter by Ombudsman
+    <select data-bind="selectedOptions: filterOmbudsmanId">
+        <option value='0'>Any</option>
+    @foreach (var item in ViewBag.OmbudsmanId)
+    {
+        <option value='@item.Value'>@item.Text</option>
+    }
+    </select>
+</div>
 <table id="facility-table">
 </table>
 @section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.0.0.debug.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/FacilityIndex.js")"></script>
 }
