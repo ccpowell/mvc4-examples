@@ -11,6 +11,7 @@ using System.Data.Entity.Migrations;
 
 namespace OmbMf.Controllers
 {
+    [Authorize]
     public class OmbudsmanController : Controller
     {
         private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
@@ -97,6 +98,10 @@ namespace OmbMf.Controllers
             if (ombudsman == null)
             {
                 return HttpNotFound();
+            }
+            if (db.Facilities.Where(f => f.OmbudsmanId == ombudsman.OmbudsmanId).FirstOrDefault() != null)
+            {
+                ModelState.AddModelError("", "This ombudsman is assigned to facilities, so he cannot be deleted.");
             }
             return View(ombudsman);
         }

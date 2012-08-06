@@ -28,6 +28,7 @@ App.ui = (function ($) {
             aoColumns: [
                 { sTitle: "ID", mDataProp: "FacilityId" },
                 { sTitle: "Name", mDataProp: "Name" },
+                { sTitle: "Type", mDataProp: "FacilityType.Name" },
                 { sTitle: "Ombudsman Name", mDataProp: null, fnRender: function (oObj) {
                     // Facility is oObj.aData
                     var omb = oObj.aData.Ombudsman;

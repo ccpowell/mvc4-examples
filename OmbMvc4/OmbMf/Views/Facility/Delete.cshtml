@@ -18,7 +18,14 @@
     </div>
 
     <div class="display-label">
-         @Html.LabelFor(model => model.Ombudsman.Name)
+         <label>Type</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FacilityType.Name)
+    </div>
+
+    <div class="display-label">
+         <label>Ombudsman</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Ombudsman.Name)

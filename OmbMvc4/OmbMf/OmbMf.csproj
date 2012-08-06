@@ -141,6 +141,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DataTablesQuery.cs" />
     <Compile Include="Models\Facility.cs" />
+    <Compile Include="Models\FacilityType.cs" />
     <Compile Include="Models\Ombudsman.cs" />
     <Compile Include="Models\OmbudsmanDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,13 +31,13 @@ namespace OmbMf.Controllers.Page
         // GET page/Facilities
         public PageModel<Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10)
         {
-            var foo = db.Facilities.Include(f => f.Ombudsman).First();
-            var items = db.Facilities.Include(f => f.Ombudsman)
+            var items = db.Facilities.Include(f => f.Ombudsman).Include(x => x.FacilityType)
                 .OrderBy(f => f.Name)
                 .Skip(iDisplayStart)
                 .Take(iDisplayLength)
                 .AsEnumerable();
             var totalRecords = db.Facilities.Count();
+
             var page = new PageModel<Facility>()
             {
                 aaData = items,

@@ -23,6 +23,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.FacilityTypeId, "Facility Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FacilityTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.FacilityTypeId)
+        </div>
+
+        <div class="editor-label">
             <label>Ombudsman</label>
         </div>
         <div class="editor-field">

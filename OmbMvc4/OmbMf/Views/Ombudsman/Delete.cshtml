@@ -1,11 +1,13 @@
 ﻿@model OmbMf.Models.Ombudsman
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Ombudsman";
 }
-<h2>
-    @ViewBag.Title</h2>
-<h3>
-    Are you sure you want to delete this Ombudsman?</h3>
+<h2>@ViewBag.Title</h2>
+@if (ViewContext.ViewData.ModelState.IsValid)
+{
+    <h3>
+        Are you sure you want to delete this Ombudsman?</h3>
+}
 <p>
     @Html.ValidationMessage("")
 </p>
@@ -27,8 +29,11 @@
 @using (Html.BeginForm())
 {
     <p>
-        <input type="submit" value="Delete" />
-        |
+        @if (ViewContext.ViewData.ModelState.IsValid)
+        {
+            <input type="submit" value="Delete" />
+            <text> | </text>
+        }
         @Html.ActionLink("Back to List", "Index")
     </p>
 }

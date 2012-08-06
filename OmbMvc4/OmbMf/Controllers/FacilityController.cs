@@ -11,6 +11,7 @@ using System.Data.Entity.Migrations;
 
 namespace OmbMf.Controllers
 {
+    [Authorize]
     public class FacilityController : Controller
     {
         private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
@@ -20,21 +21,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Index()
         {
-            var facilities = db.Facilities.Include("Ombudsman");
-            return View(facilities.ToList());
-        }
-
-        //
-        // GET: /Facility/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            var facility = db.Facilities.Single(f => f.FacilityId == id);
-            if (facility == null)
-            {
-                return HttpNotFound();
-            }
-            return View(facility);
+            return View();
         }
 
         //
@@ -42,6 +29,7 @@ namespace OmbMf.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.FacilityTypeId = new SelectList(db.FacilityTypes, "FacilityTypeId", "Name", 1);
             ViewBag.OmbudsmanId = new SelectList(db.Ombudsmen, "OmbudsmanId", "Name");
             return View();
         }
@@ -59,6 +47,7 @@ namespace OmbMf.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.FacilityTypeId = new SelectList(db.FacilityTypes, "FacilityTypeId", "Name", facility.FacilityTypeId);
             ViewBag.OmbudsmanId = new SelectList(db.Ombudsmen, "OmbudsmanId", "Name", facility.OmbudsmanId);
             return View(facility);
         }
@@ -73,6 +62,7 @@ namespace OmbMf.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.FacilityTypeId = new SelectList(db.FacilityTypes, "FacilityTypeId", "Name", facility.FacilityTypeId);
             ViewBag.OmbudsmanId = new SelectList(db.Ombudsmen, "OmbudsmanId", "Name", facility.OmbudsmanId);
             return View(facility);
         }
@@ -89,6 +79,7 @@ namespace OmbMf.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.FacilityTypeId = new SelectList(db.FacilityTypes, "FacilityTypeId", "Name", facility.FacilityTypeId);
             ViewBag.OmbudsmanId = new SelectList(db.Ombudsmen, "OmbudsmanId", "Name", facility.OmbudsmanId);
             return View(facility);
         }
@@ -98,11 +89,12 @@ namespace OmbMf.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            var facility = db.Facilities.Single(f => f.FacilityId == id);
+            var facility = db.Facilities.Include(f => f.Ombudsman).Include(f => f.FacilityType).Single(f => f.FacilityId == id);
             if (facility == null)
             {
                 return HttpNotFound();
             }
+            
             return View(facility);
         }
 
