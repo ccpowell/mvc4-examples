@@ -38,8 +38,8 @@ App.ui = (function ($) {
                 }
                 },
                 { mDataProp: null, sWidth: "120px", fnRender: function (oObj) {
-                    // Ombudsman is oObj.aData
-                    var id = oObj.aData.OmbudsmanId,
+                    // Facility is oObj.aData
+                    var id = oObj.aData.FacilityId,
                         editButton, deleteButton;
                     editButton = '<a href="/Facility/Edit?id=' + id + '">Edit</a>';
                     deleteButton = '<a href="/Facility/Delete?id=' + id + '">Delete</a>';
