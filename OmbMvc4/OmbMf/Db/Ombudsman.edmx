@@ -4,11 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OmbudsmanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="OmbudsmanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="OmbudsmanModelStoreContainer">
           <EntitySet Name="Facilities" EntityType="OmbudsmanModel.Store.Facilities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FacilityTypes" EntityType="OmbudsmanModel.Store.FacilityTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Ombudsmen" EntityType="OmbudsmanModel.Store.Ombudsmen" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Facilities_Ombudsmen" Association="OmbudsmanModel.Store.FK_Facilities_Ombudsmen">
+          <AssociationSet Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" Association="OmbudsmanModel.Store.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
+            <End Role="FacilityTypes" EntitySet="FacilityTypes" />
+            <End Role="Facilities" EntitySet="Facilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId" Association="OmbudsmanModel.Store.FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId">
             <End Role="Ombudsmen" EntitySet="Ombudsmen" />
             <End Role="Facilities" EntitySet="Facilities" />
           </AssociationSet>
@@ -18,8 +23,16 @@
             <PropertyRef Name="FacilityId" />
           </Key>
           <Property Name="FacilityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FacilityTypeId" Type="int" Nullable="false" />
           <Property Name="OmbudsmanId" Type="int" />
+        </EntityType>
+        <EntityType Name="FacilityTypes">
+          <Key>
+            <PropertyRef Name="FacilityTypeId" />
+          </Key>
+          <Property Name="FacilityTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Ombudsmen">
           <Key>
@@ -29,7 +42,21 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Facilities_Ombudsmen">
+        <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
+          <End Role="FacilityTypes" Type="OmbudsmanModel.Store.FacilityTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Facilities" Type="OmbudsmanModel.Store.Facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityTypes">
+              <PropertyRef Name="FacilityTypeId" />
+            </Principal>
+            <Dependent Role="Facilities">
+              <PropertyRef Name="FacilityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId">
           <End Role="Ombudsmen" Type="OmbudsmanModel.Store.Ombudsmen" Multiplicity="0..1" />
           <End Role="Facilities" Type="OmbudsmanModel.Store.Facilities" Multiplicity="*" />
           <ReferentialConstraint>
@@ -41,8 +68,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OmbudsmanModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -53,6 +79,11 @@
             <End Role="Ombudsmen" EntitySet="Ombudsmen" />
             <End Role="Facilities" EntitySet="Facilities" />
           </AssociationSet>
+          <EntitySet Name="FacilityTypes" EntityType="OmbudsmanModel.FacilityType" />
+          <AssociationSet Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" Association="OmbudsmanModel.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
+            <End Role="FacilityType" EntitySet="FacilityTypes" />
+            <End Role="Facility" EntitySet="Facilities" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Facility">
           <Key>
@@ -62,6 +93,8 @@
           <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="OmbudsmanId" Type="Int32" />
           <NavigationProperty Name="Ombudsman" Relationship="OmbudsmanModel.FK_Facilities_Ombudsmen" FromRole="Facilities" ToRole="Ombudsmen" />
+          <Property Type="Int32" Name="FacilityTypeId" Nullable="false" />
+          <NavigationProperty Name="FacilityType" Relationship="OmbudsmanModel.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" FromRole="Facility" ToRole="FacilityType" />
         </EntityType>
         <EntityType Name="Ombudsman">
           <Key>
@@ -84,6 +117,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FacilityType">
+          <Key>
+            <PropertyRef Name="FacilityTypeId" />
+          </Key>
+          <Property Type="Int32" Name="FacilityTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Facilities" Relationship="OmbudsmanModel.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" FromRole="FacilityType" ToRole="Facility" />
+        </EntityType>
+        <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
+          <End Type="OmbudsmanModel.FacilityType" Role="FacilityType" Multiplicity="1" />
+          <End Type="OmbudsmanModel.Facility" Role="Facility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityType">
+              <PropertyRef Name="FacilityTypeId" />
+            </Principal>
+            <Dependent Role="Facility">
+              <PropertyRef Name="FacilityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -91,7 +144,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OmbudsmanModelStoreContainer" CdmEntityContainer="OmbudsmanEntities1">
           <EntitySetMapping Name="Facilities"><EntityTypeMapping TypeName="OmbudsmanModel.Facility"><MappingFragment StoreEntitySet="Facilities">
-            <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+            <ScalarProperty Name="FacilityTypeId" ColumnName="FacilityTypeId" />
+                <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="OmbudsmanId" ColumnName="OmbudsmanId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
@@ -100,6 +154,14 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="UserName" ColumnName="UserName" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FacilityTypes">
+            <EntityTypeMapping TypeName="OmbudsmanModel.FacilityType">
+              <MappingFragment StoreEntitySet="FacilityTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FacilityTypeId" ColumnName="FacilityTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -126,6 +188,12 @@
         <AssociationConnector Association="OmbudsmanModel.FK_Facilities_Ombudsmen" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.7689925130208337" />
           <ConnectorPoint PointX="3" PointY="1.7689925130208337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OmbudsmanModel.FacilityType" Width="1.5" PointX="0.75" PointY="4.875" Height="1.5956835937499996" />
+        <AssociationConnector Association="OmbudsmanModel.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" >
+          <ConnectorPoint PointX="2.25" PointY="5.672841796875" />
+          <ConnectorPoint PointX="3.75" PointY="5.672841796875" />
+          <ConnectorPoint PointX="3.75" PointY="3.047587890625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
