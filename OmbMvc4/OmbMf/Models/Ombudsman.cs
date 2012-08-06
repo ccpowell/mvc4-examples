@@ -15,5 +15,9 @@ namespace OmbMf.Models
 
         [Required]
         public string UserName { get; set; }
+
+        // this would lead to circular references. 
+        // although not impossible to handle, it is simpler not to.
+        //public List<Facility> Facilities { get; set; }
     }
 }

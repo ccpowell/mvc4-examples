@@ -31,15 +31,16 @@ namespace OmbMf.Controllers.Page
         // GET page/Facilities
         public PageModel<Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, int onlyOmbudsmanid = 0, int onlyFacilityTypeId = 0)
         {
-            var filtered = db.Facilities.Include(f => f.Ombudsman).Include(x => x.FacilityType)
+            var filtered = db.Facilities
                 .Where(f => (onlyOmbudsmanid == 0 || f.OmbudsmanId == onlyOmbudsmanid))
                 .Where(f => (onlyFacilityTypeId == 0 || f.FacilityTypeId == onlyFacilityTypeId));
             var filteredCount = filtered.Count();
-            var items = filtered
+            var items = filtered.Include(f => f.Ombudsman).Include(x => x.FacilityType)
                 .OrderBy(f => f.Name)
                 .Skip(iDisplayStart)
                 .Take(iDisplayLength)
-                .AsEnumerable();
+                .ToList();
+            
             var totalCount = db.Facilities.Count();
 
             var page = new PageModel<Facility>()

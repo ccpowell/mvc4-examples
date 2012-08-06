@@ -29,7 +29,18 @@
             @Html.EditorFor(model => model.UserName)
             @Html.ValidationMessageFor(model => model.UserName)
         </div>
-
+        
+        <div class="editor-label">
+            <label>Facilities</label>
+        </div>
+        <div class="editor-field">
+        <ul>
+        @foreach (var f in ViewBag.Facilities)
+        {
+            <li><a href='/Facility/Edit?id=@f.FacilityId'>@f.Name</a></li>
+        }
+        </ul>
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>

@@ -71,6 +71,7 @@ namespace OmbMf.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Facilities = db.Facilities.Where(f => f.OmbudsmanId == id).OrderBy(f => f.Name).ToArray();
             return View(ombudsman);
         }
 
