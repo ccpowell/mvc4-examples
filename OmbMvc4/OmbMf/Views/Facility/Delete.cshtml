@@ -1,24 +1,24 @@
 ﻿@model OmbMf.Models.Facility
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Facility";
 }
 
-<h2>Delete</h2>
+<h2>@ViewBag.Title</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this facility?</h3>
 <fieldset>
     <legend>Facility</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+         @Html.LabelFor(model => model.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Ombudsman.Name)
+         @Html.LabelFor(model => model.Ombudsman.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Ombudsman.Name)

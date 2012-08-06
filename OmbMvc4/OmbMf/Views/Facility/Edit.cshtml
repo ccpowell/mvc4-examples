@@ -1,10 +1,10 @@
 ﻿@model OmbMf.Models.Facility
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Facility";
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -15,7 +15,7 @@
         @Html.HiddenFor(model => model.FacilityId)
 
         <div class="editor-label">
-            Facility Name
+            @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            Ombudsman
+            <label>Ombudsman</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("OmbudsmanId", String.Empty)

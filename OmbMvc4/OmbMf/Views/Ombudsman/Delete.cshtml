@@ -3,22 +3,22 @@
     ViewBag.Title = "Delete";
 }
 <h2>
-    Delete</h2>
+    @ViewBag.Title</h2>
 <h3>
-    Are you sure you want to delete this?</h3>
-    <p>
-        @Html.ValidationMessage("")
-    </p>
+    Are you sure you want to delete this Ombudsman?</h3>
+<p>
+    @Html.ValidationMessage("")
+</p>
 <fieldset>
     <legend>Ombudsman</legend>
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.Name)
+        @Html.LabelFor(model => model.Name)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.UserName)
+        @Html.LabelFor(model => model.UserName)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserName)

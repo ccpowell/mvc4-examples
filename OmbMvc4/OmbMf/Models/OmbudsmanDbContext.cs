@@ -10,10 +10,12 @@ namespace OmbMf.Models
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+#if needed
             modelBuilder.Entity<Facility>().ToTable("Facilities");
             modelBuilder.Entity<Ombudsman>().ToTable("Ombudsmen");
             modelBuilder.Entity<Facility>().HasOptional<Ombudsman>(f => f.Ombudsman);
             System.Diagnostics.Debug.WriteLine("model created");
+#endif
         }
         public DbSet<Ombudsman> Ombudsmen { get; set; }
         public DbSet<Facility> Facilities { get; set; }

@@ -176,6 +176,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Db\Ombudsman.edmx.sql" />
+    <Content Include="Scripts\OmbudsmanIndex.js" />
+    <Content Include="Scripts\FacilityIndex.js" />
     <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
@@ -241,13 +243,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Db\Ombudsman.edmx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Ombudsman\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Ombudsman\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Ombudsman\Create.cshtml" />
@@ -262,9 +258,6 @@
     <Content Include="Views\Facility\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Facility\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Facility\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +268,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\TestPages\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Db\Ombudsman.edmx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
