@@ -35,7 +35,94 @@
             @Html.DropDownList("OmbudsmanId", String.Empty)
             @Html.ValidationMessageFor(model => model.OmbudsmanId)
         </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.State)
+            @Html.ValidationMessageFor(model => model.State)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ZipCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fax)
+            @Html.ValidationMessageFor(model => model.Fax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfBeds)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfBeds)
+            @Html.ValidationMessageFor(model => model.NumberOfBeds)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsMedicaid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsMedicaid)
+            @Html.ValidationMessageFor(model => model.IsMedicaid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsContinuum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsContinuum)
+            @Html.ValidationMessageFor(model => model.IsContinuum)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
