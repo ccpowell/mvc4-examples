@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E9AC0FF-D16A-4E54-80EC-9191BD865B39}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ef5Data</RootNamespace>
+    <AssemblyName>Ef5Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AddressType.cs" />
+    <Compile Include="Models\AdhocProjectVersion.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryType.cs" />
+    <Compile Include="Models\CDOTCorridorGISCategory.cs" />
+    <Compile Include="Models\CDOTInvestmentTypeCategory.cs" />
+    <Compile Include="Models\CountyGeography.cs" />
+    <Compile Include="Models\Cycle.cs" />
+    <Compile Include="Models\CycleProjectVersion.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentType.cs" />
+    <Compile Include="Models\EvaluationCriterion.cs" />
+    <Compile Include="Models\EvaluationCriterionProjectType.cs" />
+    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\FeatureType.cs" />
+    <Compile Include="Models\FundingGroup.cs" />
+    <Compile Include="Models\FundingIncrement.cs" />
+    <Compile Include="Models\FundingLevel.cs" />
+    <Compile Include="Models\FundingResource.cs" />
+    <Compile Include="Models\FundingResourceAmount.cs" />
+    <Compile Include="Models\FundingResourceTimePeriod.cs" />
+    <Compile Include="Models\FundingType.cs" />
+    <Compile Include="Models\FundingTypeLevel.cs" />
+    <Compile Include="Models\Geography.cs" />
+    <Compile Include="Models\GeographyType.cs" />
+    <Compile Include="Models\GetFundingResource.cs" />
+    <Compile Include="Models\GISCategory.cs" />
+    <Compile Include="Models\GISCategoryType.cs" />
+    <Compile Include="Models\ImprovementType.cs" />
+    <Compile Include="Models\LoginProfile.cs" />
+    <Compile Include="Models\LR.cs" />
+    <Compile Include="Models\LRSCategory.cs" />
+    <Compile Include="Models\LRSCategoryType.cs" />
+    <Compile Include="Models\LRSProjectsLookup.cs" />
+    <Compile Include="Models\LRSScheme.cs" />
+    <Compile Include="Models\LRSSchemeAttr.cs" />
+    <Compile Include="Models\Mapping\AddressMap.cs" />
+    <Compile Include="Models\Mapping\AddressTypeMap.cs" />
+    <Compile Include="Models\Mapping\AdhocProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\CategoryMap.cs" />
+    <Compile Include="Models\Mapping\CategoryTypeMap.cs" />
+    <Compile Include="Models\Mapping\CDOTCorridorGISCategoryMap.cs" />
+    <Compile Include="Models\Mapping\CDOTInvestmentTypeCategoryMap.cs" />
+    <Compile Include="Models\Mapping\CountyGeographyMap.cs" />
+    <Compile Include="Models\Mapping\CycleMap.cs" />
+    <Compile Include="Models\Mapping\CycleProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\DocumentMap.cs" />
+    <Compile Include="Models\Mapping\DocumentTypeMap.cs" />
+    <Compile Include="Models\Mapping\EvaluationCriterionMap.cs" />
+    <Compile Include="Models\Mapping\EvaluationCriterionProjectTypeMap.cs" />
+    <Compile Include="Models\Mapping\FeatureMap.cs" />
+    <Compile Include="Models\Mapping\FeatureTypeMap.cs" />
+    <Compile Include="Models\Mapping\FundingGroupMap.cs" />
+    <Compile Include="Models\Mapping\FundingIncrementMap.cs" />
+    <Compile Include="Models\Mapping\FundingLevelMap.cs" />
+    <Compile Include="Models\Mapping\FundingResourceAmountMap.cs" />
+    <Compile Include="Models\Mapping\FundingResourceMap.cs" />
+    <Compile Include="Models\Mapping\FundingResourceTimePeriodMap.cs" />
+    <Compile Include="Models\Mapping\FundingTypeLevelMap.cs" />
+    <Compile Include="Models\Mapping\FundingTypeMap.cs" />
+    <Compile Include="Models\Mapping\GeographyMap.cs" />
+    <Compile Include="Models\Mapping\GeographyTypeMap.cs" />
+    <Compile Include="Models\Mapping\GetFundingResourceMap.cs" />
+    <Compile Include="Models\Mapping\GISCategoryMap.cs" />
+    <Compile Include="Models\Mapping\GISCategoryTypeMap.cs" />
+    <Compile Include="Models\Mapping\ImprovementTypeMap.cs" />
+    <Compile Include="Models\Mapping\LoginProfileMap.cs" />
+    <Compile Include="Models\Mapping\LRMap.cs" />
+    <Compile Include="Models\Mapping\LRSCategoryMap.cs" />
+    <Compile Include="Models\Mapping\LRSCategoryTypeMap.cs" />
+    <Compile Include="Models\Mapping\LRSProjectsLookupMap.cs" />
+    <Compile Include="Models\Mapping\LRSSchemeAttrMap.cs" />
+    <Compile Include="Models\Mapping\LRSSchemeMap.cs" />
+    <Compile Include="Models\Mapping\MediumMap.cs" />
+    <Compile Include="Models\Mapping\MetroVisionMeasureMap.cs" />
+    <Compile Include="Models\Mapping\MetroVisionMeasureSponsorMap.cs" />
+    <Compile Include="Models\Mapping\MuniGeographyMap.cs" />
+    <Compile Include="Models\Mapping\NetworkMap.cs" />
+    <Compile Include="Models\Mapping\OrganizationMap.cs" />
+    <Compile Include="Models\Mapping\OrganizationPersonRoleMap.cs" />
+    <Compile Include="Models\Mapping\OrganizationTypeMap.cs" />
+    <Compile Include="Models\Mapping\PersonMap.cs" />
+    <Compile Include="Models\Mapping\PlanSurveyMap.cs" />
+    <Compile Include="Models\Mapping\PoolProjectMap.cs" />
+    <Compile Include="Models\Mapping\ProcessedMap.cs" />
+    <Compile Include="Models\Mapping\ProfileAttributeMap.cs" />
+    <Compile Include="Models\Mapping\ProfileAttributeTypeClassMap.cs" />
+    <Compile Include="Models\Mapping\ProfileAttributeTypeMap.cs" />
+    <Compile Include="Models\Mapping\ProfileMap.cs" />
+    <Compile Include="Models\Mapping\ProfileTypeMap.cs" />
+    <Compile Include="Models\Mapping\ProgramInstanceMap.cs" />
+    <Compile Include="Models\Mapping\ProgramInstanceProjectTypeMap.cs" />
+    <Compile Include="Models\Mapping\ProgramInstanceSponsorMap.cs" />
+    <Compile Include="Models\Mapping\ProgramMap.cs" />
+    <Compile Include="Models\Mapping\ProjectCDOTDataMap.cs" />
+    <Compile Include="Models\Mapping\ProjectCountyGeographyMap.cs" />
+    <Compile Include="Models\Mapping\ProjectFinancialRecordDetailMap.cs" />
+    <Compile Include="Models\Mapping\ProjectFinancialRecordDetailPhaseMap.cs" />
+    <Compile Include="Models\Mapping\ProjectFinancialRecordMap.cs" />
+    <Compile Include="Models\Mapping\ProjectMap.cs" />
+    <Compile Include="Models\Mapping\ProjectModelCodingMap.cs" />
+    <Compile Include="Models\Mapping\ProjectMuniGeographyMap.cs" />
+    <Compile Include="Models\Mapping\ProjectPoolMap.cs" />
+    <Compile Include="Models\Mapping\ProjectSegmentMap.cs" />
+    <Compile Include="Models\Mapping\ProjectSponsorMap.cs" />
+    <Compile Include="Models\Mapping\ProjectTypeMap.cs" />
+    <Compile Include="Models\Mapping\ProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\ProjectVersionReportingMap.cs" />
+    <Compile Include="Models\Mapping\RawMap.cs" />
+    <Compile Include="Models\Mapping\Report1Map.cs" />
+    <Compile Include="Models\Mapping\ReportMap.cs" />
+    <Compile Include="Models\Mapping\ReportOverrideMap.cs" />
+    <Compile Include="Models\Mapping\ReportProjectVersionSortingMap.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Models\Mapping\RoleTypeMap.cs" />
+    <Compile Include="Models\Mapping\RTPImprovementTypeMap.cs" />
+    <Compile Include="Models\Mapping\RTPProgramInstanceMap.cs" />
+    <Compile Include="Models\Mapping\RTPProgramInstanceSponsorMap.cs" />
+    <Compile Include="Models\Mapping\RTPProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\RTPReportGroupingCategoryMap.cs" />
+    <Compile Include="Models\Mapping\SecurityMap.cs" />
+    <Compile Include="Models\Mapping\SponsorOrganizationMap.cs" />
+    <Compile Include="Models\Mapping\StatusMap.cs" />
+    <Compile Include="Models\Mapping\StatusTypeMap.cs" />
+    <Compile Include="Models\Mapping\StreetAddressMap.cs" />
+    <Compile Include="Models\Mapping\StrikeMap.cs" />
+    <Compile Include="Models\Mapping\SurveyProgramInstanceMap.cs" />
+    <Compile Include="Models\Mapping\SurveyProgramInstanceSponsorMap.cs" />
+    <Compile Include="Models\Mapping\SurveyProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\TimePeriodCycleMap.cs" />
+    <Compile Include="Models\Mapping\TimePeriodMap.cs" />
+    <Compile Include="Models\Mapping\TimePeriodTypeMap.cs" />
+    <Compile Include="Models\Mapping\TipImprovementTypeMap.cs" />
+    <Compile Include="Models\Mapping\TIPProgramInstanceMap.cs" />
+    <Compile Include="Models\Mapping\TIPProgramInstanceSponsorMap.cs" />
+    <Compile Include="Models\Mapping\TIPProjectEvaluation2010Map.cs" />
+    <Compile Include="Models\Mapping\TIPProjectEvaluation2010ModeMap.cs" />
+    <Compile Include="Models\Mapping\TIPProjectEvaluation2010ServiceTypeMap.cs" />
+    <Compile Include="Models\Mapping\TIPProjectVersionArchiveMap.cs" />
+    <Compile Include="Models\Mapping\TIPProjectVersionMap.cs" />
+    <Compile Include="Models\Mapping\validation_GetProjectMap.cs" />
+    <Compile Include="Models\Mapping\validation_GetProjectSponsorsMap.cs" />
+    <Compile Include="Models\Mapping\vw_SponsorsMap.cs" />
+    <Compile Include="Models\Mapping\vw_TipProgramMap.cs" />
+    <Compile Include="Models\Mapping\v_GetFullyDepictedPoolProjectsMap.cs" />
+    <Compile Include="Models\Medium.cs" />
+    <Compile Include="Models\MetroVisionMeasure.cs" />
+    <Compile Include="Models\MetroVisionMeasureSponsor.cs" />
+    <Compile Include="Models\MuniGeography.cs" />
+    <Compile Include="Models\Network.cs" />
+    <Compile Include="Models\Organization.cs" />
+    <Compile Include="Models\OrganizationPersonRole.cs" />
+    <Compile Include="Models\OrganizationType.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PlanSurvey.cs" />
+    <Compile Include="Models\PoolProject.cs" />
+    <Compile Include="Models\Processed.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileAttribute.cs" />
+    <Compile Include="Models\ProfileAttributeType.cs" />
+    <Compile Include="Models\ProfileAttributeTypeClass.cs" />
+    <Compile Include="Models\ProfileType.cs" />
+    <Compile Include="Models\Program.cs" />
+    <Compile Include="Models\ProgramInstance.cs" />
+    <Compile Include="Models\ProgramInstanceProjectType.cs" />
+    <Compile Include="Models\ProgramInstanceSponsor.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectCDOTData.cs" />
+    <Compile Include="Models\ProjectCountyGeography.cs" />
+    <Compile Include="Models\ProjectFinancialRecord.cs" />
+    <Compile Include="Models\ProjectFinancialRecordDetail.cs" />
+    <Compile Include="Models\ProjectFinancialRecordDetailPhase.cs" />
+    <Compile Include="Models\ProjectModelCoding.cs" />
+    <Compile Include="Models\ProjectMuniGeography.cs" />
+    <Compile Include="Models\ProjectPool.cs" />
+    <Compile Include="Models\ProjectSegment.cs" />
+    <Compile Include="Models\ProjectSponsor.cs" />
+    <Compile Include="Models\ProjectType.cs" />
+    <Compile Include="Models\ProjectVersion.cs" />
+    <Compile Include="Models\ProjectVersionReporting.cs" />
+    <Compile Include="Models\Raw.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Report1.cs" />
+    <Compile Include="Models\ReportOverride.cs" />
+    <Compile Include="Models\ReportProjectVersionSorting.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RoleType.cs" />
+    <Compile Include="Models\RTPImprovementType.cs" />
+    <Compile Include="Models\RTPProgramInstance.cs" />
+    <Compile Include="Models\RTPProgramInstanceSponsor.cs" />
+    <Compile Include="Models\RTPProjectVersion.cs" />
+    <Compile Include="Models\RTPReportGroupingCategory.cs" />
+    <Compile Include="Models\Security.cs" />
+    <Compile Include="Models\SponsorOrganization.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\StatusType.cs" />
+    <Compile Include="Models\StreetAddress.cs" />
+    <Compile Include="Models\Strike.cs" />
+    <Compile Include="Models\SurveyProgramInstance.cs" />
+    <Compile Include="Models\SurveyProgramInstanceSponsor.cs" />
+    <Compile Include="Models\SurveyProjectVersion.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TimePeriod.cs" />
+    <Compile Include="Models\TimePeriodCycle.cs" />
+    <Compile Include="Models\TimePeriodType.cs" />
+    <Compile Include="Models\TipImprovementType.cs" />
+    <Compile Include="Models\TIPProgramInstance.cs" />
+    <Compile Include="Models\TIPProgramInstanceSponsor.cs" />
+    <Compile Include="Models\TIPProjectEvaluation2010.cs" />
+    <Compile Include="Models\TIPProjectEvaluation2010Mode.cs" />
+    <Compile Include="Models\TIPProjectEvaluation2010ServiceType.cs" />
+    <Compile Include="Models\TIPProjectVersion.cs" />
+    <Compile Include="Models\TIPProjectVersionArchive.cs" />
+    <Compile Include="Models\TRIPSContext.cs" />
+    <Compile Include="Models\validation_GetProject.cs" />
+    <Compile Include="Models\validation_GetProjectSponsors.cs" />
+    <Compile Include="Models\vw_Sponsors.cs" />
+    <Compile Include="Models\vw_TipProgram.cs" />
+    <Compile Include="Models\v_GetFullyDepictedPoolProjects.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

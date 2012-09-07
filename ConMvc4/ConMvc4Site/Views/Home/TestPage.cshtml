@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Test Page";
+}
+
+<h2>Test Page</h2>
+
+<h3>All Contacts</h3>
+<table id="all-users-table"></table>
+
+<h3>My Lists</h3>
+<table id="private-lists-table"></table>
+
+<h3>Public Lists</h3>
+<table id="public-lists-table"></table>
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Ui.js")"></script>
+}

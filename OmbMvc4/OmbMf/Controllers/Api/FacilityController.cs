@@ -25,15 +25,15 @@ namespace OmbMf.Controllers.Api
         }
 
         // GET api/Facility/5
-        public Facility GetFacility(int id)
+        public HttpResponseMessage GetFacility(int id)
         {
-            Facility facility = db.Facilities.Single(f => f.FacilityId == id);
+            Facility facility = db.Facilities.SingleOrDefault(f => f.FacilityId == id);
             if (facility == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return facility;
+            return Request.CreateResponse(HttpStatusCode.OK, facility);
         }
 
         // PUT api/Facility/5

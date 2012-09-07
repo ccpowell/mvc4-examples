@@ -4,3 +4,4 @@ logs
 *.Publish.xml
 *.suo
 *.csproj.user
+TestResults
