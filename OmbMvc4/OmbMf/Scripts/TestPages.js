@@ -4,9 +4,13 @@
 // Do NOT remove them!
 // see http://www.jslint.com/
 /*jslint browser: true, debug: true, devel: true, white: true, plusplus: true, maxerr: 100, unparam: true, indent: 4 */
-/*global jQuery: false, Microsoft: false */
+/*global jQuery: false, Microsoft: false, ko: false */
 
 var App = App || {};
+
+App.viewmodel = (function($) {
+    "use strict";
+} (jQuery));
 
 App.ui = (function ($) {
     "use strict";

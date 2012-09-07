@@ -61,6 +61,29 @@ namespace ConRepo
             SavePropertyValue(db, user, "Title", profile.Title);
         }
 
+        private string GetPropertyValue(TRIPS_UserEntities db, aspnet_Users user, string name)
+        {
+            var pp = db.ProfileProperties.Single(p => p.ProfilePropertyName == name);
+            var ppv = user.ProfilePropertyValues.SingleOrDefault(p => p.ProfilePropertyID == pp.ProfilePropertyID);
+            if (ppv != null)
+            {
+                return ppv.ProfilePropertyValue1.Trim();
+            }
+            return null;
+        }
+
+        private void GetPropertyValues(TRIPS_UserEntities db, aspnet_Users user, ConModels.User profile)
+        {
+            profile.LastName = GetPropertyValue(db, user, "LastName");
+            profile.FirstName = GetPropertyValue(db, user, "FirstName");
+            profile.BusinessEmail = GetPropertyValue(db, user, "BusinessEmailAddress");
+            profile.HomeEmail = GetPropertyValue(db, user, "HomeEmailAddress");
+            profile.AlternateEmail = GetPropertyValue(db, user, "AlternateEmailAddress");
+            profile.Comment = GetPropertyValue(db, user, "Comment");
+            profile.Phone = GetPropertyValue(db, user, "PrimaryContact");
+            profile.Organization = GetPropertyValue(db, user, "Organization");
+            profile.Title = GetPropertyValue(db, user, "Title");
+        }
 
 
         public Guid CreateUser(ConModels.User profile)
@@ -116,6 +139,65 @@ namespace ConRepo
             return profile.Id;
         }
 
+
+        private ConModels.User GetUserModel(TRIPS_UserEntities db, aspnet_Users au)
+        {
+            string email = null;
+            if (au.aspnet_Membership != null)
+            {
+                email = au.aspnet_Membership.Email;
+            }
+            var user = new ConModels.User()
+            {
+                Id = au.UserId,
+                UserName = au.UserName,
+                RecoveryEmail = email
+            };
+            GetPropertyValues(db, au, user);
+            return user;
+        }
+
+        public ConModels.User GetUserById(Guid id)
+        {
+            using (var db = new TRIPS_UserEntities())
+            {
+                var au = db.aspnet_Users.SingleOrDefault(u => u.UserId == id);
+                if (au != null)
+                {
+                    return GetUserModel(db, au);
+                }
+            }
+            return null;
+        }
+
+        public ConModels.User GetUserByName(string name)
+        {
+            using (var db = new TRIPS_UserEntities())
+            {
+                var au = db.aspnet_Users.SingleOrDefault(u => u.UserName == name);
+                if (au != null)
+                {
+                    return GetUserModel(db, au);
+                }
+            }
+            return null;
+        }
+
+        public List<ConModels.User> GetUsers()
+        {
+            var users = new List<ConModels.User>();
+
+            using (var db = new TRIPS_UserEntities())
+            {
+                foreach (var au in db.aspnet_Users)
+                {
+                    users.Add(GetUserModel(db, au));
+                }
+            }
+
+            return users;
+        }
+
         public void DeleteUser(Guid id)
         {
             using (var db = new TRIPS_UserEntities())
@@ -130,7 +212,7 @@ namespace ConRepo
                 }
 
                 db.SaveChanges();
-            
+
                 Membership.DeleteUser(user.UserName, true);
             }
 

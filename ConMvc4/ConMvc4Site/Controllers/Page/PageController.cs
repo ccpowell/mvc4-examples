@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Castle.Core.Logging;
 
 namespace ConMvc4Site.Controllers.Page
 {
@@ -18,33 +19,28 @@ namespace ConMvc4Site.Controllers.Page
 
     public class PageController : ApiController
     {
+        private ConRepo.ContactsRepository Users { get; set; }
+        private ILogger Logger { get; set; }
+        private Parts.UserCache UserCache { get; set; }
+        public PageController(ConRepo.ContactsRepository repo, Parts.UserCache cache, ILogger logger)
+        {
+            Users = repo;
+            UserCache = cache;
+            Logger = logger;
+        }
+
         public PageModel<ConModels.User> GetUsers(int iDisplayStart = 0, int iDisplayLength = 10)
         {
-            var filtered = new List<ConModels.User>();
-            filtered.Add(new ConModels.User()
-            {
-                Id = Guid.NewGuid(),
-                UserName = "goober",
-                Organization = "Nogoodniks, Inc.",
-                RecoveryEmail = "goober@drcog.org",
-                Phone = "5555551212"
-            });
-            filtered.Add(new ConModels.User()
-            {
-                Id = Guid.NewGuid(),
-                UserName = "grubby",
-                Organization = "Nogoodniks, Inc.",
-                RecoveryEmail = "grubby@drcog.org",
-                Phone = "2225551212"
-            });
+            var filtered = UserCache.GetAllUsers();
             var filteredCount = filtered.Count;
+
             var items = filtered
                 .OrderBy(f => f.UserName)
                 .Skip(iDisplayStart)
                 .Take(iDisplayLength)
                 .ToList();
 
-            var totalCount = 42;
+            var totalCount = filtered.Count;
 
             var page = new PageModel<ConModels.User>()
             {
@@ -54,5 +50,6 @@ namespace ConMvc4Site.Controllers.Page
             };
             return page;
         }
+
     }
 }

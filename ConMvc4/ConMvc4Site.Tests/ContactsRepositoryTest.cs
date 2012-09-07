@@ -150,8 +150,8 @@ namespace ConMvc4Site.Tests
         [TestMethod()]
         public void CreateUserTest()
         {
-            Guid id = Guid.Parse("E4C7BDA6-0D28-4A82-8FD6-D76A212C7E3E");
             ContactsRepository target = container.Resolve<ContactsRepository>();
+            Guid id = Guid.Parse("E4C7BDA6-0D28-4A82-8FD6-D76A212C7E3E");
             User profile = new ConModels.User()
             {
                 Id = id,
@@ -164,6 +164,16 @@ namespace ConMvc4Site.Tests
             Guid actual;
             actual = target.CreateUser(profile);
             Assert.AreEqual(expected, actual);
+
+            // get by name
+            var byname = target.GetUserByName("testuser");
+            Assert.AreEqual("testuser", byname.UserName);
+            Assert.AreEqual("testuser@testing.drcog.org", byname.HomeEmail);
+
+            // get by ID
+            var byid = target.GetUserById(id);
+            Assert.AreEqual("testuser", byname.UserName);
+            Assert.AreEqual("testuser@drcog.org", byname.RecoveryEmail);
 
             // now delete user
             target.DeleteUser(id);
@@ -200,6 +210,45 @@ namespace ConMvc4Site.Tests
             ContactsRepository target = container.Resolve<ContactsRepository>();
             List<ConModels.ContactList> actual;
             actual = target.GetPublicContactLists();
+            Assert.IsTrue(actual.Count > 0);
+        }
+
+        /// <summary>
+        ///A test for GetUserByName
+        ///</summary>
+        [TestMethod()]
+        public void GetUserByNameTest()
+        {
+            ContactsRepository target = container.Resolve<ContactsRepository>(); 
+            string name = "testuser"; 
+            User actual;
+            actual = target.GetUserByName(name);
+            Assert.AreEqual("testuser", actual.UserName);
+        }
+
+        /// <summary>
+        ///A test for GetUserById
+        ///</summary>
+        [TestMethod()]
+        public void GetUserByIdTest()
+        {
+            ContactsRepository target = container.Resolve<ContactsRepository>();
+            Guid id = Guid.Parse("2CF0D46B-C8F3-4051-977A-CC80149C0CE4");
+            User actual;
+            actual = target.GetUserById(id);
+            Assert.AreEqual("testuser", actual.UserName);
+        }
+
+        /// <summary>
+        ///A test for GetUsers
+        ///</summary>
+        [TestMethod()]
+        public void GetUsersTest()
+        {
+            ContactsRepository target = container.Resolve<ContactsRepository>(); 
+            List<User> actual;
+            actual = target.GetUsers();
+            Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Count > 0);
         }
     }
