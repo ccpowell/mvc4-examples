@@ -31,6 +31,5 @@ namespace OmbMf.Models
         public int? NumberOfBeds { get; set; }
         public bool? IsMedicaid { get; set; }
         public bool? IsContinuum { get; set; }
-
     }
 }
