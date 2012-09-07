@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TRIPS_UserModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TRIPS_UserModelStoreContainer">
+          <EntitySet Name="aspnet_Applications" EntityType="TRIPS_UserModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Membership" EntityType="TRIPS_UserModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="TRIPS_UserModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="TRIPS_UserModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactList" EntityType="TRIPS_UserModel.Store.ContactList" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactList_Member" EntityType="TRIPS_UserModel.Store.ContactList_Member" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactList_Owner" EntityType="TRIPS_UserModel.Store.ContactList_Owner" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProfileProperty" EntityType="TRIPS_UserModel.Store.ProfileProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProfilePropertyValue" EntityType="TRIPS_UserModel.Store.ProfilePropertyValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StatusType" EntityType="TRIPS_UserModel.Store.StatusType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__21B6055D" Association="TRIPS_UserModel.Store.FK__aspnet_Me__Appli__21B6055D">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__22AA2996" Association="TRIPS_UserModel.Store.FK__aspnet_Me__UserI__22AA2996">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__0DAF0CB0" Association="TRIPS_UserModel.Store.FK__aspnet_Us__Appli__0DAF0CB0">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__49C3F6B7" Association="TRIPS_UserModel.Store.FK__aspnet_Us__UserI__49C3F6B7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactList_Member_aspnet_Users" Association="TRIPS_UserModel.Store.FK_ContactList_Member_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ContactList_Member" EntitySet="ContactList_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactList_Member_ContactList" Association="TRIPS_UserModel.Store.FK_ContactList_Member_ContactList">
+            <End Role="ContactList" EntitySet="ContactList" />
+            <End Role="ContactList_Member" EntitySet="ContactList_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactListOwner_aspnet_Users" Association="TRIPS_UserModel.Store.FK_ContactListOwner_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ContactList_Owner" EntitySet="ContactList_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactListOwner_ContactList" Association="TRIPS_UserModel.Store.FK_ContactListOwner_ContactList">
+            <End Role="ContactList" EntitySet="ContactList" />
+            <End Role="ContactList_Owner" EntitySet="ContactList_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfilePropertyValue_ProfileProperty" Association="TRIPS_UserModel.Store.FK_ProfilePropertyValue_ProfileProperty">
+            <End Role="ProfileProperty" EntitySet="ProfileProperty" />
+            <End Role="ProfilePropertyValue" EntitySet="ProfilePropertyValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfilePropertyValue_User" Association="TRIPS_UserModel.Store.FK_ProfilePropertyValue_User">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ProfilePropertyValue" EntitySet="ProfilePropertyValue" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactList_Member">
+          <Key>
+            <PropertyRef Name="ContactList_Id" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ContactList_Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContactList_Status_Id" Type="int" />
+          <Property Name="SuggestComment" Type="nvarchar" MaxLength="2000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactList_Owner">
+          <Key>
+            <PropertyRef Name="ContactList_Id" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ContactList_Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContactList_Status_Id" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileProperty">
+          <Key>
+            <PropertyRef Name="ProfilePropertyID" />
+          </Key>
+          <Property Name="ProfilePropertyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProfilePropertyName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProfilePropertyType" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProfilePropertyValue">
+          <Key>
+            <PropertyRef Name="ProfilePropertyValueID" />
+          </Key>
+          <Property Name="ProfilePropertyValueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProfilePropertyID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfilePropertyValue" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__21B6055D">
+          <End Role="aspnet_Applications" Type="TRIPS_UserModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="TRIPS_UserModel.Store.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__22AA2996">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="TRIPS_UserModel.Store.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__0DAF0CB0">
+          <End Role="aspnet_Applications" Type="TRIPS_UserModel.Store.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__49C3F6B7">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="TRIPS_UserModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactList_Member_aspnet_Users">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="ContactList_Member" Type="TRIPS_UserModel.Store.ContactList_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ContactList_Member">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactList_Member_ContactList">
+          <End Role="ContactList" Type="TRIPS_UserModel.Store.ContactList" Multiplicity="1" />
+          <End Role="ContactList_Member" Type="TRIPS_UserModel.Store.ContactList_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactList_Member">
+              <PropertyRef Name="ContactList_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactListOwner_aspnet_Users">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="ContactList_Owner" Type="TRIPS_UserModel.Store.ContactList_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ContactList_Owner">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactListOwner_ContactList">
+          <End Role="ContactList" Type="TRIPS_UserModel.Store.ContactList" Multiplicity="1" />
+          <End Role="ContactList_Owner" Type="TRIPS_UserModel.Store.ContactList_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactList_Owner">
+              <PropertyRef Name="ContactList_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfilePropertyValue_ProfileProperty">
+          <End Role="ProfileProperty" Type="TRIPS_UserModel.Store.ProfileProperty" Multiplicity="1" />
+          <End Role="ProfilePropertyValue" Type="TRIPS_UserModel.Store.ProfilePropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileProperty">
+              <PropertyRef Name="ProfilePropertyID" />
+            </Principal>
+            <Dependent Role="ProfilePropertyValue">
+              <PropertyRef Name="ProfilePropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfilePropertyValue_User">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="ProfilePropertyValue" Type="TRIPS_UserModel.Store.ProfilePropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ProfilePropertyValue">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TRIPS_UserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TRIPS_UserEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnet_Applications" EntityType="TRIPS_UserModel.aspnet_Applications" />
+          <EntitySet Name="aspnet_Membership" EntityType="TRIPS_UserModel.aspnet_Membership" />
+          <EntitySet Name="aspnet_Users" EntityType="TRIPS_UserModel.aspnet_Users" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="TRIPS_UserModel.aspnet_UsersInRoles" />
+          <EntitySet Name="ContactLists" EntityType="TRIPS_UserModel.ContactList" />
+          <EntitySet Name="ContactList_Member" EntityType="TRIPS_UserModel.ContactList_Member" />
+          <EntitySet Name="ProfileProperties" EntityType="TRIPS_UserModel.ProfileProperty" />
+          <EntitySet Name="ProfilePropertyValues" EntityType="TRIPS_UserModel.ProfilePropertyValue" />
+          <EntitySet Name="StatusTypes" EntityType="TRIPS_UserModel.StatusType" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__21B6055D" Association="TRIPS_UserModel.FK__aspnet_Me__Appli__21B6055D">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__0DAF0CB0" Association="TRIPS_UserModel.FK__aspnet_Us__Appli__0DAF0CB0">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__22AA2996" Association="TRIPS_UserModel.FK__aspnet_Me__UserI__22AA2996">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__49C3F6B7" Association="TRIPS_UserModel.FK__aspnet_Us__UserI__49C3F6B7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactList_Member_aspnet_Users" Association="TRIPS_UserModel.FK_ContactList_Member_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ContactList_Member" EntitySet="ContactList_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfilePropertyValue_User" Association="TRIPS_UserModel.FK_ProfilePropertyValue_User">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ProfilePropertyValue" EntitySet="ProfilePropertyValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactList_Member_ContactList" Association="TRIPS_UserModel.FK_ContactList_Member_ContactList">
+            <End Role="ContactList" EntitySet="ContactLists" />
+            <End Role="ContactList_Member" EntitySet="ContactList_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfilePropertyValue_ProfileProperty" Association="TRIPS_UserModel.FK_ProfilePropertyValue_ProfileProperty">
+            <End Role="ProfileProperty" EntitySet="ProfileProperties" />
+            <End Role="ProfilePropertyValue" EntitySet="ProfilePropertyValues" />
+          </AssociationSet>
+          <EntitySet Name="ContactList_Owner" EntityType="TRIPS_UserModel.ContactList_Owner" />
+          <AssociationSet Name="FK_ContactListOwner_aspnet_Users" Association="TRIPS_UserModel.FK_ContactListOwner_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="ContactList_Owner" EntitySet="ContactList_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactListOwner_ContactList" Association="TRIPS_UserModel.FK_ContactListOwner_ContactList">
+            <End Role="ContactList" EntitySet="ContactLists" />
+            <End Role="ContactList_Owner" EntitySet="ContactList_Owner" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="TRIPS_UserModel.FK__aspnet_Me__Appli__21B6055D" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK__aspnet_Us__Appli__0DAF0CB0" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="MobilePIN" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredEmail" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="TRIPS_UserModel.FK__aspnet_Me__Appli__21B6055D" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK__aspnet_Me__UserI__22AA2996" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="TRIPS_UserModel.FK__aspnet_Us__Appli__0DAF0CB0" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="TRIPS_UserModel.FK__aspnet_Me__UserI__22AA2996" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_UsersInRoles" Relationship="TRIPS_UserModel.FK__aspnet_Us__UserI__49C3F6B7" FromRole="aspnet_Users" ToRole="aspnet_UsersInRoles" />
+          <NavigationProperty Name="ContactList_Member" Relationship="TRIPS_UserModel.FK_ContactList_Member_aspnet_Users" FromRole="aspnet_Users" ToRole="ContactList_Member" />
+          <NavigationProperty Name="ProfilePropertyValues" Relationship="TRIPS_UserModel.FK_ProfilePropertyValue_User" FromRole="aspnet_Users" ToRole="ProfilePropertyValue" />
+          <NavigationProperty Name="ContactList_Owner" Relationship="TRIPS_UserModel.FK_ContactListOwner_aspnet_Users" FromRole="aspnet_Users" ToRole="ContactList_Owner" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK__aspnet_Us__UserI__49C3F6B7" FromRole="aspnet_UsersInRoles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="ContactList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ContactList_Member" Relationship="TRIPS_UserModel.FK_ContactList_Member_ContactList" FromRole="ContactList" ToRole="ContactList_Member" />
+          <NavigationProperty Name="ContactList_Owner" Relationship="TRIPS_UserModel.FK_ContactListOwner_ContactList" FromRole="ContactList" ToRole="ContactList_Owner" />
+        </EntityType>
+        <EntityType Name="ContactList_Member">
+          <Key>
+            <PropertyRef Name="ContactList_Id" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ContactList_Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ContactList_Status_Id" Type="Int32" />
+          <Property Name="SuggestComment" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK_ContactList_Member_aspnet_Users" FromRole="ContactList_Member" ToRole="aspnet_Users" />
+          <NavigationProperty Name="ContactList" Relationship="TRIPS_UserModel.FK_ContactList_Member_ContactList" FromRole="ContactList_Member" ToRole="ContactList" />
+        </EntityType>
+        <EntityType Name="ProfileProperty">
+          <Key>
+            <PropertyRef Name="ProfilePropertyID" />
+          </Key>
+          <Property Name="ProfilePropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfilePropertyName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProfilePropertyType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" />
+          <NavigationProperty Name="ProfilePropertyValues" Relationship="TRIPS_UserModel.FK_ProfilePropertyValue_ProfileProperty" FromRole="ProfileProperty" ToRole="ProfilePropertyValue" />
+        </EntityType>
+        <EntityType Name="ProfilePropertyValue">
+          <Key>
+            <PropertyRef Name="ProfilePropertyValueID" />
+          </Key>
+          <Property Name="ProfilePropertyValueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfilePropertyID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="ProfilePropertyValue1" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK_ProfilePropertyValue_User" FromRole="ProfilePropertyValue" ToRole="aspnet_Users" />
+          <NavigationProperty Name="ProfileProperty" Relationship="TRIPS_UserModel.FK_ProfilePropertyValue_ProfileProperty" FromRole="ProfilePropertyValue" ToRole="ProfileProperty" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__21B6055D">
+          <End Role="aspnet_Applications" Type="TRIPS_UserModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="TRIPS_UserModel.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__0DAF0CB0">
+          <End Role="aspnet_Applications" Type="TRIPS_UserModel.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__22AA2996">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="TRIPS_UserModel.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__49C3F6B7">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="TRIPS_UserModel.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactList_Member_aspnet_Users">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.aspnet_Users" Multiplicity="1" />
+          <End Role="ContactList_Member" Type="TRIPS_UserModel.ContactList_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ContactList_Member">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfilePropertyValue_User">
+          <End Role="aspnet_Users" Type="TRIPS_UserModel.aspnet_Users" Multiplicity="1" />
+          <End Role="ProfilePropertyValue" Type="TRIPS_UserModel.ProfilePropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ProfilePropertyValue">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactList_Member_ContactList">
+          <End Role="ContactList" Type="TRIPS_UserModel.ContactList" Multiplicity="1" />
+          <End Role="ContactList_Member" Type="TRIPS_UserModel.ContactList_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactList_Member">
+              <PropertyRef Name="ContactList_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfilePropertyValue_ProfileProperty">
+          <End Role="ProfileProperty" Type="TRIPS_UserModel.ProfileProperty" Multiplicity="1" />
+          <End Role="ProfilePropertyValue" Type="TRIPS_UserModel.ProfilePropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileProperty">
+              <PropertyRef Name="ProfilePropertyID" />
+            </Principal>
+            <Dependent Role="ProfilePropertyValue">
+              <PropertyRef Name="ProfilePropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContactList_Owner">
+          <Key>
+            <PropertyRef Name="ContactList_Id" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="ContactList_Id" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="ContactList_Status_Id" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TRIPS_UserModel.FK_ContactListOwner_aspnet_Users" FromRole="ContactList_Owner" ToRole="aspnet_Users" />
+          <NavigationProperty Name="ContactList" Relationship="TRIPS_UserModel.FK_ContactListOwner_ContactList" FromRole="ContactList_Owner" ToRole="ContactList" />
+        </EntityType>
+        <Association Name="FK_ContactListOwner_aspnet_Users">
+          <End Type="TRIPS_UserModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="TRIPS_UserModel.ContactList_Owner" Role="ContactList_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ContactList_Owner">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactListOwner_ContactList">
+          <End Type="TRIPS_UserModel.ContactList" Role="ContactList" Multiplicity="1" />
+          <End Type="TRIPS_UserModel.ContactList_Owner" Role="ContactList_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactList_Owner">
+              <PropertyRef Name="ContactList_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TRIPS_UserModelStoreContainer" CdmEntityContainer="TRIPS_UserEntities">
+          <EntitySetMapping Name="aspnet_Applications"><EntityTypeMapping TypeName="TRIPS_UserModel.aspnet_Applications"><MappingFragment StoreEntitySet="aspnet_Applications">
+            <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+            <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Membership"><EntityTypeMapping TypeName="TRIPS_UserModel.aspnet_Membership"><MappingFragment StoreEntitySet="aspnet_Membership">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+            <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+            <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+            <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+            <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+            <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+            <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+            <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+            <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+            <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+            <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+            <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+            <ScalarProperty Name="Comment" ColumnName="Comment" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users"><EntityTypeMapping TypeName="TRIPS_UserModel.aspnet_Users"><MappingFragment StoreEntitySet="aspnet_Users">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+            <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+            <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+            <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_UsersInRoles"><EntityTypeMapping TypeName="TRIPS_UserModel.aspnet_UsersInRoles"><MappingFragment StoreEntitySet="aspnet_UsersInRoles">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContactLists"><EntityTypeMapping TypeName="TRIPS_UserModel.ContactList"><MappingFragment StoreEntitySet="ContactList">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContactList_Member"><EntityTypeMapping TypeName="TRIPS_UserModel.ContactList_Member"><MappingFragment StoreEntitySet="ContactList_Member">
+            <ScalarProperty Name="ContactList_Id" ColumnName="ContactList_Id" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="ContactList_Status_Id" ColumnName="ContactList_Status_Id" />
+            <ScalarProperty Name="SuggestComment" ColumnName="SuggestComment" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProfileProperties"><EntityTypeMapping TypeName="TRIPS_UserModel.ProfileProperty"><MappingFragment StoreEntitySet="ProfileProperty">
+            <ScalarProperty Name="ProfilePropertyID" ColumnName="ProfilePropertyID" />
+            <ScalarProperty Name="ProfilePropertyName" ColumnName="ProfilePropertyName" />
+            <ScalarProperty Name="ProfilePropertyType" ColumnName="ProfilePropertyType" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+            <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ProfilePropertyValues"><EntityTypeMapping TypeName="TRIPS_UserModel.ProfilePropertyValue"><MappingFragment StoreEntitySet="ProfilePropertyValue">
+            <ScalarProperty Name="ProfilePropertyValueID" ColumnName="ProfilePropertyValueID" />
+            <ScalarProperty Name="ProfilePropertyID" ColumnName="ProfilePropertyID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="ProfilePropertyValue1" ColumnName="ProfilePropertyValue" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+            <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StatusTypes"><EntityTypeMapping TypeName="TRIPS_UserModel.StatusType"><MappingFragment StoreEntitySet="StatusType">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContactList_Owner">
+            <EntityTypeMapping TypeName="TRIPS_UserModel.ContactList_Owner">
+              <MappingFragment StoreEntitySet="ContactList_Owner">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ContactList_Status_Id" ColumnName="ContactList_Status_Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContactList_Id" ColumnName="ContactList_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Contacts">
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Applications" Width="2.125" PointX="0.75" PointY="7.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Membership" Width="2.5" PointX="5.25" PointY="7.25" Height="5.4417122395833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Users" Width="1.875" PointX="3" PointY="13.125" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_UsersInRoles" Width="1.5" PointX="5.875" PointY="14" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList" Width="1.875" PointX="3" PointY="17.625" Height="2.5571907552083353" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Member" Width="1.5" PointX="5.25" PointY="16.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ProfileProperty" Width="2.375" PointX="6" PointY="20.75" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ProfilePropertyValue" Width="1.5" PointX="8.25" PointY="13.5" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.StatusType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Me__Appli__21B6055D" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.875" PointY="8.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="8.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Us__Appli__0DAF0CB0" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.8125" PointY="9.672587890625" />
+          <ConnectorPoint PointX="1.8125" PointY="14.884348958333334" />
+          <ConnectorPoint PointX="3" PointY="14.884348958333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Me__UserI__22AA2996" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="13.125" />
+          <ConnectorPoint PointX="5.25" PointY="12.691712239583332" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Us__UserI__49C3F6B7" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="14.797841796875" />
+          <ConnectorPoint PointX="5.875" PointY="14.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK_ContactList_Member_aspnet_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.9375" PointY="16.643697916666667" />
+          <ConnectorPoint PointX="3.9375" PointY="16.835697916666668" />
+          <ConnectorPoint PointX="5.058" PointY="16.835697916666668" />
+          <ConnectorPoint PointX="5.058" PointY="17.434970330729165" />
+          <ConnectorPoint PointX="5.25" PointY="17.434970330729165" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK_ProfilePropertyValue_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="13.71875" />
+          <ConnectorPoint PointX="8.25" PointY="13.71875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK_ContactList_Member_ContactList" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="18.307444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="18.307444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK_ProfilePropertyValue_ProfileProperty" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.8124975" PointY="20.75" />
+          <ConnectorPoint PointX="7.8124975" PointY="15.857687174479166" />
+          <ConnectorPoint PointX="8.25" PointY="15.857687174479166" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Owner" Width="1.5" PointX="8.25" PointY="17.625" Height="2.172587890624996" />
+        <AssociationConnector Association="TRIPS_UserModel.FK_ContactListOwner_aspnet_Users" >
+          <ConnectorPoint PointX="4.875" PointY="15.742672398437499" />
+          <ConnectorPoint PointX="5.625" PointY="15.742672398437499" />
+          <ConnectorPoint PointX="5.625" PointY="16.307190755208332" />
+          <ConnectorPoint PointX="7.7291641666666671" PointY="16.307190755208332" />
+          <ConnectorPoint PointX="7.8958308333333331" PointY="16.307190755208332" />
+          <ConnectorPoint PointX="9" PointY="16.307190755208332" />
+          <ConnectorPoint PointX="9" PointY="17.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TRIPS_UserModel.FK_ContactListOwner_ContactList" >
+          <ConnectorPoint PointX="4.875" PointY="19.424988606770832" />
+          <ConnectorPoint PointX="7.7291641666666671" PointY="19.424988606770832" />
+          <ConnectorPoint PointX="7.8958308333333331" PointY="19.424988606770832" />
+          <ConnectorPoint PointX="8.25" PointY="19.424988606770832" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
