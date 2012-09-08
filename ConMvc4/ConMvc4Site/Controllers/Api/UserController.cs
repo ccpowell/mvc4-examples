@@ -5,19 +5,20 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ConRepo;
-using Castle.Core.Logging;
+using NLog;
 
 namespace ConMvc4Site.Controllers.Api
 {
     public class UserController : ApiController
     {
-        public UserController(ContactsRepository repo, ILogger logger)
+        public UserController(ContactsRepository repo)
         {
             Users = repo;
-            Logger = logger;
         }
         private ContactsRepository Users { get; set; }
-        private ILogger Logger { get; set; }
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        
 
         // GET api/user
         public IEnumerable<ConModels.User> Get()

@@ -292,6 +292,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ccp_Contacts_GetUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -347,6 +348,7 @@
             <End Role="ContactList" EntitySet="ContactLists" />
             <End Role="ContactList_Owner" EntitySet="ContactList_Owner" />
           </AssociationSet>
+          <FunctionImport Name="GetUsers" ReturnType="Collection(TRIPS_UserModel.UserSummary)" />
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -603,6 +605,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UserSummary">
+          <Property Type="Guid" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Organization" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="PrimaryContact" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="LoweredEmail" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="LoweredBusinessEmail" Nullable="true" MaxLength="256" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -695,6 +708,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUsers" FunctionName="TRIPS_UserModel.Store.ccp_Contacts_GetUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TRIPS_UserModel.UserSummary">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="LoweredBusinessEmail" ColumnName="LoweredBusinessEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -715,68 +743,62 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Contacts">
-        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Applications" Width="2.125" PointX="0.75" PointY="7.5" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Membership" Width="2.5" PointX="5.25" PointY="7.25" Height="5.4417122395833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Users" Width="1.875" PointX="3" PointY="13.125" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_UsersInRoles" Width="1.5" PointX="5.875" PointY="14" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList" Width="1.875" PointX="3" PointY="17.625" Height="2.5571907552083353" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Member" Width="1.5" PointX="5.25" PointY="16.625" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.ProfileProperty" Width="2.375" PointX="6" PointY="20.75" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TRIPS_UserModel.ProfilePropertyValue" Width="1.5" PointX="8.25" PointY="13.5" Height="2.5571907552083317" IsExpanded="true" />
+      <Diagram Name="Contacts" ZoomLevel="100">
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Applications" Width="2.125" PointX="0.75" PointY="2.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Membership" Width="2.5" PointX="6.5" PointY="0.5" Height="5.4417122395833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_Users" Width="1.875" PointX="2.875" PointY="6.5" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.aspnet_UsersInRoles" Width="2" PointX="0.5" PointY="8.375" Height="1.5956835937499978" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList" Width="1.875" PointX="6.375" PointY="13.875" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Member" Width="2.125" PointX="3" PointY="13.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ProfileProperty" Width="2.375" PointX="0.5" PointY="10.875" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ProfilePropertyValue" Width="1.5" PointX="5.625" PointY="10.125" Height="2.5571907552083317" IsExpanded="true" />
         <EntityTypeShape EntityType="TRIPS_UserModel.StatusType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
         <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Me__Appli__21B6055D" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.875" PointY="8.5862939453125" />
-          <ConnectorPoint PointX="5.25" PointY="8.5862939453125" />
+          <ConnectorPoint PointX="2.875" PointY="3.8362939453125" />
+          <ConnectorPoint PointX="6.5" PointY="3.8362939453125" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Us__Appli__0DAF0CB0" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.8125" PointY="9.672587890625" />
-          <ConnectorPoint PointX="1.8125" PointY="14.884348958333334" />
-          <ConnectorPoint PointX="3" PointY="14.884348958333334" />
+          <ConnectorPoint PointX="2.4375" PointY="4.922587890625" />
+          <ConnectorPoint PointX="2.4375" PointY="7.40625" />
+          <ConnectorPoint PointX="2.875" PointY="7.40625" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Me__UserI__22AA2996" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.875" PointY="13.125" />
-          <ConnectorPoint PointX="5.25" PointY="12.691712239583332" />
+          <ConnectorPoint PointX="4.75" PointY="7.40625" />
+          <ConnectorPoint PointX="8.53125" PointY="7.40625" />
+          <ConnectorPoint PointX="8.53125" PointY="5.9417122395833317" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK__aspnet_Us__UserI__49C3F6B7" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.875" PointY="14.797841796875" />
-          <ConnectorPoint PointX="5.875" PointY="14.797841796875" />
+          <ConnectorPoint PointX="2.875" PointY="9.172841796874998" />
+          <ConnectorPoint PointX="2.5" PointY="9.172841796874998" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK_ContactList_Member_aspnet_Users" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.9375" PointY="16.643697916666667" />
-          <ConnectorPoint PointX="3.9375" PointY="16.835697916666668" />
-          <ConnectorPoint PointX="5.058" PointY="16.835697916666668" />
-          <ConnectorPoint PointX="5.058" PointY="17.434970330729165" />
-          <ConnectorPoint PointX="5.25" PointY="17.434970330729165" />
+          <ConnectorPoint PointX="3.875" PointY="10.018697916666667" />
+          <ConnectorPoint PointX="3.875" PointY="13.625" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK_ProfilePropertyValue_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.875" PointY="13.71875" />
-          <ConnectorPoint PointX="8.25" PointY="13.71875" />
+          <ConnectorPoint PointX="4.75" PointY="8.9859152083333349" />
+          <ConnectorPoint PointX="6.375" PointY="8.9859152083333349" />
+          <ConnectorPoint PointX="6.375" PointY="10.125" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK_ContactList_Member_ContactList" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.875" PointY="18.307444661458334" />
-          <ConnectorPoint PointX="5.25" PointY="18.307444661458334" />
+          <ConnectorPoint PointX="6.375" PointY="14.932444661458334" />
+          <ConnectorPoint PointX="5.125" PointY="14.932444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK_ProfilePropertyValue_ProfileProperty" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.8124975" PointY="20.75" />
-          <ConnectorPoint PointX="7.8124975" PointY="15.857687174479166" />
-          <ConnectorPoint PointX="8.25" PointY="15.857687174479166" />
+          <ConnectorPoint PointX="2.875" PointY="11.778595377604166" />
+          <ConnectorPoint PointX="3.7916666666666665" PointY="11.778595377604166" />
+          <ConnectorPoint PointX="3.9583333333333335" PointY="11.778595377604166" />
+          <ConnectorPoint PointX="5.625" PointY="11.778595377604166" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Owner" Width="1.5" PointX="8.25" PointY="17.625" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="TRIPS_UserModel.ContactList_Owner" Width="2" PointX="9.125" PointY="14" Height="2.172587890624996" />
         <AssociationConnector Association="TRIPS_UserModel.FK_ContactListOwner_aspnet_Users" >
-          <ConnectorPoint PointX="4.875" PointY="15.742672398437499" />
-          <ConnectorPoint PointX="5.625" PointY="15.742672398437499" />
-          <ConnectorPoint PointX="5.625" PointY="16.307190755208332" />
-          <ConnectorPoint PointX="7.7291641666666671" PointY="16.307190755208332" />
-          <ConnectorPoint PointX="7.8958308333333331" PointY="16.307190755208332" />
-          <ConnectorPoint PointX="9" PointY="16.307190755208332" />
-          <ConnectorPoint PointX="9" PointY="17.625" />
+          <ConnectorPoint PointX="4.75" PointY="8.1960826041666675" />
+          <ConnectorPoint PointX="10.125" PointY="8.1960826041666675" />
+          <ConnectorPoint PointX="10.125" PointY="14" />
         </AssociationConnector>
         <AssociationConnector Association="TRIPS_UserModel.FK_ContactListOwner_ContactList" >
-          <ConnectorPoint PointX="4.875" PointY="19.424988606770832" />
-          <ConnectorPoint PointX="7.7291641666666671" PointY="19.424988606770832" />
-          <ConnectorPoint PointX="7.8958308333333331" PointY="19.424988606770832" />
-          <ConnectorPoint PointX="8.25" PointY="19.424988606770832" />
+          <ConnectorPoint PointX="8.25" PointY="15.086293945312498" />
+          <ConnectorPoint PointX="9.125" PointY="15.086293945312498" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

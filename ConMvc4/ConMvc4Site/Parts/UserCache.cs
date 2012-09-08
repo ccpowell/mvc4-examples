@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ConModels;
-using Castle.Core.Logging;
+using NLog;
 namespace ConMvc4Site.Parts
 {
     public class UserCache
@@ -11,14 +11,13 @@ namespace ConMvc4Site.Parts
         private object SyncObject = new object();
         private List<User> AllUsers { get; set; }
         private ConRepo.ContactsRepository Users { get; set; }
-        private ILogger Logger { get; set; }
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         private UserCache() { }
 
-        public UserCache(ConRepo.ContactsRepository repo, ILogger logger)
+        public UserCache(ConRepo.ContactsRepository repo)
         {
             Users = repo;
-            Logger = logger;
             Refresh();
         }
 
@@ -42,7 +41,13 @@ namespace ConMvc4Site.Parts
             Logger.Info("User cache refreshing...");
             lock (SyncObject)
             {
-                AllUsers = Users.GetUsers();
+                AllUsers = new List<User>();
+                foreach (var us in Users.GetUsers())
+                {
+                    var user = new ConModels.User() { Id = us.Id };
+                    CopyProperties(user, us);
+                    AllUsers.Add(user);
+                }
             }
             Logger.Info("User cache refreshed.");
         }
@@ -99,6 +104,18 @@ namespace ConMvc4Site.Parts
         }
 #endif
 
+        private void CopyProperties(ConModels.User addit, ConModels.User profile)
+        {
+            addit.UserName = profile.UserName ?? string.Empty;
+            addit.LastName = profile.LastName ?? string.Empty;
+            addit.FirstName = profile.FirstName ?? string.Empty;
+            addit.Organization = profile.Organization ?? string.Empty;
+            addit.Title = profile.Title ?? string.Empty;
+            addit.Phone = profile.Phone ?? string.Empty;
+            addit.BusinessEmail = profile.BusinessEmail ?? string.Empty;
+            addit.RecoveryEmail = profile.RecoveryEmail ?? string.Empty;
+        }
+
         /// <summary>
         /// Add a user for a given application.
         /// </summary>
@@ -114,16 +131,8 @@ namespace ConMvc4Site.Parts
                     throw new Exception("User is already in cache");
                 }
 
-                var addit = new ConModels.User();
-                addit.Id = profile.Id;
-                addit.UserName = profile.UserName ?? string.Empty;
-                addit.LastName = profile.LastName ?? string.Empty;
-                addit.FirstName = profile.FirstName ?? string.Empty;
-                addit.Organization = profile.Organization ?? string.Empty;
-                addit.Title = profile.Title ?? string.Empty;
-                addit.Phone = profile.Phone ?? string.Empty;
-                addit.BusinessEmail = profile.BusinessEmail ?? string.Empty;
-                addit.RecoveryEmail = profile.RecoveryEmail ?? string.Empty;
+                var addit = new ConModels.User() { Id = profile.Id };
+                CopyProperties(addit, profile);
                 AllUsers.Add(addit);
             }
         }
@@ -139,14 +148,7 @@ namespace ConMvc4Site.Parts
                 var old = AllUsers.FirstOrDefault(p => p.Id == profile.Id);
                 if (old != null)
                 {
-                    old.UserName = profile.UserName ?? string.Empty;
-                    old.LastName = profile.LastName ?? string.Empty;
-                    old.FirstName = profile.FirstName ?? string.Empty;
-                    old.Organization = profile.Organization ?? string.Empty;
-                    old.Title = profile.Title ?? string.Empty;
-                    old.Phone = profile.Phone ?? string.Empty;
-                    old.BusinessEmail = profile.BusinessEmail ?? string.Empty;
-                    old.RecoveryEmail = profile.RecoveryEmail ?? string.Empty;
+                    CopyProperties(old, profile);
                 }
             }
         }

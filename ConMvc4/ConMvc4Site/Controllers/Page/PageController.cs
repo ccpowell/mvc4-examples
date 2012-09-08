@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Castle.Core.Logging;
+using NLog;
 
 namespace ConMvc4Site.Controllers.Page
 {
@@ -20,13 +20,14 @@ namespace ConMvc4Site.Controllers.Page
     public class PageController : ApiController
     {
         private ConRepo.ContactsRepository Users { get; set; }
-        private ILogger Logger { get; set; }
         private Parts.UserCache UserCache { get; set; }
-        public PageController(ConRepo.ContactsRepository repo, Parts.UserCache cache, ILogger logger)
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        
+        public PageController(ConRepo.ContactsRepository repo, Parts.UserCache cache)
         {
             Users = repo;
             UserCache = cache;
-            Logger = logger;
         }
 
         public PageModel<ConModels.User> GetUsers(int iDisplayStart = 0, int iDisplayLength = 10)

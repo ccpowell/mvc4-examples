@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
+using NLog;
 
 namespace ConRepo
 {
     public class ContactsRepository
     {
-        private Castle.Core.Logging.ILogger Logger { get; set; }
-
-        public ContactsRepository(Castle.Core.Logging.ILogger logger)
-        {
-            Logger = logger;
-        }
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         // TODO: put this into a class and cache the Property IDs before saving/fetching
         private void SavePropertyValue(TRIPS_UserEntities db, aspnet_Users user, string name, string value)
@@ -189,10 +185,33 @@ namespace ConRepo
 
             using (var db = new TRIPS_UserEntities())
             {
+#if old
                 foreach (var au in db.aspnet_Users)
                 {
                     users.Add(GetUserModel(db, au));
                 }
+
+                foreach (var us in db.GetUsers())
+                {
+                    users.Add(new ConModels.User()
+                    {
+                        Id = us.UserId.Value,
+                        UserName = us.UserName,
+                        Phone = us.PrimaryContact,
+                        Organization = us.Organization,
+                        RecoveryEmail = us.LoweredEmail
+                    });
+                }
+#endif
+                users.AddRange(db.GetUsers().Select(us => new ConModels.User()
+                    {
+                        Id = us.UserId.Value,
+                        UserName = us.UserName,
+                        Phone = us.PrimaryContact,
+                        Organization = us.Organization,
+                        RecoveryEmail = us.LoweredEmail,
+                        Title = us.Title
+                    }));
             }
 
             return users;

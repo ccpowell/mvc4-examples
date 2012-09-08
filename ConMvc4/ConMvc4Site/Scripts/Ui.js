@@ -38,9 +38,9 @@ App.ui = (function ($) {
                 { sTitle: "Organization", mDataProp: "Organization", sWidth: "200px" },
                 { sTitle: "Title", mDataProp: "Title", "sWidth": "200px", bSortable: false },
                 { sTitle: "Primary Contact", mDataProp: "Phone", "sWidth": "100px", "sClass": "phone-US", bSortable: false },
-                { sTitle: "Email", bSortable: false, mDataProp: null,
+                { sTitle: "Email", bSortable: false, mDataProp: "RecoveryEmail",
                     fnRender: function (oObj) {
-                        return '<a href="mailto:' + oObj.aData.BusinessEmail + '">' + oObj.aData.BusinessEmail + '</a>';
+                        return '<a href="mailto:' + oObj.aData.RecoveryEmail + '">' + oObj.aData.RecoveryEmail + '</a>';
                     }
                 }
             ]
