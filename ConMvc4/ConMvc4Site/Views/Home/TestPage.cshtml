@@ -14,15 +14,21 @@
 <br style="clear: both;" />
 <h3>
     My Lists</h3>
-<div>
-    Not implemented until login is used.</div>
-<table id="private-lists-table">
+<table id="owned-lists-table">
 </table>
 <br style="clear: both;" />
 <h3>
     Public Lists</h3>
 <table id="public-lists-table">
 </table>
+
+<!-- dialog for Edit/Create user 
+
+Note that using a template is not required or useful in this case. It is done
+here only as a demonstration of technique. It would be simpler to just
+put the HTML into the dialog div.
+-->
+
 <script type="text-html" id="edit-user-template">
     <div class="user-form">
         <p>
@@ -71,6 +77,10 @@
 jqdialogOptions: {autoOpen: false, resizable: true, modal: true, width: 'auto' }, 
 jqdialog: editUser">
 </div>
+
+
 @section scripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/Ui.js")"></script>
+    
+    <script type="text/javascript">App.userId = '@ViewBag.UserId'</script>
 }

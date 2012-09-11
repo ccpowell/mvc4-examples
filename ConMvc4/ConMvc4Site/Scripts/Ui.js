@@ -75,6 +75,26 @@ App.ui = (function ($) {
     }
 
     function initializeOwnedLists() {
+        var ajaxsourceurl = "/Page/GetOwnedLists?id=" + App.userId,
+            oTable;
+
+        oTable = $('#owned-lists-table').dataTable({
+            "bStateSave": true,
+            "bServerSide": true,
+            "iTotalRecords": 50,
+            "iTotalDisplayRecords": 50,
+            "iDisplayLength": 50,
+            "sAjaxSource": ajaxsourceurl,
+            "bProcessing": true,
+            bFilter: false,
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                $(nRow).data("id", aData.Id);
+            },
+            "aoColumns": [
+                { sTitle: "ID", mDataProp: "Id" },
+                { sTitle: "Name", mDataProp: "Name" }
+            ]
+        });
     }
 
     function initializeAllContacts() {
@@ -91,10 +111,10 @@ App.ui = (function ($) {
             "sAjaxSource": ajaxsourceurl,
             "bProcessing": true,
             fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                // attach ID to row for callbacks to use
                 $(nRow).data("id", aData.Id);
             },
             "aoColumns": [
-                { sTitle: "ID", mDataProp: "Id" },
                 { sTitle: "Name", mDataProp: "UserName" },
                 { sTitle: "Organization", mDataProp: "Organization", sWidth: "200px" },
                 { sTitle: "Title", mDataProp: "Title", "sWidth": "200px", bSortable: false },
@@ -106,9 +126,9 @@ App.ui = (function ($) {
             ]
         });
 
-        // bind click on the row
-        $('#all-users-table tbody').on("click", "tr", function (e) {
-            var uid = $(this).data("id");
+        // bind click on the first column of the row
+        $('#all-users-table tbody').on("click", "tr td:eq(0)", function (e) {
+            var uid = $(this).closest("tr").data("id");
             $.getJSON("/api/user", { id: uid }, function (data) {
                 App.viewmodel.editUserIsUpdate(true);
                 App.viewmodel.editUser(data);
