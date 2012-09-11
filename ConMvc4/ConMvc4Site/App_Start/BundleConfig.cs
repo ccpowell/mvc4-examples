@@ -14,7 +14,8 @@ namespace ConMvc4Site
                         "~/Scripts/jquery-ui*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerydata").Include(
-                        "~/Scripts/knockout-2.1.0.js"));
+                        "~/Scripts/knockout-2.1.0.js",
+                        "~/Scripts/jquery.bindings*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerytable").Include(
                         "~/Scripts/DataTables/jquery.*"));

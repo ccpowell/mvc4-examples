@@ -9,22 +9,53 @@ var App = App || {};
 App.ViewModel = function ($) {
     "use strict";
     var self = this;
-    self.filterOmbudsmanId = ko.observable(0);
-    self.filterFacilityTypeId = ko.observable(0);
+    self.editUser = ko.observable(null);
+    self.editUserIsUpdate = ko.observable(false);
+
+    self.createUser = function () {
+        self.editUserIsUpdate(false);
+        App.viewmodel.editUser({ Id: '', UserName: '', Organization: '', Title: '', RecoveryEmail: '', Phone: '' });
+    };
+
+    self.cancelEditUser = function () {
+        self.editUser(null);
+    };
+
+    self.acceptEditUser = function () {
+        var user = self.editUser(),
+            type = "POST",
+            url = "/api/user",
+            isUpdate = self.editUserIsUpdate();
+        if (isUpdate) {
+            type = "PUT";
+            url += "/" + user.Id;
+        }
+        $.ajax(url, {
+            type: type,
+            data: user,
+            complete: function (jqXHR, status) {
+                if (status === "success") {
+                    if (isUpdate) {
+                        alert("user updated");
+                    } else {
+                        alert("user created");
+                    }
+                    self.editUser(null);
+                }
+            }
+        });
+    };
 };
+App.viewmodel = new App.ViewModel(jQuery);
 
 App.ui = (function ($) {
     "use strict";
 
     function initializePublicLists() {
-    }
-    function initializeOwnedLists() {
-    }
-    function initializeAllContacts() {
-        var ajaxsourceurl = "/page/getusers",
+        var ajaxsourceurl = "/Page/GetPublicLists",
             oTable;
 
-        oTable = $('#all-users-table').dataTable({
+        oTable = $('#public-lists-table').dataTable({
             "bStateSave": true,
             "bServerSide": true,
             "iTotalRecords": 50,
@@ -32,18 +63,64 @@ App.ui = (function ($) {
             "iDisplayLength": 50,
             "sAjaxSource": ajaxsourceurl,
             "bProcessing": true,
+            bFilter: false,
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                $(nRow).data("id", aData.Id);
+            },
+            "aoColumns": [
+                { sTitle: "ID", mDataProp: "Id" },
+                { sTitle: "Name", mDataProp: "Name" }
+            ]
+        });
+    }
+
+    function initializeOwnedLists() {
+    }
+
+    function initializeAllContacts() {
+        var ajaxsourceurl = "/page/getusers",
+            oTable;
+
+        oTable = $('#all-users-table').dataTable({
+            bFilter: false,
+            "bStateSave": true,
+            "bServerSide": true,
+            "iTotalRecords": 50,
+            "iTotalDisplayRecords": 50,
+            "iDisplayLength": 50,
+            "sAjaxSource": ajaxsourceurl,
+            "bProcessing": true,
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                $(nRow).data("id", aData.Id);
+            },
             "aoColumns": [
                 { sTitle: "ID", mDataProp: "Id" },
                 { sTitle: "Name", mDataProp: "UserName" },
                 { sTitle: "Organization", mDataProp: "Organization", sWidth: "200px" },
                 { sTitle: "Title", mDataProp: "Title", "sWidth": "200px", bSortable: false },
                 { sTitle: "Primary Contact", mDataProp: "Phone", "sWidth": "100px", "sClass": "phone-US", bSortable: false },
-                { sTitle: "Email", bSortable: false, mDataProp: "RecoveryEmail",
-                    fnRender: function (oObj) {
-                        return '<a href="mailto:' + oObj.aData.RecoveryEmail + '">' + oObj.aData.RecoveryEmail + '</a>';
-                    }
+                { sTitle: "Email", bSortable: false, mDataProp: function (source, type) {
+                    return '<a href="mailto:' + source.RecoveryEmail + '">' + source.RecoveryEmail + '</a>';
+                }
                 }
             ]
+        });
+
+        // bind click on the row
+        $('#all-users-table tbody').on("click", "tr", function (e) {
+            var uid = $(this).data("id");
+            $.getJSON("/api/user", { id: uid }, function (data) {
+                App.viewmodel.editUserIsUpdate(true);
+                App.viewmodel.editUser(data);
+            });
+            return false; // stop propagation and default behavior
+        });
+
+        // refresh table after an edit or create
+        App.viewmodel.editUser.subscribe(function (obj) {
+            if (!obj) {
+                oTable.fnDraw();
+            }
         });
     }
 
@@ -58,7 +135,6 @@ App.ui = (function ($) {
             }
         });
 
-        App.viewmodel = new App.ViewModel($);
         ko.applyBindings(App.viewmodel, document.body);
 
         initializeAllContacts();

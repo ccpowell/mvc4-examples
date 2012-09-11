@@ -20,7 +20,9 @@ namespace ConRepo
                 var ppv = user.ProfilePropertyValues.SingleOrDefault(p => p.ProfilePropertyID == pp.ProfilePropertyID);
                 if (ppv != null)
                 {
-                    user.ProfilePropertyValues.Remove(ppv);
+                    // TODO: cannot just remove it. Why?
+                    ppv.ProfilePropertyValue1 = string.Empty;
+                    ppv.DateUpdated = DateTime.Now;
                 }
             }
             else
@@ -135,6 +137,25 @@ namespace ConRepo
             return profile.Id;
         }
 
+        public void UpdateUser(ConModels.User profile)
+        {
+            using (var db = new TRIPS_UserEntities())
+            {
+                var member = db.aspnet_Membership.Single(m => m.UserId == profile.Id);
+                member.Email = profile.RecoveryEmail;
+                member.LoweredEmail = profile.RecoveryEmail.ToLower();
+
+                // get the aspnet_User by ID
+                var user = db.aspnet_Users.Single(u => u.UserId == profile.Id);
+
+                // nothing in the aspnet_User can be updated
+
+                // save extended properties
+                SavePropertyValues(db, user, profile);
+                db.SaveChanges();
+            }
+        }
+
 
         private ConModels.User GetUserModel(TRIPS_UserEntities db, aspnet_Users au)
         {
@@ -185,24 +206,6 @@ namespace ConRepo
 
             using (var db = new TRIPS_UserEntities())
             {
-#if old
-                foreach (var au in db.aspnet_Users)
-                {
-                    users.Add(GetUserModel(db, au));
-                }
-
-                foreach (var us in db.GetUsers())
-                {
-                    users.Add(new ConModels.User()
-                    {
-                        Id = us.UserId.Value,
-                        UserName = us.UserName,
-                        Phone = us.PrimaryContact,
-                        Organization = us.Organization,
-                        RecoveryEmail = us.LoweredEmail
-                    });
-                }
-#endif
                 users.AddRange(db.GetUsers().Select(us => new ConModels.User()
                     {
                         Id = us.UserId.Value,

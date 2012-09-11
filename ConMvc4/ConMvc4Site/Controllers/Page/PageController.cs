@@ -52,5 +52,51 @@ namespace ConMvc4Site.Controllers.Page
             return page;
         }
 
+
+        public PageModel<ConModels.ContactList> GetOwnedLists(Guid id, int iDisplayStart = 0, int iDisplayLength = 10)
+        {
+            var filtered = Users.GetContactListsOwnedBy(id);
+            var filteredCount = filtered.Count;
+
+            var items = filtered
+                .OrderBy(f => f.Name)
+                .Skip(iDisplayStart)
+                .Take(iDisplayLength)
+                .ToList();
+
+            var totalCount = filtered.Count;
+
+            var page = new PageModel<ConModels.ContactList>()
+            {
+                aaData = items,
+                iTotalDisplayRecords = filteredCount,
+                iTotalRecords = totalCount
+            };
+            return page;
+        }
+
+
+
+        public PageModel<ConModels.ContactList> GetPublicLists(int iDisplayStart = 0, int iDisplayLength = 10)
+        {
+            var filtered = Users.GetPublicContactLists();
+            var filteredCount = filtered.Count;
+
+            var items = filtered
+                .OrderBy(f => f.Name)
+                .Skip(iDisplayStart)
+                .Take(iDisplayLength)
+                .ToList();
+
+            var totalCount = filtered.Count;
+
+            var page = new PageModel<ConModels.ContactList>()
+            {
+                aaData = items,
+                iTotalDisplayRecords = filteredCount,
+                iTotalRecords = totalCount
+            };
+            return page;
+        }
     }
 }

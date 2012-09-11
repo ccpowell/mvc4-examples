@@ -1,18 +1,76 @@
 ﻿@{
     ViewBag.Title = "Test Page";
 }
-
-<h2>Test Page</h2>
-
-<h3>All Contacts</h3>
-<table id="all-users-table"></table>
-
-<h3>My Lists</h3>
-<table id="private-lists-table"></table>
-
-<h3>Public Lists</h3>
-<table id="public-lists-table"></table>
-
+<h2>
+    Test Page</h2>
+<h3>
+    All Contacts</h3>
+<div>
+    <button data-bind="jqbutton: {}, click: createUser">
+        Create User</button>
+</div>
+<table id="all-users-table">
+</table>
+<br style="clear: both;" />
+<h3>
+    My Lists</h3>
+<div>
+    Not implemented until login is used.</div>
+<table id="private-lists-table">
+</table>
+<br style="clear: both;" />
+<h3>
+    Public Lists</h3>
+<table id="public-lists-table">
+</table>
+<script type="text-html" id="edit-user-template">
+    <div class="user-form">
+        <p>
+            <label>
+                ID:
+            <input data-bind="value: Id" readonly="readonly" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                User Name:
+                <span data-bind="ifnot: UserName"><input data-bind="value: UserName" type="text" /></span>
+                <span data-bind="if: UserName"><input data-bind="value: UserName" type="text" readonly="readonly" /></span>
+            </label>
+        </p>
+        <p>
+            <label>
+                Organization:
+            <input data-bind="value: Organization" type="text"  />
+            </label>
+        </p>
+        <p>
+            <label>
+                Title:
+            <input data-bind="value: Title" type="text"  />
+            </label>
+        </p>
+            <label>
+                Email:
+            <input data-bind="value: RecoveryEmail" type="text"  />
+            </label>
+        </p>
+        </p>
+            <label>
+                Phone:
+            <input data-bind="value: Phone" type="text"  />
+            </label>
+        </p>
+        <button data-bind="jqbutton: {}, click: $root.acceptEditUser">
+            Accept</button>
+        <button data-bind="jqbutton: {}, click: $root.cancelEditUser">
+            Cancel</button>
+    </div>
+</script>
+<div data-bind="template: { if: editUser, name: 'edit-user-template', data: editUser },
+jqdialogOptions: {autoOpen: false, resizable: true, modal: true, width: 'auto' }, 
+jqdialog: editUser">
+</div>
 @section scripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/Ui.js")"></script>
 }

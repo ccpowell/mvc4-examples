@@ -117,11 +117,10 @@ namespace ConMvc4Site.Parts
         }
 
         /// <summary>
-        /// Add a user for a given application.
+        /// Add a user.
         /// </summary>
         /// <param name="profile"></param>
-        /// <param name="application"></param>
-        public void AddUser(ConModels.User profile, string application)
+        public void AddUser(ConModels.User profile)
         {
             lock (SyncObject)
             {

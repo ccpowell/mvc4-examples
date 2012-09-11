@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
     @Styles.Render("~/Content/themes/base/css", "~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     @RenderBody()
-
     @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryui", "~/bundles/jquerytable", "~/bundles/jquerydata")
     @RenderSection("scripts", required: false)
 </body>
