@@ -23,7 +23,7 @@ App.ui = (function ($) {
             bPaginate: true,
             sPaginationType: "full_numbers",
             bJQueryUI: true,
-            sAjaxSource: "/page/getombudsmen",
+            sAjaxSource: "/Ombudsman/page/getombudsmen",
             aoColumns: [
                 { sTitle: "ID", mDataProp: "OmbudsmanId" },
                 { sTitle: "Name", mDataProp: "Name" },
@@ -32,8 +32,8 @@ App.ui = (function ($) {
                     // Ombudsman is oObj.aData
                     var id = oObj.aData.OmbudsmanId,
                         editButton, deleteButton;
-                    editButton = '<a href="/Ombudsman/Edit?id=' + id + '">Edit</a>';
-                    deleteButton = '<a href="/Ombudsman/Delete?id=' + id + '">Delete</a>';
+                    editButton = '<a href="/Ombudsman/Ombudsman/Edit?id=' + id + '">Edit</a>';
+                    deleteButton = '<a href="/Ombudsman/Ombudsman/Delete?id=' + id + '">Delete</a>';
                     return editButton + ' | ' + deleteButton;
                 }
                 }

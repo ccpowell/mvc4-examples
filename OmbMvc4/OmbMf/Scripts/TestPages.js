@@ -27,7 +27,7 @@ App.ui = (function ($) {
             bPaginate: true,
             sPaginationType: "full_numbers",
             bJQueryUI: true,
-            sAjaxSource: "/page/getombudsmen",
+            sAjaxSource: "/Ombudsman/page/getombudsmen",
             aoColumns: [
                 { sTitle: "ID", mDataProp: "OmbudsmanId" },
                 { sTitle: "Name", mDataProp: "Name" },
@@ -59,7 +59,7 @@ App.ui = (function ($) {
             bPaginate: true,
             sPaginationType: "full_numbers",
             bJQueryUI: true,
-            sAjaxSource: "/page/getfacilities",
+            sAjaxSource: "/Ombudsman/page/getfacilities",
             /*
             fnServerData: function (sSource, aoData, fnCallback) {
             $.getJSON(sSource, function (page) {

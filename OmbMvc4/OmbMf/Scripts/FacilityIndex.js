@@ -31,7 +31,7 @@ App.ui = (function ($) {
             bPaginate: true,
             sPaginationType: "full_numbers",
             bJQueryUI: true,
-            sAjaxSource: "/page/getfacilities",
+            sAjaxSource: "/Ombudsman/page/getfacilities",
             fnServerParams: function (aoData) {
                 aoData.push({ name: 'onlyOmbudsmanId', value: App.viewmodel.filterOmbudsmanId() });
                 aoData.push({ name: 'onlyFacilityTypeId', value: App.viewmodel.filterFacilityTypeId() });
@@ -54,8 +54,8 @@ App.ui = (function ($) {
                     // Facility is oObj.aData
                     var id = oObj.aData.FacilityId,
                         editButton, deleteButton;
-                    editButton = '<a href="/Facility/Edit?id=' + id + '">Edit</a>';
-                    deleteButton = '<a href="/Facility/Delete?id=' + id + '">Delete</a>';
+                    editButton = '<a href="/Ombudsman/Facility/Edit?id=' + id + '">Edit</a>';
+                    deleteButton = '<a href="/Ombudsman/Facility/Delete?id=' + id + '">Delete</a>';
                     return editButton + ' | ' + deleteButton;
                 }
                 }
