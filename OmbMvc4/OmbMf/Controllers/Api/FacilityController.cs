@@ -17,7 +17,6 @@ namespace OmbMf.Controllers.Api
         private OmbMf.Models.OmbudsmanDbContext db = new OmbudsmanDbContext();
 
         // GET api/Facility
-        [Queryable]
         public IQueryable<Facility> GetFacilities()
         {
             var facilities = db.Facilities.Include("Ombudsman");

@@ -69,7 +69,7 @@ App.ui = (function ($) {
     }
 
     function initialize() {
-        $("#debug").click(function () { debugger; });
+        //$("#debug").click(function () { debugger; });
 
         $.ajaxSetup({
             // Disable caching of AJAX responses
