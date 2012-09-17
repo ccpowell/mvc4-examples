@@ -20,9 +20,8 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Facilities", "Index", "Facility")</li>
-                            <li>@Html.ActionLink("Ombudsmen", "Index", "Ombudsman")</li>
+                            <li>Facilities</li>
+                            <li>Ombudsmen</li>
                         </ul>
                     </nav>
                 </div>
@@ -40,8 +39,11 @@
                 </div>
             </div>
         </footer>
-
+        
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jquerydata")
+        @Scripts.Render("~/bundles/jquerytable")
         @RenderSection("scripts", required: false)
     </body>
 </html>

@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ombudsman.Site", "Ombudsman
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ombudsman.Site.Tests", "Ombudsman.Site.Tests\Ombudsman.Site.Tests.csproj", "{BB8BFA07-6A59-4971-B76F-9C35FE4E9B82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ombudsman.Models", "Ombudsman.Models\Ombudsman.Models.csproj", "{55A8E0E7-CDD2-417C-BD15-12A180979F0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmbudsmanDb", "OmbudsmanDb\OmbudsmanDb.csproj", "{3B4BB18A-DC3A-412D-81BE-89193FA4FA74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{BB8BFA07-6A59-4971-B76F-9C35FE4E9B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8BFA07-6A59-4971-B76F-9C35FE4E9B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8BFA07-6A59-4971-B76F-9C35FE4E9B82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55A8E0E7-CDD2-417C-BD15-12A180979F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55A8E0E7-CDD2-417C-BD15-12A180979F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55A8E0E7-CDD2-417C-BD15-12A180979F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55A8E0E7-CDD2-417C-BD15-12A180979F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4BB18A-DC3A-412D-81BE-89193FA4FA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4BB18A-DC3A-412D-81BE-89193FA4FA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4BB18A-DC3A-412D-81BE-89193FA4FA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4BB18A-DC3A-412D-81BE-89193FA4FA74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

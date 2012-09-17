@@ -13,6 +13,13 @@ namespace Ombudsman.Site
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerydata").Include(
+                        "~/Scripts/knockout-2.1.0.js",
+                        "~/Scripts/jquery.bindings*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquerytable").Include(
+                        "~/Scripts/DataTables/jquery.*"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));

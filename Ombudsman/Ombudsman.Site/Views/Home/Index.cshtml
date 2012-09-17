@@ -1,5 +1,124 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Aging Ombudsman";
 }
-<h1>@ViewBag.Title.</h1>
-<div>@ViewBag.Message</div>
+<h1>@ViewBag.Title</h1>
+<h2>
+    Facilities</h2>
+<div>
+    <button data-bind="jqbutton: {}, click: createFacility">
+        Create New Facility</button>
+</div>
+<div>
+    Filter by Type
+    <select data-bind="selectedOptions: filterFacilityTypeId">
+        <option value='0'>Any</option>
+        @foreach (var item in ViewBag.FacilityTypeId)
+        {
+            <option value='@item.Value'>@item.Text</option>
+        }
+    </select>
+</div>
+<div>
+    Filter by Ombudsman
+    <input data-bind="value: filterOmbudsmanName,   jqautocomplete: {}, jqautocompleteOptions: { source: App.ui.acOmbudsman}"
+        type="text" />
+</div>
+<table id="facility-table">
+</table>
+<h2>
+    Ombudsmen</h2>
+<div>
+    <button data-bind="jqbutton: {}, click: createOmbudsman">
+        Create New Ombudsman</button>
+</div>
+<table id="ombudsman-table">
+</table>
+<!-- UI elements -->
+<div data-bind="with: editOmbudsman,
+jqdialogOptions: {autoOpen: false, resizable: true, modal: true, width: 'auto' }, 
+jqdialog: isUpOmbudsman">
+    <div class="ombudsman-form">
+        <p>
+            <label>
+                ID:
+                <input data-bind="value: OmbudsmanId" readonly="readonly" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                User Name: <span data-bind="ifnot: $root.editOmbudsmanIsUpdate">
+                    <input data-bind="value: UserName" type="text" /></span> <span data-bind="if: $root.editOmbudsmanIsUpdate">
+                        <input data-bind="value: UserName" type="text" readonly="readonly" /></span>
+            </label>
+        </p>
+        <p>
+            <label>
+                Name:
+                <input data-bind="value: Name" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Email:
+                <input data-bind="value: Email" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Phone:
+                <input data-bind="value: Phone" type="text" />
+            </label>
+        </p>
+        <button data-bind="jqbutton: {}, click: $root.acceptEditOmbudsman">
+            Accept</button>
+        <button data-bind="jqbutton: {}, click: $root.cancelEditOmbudsman">
+            Cancel</button>
+    </div>
+</div>
+<div data-bind="with: editFacility,
+jqdialogOptions: {autoOpen: false, resizable: true, modal: true, width: 'auto' }, 
+jqdialog: isUpFacility">
+    <div class="facility-form">
+        <p>
+            <label>
+                ID:
+                <input data-bind="value: FacilityId" readonly="readonly" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Name:
+                <input data-bind="value: Name" type="text" />
+            </label>
+        </p>
+        <p>
+            Facility Type:
+            <select data-bind="selectedOptions: $root.xFacilityTypeId">
+                @foreach (var item in ViewBag.FacilityTypeId)
+                {
+                    <option value='@item.Value'>@item.Text</option>
+                }
+            </select>
+        </p>
+        <p>
+            <label>
+                Ombudsman:
+                <input data-bind="value: OmbudsmanName,  jqautocomplete: {}, jqautocompleteOptions: { source: App.ui.acOmbudsman}"
+                    type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Phone:
+                <input data-bind="value: Phone" type="text" />
+            </label>
+        </p>
+        <button data-bind="jqbutton: {}, click: $root.acceptEditFacility">
+            Accept</button>
+        <button data-bind="jqbutton: {}, click: $root.cancelEditFacility">
+            Cancel</button>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App.js")"></script>
+}

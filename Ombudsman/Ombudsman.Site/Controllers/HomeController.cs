@@ -10,23 +10,14 @@ namespace Ombudsman.Site.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to kick-start your ASP.NET MVC application.";
+            var repo = new OmbudsmanDb.OmbudsmanRepository();
+            var ombudsmen = repo.GetOmbudsmen();
+            var facilities = repo.GetFacilityTypes();
+            ViewBag.FacilityTypeId = new SelectList(facilities, "FacilityTypeId", "Name");
+            ViewBag.OmbudsmanId = new SelectList(ombudsmen, "OmbudsmanId", "Name");
 
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

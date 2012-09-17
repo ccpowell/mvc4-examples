@@ -20,6 +20,12 @@ namespace Ombudsman.Site
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            routes.MapHttpRoute(
+                name: "Page",
+                routeTemplate: "page/{action}",
+                defaults: new { controller = "Page" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
