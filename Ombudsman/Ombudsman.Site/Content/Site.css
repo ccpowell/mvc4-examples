@@ -8,7 +8,6 @@
 body
 {
     background-color: #fff;
-    border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
     font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
@@ -114,17 +113,7 @@ h5, h6
     padding-bottom: 35px;
 }
 
-.main-content
-{
-    background: url("../Images/accent.png") no-repeat;
-    padding-left: 10px;
-    padding-top: 30px;
-}
 
-.featured + .main-content
-{
-    background: url("../Images/heroAccent.png") no-repeat;
-}
 
 footer
 {
@@ -143,6 +132,10 @@ footer
     font-family: Rockwell, Consolas, "Courier New" , Courier, monospace;
     font-size: 2.3em;
     margin: 20px 0;
+    /*
+    background-image: url(../images/2011_DRCOG_Blue_Header2.jpg);
+    background-repeat: no-repeat;
+*/
 }
 
 .site-title a, .site-title a:hover, .site-title a:active
@@ -681,18 +674,24 @@ tr.pager td
     padding: 0 0.25em 0 0;
 }
 
-div.ombudsman-form label
+.ombudsman-form label
 {
     font-weight: 700;
     display: inline-block;
     width: 600px;
 }
 
-div.facility-form label
+.facility-form label
 {
     font-weight: 700;
     display: inline-block;
     width: 600px;
+}
+
+p.short-labels label
+{
+    width: auto;
+    margin-right: 15px;
 }
 
 table.data-table

@@ -2,29 +2,27 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>Aging Ombudsman</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />    
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
-        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css"/>
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("DRCOG", "Index", "Home")</p>
+                @*
+                    <p class="site-title"></p>
+                    *@
+                    <img src='@Url.Content("~/Content/images/2011_DRCOG_Blue_Header2.jpg")' />
+
                 </div>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>Facilities</li>
-                            <li>Ombudsmen</li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </header>
@@ -45,6 +43,7 @@
         @Scripts.Render("~/bundles/jqueryui")
         @Scripts.Render("~/bundles/jquerydata")
         @Scripts.Render("~/bundles/jquerytable")
+        @Scripts.Render("~/bundles/jqueryval")
         @RenderSection("scripts", required: false)
     </body>
 </html>

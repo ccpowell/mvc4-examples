@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ombudsman.Models
 {
     public class Facility
     {
         public int FacilityId { get; set; }
+
+        [Required]
         public string Name { get; set; }
 
         public int FacilityTypeId { get; set; }
