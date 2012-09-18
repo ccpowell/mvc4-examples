@@ -20,10 +20,10 @@
 </div>
 <div>
     Filter by Ombudsman
-    <input data-bind="value: filterOmbudsmanName,   jqautocomplete: {}, jqautocompleteOptions: { source: App.ui.acOmbudsman}"
+    <input data-bind="value: filterOmbudsmanName, jqautocomplete: {}, jqautocompleteOptions: { source: App.ui.acOmbudsman}"
         type="text" />
 </div>
-<table id="facility-table">
+<table id="facility-table" class="data-table">
 </table>
 <h2>
     Ombudsmen</h2>
@@ -31,7 +31,7 @@
     <button data-bind="jqbutton: {}, click: createOmbudsman">
         Create New Ombudsman</button>
 </div>
-<table id="ombudsman-table">
+<table id="ombudsman-table" class="data-table">
 </table>
 <!-- UI elements -->
 <div data-bind="with: editOmbudsman,
@@ -46,15 +46,16 @@ jqdialog: isUpOmbudsman">
         </p>
         <p>
             <label>
-                User Name: <span data-bind="ifnot: $root.editOmbudsmanIsUpdate">
-                    <input data-bind="value: UserName" type="text" /></span> <span data-bind="if: $root.editOmbudsmanIsUpdate">
-                        <input data-bind="value: UserName" type="text" readonly="readonly" /></span>
+                Name:
+                <input data-bind="value: Name" type="text" />
             </label>
         </p>
         <p>
             <label>
-                Name:
-                <input data-bind="value: Name" type="text" />
+                User Name: 
+                <span data-bind="ifnot: $root.editOmbudsmanIsUpdate">create
+                    <input data-bind="value: UserName" type="text" /></span> <span data-bind="if: $root.editOmbudsmanIsUpdate">update
+                    <input data-bind="value: UserName" type="text" readonly="readonly" /></span>
             </label>
         </p>
         <p>
@@ -65,8 +66,44 @@ jqdialog: isUpOmbudsman">
         </p>
         <p>
             <label>
+                Address1:
+                <input data-bind="value: Address1" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Address2:
+                <input data-bind="value: Address2" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                City:
+                <input data-bind="value: City" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                State:
+                <input data-bind="value: State" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                ZipCode:
+                <input data-bind="value: ZipCode" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
                 Phone:
                 <input data-bind="value: Phone" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Fax:
+                <input data-bind="value: Fax" type="text" />
             </label>
         </p>
         <button data-bind="jqbutton: {}, click: $root.acceptEditOmbudsman">
@@ -92,13 +129,15 @@ jqdialog: isUpFacility">
             </label>
         </p>
         <p>
-            Facility Type:
-            <select data-bind="selectedOptions: $root.xFacilityTypeId">
-                @foreach (var item in ViewBag.FacilityTypeId)
-                {
-                    <option value='@item.Value'>@item.Text</option>
-                }
-            </select>
+            <label>
+                Facility Type:
+                <select data-bind="selectedOptions: $root.xFacilityTypeId">
+                    @foreach (var item in ViewBag.FacilityTypeId)
+                    {
+                        <option value='@item.Value'>@item.Text</option>
+                    }
+                </select>
+            </label>
         </p>
         <p>
             <label>
@@ -109,8 +148,44 @@ jqdialog: isUpFacility">
         </p>
         <p>
             <label>
+                Address1:
+                <input data-bind="value: Address1" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Address2:
+                <input data-bind="value: Address2" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                City:
+                <input data-bind="value: City" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                State:
+                <input data-bind="value: State" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                ZipCode:
+                <input data-bind="value: ZipCode" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
                 Phone:
                 <input data-bind="value: Phone" type="text" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Fax:
+                <input data-bind="value: Fax" type="text" />
             </label>
         </p>
         <button data-bind="jqbutton: {}, click: $root.acceptEditFacility">

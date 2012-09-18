@@ -694,3 +694,17 @@ div.facility-form label
     display: inline-block;
     width: 600px;
 }
+
+table.data-table
+{
+    width: 95%;
+}
+
+table.data-table tbody td.pointer
+{
+    cursor: pointer;
+}
+table.data-table tbody td.pointer:hover
+{
+    border: 1px solid #7ac0da;    
+}

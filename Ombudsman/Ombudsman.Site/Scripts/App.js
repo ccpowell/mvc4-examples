@@ -17,9 +17,20 @@ App.Facility = function () {
         FacilityTypeId: 1,
         OmbudsmanName: '',
         Name: '',
-        Phone: ''
+        Address1: '',
+        Address2: '',
+        City: '',
+        State: 'CO',
+        ZipCode: '',
+        Phone: '',
+        Fax: '',
+        IsActive: false,
+        NumberOfBeds: 0,
+        IsMedicaid: false,
+        IsContinuum: false
     };
 };
+
 
 App.Ombudsman = function () {
     "use strict";
@@ -28,7 +39,13 @@ App.Ombudsman = function () {
         Name: '',
         UserName: '',
         Email: '',
-        Phone: ''
+        Address1: '',
+        Address2: '',
+        City: '',
+        State: 'CO',
+        ZipCode: '',
+        Phone: '',
+        Fax: ''
     };
 };
 
@@ -40,13 +57,13 @@ App.ViewModel = function ($) {
     self.filterOmbudsmanName = ko.observable('');
     self.filterFacilityTypeId = ko.observable(0);
 
+    self.isUpFacility = ko.observable(false);
     self.editFacility = ko.observable(App.Facility());
     self.editFacilityIsUpdate = ko.computed(function () {
         var fac = self.editFacility();
         return (fac !== null) && (fac.FacilityId > 0);
     });
 
-    self.isUpFacility = ko.observable(false);
     self.createFacility = function () {
         self.editFacility(App.Facility());
         self.isUpFacility(true);
@@ -73,7 +90,7 @@ App.ViewModel = function ($) {
             url = "/ombudsman/api/facility";
         if (isUpdate) {
             type = "PUT";
-            url += "/" + facility.Id;
+            url += "/" + facility.FacilityId;
         }
         $.ajax(url, {
             type: type,
@@ -115,7 +132,7 @@ App.ViewModel = function ($) {
             url = "/ombudsman/api/ombudsman";
         if (isUpdate) {
             type = "PUT";
-            url += "/" + omb.Id;
+            url += "/" + omb.OmbudsmanId;
         }
         $.ajax(url, {
             type: type,
@@ -164,19 +181,32 @@ App.ui = (function ($) {
             sPaginationType: "full_numbers",
             bJQueryUI: true,
             sAjaxSource: "/Ombudsman/page/getfacilities",
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                // attach ID to row for callbacks to use
+                $(nRow).data("id", aData.FacilityId);
+            },
             fnServerParams: function (aoData) {
                 aoData.push({ name: 'onlyOmbudsmanId', value: getOmbId(App.viewmodel.filterOmbudsmanName()) });
                 aoData.push({ name: 'onlyFacilityTypeId', value: App.viewmodel.filterFacilityTypeId() });
             },
 
             aoColumns: [
-                { sTitle: "ID", mDataProp: "FacilityId" },
-                { sTitle: "Name", mDataProp: "Name" },
+                { sTitle: "Name", mDataProp: "Name", sClass: "pointer" },
                 { sTitle: "Type", mDataProp: "FacilityTypeName" },
                 { sTitle: "Ombudsman Name", mDataProp: "OmbudsmanName" }
             ]
         };
         facilityDataTable = $("#facility-table").dataTable(dtoptions);
+
+        // bind click on the first column of the row
+        $('#facility-table tbody').on("click", "tr td:first-child", function (e) {
+            var id = $(this).closest("tr").data("id");
+            $.getJSON("/ombudsman/api/facility", { id: id }, function (data) {
+                App.viewmodel.editFacility(data);
+                App.viewmodel.isUpFacility(true);
+            });
+            return false; // stop propagation and default behavior
+        });
     }
 
 
@@ -194,13 +224,26 @@ App.ui = (function ($) {
             sPaginationType: "full_numbers",
             bJQueryUI: true,
             sAjaxSource: "/Ombudsman/page/getombudsmen",
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                // attach ID to row for callbacks to use
+                $(nRow).data("id", aData.OmbudsmanId);
+            },
             aoColumns: [
-                { sTitle: "ID", mDataProp: "OmbudsmanId" },
-                { sTitle: "Name", mDataProp: "Name" },
+                { sTitle: "Name", mDataProp: "Name", sClass: "pointer" },
                 { sTitle: "User Name", mDataProp: "UserName" }
             ]
         };
         ombudsmanDataTable = $("#ombudsman-table").dataTable(dtoptions);
+
+        // bind click on the first column of the row
+        $('#ombudsman-table tbody').on("click", "tr td:first-child", function (e) {
+            var id = $(this).closest("tr").data("id");
+            $.getJSON("/ombudsman/api/ombudsman", { id: id }, function (data) {
+                App.viewmodel.editOmbudsman(data);
+                App.viewmodel.isUpOmbudsman(true);
+            });
+            return false; // stop propagation and default behavior
+        });
     }
 
 

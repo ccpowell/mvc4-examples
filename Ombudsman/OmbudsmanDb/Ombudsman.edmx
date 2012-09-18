@@ -50,15 +50,16 @@
             <PropertyRef Name="OmbudsmanId" />
           </Key>
           <Property Name="OmbudsmanId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Address1" Type="nvarchar(max)" />
-          <Property Name="Address2" Type="nvarchar(max)" />
-          <Property Name="City" Type="nvarchar(max)" />
-          <Property Name="State" Type="nvarchar(max)" />
-          <Property Name="ZipCode" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar(max)" />
-          <Property Name="Fax" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="256" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
           <End Role="FacilityTypes" Type="OmbudsmanModel.Store.FacilityTypes" Multiplicity="1">
@@ -86,6 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Test_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Test_Initialize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -150,6 +152,7 @@
           <Property Name="Phone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Fax" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Facilities" Relationship="OmbudsmanModel.FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId" FromRole="Ombudsmen" ToRole="Facilities" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
           <End Role="FacilityTypes" Type="OmbudsmanModel.FacilityType" Multiplicity="1">
@@ -209,7 +212,8 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Ombudsmen"><EntityTypeMapping TypeName="OmbudsmanModel.Ombudsman"><MappingFragment StoreEntitySet="Ombudsmen">
-            <ScalarProperty Name="OmbudsmanId" ColumnName="OmbudsmanId" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="OmbudsmanId" ColumnName="OmbudsmanId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="UserName" ColumnName="UserName" />
             <ScalarProperty Name="Address1" ColumnName="Address1" />

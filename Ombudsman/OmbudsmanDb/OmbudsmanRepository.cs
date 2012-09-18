@@ -158,6 +158,7 @@ namespace OmbudsmanDb
                 }
                 var found = new global::Ombudsman.Models.Ombudsman()
                 {
+                    Email = ombudsman.Email,
                     Address1 = ombudsman.Address1,
                     Address2 = ombudsman.Address2,
                     City = ombudsman.City,
@@ -253,6 +254,7 @@ namespace OmbudsmanDb
             {
                 var added = new Ombudsman()
                 {
+                    Email = ombudsman.Email,
                     Address1 = ombudsman.Address1,
                     Address2 = ombudsman.Address2,
                     City = ombudsman.City,
@@ -278,6 +280,7 @@ namespace OmbudsmanDb
             using (var db = new OmbudsmanEntities())
             {
                 var found = db.Ombudsmen.Single(o => o.OmbudsmanId == ombudsman.OmbudsmanId);
+                found.Email = ombudsman.Email;
                 found.Address1 = ombudsman.Address1;
                 found.Address2 = ombudsman.Address2;
                 found.City = ombudsman.City;

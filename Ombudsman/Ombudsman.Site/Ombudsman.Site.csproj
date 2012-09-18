@@ -297,9 +297,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Content\DataTables\images\Sorting icons.psd" />
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ombudsman.Models\Ombudsman.Models.csproj">
