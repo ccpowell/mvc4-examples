@@ -147,6 +147,34 @@ namespace OmbudsmanDb
             return ombudsmen;
         }
 
+        /// <summary>
+        /// Get a listing of all of the Ombudsman. 
+        /// </summary>
+        /// <remarks>No filtering is performed since this is a small (lt 1000 ) set of items.</remarks>
+        /// <returns>listing of ombudsmen</returns>
+        public List<global::Ombudsman.Models.Ombudsman> GetOmbudsmenByName(string term)
+        {
+            var ombudsmen = new List<global::Ombudsman.Models.Ombudsman>();
+            using (var db = new OmbudsmanEntities())
+            {
+                var filtered = db.OmbudsmanNameStartsWith(term);
+                ombudsmen.AddRange(filtered.Select(omb => new global::Ombudsman.Models.Ombudsman()
+                {
+                    Address1 = omb.Address1,
+                    Address2 = omb.Address2,
+                    City = omb.City,
+                    Fax = omb.Fax,
+                    Name = omb.Name,
+                    OmbudsmanId = omb.OmbudsmanId,
+                    Phone = omb.Phone,
+                    State = omb.State,
+                    UserName = omb.UserName,
+                    ZipCode = omb.ZipCode
+                }));
+            }
+            return ombudsmen;
+        }
+
         public global::Ombudsman.Models.Ombudsman GetOmbudsman(int id)
         {
             using (var db = new OmbudsmanEntities())

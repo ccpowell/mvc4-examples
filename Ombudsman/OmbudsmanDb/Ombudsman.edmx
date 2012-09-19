@@ -87,6 +87,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="OmbudsmanNameStartsWith" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Test_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Test_Initialize" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema></edmx:StorageModels>
@@ -106,6 +109,10 @@
             <End Role="Facilities" EntitySet="Facilities" />
           </AssociationSet>
           <FunctionImport Name="TestInitialize" ReturnType="Collection(OmbudsmanModel.TestInitialize_Result)" />
+          <FunctionImport Name="OmbudsmanNameStartsWith" EntitySet="Ombudsmen" ReturnType="Collection(OmbudsmanModel.Ombudsman)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TestCleanup" />
         </EntityContainer>
         <EntityType Name="Facility">
           <Key>
@@ -232,6 +239,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OmbudsmanNameStartsWith" FunctionName="OmbudsmanModel.Store.OmbudsmanNameStartsWith" />
+          <FunctionImportMapping FunctionImportName="TestCleanup" FunctionName="OmbudsmanModel.Store.Test_Cleanup" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

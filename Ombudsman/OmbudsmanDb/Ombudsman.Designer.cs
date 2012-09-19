@@ -156,6 +156,52 @@ namespace OmbudsmanDb
         {
             return base.ExecuteFunction<TestInitialize_Result>("TestInitialize");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Ombudsman> OmbudsmanNameStartsWith(global::System.String name)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("Name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Ombudsman>("OmbudsmanNameStartsWith", nameParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Ombudsman> OmbudsmanNameStartsWith(global::System.String name, MergeOption mergeOption)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("Name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Ombudsman>("OmbudsmanNameStartsWith", mergeOption, nameParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int TestCleanup()
+        {
+            return base.ExecuteFunction("TestCleanup");
+        }
 
         #endregion
     }

@@ -218,5 +218,18 @@ namespace Ombudsman.Site.Tests
             var actual = target.CreateOmbudsman(ombudsman);
             Assert.IsTrue(actual > 0);
         }
+
+        /// <summary>
+        ///A test for GetOmbudsmenByName
+        ///</summary>
+        [TestMethod()]
+        public void GetOmbudsmenByNameTest()
+        {
+            OmbudsmanRepository target = new OmbudsmanRepository(); 
+            string term = "testombudsman "; 
+            List<Ombudsman.Models.Ombudsman> actual;
+            actual = target.GetOmbudsmenByName(term);
+            Assert.IsTrue(actual.Count > 0);
+        }
     }
 }

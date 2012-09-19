@@ -30,7 +30,6 @@ App.Facility = function () {
     };
 };
 
-
 App.Ombudsman = function () {
     "use strict";
     return {
@@ -133,12 +132,12 @@ App.ViewModel = function ($) {
         ombudsman.Fax = $("#ombdlg-Fax", $dlg).val();
         ombudsman.Phone = $("#ombdlg-Phone", $dlg).val();
         return ombudsman;
-    }
+    };
 
     self.setEditOmbudsman = function (ombudsman) {
-        var $dlg = $("#ombudsman-dialog");
-        editOmbudsman = ombudsman,
+        var $dlg = $("#ombudsman-dialog"),
             isUpdate = self.editOmbudsmanIsUpdate();
+        editOmbudsman = ombudsman;
         $("#ombdlg-OmbudsmanId", $dlg).val(ombudsman.OmbudsmanId);
         $("#ombdlg-UserName", $dlg).val(ombudsman.UserName).prop("readonly", isUpdate);
         $("#ombdlg-Name", $dlg).val(ombudsman.Name);
@@ -185,6 +184,14 @@ App.ui = (function ($) {
         });
     }
 
+    function reloadFacilityTable() {
+        facilityDataTable.fnDraw();
+    }
+
+    function reloadOmbudsmanTable() {
+        ombudsmanDataTable.fnDraw();
+    }
+
     function cancelEditOmbudsman() {
         $("#ombudsman-dialog").dialog("close");
         return false;
@@ -205,9 +212,9 @@ App.ui = (function ($) {
             complete: function (jqXHR, status) {
                 if (status === "success") {
                     if (isUpdate) {
-                        alert("ombudsman updated");
+                        alert("Ombudsman updated");
                     } else {
-                        alert("ombudsman created");
+                        alert("Ombudsman created");
                     }
                     cancelEditOmbudsman();
                     reloadOmbudsmen();
@@ -242,9 +249,9 @@ App.ui = (function ($) {
             complete: function (jqXHR, status) {
                 if (status === "success") {
                     if (isUpdate) {
-                        alert("facility updated");
+                        alert("Facility updated");
                     } else {
-                        alert("facility created");
+                        alert("Facility created");
                     }
                     cancelEditFacility();
                     reloadFacilityTable();
@@ -254,26 +261,35 @@ App.ui = (function ($) {
         return false;
     }
 
-    function acOmbudsman(request, response) {
-        $.ajax("/ombudsman/page/getacombudsman", {
-            data: { term: request.term },
-            success: function (data) {
-                var names = [];
-                $.each(data, function (index, item) {
-                    names.push(item.Name);
-                });
-                response(names);
-            }
-        });
+    function Autocompleter() {
+        var self = this;
+        this.ombudsmen = [];
+        this.acOmbudsman = function (request, response) {
+            $.ajax("/ombudsman/page/getacombudsman", {
+                data: { term: request.term },
+                success: function (data) {
+                    self.ombudsmen = data;
+                    var names = [];
+                    $.each(data, function (index, item) {
+                        names.push(item.Name);
+                    });
+                    response(names);
+                }
+            });
+        };
+
+        this.isOnList = function (term) {
+            var isOn = false;
+            $.each(self.ombudsmen, function (index, item) {
+                if (item === term) {
+                    isOn = true;
+                    return false;
+                }
+            });
+            return isOn;
+        };
     }
 
-    function reloadFacilityTable() {
-        facilityDataTable.fnDraw();
-    }
-
-    function reloadOmbudsmanTable() {
-        ombudsmanDataTable.fnDraw();
-    }
 
     // edit or create facility
     function editFacility(facility) {
@@ -374,9 +390,21 @@ App.ui = (function ($) {
         }
 
         function initializeFacilityDialog() {
-            var $dlg = $("#facility-dialog");
+            var $dlg = $("#facility-dialog"),
+                autocompleter = new Autocompleter();
             $dlg.dialog({ autoOpen: false, resizable: true, modal: true, width: 'auto' });
-            $("#facdlg-OmbudsmanName", $dlg).autocomplete({ source: acOmbudsman });
+            $("#facdlg-OmbudsmanName", $dlg)
+                .autocomplete({
+                    source: autocompleter.acOmbudsman,
+                    close: reloadFacilityTable
+                })
+                .change(function () {
+                    var current = $(this).val();
+                    if (!autocompleter.isOnList(current)) {
+                        $(this).val('');
+                    }
+                    reloadFacilityTable();
+                });
             $("#facdlg-acceptEditFacility", $dlg)
                 .button()
                 .click(acceptEditFacility);
@@ -386,6 +414,8 @@ App.ui = (function ($) {
         }
 
         function initializeMain() {
+            var autocompleter = new Autocompleter();
+
             $("#tabs").tabs();
 
             initializeFacilityTable();
@@ -396,7 +426,17 @@ App.ui = (function ($) {
 
             // autocomplete for table filter
             $("#filter-ombudsman-name")
-                .autocomplete({ source: acOmbudsman, change: reloadFacilityTable });
+                .autocomplete({
+                    source: autocompleter.acOmbudsman,
+                    close: reloadFacilityTable
+                })
+                .change(function () {
+                    var current = $(this).val();
+                    if (!autocompleter.isOnList(current)) {
+                        $(this).val('');
+                    }
+                    reloadFacilityTable();
+                });
 
             $("#create-facility").button().click(function () {
                 editFacility(new App.Facility());

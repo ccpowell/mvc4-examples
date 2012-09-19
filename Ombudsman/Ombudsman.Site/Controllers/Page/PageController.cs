@@ -73,11 +73,9 @@ namespace Ombudsman.Site.Controllers.Page
         public List<Ombudsman.Models.Ombudsman> GetAcOmbudsman(string term)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
-            var items = repo.GetOmbudsmen();
+            var items = repo.GetOmbudsmenByName(term);
 
-            return items.Where(omb => omb.Name.ToLower().StartsWith(term.ToLower()))
-                .Take(5)
-                .ToList();
+            return items.Take(5).ToList();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1-vsdoc.js" />
-
-// The following comments are for JSLint.
+﻿// The following comments are for JSLint.
 // Do NOT remove them!
 // see http://www.jslint.com/
 /*jslint browser: true, debug: true, devel: true, white: true, plusplus: true, maxerr: 100, unparam: true, indent: 4 */
