@@ -185,35 +185,6 @@ footer
 }
 
 
-/* menu
-----------------------------------------------------------*/
-ul#menu
-{
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0;
-    text-align: right;
-}
-
-ul#menu li
-{
-    display: inline;
-    list-style: none;
-    padding-left: 15px;
-}
-
-ul#menu li a
-{
-    background: none;
-    color: #999;
-    text-decoration: none;
-}
-
-ul#menu li a:hover
-{
-    color: #333;
-    text-decoration: none;
-}
 
 
 /* page elements
@@ -463,7 +434,7 @@ fieldset input[type="submit"]
     padding: 7px;
 }
 
-/* ajax login/registration dialog */
+/* ajax login/registration dialog
 .ui-dialog
 {
     font-family: inherit;
@@ -510,7 +481,7 @@ fieldset input[type="submit"]
 {
     width: 90%;
 }
-
+ */
 /* info and errors */
 .message-info
 {
@@ -602,77 +573,6 @@ a.twitter
     background: url("../Images/twitter.png") no-repeat;
 }
 
-/* tables
-----------------------------------------------------------*/
-table
-{
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 0.75em;
-    border: 0 none;
-}
-
-th
-{
-    font-size: 1.2em;
-    text-align: left;
-    border: none 0px;
-    padding-left: 0;
-}
-
-th a
-{
-    display: block;
-    position: relative;
-}
-
-th a:link, th a:visited, th a:active, th a:hover
-{
-    color: #333;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0;
-}
-
-th a:hover
-{
-    color: #000;
-}
-
-th.asc a, th.desc a
-{
-    margin-right: .75em;
-}
-
-th.asc a:after, th.desc a:after
-{
-    display: block;
-    position: absolute;
-    right: 0em;
-    top: 0;
-    font-size: 0.75em;
-}
-
-th.asc a:after
-{
-    content: '▲';
-}
-
-th.desc a:after
-{
-    content: '▼';
-}
-
-td
-{
-    padding: 0.25em 2em 0.25em 0em;
-    border: 0 none;
-}
-
-tr.pager td
-{
-    padding: 0 0.25em 0 0;
-}
 
 .ombudsman-form label
 {

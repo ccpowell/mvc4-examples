@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Aging Ombudsman</title>
+        <title>@ViewBag.Title</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />    
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
@@ -16,7 +16,7 @@
                 @*
                     <p class="site-title"></p>
                     *@
-                    <img src='@Url.Content("~/Content/images/2011_DRCOG_Blue_Header2.jpg")' />
+                    <img src='@Url.Content("~/Content/images/2011_DRCOG_Blue_Header2.jpg")' alt="Denver"/>
 
                 </div>
                 <div class="float-right">
@@ -43,7 +43,6 @@
         @Scripts.Render("~/bundles/jqueryui")
         @Scripts.Render("~/bundles/jquerydata")
         @Scripts.Render("~/bundles/jquerytable")
-        @Scripts.Render("~/bundles/jqueryval")
         @RenderSection("scripts", required: false)
     </body>
 </html>

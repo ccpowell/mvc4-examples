@@ -23,13 +23,14 @@ namespace Ombudsman.Site.Controllers.Page
 
         public PageController() { }
 
-        public PageModel<Ombudsman.Models.Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, int onlyOmbudsmanid = 0, int onlyFacilityTypeId = 0)
+        public PageModel<Ombudsman.Models.Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, string onlyOmbudsmanName = "", int onlyFacilityTypeId = 0)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
             var all = repo.GetFacilities();
             var totalCount = all.Count;
+            int? onlyOmbudsmanId = repo.GetOmbudsmanIdFromName(onlyOmbudsmanName);
             var filtered = all
-                .Where(f => (onlyOmbudsmanid == 0 || f.OmbudsmanId == onlyOmbudsmanid))
+                .Where(f => (onlyOmbudsmanId == null || f.OmbudsmanId == onlyOmbudsmanId))
                 .Where(f => (onlyFacilityTypeId == 0 || f.FacilityTypeId == onlyFacilityTypeId));
             var filteredCount = filtered.Count();
 

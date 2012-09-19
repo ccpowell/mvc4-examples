@@ -20,6 +20,9 @@ namespace Ombudsman.Site
             bundles.Add(new ScriptBundle("~/bundles/jquerytable").Include(
                         "~/Scripts/DataTables/jquery.*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryjqval").Include(
+                        "~/Scripts/jquery.validate.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));

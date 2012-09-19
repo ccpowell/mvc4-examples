@@ -52,8 +52,6 @@ App.ViewModel = function ($) {
     var self = this,
         editFacility = new App.Facility(),
         editOmbudsman = new App.Ombudsman();
-    self.ombudsmen = null;
-    self.ombudsmanNames = null;
 
     self.getFilterOmbudsmanName = function () {
         return $("#filter-ombudsman-name").val();
@@ -151,18 +149,6 @@ App.ViewModel = function ($) {
         $("#ombdlg-Phone", $dlg).val(ombudsman.Phone);
     };
 
-    self.getOmbudsmanId = function (name) {
-        var id = 0;
-        if (name && name.length > 0) {
-            $.each(App.viewmodel.ombudsmen, function (index, item) {
-                if (item.Name === name) {
-                    id = item.OmbudsmanId;
-                    return false;
-                }
-            });
-        }
-        return id;
-    };
     return self;
 };
 
@@ -170,96 +156,6 @@ App.ViewModel = function ($) {
 App.ui = (function ($) {
     "use strict";
     var facilityDataTable, ombudsmanDataTable;
-
-    function reloadOmbudsmen() {
-        $.ajax("/ombudsman/api/ombudsman", {
-            success: function (data) {
-                var items = [];
-                jQuery.each(data, function (index, item) {
-                    items.push(item.Name);
-                });
-                App.viewmodel.ombudsmanNames = items;
-                App.viewmodel.ombudsmen = data;
-            }
-        });
-    }
-
-    function reloadFacilityTable() {
-        facilityDataTable.fnDraw();
-    }
-
-    function reloadOmbudsmanTable() {
-        ombudsmanDataTable.fnDraw();
-    }
-
-    function cancelEditOmbudsman() {
-        $("#ombudsman-dialog").dialog("close");
-        return false;
-    }
-
-    function acceptEditOmbudsman() {
-        var omb = App.viewmodel.getEditOmbudsman(),
-            isUpdate = App.viewmodel.editOmbudsmanIsUpdate(),
-            type = "POST",
-            url = "/ombudsman/api/ombudsman";
-        if (isUpdate) {
-            type = "PUT";
-            url += "/" + omb.OmbudsmanId;
-        }
-        $.ajax(url, {
-            type: type,
-            data: omb,
-            complete: function (jqXHR, status) {
-                if (status === "success") {
-                    if (isUpdate) {
-                        alert("Ombudsman updated");
-                    } else {
-                        alert("Ombudsman created");
-                    }
-                    cancelEditOmbudsman();
-                    reloadOmbudsmen();
-                    reloadOmbudsmanTable();
-                }
-            }
-        });
-        return false;
-    }
-
-    function cancelEditFacility() {
-        $("#facility-dialog").dialog("close");
-        return false;
-    }
-
-    function acceptEditFacility() {
-        var facility = App.viewmodel.getEditFacility(),
-            isUpdate = App.viewmodel.editFacilityIsUpdate(),
-            type = "POST",
-            url = "/ombudsman/api/facility";
-        if (isUpdate) {
-            type = "PUT";
-            url += "/" + facility.FacilityId;
-        }
-        if (!$("#facility-dialog form").valid()) {
-            alert("Please fix the invalid data.");
-            return false;
-        }
-        $.ajax(url, {
-            type: type,
-            data: facility,
-            complete: function (jqXHR, status) {
-                if (status === "success") {
-                    if (isUpdate) {
-                        alert("Facility updated");
-                    } else {
-                        alert("Facility created");
-                    }
-                    cancelEditFacility();
-                    reloadFacilityTable();
-                }
-            }
-        });
-        return false;
-    }
 
     function Autocompleter() {
         var self = this;
@@ -289,6 +185,92 @@ App.ui = (function ($) {
             return isOn;
         };
     }
+    
+    function reloadFacilityTable() {
+        facilityDataTable.fnDraw();
+    }
+
+    function reloadOmbudsmanTable() {
+        ombudsmanDataTable.fnDraw();
+    }
+
+    function cancelEditOmbudsman() {
+        $("#ombudsman-dialog").dialog("close");
+        return false;
+    }
+
+    function acceptEditOmbudsman() {
+        var omb = App.viewmodel.getEditOmbudsman(),
+            isUpdate = App.viewmodel.editOmbudsmanIsUpdate(),
+            type = "POST",
+            url = "/ombudsman/api/ombudsman";
+
+        if (!$("#ombudsman-dialog form").valid()) {
+            alert("Please enter all required fields");
+            return false;
+        }
+        if (isUpdate) {
+            type = "PUT";
+            url += "/" + omb.OmbudsmanId;
+        }
+
+        $.ajax(url, {
+            type: type,
+            data: omb,
+            complete: function (jqXHR, status) {
+                if (status === "success") {
+                    if (isUpdate) {
+                        alert("Ombudsman updated");
+                    } else {
+                        alert("Ombudsman created");
+                    }
+                    cancelEditOmbudsman();
+                    reloadOmbudsmanTable();
+                }
+            }
+        });
+        return false;
+    }
+
+    function cancelEditFacility() {
+        $("#facility-dialog").dialog("close");
+        return false;
+    }
+
+    function acceptEditFacility() {
+        var facility = App.viewmodel.getEditFacility(),
+            isUpdate = App.viewmodel.editFacilityIsUpdate(),
+            type = "POST",
+            url = "/ombudsman/api/facility";
+
+        if (!$("#facility-dialog form").valid()) {
+            alert("Please enter all required fields");
+            return false;
+        }
+
+        if (isUpdate) {
+            type = "PUT";
+            url += "/" + facility.FacilityId;
+        }
+
+        $.ajax(url, {
+            type: type,
+            data: facility,
+            complete: function (jqXHR, status) {
+                if (status === "success") {
+                    if (isUpdate) {
+                        alert("Facility updated");
+                    } else {
+                        alert("Facility created");
+                    }
+                    cancelEditFacility();
+                    reloadFacilityTable();
+                }
+            }
+        });
+        return false;
+    }
+
 
 
     // edit or create facility
@@ -325,7 +307,7 @@ App.ui = (function ($) {
                     $(nRow).data("id", aData.FacilityId);
                 },
                 fnServerParams: function (aoData) {
-                    aoData.push({ name: 'onlyOmbudsmanId', value: App.viewmodel.getOmbudsmanId(App.viewmodel.getFilterOmbudsmanName()) });
+                    aoData.push({ name: 'onlyOmbudsmanName', value: App.viewmodel.getFilterOmbudsmanName() });
                     aoData.push({ name: 'onlyFacilityTypeId', value: App.viewmodel.getFilterFacilityTypeId() });
                 },
 
@@ -387,6 +369,11 @@ App.ui = (function ($) {
             $("#ombdlg-cancelEditOmbudsman", $dlg)
                 .button()
                 .click(cancelEditOmbudsman);
+
+            // for validation, the input fields require names
+            $("form input", $dlg).each(function (index, item) {
+                $(item).attr("name", item.id);
+            });
         }
 
         function initializeFacilityDialog() {
@@ -411,6 +398,11 @@ App.ui = (function ($) {
             $("#facdlg-cancelEditFacility", $dlg)
                 .button()
                 .click(cancelEditFacility);
+
+            // for validation, the input fields require names
+            $("form input", $dlg).each(function (index, item) {
+                $(item).attr("name", item.id);
+            });
         }
 
         function initializeMain() {
@@ -448,14 +440,14 @@ App.ui = (function ($) {
         }
 
         function initView() {
-            if (App.viewmodel.ombudsmen !== null) {
+            // we don't need anything at this point
+            //if (true) {
                 initializeMain();
                 initializeFacilityDialog();
                 initializeOmbudsmanDialog();
                 window.clearInterval(tid);
-            }
+            //}
         }
-
 
         //$("#debug").click(function () { debugger; });
 
@@ -472,9 +464,8 @@ App.ui = (function ($) {
         // save it in the viewmodel
         // when all data arrived, initialize bindings
         App.viewmodel = new App.ViewModel($);
-        reloadOmbudsmen();
 
-        tid = window.setInterval(initView, 500);
+        tid = window.setInterval(initView, 100);
     }
 
 

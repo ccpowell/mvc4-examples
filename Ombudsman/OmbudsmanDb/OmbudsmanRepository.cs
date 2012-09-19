@@ -321,7 +321,7 @@ namespace OmbudsmanDb
             }
         }
 
-        public int GetOmbudsmanIdFromName(string name)
+        public int? GetOmbudsmanIdFromName(string name)
         {
             using (var db = new OmbudsmanEntities())
             {
@@ -330,11 +330,11 @@ namespace OmbudsmanDb
                 {
                     return found.OmbudsmanId;
                 }
-                return 0;
+                return null;
             }
         }
 
-        public int GetOmbudsmanIdFromUserName(string name)
+        public int? GetOmbudsmanIdFromUserName(string name)
         {
             using (var db = new OmbudsmanEntities())
             {
@@ -343,7 +343,7 @@ namespace OmbudsmanDb
                 {
                     return found.OmbudsmanId;
                 }
-                return 0;
+                return null;
             }
         }
     }

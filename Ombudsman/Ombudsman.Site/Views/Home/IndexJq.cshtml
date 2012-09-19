@@ -1,4 +1,9 @@
-﻿<div id="tabs">
+﻿
+@{
+    ViewBag.Title = "Aging Ombudsman";
+}
+
+<div id="tabs">
     <ul>
         <li><a href="#tab-facilities">Facilities</a></li>
         <li><a href="#tab-ombudsmen">Ombudsmen</a></li>
@@ -39,7 +44,7 @@
     </div>
 </div>
 <!-- UI elements -->
-<div id="ombudsman-dialog">
+<div id="ombudsman-dialog" title="Ombudsman">
     <form class="ombudsman-form" action="">
         <p>
             <label>
@@ -50,19 +55,19 @@
         <p>
             <label>
                 Name:
-                <input id="ombdlg-Name" type="text" />
+                <input id="ombdlg-Name" type="text" class="required" />
             </label>
         </p>
         <p>
             <label>
                 User Name:
-                <input id="ombdlg-UserName" type="text" />
+                <input id="ombdlg-UserName" type="text" class="required" />
             </label>
         </p>
         <p>
             <label>
                 Email:
-                <input id="ombdlg-Email" type="text" />
+                <input id="ombdlg-Email" type="text" class="email" />
             </label>
         </p>
         <p>
@@ -113,7 +118,7 @@
             Cancel</button>
     </form>
 </div>
-<div id="facility-dialog">
+<div id="facility-dialog" title="Facility">
     <form class="facility-form" action="">
         <p>
             <label>
@@ -124,7 +129,7 @@
         <p>
             <label>
                 Name:
-                <input id="facdlg-Name" type="text" />
+                <input id="facdlg-Name" type="text" class="required" />
             </label>
         </p>
         <p>
@@ -212,6 +217,8 @@
             Cancel</button>
     </form>
 </div>
+
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryjqval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/AppJq.js")"></script>
 }
