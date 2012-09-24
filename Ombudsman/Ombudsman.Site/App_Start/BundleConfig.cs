@@ -32,7 +32,7 @@ namespace Ombudsman.Site
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/datatable").Include("~/Content/DataTables/css/jquery.dataTables.css"));
+            bundles.Add(new StyleBundle("~/Content/datatable").Include("~/Content/DataTables/css/jquery.dataTables_themeroller.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

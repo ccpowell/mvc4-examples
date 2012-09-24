@@ -66,7 +66,7 @@ namespace OmbudsmanDb
             using (var db = new OmbudsmanEntities())
             {
                 // we need to fetch all of them to get the Ombudsman Name
-                var all = db.Facilities.AsEnumerable();
+                var all = db.Facilities.OrderBy(f => f.Name).AsEnumerable();
                 facilities.AddRange(all.Select(facility => new global::Ombudsman.Models.Facility()
                 {
                     Address1 = facility.Address1,
@@ -130,7 +130,7 @@ namespace OmbudsmanDb
             var ombudsmen = new List<global::Ombudsman.Models.Ombudsman>();
             using (var db = new OmbudsmanEntities())
             {
-               ombudsmen.AddRange(db.Ombudsmen.Select(omb => new global::Ombudsman.Models.Ombudsman()
+                ombudsmen.AddRange(db.Ombudsmen.OrderBy(f => f.Name).Select(omb => new global::Ombudsman.Models.Ombudsman()
                {
                    Address1 = omb.Address1,
                    Address2 = omb.Address2,
@@ -213,7 +213,7 @@ namespace OmbudsmanDb
             using (var db = new OmbudsmanEntities())
             {
                 // we need to fetch all of them to get the Ombudsman Name
-                var all = db.Facilities.Where(f => f.OmbudsmanId == id).AsEnumerable();
+                var all = db.Facilities.Where(f => f.OmbudsmanId == id).OrderBy(f => f.Name).AsEnumerable();
                 facilities.AddRange(all.Select(facility => new global::Ombudsman.Models.Facility()
                 {
                     Address1 = facility.Address1,
