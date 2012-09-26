@@ -10,12 +10,12 @@ namespace OmbudsmanDb
     {
 
         private static Logger Logger = LogManager.GetCurrentClassLogger();
-        
+
         public OmbudsmanRepository()
         {
 
         }
-        
+
         public int CreateFacility(global::Ombudsman.Models.Facility facility)
         {
             Logger.Debug("CreateFacility {0}", facility.Name);
@@ -131,18 +131,18 @@ namespace OmbudsmanDb
             using (var db = new OmbudsmanEntities())
             {
                 ombudsmen.AddRange(db.Ombudsmen.OrderBy(f => f.Name).Select(omb => new global::Ombudsman.Models.Ombudsman()
-               {
-                   Address1 = omb.Address1,
-                   Address2 = omb.Address2,
-                   City = omb.City,
-                   Fax = omb.Fax,
-                   Name = omb.Name,
-                   OmbudsmanId = omb.OmbudsmanId,
-                   Phone = omb.Phone,
-                   State = omb.State,
-                   UserName = omb.UserName,
-                   ZipCode = omb.ZipCode
-               }));
+                {
+                    IsActive = omb.IsActive,
+                    Address1 = omb.Address1,
+                    Address2 = omb.Address2,
+                    City = omb.City,
+                    Fax = omb.Fax,
+                    Name = omb.Name,
+                    OmbudsmanId = omb.OmbudsmanId,
+                    Phone = omb.Phone,
+                    State = omb.State,
+                    ZipCode = omb.ZipCode
+                }));
             }
             return ombudsmen;
         }
@@ -160,6 +160,7 @@ namespace OmbudsmanDb
                 var filtered = db.OmbudsmanNameStartsWith(term);
                 ombudsmen.AddRange(filtered.Select(omb => new global::Ombudsman.Models.Ombudsman()
                 {
+                    IsActive = omb.IsActive,
                     Address1 = omb.Address1,
                     Address2 = omb.Address2,
                     City = omb.City,
@@ -168,7 +169,6 @@ namespace OmbudsmanDb
                     OmbudsmanId = omb.OmbudsmanId,
                     Phone = omb.Phone,
                     State = omb.State,
-                    UserName = omb.UserName,
                     ZipCode = omb.ZipCode
                 }));
             }
@@ -186,6 +186,7 @@ namespace OmbudsmanDb
                 }
                 var found = new global::Ombudsman.Models.Ombudsman()
                 {
+                    IsActive = ombudsman.IsActive,
                     Email = ombudsman.Email,
                     Address1 = ombudsman.Address1,
                     Address2 = ombudsman.Address2,
@@ -195,7 +196,6 @@ namespace OmbudsmanDb
                     OmbudsmanId = ombudsman.OmbudsmanId,
                     Phone = ombudsman.Phone,
                     State = ombudsman.State,
-                    UserName = ombudsman.UserName,
                     ZipCode = ombudsman.ZipCode
                 };
                 return found;
@@ -203,7 +203,7 @@ namespace OmbudsmanDb
         }
 
         /// <summary>
-        /// Get a listing of all Facilities for an Ombudsmen.
+        /// Get a listing of all Facilities for an Ombudsman.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -282,6 +282,7 @@ namespace OmbudsmanDb
             {
                 var added = new Ombudsman()
                 {
+                    IsActive = ombudsman.IsActive,
                     Email = ombudsman.Email,
                     Address1 = ombudsman.Address1,
                     Address2 = ombudsman.Address2,
@@ -290,7 +291,6 @@ namespace OmbudsmanDb
                     Name = ombudsman.Name,
                     Phone = ombudsman.Phone,
                     State = ombudsman.State,
-                    UserName = ombudsman.UserName,
                     ZipCode = ombudsman.ZipCode
                 };
                 db.AddToOmbudsmen(added);
@@ -308,6 +308,7 @@ namespace OmbudsmanDb
             using (var db = new OmbudsmanEntities())
             {
                 var found = db.Ombudsmen.Single(o => o.OmbudsmanId == ombudsman.OmbudsmanId);
+                found.IsActive = ombudsman.IsActive;
                 found.Email = ombudsman.Email;
                 found.Address1 = ombudsman.Address1;
                 found.Address2 = ombudsman.Address2;
@@ -334,17 +335,5 @@ namespace OmbudsmanDb
             }
         }
 
-        public int? GetOmbudsmanIdFromUserName(string name)
-        {
-            using (var db = new OmbudsmanEntities())
-            {
-                var found = db.Ombudsmen.SingleOrDefault(o => o.UserName == name);
-                if (found != null)
-                {
-                    return found.OmbudsmanId;
-                }
-                return null;
-            }
-        }
     }
 }

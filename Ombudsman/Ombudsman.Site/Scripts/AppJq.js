@@ -53,12 +53,18 @@ App.ViewModel = function ($) {
         editFacility = new App.Facility(),
         editOmbudsman = new App.Ombudsman();
 
-    self.getFilterOmbudsmanName = function () {
-        return $("#filter-ombudsman-name").val();
+    self.getOmbudsmanFilter = function () {
+        return {
+            onlyOmbudsmanIsActive: $("#filter-ombudsman-isactive option:selected").val()
+        };
     };
 
-    self.getFilterFacilityTypeId = function () {
-        return $("#filter-facility-typeid option:selected").val();
+    self.getFacilityFilter = function () {
+        return {
+            onlyFacilityTypeId: $("#filter-facility-typeid option:selected").val(),
+            onlyFacilityIsActive: $("#filter-facility-isactive option:selected").val(),
+            onlyOmbudsmanName: $("#filter-ombudsman-name").val()
+        };
     };
 
     self.editFacilityIsUpdate = function () {
@@ -69,7 +75,7 @@ App.ViewModel = function ($) {
         var $dlg = $("#facility-dialog");
         editFacility = facility;
 
-        $("#facdlg-FacilityId", $dlg).val(facility.FacilityId);
+        $("#facdlg-FacilityId", $dlg).text(facility.FacilityId);
         $("#facdlg-FacilityTypeId option", $dlg).val(facility.FacilityTypeId);
         $("#facdlg-OmbudsmanName", $dlg).val(facility.OmbudsmanName);
         $("#facdlg-Name", $dlg).val(facility.Name);
@@ -91,7 +97,7 @@ App.ViewModel = function ($) {
     self.getEditFacility = function () {
         var $dlg = $("#facility-dialog"),
             facility = new App.Facility();
-        facility.FacilityId = $("#facdlg-FacilityId", $dlg).val();
+        facility.FacilityId = editFacility.FacilityId;
         facility.FacilityTypeId = $("#facdlg-FacilityTypeId option:selected", $dlg).val();
         facility.OmbudsmanName = $("#facdlg-OmbudsmanName", $dlg).val();
         facility.Name = $("#facdlg-Name", $dlg).val();
@@ -118,8 +124,7 @@ App.ViewModel = function ($) {
     self.getEditOmbudsman = function () {
         var $dlg = $("#ombudsman-dialog"),
             ombudsman = new App.Ombudsman();
-        ombudsman.OmbudsmanId = $("#ombdlg-OmbudsmanId", $dlg).val();
-        ombudsman.UserName = $("#ombdlg-UserName", $dlg).val();
+        ombudsman.OmbudsmanId = editOmbudsman.OmbudsmanId;
         ombudsman.Name = $("#ombdlg-Name", $dlg).val();
         ombudsman.Email = $("#ombdlg-Email", $dlg).val();
         ombudsman.Address1 = $("#ombdlg-Address1", $dlg).val();
@@ -136,8 +141,7 @@ App.ViewModel = function ($) {
         var $dlg = $("#ombudsman-dialog"),
             isUpdate = self.editOmbudsmanIsUpdate();
         editOmbudsman = ombudsman;
-        $("#ombdlg-OmbudsmanId", $dlg).val(ombudsman.OmbudsmanId);
-        $("#ombdlg-UserName", $dlg).val(ombudsman.UserName).prop("readonly", isUpdate);
+        $("#ombdlg-OmbudsmanId", $dlg).text(ombudsman.OmbudsmanId);
         $("#ombdlg-Name", $dlg).val(ombudsman.Name);
         $("#ombdlg-Email", $dlg).val(ombudsman.Email);
         $("#ombdlg-Address1", $dlg).val(ombudsman.Address1);
@@ -185,7 +189,7 @@ App.ui = (function ($) {
             return isOn;
         };
     }
-    
+
     function reloadFacilityTable() {
         facilityDataTable.fnDraw();
     }
@@ -307,8 +311,10 @@ App.ui = (function ($) {
                     $(nRow).data("id", aData.FacilityId);
                 },
                 fnServerParams: function (aoData) {
-                    aoData.push({ name: 'onlyOmbudsmanName', value: App.viewmodel.getFilterOmbudsmanName() });
-                    aoData.push({ name: 'onlyFacilityTypeId', value: App.viewmodel.getFilterFacilityTypeId() });
+                    var filter = App.viewmodel.getFacilityFilter();
+                    aoData.push({ name: 'onlyOmbudsmanName', value: filter.onlyOmbudsmanName });
+                    aoData.push({ name: 'onlyFacilityTypeId', value: filter.onlyFacilityTypeId });
+                    aoData.push({ name: 'onlyFacilityIsActive', value: filter.onlyFacilityIsActive });
                 },
 
                 aoColumns: [
@@ -345,9 +351,12 @@ App.ui = (function ($) {
                     // attach ID to row for callbacks to use
                     $(nRow).data("id", aData.OmbudsmanId);
                 },
+                fnServerParams: function (aoData) {
+                    var filter = App.viewmodel.getOmbudsmanFilter();
+                    aoData.push({ name: 'onlyOmbudsmanIsActive', value: filter.onlyOmbudsmanIsActive });
+                },
                 aoColumns: [
-                { sTitle: "Name", mDataProp: "Name", sClass: "pointer" },
-                { sTitle: "User Name", mDataProp: "UserName" }
+                { sTitle: "Name", mDataProp: "Name", sClass: "pointer" }
             ]
             };
             ombudsmanDataTable = $("#ombudsman-table").dataTable(dtoptions);
@@ -412,6 +421,7 @@ App.ui = (function ($) {
 
             initializeFacilityTable();
             initializeOmbudsmanTable();
+
             // table filter by type
             $("#filter-facility-typeid")
                 .change(reloadFacilityTable);
@@ -437,15 +447,25 @@ App.ui = (function ($) {
             $("#create-ombudsman").button().click(function () {
                 editOmbudsman(new App.Ombudsman());
             });
+
+            $("#download-facility-list").button().click(function () {
+                var filter = App.viewmodel.getFacilityFilter(),
+                    query;
+                query =
+                    'onlyFacilityIsActive' + filter.onlyFacilityIsActive + '&' +
+                    'onlyFacilityTypeId' + filter.onlyFacilityTypeId + '&' +
+                    'onlyOmbudsmanName' + filter.onlyOmbudsmanName;
+                window.open("/Ombudsman/Page/GetFacilityList?" + query, "_blank");
+            });
         }
 
         function initView() {
             // we don't need anything at this point
             //if (true) {
-                initializeMain();
-                initializeFacilityDialog();
-                initializeOmbudsmanDialog();
-                window.clearInterval(tid);
+            initializeMain();
+            initializeFacilityDialog();
+            initializeOmbudsmanDialog();
+            window.clearInterval(tid);
             //}
         }
 

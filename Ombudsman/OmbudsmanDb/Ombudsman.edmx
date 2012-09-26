@@ -42,7 +42,7 @@
           <Key>
             <PropertyRef Name="FacilityTypeId" />
           </Key>
-          <Property Name="FacilityTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FacilityTypeId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Ombudsmen">
@@ -51,7 +51,6 @@
           </Key>
           <Property Name="OmbudsmanId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
           <Property Name="Address1" Type="nvarchar" MaxLength="256" />
           <Property Name="Address2" Type="nvarchar" MaxLength="256" />
@@ -60,6 +59,7 @@
           <Property Name="ZipCode" Type="nvarchar" MaxLength="15" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
           <End Role="FacilityTypes" Type="OmbudsmanModel.Store.FacilityTypes" Multiplicity="1">
@@ -110,7 +110,7 @@
           </AssociationSet>
           <FunctionImport Name="TestInitialize" ReturnType="Collection(OmbudsmanModel.TestInitialize_Result)" />
           <FunctionImport Name="OmbudsmanNameStartsWith" EntitySet="Ombudsmen" ReturnType="Collection(OmbudsmanModel.Ombudsman)">
-            <Parameter Name="Name" Mode="In" Type="String" />
+          <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="TestCleanup" />
         </EntityContainer>
@@ -150,7 +150,6 @@
           </Key>
           <Property Name="OmbudsmanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Address1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Address2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="City" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -160,6 +159,7 @@
           <Property Name="Fax" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Facilities" Relationship="OmbudsmanModel.FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId" FromRole="Ombudsmen" ToRole="Facilities" />
           <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId">
           <End Role="FacilityTypes" Type="OmbudsmanModel.FacilityType" Multiplicity="1">
@@ -219,10 +219,10 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Ombudsmen"><EntityTypeMapping TypeName="OmbudsmanModel.Ombudsman"><MappingFragment StoreEntitySet="Ombudsmen">
-            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="OmbudsmanId" ColumnName="OmbudsmanId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="UserName" ColumnName="UserName" />
             <ScalarProperty Name="Address1" ColumnName="Address1" />
             <ScalarProperty Name="Address2" ColumnName="Address2" />
             <ScalarProperty Name="City" ColumnName="City" />
@@ -264,15 +264,14 @@
       <Diagram Name="Ombudsman">
         <EntityTypeShape EntityType="OmbudsmanModel.Facility" Width="1.5" PointX="3" PointY="1" Height="4.2879036458333326" IsExpanded="true" />
         <EntityTypeShape EntityType="OmbudsmanModel.FacilityType" Width="1.5" PointX="0.75" PointY="2.375" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="OmbudsmanModel.Ombudsman" Width="1.5" PointX="0.75" PointY="6.625" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="OmbudsmanModel.Ombudsman" Width="1.5" PointX="0.875" PointY="4.625" Height="3.3263964843749996" IsExpanded="true" />
         <AssociationConnector Association="OmbudsmanModel.FK_dbo_Facilities_dbo_FacilityTypes_FacilityTypeId" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="3.172841796875" />
           <ConnectorPoint PointX="3" PointY="3.172841796875" />
         </AssociationConnector>
         <AssociationConnector Association="OmbudsmanModel.FK_dbo_Facilities_dbo_Ombudsmen_OmbudsmanId" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.1920475260416659" />
-          <ConnectorPoint PointX="3.75" PointY="8.1920475260416659" />
-          <ConnectorPoint PointX="3.75" PointY="5.2879036458333326" />
+          <ConnectorPoint PointX="2.375" PointY="4.9564518229166659" />
+          <ConnectorPoint PointX="3" PointY="4.9564518229166659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

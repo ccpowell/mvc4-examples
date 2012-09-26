@@ -806,13 +806,13 @@ namespace OmbudsmanDb
         /// </summary>
         /// <param name="ombudsmanId">Initial value of the OmbudsmanId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="userName">Initial value of the UserName property.</param>
-        public static Ombudsman CreateOmbudsman(global::System.Int32 ombudsmanId, global::System.String name, global::System.String userName)
+        /// <param name="isActive">Initial value of the IsActive property.</param>
+        public static Ombudsman CreateOmbudsman(global::System.Int32 ombudsmanId, global::System.String name, global::System.Boolean isActive)
         {
             Ombudsman ombudsman = new Ombudsman();
             ombudsman.OmbudsmanId = ombudsmanId;
             ombudsman.Name = name;
-            ombudsman.UserName = userName;
+            ombudsman.IsActive = isActive;
             return ombudsman;
         }
 
@@ -869,30 +869,6 @@ namespace OmbudsmanDb
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String UserName
-        {
-            get
-            {
-                return _UserName;
-            }
-            set
-            {
-                OnUserNameChanging(value);
-                ReportPropertyChanging("UserName");
-                _UserName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("UserName");
-                OnUserNameChanged();
-            }
-        }
-        private global::System.String _UserName;
-        partial void OnUserNameChanging(global::System.String value);
-        partial void OnUserNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1085,6 +1061,30 @@ namespace OmbudsmanDb
         private global::System.String _Email;
         partial void OnEmailChanging(global::System.String value);
         partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
 
         #endregion
     

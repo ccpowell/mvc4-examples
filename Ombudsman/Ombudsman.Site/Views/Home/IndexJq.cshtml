@@ -16,6 +16,10 @@
                 Create New Facility</button>
         </div>
         <div>
+            <button id="download-facility-list" title="Download this list as an Excel file.">
+                 Export To Excel</button>
+        </div>
+        <div>
             Filter by Type
             <select id="filter-facility-typeid">
                 <option value='0'>Any</option>
@@ -29,6 +33,14 @@
             Filter by Ombudsman
             <input id="filter-ombudsman-name" type="text" />
         </div>
+        <div>
+            Filter by Active
+            <select id="filter-facility-isactive">
+                <option value='0'>All</option>
+                <option value='1'>Active</option>
+                <option value='2'>Inactive</option>
+            </select>
+        </div>
         <table id="facility-table" class="data-table">
         </table>
     </div>
@@ -39,7 +51,14 @@
             <button id="create-ombudsman">
                 Create New Ombudsman</button>
         </div>
-        <div>@Html.ActionLink("download", "GetFacilityList", "page", new { ombudsmanId = 3 }, null)</div>
+        <div>
+            Filter by Active
+            <select id="filter-ombudsman-isactive">
+                <option value='0'>All</option>
+                <option value='1'>Active</option>
+                <option value='2'>Inactive</option>
+            </select>
+        </div>
         <table id="ombudsman-table" class="data-table">
         </table>
     </div>
@@ -50,19 +69,13 @@
         <p>
             <label>
                 ID:
-                <input id="ombdlg-OmbudsmanId" readonly="readonly" type="text" />
+                <span id="ombdlg-OmbudsmanId" />
             </label>
         </p>
         <p>
             <label>
                 Name:
                 <input id="ombdlg-Name" type="text" class="required" />
-            </label>
-        </p>
-        <p>
-            <label>
-                User Name:
-                <input id="ombdlg-UserName" type="text" class="required" />
             </label>
         </p>
         <p>
@@ -113,6 +126,12 @@
                 <input id="ombdlg-Fax" type="text" />
             </label>
         </p>
+        <p class="short-labels">
+            <label>
+                <input id="ombdlg-IsActive" type="checkbox" />
+                Active
+            </label>
+        </p>
         <button id="ombdlg-acceptEditOmbudsman">
             Accept</button>
         <button id="ombdlg-cancelEditOmbudsman">
@@ -124,7 +143,7 @@
         <p>
             <label>
                 ID:
-                <input id="facdlg-FacilityId" readonly="readonly" type="text" />
+                <span id="facdlg-FacilityId" />
             </label>
         </p>
         <p>

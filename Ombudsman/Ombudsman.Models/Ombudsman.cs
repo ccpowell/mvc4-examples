@@ -18,5 +18,6 @@ namespace Ombudsman.Models
         public string ZipCode { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+        public bool IsActive { get; set; }
     }
 }
