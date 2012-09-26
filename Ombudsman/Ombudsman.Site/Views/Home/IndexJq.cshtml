@@ -1,14 +1,12 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Aging Ombudsman";
 }
-
 <div id="tabs">
     <ul>
         <li><a href="#tab-facilities">Facilities</a></li>
         <li><a href="#tab-ombudsmen">Ombudsmen</a></li>
     </ul>
-    <div id="tab-facilities">
+    <div id="tab-facilities" class="table-controls">
         <h2>
             Facilities</h2>
         <div>
@@ -17,34 +15,48 @@
         </div>
         <div>
             <button id="download-facility-list" title="Download this list as an Excel file.">
-                 Export To Excel</button>
+                Export To Excel</button>
+        </div>
+        <br />
+        <div>
+            <label>
+                Name Contains
+                <input id="filter-facility-name" type="text" />
+            </label>
+        </div>
+        <br />
+        <div>
+            <label>
+                Filter by Type
+                <select id="filter-facility-typeid">
+                    <option value='0'>Any</option>
+                    @foreach (var item in ViewBag.FacilityTypeId)
+                    {
+                        <option value='@item.Value'>@item.Text</option>
+                    }
+                </select>
+            </label>
         </div>
         <div>
-            Filter by Type
-            <select id="filter-facility-typeid">
-                <option value='0'>Any</option>
-                @foreach (var item in ViewBag.FacilityTypeId)
-                {
-                    <option value='@item.Value'>@item.Text</option>
-                }
-            </select>
+            <label>
+                Filter by Ombudsman
+                <input id="filter-ombudsman-name" type="text" />
+            </label>
         </div>
         <div>
-            Filter by Ombudsman
-            <input id="filter-ombudsman-name" type="text" />
-        </div>
-        <div>
-            Filter by Active
-            <select id="filter-facility-isactive">
-                <option value='0'>All</option>
-                <option value='1'>Active</option>
-                <option value='2'>Inactive</option>
-            </select>
+            <label>
+                Filter by Active
+                <select id="filter-facility-isactive">
+                    <option value='0'>All</option>
+                    <option value='1'>Active</option>
+                    <option value='2'>Inactive</option>
+                </select>
+            </label>
         </div>
         <table id="facility-table" class="data-table">
         </table>
     </div>
-    <div id="tab-ombudsmen">
+    <div id="tab-ombudsmen" class="table-controls">
         <h2>
             Ombudsmen</h2>
         <div>
@@ -52,12 +64,14 @@
                 Create New Ombudsman</button>
         </div>
         <div>
+            <label>
             Filter by Active
             <select id="filter-ombudsman-isactive">
                 <option value='0'>All</option>
                 <option value='1'>Active</option>
                 <option value='2'>Inactive</option>
             </select>
+            </label>
         </div>
         <table id="ombudsman-table" class="data-table">
         </table>
@@ -66,178 +80,175 @@
 <!-- UI elements -->
 <div id="ombudsman-dialog" title="Ombudsman">
     <form class="ombudsman-form" action="">
-        <p>
-            <label>
-                ID:
-                <span id="ombdlg-OmbudsmanId" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Name:
-                <input id="ombdlg-Name" type="text" class="required" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Email:
-                <input id="ombdlg-Email" type="text" class="email" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Address1:
-                <input id="ombdlg-Address1" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Address2:
-                <input id="ombdlg-Address2" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                City:
-                <input id="ombdlg-City" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                State:
-                <input id="ombdlg-State" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                ZipCode:
-                <input id="ombdlg-ZipCode" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Phone:
-                <input id="ombdlg-Phone" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Fax:
-                <input id="ombdlg-Fax" type="text" />
-            </label>
-        </p>
-        <p class="short-labels">
-            <label>
-                <input id="ombdlg-IsActive" type="checkbox" />
-                Active
-            </label>
-        </p>
-        <button id="ombdlg-acceptEditOmbudsman">
-            Accept</button>
-        <button id="ombdlg-cancelEditOmbudsman">
-            Cancel</button>
+    <p>
+        <label>
+            ID: <span id="ombdlg-OmbudsmanId" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Name:
+            <input id="ombdlg-Name" type="text" class="required" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Email:
+            <input id="ombdlg-Email" type="text" class="email" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Address1:
+            <input id="ombdlg-Address1" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Address2:
+            <input id="ombdlg-Address2" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            City:
+            <input id="ombdlg-City" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            State:
+            <input id="ombdlg-State" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            ZipCode:
+            <input id="ombdlg-ZipCode" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Phone:
+            <input id="ombdlg-Phone" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Fax:
+            <input id="ombdlg-Fax" type="text" />
+        </label>
+    </p>
+    <p class="short-labels">
+        <label>
+            <input id="ombdlg-IsActive" type="checkbox" />
+            Active
+        </label>
+    </p>
+    <button id="ombdlg-acceptEditOmbudsman">
+        Accept</button>
+    <button id="ombdlg-cancelEditOmbudsman">
+        Cancel</button>
     </form>
 </div>
 <div id="facility-dialog" title="Facility">
     <form class="facility-form" action="">
-        <p>
-            <label>
-                ID:
-                <span id="facdlg-FacilityId" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Name:
-                <input id="facdlg-Name" type="text" class="required" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Facility Type:
-                <select id="facdlg-FacilityTypeId">
-                    @foreach (var item in ViewBag.FacilityTypeId)
-                    {
-                        <option value='@item.Value'>@item.Text</option>
-                    }
-                </select>
-            </label>
-        </p>
-        <p>
-            <label>
-                Number of Beds:
-                <input id="facdlg-NumberOfBeds" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Ombudsman:
-                <input id="facdlg-OmbudsmanName" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Address1:
-                <input id="facdlg-Address1" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Address2:
-                <input id="facdlg-Address2" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                City:
-                <input id="facdlg-City" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                State:
-                <input id="facdlg-State" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                ZipCode:
-                <input id="facdlg-ZipCode" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Phone:
-                <input id="facdlg-Phone" type="text" />
-            </label>
-        </p>
-        <p>
-            <label>
-                Fax:
-                <input id="facdlg-Fax" type="text" />
-            </label>
-        </p>
-        <p class="short-labels">
-            <label>
-                <input id="facdlg-IsActive" type="checkbox" />
-                Active
-            </label>
-            <label>
-                <input id="facdlg-IsMedicaid" type="checkbox" />
-                Medicaid
-            </label>
-            <label>
-                <input id="facdlg-IsContinuum" type="checkbox" />
-                Continuum
-            </label>
-        </p>
-        <button id="facdlg-acceptEditFacility">
-            Accept</button>
-        <button id="facdlg-cancelEditFacility">
-            Cancel</button>
+    <p>
+        <label>
+            ID: <span id="facdlg-FacilityId" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Name:
+            <input id="facdlg-Name" type="text" class="required" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Facility Type:
+            <select id="facdlg-FacilityTypeId">
+                @foreach (var item in ViewBag.FacilityTypeId)
+                {
+                    <option value='@item.Value'>@item.Text</option>
+                }
+            </select>
+        </label>
+    </p>
+    <p>
+        <label>
+            Number of Beds:
+            <input id="facdlg-NumberOfBeds" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Ombudsman:
+            <input id="facdlg-OmbudsmanName" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Address1:
+            <input id="facdlg-Address1" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Address2:
+            <input id="facdlg-Address2" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            City:
+            <input id="facdlg-City" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            State:
+            <input id="facdlg-State" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            ZipCode:
+            <input id="facdlg-ZipCode" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Phone:
+            <input id="facdlg-Phone" type="text" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Fax:
+            <input id="facdlg-Fax" type="text" />
+        </label>
+    </p>
+    <p class="short-labels">
+        <label>
+            <input id="facdlg-IsActive" type="checkbox" />
+            Active
+        </label>
+        <label>
+            <input id="facdlg-IsMedicaid" type="checkbox" />
+            Medicaid
+        </label>
+        <label>
+            <input id="facdlg-IsContinuum" type="checkbox" />
+            Continuum
+        </label>
+    </p>
+    <button id="facdlg-acceptEditFacility">
+        Accept</button>
+    <button id="facdlg-cancelEditFacility">
+        Cancel</button>
     </form>
 </div>
-
 @section scripts {
     @Scripts.Render("~/bundles/jqueryjqval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/AppJq.js")"></script>

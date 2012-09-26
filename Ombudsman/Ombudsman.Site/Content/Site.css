@@ -588,6 +588,26 @@ a.twitter
     width: 600px;
 }
 
+.table-controls
+{
+    font-size: .85em;
+}
+
+.table-controls label
+{
+    font-weight: 700;
+}
+
+.table-controls > div
+{
+    margin: 5px 0px;
+}
+
+.table-controls input[type="text"]
+{
+    width: 20em;
+}
+
 p.short-labels label
 {
     width: auto;

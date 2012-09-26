@@ -22,13 +22,14 @@ namespace Ombudsman.Site.Controllers.Page
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public PageModel<Ombudsman.Models.Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, string onlyOmbudsmanName = "", int onlyFacilityTypeId = 0, int onlyFacilityIsActive = 0)
+        public PageModel<Ombudsman.Models.Facility> GetFacilities(int iDisplayStart = 0, int iDisplayLength = 10, string onlyFacilityName = "", string onlyOmbudsmanName = "", int onlyFacilityTypeId = 0, int onlyFacilityIsActive = 0)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
             var all = repo.GetFacilities();
             var totalCount = all.Count;
             int? onlyOmbudsmanId = repo.GetOmbudsmanIdFromName(onlyOmbudsmanName);
             var filtered = all
+                .Where(f => (string.IsNullOrWhiteSpace(onlyFacilityName) || f.Name.ToLower().Contains(onlyFacilityName.ToLower())))
                 .Where(f => (onlyFacilityIsActive == 0 || f.IsActive == (1 == onlyFacilityIsActive)))
                 .Where(f => (onlyOmbudsmanId == null || f.OmbudsmanId == onlyOmbudsmanId))
                 .Where(f => (onlyFacilityTypeId == 0 || f.FacilityTypeId == onlyFacilityTypeId));
@@ -90,15 +91,16 @@ namespace Ombudsman.Site.Controllers.Page
         /// </summary>
         /// <param name="ombudsmanId"></param>
         /// <returns></returns>
-        public HttpResponseMessage GetFacilityList(string onlyOmbudsmanName = "", int onlyFacilityTypeId = 0, int onlyFacilityIsActive = 0)
+        public HttpResponseMessage GetFacilityList(string onlyFacilityName = "", string onlyOmbudsmanName = "", int onlyFacilityTypeId = 0, int onlyFacilityIsActive = 0)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
             var all = repo.GetFacilities();
             int? onlyOmbudsmanId = repo.GetOmbudsmanIdFromName(onlyOmbudsmanName);
             var filtered = all
-                .Where(f => (onlyFacilityIsActive == 0 || f.IsActive == (1 == onlyFacilityIsActive)))
-                .Where(f => (onlyOmbudsmanId == null || f.OmbudsmanId == onlyOmbudsmanId))
-                .Where(f => (onlyFacilityTypeId == 0 || f.FacilityTypeId == onlyFacilityTypeId));
+                .Where(f => (string.IsNullOrWhiteSpace(onlyFacilityName) || f.Name.ToLower().Contains(onlyFacilityName.ToLower())))
+                .Where(f => ((onlyFacilityIsActive == 0) || f.IsActive == (1 == onlyFacilityIsActive)))
+                .Where(f => ((onlyOmbudsmanId == null) || f.OmbudsmanId == onlyOmbudsmanId))
+                .Where(f => ((onlyFacilityTypeId == 0) || f.FacilityTypeId == onlyFacilityTypeId));
 
             var ee = new Parts.ExcelExporter();
             var bytes = ee.GetFacilityListDocument(filtered);

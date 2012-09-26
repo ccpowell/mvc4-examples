@@ -61,6 +61,7 @@ App.ViewModel = function ($) {
 
     self.getFacilityFilter = function () {
         return {
+            onlyFacilityName: $("#filter-facility-name").val(),
             onlyFacilityTypeId: $("#filter-facility-typeid option:selected").val(),
             onlyFacilityIsActive: $("#filter-facility-isactive option:selected").val(),
             onlyOmbudsmanName: $("#filter-ombudsman-name").val()
@@ -138,8 +139,7 @@ App.ViewModel = function ($) {
     };
 
     self.setEditOmbudsman = function (ombudsman) {
-        var $dlg = $("#ombudsman-dialog"),
-            isUpdate = self.editOmbudsmanIsUpdate();
+        var $dlg = $("#ombudsman-dialog");
         editOmbudsman = ombudsman;
         $("#ombdlg-OmbudsmanId", $dlg).text(ombudsman.OmbudsmanId);
         $("#ombdlg-Name", $dlg).val(ombudsman.Name);
@@ -312,6 +312,7 @@ App.ui = (function ($) {
                 },
                 fnServerParams: function (aoData) {
                     var filter = App.viewmodel.getFacilityFilter();
+                    aoData.push({ name: 'onlyFacilityName', value: filter.onlyFacilityName });
                     aoData.push({ name: 'onlyOmbudsmanName', value: filter.onlyOmbudsmanName });
                     aoData.push({ name: 'onlyFacilityTypeId', value: filter.onlyFacilityTypeId });
                     aoData.push({ name: 'onlyFacilityIsActive', value: filter.onlyFacilityIsActive });
@@ -426,7 +427,15 @@ App.ui = (function ($) {
             $("#filter-facility-typeid")
                 .change(reloadFacilityTable);
 
-            // autocomplete for table filter
+            // table filter by Active
+            $("#filter-facility-isactive")
+                .change(reloadFacilityTable);
+
+            // table filter by name
+            $("#filter-facility-name")
+                .change(reloadFacilityTable);
+
+            // autocomplete for table filter ombudsman
             $("#filter-ombudsman-name")
                 .autocomplete({
                     source: autocompleter.acOmbudsman,
@@ -440,6 +449,10 @@ App.ui = (function ($) {
                     reloadFacilityTable();
                 });
 
+            // table filter by Active
+            $("#filter-ombudsman-isactive")
+                .change(reloadOmbudsmanTable);
+
             $("#create-facility").button().click(function () {
                 editFacility(new App.Facility());
             });
@@ -452,11 +465,13 @@ App.ui = (function ($) {
                 var filter = App.viewmodel.getFacilityFilter(),
                     query;
                 query =
-                    'onlyFacilityIsActive' + filter.onlyFacilityIsActive + '&' +
-                    'onlyFacilityTypeId' + filter.onlyFacilityTypeId + '&' +
-                    'onlyOmbudsmanName' + filter.onlyOmbudsmanName;
+                    'onlyFacilityName=' + encodeURIComponent(filter.onlyFacilityName) + '&' +
+                    'onlyFacilityIsActive=' + encodeURIComponent(filter.onlyFacilityIsActive) + '&' +
+                    'onlyFacilityTypeId=' + encodeURIComponent(filter.onlyFacilityTypeId) + '&' +
+                    'onlyOmbudsmanName=' + encodeURIComponent(filter.onlyOmbudsmanName);
                 window.open("/Ombudsman/Page/GetFacilityList?" + query, "_blank");
             });
+
         }
 
         function initView() {
