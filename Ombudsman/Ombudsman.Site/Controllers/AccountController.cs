@@ -121,6 +121,22 @@ namespace Ombudsman.Site.Controllers
             return ModelState.SelectMany(x => x.Value.Errors.Select(error => error.ErrorMessage));
         }
 
+        [AllowAnonymous]
+        public ActionResult SetupManagers()
+        {
+            Roles.CreateRole("User");
+            Roles.CreateRole("Manager");
+            Roles.CreateRole("Administrator");
+
+            var memres = Membership.CreateUser("user", "test123");
+            memres = Membership.CreateUser("administrator", "test123");
+            memres = Membership.CreateUser("manager", "test123");
+
+            Roles.AddUserToRoles("administrator", new string[]{"Administrator", "Manager"});
+            Roles.AddUserToRole("manager", "Manager");
+
+            return this.Content("okay", "text/plain");
+        }
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {

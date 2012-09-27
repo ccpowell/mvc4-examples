@@ -65,12 +65,12 @@
         </div>
         <div>
             <label>
-            Filter by Active
-            <select id="filter-ombudsman-isactive">
-                <option value='0'>All</option>
-                <option value='1'>Active</option>
-                <option value='2'>Inactive</option>
-            </select>
+                Filter by Active
+                <select id="filter-ombudsman-isactive">
+                    <option value='0'>All</option>
+                    <option value='1'>Active</option>
+                    <option value='2'>Inactive</option>
+                </select>
             </label>
         </div>
         <table id="ombudsman-table" class="data-table">
@@ -140,8 +140,8 @@
         </label>
     </p>
     <p class="short-labels">
-        <label>
-            <input id="ombdlg-IsActive" type="checkbox" />
+        <input id="ombdlg-IsActive" type="checkbox" />
+        <label for="ombdlg-IsActive">
             Active
         </label>
     </p>
@@ -230,16 +230,16 @@
         </label>
     </p>
     <p class="short-labels">
-        <label>
-            <input id="facdlg-IsActive" type="checkbox" />
+        <input id="facdlg-IsActive" type="checkbox" />
+        <label for="facdlg-IsActive">
             Active
         </label>
-        <label>
-            <input id="facdlg-IsMedicaid" type="checkbox" />
+        <input id="facdlg-IsMedicaid" type="checkbox" />
+        <label for="facdlg-IsMedicaid">
             Medicaid
         </label>
-        <label>
-            <input id="facdlg-IsContinuum" type="checkbox" />
+        <input id="facdlg-IsContinuum" type="checkbox" />
+        <label for="facdlg-IsContinuum">
             Continuum
         </label>
     </p>
@@ -252,4 +252,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryjqval")
     <script type="text/javascript" src="@Url.Content("~/Scripts/AppJq.js")"></script>
+    <script type="text/javascript">
+    App.isManager = @ViewBag.IsManager.ToString().ToLower();
+    </script>
 }

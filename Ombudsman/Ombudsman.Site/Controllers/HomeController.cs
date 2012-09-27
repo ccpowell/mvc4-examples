@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Ombudsman.Site.Controllers
 {
@@ -23,8 +24,11 @@ namespace Ombudsman.Site.Controllers
             //var ombudsmen = repo.GetOmbudsmen();
             //ViewBag.OmbudsmanId = new SelectList(ombudsmen, "OmbudsmanId", "Name");
 
+            ViewBag.IsManager = System.Web.Security.Roles.IsUserInRole("Manager");
+
             return View();
         }
+
 
     }
 }

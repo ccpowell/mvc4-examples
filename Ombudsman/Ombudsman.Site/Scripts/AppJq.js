@@ -23,7 +23,7 @@ App.Facility = function () {
         ZipCode: '',
         Phone: '',
         Fax: '',
-        IsActive: false,
+        IsActive: true,
         NumberOfBeds: 0,
         IsMedicaid: false,
         IsContinuum: false
@@ -43,9 +43,36 @@ App.Ombudsman = function () {
         State: 'CO',
         ZipCode: '',
         Phone: '',
-        Fax: ''
+        Fax: '',
+        IsActive: true
     };
 };
+
+App.utility = (function ($) {
+    "use strict";
+    var checkbuttonChangeIcon;
+
+    // this jQuery UI callback will update the icon when the button is clicked
+    checkbuttonChangeIcon = function () {
+        $(this).button("option", {
+            icons: { primary: this.checked ? 'ui-icon-check' : 'ui-icon-closethick' }
+        });
+    };
+    function setCheckButton(jel, value) {
+        jel.prop("checked", value)
+            .button("refresh")
+            .button("option", {
+                icons: { primary: value ? 'ui-icon-check' : 'ui-icon-closethick' }
+            });
+    }
+
+    return {
+        setCheckButton: setCheckButton,
+        checkbuttonChangeIcon: checkbuttonChangeIcon
+    };
+
+} (jQuery));
+
 
 App.ViewModel = function ($) {
     "use strict";
@@ -88,10 +115,10 @@ App.ViewModel = function ($) {
         $("#facdlg-Phone", $dlg).val(facility.Phone);
         $("#facdlg-Fax", $dlg).val(facility.Fax);
         $("#facdlg-Phone", $dlg).val(facility.Phone);
-        $("#facdlg-IsActive", $dlg).prop("checked", facility.IsActive);
         $("#facdlg-NumberOfBeds", $dlg).val(facility.NumberOfBeds);
-        $("#facdlg-IsMedicaid", $dlg).prop("checked", facility.IsMedicaid);
-        $("#facdlg-IsContinuum", $dlg).prop("checked", facility.IsContinuum);
+        App.utility.setCheckButton($("#facdlg-IsActive", $dlg), facility.IsActive);
+        App.utility.setCheckButton($("#facdlg-IsMedicaid", $dlg), facility.IsMedicaid);
+        App.utility.setCheckButton($("#facdlg-IsContinuum", $dlg), facility.IsContinuum);
     };
 
     // get a Facility from the user-entered data 
@@ -135,6 +162,7 @@ App.ViewModel = function ($) {
         ombudsman.ZipCode = $("#ombdlg-ZipCode", $dlg).val();
         ombudsman.Fax = $("#ombdlg-Fax", $dlg).val();
         ombudsman.Phone = $("#ombdlg-Phone", $dlg).val();
+        ombudsman.IsActive = $("#ombdlg-IsActive", $dlg).is(":checked");
         return ombudsman;
     };
 
@@ -151,6 +179,7 @@ App.ViewModel = function ($) {
         $("#ombdlg-ZipCode", $dlg).val(ombudsman.ZipCode);
         $("#ombdlg-Fax", $dlg).val(ombudsman.Fax);
         $("#ombdlg-Phone", $dlg).val(ombudsman.Phone);
+        App.utility.setCheckButton($("#ombdlg-IsActive", $dlg), ombudsman.IsActive);
     };
 
     return self;
@@ -280,14 +309,14 @@ App.ui = (function ($) {
     // edit or create facility
     function editFacility(facility) {
         App.viewmodel.setEditFacility(facility);
-        $("#facility-dialog").dialog("open");
+        $("#facility-dialog").dialog("open").find("form").validate().resetForm();
         return false;
     }
 
     // edit or create ombudsman
     function editOmbudsman(ombudsman) {
         App.viewmodel.setEditOmbudsman(ombudsman);
-        $("#ombudsman-dialog").dialog("open");
+        $("#ombudsman-dialog").dialog("open").find("form").validate().resetForm();
         return false;
     }
 
@@ -380,6 +409,10 @@ App.ui = (function ($) {
                 .button()
                 .click(cancelEditOmbudsman);
 
+            $("#ombdlg-IsActive", $dlg)
+                .button({ disabled: !App.isManager })
+                .change(App.utility.checkbuttonChangeIcon);
+
             // for validation, the input fields require names
             $("form input", $dlg).each(function (index, item) {
                 $(item).attr("name", item.id);
@@ -408,6 +441,16 @@ App.ui = (function ($) {
             $("#facdlg-cancelEditFacility", $dlg)
                 .button()
                 .click(cancelEditFacility);
+
+            $("#facdlg-IsActive", $dlg)
+                .button({ disabled: !App.isManager })
+                .change(App.utility.checkbuttonChangeIcon);
+            $("#facdlg-IsMedicaid", $dlg)
+                .button()
+                .change(App.utility.checkbuttonChangeIcon);
+            $("#facdlg-IsContinuum", $dlg)
+                .button()
+                .change(App.utility.checkbuttonChangeIcon);
 
             // for validation, the input fields require names
             $("form input", $dlg).each(function (index, item) {
@@ -453,13 +496,18 @@ App.ui = (function ($) {
             $("#filter-ombudsman-isactive")
                 .change(reloadOmbudsmanTable);
 
-            $("#create-facility").button().click(function () {
-                editFacility(new App.Facility());
-            });
+            // only managers can create facilities
+            $("#create-facility")
+                .button({ disabled: !App.isManager })
+                .click(function () {
+                    editFacility(new App.Facility());
+                });
 
-            $("#create-ombudsman").button().click(function () {
-                editOmbudsman(new App.Ombudsman());
-            });
+            $("#create-ombudsman")
+                .button({ disabled: !App.isManager })
+                .click(function () {
+                    editOmbudsman(new App.Ombudsman());
+                });
 
             $("#download-facility-list").button().click(function () {
                 var filter = App.viewmodel.getFacilityFilter(),
