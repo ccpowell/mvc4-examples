@@ -183,9 +183,39 @@ namespace Ombudsman.Site.Tests
             OmbudsmanRepository target = new OmbudsmanRepository();
             Ombudsman.Models.Facility facility = target.GetFacility(TestData.Facility1.Value);
             facility.Address1 = "Out of sight";
-            target.UpdateFacility(facility);
+            target.UpdateFacility(facility, false);
             Ombudsman.Models.Facility facility2 = target.GetFacility(TestData.Facility1.Value);
             Assert.AreEqual("Out of sight", facility2.Address1);
+        }
+
+        /// <summary>
+        ///A test for UpdateFacility
+        ///</summary>
+        [TestMethod()]
+        public void UpdateFacilitySucceedsTest()
+        {
+            OmbudsmanRepository target = new OmbudsmanRepository();
+            Ombudsman.Models.Facility facility = target.GetFacility(TestData.Facility1.Value);
+            facility.IsActive = !facility.IsActive;
+            var result = target.UpdateFacility(facility, true);
+            Assert.IsTrue(result);
+            Ombudsman.Models.Facility facility2 = target.GetFacility(TestData.Facility1.Value);
+            Assert.AreEqual(facility.IsActive, facility2.IsActive);
+        }
+
+        /// <summary>
+        ///A test for UpdateFacility
+        ///</summary>
+        [TestMethod()]
+        public void UpdateFacilityFailsTest()
+        {
+            OmbudsmanRepository target = new OmbudsmanRepository();
+            Ombudsman.Models.Facility facility = target.GetFacility(TestData.Facility1.Value);
+            facility.IsActive = !facility.IsActive;
+            var result = target.UpdateFacility(facility, false);
+            Assert.IsFalse(result);
+            Ombudsman.Models.Facility facility2 = target.GetFacility(TestData.Facility1.Value);
+            Assert.AreEqual(facility.IsActive, !facility2.IsActive);
         }
 
         /// <summary>
@@ -197,9 +227,38 @@ namespace Ombudsman.Site.Tests
             OmbudsmanRepository target = new OmbudsmanRepository();
             Ombudsman.Models.Ombudsman ombudsman = target.GetOmbudsman(TestData.Ombudsman1.Value);
             ombudsman.Address1 = "I changed it!";
-            target.UpdateOmbudsman(ombudsman);
+            target.UpdateOmbudsman(ombudsman, false);
             Ombudsman.Models.Ombudsman ombudsman2 = target.GetOmbudsman(TestData.Ombudsman1.Value);
             Assert.AreEqual("I changed it!", ombudsman2.Address1);
+        }
+
+
+        /// <summary>
+        ///A test for UpdateOmbudsman with authorization
+        ///</summary>
+        [TestMethod()]
+        public void UpdateOmbudsmanAuthorizedFailsTest()
+        {
+            OmbudsmanRepository target = new OmbudsmanRepository();
+            Ombudsman.Models.Ombudsman ombudsman = target.GetOmbudsman(TestData.Ombudsman1.Value);
+            ombudsman.IsActive = !ombudsman.IsActive;
+            var result = target.UpdateOmbudsman(ombudsman, false);
+            Assert.IsFalse(result);
+        }
+
+
+        /// <summary>
+        ///A test for UpdateOmbudsman with authorization
+        ///</summary>
+        [TestMethod()]
+        public void UpdateOmbudsmanAuthorizedSucceedsTest()
+        {
+            OmbudsmanRepository target = new OmbudsmanRepository();
+            Ombudsman.Models.Ombudsman ombudsman = target.GetOmbudsman(TestData.Ombudsman1.Value);
+            ombudsman.IsActive = !ombudsman.IsActive;
+            target.UpdateOmbudsman(ombudsman, true);
+            Ombudsman.Models.Ombudsman ombudsman2 = target.GetOmbudsman(TestData.Ombudsman1.Value);
+            Assert.AreEqual(ombudsman.IsActive, ombudsman2.IsActive);
         }
 
         /// <summary>

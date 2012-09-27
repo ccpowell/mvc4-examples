@@ -8,6 +8,7 @@ using NLog;
 
 namespace Ombudsman.Site.Controllers.Api
 {
+    [Authorize]
     public class FacilityController : ApiController
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
@@ -27,6 +28,7 @@ namespace Ombudsman.Site.Controllers.Api
         }
 
         // POST api/facility
+        [Authorize(Roles="Manager")]
         public void Post(Ombudsman.Models.Facility facility)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
@@ -39,7 +41,11 @@ namespace Ombudsman.Site.Controllers.Api
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
             facility.OmbudsmanId = repo.GetOmbudsmanIdFromName(facility.OmbudsmanName);
-            repo.UpdateFacility(facility);
+            var result = repo.UpdateFacility(facility, System.Web.Security.Roles.IsUserInRole("Manager"));
+            if (!result)
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
         }
 
         // DELETE api/facility/5

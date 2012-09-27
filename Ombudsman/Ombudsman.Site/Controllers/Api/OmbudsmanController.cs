@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Ombudsman.Site.Controllers.Api
 {
+    [Authorize]
     public class OmbudsmanController : ApiController
     {
         // GET api/ombudsman
@@ -24,6 +25,8 @@ namespace Ombudsman.Site.Controllers.Api
         }
 
         // POST api/ombudsman
+        // Only Managers can create Ombudsmen
+        [Authorize(Roles="Manager")]
         public void Post(Ombudsman.Models.Ombudsman value)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
@@ -34,7 +37,11 @@ namespace Ombudsman.Site.Controllers.Api
         public void Put(int id, Ombudsman.Models.Ombudsman value)
         {
             var repo = new OmbudsmanDb.OmbudsmanRepository();
-            repo.UpdateOmbudsman(value);
+            var result = repo.UpdateOmbudsman(value, System.Web.Security.Roles.IsUserInRole("Manager"));
+            if (!result)
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
         }
 
         // DELETE api/ombudsman/5

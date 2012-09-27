@@ -17,7 +17,7 @@ namespace Ombudsman.Site.Controllers.Page
         public IEnumerable<T> aaData { get; set; }
     }
 
-
+    [Authorize]
     public class PageController : ApiController
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();

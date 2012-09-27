@@ -253,11 +253,20 @@ namespace OmbudsmanDb
             return types;
         }
 
-        public void UpdateFacility(global::Ombudsman.Models.Facility facility)
+        /// <summary>
+        /// Update a Facility. Only a manager can update IsActive.
+        /// </summary>
+        /// <param name="facility"></param>
+        /// <param name="manager"></param>
+        public bool UpdateFacility(global::Ombudsman.Models.Facility facility, bool manager)
         {
             using (var db = new OmbudsmanEntities())
             {
                 var found = db.Facilities.Single(f => f.FacilityId == facility.FacilityId);
+                if (!manager && (found.IsActive != facility.IsActive))
+                {
+                    return false;
+                }
                 found.Address1 = facility.Address1;
                 found.Address2 = facility.Address2;
                 found.City = facility.City;
@@ -273,6 +282,7 @@ namespace OmbudsmanDb
                 found.State = facility.State;
                 found.ZipCode = facility.ZipCode;
                 db.SaveChanges();
+                return true;
             }
         }
 
@@ -300,14 +310,18 @@ namespace OmbudsmanDb
         }
 
         /// <summary>
-        /// Update ombudsman. ID and UserName cannot be updated.
+        /// Update ombudsman. ID cannot be updated. User must be a manager to update IsActive.
         /// </summary>
         /// <param name="ombudsman"></param>
-        public void UpdateOmbudsman(global::Ombudsman.Models.Ombudsman ombudsman)
+        public bool UpdateOmbudsman(global::Ombudsman.Models.Ombudsman ombudsman, bool manager)
         {
             using (var db = new OmbudsmanEntities())
             {
                 var found = db.Ombudsmen.Single(o => o.OmbudsmanId == ombudsman.OmbudsmanId);
+                if (!manager && (found.IsActive != ombudsman.IsActive))
+                {
+                    return false;
+                }
                 found.IsActive = ombudsman.IsActive;
                 found.Email = ombudsman.Email;
                 found.Address1 = ombudsman.Address1;
@@ -319,6 +333,7 @@ namespace OmbudsmanDb
                 found.State = ombudsman.State;
                 found.ZipCode = ombudsman.ZipCode;
                 db.SaveChanges();
+                return true;
             }
         }
 

@@ -588,9 +588,9 @@ a.twitter
     width: 600px;
 }
 
-.table-controls
+.table-controls, .ombudsman-form, .facility-form
 {
-    font-size: .85em;
+    font-size: .75em;
 }
 
 .table-controls label
