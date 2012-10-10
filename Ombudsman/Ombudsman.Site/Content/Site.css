@@ -588,7 +588,7 @@ a.twitter
     width: 600px;
 }
 
-.table-controls, .ombudsman-form, .facility-form
+.table-controls select, .ombudsman-form select, .facility-form select
 {
     font-size: .75em;
 }
@@ -603,7 +603,7 @@ a.twitter
     margin: 5px 0px;
 }
 
-.table-controls input[type="text"]
+.table-controls input[type="text"], .ombudsman-form input[type="text"], .facility-form input[type="text"]
 {
     width: 20em;
 }
