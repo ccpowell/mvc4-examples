@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DRCOG.Domain.Models.TIPProject.Amendment.AmendmentStrategy">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\TIPProject\Amendment\AmendmentStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.Amendment.ApprovalToSubmitted">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\Amendment\ApprovalToSubmitted.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.Amendment.SubmittedToProposed">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\Amendment\SubmittedToProposed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.Amendment.ProposedToAmended">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\Amendment\ProposedToAmended.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.Amendment.AmendedToSubmitted">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\Amendment\AmendedToSubmitted.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.VersionModel">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAIAAAAAIAAAAAgAABAAAAAgA=</HashCode>
+      <FileName>Models\TIPProject\VersionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectAmendments" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEAABACAAAAAAAQAAAgIBIEAGCgAABABABCAE=</HashCode>
+      <FileName>Models\ProjectAmendments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

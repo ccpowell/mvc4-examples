@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="INTERFACES">
+    <Position X="17.083" Y="6.667" Height="0.396" Width="10.471" />
+  </Comment>
+  <Comment CommentText="ENUMS">
+    <Position X="36.25" Y="22.875" Height="0.375" Width="3.773" />
+  </Comment>
+  <Class Name="DRCOG.Entities.DashboardListCriteria">
+    <Position X="34.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DashboardListCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Entities.DashboardListItem">
+    <Position X="36.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DashboardListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Entities.ProjectListCriteria">
+    <Position X="34.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProjectListCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Entities.Tip">
+    <Position X="36.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Tip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Entities.TipStatus">
+    <Position X="30.75" Y="21" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TipStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.GenericDojoDataStore&lt;T&gt;">
+    <Position X="37.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAgAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>GenericDojoDataStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.Account">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEAACIAAAAAAAgAAAAAAAgAAAAAIAAAQAAAAAAg=</HashCode>
+      <FileName>Models\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.AccountDetailModel">
+    <Position X="30.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAIAACAAAAAAAA=</HashCode>
+      <FileName>Models\AccountDetailModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.AccountSearchModel" Collapsed="true">
+    <Position X="14.25" Y="20.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountSearchModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.AdminLevel">
+    <Position X="34.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AdminLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.AmendmentModel">
+    <Position X="38" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAEEAAAAAAIAAAEAAAAABAAAAAAAAUAAAAAACCA=</HashCode>
+      <FileName>Models\AmendmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.AmendmentSummary">
+    <Position X="39.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAEAAAAQABAACAACAAAAAAAAAABAAAAACAAAAA=</HashCode>
+      <FileName>Models\AmendmentSummary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.BaseModel">
+    <Position X="14.25" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.Contact">
+    <Position X="30.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAEAAAAAAAMAEAAAAAAEAABAAAAAAAAAAAAAAIAg=</HashCode>
+      <FileName>Models\Contact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.FundingGroup">
+    <Position X="28.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FundingGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.FundingLevel">
+    <Position X="30.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FundingLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.FundingPeriod">
+    <Position X="32" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FundingPeriod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.FundingResource">
+    <Position X="33.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAIAAAAAAAI=</HashCode>
+      <FileName>Models\FundingResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.FundingSourceModel">
+    <Position X="35.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QIAAABAAIAAAAAAAAAAgAQAAAQJAAAAAAAAFCAAAAAA=</HashCode>
+      <FileName>Models\FundingSourceModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ImprovementType">
+    <Position X="28.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ImprovementType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.Organization">
+    <Position X="36.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Organization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.Pool">
+    <Position X="38.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Pool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.PoolMaster">
+    <Position X="40.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PoolMaster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.PoolModel">
+    <Position X="29" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PoolModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProfileModel">
+    <Position X="30.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProfileModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectInfoModel">
+    <Position X="9.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectInfoModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectModel_Dep">
+    <Position X="36" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAEAAAAAABAAABAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ProjectModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectType">
+    <Position X="37.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectVersionGeneralInfoModel">
+    <Position X="1.25" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectVersionGeneralInfoModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectVersionLocationModel">
+    <Position X="4" Y="19" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectVersionLocationModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectVersionModelBase">
+    <Position X="3.5" Y="17.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\ProjectVersionModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectVersionScopeModel">
+    <Position X="6.5" Y="19" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectVersionScopeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.Role">
+    <Position X="39.5" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.RoleDialogModel">
+    <Position X="28.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\RoleDialogModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.RolesDojoDataStore">
+    <Position X="30.25" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAgAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RolesDojoDataStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipEligibleAgenciesModel">
+    <Position X="9.5" Y="20.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAABAAAAABAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\TipEligibleAgenciesModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipFundingSourceModel">
+    <Position X="38" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAABAAAAAAAAAAAAAgAQAAAQJAAAAAAAAECAAAAAA=</HashCode>
+      <FileName>Models\TipFundingSourceModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipModel">
+    <Position X="9.5" Y="19" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectVersionSummaryModel">
+    <Position X="28" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAgCAAACAgCAAAIAAEAAIAAAEAAAAAAACAAgA=</HashCode>
+      <FileName>Models\TIPProject\TipProjectVersionSummaryModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.ProjectAmendments">
+    <Position X="1.5" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProjectAmendments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectBase">
+    <Position X="12" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipProjectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectVersionBase">
+    <Position X="12" Y="20.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\TipProjectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectCdotData">
+    <Position X="6" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipProjectCdotData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectGeneralInfo">
+    <Position X="8.25" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAADBAAAAAAAQAIAAAAAAAQAAAAAAAAAAEAIIAA=</HashCode>
+      <FileName>Models\TipProjectGeneralInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipProjectStrikes">
+    <Position X="10.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TipProjectStrikes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipStatusModel">
+    <Position X="33" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAChAAAAAAABQQAAAEAJAAAEAAIAAAAIAAAAAARAAAA=</HashCode>
+      <FileName>Models\TipStatusModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TipSummary">
+    <Position X="35" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPSummary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.User">
+    <Position X="39" Y="19" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACCAEAAAAACAAAAAAAAAAAAAgAAAAIgAAAQAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Models.DashboardListModel">
+    <Position X="38.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAgAIAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\DashboardListModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.CountyShareModel">
+    <Position X="32.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAABAAAAAAABAAAAAAAAAAAAACAACA=</HashCode>
+      <FileName>Models\TIPProject\CountyShareModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.InfoModel">
+    <Position X="30.25" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAEDBAAAAAAASAIAAAAABAYAAAAAAAAAAEAIIgA=</HashCode>
+      <FileName>Models\TIPProject\InfoModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.LocationModel">
+    <Position X="4" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\LocationModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.MunicipalityShareModel">
+    <Position X="34.5" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAACEAAg=</HashCode>
+      <FileName>Models\TIPProject\MunicipalityShareModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.ProjectModel">
+    <Position X="8.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\ProjectModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.ScopeModel">
+    <Position X="12.75" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACQAAAAAAAAAAAAAAAACIAAAABAAEAAAAA=</HashCode>
+      <FileName>Models\TIPProject\ScopeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.SegmentModel">
+    <Position X="32.25" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAgAEIACAIgAAgAAAAAAABhAAAAAAgAAAAgAAAAAAoA=</HashCode>
+      <FileName>Models\TIPProject\SegmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.Summary">
+    <Position X="34.25" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAgCAAAGAgCAAAIAAEhAIAAAEAAAAAAACAAgA=</HashCode>
+      <FileName>Models\TIPProject\Summary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.TipSortedProjectListModel">
+    <Position X="30.75" Y="19" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAACQAAAAAAAAKAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TIPProject\TipSortedProjectListModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.Models.TIPProject.VersionModel">
+    <Position X="7.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\TIPProject\Version.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.AccountViewModel">
+    <Position X="32.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAIAAAAAAAAAAAAAQAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.AmendmentListViewModel">
+    <Position X="36" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AmendmentListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.AmendmentViewModel">
+    <Position X="28.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AmendmentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.ErrorViewModel">
+    <Position X="40.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAABAAAAAAAAAAAAAAAAQAABEAAAAAAA=</HashCode>
+      <FileName>ViewModels\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.HomeViewModel">
+    <Position X="39.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\HomeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.LoginViewModel">
+    <Position X="32.25" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAIAAAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.ProfileViewModel">
+    <Position X="32.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.UnauthorizedViewModel">
+    <Position X="36.75" Y="19" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\UnauthorizedViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.AmendmentsViewModel">
+    <Position X="23.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\AmendmentsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.CreateProjectViewModel">
+    <Position X="1.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACDAAgAEABAAAAAAAAAEAAUAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\CreateProjectViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.DashboardViewModel">
+    <Position X="5.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAIAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\DashboardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.FundingSourceListViewModel">
+    <Position X="7.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\FundingSourceListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.FundingSourceViewModel">
+    <Position X="10" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAQAEAAAAAAAIAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\FundingSourceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.PoolListViewModel">
+    <Position X="12.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\PoolListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.PoolViewModel">
+    <Position X="14.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\PoolViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.ProjectListViewModel">
+    <Position X="16.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModels\TIP\ProjectListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.ProjectSearchViewModel">
+    <Position X="18.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\ProjectSearchViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.ReportsViewModel">
+    <Position X="21" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\ReportsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.SponsorsViewModel">
+    <Position X="26" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgEAAAAAAAAAAAEAJAAAAABAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\SponsorsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.StatusViewModel">
+    <Position X="3.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAKAAAAAAAAgAACAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\StatusViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.TipBaseViewModel">
+    <Position X="14" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\TipBaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIP.TipListViewModel">
+    <Position X="40.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIP\TipListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.AmendmentsViewModel">
+    <Position X="2.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\TIPProject\AmendmentsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.ProjectCdotDataViewModel">
+    <Position X="5" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIPProject\CdotDataViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.ProjectDetailViewModel">
+    <Position X="7.5" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIPProject\DetailViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.InfoViewModel">
+    <Position X="10" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACDAAgAEABAAAAAABAAEAAUAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIPProject\InfoViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.LocationViewModel">
+    <Position X="12.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBAA=</HashCode>
+      <FileName>ViewModels\TIPProject\LocationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.ProjectBaseViewModel">
+    <Position X="8.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>ViewModels\TIPProject\ProjectBaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.ScopeViewModel">
+    <Position X="15" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIPProject\ScopeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DRCOG.Domain.ViewModels.TIPProject.StrikesViewModel">
+    <Position X="1" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TIPProject\StrikesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DRCOG.Domain.Interfaces.IAccountRepository">
+    <Position X="17.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAECAIAAAggAAAAAAAgAAAAAAAAAEAAAEAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAccountRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DRCOG.Domain.Interfaces.IBaseRepository">
+    <Position X="18.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DRCOG.Domain.Interfaces.IEmailService">
+    <Position X="22" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IEmailService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DRCOG.Domain.Interfaces.ILogService">
+    <Position X="23.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAEAAAAAAEAEAAA=</HashCode>
+      <FileName>Interfaces\ILogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DRCOG.Domain.Interfaces.IProjectRepository">
+    <Position X="19.75" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIASACAACKAAAAAEAAAAAIRAQIIABACCQAAAAAACQA=</HashCode>
+      <FileName>Interfaces\IProjectRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DRCOG.Domain.Interfaces.ITipRepository">
+    <Position X="25.5" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAASQRAACAAEAOQACAAAAAAAIAAICAUAACAAgAAAA=</HashCode>
+      <FileName>Interfaces\ITIPRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DRCOG.EnumDashboardListType">
+    <Position X="36.25" Y="23.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumDashboardListType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DRCOG.EnumRole">
+    <Position X="38.5" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAgAAAAAABAAAAAA=</HashCode>
+      <FileName>EnumRole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

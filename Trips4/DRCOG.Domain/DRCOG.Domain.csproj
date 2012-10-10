@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10038254-3677-4C98-A326-BC69B7D69808}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DRCOG.Domain</RootNamespace>
+    <AssemblyName>DRCOG.Domain</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\DRCOG.Domain.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DRCOG.Common">
+      <HintPath>..\..\lib\DRCOG.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services">
+      <HintPath>..\..\lib\DRCOG.Common.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport">
+      <HintPath>..\..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="DTS.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\DTS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib, Version=2.0.96.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\mvccontrib_v2\MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomExceptions\BusinessRuleException.cs" />
+    <Compile Include="CustomExceptions\UserException.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Extensions\jQueryDataTableParamModelExtension.cs" />
+    <Compile Include="Factories\AddOnFactory.cs" />
+    <Compile Include="Helpers\ApiFederationHelper.cs" />
+    <Compile Include="Helpers\WildCardRegEx.cs" />
+    <Compile Include="Interfaces\IFileRepositoryExtender.cs" />
+    <Compile Include="Interfaces\IPerson.cs" />
+    <Compile Include="Interfaces\ISiteUserRepository.cs" />
+    <Compile Include="Interfaces\ISurveyProject.cs" />
+    <Compile Include="Interfaces\ISurveyRepository.cs" />
+    <Compile Include="Interfaces\IUserRepositoryExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProjectSponsorsModel.cs" />
+    <Compile Include="Models\Survey\SurveyOverview.cs" />
+    <Compile Include="Models\TIP\Delay.cs" />
+    <Compile Include="ServiceInterfaces\IApi.cs" />
+    <Compile Include="ServiceInterfaces\IApiFederation.cs" />
+    <Compile Include="ViewModels\BecomeASponsorViewModel.cs" />
+    <Compile Include="Models\CdotDataBase.cs" />
+    <Compile Include="Interfaces\IRtpProjectRepository.cs" />
+    <Compile Include="Interfaces\IApplicationState.cs" />
+    <Compile Include="Interfaces\IRTPRepository.cs" />
+    <Compile Include="Interfaces\ITransportationRepository.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Interfaces\ICdotData.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\ISummary.cs" />
+    <Compile Include="Interfaces\IInstanceModel.cs" />
+    <Compile Include="Models\LRS\LRS.cs" />
+    <Compile Include="Models\TIPProject\FundingPhase.cs" />
+    <Compile Include="Models\RTP\RtpStatusModel.cs" />
+    <Compile Include="Models\FundingGroup.cs" />
+    <Compile Include="Models\FundingIncrement.cs" />
+    <Compile Include="Models\FundingLevel.cs" />
+    <Compile Include="Models\FundingPeriod.cs" />
+    <Compile Include="Models\FundingResource.cs" />
+    <Compile Include="Interfaces\IProjectRepository.cs" />
+    <Compile Include="Models\AdminLevel.cs" />
+    <Compile Include="Models\AmendmentSummary.cs" />
+    <Compile Include="Entities\DashboardListCriteria.cs" />
+    <Compile Include="Entities\DashboardListItem.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\FundingSourceModel.cs" />
+    <Compile Include="Models\ImprovementType.cs" />
+    <Compile Include="Models\Organization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Pool.cs" />
+    <Compile Include="Models\PoolModel.cs" />
+    <Compile Include="Models\ProjectSearchModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\CountyShareModel.cs" />
+    <Compile Include="Models\Cycle.cs" />
+    <Compile Include="Models\RTP\RtpCdotData.cs" />
+    <Compile Include="Models\RTP\Funding.cs" />
+    <Compile Include="Models\RTP\InfoModel.cs" />
+    <Compile Include="Models\RTP\LocationModel.cs" />
+    <Compile Include="Models\RTP\MetroVisionMeasureSponsor.cs" />
+    <Compile Include="Models\RTP\PoolProject.cs" />
+    <Compile Include="Models\RTP\ProjectFinancialRecord.cs" />
+    <Compile Include="Models\RTP\ProjectSponsorsModel.cs" />
+    <Compile Include="Models\RTP\RtpBase.cs" />
+    <Compile Include="Models\RTP\RtpSummary.cs" />
+    <Compile Include="Models\RTP\RtpVersionModel.cs" />
+    <Compile Include="Models\RTP\ScopeModel.cs" />
+    <Compile Include="Models\RTP\SegmentModel.cs" />
+    <Compile Include="Models\RTP\FundingSourceModel.cs" />
+    <Compile Include="Models\SiteUser.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SponsorOrganization.cs" />
+    <Compile Include="Interfaces\IAmendmentStrategy.cs" />
+    <Compile Include="Models\Summary.cs" />
+    <Compile Include="Models\FundingDetailModel.cs" />
+    <Compile Include="Models\FundingDetailPivotModel.cs" />
+    <Compile Include="Models\FundingModel.cs" />
+    <Compile Include="Models\Survey\InfoModel.cs" />
+    <Compile Include="Models\Survey\Project.cs" />
+    <Compile Include="Models\Survey\Project\Funding.cs" />
+    <Compile Include="Models\Survey\Project\LocationModel.cs" />
+    <Compile Include="Models\Survey\Project\ScopeModel.cs" />
+    <Compile Include="Models\Survey\Project\SegmentModel.cs" />
+    <Compile Include="Models\Survey\SearchModel.cs" />
+    <Compile Include="Models\Survey\Status.cs" />
+    <Compile Include="Models\Survey\Summary.cs" />
+    <Compile Include="Models\Survey\Survey.cs" />
+    <Compile Include="Models\Survey\Instance.cs" />
+    <Compile Include="Models\Survey\InstanceSecurity.cs" />
+    <Compile Include="Models\TIPProject\TipReport.cs" />
+    <Compile Include="Models\TIPProject\MetroVisionMeasureSponsor.cs" />
+    <Compile Include="Models\MunicipalityShareModel.cs" />
+    <Compile Include="Models\TIPProject\PoolProject.cs" />
+    <Compile Include="Models\TIPProject\DetailsModel.cs" />
+    <Compile Include="Models\TIPProject\ProjectFinancialRecord.cs" />
+    <Compile Include="Models\ProjectFinancialRecordDetail.cs" />
+    <Compile Include="Models\TIPProject\ProjectModelCodingModel.cs" />
+    <Compile Include="Models\TIPProject\ProjectSponsorsModel.cs" />
+    <Compile Include="Models\TIPProject\ProjectVersionReportingModel.cs" />
+    <Compile Include="Models\TIPProject\TipSummary.cs" />
+    <Compile Include="Entities\Tip.cs" />
+    <Compile Include="Entities\TipStatus.cs" />
+    <Compile Include="Models\ProjectType.cs" />
+    <Compile Include="Models\TipFundingSourceModel.cs" />
+    <Compile Include="Models\ProjectAmendments.cs" />
+    <Compile Include="Models\TipProjectBase.cs" />
+    <Compile Include="Models\TIPProject\TipCdotData.cs" />
+    <Compile Include="Models\TIPProject\LocationModel.cs" />
+    <Compile Include="Models\TIPProject\ScopeModel.cs" />
+    <Compile Include="Models\TIPProject\ProjectModel_obs.cs" />
+    <Compile Include="Models\TipProjectGeneralInfo.cs" />
+    <Compile Include="Models\TIPProject\SegmentModel.cs" />
+    <Compile Include="Models\TipProjectStrikes.cs" />
+    <Compile Include="Models\TIPProject\TipSortedProjectListModel.cs" />
+    <Compile Include="Models\TIPProject\TipVersionModel.cs" />
+    <Compile Include="Models\TIPProject\InfoModel.cs" />
+    <Compile Include="Models\TIPProject\TipProjectVersionSummaryModel.cs" />
+    <Compile Include="GenericDojoDataStore.cs" />
+    <Compile Include="Models\VersionModel.cs" />
+    <Compile Include="Models\RTP\RTPSearchModel.cs" />
+    <Compile Include="Security\ChangePasswordModel.cs" />
+    <Compile Include="Security\ISiteIdentity.cs" />
+    <Compile Include="Security\ISitePrincipal.cs" />
+    <Compile Include="Security\LogOnModel.cs" />
+    <Compile Include="Security\PasswordRecoveryModel.cs" />
+    <Compile Include="Security\RegisterModel.cs" />
+    <Compile Include="Security\SiteUserIdentity.cs" />
+    <Compile Include="Security\SiteUserPrincipal.cs" />
+    <Compile Include="ServiceInterfaces\ICycleService.cs" />
+    <Compile Include="ServiceInterfaces\IDeleteStrategy.cs" />
+    <Compile Include="ServiceInterfaces\IAmendmentStrategy.cs" />
+    <Compile Include="ServiceInterfaces\IDomainSearchService.cs" />
+    <Compile Include="ServiceInterfaces\IRestoreStrategy.cs" />
+    <Compile Include="ServiceInterfaces\IUserService.cs" />
+    <Compile Include="TIPSearchModel.cs" />
+    <Compile Include="Utility\RetryUtility.cs" />
+    <Compile Include="ViewModels\AmendmentListViewModel.cs" />
+    <Compile Include="ViewModels\AmendmentViewModel.cs" />
+    <Compile Include="ViewModels\RecoveryViewModel.cs" />
+    <Compile Include="ViewModels\RTP\AmendmentsViewModel.cs" />
+    <Compile Include="ViewModels\RTP\FundingSourceListViewModel.cs" />
+    <Compile Include="ViewModels\RTP\FundingSourceViewModel.cs" />
+    <Compile Include="ViewModels\RTP\ReportsViewModel.cs" />
+    <Compile Include="ViewModels\RTP\RestoreViewModel.cs" />
+    <Compile Include="ViewModels\RTP\ProjectListViewModel.cs" />
+    <Compile Include="ViewModels\RTP\ProjectSearchViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\CdotDataViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\DetailViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\FundingViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\InfoViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\LocationViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\ProjectBaseViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\ScopeViewModel.cs" />
+    <Compile Include="ViewModels\RTP\Project\SegmentViewModel.cs" />
+    <Compile Include="ViewModels\RTP\RtpDashboardViewModel.cs" />
+    <Compile Include="ViewModels\RTP\SponsorsViewModel.cs" />
+    <Compile Include="ViewModels\RTP\StatusViewModel.cs" />
+    <Compile Include="ViewModels\RTP\RtpBaseViewModel.cs" />
+    <Compile Include="ViewModels\RTP\RtpListViewModel.cs" />
+    <Compile Include="ViewModels\Survey\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Survey\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModels\Survey\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\Survey\ProjectListViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\FundingViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\LocationViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\ProjectBaseViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\InfoViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\ScopeViewModel.cs" />
+    <Compile Include="ViewModels\Survey\Project\SegmentViewModel.cs" />
+    <Compile Include="ViewModels\Survey\SponsorsViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\FundingViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\SegmentViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\VersionDetailsJson.cs" />
+    <Compile Include="ViewModels\TIP\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModels\TIP\DelaysViewModel.cs" />
+    <Compile Include="ViewModels\TIP\FundingSourceViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\AccountDetailModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\AccountSearchModel.cs" />
+    <Compile Include="Models\AmendmentModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\DashboardListModel.cs" />
+    <Compile Include="Models\ProjectInfoModel.cs" />
+    <Compile Include="Models\ProjectVersionScopeModel.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\ProjectVersionGeneralInfoModel.cs" />
+    <Compile Include="Models\ProjectVersionLocationModel.cs" />
+    <Compile Include="Models\TipEligibleAgenciesModel.cs" />
+    <Compile Include="Models\TipModel.cs" />
+    <Compile Include="Models\PoolMaster.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\AmendmentsViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\ProjectBaseViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\CdotDataViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\DetailViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\InfoViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\LocationViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\ScopeViewModel.cs" />
+    <Compile Include="ViewModels\TIPProject\StrikesViewModel.cs" />
+    <Compile Include="Models\ProjectVersionModelBase.cs" />
+    <Compile Include="ViewModels\TIP\AmendmentsViewModel.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Interfaces\ITIPRepository.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\ProjectModel_obs.cs" />
+    <Compile Include="ViewModels\TIP\ProjectSearchViewModel.cs" />
+    <Compile Include="Models\RoleDialogModel.cs" />
+    <Compile Include="Models\RolesDojoDataStore.cs" />
+    <Compile Include="ViewModels\TIP\PoolViewModel.cs" />
+    <Compile Include="ViewModels\Survey\ListViewModel.cs" />
+    <Compile Include="ViewModels\TIP\SponsorsViewModel.cs" />
+    <Compile Include="ViewModels\TIP\TipBaseViewModel.cs" />
+    <Compile Include="ViewModels\TIP\FundingSourceListViewModel.cs" />
+    <Compile Include="ViewModels\TIP\PoolListViewModel.cs" />
+    <Compile Include="ViewModels\TIP\ProjectListViewModel.cs" />
+    <Compile Include="Models\TipStatusModel.cs" />
+    <Compile Include="ViewModels\TIP\ReportsViewModel.cs" />
+    <Compile Include="ViewModels\UnauthorizedViewModel.cs" />
+    <Compile Include="Entities\ProjectListCriteria.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TIP\TipListViewModel.cs" />
+    <Compile Include="ViewModels\TIP\TipDashboardViewModel.cs" />
+    <Compile Include="ViewModels\TIP\StatusViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram_AmendmentStrategy.cd" />
+    <None Include="ClassDiagram_All.cd" />
+    <None Include="ClassDiagram_DTSVersion.cd" />
+    <None Include="ClassDiagram_Interfaces.cd" />
+    <None Include="Models\DeleteStrategyDiagram.cd" />
+    <None Include="Models\ModalClassDiagram.cd" />
+    <None Include="Models\SummaryModel.cd" />
+    <None Include="ServiceInterfaces\ClassDiagram_AmendmentStrategy.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\DRCOG.Common.Services.MemberShipServiceSupport.Profile.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

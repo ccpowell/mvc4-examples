@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16B7F60D-2DE1-464D-A925-17FE03A3E1F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DRCOG.TIP.Services</RootNamespace>
+    <AssemblyName>DRCOG.TIP.Services</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\DRCOG.TIP.Services.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DRCOG.Common">
+      <HintPath>..\lib\DRCOG.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DRCOG.Common.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport">
+      <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DRCOG\Lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AmendmentStrategy\Survey\SponsorEdit.cs" />
+    <Compile Include="AmendmentStrategy\Survey\AmendmentStrategy.cs" />
+    <Compile Include="AmendmentStrategy\Survey\PendingToAdopted.cs" />
+    <Compile Include="AmendmentStrategy\Survey\SponsorNew.cs" />
+    <Compile Include="AmendmentStrategy\RTP\AdoptedToPending.cs" />
+    <Compile Include="AmendmentStrategy\RTP\PendingToAdopted.cs" />
+    <Compile Include="AmendmentStrategy\RTP\SubmittedToPending.cs" />
+    <Compile Include="AmendmentStrategy\TIP\AmendedToSubmitted.cs" />
+    <Compile Include="AmendmentStrategy\TIP\AmendmentStrategy.cs" />
+    <Compile Include="AmendmentStrategy\TIP\ApprovalToSubmitted.cs" />
+    <Compile Include="AmendmentStrategy\RTP\AmendmentStrategy.cs" />
+    <Compile Include="AmendmentStrategy\TIP\ProposedToAmended.cs" />
+    <Compile Include="AmendmentStrategy\TIP\SubmittedToProposed.cs" />
+    <Compile Include="CycleService.cs" />
+    <Compile Include="DeleteStrategy\RTP\PendingDrop.cs" />
+    <Compile Include="DeleteStrategy\RTP\DeleteStrategy.cs" />
+    <Compile Include="DeleteStrategy\TIP\ApprovedDelete.cs" />
+    <Compile Include="DeleteStrategy\TIP\DeleteStrategy.cs" />
+    <Compile Include="DeleteStrategy\TIP\InProgressDelete.cs" />
+    <Compile Include="DeleteStrategy\RTP\ApprovedDelete.cs" />
+    <Compile Include="AmendmentStrategy\RTP\DeleteToSubmitted.cs" />
+    <Compile Include="DeleteStrategy\RTP\InprogressDelete.cs" />
+    <Compile Include="DeleteStrategy\TIP\DeleteToSubmitted.cs" />
+    <Compile Include="ImageServiceExtender.cs" />
+    <Compile Include="ProfileServiceExtender.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestoreStrategy\RTP\AllRestore.cs" />
+    <Compile Include="RestoreStrategy\RTP\RestoreStrategy.cs" />
+    <Compile Include="RestoreStrategy\TIP\AllRestore.cs" />
+    <Compile Include="RestoreStrategy\TIP\RestoreStrategy.cs" />
+    <Compile Include="UserService.cs">
+    </Compile>
+    <Compile Include="XMLService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DRCOG.Data\DRCOG.Data.csproj">
+      <Project>{286B449E-74C8-4EBE-BFB6-015C4D14DA53}</Project>
+      <Name>DRCOG.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DRCOG.Domain\DRCOG.Domain.csproj">
+      <Project>{10038254-3677-4C98-A326-BC69B7D69808}</Project>
+      <Name>DRCOG.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram_AmendmentStrategy.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
