@@ -3,8 +3,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 
-namespace DRCOG.Web.CustomResults
+namespace Trips4.CustomResults
 {
+    // TODO: replace this with Content calls
     public class ImageResult : ActionResult
     {
         public String ContentType { get; set; }

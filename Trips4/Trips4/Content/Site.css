@@ -1,769 +1,1317 @@
-﻿html {
-    background-color: #e2e2e2;
+﻿/*-----------------------------------------
+Site.css
+Structural CSS included in Site.Master
+-----------------------------------------*/
+body
+{
+    background-color: #EEE;
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
 }
 
-body {
-    background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
+#loader
+{
+    z-index: 1001;
+    background: #FFFFFF url(images/ajax-loader.gif) no-repeat fixed center;    
+    display: block;
 }
 
-a {
-    color: #333;
-    outline: none;
-    padding-left: 3px;
-    padding-right: 3px;
+#dijitContainer
+{
+    visibility:hidden;
+    height:450px;
+}
+
+a:link
+{
+    /*color: #034af3;*/
     text-decoration: underline;
 }
-
-    a:link, a:visited,
-    a:active, a:hover {
-        color: #333;
-    }
-
-    a:hover {
-        background-color: #c7d1d6;
-    }
-
-header, footer, hgroup,
-nav, section {
-    display: block;
+a:visited
+{
+    /*color: #505abc;*/
+}
+a:hover
+{
+    /*color: #1d60ff;*/
+    text-decoration: none;
+}
+a:active
+{
+    color: #12eb87;
 }
 
-mark {
-    background-color: #a6dbed;
-    padding-left: 5px;
-    padding-right: 5px;
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
 }
 
-.float-left {
-    float: left;
-}
+br { clear: both; }
 
-.float-right {
-    float: right;
-}
+.bg-green { background: #95C632; }
+.bg-green:hover { background: #8bb92f; }
 
-.clear-fix:after {
-    content: ".";
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
+.bg-red { background: #ff0015; }
+.bg-red:hover { background: #be000f; }
 
-h1, h2, h3,
-h4, h5, h6 {
+
+
+.iremove { position: relative; height: 16px; width: 16px; background: url('/Content/Images/remove.png') #fff;}
+
+
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
     color: #000;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
+h1
+{
     font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
-
-h2 {
-    font-size: 1.75em;
+h2
+{
+    padding: 0 0 10px 0;
 }
-
-h3 {
+h3
+{
     font-size: 1.2em;
 }
-
-h4 {
+h4
+{
     font-size: 1.1em;
 }
-
-h5, h6 {
+h5, h6
+{
     font-size: 1em;
 }
 
-
-/* main layout
+/* GENERIC   
 ----------------------------------------------------------*/
-.content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
+.blockoff
+{
+	min-height: 1.2em;
 }
+.box { border: 1px solid #CCC; margin: 5px 0; padding: 3px 6px;  }
+.hidden { visibility: hidden; display: none; }
+.clear { clear: both; }
+.error, .redfont { color:#ff0000; }
+.relative { display: block; position: relative; }
+.link { color: blue; text-decoration: underline; }
+.cursorPointer { cursor: pointer; }
+.boldFont { font-weight:bold; }
+.floatLeft { float:left; }
+.floatRight { float:right; }
+.noRightMargin { margin-right:0; }
+.grayFont { color:#C3C3C3; }
+.cursorPointer { cursor:pointer; }
+.totalWidth { width:93%; }
+.sevenEightsWidth { width:87%; }
+.halfWidth { width:50%; }
+.threeQuarterWidth { width: 75%; }
+.oneThird { width:30%; }
+.oneThirdAbsolute { width:33%; }
+.oneFourth { width:25%; }
+.oneFifth { width:15%; }
+.darkGrey { color: #4C4C4C; }
+.lightGrey { color: #CCC; }
 
-#body {
-    background-color: #efeeef;
-    clear: both;
-    padding-bottom: 35px;
-}
-
-    .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
-    }
-
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
-
-footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
-}
-
-
-/* site title
+/* IMAGE MAPPING   
 ----------------------------------------------------------*/
-.site-title {
-    color: #c8c8c8;
-    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
-    font-size: 2.3em;
-    margin: 20px 0;
+.btnRight { 
+    background-image:url(images/16-arrow-right.png);
+    background-repeat:no-repeat;
+    height:18px;
+    text-align:center;
+    width:18px;
 }
 
-.site-title a, .site-title a:hover, .site-title a:active {
-    background: none;
-    color: #c8c8c8;
-    outline: none;
-    text-decoration: none;
+.btnLeft { 
+    background-image:url(images/16-arrow-left.png);
+    background-repeat:no-repeat;
+    height:18px;
+    text-align:center;
+    width:18px;
 }
 
-
-/* login
-----------------------------------------------------------*/
-#login {
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn h1, .rightColumn h2, .leftColumn h1, .leftColumn h2
+{
     display: block;
-    font-size: .85em;
-    margin: 20px 0 12px;
-    text-align: right;
+    position: relative;
+    top: 5px;
+}
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
 }
 
-    #login a {
-        background-color: #d3dce0;
-        margin-left: 10px;
-        margin-right: 3px;
-        padding: 2px 3px;
-        text-decoration: none;
-    }
-
-    #login a.username {
-        background: none;
-        margin-left: 0px;
-        text-decoration: underline;
-    }
-
-    #login ul {
-        margin: 0;
-    }
-
-    #login li {
-        display: inline;
-        list-style: none;
-    }
 
 
-/* menu
-----------------------------------------------------------*/
-ul#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0;
-    text-align: right;
+.rightColumn
+{
+    float:right;
+    width:400px;
+    margin:0 10px 0 10px;
 }
 
-    ul#menu li {
-        display: inline;
-        list-style: none;
-        padding-left: 15px;
-    }
+.leftColumn
+{
+    float:left;
+    width:400px;
+    margin:0 10px 0 10px;
+}
 
-        ul#menu li a {
-            background: none;
-            color: #999;
-            text-decoration: none;
-        }
-
-        ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
-        }
-
-
-/* page elements
+/* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-/* featured */
-.featured {
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;  
+    border: solid 1px #96AFCF;
+    background-color: #FFF;
+}
+
+#main
+{
+	position: relative;
+    margin:1px 0px 20px 0px;    
+    padding: 10px 0 0 0;
     background-color: #fff;
+    border-top: 1px solid #000;
+    /*float:right;  ensures that #main contains other floated elements*/
+    width:900px;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 
-    .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-    }
+.actionButton {
 
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
-
-        .featured p {
-            font-size: 1.1em;
-        }
-
-/* page titles */
-hgroup.title {
-    margin-bottom: 10px;
+    font-weight: bold;    
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 5px 5px 7px 5px;
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    cursor: pointer;
 }
 
-hgroup.title h1, hgroup.title h2 {
-    display: inline;
+.view-content-container, #errorDisplay
+{
+    margin:5px 10px;
+    min-height: 400px;
+    _min-height: 400px;
 }
 
-hgroup.title h2 {
-    font-weight: normal;
-    margin-left: 3px;
+.tab-form-container{
+    float:left;
+    width:860px;
+    margin:5px 10px;
+    text-align: left;
+    position: relative;
+    min-height: 300px;
 }
 
-/* features */
-section.feature {
-    width: 300px;
-    float: left;
-    padding: 10px;
+.tab-content-container{    
+    margin:5px 10px;
+    position: relative;
 }
 
-/* ordered list */
-ol.round {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-    ol.round li {
-        margin: 25px 0;
-        padding-left: 45px;
-    }
-
-        ol.round li.zero {
-            background: url("../Images/orderedList0.png") no-repeat;
-        }
-
-        ol.round li.one {
-            background: url("../Images/orderedList1.png") no-repeat;
-        }
-
-        ol.round li.two {
-            background: url("../Images/orderedList2.png") no-repeat;
-        }
-
-        ol.round li.three {
-            background: url("../Images/orderedList3.png") no-repeat;
-        }
-
-        ol.round li.four {
-            background: url("../Images/orderedList4.png") no-repeat;
-        }
-
-        ol.round li.five {
-            background: url("../Images/orderedList5.png") no-repeat;
-        }
-
-        ol.round li.six {
-            background: url("../Images/orderedList6.png") no-repeat;
-        }
-
-        ol.round li.seven {
-            background: url("../Images/orderedList7.png") no-repeat;
-        }
-
-        ol.round li.eight {
-            background: url("../Images/orderedList8.png") no-repeat;
-        }
-
-        ol.round li.nine {
-            background: url("../Images/orderedList9.png") no-repeat;
-        }
-
-/* content */
-article {
-    float: left;
-    width: 70%;
-}
-
-aside {
-    float: right;
-    width: 25%;
-}
-
-    aside ul {
-        list-style: none;
-        padding: 0;
-    }
-
-        aside ul li {
-            background: url("../Images/bullet.png") no-repeat 0 50%;
-            padding: 2px 0 2px 20px;
-        }
-
-.label {
-    font-weight: 700;
-}
-
-/* login page */
-#loginForm {
-    border-right: solid 2px #c8c8c8;
-    float: left;
-    width: 45%;
-}
-
-    #loginForm .validation-error {
-        display: block;
-        margin-left: 15px;
-    }
-
-#socialLoginForm {
-    margin-left: 40px;
-    float: left;
-    width: 50%;
-}
-
-/* contact */
-.contact h3 {
-    font-size: 1.2em;
-}
-
-.contact p {
-    margin: 5px 0 0 10px;
-}
-
-.contact iframe {
-    border: 1px solid #333;
-    margin: 5px 0 0 10px;
-}
-
-/* forms */
-fieldset {
-    border: none;
-    margin: 0;
+#banner
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
     padding: 0;
+    background-color: #fff; /*#263779;*/
+    /*background-image: url(images/header-fade.png);*/
+    /*background-repeat: repeat-x;*/
+    height:90px;
+    border-bottom: 3px solid #263779;
 }
 
-    fieldset legend {
-        display: none;
-    }
-    
-    fieldset ol {
-        padding: 0;
-        list-style: none;
-    }
-
-        fieldset ol li {
-            padding-bottom: 5px;
-        }
-
-    fieldset label {
-        display: block;
-        font-size: 1.2em;
-        font-weight: 600;
-    }
-
-    fieldset label.checkbox {
-        display: inline;
-    }
-
-    fieldset input[type="text"],
-    fieldset input[type="password"] {
-        border: 1px solid #e2e2e2;
-        color: #333;
-        font-size: 1.2em;
-        margin: 5px 0 6px 0;
-        padding: 5px;
-        width: 300px;
-    }
-
-        fieldset input[type="text"]:focus,
-        fieldset input[type="password"]:focus {
-            border: 1px solid #7ac0da;
-        }
-
-    fieldset input[type="submit"] {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
-        cursor: pointer;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 7px;
-    }
-
-/* ajax login/registration dialog */
-.ui-dialog {
-    font-family: inherit;
-    font-size: 1.0em;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    border: 0 none;
+#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+    margin-left:5px;
 }
 
-    .ui-dialog input {
-        font-family: inherit;
-        font-size: 1.25em;
-    }
-
-.ui-dialog-titlebar {
-    color: inherit;
-    font-weight: inherit;
-    border: 0 none;
-    background: none;
-    float: right;    
+#title-content
+{
+    position: absolute;
+    color: #fff;
+    font-size: 1.8em;
+    top: 15px;
+    left: 260px;
+}
+#breadCrumbs
+{
+	position: relative;
+	width: 670px;
+	z-index: 1000;
 }
 
-.ui-dialog-titlebar-close {
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
+.belowTable
+{
+    clear:both;
+    margin-top:5px;
+    padding-bottom:10px;
 }
 
-.ui-widget-header {   
-    border: 0 none;
-    background: none;  
+#footer
+{
+    color: #444;
+    padding: 10px 0;    
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
 }
 
-.modal-popup {
-    
+/* TOP MENU                                               
+----------------------------------------------------------*/
+ul.topMenu li
+{
+    display:inline;
+    position: relative;
+}
+ul.topMenu li span { position: absolute; top: 0px; left: 0px; text-align: center; width: 40px; font-weight: bold; color: #545454; }
+ul.topMenu
+{
+    line-height:3em;
+    margin-bottom:0;
 }
 
-    .modal-popup input[type="text"],
-    .modal-popup input[type="password"] {
-        width: 90%;
-    }
-
-/* info and errors */
-.message-info {
-    border: 1px solid;
-    clear: both;
-    padding: 10px 20px;
+#menucontainer
+{
+	padding:0 5px 0 5px;
+	margin-left:5px;
+	 float:left;
 }
 
-.message-error {
-    clear: both;
-    color: #e80c4d;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: 20px 0 10px 0;
+
+#menucontainer h3
+{
+    color:White;
+    padding:0;
+    margin-left:5px;
+    margin-top:3px;
+    margin-bottom:2px;
+   
+
+}
+#tipMenu
+{
+    float:left;
+}
+#projectMenu
+{
+    float:left;
+    margin-left:10px;    
 }
 
-.message-success {
-    color: #7ac0da;
-    font-size: 1.3em;
-    font-weight: bold;
-    margin: 20px 0 10px 0;
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
 }
 
-.error {
-    color: #e80c4d;
-}
-
-/* styles for validation helpers */
-.field-validation-error {
-    color: #e80c4d;
-    font-weight: bold;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-input[type="text"].input-validation-error,
-input[type="password"].input-validation-error {
-    border: 1px solid #e80c4d;
-}
-
-.validation-summary-errors {
-    color: #e80c4d;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-ul#social li {
+ul#menu li
+{
     display: inline;
     list-style: none;
 }
 
-    ul#social li a {
-        color: #999;
-        text-decoration: none;
-    }
+ul#menu li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
 
-    a.facebook, a.twitter {
-        display: block;
-        float: left;
-        height: 24px;
-        padding-left: 17px;
-        text-indent: -9999px;
-        width: 16px;
-    }
+ul#menu li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #034af3;
+}
 
-    a.facebook {
-        background: url("../Images/facebook.png") no-repeat;
-    }
+ul#menu li a:hover
+{
+    background-color: #fff;
+    text-decoration: none;
+}
 
-    a.twitter {
-        background: url("../Images/twitter.png") no-repeat;
-    }
+ul#menu li a:active
+{
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
 
-/* tables
+ul#menu li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 0.75em;
-    border: 0 none;
+
+fieldset {}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
 }
 
-th {
-	font-size: 1.2em;
-    text-align: left;
-    border: none 0px;
-    padding-left: 0;
+fieldset label 
+{
+    display: block;
 }
 
-    th a {
-        display: block;
-        position: relative;
-        
-    }
+fieldset label.inline 
+{
+    display: inline;
+}
 
-	th a:link, th a:visited, th a:active, th a:hover {
-		color: #333;
-		font-weight: 600;
-		text-decoration: none;
-        padding: 0;
-	}
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
 
-	th a:hover {
-		color: #000;
-	}
+textarea
+{
+    white-space: pre-wrap;
+    overflow: auto;
+    overflow:  -moz-scrollbars-vertical;
+}    
 
-    th.asc a, th.desc a {
-        margin-right: .75em;
-    }
+
+.faketextarea, textarea.growable
+{
+    margin: 5px 0 0 3px;
+}
+.faketextarea { line-height: normal; display: block; }
+
+input[type="text"], input[type="password"], select, textarea, .blockoff, .fakeinput, .faketextarea {
     
-    th.asc a:after, th.desc a:after {
-		display: block;
-        position: absolute;
-        right: 0em;
-        top: 0;
-        font-size: 0.75em;
-	}
-
-	th.asc a:after {
-		content: '▲';
-	}
-
-	th.desc a:after {
-		content: '▼';
-	}
-
-td {
-    padding: 0.25em 2em 0.25em 0em;
-    border: 0 none;
+    font-family:Tahoma,Arial,Verdana,sans-serif;
+    font-size:1em;
+    padding:4px 4px 10px 4px;    
+    border: 1px solid #CCC;
+}
+.fakeinput 
+{
+    display: block;
+    float: left;
+    min-height:20px;
+    border: 1px solid #ccc;
+    padding: 2px 4px 2px 4px;
 }
 
-tr.pager td {
-    padding: 0 0.25em 0 0;
+.fakeinput.medium
+{
+    width: 240px;
+    /*padding: 2px 4px;*/
+}
+.fakeinput.longInputElement { width: 500px; }
+.fakeinput.mediumInputElement 
+{
+    width: 220px;
+    margin:3px 0 0 5px;
+}
+input[type="text"],select,textarea,.growable { background-color: #F2F1FC !important; border-color: #4A419B; }
+input[type="text"].highlight-red, input[type="password"].highlight-red, select.highlight-red, textarea.highlight-red, .blockoff.highlight-red { border-color: #A60000; }
+
+
+.dialog h2
+{
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 2.1em;
+    font-weight: 700;
+}
+.dialog .fg-button.big
+{
+    font-size: 1.8em;
+}
+.dialog input.big, .dialog select.big
+{ 
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    padding: 4px;
+    color: #666;
+}
+.dialog label.big, .dialog span.big { font-size: 1.8em; padding: 5px 0 0 0; }
+
+.cboxBtn, .cboxLbl
+{
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    position: relative;
+    cursor: pointer;
+    top: 4px;
+    color: #666; 
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.disabled.cboxBtn, .disabled.cboxBtn:hover { color: #999; cursor: default; }
+.cboxBtn:hover { color: #333; }
+
+.cboxLabel
+{
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    position: relative;
+    top: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #666; 
+}
+
+.cboxDivider
+{
+    padding-left: 4px;
+    padding-right: 4px;
+    top: 2px;
+}
+
+.cboxSearchForm
+{
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    right: 40px;
+}
+#cboxProjectCount.cboxLabel { left: 100px; font-size: 1.2em; top: 0px; }
+.cboxInput
+{
+}
+
+p.readonly_field{
+    background-color:#EEE;
+    border:solid 1px #DDD;
+}
+p { clear: both; }
+
+label {
+    margin: 2px;
+}
+
+.lower-label {
+    font-size: 0.8em;
+}
+
+.label_top {
+    display: block;
+}
+.label_beside {
+    display: inline;
 }
 
 
-/********************
-*   Mobile Styles   *
-********************/
-@media only screen and (max-width: 850px) {
+/* CSS TABS   
+----------------------------------------------------------*/
 
-    /* header
-    ----------------------------------------------------------*/
-    header .float-left,
-    header .float-right {
-        float: none;
-    }
-
-    /* logo */
-    header .site-title {
-        margin: 10px;
-        text-align: center;
-    }
-
-    /* login */
-    #login {
-        font-size: .85em;
-        margin: 0 0 12px;
-        text-align: center;
-    }
-
-        #login ul {
-            margin: 5px 0;
-            padding: 0;
-        }
-
-        #login li {
-            display: inline;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #login a {
-            background: none;
-            color: #999;
-            font-weight: 600;
-            margin: 2px;
-            padding: 0;
-        }
-
-        #login a:hover {
-            color: #333;
-        }
-
-    /* menu */
-    nav {
-        margin-bottom: 5px;
-    }
-
-    ul#menu {
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-        ul#menu li {
-            margin: 0;
-            padding: 0;
-        }
-
-
-    /* main layout
-    ----------------------------------------------------------*/
-    .main-content,
-    .featured + .main-content {
-        background-position: 10px 0;
-    }
-
-    .content-wrapper {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
-    .featured .content-wrapper {
-        padding: 10px;
-    }
-
-    /* page content */
-    article, aside {
-        float: none;
-        width: 100%;
-    }
-
-    /* ordered list */
-    ol.round {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-        ol.round li {
-            padding-left: 10px;
-            margin: 25px 0;
-        }
-
-            ol.round li.zero,
-            ol.round li.one,
-            ol.round li.two,
-            ol.round li.three,
-            ol.round li.four,
-            ol.round li.five,
-            ol.round li.six,
-            ol.round li.seven,
-            ol.round li.eight,
-            ol.round li.nine {
-                background: none;
-            }
-
-     /* features */
-     section.feature {
-        float: none;
-        padding: 10px;
-        width: auto;
-     }
-
-        section.feature img {
-            color: #999;
-            content: attr(alt);
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-
-    /* forms */
-    fieldset input[type="text"],
-    fieldset input[type="password"] {
-        width: 90%;
-    }
-
-    /* login page */
-    #loginForm {
-        border-right: none;
-        float: none;
-        width: auto;
-    }
-
-        #loginForm .validation-error {
-            display: block;
-            margin-left: 15px;
-        }
-
-    #socialLoginForm {
-        margin-left: 0;
-        float: none;
-        width: auto;
-    }
-
-    /* footer
-    ----------------------------------------------------------*/
-    footer .float-left,
-    footer .float-right {
-        float: none;
-    }
-
-    footer {
-        text-align: center;
-        height: auto;
-        padding: 10px 0;
-    }
-
-        footer p {
-            margin: 0;
-        }
-
-        ul#social {
-            padding: 0;
-            margin: 0;
-        }
-
-        a.facebook, a.twitter {
-            background: none;
-            display: inline;
-            float: none;
-            padding-left: 0;
-            text-indent: 0;
-        }
+ul#tabnav { /* general settings */
+    text-align: left;
+    margin: 1em 0 1em 0;
+    font: normal 11px verdana, arial, sans-serif;
+    border-bottom: 1px solid #CCC;
+    list-style-type: none;
+    padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
+    
 }
+
+ul#tabnav li { /* do not change */
+    display: inline;
+}
+
+ul#tabnav li a { /* settings for all tab links */
+    padding: 6px 8px 5px 9px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+    border: 1px solid #CCC; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+    background-color: #263779; /* set unselected tab background color as desired */
+    color: #263779;
+    margin-right: 0px; /* set additional spacing between tabs as desired */
+    text-decoration: none;
+    background:#E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0
+}
+ul#tabnav li.faketab { /* settings for all tab links */
+    padding: 6px 8px 5px 9px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+    border: 1px solid #CCC; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+    background-color: #263779; /* set unselected tab background color as desired */
+    color: #c6bebe; /* set unselected tab link color as desired */
+    margin-right: 0px; /* set additional spacing between tabs as desired */
+    text-decoration: none;
+    background:#E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0;
+}
+ul#tabnav li.notab { /* settings for all notab links */
+    padding: 6px 0px 5px 0px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+    border: none; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+    background-color: #fff !important; /* set unselected tab background color as desired */
+    color: #c6bebe; /* set unselected tab link color as desired */
+    margin-right: 0px; /* set additional spacing between tabs as desired */
+    text-decoration: none;
+    position: relative;
+}
+ul#tabnav li.notab a 
+{
+    border: none;
+    background: none;
+}
+ul#tabnav li.notab a > img { position: absolute; display: block; top: 4px; left: 0px; }
+li.tab-w-image { padding: 6px 0px 5px 10px !important; }
+ul#tabnav a:hover { /* settings for hover effect */
+    background: #fff; /* set desired hover color */
+    color:#263779;
+}
+ul#tabnav a.activetab
+{
+    background: #fff; /* set desired hover color */
+    color:#263779;
+    border-bottom: 1px solid #fff; /* set border color to page background color */
+
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;
+}
+
+table td 
+{
+  padding: 5px;   
+  border: solid 1px #e8eef4;
+  vertical-align: top;
+}
+
+table th
+{
+  padding: 6px 5px;
+  text-align: left;
+  background-color: #e8eef4; 
+  border: solid 1px #e8eef4;   
+}
+td.highlight { background-color: #ff7373; border-style:solid;}
+tr.odd > td { background-color: #f8f8f8; }
+tr.new > td { background-color: #A8D3A3; }
+tr.selected > td { background-color: #ECFFB3; border-style:solid; }
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:0 10px;
+    color:#000;
+}
+
+#logindisplay a:link
+{
+    color: #000;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: #000;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: #000;
+    text-decoration: none;
+}
+
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.input-validation-error, input.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+/* DIALOG
+----------------------------------------------------------*/
+.dialogControls hr
+{
+    background-color: #263779;
+    color: #CFDBE9; /*ie*/
+    height: 2px;
+    border-style: none;
+}
+
+.dijitDialog h3
+{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.dijitDialog textarea.dijitTextArea
+{
+    margin: 0;
+    padding: 0;
+}
+.dijitDialog .dijitTextBox, .dijitDialog select, .dijitDialog textarea.dijitTextArea /*, .dijitDialog .dijitFileInputVisible*/ /*, .dijitDialog .dijitFileInputVisible*/
+{
+    width: 200px;
+    margin: 2px 0 2px;
+}
+
+.dijitDialog .dijitFakeInput
+{
+    position: inherit;
+    overflow: hidden;
+}
+
+.dijitDialog label
+{
+    width: 135px;
+    margin: 2px 5px 2px;
+    font-weight: bold;
+    /*float: left;
+    text-align: right;*/
+}
+
+.dijitDialog input
+{
+    /*width: 100%;*/
+    margin: 5px 0 10px;
+}
+.dijitDialog input.zeroBottomMargin{
+    margin-bottom: 0;
+}
+.dialogControls
+{
+    float: left;
+    width: 100%;
+}
+
+.dialogControls .dialogButton
+{
+    font-weight: bold;
+    width: 150px;
+    float: right;
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    cursor: pointer;
+}
+.dialogControls .dialogCancelBtn
+{
+    float: left;
+    color: #263779;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.formControls
+{
+    border-top: solid 2px #263779;
+    background-color: #FFF;
+    height: 35px;
+    padding: 10px 0px 0px 5px;
+}
+.formButton
+{
+    font-weight: bold;
+    border: solid 1px #D9680D;
+}
+
+.dijitDialog
+{
+    
+    /*width: 400px;*/
+    width:300px;
+}
+
+#confirmMessageDiv
+{
+    width: 350px;
+}
+
+#confirmDeleteContent
+{
+	display: block;
+	position: relative;
+}
+
+#confirmDeleteContent div.error
+{
+	position: absolute;
+	display: block;
+	top: 10px;
+	right: 20px;
+	background-color: Transparent;
+}
+
+#AmendmentForm
+{
+	position: relative;	
+}
+
+#AmendmentForm form#dataForm 
+{
+	position: relative;
+	display: block;
+	top: 10px;
+}
+
+#AmendmentForm textarea.error 
+{
+	border: 2px dashed black;
+}
+
+#tab-scope-singleprojects
+{
+	position: absolute;
+	float: right;
+	display: block;
+	height: 300px;
+	width: 250px;
+	right: 10px;
+	top: 75px;
+}
+
+#tab-info-left
+{
+    position: relative;
+    display: block;
+    float: left;
+    width: 800px;
+}
+
+#tab-info-right
+{
+    position: absolute;
+    display: block;
+    width: 250px;
+    top: 30px;
+    right: 60px;
+}
+
+#uploadwrapper 
+{ 
+    /*border: #ccc 1px solid; */
+    padding: 4px;
+}
+
+#uploadwrapper img.resize
+{
+    width: 250px;
+    height : auto;
+}
+
+.tab-info-sponsor
+{
+    position: relative;
+    display: block;
+    width: 600px;   
+}
+
+div#result
+{
+	position: absolute;
+	display: block;
+	left: 150px;
+	top: 0px;
+}
+#scenario-container { display: inline; position: relative; top: 5px; left: 45px; }
+#scenario-container label { display: inline; }
+
+.relative { position: relative; }
+
+.funding-tab #record-details
+{
+    position: relative;
+}
+
+.funding-tab div#result
+{
+    left: 310px;
+    top: -26px;
+}
+
+/* MESSAGE   
+----------------------------------------------------------*/
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('Images/message/info.png');
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('Images/message/success.png');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('Images/message/warning.png');
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('Images/message/error.png');
+}
+
+/* DOJO OVERRIDES  
+----------------------------------------------------------*/
+.dijitDialogUnderlay
+{
+    background-color: #404040;
+}
+
+.tundra .dijitDialogTitleBar
+{
+    background: #263779 none repeat-x scroll left top;
+    color: White;
+    font-size: 1.2em; /*vertical-align:middle; 	text-align:center; 	padding-top:25px; 	padding-bottom:25px;*/
+}
+
+.dijitDialogCloseIcon
+{
+    /*display:none;*/
+}
+
+.dijitDialogPaneContent
+{
+    padding: 0 10px 0 10px;
+}
+
+
+/* TOASTER   
+----------------------------------------------------------*/
+.dijitToasterContent
+{
+    padding: 1em; /*padding-top:0.25em;*/
+    background: #73c74a;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.dijitToasterMessage
+{
+    color: #fff;
+}
+.dijitToasterWarning
+{
+}
+.dijitToasterError, .dijitToasterFatal
+{
+    font-weight: bold;
+    color: #fff;
+}
+.dijitToasterWarning .dijitToasterContent
+{
+    padding: 1em;
+    padding-top: 0.25em;
+    background: #F9FF5E;
+}
+.dijitToasterError .dijitToasterContent
+{
+    padding: 1em;
+    padding-top: 0.25em;
+    background: #FF615B;
+}
+
+.dijitToasterClip
+{
+    position: absolute;
+    z-index: 5000;
+    overflow: hidden;
+}
+.dijitToasterContainer
+{
+    display: block;
+    position: absolute;
+    width: 17.5em;
+    margin: 0px;
+    font: 0.75em Tahoma, Helvetica, Verdana, Arial;
+}
+
+
+#register-success .userName { font-weight: bold; }
+
+/* boe: Details View   
+----------------------------------------------------------*/
+#details { display: block; position: relative; line-height: 1.2em; font-size: .9em; margin: 0px; padding: 0px;}
+#details > div { margin: 5px 0; padding: 0px; }
+#details .blockoff { font-weight:normal;}
+#details hr { height: 1px; background-color: #CCC; border-style: none; }
+#details #notes .blockoff{ min-height: 70px; }
+#details fieldset > h3 { text-decoration: underline; }
+#details > fieldset div table tr td { padding-left: 0px; padding-right: 10px; vertical-align: top;}
+#details > fieldset { border: 1px solid #CCC; padding: 10px;}
+#details > fieldset legend { margin-left: 10px; }
+#details td.first { width: 150px; }
+
+#details #scope, #printarea #scope { position: relative; padding-bottom: 10px;}
+#details #scope.box, #printarea #scope.box { background-color: #ccc; margin: 10px 0; clear: both; }
+#details #scope.box #scope-info, #printarea #scope.box #scope-info { float: left; width: 500px; padding: 0 0 60px 0; }
+#details #scope.box #scope-info h3, #printarea #scope.box #scope-info h3 { text-align: center; }
+#details #scope.box #scope-affected, #printarea #scope.box #scope-affected { position: absolute; bottom: 0px; left: 0px; min-height: 50px; }
+#details table#projectListGrid { margin-top: 10px; }
+#scope-affected #scope-muni, #scope-affected #scope-county { float: left; margin: 0 10px; }
+#details #scope #location-image, #printarea #scope #location-image { background-color: #fff; float: right; }
+#details #scope > ul, #details ul#status-summary, #printarea #scope > ul, #printarea ul#status-summary 
+{ 
+    position: absolute;
+	top: -5px;
+	right: 0px;
+	border: 1px dashed #CCC;
+    margin: 0 5px; 
+    padding: 0px; 
+}
+#details ul#status-summary, #printarea ul#status-summary { position: relative; text-align: right; }
+#details #scope > ul li, #details ul#status-summary li, #printarea #scope > ul li, #printarea ul#status-summary li { display: inline; margin: 0 5px; padding: 0;}
+#details #regionTop { }
+#details #regionMLeft { float: left; width: 45%; }
+#details #regionMRight { float: right; width: 55%; }
+#details #notes { clear: both; }
+#details #notes > table td { width: 50%; }
+#details #notes > table div, #details #location > div
+{
+	margin: 5px 0 5px 5px;
+}
+#details #segments-wrapper { clear: both; padding-top: 10px; }
+
+#details #pool-project { position: relative; display: block; margin-top: 20px; }
+
+#details table, #details tr, #details td
+{
+	border: none;
+	vertical-align: middle;
+}
+#details#detailsGeneralInfo { }
+
+#details #summary-snapshot, #printarea #summary-snapshot { padding: 10px 0; }
+#details #summary-snapshot div, #printarea #summary-snapshot div { float:left; padding-right: 30px; }
+
+
+
+/* RTP Search View   
+----------------------------------------------------------*/
+	
+#dataForm-rtpsearch label { color: #1240AB; font-weight: normal; }
+
+
+/* RTP Scope View: Generics
+----------------------------------------------------------*/	
+table#segments tr td table { border-style:none; }
+table#segments tr td table tr td { border-style:none; }
+#dialog-error { display: none; position: absolute; top: -60px; right: 40px; max-width: 400px; }
+#segmentDetails .fakeinput { margin: 2px auto; }
+
+#button-hide-lrs { display: none; }
+	
+
+
+	
+/* TIP Funding View
+----------------------------------------------------------*/
+
+#funding-container { position: relative; }
+#fundingRecords { width: 300px; position: relative; }
+#fundingRecords p { clear: both; display: block; position: relative; padding: 10px 0 3px 0; }
+#fundingRecords p > input, #projectCDOTDataForm table#CdotGeneralGroup tr td > input { float: right; }
+#fundingRecords p > label, #projectCDOTDataForm table#CdotGeneralGroup tr td > label, p > label { float: left; }
+#fundingRecords p > .fakeinput, #projectCDOTDataForm table#CdotGeneralGroup tr td > .fakeinput
+{
+    border: 1px solid #ccc;
+    padding: 2px 0 2px 4px;
+    display: block;
+    float: right;
+    width: 163px;
+}
+
+/* TIP Funding Sources
+----------------------------------------------------------*/
+
+#dialog-create-funding-source form fieldset p label { font-size: 1.8em; width: 180px; }
+#dialog-create-funding-source form fieldset p input[type="checkbox"] { font-size: 1.8em; }
+
+/* TIP Report View
+----------------------------------------------------------*/
+
+#amendmentSort-admin, #amendmentHold-admin, #amendmentSort-policy, #amendmentHold-policy { float: left; position: relative; }
+#amendmentSort-policy > div, #amendmentSort-admin > div { margin: 15px 0; }
+#amendmentSort-policy > div span, #amendmentSort-admin > div span { display: block; margin: 4px 0; width: 300px; padding: 7px 2px; }
+
+#amendmentHold-policy > span, #amendmentHold-admin > span { position: absolute; border: 1px solid #CCC; background-color: #eee; padding: 2px 8px; display: block; top: -10px; right: 8px; }
+
+#sortableAmendmentProjects-admin, #sortableAmendmentProjects-policy { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 400px; min-height: 30px; }
+#sortableAmendmentHold-admin, #sortableAmendmentHold-policy { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 250px; min-height: 30px; }
+#sortableAmendmentProjects li { margin: 2px; padding: 2px; font-size: .8em; width: 388px; }
+#sortableAmendmentHold-admin li, #sortableAmendmentHold-policy li { margin: 2px; padding: 2px; font-size: .8em; width: 238px; }
+#sortableAmendmentProjects-admin.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-admin.connectedSortable li.ui-state-highlight
+, #sortableAmendmentProjects-policy.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-policy.connectedSortable li.ui-state-highlight
+ { min-height: 20px; background-color: #ccc; font-size: .8em; margin: 2px; padding: 2px;}
+
+#sortableAmendmentHold-admin li span.pv_projectname, #sortableAmendmentHold-policy li span.pv_projectname { display: none; }
+
+#amendmentSortContainer-admin { position: relative; }
+.fixedHold { display: block; position: fixed !important; top: 4%; right: 5%; z-index:10000; background-color: Black; }
+
+/* TIP Dashboard View
+----------------------------------------------------------*/
+.quickTasks 
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    min-height: 200px;
+    width: 250px; 
+    border:1px solid #CCC;   
+    padding:3px 10px;
+    background-color:#DDD;
+    color:#555;
+    
+}
+
+/* CDOTData View
+----------------------------------------------------------*/
+
+#projectCDOTDataForm p { padding: 0; margin: 1px 0; float: left; }
+#projectCDOTDataForm p label { display: block; width: 160px; }
+#projectCDOTDataForm .fakeinput { width: 125px; height: 18px; display: block; text-align: left; overflow: hidden; }
+#projectCDOTDataForm table { width: 630px; text-align: center; margin: 5px 0;}
+
+
+
+#submit-container { position: relative; margin: 0 0 10px 0; }
+#submit-container.long { width: 320px; }
+#submit-container button { position: relative; margin-top: 0;  }
+#submit-container div { position: relative; left: 0; top: 10px; width: 100%; display: block; clear: both;}
+
+
+/* RTP Funding View
+----------------------------------------------------------*/
+#fundingRecords .faketextarea { min-height: 80px; }
+#fundingRecords-section1 { position: relative; min-height: 230px; }
+#fundingRecords-section2 { position: relative; min-height: 230px;}
+#fundingRecords-section1 label { float: none; }
+#fundingRecords-section1 .faketextarea { display: block; position: relative;}
+#rtp-funding-planinfo.box { position: absolute; left: 330px; top: 5px; width: 300px; height: 200px; }
+#rtp-funding-planinfo.box h3, #rtp-funding-amendment.box h3 { text-decoration: underline; padding-bottom: 5px; }
+#rtp-funding-planinfo > div, #rtp-funding-amendment > div { margin: 4px 0; padding: 4px 0px;}
+#rtp-funding-planinfo label, #rtp-funding-amendment label { float: none; }
+#rtp-funding-planinfo .fakeinput, #rtp-funding-amendment .fakeinput { display:block; float: none; width: 125px; padding: 4px 5px 0px 5px; position: relative; margin: -20px 0 0 160px; }
+#rtp-funding-planinfo select { display:block; float: none; position: relative; margin: -20px 0 0 160px; width: 137px;}
+
+#rtp-funding-amendment.box { position: absolute; left: 330px; top: 5px; width: 300px; height: 200px; border: none;}
+
+#update-inview { position: absolute; top: 0px; right: 0px; }
+
+/* RTP Status View
+----------------------------------------------------------*/
+#StatusForm-wrapper { float: left; width: 415px; }
+#plan-cycles { position: relative; float: right; width: 355px; }
+#plan-cycles table { border: none; }
+#plan-cycles table tr td { border: none;}
+#plan-current-cycle.box { margin-top: 20px; position: relative; background-color: #fff;}
+#plan-next-cycle { position: absolute; right: 4px; bottom: 4px; }
+#plan-change-cycle { position: relative; display: block; left: 50px; margin: 10px 0 4px 0; }
+#process-cycle-step2 { display: none; }
+.dialog-bottom { position: absolute; display: block; bottom: 0px; left: 0px; width: 100%; height: 26px; background-color: #e6e6e6; }
+#button-process-cycle { position: absolute; left: 6px; top: -1px; }
+#plan-current-cycle.box .dialog-bottom #cboxClose { bottom: 0px; }
+
+#cycle-modifier ul li { padding: 2px; }
+#cycle-modifier ul li > span { margin-left: 10px; }
+
+li.ui-state-highlight.ui-state-disabled { font-weight: bold; color: #ccc; }
+#availableCycles, #currentCycles { float: left; position: relative; }
+#availableCycles > div { margin: 15px 0; }
+#availableCycles > div span { display: block; margin: 4px 0; width: 140px; padding: 7px 2px; }
+
+#sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 136px; min-height: 35px; }
+#sortable1 li, #sortable2 li { margin: 2px; padding: 5px; font-size: 1.2em; width: 120px; }
+#sortable2.connectedSortable li.ui-state-highlight { min-height: 20px; background-color: #666; }
+#button-set-initial-cycle { position: absolute; top: 27px; left: 140px; }
+#StatusForm .fakeinput { width: 120px; margin: 2px auto; }
+
+table#planSurveys { width: 100%; }
+
+
+/* RTP Project List View
+----------------------------------------------------------*/
+#button-container { display: block; position: absolute; right: 0px; top: 0px; }
+#dialog-restore-project { display: block; position: relative; }
+#RestoreListContainer { display: block; position: absolute; left: 0px; bottom: -130px; }
+#RestoreList { width: 400px; }
+#amendablelist .iremove { position: absolute; left: 0px; top: 4px; cursor: pointer; }
+#amendablelist li { padding: 2px 0 2px 20px; }
+/*#dialog-amend-project .dialog-result { position: absolute; z-index: 1000; top: -20px; left: 400px; margin-right: 30px; }*/
+
+#restoreProjects tr td { position: relative; }
+#availableProjectSearchForm { position: absolute; right: 0px; top: 0px; }
+#availableProjectSearchForm label { float: left; display: block; padding: 3px 5px 0 0; }
+
+.w850{
+    width:850px;
+}
+.w600{
+    width:600px;
+}
+.w400{
+    width:400px;
+}
+.w350 { width: 350px; }
+.w300 { width: 300px; }
+.w250 { width: 250px; }
+.w200 { width: 200px; }
+.w175 { width: 175px; }
+.w150 { width: 150px; }
+.w100 { width: 100px; }
+.w75 { width: 75px; }
+
+.fakelink { cursor: pointer; font-size: .8em; position: relative; display: block; padding-top: 3px; color: #4A419B; }
+.fakelink:hover { color: #EB0B16; }
+
+
+/* Survey General
+----------------------------------------------------------*/
+
+h2#status { position: relative; right: 0px; text-align: right; }
+div#actionbar.info { position: absolute; top: 40px; right: 200px; width: 600px; margin: 0px; padding: 10px 10px 10px 50px;}
+div#actionbar div { position: absolute; top: 6px; right: 10px; width: 125px; margin: 0;}
+div#actionbar span { position: relative; display: inline-block; padding-top: 0px;}
+.status-container { position: absolute; top: -2px; right: -8px; width: 415px; }
+.status-container .fg-button { float: right; }
+
+/* Survey Scope
+----------------------------------------------------------*/
+
+div#timelapse { position: absolute; top: 25px; right: 0px; width: 310px; padding-top: 10px; padding-bottom: 10px; }
+div#timelapse p { margin: 0px; padding: 0 0 5px 4px; }
+div#timelapse p label { padding-top: 0px; width: 160px; }
+
+/* Survey Project Nav
+----------------------------------------------------------*/
+
+#tabnav-container { position: relative; }
+
+#manager-ribbon { position: absolute; right: 0px; top: -50px; }
+#manager-ribbon span  
+{
+    float: left; 
+    padding-top: 5px;
+    margin: 4px 4px 0 0;
+    
+}
+
+#manager-ribbon .fg-button { float: left; }
+
+#completed { z-index: 10; position: relative; }
+
+#update-status { position: absolute; right: 0px; top: -46px; }
+
+
+#update-status select{
+    margin:0px !important;
+}
+
+#completed-form label { display: block; padding-bottom: 10px; }
+
+#dialog-create-project label { font-size: 1.4em; padding: 5px 0 0 0; }
+#dialog-create-project p { padding: 3px 0; }
+#dialog-create-project input, #dialog-create-project select { float: right; }
+
+a:link#isSponsorlink { text-decoration: none; }
+a:hover#isSponsorlink { text-decoration: underline; }
+
+#details #poolwrapper, #details #amendmentwrapper { border-top: 1px solid #ccc; padding: 10px 0px; }
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip {
+	display:none;
+	background:transparent url(images/jquery.tools/tooltip/black_arrow.png);
+	font-size:12px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+}
+
+div.report-label
+{
+    border: 1px solid black;
+    background-color: #aaaaaa;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+div.report-label a
+{
+    float: right;
+    margin-right: 30px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: -.5em;
+}
+
+span.report-label
+{
+    font-weight: bold;
+    text-align: center;
+}
+

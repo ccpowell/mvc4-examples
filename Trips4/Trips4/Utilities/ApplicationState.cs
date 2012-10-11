@@ -4,7 +4,7 @@ using DRCOG.Domain.Models;
 using DRCOG.Common.Services.MemberShipServiceSupport;
 using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
 
-namespace DRCOG.Web.Utilities.ApplicationState
+namespace Trips4.Utilities.ApplicationState
 {
     /// <summary>
     /// Single point container for everything that 

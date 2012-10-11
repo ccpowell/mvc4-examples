@@ -15,17 +15,16 @@ using System.Web;
 using System.Web.Mvc;
 using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.Models;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
+//using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.ViewModels.TIP;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     [Authorize]
-    [RoleAuth]
     //[RemoteRequireHttps]
     public class FundingController : ControllerBase
     {
@@ -76,7 +75,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Create()
         {
             //route back to the Funding Sources list for the specified TIP

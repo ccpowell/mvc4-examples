@@ -21,11 +21,10 @@ using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.Domain.Models;
 using DRCOG.Domain.ViewModels;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
 using DTS.Web.MVC;
-using MvcContrib.Pagination;
-using DRCOG.Web.Utilities.ApplicationState;
+//using MvcContrib.Pagination;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.Domain.Helpers;
 using DRCOG.Domain.ViewModels.RTP;
 using System.Web.Routing;
@@ -37,7 +36,7 @@ using DRCOG.Domain.Models.Survey;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using DRCOG.Common.Web.MvcSupport.Attributes;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[RoleAuth]
     //[Authorize]
@@ -87,7 +86,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="planName"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateRtp(string planName)
         {
             JsonServerResponse jsr = new JsonServerResponse();
@@ -149,7 +148,7 @@ namespace DRCOG.Web.Controllers
 
         #region RTP Project List
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult ResetSearchModel(string year)
         {
             LoadSession();
@@ -264,7 +263,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetAvailableRestoreProjects(string plan)
         {
 
@@ -286,7 +285,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult CreateSurvey(int planId, int surveyName)
         {
             var surveyId = default(int);
@@ -315,7 +314,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetAmendableProjects(string plan, int cycleId)
         {
             var result = new List<SelectListItem>();
@@ -336,7 +335,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetAmendablePendingProjects(string plan, int cycleId)
         {
 
@@ -359,7 +358,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetPlanCycles(string plan)
         {
             var result = new List<Cycle>();
@@ -376,7 +375,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteProjectVersion(int projectVersionId)
         {
             bool result = false;
@@ -406,7 +405,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult Restore(string plan, int id)
         {
             RtpSummary result = null;
@@ -446,7 +445,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult SetPlanCurrent(int timePeriodId)
         {
             int result = default(int);
@@ -477,7 +476,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult Amend(int projectVersionId, int cycleId)
         {
             int result = default(int);
@@ -510,7 +509,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateProject(string projectName, string facilityName, string plan, int sponsorOrganizationId, int? cycleId)
         {
             JsonServerResponse jsr = new JsonServerResponse();
@@ -659,7 +658,7 @@ namespace DRCOG.Web.Controllers
 
         #region RTP Amendments Tab
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Amendments(string year)
         {
             var viewModel = new RtpBaseViewModel();
@@ -677,7 +676,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public ActionResult Status(string year)
         {
             LoadSession();
@@ -692,7 +691,7 @@ namespace DRCOG.Web.Controllers
             return View("Status", viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator, Survey Administrator")]
         public JsonResult SetSurveyDates(DRCOG.Domain.Models.Survey.Survey model)
         {
             try
@@ -718,7 +717,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator, Survey Administrator")]
         public JsonResult GetSurveyDates(DRCOG.Domain.Models.Survey.Survey model)
         {
             try
@@ -748,7 +747,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult CloseSurveyNow(DRCOG.Domain.Models.Survey.Survey model)
         {
             try
@@ -774,7 +773,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult OpenSurveyNow(DRCOG.Domain.Models.Survey.Survey model)
         {
             try
@@ -806,7 +805,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public ActionResult UpdateStatus(StatusViewModel viewModel)
         {
 
@@ -833,7 +832,7 @@ namespace DRCOG.Web.Controllers
         }
 
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateTimePeriodStatusId(int timePeriodId, int statusId)
         {
             string error = String.Empty;
@@ -867,7 +866,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="cycleId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddCycle(string plan, int cycleId)
         {
             var jsr = new JsonServerResponse();
@@ -881,7 +880,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="cycleId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DropCycle(int cycleId)
         {
             LoadSession();
@@ -901,7 +900,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="cycle"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateCycle(string cycle)
         {
             string error = String.Empty;
@@ -929,7 +928,7 @@ namespace DRCOG.Web.Controllers
         }
 
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateCycleName(int cycleId, string cycle)
         {
             string error = String.Empty;
@@ -967,7 +966,7 @@ namespace DRCOG.Web.Controllers
             };
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult SetActiveCycle(int cycleId, int timePeriodId)
         {
             string data = String.Empty;
@@ -1017,7 +1016,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateCycleSort(string cycles)
         {
 
@@ -1088,7 +1087,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Agencies(string year)
         {
 
@@ -1125,7 +1124,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="removed"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateAgencies(string plan, List<int> added, List<int> removed)
         {
             if (added == null)
@@ -1159,7 +1158,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddEligibleAgency(string plan, int agencyId)
         {
             LoadSession();
@@ -1178,7 +1177,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DropEligibleAgency(string plan, int agencyId)
         {
             LoadSession();
@@ -1196,7 +1195,7 @@ namespace DRCOG.Web.Controllers
 
         #region RTP FundingList Tab
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult FundingList(string year, int? page)
         {
 
@@ -1213,7 +1212,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Reports(string year)
         {
             LoadSession();

@@ -1,0 +1,74 @@
+﻿/*-----------------------------------------
+CertPrint.css
+Structural CSS for Print version of Certification form
+-----------------------------------------*/
+body
+{
+    background-color: #ffffff;
+    text-align: left; 
+    font-size: 12pt; 
+    width: 432pt;
+}
+
+a:link
+{
+    text-decoration: none;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+th 
+{
+    text-align: left;
+    text-decoration: underline;
+}
+
+table { width: 100%; }
+table, td, th
+{
+    border:1px solid #fff;
+}
+td, th
+{
+    /*font-size: 12pt; */
+}
+td { margin: 0 8px; text-align: left; }
+
+.projectname { width: 390px; }
+.improvetype { width: 160px; }
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}

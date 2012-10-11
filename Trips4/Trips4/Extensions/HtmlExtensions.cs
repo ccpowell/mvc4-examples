@@ -159,7 +159,7 @@ namespace DRCOG.Web.Extensions
     {
         #region Textbox
 
-        public static MvcHtmlString TextBox(this HtmlHelper helper, string name, bool isEditable, object value, IDictionary<string, object> htmlAttributes)
+        public static MvcHtmlString DrcogTextBox(this HtmlHelper helper, string name, bool isEditable, object value, IDictionary<string, object> htmlAttributes)
         {
             if (htmlAttributes != null)
             {
@@ -172,7 +172,7 @@ namespace DRCOG.Web.Extensions
             else
             {
                 //htmlAttributes.Add(new KeyValuePair<string, object>("disabled", "disabled"));
-                //return helper.TextBox(name, value, htmlAttributes);
+                //return helper.DrcogTextBox(name, value, htmlAttributes);
 
                 return helper.FakeInput(TagName.span, name, value, htmlAttributes);
             }
@@ -200,22 +200,22 @@ namespace DRCOG.Web.Extensions
             return output;
         }
 
-        public static MvcHtmlString TextBox(this HtmlHelper helper, string name, bool isEditable)
+        public static MvcHtmlString DrcogTextBox(this HtmlHelper helper, string name, bool isEditable)
         {
-            return TextBox(helper, name, isEditable, null, null);
+            return DrcogTextBox(helper, name, isEditable, null, null);
         }
 
-        public static MvcHtmlString TextBox(this HtmlHelper helper, string name, bool isEditable, object value)
+        public static MvcHtmlString DrcogTextBox(this HtmlHelper helper, string name, bool isEditable, object value)
         {
-            return TextBox(helper, name, isEditable, value, (object)null);
+            return DrcogTextBox(helper, name, isEditable, value, (object)null);
         }
 
-        public static MvcHtmlString TextBox(this HtmlHelper helper, string name, bool isEditable, object value, object htmlAttributes)
+        public static MvcHtmlString DrcogTextBox(this HtmlHelper helper, string name, bool isEditable, object value, object htmlAttributes)
         {
-            return TextBox(helper, name, isEditable, value, new RouteValueDictionary(htmlAttributes));
+            return DrcogTextBox(helper, name, isEditable, value, new RouteValueDictionary(htmlAttributes));
         }
 
-        //public static string TextBox(this HtmlHelper helper, string name, bool isEditable, object value, IDictionary<string, object> htmlAttributes)
+        //public static string DrcogTextBox(this HtmlHelper helper, string name, bool isEditable, object value, IDictionary<string, object> htmlAttributes)
         //{
         //    if (htmlAttributes != null)
         //    {
@@ -223,12 +223,12 @@ namespace DRCOG.Web.Extensions
         //    }
         //    if (isEditable)
         //    {
-        //        return helper.TextBox(name, value, htmlAttributes);
+        //        return helper.DrcogTextBox(name, value, htmlAttributes);
         //    }
         //    else
         //    {
         //        htmlAttributes.Add(new KeyValuePair<string, object>("disabled", "disabled"));
-        //        return helper.TextBox(name, value, htmlAttributes);
+        //        return helper.DrcogTextBox(name, value, htmlAttributes);
         //    }
         //}
 
@@ -344,7 +344,7 @@ namespace DRCOG.Web.Extensions
         #endregion
 
         #region DropDownList
-        //Adding an id and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.TextBox overloads
+        //Adding an id and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.DrcogTextBox overloads
 
         public static MvcHtmlString DropDownList(this HtmlHelper helper, string name, bool isEditable, SelectList selectList)
         {

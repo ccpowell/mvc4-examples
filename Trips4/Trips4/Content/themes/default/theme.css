@@ -1,0 +1,151 @@
+﻿@import url("TableTools.css");
+
+#pagewrapper { width: 900px; margin-left: auto; margin-right: auto; position: relative; padding-top: 15px; }
+#site-message 
+{ 
+    position: fixed;
+    top: -2px;
+    left: 50%;
+    width: 500px; 
+    height: 30px; 
+    z-index: 9999; 
+    opacity: 0.8;
+    border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    border-width: 2px;
+    margin: 0 0 0 -282px;
+    display: none;
+}
+
+div#banner { position: relative; height: 153px; background: transparent url(images/headerBar.png) repeat-x; z-index: 1; }
+div#main { border: none; }
+
+#banner-ribbon { position: absolute; top: 72px; right: 10px; z-index: 2; text-align: right; width: 100%; }
+#banner-ribbon, #banner-ribbon a { color: #c9dbe5; }
+#banner-ribbon > div, #banner-ribbon a { display: inline-block; padding: 0 3px; }
+#loginwrapper {  }
+div#banner, #loginwrapper a, #title-content { color: #c9dbe5; }
+
+
+#logindisplay { position: absolute; right: 0px; bottom: 0px; }
+#logindisplay ul.topMenu { display: none; }
+
+#banner #topMenu { position: absolute; bottom: 0; right: 10px; width: 100%; text-align: right; }
+#banner #topMenu ul li > span { position: relative; display: inline-block; font-size: 1.5em; bottom: 13px; padding-right: 10px;  }
+#banner #topMenu ul { position: relative; margin: 0; padding: 0; list-style-type: none; }
+#banner #topMenu ul li { display: inline; list-style: none; }
+#banner #topMenu ul li a > span.buttonSprite { display: inline-block; }
+
+#title #title-content { left: 180px; top: 70px; font-size: 1.25em; }
+
+/* sprite */
+.buttonSprite { background: transparent url(images/buttonSprite.png) no-repeat; display: block; }
+.buttonSprite.drcoglogo { background-position: 0 0; width: 149px; height: 70px; margin: 16px 0 0 10px; }
+.buttonSprite.btn { height: 39px; width: 123px; }
+.buttonSprite.btn.Tip { background-position: -151px -5px; }
+.buttonSprite.btn.Tip:hover { background-position: -151px -47px; }
+.buttonSprite.btn.Rtp { background-position: -275px -5px; }
+.buttonSprite.btn.Rtp:hover { background-position: -275px -47px; }
+.buttonSprite.btn.Survey { background-position: -399px -5px; }
+.buttonSprite.btn.Survey:hover { background-position: -399px -47px; }
+.buttonSprite.btn.Home { background-position: -523px -5px; }
+.buttonSprite.btn.Home:hover { background-position: -523px -47px; }
+
+.buttonSprite.sm-btnTip { background-position: -149px 0px; height: 45px; width: 126px; }
+.buttonSprite.sm-btnTip:hover { background-position: -149px 0px; }
+.buttonSprite.sm-btnRtp { background-position: -149px 0px; height: 45px; width: 126px; }
+.buttonSprite.sm-btnRtp:hover { background-position: -149px 0px; }
+.buttonSprite.sm-btnSurvey { background-position: -149px 0px; height: 45px; width: 126px; }
+.buttonSprite.sm-btnSurvey:hover { background-position: -149px 0px; }
+.buttonSprite.sm-btnHome { background-position: -149px 0px; height: 45px; width: 126px; }
+.buttonSprite.sm-btnHome:hover { background-position: -149px 0px; }
+
+/* sprite */
+.imageSprite { background: transparent url(images/denverSprite.png) no-repeat; display: block; }
+.imageSprite.denver { background-position: 0 0; width: 298px; height: 88px; position: absolute; top: -22px; right: 0px; z-index:2; }
+
+.bold { font-weight: bold; }
+
+tr.delayed td { color: #D8000C; background-color: #FFBABA; }
+tr.checked td { background-color: rgb(218, 220, 255); }
+
+#dt-legend { position: absolute; left: 0px; top: 10px; }
+
+.legend  
+{
+    display: inline-block; 
+    font-weight: normal;
+    padding: 2px 4px;
+    border-radius: 4px 0px 4px 0px;
+    -webkit-border-radius: 4px 0px 4px 0px;
+    -moz-border-radius: 4px 0px 4px 0px;
+}
+.legend.delay
+{
+    color: #D8000C; 
+    background-color: #FFBABA;
+}
+
+.legend.checked
+{
+    background-color: rgb(218, 220, 255);
+}
+
+/* checkbox styles */
+
+.tzCheckBox{
+	background:url('images/tzCheckbox/background.png') no-repeat right bottom;
+	display:inline-block;
+	min-width:60px;
+	height:33px;
+	white-space:nowrap;
+	position:relative;
+	cursor:pointer;
+	margin-left:14px;
+}
+
+.tzCheckBox.checked{
+	background-position:top left;
+	margin:0 14px 0 0;
+}
+
+.tzCheckBox .tzCBContent{
+	color: white;
+	line-height: 31px;
+	padding-right: 38px;
+	text-align: right;
+}
+
+.tzCheckBox.checked .tzCBContent{
+	text-align:left;
+	padding:0 0 0 38px;
+}
+
+.tzCBPart{
+	background:url('images/tzCheckbox/background.png') no-repeat left bottom;
+	width:14px;
+	position:absolute;
+	top:0;
+	left:-14px;
+	height:33px;
+	overflow: hidden;
+}
+
+.tzCheckBox.checked .tzCBPart{
+	background-position:top right;
+	left:auto;
+	right:-14px;
+}
+
+
+input.search_init {
+	color: #999;
+}
+
+#filter-delayslocation.customfilter {
+    /*position: absolute; top: -35px; right: 2px;*/
+}
+
+.FixedHeader_Cloned th { background-color: white; }
+

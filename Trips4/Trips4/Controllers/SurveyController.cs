@@ -28,13 +28,12 @@ using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.Domain.ViewModels.Survey;
 using DRCOG.TIP.Services;
 using DRCOG.TIP.Services.AmendmentStrategy.Survey;
-using DRCOG.Web.Filters;
-using DRCOG.Web.Services;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Services;
+using Trips4.Utilities.ApplicationState;
 using DTS.Web.MVC;
 
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[RemoteRequireHttps]
     public class SurveyController : ControllerBase
@@ -87,7 +86,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Agencies(string year)
         {
 
@@ -141,7 +140,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleAgency(string timePeriod, int agencyId)
         {
             LoadSession();
@@ -160,7 +159,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleAgency(string timePeriod, int agencyId)
         {
             LoadSession();
@@ -181,7 +180,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleImprovementType(string timePeriod, int improvementTypeId)
         {
             LoadSession();
@@ -200,7 +199,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleImprovementType(string timePeriod, int improvementTypeId)
         {
             LoadSession();
@@ -221,13 +220,13 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleFundingResource(string timePeriod, int fundingResourceId)
         {
             LoadSession();
 
             var jsr = new JsonServerResponse();
-            jsr.Error = _surveyRepository.AddFundingResourceToTimePeriod(_surveyRepository.GetYearId(timePeriod, Domain.Enums.TimePeriodType.Survey), fundingResourceId);
+            jsr.Error = _surveyRepository.AddFundingResourceToTimePeriod(_surveyRepository.GetYearId(timePeriod, DRCOG.Domain.Enums.TimePeriodType.Survey), fundingResourceId);
             return Json(jsr);
         }
 
@@ -240,13 +239,13 @@ namespace DRCOG.Web.Controllers
         /// <param name="improvementTypeId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleFundingResource(string timePeriod, int fundingResourceId)
         {
             LoadSession();
 
             var jsr = new JsonServerResponse();
-            jsr.Error = _surveyRepository.DropFundingResourceFromTimePeriod(_surveyRepository.GetYearId(timePeriod, Domain.Enums.TimePeriodType.Survey), fundingResourceId, DRCOG.Domain.Enums.ApplicationState.Survey) ? "" : "The funding resource is used in the current Survey. It can not be removed.";
+            jsr.Error = _surveyRepository.DropFundingResourceFromTimePeriod(_surveyRepository.GetYearId(timePeriod, DRCOG.Domain.Enums.TimePeriodType.Survey), fundingResourceId, DRCOG.Domain.Enums.ApplicationState.Survey) ? "" : "The funding resource is used in the current Survey. It can not be removed.";
             return Json(jsr);
         }
 
@@ -730,7 +729,7 @@ namespace DRCOG.Web.Controllers
 
         //}
 
-        [RoleAuth]
+        //[RoleAuth]
         public PartialViewResult CreatePartial(Survey model)
         {
             LoadSession();
@@ -739,7 +738,7 @@ namespace DRCOG.Web.Controllers
             return PartialView("~/Views/Survey/Partials/CreatePartial.ascx", viewModel);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult CreateProject(string projectName, string facilityName, int timePeriodId, int sponsorOrganizationId, int sponsorContactId, int improvementTypeId, string startAt, string endAt)
         {
             int projectVersionId = default(int);
@@ -1324,7 +1323,7 @@ namespace DRCOG.Web.Controllers
 
         #region Project Controller Members
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult SetSurveyStatus(Project project)
         {
             try
@@ -1345,7 +1344,7 @@ namespace DRCOG.Web.Controllers
                     , error = "false" });
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public ActionResult Edit(int projectVersionId, int previousVersionId)
         {
             Instance version = new Instance()
@@ -1407,7 +1406,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public ActionResult UpdateInfo(InfoViewModel viewModel)
         {
             LoadSession();
@@ -1466,7 +1465,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();
@@ -1480,7 +1479,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1495,7 +1494,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Funding Source successfully Added." });
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult DeleteFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1530,7 +1529,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         [HttpPost]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
@@ -1627,7 +1626,7 @@ namespace DRCOG.Web.Controllers
             
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult DownloadModelerExtract(int timePeriodId)
         {
             GridView grid = new GridView();
@@ -1649,7 +1648,7 @@ namespace DRCOG.Web.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddSegment(SegmentModel model)
         {
             int segmentId = 0;
@@ -1668,7 +1667,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully added.", segmentId = segmentId });
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateProjectUpdateStatusBySegment(int segmentId)
         {
             try
@@ -1685,7 +1684,7 @@ namespace DRCOG.Web.Controllers
 
         
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult DeleteSegment(int segmentId)
         {
             try
@@ -1699,7 +1698,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully removed." });
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateSegment(SegmentModel model)
         {
             try
@@ -1723,7 +1722,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateSegmentSummary(SegmentModel model)
         {
             try
@@ -1761,7 +1760,7 @@ namespace DRCOG.Web.Controllers
         /// Update the Location information from the /Location view
         /// </summary>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         [HttpPost]
         public ActionResult UpdateLocation()
         {
@@ -1813,7 +1812,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary, int projectVersionId)
         {
             CountyShareModel model = new CountyShareModel();
@@ -1844,7 +1843,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateCountyShare(int projectId, int countyId, double share, bool isPrimary, int projectVersionId)
         {
             CountyShareModel model = new CountyShareModel();
@@ -1872,7 +1871,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult RemoveCountyShare(int projectId, int countyId, int projectVersionId)
         {
             try
@@ -1896,7 +1895,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary, int projectVersionId)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1925,7 +1924,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateMuniShare(int projectId, int muniId, double share, bool isPrimary, int projectVersionId)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1952,7 +1951,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult RemoveMuniShare(int projectId, int muniId, int projectVersionId)
         {
             try
@@ -1972,7 +1971,7 @@ namespace DRCOG.Web.Controllers
 
         #region Funding
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateProjectUpdateStatus(int projectVersionId)
         {
             try
@@ -1996,7 +1995,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateFinancialRecord(Project model)
         {
             try
@@ -2028,7 +2027,7 @@ namespace DRCOG.Web.Controllers
 
         #endregion
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult SendPrintVerification(string sponsorName)
         {
             //DRCOGConfig config = DRCOGConfig.GetConfig();

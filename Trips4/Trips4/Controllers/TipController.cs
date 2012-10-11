@@ -22,14 +22,13 @@ using DRCOG.Domain.Models;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.ViewModels.TIP;
 using DRCOG.Domain.ViewModels.TIPProject;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
 using DTS.Web.MVC;
-using MvcContrib.Pagination;
-using DRCOG.Web.Utilities.ApplicationState;
+//using MvcContrib.Pagination;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.Domain.Helpers;
 using DRCOG.Domain.Models.TIPProject;
-using DRCOG.Web.Configuration;
+using Trips4.Configuration;
 using DRCOG.TIP.Services.TIP;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services.RestoreStrategy.TIP;
@@ -43,7 +42,7 @@ using DRCOG.Domain.Models.TIP;
 using OfficeOpenXml;
 using System.Drawing;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[RoleAuth]
     //[Authorize]
@@ -112,7 +111,7 @@ namespace DRCOG.Web.Controllers
             //return View("Dashboard", viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         [Authorize]
         [HttpPost]
         public JsonResult CreateProject(string projectName, string facilityName, string tipYear, int sponsorOrganizationId, int amendmentTypeId)
@@ -152,7 +151,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="startYear"></param>
         /// <param name="endYear"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         [HttpPost]
         public JsonResult CreateTip(int startYear, int endYear, int offset)
         {
@@ -244,7 +243,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetAvailableRestoreProjects(int timePeriodId)
         {
 
@@ -275,7 +274,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Status(string year)
         {
             // get the view model from the repo
@@ -288,7 +287,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Reports(string year)
         {
             LoadSession();
@@ -300,7 +299,7 @@ namespace DRCOG.Web.Controllers
             return View("reports",model);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateReportProjectVersionSort(int reportId, string projects)
         {
 
@@ -328,7 +327,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult SetReportProjectVersionOnHold(int reportId, int projectVersionId)
         {
 
@@ -356,7 +355,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult DownloadReportList(string reportId, string referrerYear)
         {
             GridView grid = new GridView();
@@ -375,7 +374,7 @@ namespace DRCOG.Web.Controllers
             return RedirectToAction("Reports", new { @year = referrerYear });
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult RenderAlopReport(string reportShortGuid, string reportFolder, string reportFormat)
         {
             string url = "http://sqlprod/reportserver?/" + reportFolder + "&rs:Command=Render&rs:Format=" + reportFormat + "&rc:Parameters=false&ReportID=";
@@ -390,7 +389,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateStatus(StatusViewModel viewModel)
         {                       
             
@@ -914,7 +913,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="removed"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAgencies(string tipYear,List<int> added, List<int> removed )
         {
             if (added == null)
@@ -947,7 +946,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddEligibleAgency(string tipYear, int agencyId )
         {     
             var jsr = new JsonServerResponse();
@@ -963,7 +962,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DropEligibleAgency(string tipYear, int agencyId )
         {
             var jsr = new JsonServerResponse();
@@ -980,7 +979,7 @@ namespace DRCOG.Web.Controllers
 
 #region TIP Amendments Tab
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amendments(string year)
         {
             var viewModel = _tipRepository.GetAmendmentsViewModel(year); //new TipBaseViewModel();
@@ -1007,7 +1006,7 @@ namespace DRCOG.Web.Controllers
 
 #region FundingList Tab
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult FundingList(string year,int? page)
         {
             
@@ -1027,7 +1026,7 @@ namespace DRCOG.Web.Controllers
             return View("FundingList", viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult CreateFundingSource(FundingSourceModel model)
         {
             model.ProgramId = (int)Enums.ApplicationState.TIP;
@@ -1060,7 +1059,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult GetFundingSource(FundingSourceModel model)
         {
             //FundingSourceModel model = new FundingSourceModel() { FundingTypeId = id, TimePeriodId = timePeriodId };
@@ -1091,7 +1090,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateFundingSource(FundingSourceModel model)
         {
             model.ProgramId = (int)Enums.ApplicationState.TIP;
@@ -1164,7 +1163,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult Restore(string timePeriod, int id)
         {
             int result = default(int);
@@ -1239,7 +1238,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetProjectsByAmendmentStatusId(string timePeriod, int amendmentStatusId)
         {
 
@@ -1268,7 +1267,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult Amend(int projectVersionId)
         {
             int result = default(int);
@@ -1309,7 +1308,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult ResetSearchModel(string year)
         {
             LoadSession();

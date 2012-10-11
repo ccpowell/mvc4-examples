@@ -20,7 +20,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using DRCOG.Common.Services.MemberShipServiceSupport;
-using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
+//using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
 using DRCOG.Common.Web.MvcSupport.Attributes;
 using DRCOG.Domain;
 //using DTS.Web.MVC;
@@ -30,10 +30,10 @@ using DRCOG.Domain.Security;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.Domain.ViewModels;
 using DRCOG.TIP.Services;
-using DRCOG.Web.Filters;
-using DRCOG.Web.Utilities.ApplicationState;
+//using Trips4.Filters;
+using Trips4.Utilities.ApplicationState;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     /// <summary>
     /// Controller class for the login user interface.
@@ -103,6 +103,12 @@ namespace DRCOG.Web.Controllers
 
         }
 
+        private bool ValidateUser()
+        {
+            Logger.Error("Validation not implemented!!!");
+            return true;
+        }
+
         /// <summary>
         /// Attempts to log the user into the system. If successful, user object stored in session.
         /// </summary>
@@ -124,9 +130,9 @@ namespace DRCOG.Web.Controllers
 
                     Person person = new Person(model.UserName);
 
-                    ValidateUserResultType result;
+                    ValidateUserResultType result = ValidateUserResultType.Membership;
                     // First try to authenicate through service
-                    if (!(result = SSOFederationHelper.FederationObject.ValidateUser(model.UserName, model.Password)).Equals(ValidateUserResultType.Error))
+                    if (ValidateUser())
                     {
                         return base.SetAuthCookie(model, result, returnUrl);
                     }

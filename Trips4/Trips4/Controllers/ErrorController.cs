@@ -5,7 +5,7 @@ using DRCOG.Domain.ViewModels.TIPProject;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Common.Web.MvcSupport.Attributes;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[RemoteRequireHttps]
     public class ErrorController : ControllerBase

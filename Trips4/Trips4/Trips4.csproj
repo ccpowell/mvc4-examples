@@ -35,11 +35,56 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DRCOG.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DRCOG.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DRCOG.Common.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport.SSO">
+      <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.SSO.dll</HintPath>
+    </Reference>
+    <Reference Include="DRCOG.Common.Web.MvcSupport">
+      <HintPath>..\lib\DRCOG.Common.Web.MvcSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="DTS.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DTS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DTS.Web.MVC">
+      <HintPath>..\lib\DTS.Web.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.3.1.1\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,6 +157,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Mvc3">
+      <HintPath>..\packages\Unity.Mvc3.1.2\lib\net40\Unity.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.WebApi">
+      <HintPath>..\packages\Unity.WebAPI.0.10\lib\net40\Unity.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.0.0\lib\WebGrease.dll</HintPath>
@@ -125,57 +176,510 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Configuration\DRCOGConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FundingController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PoolController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\RtpController.cs" />
+    <Compile Include="Controllers\RtpProjectController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="Controllers\TipController.cs" />
+    <Compile Include="Controllers\TransactionScope.cs" />
+    <Compile Include="CustomResults\ImageResult.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\ListItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Utilities\ApplicationState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\boxy.css" />
+    <Content Include="Content\buttonframework.css" />
+    <Content Include="Content\CertPrint.css" />
+    <Content Include="Content\colorbox.css" />
+    <Content Include="Content\contactable.css" />
+    <Content Include="Content\dataTable.css" />
+    <Content Include="Content\demo_table.css" />
+    <Content Include="Content\flick\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\flick\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <Content Include="Content\flick\images\ui-bg_flat_55_ffffff_40x100.png" />
+    <Content Include="Content\flick\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\flick\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\flick\images\ui-bg_highlight-soft_100_f6f6f6_1x100.png" />
+    <Content Include="Content\flick\images\ui-bg_highlight-soft_25_0073ea_1x100.png" />
+    <Content Include="Content\flick\images\ui-bg_highlight-soft_50_dddddd_1x100.png" />
+    <Content Include="Content\flick\images\ui-icons_0073ea_256x240.png" />
+    <Content Include="Content\flick\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\flick\images\ui-icons_666666_256x240.png" />
+    <Content Include="Content\flick\images\ui-icons_ff0084_256x240.png" />
+    <Content Include="Content\flick\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\flick\jquery-ui-1.8.5.custom.css" />
+    <Content Include="Content\Images\16-arrow-left.png" />
+    <Content Include="Content\Images\16-arrow-right.png" />
+    <Content Include="Content\Images\16-em-check.png" />
+    <Content Include="Content\Images\16-em-cross.png" />
+    <Content Include="Content\Images\16-em-down.png" />
+    <Content Include="Content\Images\16-em-open.png" />
+    <Content Include="Content\Images\16-em-pencil.png" />
+    <Content Include="Content\Images\16-em-plus.png" />
+    <Content Include="Content\Images\16-file-page.png" />
+    <Content Include="Content\Images\16-security-lock.png" />
+    <Content Include="Content\Images\24-arrow-next.png" />
+    <Content Include="Content\Images\24-arrow-previous.png" />
+    <Content Include="Content\Images\24-em-cross.png" />
+    <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\Images\back_disabled.jpg" />
+    <Content Include="Content\Images\back_disabled.png" />
+    <Content Include="Content\Images\back_enabled.jpg" />
+    <Content Include="Content\Images\back_enabled.png" />
+    <Content Include="Content\Images\back_enabled_hover.png" />
+    <Content Include="Content\Images\btn_left.png" />
+    <Content Include="Content\Images\btn_right.png" />
+    <Content Include="Content\Images\colorbox\border.png" />
+    <Content Include="Content\Images\colorbox\controls.png" />
+    <Content Include="Content\Images\colorbox\loading.gif" />
+    <Content Include="Content\Images\colorbox\loading_background.png" />
+    <Content Include="Content\Images\contactable\ajax-loader.gif" />
+    <Content Include="Content\Images\contactable\contact.png" />
+    <Content Include="Content\Images\contextMenu\cut.png" />
+    <Content Include="Content\Images\contextMenu\door.png" />
+    <Content Include="Content\Images\contextMenu\page_white_copy.png" />
+    <Content Include="Content\Images\contextMenu\page_white_delete.png" />
+    <Content Include="Content\Images\contextMenu\page_white_edit.png" />
+    <Content Include="Content\Images\contextMenu\page_white_paste.png" />
+    <Content Include="Content\Images\drcog-logo1.png" />
+    <Content Include="Content\Images\drcog-logox80.png" />
+    <Content Include="Content\Images\drcog-logox80_1.png" />
+    <Content Include="Content\Images\drcog_logo_print.jpg" />
+    <Content Include="Content\Images\forward_disabled.jpg" />
+    <Content Include="Content\Images\forward_disabled.png" />
+    <Content Include="Content\Images\forward_enabled.jpg" />
+    <Content Include="Content\Images\forward_enabled.png" />
+    <Content Include="Content\Images\forward_enabled_hover.png" />
+    <Content Include="Content\Images\header-fade.png" />
+    <Content Include="Content\Images\i_amendment_add.png" />
+    <Content Include="Content\Images\i_amendment_add_active.png" />
+    <Content Include="Content\Images\i_amendment_list.png" />
+    <Content Include="Content\Images\i_amendment_list_active.png" />
+    <Content Include="Content\Images\i_back.png" />
+    <Content Include="Content\Images\i_create_user.png" />
+    <Content Include="Content\Images\i_details.png" />
+    <Content Include="Content\Images\i_details_active.png" />
+    <Content Include="Content\Images\i_draw_line.png" />
+    <Content Include="Content\Images\i_draw_point.png" />
+    <Content Include="Content\Images\i_flag.png" />
+    <Content Include="Content\Images\i_home.png" />
+    <Content Include="Content\Images\i_pan.png" />
+    <Content Include="Content\Images\i_profile.png" />
+    <Content Include="Content\Images\i_project_list.png" />
+    <Content Include="Content\Images\i_project_list_active.png" />
+    <Content Include="Content\Images\i_project_search.png" />
+    <Content Include="Content\Images\i_project_search_active.png" />
+    <Content Include="Content\Images\i_remove.png" />
+    <Content Include="Content\Images\i_remove_disabled.png" />
+    <Content Include="Content\Images\i_results.png" />
+    <Content Include="Content\Images\i_rtp_list.png" />
+    <Content Include="Content\Images\i_search.png" />
+    <Content Include="Content\Images\i_small_locate.png" />
+    <Content Include="Content\Images\i_small_locate_selected.png" />
+    <Content Include="Content\Images\i_sm_details.png" />
+    <Content Include="Content\Images\i_survey_list.png" />
+    <Content Include="Content\Images\i_table.png" />
+    <Content Include="Content\Images\i_tip_list.png" />
+    <Content Include="Content\Images\i_user_detail.png" />
+    <Content Include="Content\Images\i_zoomin.png" />
+    <Content Include="Content\Images\i_zoomout.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\black.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\black_arrow.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\black_arrow_big.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\black_big.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\white.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\white_arrow.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\white_arrow_big.png" />
+    <Content Include="Content\Images\jquery.tools\tooltip\white_big.png" />
+    <Content Include="Content\Images\Last_Project_lrg.png" />
+    <Content Include="Content\Images\Last_Project_sml.png" />
+    <Content Include="Content\Images\Last_Project_tny.png" />
+    <Content Include="Content\Images\message\error.png" />
+    <Content Include="Content\Images\message\info.png" />
+    <Content Include="Content\Images\message\success.png" />
+    <Content Include="Content\Images\message\warning.png" />
+    <Content Include="Content\Images\popeye\bg1.png" />
+    <Content Include="Content\Images\popeye\compact1.png" />
+    <Content Include="Content\Images\popeye\compact2.png" />
+    <Content Include="Content\Images\popeye\compact3.png" />
+    <Content Include="Content\Images\popeye\compact4.png" />
+    <Content Include="Content\Images\popeye\enlarge1.png" />
+    <Content Include="Content\Images\popeye\enlarge2.png" />
+    <Content Include="Content\Images\popeye\enlarge3.png" />
+    <Content Include="Content\Images\popeye\enlarge4.png" />
+    <Content Include="Content\Images\popeye\loading1.gif" />
+    <Content Include="Content\Images\popeye\loading2.gif" />
+    <Content Include="Content\Images\popeye\loading3.gif" />
+    <Content Include="Content\Images\popeye\next1.png" />
+    <Content Include="Content\Images\popeye\next3.png" />
+    <Content Include="Content\Images\popeye\prev1.png" />
+    <Content Include="Content\Images\popeye\prev3.png" />
+    <Content Include="Content\Images\remove.png" />
+    <Content Include="Content\Images\RTP_Internal_lrg.png" />
+    <Content Include="Content\Images\RTP_Internal_sml.png" />
+    <Content Include="Content\Images\RTP_Internal_tny.png" />
+    <Content Include="Content\Images\save.png" />
+    <Content Include="Content\Images\slider\bg.jpg" />
+    <Content Include="Content\Images\slider\bt_close.png" />
+    <Content Include="Content\Images\slider\bt_login.png" />
+    <Content Include="Content\Images\slider\bt_open.png" />
+    <Content Include="Content\Images\slider\bt_register.png" />
+    <Content Include="Content\Images\slider\tab_b.png" />
+    <Content Include="Content\Images\slider\tab_l.png" />
+    <Content Include="Content\Images\slider\tab_m.png" />
+    <Content Include="Content\Images\slider\tab_r.png" />
+    <Content Include="Content\Images\smworking.gif" />
+    <Content Include="Content\Images\sort_asc.jpg" />
+    <Content Include="Content\Images\sort_asc.png" />
+    <Content Include="Content\Images\sort_asc_disabled.png" />
+    <Content Include="Content\Images\sort_both.jpg" />
+    <Content Include="Content\Images\sort_both.png" />
+    <Content Include="Content\Images\sort_desc.jpg" />
+    <Content Include="Content\Images\sort_desc.png" />
+    <Content Include="Content\Images\sort_desc_disabled.png" />
+    <Content Include="Content\Images\submitBtn.png" />
+    <Content Include="Content\Images\tabEnabled.png" />
+    <Content Include="Content\Images\thumbTack_red.png" />
+    <Content Include="Content\Images\TIP_Internal_lrg.png" />
+    <Content Include="Content\Images\TIP_Internal_sml.png" />
+    <Content Include="Content\Images\TIP_Internal_tny.png" />
+    <Content Include="Content\Images\top.jpg" />
+    <Content Include="Content\Images\trans-overlay.png" />
+    <Content Include="Content\Images\Trash.png" />
+    <Content Include="Content\Images\user_results.png" />
+    <Content Include="Content\jquery.contextMenu.css" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\jquery.popeye.css" />
+    <Content Include="Content\jquery.popeye.style.css" />
+    <Content Include="Content\js\dts\Account.js" />
+    <Content Include="Content\js\dts\AccountDetail.js" />
+    <Content Include="Content\js\dts\AccountSearch.js" />
+    <Content Include="Content\js\dts\css\SiteTabsPartial.css" />
+    <Content Include="Content\js\dts\globals\globals.js" />
+    <Content Include="Content\js\dts\master\MasterController.js" />
+    <Content Include="Content\js\dts\tip\TipController.js" />
+    <Content Include="Content\js\dts\widgets\DateTextBox.js" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\marker\16\alert.png" />
+    <Content Include="Content\marker\16\arrow-down.png" />
+    <Content Include="Content\marker\16\arrow-left.png" />
+    <Content Include="Content\marker\16\arrow-right.png" />
+    <Content Include="Content\marker\16\arrow-up.png" />
+    <Content Include="Content\marker\16\calendar.png" />
+    <Content Include="Content\marker\16\clock.png" />
+    <Content Include="Content\marker\16\comment.png" />
+    <Content Include="Content\marker\16\email.png" />
+    <Content Include="Content\marker\16\folder.png" />
+    <Content Include="Content\marker\16\home.png" />
+    <Content Include="Content\marker\16\link.png" />
+    <Content Include="Content\marker\16\next.png" />
+    <Content Include="Content\marker\16\package.png" />
+    <Content Include="Content\marker\16\page.png" />
+    <Content Include="Content\marker\16\pencil.png" />
+    <Content Include="Content\marker\16\previous.png" />
+    <Content Include="Content\marker\16\search.png" />
+    <Content Include="Content\marker\16\tag.png" />
+    <Content Include="Content\marker\16\user.png" />
+    <Content Include="Content\PanelView.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\SingleView.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\slide.css" />
+    <Content Include="Content\Themes\default\images\buttonSprite.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\background.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\collection.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\collection_hover.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\copy.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\copy_hover.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\csv.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\csv_hover.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\pdf.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\pdf_hover.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\print.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\print_hover.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\xls.png" />
+    <Content Include="Content\Themes\default\images\datatables.tabletools\xls_hover.png" />
+    <Content Include="Content\Themes\default\images\denverSprite.png" />
+    <Content Include="Content\Themes\default\images\headerBar.png" />
+    <Content Include="Content\Themes\default\images\tzCheckbox\background.png" />
+    <Content Include="Content\Themes\default\TableTools.css" />
+    <Content Include="Content\Themes\default\theme.css" />
+    <Content Include="Content\tip.description.print.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.2.js" />
-    <Content Include="Scripts\jquery-1.6.2.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\boxy.js" />
+    <Content Include="Scripts\BrowserDetect.js" />
+    <Content Include="Scripts\FixedHeader.js" />
+    <Content Include="Scripts\FixedHeader.min.js" />
+    <Content Include="Scripts\Funding-rtp.js" />
+    <Content Include="Scripts\Funding.js" />
+    <Content Include="Scripts\funding.survey.js" />
+    <Content Include="Scripts\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-jp.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sp.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\images\back_disabled.jpg" />
+    <Content Include="Scripts\images\back_enabled.jpg" />
+    <Content Include="Scripts\images\forward_disabled.jpg" />
+    <Content Include="Scripts\images\forward_enabled.jpg" />
+    <Content Include="Scripts\images\sort_asc.jpg" />
+    <Content Include="Scripts\images\sort_asc.png" />
+    <Content Include="Scripts\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\images\sort_both.jpg" />
+    <Content Include="Scripts\images\sort_both.png" />
+    <Content Include="Scripts\images\sort_desc.jpg" />
+    <Content Include="Scripts\images\sort_desc.png" />
+    <Content Include="Scripts\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\jquery-1.4.2.js" />
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.5.custom.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.amendement.validate.js" />
+    <Content Include="Scripts\jquery.autoHide.js" />
+    <Content Include="Scripts\jquery.autoresize.min.js" />
+    <Content Include="Scripts\jquery.colorbox-min.js" />
+    <Content Include="Scripts\jquery.contactable.js" />
+    <Content Include="Scripts\jquery.contactable.min.js" />
+    <Content Include="Scripts\jquery.contextMenu.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.dts.extensions.js" />
+    <Content Include="Scripts\jquery.eede.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.formatCurrency-1.4.0.min.js" />
+    <Content Include="Scripts\jquery.ghosttext.js" />
+    <Content Include="Scripts\jquery.growing-textarea.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.managerribbon.js" />
+    <Content Include="Scripts\jquery.maskedinput-1.2.2.min.js" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
+    <Content Include="Scripts\jquery.maxlength.js" />
+    <Content Include="Scripts\jquery.meio.mask.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.popeye-2.0.4.min.js" />
+    <Content Include="Scripts\jquery.quicksearch.js" />
+    <Content Include="Scripts\jquery.selectboxes.min.js" />
+    <Content Include="Scripts\jquery.shortGuid.js" />
+    <Content Include="Scripts\jquery.sort.js" />
+    <Content Include="Scripts\jquery.tools.min.js" />
+    <Content Include="Scripts\jquery.tzCheckbox.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.pack.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.dynamic.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-2.0.0.debug.js" />
-    <Content Include="Scripts\knockout-2.0.0.js" />
-    <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\localization\messages_cn.js" />
+    <Content Include="Scripts\localization\messages_cs.js" />
+    <Content Include="Scripts\localization\messages_da.js" />
+    <Content Include="Scripts\localization\messages_de.js" />
+    <Content Include="Scripts\localization\messages_es.js" />
+    <Content Include="Scripts\localization\messages_fr.js" />
+    <Content Include="Scripts\localization\messages_hu.js" />
+    <Content Include="Scripts\localization\messages_it.js" />
+    <Content Include="Scripts\localization\messages_kk.js" />
+    <Content Include="Scripts\localization\messages_nl.js" />
+    <Content Include="Scripts\localization\messages_no.js" />
+    <Content Include="Scripts\localization\messages_pl.js" />
+    <Content Include="Scripts\localization\messages_ptbr.js" />
+    <Content Include="Scripts\localization\messages_ro.js" />
+    <Content Include="Scripts\localization\messages_ru.js" />
+    <Content Include="Scripts\localization\messages_se.js" />
+    <Content Include="Scripts\localization\messages_sk.js" />
+    <Content Include="Scripts\localization\messages_tr.js" />
+    <Content Include="Scripts\localization\messages_tw.js" />
+    <Content Include="Scripts\localization\messages_ua.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\rtp-search.js" />
+    <Content Include="Scripts\slide.js" />
+    <Content Include="Scripts\swf\copy_cvs_xls.swf" />
+    <Content Include="Scripts\swf\copy_cvs_xls_pdf.swf" />
+    <Content Include="Scripts\TableTools.js" />
+    <Content Include="Scripts\TableTools.min.js" />
+    <Content Include="Scripts\ZeroClipboard.js" />
+    <Content Include="Unity.Mvc3.README.txt" />
+    <Content Include="Unity.WebAPI.README.txt" />
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\Dialogs\RoleDialog.ascx" />
+    <Content Include="Views\Account\Partials\AccountDetailPartial.ascx" />
+    <Content Include="Views\Account\Partials\AccountSearchPartial.ascx" />
+    <Content Include="Views\Account\PasswordChanged.aspx" />
+    <Content Include="Views\Account\PasswordRecovery.aspx" />
+    <Content Include="Views\Account\Profile.aspx" />
+    <Content Include="Views\Account\RecoverPassword.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Account\Search.aspx" />
+    <Content Include="Views\Error\Unauthorized.aspx" />
+    <Content Include="Views\Funding\Create.aspx" />
+    <Content Include="Views\Funding\Detail.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Login\Index.aspx" />
+    <Content Include="Views\Login\Index_old.aspx" />
+    <Content Include="Views\Login\Partials\ForgotPasswordPartial.ascx" />
+    <Content Include="Views\Login\Partials\RegisterPartial.ascx" />
+    <Content Include="Views\Pool\Create.aspx" />
+    <Content Include="Views\Pool\Detail.aspx" />
+    <Content Include="Views\Project\Amendments.aspx" />
+    <Content Include="Views\Project\CDOTData.aspx" />
+    <Content Include="Views\Project\Create.aspx" />
+    <Content Include="Views\Project\Create_2.aspx" />
+    <Content Include="Views\Project\Create_original.aspx" />
+    <Content Include="Views\Project\Details.aspx" />
+    <Content Include="Views\Project\Funding.aspx" />
+    <Content Include="Views\Project\Funding_obs.aspx" />
+    <Content Include="Views\Project\Info.aspx" />
+    <Content Include="Views\Project\InfoOLD.aspx" />
+    <Content Include="Views\Project\Location.aspx" />
+    <Content Include="Views\Project\Modeling.aspx" />
+    <Content Include="Views\Project\Partials\AmendProjectPartial.ascx" />
+    <Content Include="Views\Project\Partials\BreadcrumbPartial.ascx" />
+    <Content Include="Views\Project\Partials\CreatePartial.ascx" />
+    <Content Include="Views\Project\Partials\PoolProjectPartial.ascx" />
+    <Content Include="Views\Project\Partials\ProjectFundingDetailPartial_obs.ascx" />
+    <Content Include="Views\Project\Partials\ProjectFundingPartial_obs.ascx" />
+    <Content Include="Views\Project\Partials\ProjectGenericPartial.ascx" />
+    <Content Include="Views\Project\Partials\ProjectSummaryBoxPartial.ascx" />
+    <Content Include="Views\Project\Partials\ProjectTabPartial.ascx" />
+    <Content Include="Views\Project\Partials\SegmentSummaryPartial.ascx" />
+    <Content Include="Views\Project\Reports.aspx" />
+    <Content Include="Views\Project\Scope.aspx" />
+    <Content Include="Views\Project\Strikes.aspx" />
+    <Content Include="Views\RTPProject\Amendments.aspx" />
+    <Content Include="Views\RTPProject\CDOTData.aspx" />
+    <Content Include="Views\RTPProject\Details.aspx" />
+    <Content Include="Views\RTPProject\Funding.aspx" />
+    <Content Include="Views\RTPProject\Info.aspx" />
+    <Content Include="Views\RTPProject\Location.aspx" />
+    <Content Include="Views\RTPProject\Partials\AddCategoryPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\AmendProjectPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\BreadcrumbPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\CreatePartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\ManagerRibbonButtonsPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\ManagerRibbonPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\PoolProjectPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\ProjectFundingDetailPartial_obs.ascx" />
+    <Content Include="Views\RTPProject\Partials\ProjectFundingPartial_obs.ascx" />
+    <Content Include="Views\RTPProject\Partials\ProjectGenericPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\ProjectSummaryBoxPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\ProjectTabPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\SegmentPartial.ascx" />
+    <Content Include="Views\RTPProject\Partials\SegmentSummaryPartial.ascx" />
+    <Content Include="Views\RTPProject\Scope.aspx" />
+    <Content Include="Views\RTP\Agencies.aspx" />
+    <Content Include="Views\RTP\Amendments.aspx" />
+    <Content Include="Views\RTP\Dashboard.aspx" />
+    <Content Include="Views\RTP\FundingList.aspx" />
+    <Content Include="Views\RTP\Partials\AddCycle.ascx" />
+    <Content Include="Views\RTP\Partials\AddNetwork.ascx" />
+    <Content Include="Views\RTP\Partials\AmendableProjects.ascx" />
+    <Content Include="Views\RTP\Partials\AmendPartial.ascx" />
+    <Content Include="Views\RTP\Partials\AmendPendingPartial.ascx" />
+    <Content Include="Views\RTP\Partials\CreatePartial.ascx" />
+    <Content Include="Views\RTP\Partials\RestoreProjects.ascx" />
+    <Content Include="Views\RTP\Partials\TabPartial.ascx" />
+    <Content Include="Views\RTP\ProjectList.aspx" />
+    <Content Include="Views\RTP\ProjectSearch.aspx" />
+    <Content Include="Views\RTP\Reports.aspx" />
+    <Content Include="Views\RTP\RtpList.aspx" />
+    <Content Include="Views\RTP\Status.aspx" />
+    <Content Include="Views\Shared\BecomeASpsonsor.ascx" />
+    <Content Include="Views\Shared\ConfirmDialog.ascx" />
+    <Content Include="Views\Shared\CustomError.aspx" />
+    <Content Include="Views\Shared\DocumentFormatSelection.ascx" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\ErrorPartial.ascx" />
+    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Survey\Agencies.aspx" />
+    <Content Include="Views\Survey\Dashboard.aspx" />
+    <Content Include="Views\Survey\Funding.aspx" />
+    <Content Include="Views\Survey\Info.aspx" />
+    <Content Include="Views\Survey\Location.aspx" />
+    <Content Include="Views\Survey\Partials\AmendPartial.ascx" />
+    <Content Include="Views\Survey\Partials\CompletedFormPartial.ascx" />
+    <Content Include="Views\Survey\Partials\CreatePartial.ascx" />
+    <Content Include="Views\Survey\Partials\ManagerRibbonButtonsPartial.ascx" />
+    <Content Include="Views\Survey\Partials\ManagerRibbonPartial.ascx" />
+    <Content Include="Views\Survey\Partials\ProjectTabPartial.ascx" />
+    <Content Include="Views\Survey\Partials\SegmentPartial.ascx" />
+    <Content Include="Views\Survey\Partials\TabPartial.ascx" />
+    <Content Include="Views\Survey\ProjectList.aspx" />
+    <Content Include="Views\Survey\Scope.aspx" />
+    <Content Include="Views\Survey\SurveyList.aspx" />
+    <Content Include="Views\TIP\Agencies.aspx" />
+    <Content Include="Views\TIP\Amendments.aspx" />
+    <Content Include="Views\TIP\CreateAmendmentList.aspx" />
+    <Content Include="Views\TIP\Dashboard.aspx" />
+    <Content Include="Views\TIP\Delays.aspx" />
+    <Content Include="Views\TIP\EditAmendmentList.aspx" />
+    <Content Include="Views\TIP\FundingList.aspx" />
+    <Content Include="Views\TIP\ManageAmendmentList.aspx" />
+    <Content Include="Views\TIP\Partials\AmendPartial.ascx" />
+    <Content Include="Views\TIP\Partials\CreateFundingSourcePartial.ascx" />
+    <Content Include="Views\TIP\Partials\ManageFundingSourcePartial.ascx" />
+    <Content Include="Views\TIP\Partials\RestoreProjects.ascx" />
+    <Content Include="Views\TIP\Partials\TipTabPartial.ascx" />
+    <Content Include="Views\TIP\Partials\_DelaysUpdate.ascx" />
+    <Content Include="Views\TIP\PoolList.aspx" />
+    <Content Include="Views\TIP\ProjectList.aspx" />
+    <Content Include="Views\TIP\ProjectSearch.aspx" />
+    <Content Include="Views\TIP\ProposedAmendmentList.aspx" />
+    <Content Include="Views\TIP\Reports.aspx" />
+    <Content Include="Views\TIP\RestoreProjectList.aspx" />
+    <Content Include="Views\TIP\Status.aspx" />
+    <Content Include="Views\TIP\TipList.aspx" />
+    <Content Include="Views\TIP\WaitingList.aspx" />
+    <Content Include="Views\Web.config" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -183,8 +687,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\aspNetHome.png" />
     <Content Include="Images\bullet.png" />
@@ -204,25 +706,34 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Content\js\dts\project\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DRCOG.Data\DRCOG.Data.csproj">
+      <Project>{286B449E-74C8-4EBE-BFB6-015C4D14DA53}</Project>
+      <Name>DRCOG.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DRCOG.Domain\DRCOG.Domain.csproj">
+      <Project>{10038254-3677-4C98-A326-BC69B7D69808}</Project>
+      <Name>DRCOG.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DRCOG.TIP.Services\DRCOG.TIP.Services.csproj">
+      <Project>{16B7F60D-2DE1-464D-A925-17FE03A3E1F1}</Project>
+      <Name>DRCOG.TIP.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Site.Master" />
+    <None Include="Scripts\images\Sorting icons.psd" />
+    <None Include="Views\Survey\Partials\ManagerRibbonPartial.ascx.bak" />
+    <None Include="Views\Survey\ProjectList.aspx.bak" />
+    <None Include="Views\Web.config.2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

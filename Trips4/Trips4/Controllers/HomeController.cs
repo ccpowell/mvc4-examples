@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using DRCOG.Domain.Interfaces;
-using DRCOG.Web.Filters;
+//using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.Domain.Security;
 using DRCOG.TIP.Services;
 using DRCOG.Domain;
@@ -12,7 +12,7 @@ using DRCOG.Common.Web.MvcSupport.Attributes;
 using System.Web;
 using System.Configuration;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     /// <summary>
     /// Main splash page for the application

@@ -1,0 +1,136 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>DRCOG TRIPS | <asp:ContentPlaceHolder ID="TitleContent" runat="server"  /></title>
+    <%-- jQuery 1.4.2 --%>
+    
+    <script src="<%= ResolveClientUrl("~/scripts/jquery.min.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveClientUrl("~/scripts/jquery-ui.min.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveClientUrl("~/scripts/jquery.colorbox-min.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveClientUrl("~/scripts/jquery.dts.extensions.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveClientUrl("~/scripts/BrowserDetect.js")%>" type="text/javascript"></script>
+        
+    <link href="<%= ResolveUrl("~/Content/reset.css") %>" rel="stylesheet" type="text/css" />
+    
+    <link href="<%= ResolveUrl("~/Content/flick/jquery-ui-1.8.5.custom.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/buttonframework.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/colorbox.css") %>" rel="stylesheet" type="text/css" />
+    
+    <link href="<%= ResolveUrl("~/Content/Themes/default/theme.css") %>" rel="stylesheet" type="text/css" />    
+
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.autoHide.js")%>" type="text/javascript" ></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/MicrosoftAjax.js")%>" type="text/javascript" ></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/MicrosoftMvcAjax.js")%>" type="text/javascript" ></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.min.js")%>" type="text/javascript" ></script>
+    
+    <script type="text/javascript">
+
+        $().ready(function() {
+            InitButtons();
+
+            //var browseProg = BrowserDetect.browser;
+            //var browseVer = BrowserDetect.version;
+            //var browseStr = browseProg + ' ' + browseVer;
+
+            /*
+            $('#contact').contactable({
+            name: 'TIP User',
+            email: 'drcog@drcog.org',
+            browser: browseStr,
+            disclaimer: 'Use this form to report a bug or request a feature enhancement.'
+            });
+            */
+            
+            //$('#contact').contactable({
+            //    disclaimer: 'Use this form to report a bug or request a feature enhancement.'
+            //});
+
+            
+
+        });
+    
+        function InitButtons() {
+            //all hover and click logic for buttons
+            $(".fg-button:not(.ui-state-disabled)")
+		        .hover(
+			        function() {
+			            $(this).addClass("ui-state-hover");
+			        },
+			        function() {
+			            $(this).removeClass("ui-state-hover");
+			        }
+		        )
+		    .mousedown(function() {
+		        $(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+		        if ($(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active')) { $(this).removeClass("ui-state-active"); }
+		        else { $(this).addClass("ui-state-active"); }
+		    })
+		    .mouseup(function() {
+		        if (!$(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button, .fg-buttonset-multi .fg-button')) {
+		            $(this).removeClass("ui-state-active");
+		        }
+		    });
+        }
+    </script>
+    
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
+</head>
+
+<body >
+    <div id="pagewrapper">
+        <div id="site-message"></div>
+        <div class="page">
+            <div id="banner">
+                <div class="imageSprite denver"></div>
+                <div id="title">
+                    <a href="http://www.drcog.org" target="_blank" title="Visit Denver Regional Council of Governments"><span class="buttonSprite drcoglogo"></span><%--<img src="<%=ResolveUrl("~/Content/images/drcog-logox80.png") %>" alt="DRCOG Logo" />--%></a>
+                    <div id="title-content"><asp:ContentPlaceHolder ID="BannerContent" runat="server" /></div>
+                </div>
+                <div id="banner-ribbon">
+                    <% if (HttpContext.Current.User.IsInRole("Contact Manager")) { %>
+                        <a href="http://www3.drcog.org/membership/" target="_blank">Contact Module</a>
+                    <% } %>
+                    <div id="loginwrapper">
+                        <% if (!Request.IsAuthenticated)
+                            { %>
+                            <a id="loginlink" style="display: block;" href="<%= Url.Action("index","login", new { ReturnUrl = HttpContext.Current.Request.RawUrl } ) %>">Administrative login</a>
+                        <%}
+                            else
+                            { %>
+                            Welcome <%= Html.Encode(Page.User.Identity.Name) %>,  <a id="logofflink" href="<%= Url.Action("logout","login", new { ReturnUrl = HttpContext.Current.Request.RawUrl }) %>">sign-off</a>
+                        <% } %>
+                    </div>
+                </div>
+                <div id="menucontainer">
+                    <asp:ContentPlaceHolder ID="MenuContent" runat="server" />                
+                </div>
+                <div id="topMenu">
+                    <ul>
+                        <li><span>View Projects in the:</span></li>
+                        <li><a href="<%= Url.Action("Index", "Tip")%>"><span class="buttonSprite btn Tip"></span></a></li>
+                        <li><a href="<%= Url.Action("Index", "RTP") %>"><span class="buttonSprite btn Rtp"></span></a></li>
+                        <li><a href="<%= Url.Action("Index", "Survey", new {year="0"})%>"><span class="buttonSprite btn Survey"></span></a></li>
+                        <li><a href="<%= Url.Action("Index", "Home") %>"><span class="buttonSprite btn Home"></span></a></li>
+                        <li style="display: none;"><a href="<%= Url.Action("Profile", "Account") %>"><span class="buttonSprite btn Tip"></span></a></li>
+                    </ul>
+                </div> 
+            </div>
+        
+            <div id="main">
+                <!--<div id="contact"></div>-->
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+        
+            <div id="footercontainer">
+                <asp:ContentPlaceHolder ID="FooterContent" runat="server" />
+            </div>
+        
+        
+        </div>
+    </div>
+</body>
+</html>

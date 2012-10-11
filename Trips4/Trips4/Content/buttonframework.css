@@ -1,0 +1,69 @@
+﻿	
+	.fg-button
+    {
+        outline: 0;
+        margin: 4px 4px 0 0;
+        padding: .4em 1em;
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        zoom: 1;
+        border-color: #1b4593;
+        /*background-color: #6892de; /*#6699FF;*/
+        /*color: #e3e3e3;*/
+        color: #212121;
+        background: #dadada url(flick/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+    }
+    .fg-button:hover { color: #e3e3e3/*1b4593*/; background-color: #6892de/*9bb3de*/; }
+    .fg-button:hover.ui-state-disabled 
+    {
+        border-color: #1b4593;
+        color: #212121;
+        background: #dadada url(flick/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+    }
+	.fg-button.w70.medium { margin: 0px; padding: .4em 0; }
+	.fg-button.w70.short { margin: 0px; padding: .1em 0em; }
+	.fg-button-important { outline: 0; margin:4px 4px 0 0; padding: .4em 1em; 
+	                       background-color: #ff8b73; 
+	                       border-color: #ff2C00; 
+	                       text-decoration:none !important; cursor: pointer; position: relative; text-align: center; zoom: 1; }
+	.fg-button-important:hover { background-color: #f5baa3; }     
+	.fg-button-380  { outline: 0; margin:4px 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
+	.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
+	
+	a.fg-button { float:left; }
+	a.fg-button:link { color:none; }
+	
+	/* remove extra button width in IE */
+	button.fg-button { width:auto; overflow:visible; }
+	button.w380 {width:380px; }
+	a.w380 {width:380px;}
+	a.w300 {width:300px;}
+	a.w70 { width: 70px; }
+	.red { color: Red; }
+	
+	.fg-button-icon-left { padding-left: 2.1em; }
+	.fg-button-icon-right { padding-right: 2.1em; }
+	.fg-button-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
+	.fg-button-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
+	
+	.fg-button-icon-solo { display:block; width:8px; text-indent: -9999px; }	 
+	/* solo icon buttons must have block properties for the text-indent to work */	
+	
+	.fg-buttonset { float:left; }
+	.fg-buttonset .fg-button { float: left; }
+	.fg-buttonset-single .fg-button, 
+	.fg-buttonset-multi .fg-button { margin-right: -1px;}
+	
+	.fg-toolbar { padding: .5em; margin: 0;  }
+	.fg-toolbar .fg-buttonset { margin-right:1.5em; padding-left: 1px; }
+	.fg-toolbar .fg-button { font-size: 1em;  }
+	.fg-button.medium { font-size: .8em; }
+	.fg-button.short { font-size: .3em; }
+	
+	.ui-icon-marker-previous { width: 16px; height: 16px; background: url(marker/16/previous.png); }
+	
+	
+	
+	

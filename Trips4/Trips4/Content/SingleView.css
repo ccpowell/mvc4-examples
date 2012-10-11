@@ -1,0 +1,267 @@
+﻿/*----------------------------------*/
+/* FORM ELEMENTS                    */
+/*----------------------------------*/
+
+fieldset label {
+    display: block;  /* block float the labels to left column, set a width */
+	float: left; 
+	width: 150px; 
+	padding: 0; 
+	margin: 5px 0 0; /* set top margin same as form input - textarea etc. elements */
+	/*text-align: right; */
+}
+
+fieldset label.error {
+    margin-left:155px;
+    width:400px;
+}
+
+fieldset table, fieldset table td {
+ border-style:none;
+}
+
+fieldset input, fieldset textarea, fieldset select
+{
+    margin: 5px 0 0 3px;
+}
+
+fieldset textarea{ width:400px;}
+
+fieldset br{
+    clear:both;
+}
+
+div.shortInputElement,input.shortInputElement{
+    width:100px;
+    margin:5px 0 0 3px;
+}
+
+div.longInputElement, input.longInputElement{
+    width:400px;
+    margin:5px 0 0 3px;
+}
+
+textarea.mediumInputElement
+{
+    width: 220px;
+    margin: 5px 0 0 3px;
+}
+
+textarea.longInputElement
+{
+    width:500px;
+    margin:5px 0 0 3px;
+}
+
+select.mediumInputElement{
+    width:250px;
+    margin:5px 0 0 3px;
+}
+
+fieldset textarea.dijitTextArea[cols]{
+    margin:5px 0 0 3px;
+    width:400px;
+}
+
+input.big select.big{ 
+font-family: "Helvetica", "Arial", sans-serif;
+font-size: 1.1em;
+font-weight: 700;
+border: 1px solid #ccc;
+padding: 4px;
+}
+
+
+/*----------------------------------*/
+/*    Standard Inputs                */
+/*----------------------------------*/
+.standardInput{
+    float:left;
+    margin:0 10px 10px 0;
+    width:100%;
+}
+.standardInput.totalWidth{
+    width:93%;
+}
+.standardInput.oneThird{
+    width:30%;
+}
+.standardInput.oneThirdAbsolute{
+    width:33%;
+}
+.standardInput.oneFourth{
+    width:25%;
+}
+.standardInput.oneFifth{
+    width:15%;
+}
+.standardInput .dijitTextBox{
+    width:100%;
+}
+.standardInput .dijitTextBox.withButtonRight{
+    width:93%;
+    margin-right:10px;
+}
+.standardInput .dijitTextBox.withleftLabel{
+    width:25%;
+    float:left;
+}
+.standardInput .dijitComboBox{
+    width:100%;
+}
+.standardInput .dijitComboBox.withleftLabel{
+    width:25%;
+    float:left;
+}
+.standardInput .dijitComboBox.threeFourths{
+    width:75%;
+}
+.standardInput .tempTable{
+    width:100%;
+}
+.standardInput .tempTable td{
+    border:1px solid black;
+    height:22px;
+}    
+.standardInput .map{
+    width:100%;
+    height:400px;
+    border:2px solid black;
+}
+.standardInput .map.withButtonRight{
+     width:90%;
+    margin-right:10px;
+}
+.standardInput .verticalButtons{
+    width:40px;
+}
+
+/*----------------------------------*/
+/*   Ajax Feedback Area             */
+/*----------------------------------*/
+#form-submit-container{
+    float:right;
+    margin-right:5px;
+    margin-top:10px;
+}
+
+.form-message-container{
+    float:left;
+    width:300px;
+    /*border:2px solid #FCEFA1;*/
+    color:#363636;
+    padding: 0pt 0.7em; 
+    margin-top: 10px;
+    display:none;
+}
+.form-message-container p{
+    margin-bottom:0px;
+    margin-top:3px;
+}
+
+.working-icon{
+    margin-top:2px;
+    height:24px;
+    width:24px;
+    background-image: url(./images/smworking.gif);
+}
+
+/*----------------------------------*/
+/*   Grid Tables            */
+/*----------------------------------*/
+
+
+
+
+.grid{    
+    margin:10px 15px; /* Changed from 10px auto */
+}
+table.grid{
+    border:1px solid #CCC;
+}
+
+.grid th{
+    background-color:#CCC;
+    font-weight:bold;
+}
+
+.gridrow{
+    background-color:#FFFFFF;
+}
+
+.gridrow_alternate
+{
+    background-color:#DDDDDD;
+}
+
+/*----------------------------------*/
+/*   Tundra Overwrittes             */
+/*----------------------------------*/
+.tundra .dijitFocusedLabel{
+    outline-style:none;
+}
+
+/*----------------------------------*/
+/*   Tables                          */
+/*----------------------------------*/
+table label{
+    margin:0;
+}
+fieldset table td{
+    padding:5px 5px 0 0;
+}
+
+.project-info-container
+{
+    padding:3px;
+    color:#ccc;
+    font-size: 1.3em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+}
+.project-info-container h2
+{ 
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+/*----------------------------------*/
+/*    HELP CONTAINER                */
+/*----------------------------------*/
+
+.helpContainer{    
+    float:right;
+    width: 250px; 
+    border:1px solid #CCC;   
+    padding:3px;
+    background-color:#DDD;
+    color:#555;
+    
+}
+
+.helpContainer h2 { color:#555; }
+.detailSaveButton{ float:right; }
+p.question { color:#9D080D; }
+
+/*----------------------------------*/
+/*   Map (button image, etc)        */
+/*----------------------------------*/
+.mapButton button{
+    width:35px;
+    height:34px;
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+
+#search{
+    background-image:url('Images/i_search.png');
+    width:20px;
+    height:20px;
+}
+
+#point { background-image:url('Images/i_flag.png'); }
+#line { background-image:url('Images/i_draw_line.png'); }
+#zoomin { background-image:url('Images/i_zoomin.png'); }
+#zoomout { background-image:url('Images/i_zoomout.png'); }
+#removeGraphic { background-image:url('Images/i_remove.png'); }
+.dijitDisabled #removeGraphic { background-image:url('Images/i_remove_disabled.png'); }
+

@@ -3,11 +3,11 @@ using System.Text;
 using System.Web.Mvc;
 using DTS.Web.MVC;
 using DRCOG.Domain.Interfaces;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
+//using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services;
 using DRCOG.Domain.Models;
@@ -24,7 +24,7 @@ using System.Web.Configuration;
 using System.Web.Security;
 using System.Web;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
 
     /// <summary>
@@ -203,7 +203,7 @@ namespace DRCOG.Web.Controllers
         /// Returns the confirm dialog
         /// </summary>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult GetConfirmDialog()
         {
             return View("ConfirmDialog");
@@ -341,7 +341,7 @@ namespace DRCOG.Web.Controllers
         #endregion
 
         #region Error Handler Methods
-
+#if bozo
         /// <summary>
         /// Error handler, returning a JsonServerResponse2 object within a JsonResult object.
         /// </summary>
@@ -405,7 +405,7 @@ namespace DRCOG.Web.Controllers
 
             return Json(response, this.JsonResultContentType);
         }
-
+#endif
         /// <summary>
         /// Handles the error by returning the error view.
         /// </summary>
@@ -592,7 +592,7 @@ namespace DRCOG.Web.Controllers
             return shares;
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult GetAmendableSurveyProjects(int timePeriodId)
         {
             var result = new List<SelectListItem>();
@@ -613,7 +613,7 @@ namespace DRCOG.Web.Controllers
             return Json(result);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AmendForNewSurvey(int projectVersionId, int surveyId)
         {
             try
@@ -649,7 +649,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public PartialViewResult BecomeASpsonsor(string year)
         {
             BecomeASponsorViewModel model = new BecomeASponsorViewModel();
@@ -658,7 +658,7 @@ namespace DRCOG.Web.Controllers
             return PartialView("BecomeASpsonsor", model);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public JsonResult BecomeASponsor(Profile profile)
         {
             try

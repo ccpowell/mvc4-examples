@@ -1,0 +1,257 @@
+﻿/* boe: .contentBox */
+    #site-tab-container .contentBox {
+        border: 1px solid #CCCCCC;
+        float: left;
+        font-size: 1em;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 5px 0 10px 10px;
+        width: 575px;
+    }
+
+    #site-tab-container .contentBox.halfWidth {
+        border: 1px solid #CCCCCC;
+        float: left;
+        font-size: 1em;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 5px 0 10px 10px;
+        width: 250px;
+    }
+    #site-tab-container .contentBox.zeroPadding {
+        padding: 0;
+    }
+    #site-tab-container .contentBox.zeroMargin {
+        margin: 0;
+    }
+    #site-tab-container .contentBox.borderNone {
+        border: none;
+    }
+    
+    #site-tab-container .contentBox .contentBox.totalWidth{
+        width:96%;
+        margin:0;
+        margin-top:10px;
+    }
+/* eoe: .contentBox */
+
+/* boe: .standardInput */
+    #site-tab-container .standardInput.contentBox.halfWidth {
+        border: 1px solid #CCCCCC;
+        float: left;
+        font-size: 1em;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 10px;
+        padding: 5px 0 10px 10px;
+        width: 280px;
+    }
+    #site-tab-container .indent .standardInput {
+        width:240px;
+    }
+    #site-tab-container .indent .standardInput.completeWidth {
+        width:100%;
+        margin-right:0;
+    }
+    #site-tab-container .indent .standardInput_right {
+        width:240px;
+    }
+/* eoe: .standardInput */
+
+/* boe: HTML <label> element */
+    #site-tab-container label {
+        font-weight: bold;
+    }
+/* boe: HTML <label> element */
+
+/* boe: text inputs */
+    #site-tab-container .standardInput .dijitTextBox, #site-tab-container .standardInput input[type="text"] {
+        width: 262px;
+        margin-right: 20px;
+    }
+    #site-tab-container .standardInput .dijitTextBox.noRightMargin, #site-tab-container .standardInput input[type="text"].noRightMargin {
+        margin-right: 0;
+    }
+    #site-tab-container .standardInput input[type="text"].totalWidth {
+        width:98%;
+    }
+    #site-tab-container .standardInput_right .dijitTextBox, #site-tab-container .standardInput_right input[type="text"] {
+        width: 262px;
+        margin-right: 20px;
+    }
+    #site-tab-container .standardInput_right .dijitTextBox.noRightMargin, #site-tab-container .standardInput_right input[type="text"].noRightMargin {
+        margin-right: 0;
+    }
+    #site-tab-container .dijitTextBox.halfWidth, #site-tab-container input[type="text"].halfWidth {
+        width: 131px;
+    }
+    #site-tab-container .dijitTextBox.thirdWidth, #site-tab-container input[type="text"].thirdWidth {
+        width: 123px;
+    }
+    #site-tab-container input[type="text"].fourthWidth {
+        width: 119px;
+    }
+
+    /* boe: .contentBox inside .contentBox text input*/
+        #site-tab-container .contentBox .contentBox.halfWidth input, #site-tab-container .contentBox.halfWidth select {
+            width: 232px;
+        }
+    /* eoe: #site-tab-container .contentBox.halfWidth internal inputs */
+    #site-tab-container .contentBox .contentBox.standardInput_right {
+        margin: 10px 0 10px 0;
+    }
+/* eoe: text inputs */
+
+/* boe: Drop down */
+
+    #site-tab-container .standardInput select {
+        width: 262px;
+        margin-right: 20px;
+    }
+    #site-tab-container .indent .standardInput select {
+        width: 235px;
+        margin-right: 20px;
+    }
+    #site-tab-container .standardInput select.noMarginRight {
+        margin-right: 0;
+    }
+    #site-tab-container .standardInput_right select {
+        width: 262px;
+        margin-right: 20px;
+    }
+    #site-tab-container .indent .standardInput_right select {
+        width: 235px;
+        margin-right: 0;
+    }
+    #site-tab-container .standardInput_right select.noMarginRight {
+        margin-right: 0;
+    }
+/* eoe: Drop Down */
+/* boe: textarea */
+    #site-tab-container .standardInput textarea, #site-tab-container .standardInput_right textarea {
+        width: 255px;
+    }
+    #site-tab-container .standardInput textarea.totalWidth, #site-tab-container .standardInput_right textarea.totalWidth {
+        width: 97%;
+    }
+/* eoe: textarea */
+
+/* boe: dojo dataGrid */
+    #site-tab-container .standardInput .grid {
+        width: 255px;
+    }
+    #site-tab-container .standardInput_right .grid {
+        width: 255px;
+    }
+    #site-tab-container .standardInput_right .grid.buttonToTheRight {
+        width: 200px;
+        margin-right:10px;
+    }
+    
+    #site-tab-container .standardInput .dojoxGrid.totalWidth{
+        width:88%;
+        margin-right:10px;
+    }
+    #site-tab-container .standardInput .dojoxGrid.completeWidth{
+        width:98%;
+        margin-right:10px;
+    }
+/* eoe: dojo dataGrid */
+
+/* boe: tabcontainer within a tabcontainer */
+    #site-tab-container .dijitTabContainer .contentBox.totalWidth.custom{
+        width:550px;
+        padding:0 10px 10px;
+        margin:0 0 5px;
+    }
+/* eoe: tabcontainer within a tabcontainer */
+
+/* boe: button */
+    #site-tab-container .standardInput.completeWidth button{
+        margin-right:10px;
+    }
+    /* boe: This is ugly but we'll try it because vertical align won't work on buttons*/
+        #site-tab-container .standardInput button.fiftyfiveTopMargin, #site-tab-container .standardInput_right button.fiftyfiveTopMargin{
+            margin-top:55px;
+        }
+        #site-tab-container .standardInput button.eightyfiveTopMargin, #site-tab-container .standardInput_right button.eightyfiveTopMargin{
+            margin-top:85px;
+        }
+    /* eoe: This is ugly but we'll try it because vertical align won't work on buttons*/
+/* eoe: button */
+
+/* boe: .imagesBox */
+    .imagesBox{
+        
+    }
+    .imageBoxes .imageContainter{
+        width:80px;
+        height:80px;
+        float:left;
+    }
+/* eoe: .imagesBox */
+
+/* boe: Dialog Boxes these overright are not working yet */
+    
+    .dijitDialog label
+    {
+        width: auto;
+        margin: 2px 5px 2px;
+        margin-left:0;
+        font-weight: bold;
+        /*float: left;
+        text-align: right;*/
+        white-space:nowrap;
+    }
+    .dijitDialog .standardInput
+    {
+        width:93%;
+        margin-right:0;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+    .dijitDialog .standardInput.halfWidth{
+        width: 45%;
+    }
+    .dijitDialog .dijitTextBox, .dijitDialog select, .dijitDialog textarea.dijitTextArea
+    {
+        width:100%;
+    }
+    .dijitDialog .dijitFileInput 
+    {
+        width:100%;
+        clear:both;
+        margin-bottom:15px;
+    }
+    #fileUploadDialog input[type="radio"]
+    {
+    	margin-right:10px;
+    }
+    .dijitDialog .dialogControls{
+        margin-top:5px;
+    }
+    .dijitDialog .dialogControls .dialogButton{
+        margin-left:10px;
+        float:left;
+    } 
+    .dijitDialog .dialogControls .dialogCancelBtn {
+        margin-right:8px;
+        margin-top:7px;
+        float:right;
+    }
+    /* boe: by Id */ 
+        #HistoricGlassArtifactDialog{
+            width: 400px;
+        }
+        #HistoricCeramicArtifactDialog, #HistoricTinCanArtifactDialog{
+            width:600px;
+        }
+    /* eoe: by Id */
+/* eoe: Dialog Boxes */
+/* boe: generics */
+    .fieldPrefix{
+        margin-right:5px;
+    }    
+/* eoe: generics */

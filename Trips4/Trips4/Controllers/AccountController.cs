@@ -7,14 +7,14 @@ using DRCOG.Domain.Models;
 using DTS.Web.MVC;
 //using DTS.Web.MVC.Extensions;
 using DTS.Extensions;
-using DRCOG.Web.Filters;
+//using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
-using DRCOG.Web.Configuration;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Configuration;
+using Trips4.Utilities.ApplicationState;
 using System.Web.Security;
 using System.Net.Configuration;
 using System.Configuration;
-using DRCOG.Web.Services;
+using Trips4.Services;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services;
 using DRCOG.Domain.Security;
@@ -26,7 +26,7 @@ using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
 using DRCOG.Common.Services.MemberShipServiceSupport.Domain;
 using DRCOG.Common.Util;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     /// <summary>
     /// Controller that will manage the Account Administration aspects of the DRCOG application.
@@ -459,7 +459,7 @@ namespace DRCOG.Web.Controllers
         /// Get the search view
         /// </summary>
         /// <returns></returns>
-        [RoleAuth(Roles="Administrator")]
+        //[RoleAuth(Roles="Administrator")]
         [Authorize]
         [HttpGet]
         public ActionResult Index()
@@ -593,7 +593,7 @@ namespace DRCOG.Web.Controllers
         /// Display the profile view
         /// </summary>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Profile()
         {
@@ -662,7 +662,7 @@ namespace DRCOG.Web.Controllers
         //    return RedirectToAction("PasswordChanged", "Account");
         //}
 
-        [RoleAuth()]
+        //[RoleAuth()]
         public ActionResult PasswordChanged()
         {
             //just a simple confirmation view. Could be done via a popup

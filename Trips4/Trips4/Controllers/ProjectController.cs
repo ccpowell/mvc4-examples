@@ -24,28 +24,27 @@ using DRCOG.Domain.Models.TIPProject;
 //using DRCOG.Domain.Models.TIPProject.Amendment;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.ViewModels.TIPProject;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
 using DTS.Web.MVC;
-using DRCOG.Web.Configuration;
+using Trips4.Configuration;
 using DRCOG.Domain;
 using Elmah;
 using DRCOG.TIP.Services.TIP;
 using DRCOG.TIP.Services.RestoreStrategy.TIP;
-using DRCOG.Web.CustomResults;
+using Trips4.CustomResults;
 using DRCOG.Common.Services.Interfaces;
 using DRCOG.Common.Services;
 using System.Web;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.TIP.Services.DeleteStrategy.TIP;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using System.Transactions;
 using DRCOG.Common.Web.MvcSupport.Attributes;
-using System.Runtime.Serialization.Json;
+//using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[Authorize]
     //[RoleAuth]
@@ -215,7 +214,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateInfo(InfoViewModel viewModel)
         {
             int projectVersionId = viewModel.InfoModel.ProjectVersionId.Value;
@@ -270,7 +269,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateImage(FormCollection collection)
         {
             int projectVersionId = Int32.Parse(collection["ProjectVersionId"]);
@@ -313,7 +312,7 @@ namespace DRCOG.Web.Controllers
             return RedirectToAction("Location", new { controller = "Project", id = projectVersionId, tipyear = year, message = message.Equals(String.Empty) ? "Image update successfully." : message });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeleteLocationMap(int imageId, int projectVersionId)
         {
             try
@@ -342,7 +341,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectVersionId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amend(AmendmentsViewModel amendmentViewModel)
         {
             /* Get Current Amendment Status
@@ -367,7 +366,7 @@ namespace DRCOG.Web.Controllers
             return projectVersionId;
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amend(int projectVersionId, int previousVersionId)
         {
             ProjectAmendments amendment = new ProjectAmendments()
@@ -383,7 +382,7 @@ namespace DRCOG.Web.Controllers
             return RedirectToAction("Funding", new { controller = "Project", id = result, message = "Amendment processed successfully." });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult Restore(string year, int id)
         {
             //Restore projectVersionID (ID) to the given TIPYear (year)
@@ -394,7 +393,7 @@ namespace DRCOG.Web.Controllers
             return RedirectToAction("Funding", new { controller = "Project", id = id, message = "Project restored successfully." });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult DeleteAmendment(Int32 projectVersionId, Int32 previousProjectVersionId, string year)
         {
             ProjectAmendments amendment = new ProjectAmendments()
@@ -423,7 +422,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="removed"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAgencies(string projectVersionID, List<int> added, List<int> removed)
         {
             if (added == null)
@@ -457,7 +456,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -472,7 +471,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
 
@@ -488,7 +487,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -503,7 +502,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -528,7 +527,7 @@ namespace DRCOG.Web.Controllers
         }
 
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
             int projectVersionId = viewModel.TipProjectScope.ProjectVersionId;
@@ -577,7 +576,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateLocation()
         {
             //Manually parse up the form b/c of the muni & county split stuff
@@ -624,7 +623,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Changes successfully saved." });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPoolProject(int poolMasterVersionId, string projectName, string description, string beginAt, string endAt, decimal cost)
         {
             PoolProject model = new PoolProject()
@@ -653,7 +652,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Pool Project successfully added.", poolprojectid = poolProjectId });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeletePoolProject(int poolProjectId)
         {
             try
@@ -668,7 +667,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Pool Project successfully removed." });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdatePoolProject(int poolProjectId, string projectName, string description, string beginAt, string endAt, decimal cost)
         {
             PoolProject model = new PoolProject()
@@ -739,7 +738,7 @@ namespace DRCOG.Web.Controllers
         }
         */
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateFinancialRecord(int financialRecordId, decimal previous, decimal future, decimal tipfunding, decimal federaltotal, decimal statetotal, decimal localtotal, decimal totalcost)
         {
             FundingModel model = new FundingModel()
@@ -769,7 +768,7 @@ namespace DRCOG.Web.Controllers
                 , error = "false" });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateFinancialRecordDetail(int projectFinancialRecordID, int fundingTypeID, int fundingLevelID, int fundingPeriodID, decimal incr01, decimal incr02, decimal incr03, decimal incr04, decimal incr05)
         {
             ProjectFinancialRecordDetail model = new ProjectFinancialRecordDetail()
@@ -800,7 +799,7 @@ namespace DRCOG.Web.Controllers
                 , error = "false" });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddFinancialRecordDetail(int projectVersionID, int fundingPeriodID, int fundingTypeID)
         {
             try
@@ -823,7 +822,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeleteFinancialRecordDetail(int projectVersionID, int fundingResourceId)
         {
             try
@@ -893,7 +892,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary)
         {
             CountyShareModel model = new CountyShareModel();
@@ -920,7 +919,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult RemoveCountyShare(int projectId, int countyId)
         {
             try
@@ -943,7 +942,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -969,7 +968,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult RemoveMuniShare(int projectId, int muniId)
         {
             try
@@ -1113,7 +1112,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPhase(FundingPhase phase)
         {
             try
@@ -1139,7 +1138,7 @@ namespace DRCOG.Web.Controllers
             });
         }
 
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeletePhase(FundingPhase phase)
         {
             try
@@ -1189,7 +1188,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAmendmentDetails(ProjectAmendments amendment)
         {
             try
@@ -1220,7 +1219,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();

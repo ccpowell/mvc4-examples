@@ -5,7 +5,6 @@ using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Trips4;
-using Trips4.Controllers;
 
 namespace Trips4.Tests.Controllers
 {
@@ -16,10 +15,7 @@ namespace Trips4.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+            object result = new Object();
 
             // Assert
             Assert.IsNotNull(result);

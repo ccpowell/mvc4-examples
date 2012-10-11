@@ -18,7 +18,7 @@ using System.Configuration;
 using System.Web.Configuration;
 using System.Web;
 
-namespace DRCOG.Web.Services
+namespace Trips4.Services
 {
     /// <summary>
     /// </summary>

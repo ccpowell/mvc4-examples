@@ -21,24 +21,23 @@ using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services;
 using DRCOG.Domain.Models;
 using DRCOG.Domain.ViewModels;
-using DRCOG.Web;
-using DRCOG.Web.Filters;
+using Trips4;
 using DTS.Web.MVC;
-using DRCOG.Web.Configuration;
 using DRCOG.Domain;
-using Elmah;
+//using Elmah;
 using DRCOG.Domain.ViewModels.RTP.Project;
 using DRCOG.Domain.ViewModels.RTP;
 using DRCOG.Domain.Models.RTP;
 using System.Data.SqlClient;
 using System.Data;
 using DRCOG.Domain.Helpers;
-using DRCOG.Web.Utilities.ApplicationState;
+using Trips4.Utilities.ApplicationState;
 using DRCOG.TIP.Services.DeleteStrategy.RTP;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using DRCOG.Common.Web.MvcSupport.Attributes;
+using Trips4.Configuration;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     //[Authorize]
     //[RoleAuth]
@@ -69,7 +68,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="id"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Reports(int id, string year)
         {
             var model = new ProjectBaseViewModel();
@@ -110,7 +109,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateInfo(InfoViewModel viewModel)
         {
             int projectVersionId = viewModel.InfoModel.ProjectVersionId;
@@ -321,7 +320,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="projectVersionId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult Amend(AmendmentsViewModel amendmentViewModel /*Int32 projectVersionId, String year2*/)
         {
@@ -358,7 +357,7 @@ namespace DRCOG.Web.Controllers
             //return RedirectToAction("Details", new { controller = "Project", id = amendment.ProjectVersionId });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public ActionResult DeleteAmendment(Int32 projectVersionId, Int32 previousProjectVersionId)
         {
             //throw new NotImplementedException();
@@ -386,7 +385,7 @@ namespace DRCOG.Web.Controllers
             return RedirectToAction("Index", new { controller = "Rtp", year = String.Empty });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DropAmendment(CycleAmendment amendment)
         {
             try
@@ -422,7 +421,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="added"></param>
         /// <param name="removed"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult UpdateAgencies(string projectVersionID, List<int> added, List<int> removed)
         {
@@ -456,7 +455,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -471,7 +470,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -487,7 +486,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -502,7 +501,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -527,7 +526,7 @@ namespace DRCOG.Web.Controllers
             return View(viewModel);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
@@ -577,7 +576,7 @@ namespace DRCOG.Web.Controllers
         /// Update the Location information from the /Location view
         /// </summary>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult UpdateLocation()
         {
@@ -671,7 +670,7 @@ namespace DRCOG.Web.Controllers
             return Json(model);
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddSegment(SegmentModel model)
         {
             int segmentId = 0;
@@ -690,7 +689,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully added.", segmentId = segmentId });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteSegment(int segmentId)
         {
             try
@@ -704,7 +703,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully removed." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddLRSRecord(SegmentModel model)
         {
             try
@@ -727,7 +726,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteLRSRecord(int lrsId)
         {
             try
@@ -741,7 +740,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "LRS Record successfully removed." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateLRSRecord(SegmentModel model)
         {
             try
@@ -764,7 +763,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateSegment(SegmentModel model)
         {
             try
@@ -784,7 +783,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateSegmentSummary(SegmentModel model)
         {
             try
@@ -844,7 +843,7 @@ namespace DRCOG.Web.Controllers
         }
         */
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateFinancialRecord(Funding model)//(int projectVersionId, decimal constantCost, decimal VisionCost, decimal yoeCost)
         {
             //Funding model = new Funding()
@@ -873,7 +872,7 @@ namespace DRCOG.Web.Controllers
                 , error = "false" });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateFinancialRecordDetail(int projectFinancialRecordID, int fundingTypeID, int fundingLevelID, int fundingPeriodID, decimal incr01, decimal incr02, decimal incr03, decimal incr04, decimal incr05)
         {
             ProjectFinancialRecordDetail model = new ProjectFinancialRecordDetail()
@@ -904,7 +903,7 @@ namespace DRCOG.Web.Controllers
                 , error = "false" });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddFinancialRecordDetail(int projectVersionID, int fundingPeriodID, int fundingTypeID)
         {
             try
@@ -972,7 +971,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary)
         {
             CountyShareModel model = new CountyShareModel();
@@ -999,7 +998,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult RemoveCountyShare(int projectId, int countyId)
         {
             try
@@ -1022,7 +1021,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1048,7 +1047,7 @@ namespace DRCOG.Web.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult RemoveMuniShare(int projectId, int muniId)
         {
             try
@@ -1179,7 +1178,7 @@ namespace DRCOG.Web.Controllers
             return Json(viewModel);
         }
 
-        [RoleAuth]
+        //[RoleAuth]
         public ActionResult Amendments(string year, int id)
         {
             var viewModel = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
@@ -1231,7 +1230,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();
@@ -1245,7 +1244,7 @@ namespace DRCOG.Web.Controllers
 
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1260,7 +1259,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Funding Source successfully Added." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1275,7 +1274,7 @@ namespace DRCOG.Web.Controllers
             return Json(new { message = "Funding Source successfully removed." });
         }
 
-        [RoleAuth(Roles = "Administrator, RTP Administrator")]
+        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateCategory(string categoryName, string shortName, string description, string plan)
         {
             int result;

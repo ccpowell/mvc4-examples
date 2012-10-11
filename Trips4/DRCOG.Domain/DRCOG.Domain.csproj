@@ -67,25 +67,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DRCOG.Common">
-      <HintPath>..\..\lib\DRCOG.Common.dll</HintPath>
+      <HintPath>..\lib\DRCOG.Common.dll</HintPath>
     </Reference>
     <Reference Include="DRCOG.Common.Services">
-      <HintPath>..\..\lib\DRCOG.Common.Services.dll</HintPath>
+      <HintPath>..\lib\DRCOG.Common.Services.dll</HintPath>
     </Reference>
     <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport">
-      <HintPath>..\..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
+      <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
     </Reference>
-    <Reference Include="DTS.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\DTS.Extensions.dll</HintPath>
+    <Reference Include="DTS.Extensions">
+      <HintPath>..\lib\DTS.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Elmah.dll</HintPath>
+    <Reference Include="Elmah">
+      <HintPath>..\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="MvcContrib, Version=2.0.96.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\mvccontrib_v2\MvcContrib.dll</HintPath>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -116,7 +116,6 @@
   <ItemGroup>
     <Compile Include="CustomExceptions\BusinessRuleException.cs" />
     <Compile Include="CustomExceptions\UserException.cs" />
-    <Compile Include="Entity.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Extensions\jQueryDataTableParamModelExtension.cs" />
     <Compile Include="Factories\AddOnFactory.cs" />
@@ -124,7 +123,6 @@
     <Compile Include="Helpers\WildCardRegEx.cs" />
     <Compile Include="Interfaces\IFileRepositoryExtender.cs" />
     <Compile Include="Interfaces\IPerson.cs" />
-    <Compile Include="Interfaces\ISiteUserRepository.cs" />
     <Compile Include="Interfaces\ISurveyProject.cs" />
     <Compile Include="Interfaces\ISurveyRepository.cs" />
     <Compile Include="Interfaces\IUserRepositoryExtension.cs">
@@ -186,7 +184,6 @@
     <Compile Include="Models\RTP\ScopeModel.cs" />
     <Compile Include="Models\RTP\SegmentModel.cs" />
     <Compile Include="Models\RTP\FundingSourceModel.cs" />
-    <Compile Include="Models\SiteUser.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\SponsorOrganization.cs" />
@@ -239,13 +236,9 @@
     <Compile Include="Models\VersionModel.cs" />
     <Compile Include="Models\RTP\RTPSearchModel.cs" />
     <Compile Include="Security\ChangePasswordModel.cs" />
-    <Compile Include="Security\ISiteIdentity.cs" />
-    <Compile Include="Security\ISitePrincipal.cs" />
     <Compile Include="Security\LogOnModel.cs" />
     <Compile Include="Security\PasswordRecoveryModel.cs" />
     <Compile Include="Security\RegisterModel.cs" />
-    <Compile Include="Security\SiteUserIdentity.cs" />
-    <Compile Include="Security\SiteUserPrincipal.cs" />
     <Compile Include="ServiceInterfaces\ICycleService.cs" />
     <Compile Include="ServiceInterfaces\IDeleteStrategy.cs" />
     <Compile Include="ServiceInterfaces\IAmendmentStrategy.cs" />
@@ -260,9 +253,8 @@
     <Compile Include="ViewModels\RTP\AmendmentsViewModel.cs" />
     <Compile Include="ViewModels\RTP\FundingSourceListViewModel.cs" />
     <Compile Include="ViewModels\RTP\FundingSourceViewModel.cs" />
-    <Compile Include="ViewModels\RTP\ReportsViewModel.cs" />
-    <Compile Include="ViewModels\RTP\RestoreViewModel.cs" />
     <Compile Include="ViewModels\RTP\ProjectListViewModel.cs" />
+    <Compile Include="ViewModels\RTP\ReportsViewModel.cs" />
     <Compile Include="ViewModels\RTP\ProjectSearchViewModel.cs" />
     <Compile Include="ViewModels\RTP\Project\CdotDataViewModel.cs" />
     <Compile Include="ViewModels\RTP\Project\DetailViewModel.cs" />
@@ -329,6 +321,7 @@
     <Compile Include="Interfaces\ITIPRepository.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\ProjectModel_obs.cs" />
+    <Compile Include="ViewModels\TIP\ProjectListViewModel.cs" />
     <Compile Include="ViewModels\TIP\ProjectSearchViewModel.cs" />
     <Compile Include="Models\RoleDialogModel.cs" />
     <Compile Include="Models\RolesDojoDataStore.cs" />
@@ -338,7 +331,6 @@
     <Compile Include="ViewModels\TIP\TipBaseViewModel.cs" />
     <Compile Include="ViewModels\TIP\FundingSourceListViewModel.cs" />
     <Compile Include="ViewModels\TIP\PoolListViewModel.cs" />
-    <Compile Include="ViewModels\TIP\ProjectListViewModel.cs" />
     <Compile Include="Models\TipStatusModel.cs" />
     <Compile Include="ViewModels\TIP\ReportsViewModel.cs" />
     <Compile Include="ViewModels\UnauthorizedViewModel.cs" />
@@ -356,6 +348,7 @@
     <None Include="Models\DeleteStrategyDiagram.cd" />
     <None Include="Models\ModalClassDiagram.cd" />
     <None Include="Models\SummaryModel.cd" />
+    <None Include="packages.config" />
     <None Include="ServiceInterfaces\ClassDiagram_AmendmentStrategy.cd" />
   </ItemGroup>
   <ItemGroup>

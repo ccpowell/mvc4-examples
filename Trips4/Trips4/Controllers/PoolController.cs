@@ -17,14 +17,14 @@ using System.Web.Mvc.Ajax;
 using DRCOG.Domain.Models;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.Interfaces;
-using DRCOG.Web.Filters;
+//using Trips4.Filters;
 using DRCOG.Domain.ViewModels.TIP;
 using DRCOG.Common.Web.MvcSupport.Attributes;
 
-namespace DRCOG.Web.Controllers
+namespace Trips4.Controllers
 {
     [Authorize]
-    [RoleAuth]
+    //[RoleAuth]
     //[RemoteRequireHttps]
     public class PoolController : ControllerBase
     {
@@ -65,7 +65,7 @@ namespace DRCOG.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Authorize(Roles = "Administrator, TIP Administrator")]
         public ActionResult Create()
         {
             //route back to the Funding Sources list for the specified TIP

@@ -1,0 +1,495 @@
+﻿.dj_gecko body /*put a scrollbar there in gecko based browsers (it's already there in ie)  so content doesn't shift when the scrollbar does appear*/ {
+    overflow: scroll;
+}
+
+#resetPasswordDropDown_dropdown {
+}
+
+.actionButton {
+
+    font-weight: bold;    
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 5px 5px 7px 5px;
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    cursor: pointer;
+}
+
+.detailSaveButton {
+    float: right;
+    margin-top: 5px;    
+    font-weight: bold;
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    cursor: pointer;
+}
+
+.detailButton {
+    float: right;      
+    font-weight: bold;
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    cursor: pointer;
+}
+
+#detail_SaveButton2 {
+    margin-bottom: 20px;
+}
+
+
+#paneContainer {
+    margin: 5px;
+    float: left;
+    overflow: hidden;
+}
+
+#leftPane {
+    background-color: white;
+    width: 240px;
+    float: left;
+    border-right: solid 1px #CCC;
+    margin:5px 5px 5px 5px;
+    border:solid 1px #CCC;
+}
+
+#mainPane {
+    background-color: white;
+    width: 630px;  
+    float: right;
+    margin:5px 5px 5px 5px;
+    border:solid 1px #CCC;
+}
+
+.dj_ie6 #mainPane {
+    margin-right: -8px;
+    padding-right: 0px;
+}
+.dj_ie6 #project-tab-container {
+    margin-left: -20px;
+}
+
+.dj_ie6 #site-tab-container {
+    margin-left: -20px;
+}
+
+#searchPane {
+    margin: 0;
+}
+#searchPane fieldset {
+    margin: 5px;
+}
+
+.panelTitle {
+    background-color: #CCC;
+    height: 24px;
+    width: 100%;
+}
+
+.searchTitle 
+{
+    background-color:#263779;
+    color:#FFFFFF;
+    background-image: url('./images/i_search.png');   
+    background-repeat: no-repeat; /*background-position:left;*/
+    padding:0px 0px 0px 25px;    
+}
+
+.resultsTitle 
+{
+    background-color:#263779;
+    color:#FFFFFF;
+    background-image: url('./images/i_results.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    padding:0px 0px 0px 25px;
+}
+
+#searchPane input {
+    border: 1px solid #CCC;
+    width: 200px;
+}
+input#searchButton
+{
+    
+    border:1px solid #96AFCF;
+    background-color:#CFDBE9;
+    
+}
+
+input#search_Year {
+    width: 35px;
+}
+
+input#search_OrgCode {
+    width: 40px;
+}
+
+input#search_SeqNum {
+    width: 100px;
+}
+
+#searchPane #search_UtahOnly, #searchPane #search_FilterProjNum {
+    width: 20px;
+}
+
+#searchPane select {
+    width: 200px;
+}
+
+
+
+
+/* SEARCH RESULTS GRID    
+----------------------------------------------------------*/
+#pagingControls {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-bottom: solid 1px #CCCCCC;
+    padding: 2px 0 4px;
+    vertical-align: middle;
+}
+
+#searchResults {
+}
+
+#searchResultsGrid {
+}
+
+#searchResultsGrid .dojoxGridContent {
+    border-bottom: solid 1px #CCCCCC;
+}
+
+.userSearchResults, .organizationSearchResults {
+    background-image: url('images/i_user_detail.png');
+    width: 48px;
+    height: 38px;
+}
+
+.projectSearchResults {
+    background-image: url('images/project_results.png');
+    width: 34px;
+    height: 31px;
+}
+
+
+.pagingButton.active {
+    cursor: pointer;
+    color: Blue;
+    text-decoration: underline;
+}
+
+#pageStatus {
+    font-weight: bold;
+}
+
+
+/* MAIN PANE     
+----------------------------------------------------------*/
+
+
+
+#userDetailsLoading, #orgDetailsLoading, #projectDetailsLoading, #siteDetailsLoading {
+    display: block;
+    position: absolute;
+    z-index: 1001;
+    background: white url(images/ajax-loader.gif) no-repeat fixed center;
+}
+
+#detail_FullName, .detail_FullName {
+    font-weight: bold;
+    font-size: 1.5em;    
+    padding: 20px 10px 0px 50px;
+    background: transparent url('images/i_user_detail.png') no-repeat scroll left top;
+    float: left;
+}
+
+.contentBoxHeader {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 1px 0 3px 3px;
+    vertical-align: middle;
+    /*border: solid 1px Black;*/
+    background-color: #263779;
+    color: White;
+}
+
+.contentBox {
+    border: solid 1px #CCC;
+    font-size: 1em;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    width: 585px;
+    float: left;
+}
+
+#reportAdminNotesContainer {
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+}
+
+#reports_reportChildren {
+    width: 355px;
+}
+
+.reportChildGridLabel {
+    font-weight: bold;
+}
+
+#reportAdminNotesLabel {
+    /*float:left; 	clear:both; 	width: 250px;*/
+}
+
+#detail_ReportAdminNotesGrid {
+    float: left;
+    clear: both;
+}
+
+#addReportAdminNoteButton {
+    float: left;
+}
+
+.contentBoxInstructions {
+    border: solid 1px #CCC;
+    font-size: 1em;
+    padding: 5px 5px 5px 5px;
+    float: right;
+    margin: 10px 10px 10px 0px;
+    width: 185px;
+}
+
+.contentBoxContent {
+    margin: 10px 5px 10px 10px;
+    float: left;
+}
+
+.contentBoxContent input[type="text"].narrow, .contentBoxContent .dijitTextBox .narrow, .contentBoxContent select.narrow, .contentBoxContent div.narrow {
+    width: 142px;
+    margin-bottom: 5px;
+}
+
+.contentBoxContent input[type="text"], .contentBoxContent .dijitTextBox, .contentBoxContent select {
+    width: 300px; /*margin-bottom:5px; 	margin-right: 0;*/
+    margin: 0 0 5px 0;
+}
+
+.gridRowDeleteCell {
+    background-image: url('images/16-em-cross.png');
+    background-repeat:no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gridRowUpCell {
+    background-image: url('images/Up.png');
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gridRowDownCell {
+    background-image: url('images/Down.png');
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#mainPane .dojoxGrid {
+    width: 300px;
+    border: 1px solid #CCCCCC;
+    float: left;
+}
+
+.gridAddButton {
+    margin-left: 2px;
+}
+
+.headerFooter {
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 585px;
+    float: left;
+}
+
+#isActiveContainer {
+    clear: both;
+}
+
+.checkbox {
+    
+    margin-right: 10px;
+}
+
+#isActiveLabel {
+    /*float:left;*/
+}
+
+
+
+#resetPasswordLink {
+    cursor: pointer;
+    color: Blue;
+    margin-left: -7px;
+    padding-bottom: 5px;
+    float: left; /*need to float it so the margin/ padding will have an effect*/
+}
+
+#resetPasswordDropDown {
+    float: left;
+}
+
+#resetPasswordDropDown .dijitButtonNode {
+    border: none;
+    background: none;
+    padding: 0 0 0 0;
+}
+
+#resetPasswordDropDown .dijitArrowButtonInner {
+    display: none;
+}
+
+#resetPwdDlg {
+}
+
+#changePasswordLink {
+    text-decoration: none;
+    color: Blue;
+    padding: 10px 0 10px 0px;
+    float: left;
+}
+
+.projectDetail_Left {
+    float: left;
+}
+
+.projectDetail_Right {
+    margin-left: 157px;
+}
+
+.dijitTabPane {
+    overflow: hidden;
+}
+
+.requiredFieldMarker {
+    font-weight: bold;
+    color: Orange;
+    font-size: 1.2em;
+    vertical-align: text-top;
+}
+
+/*#changePasswordLink:link
+{
+	text-decoration:none;
+}
+#changePasswordLink:visited
+{
+	text-decoration:none;
+}
+#changePasswordLink:hover
+{
+	text-decoration:none;
+}
+#changePasswordLink:active
+{
+	text-decoration:none;
+}*/
+
+/* DOJO OVERRIDES   
+----------------------------------------------------------*/
+.tundra .dijitTabChecked, .tundra .dijitTabLabels-top .dijitTabChecked {
+    font-weight: bold;
+}
+
+.tundra .dojoxGridCell {
+    border: none;
+}
+
+.tundra .dojoxGridRow {
+    font-size: 1.1em;
+}
+
+.tundra .dojoxGridRowOdd {
+    background-color: #C3D9FF;
+}
+
+.tundra .dojoxGridRowSelected {
+    background-color: #60a1ea;
+    color: White;
+    font-weight: bold;
+}
+
+.tundra .dojoxGridHeader, .tundra .dojoxGridHeader .dojoxGridCell {
+    background: #263779;
+    color: White;
+}
+
+.tundra .dojoxGridHeader .dojoxGridSortNode {
+    color: White;
+}
+
+#searchResultsGrid .dojoxGridHeader /*hide the header in the search results grid*/ {
+    display: none;
+}
+
+.tundra .dojoxGridCellFocus.dojoxGridCellOver {
+    border: none;
+}
+
+.tundra .dojoxGridArrowButtonNode {
+    background: transparent url(images/spriteArrows.png) no-repeat scroll left center;
+}
+/* bb added for Sites panel */
+input#search_State {
+    width: 25px;
+}
+
+input#search_CountyCode {
+    width: 60px;
+}
+
+input#search_SmithNum {
+    width: 115px;
+}
+.siteSearchResults {
+    background-image: url('images/site_results.png');
+    width: 34px;
+    height: 31px;
+}
+
+/* Begin Site css Header/Footer classes*/
+.siteHeaderFooter {
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 585px;
+    float: left; /*font-weight: bold;     font-size: 1.1em;     padding: 1px 0 3px 3px;     vertical-align: middle;*/
+    border: solid 1px Black;
+    background-color: #404040;
+    color: White;
+}
+.siteHeaderFooterContent {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: 5px 10px 5px 10px;
+    float: left;
+}
+.siteSaveButton {
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px; /*font-weight: bold;*/ /*border-color: Orange;*/ /*background: Orange url(images/submitBtn.png) repeat-x;*/
+}
+/* End Site css Header/Footer classes*/
+
+.bold {
+    font-weight: bold;
+}
+
+

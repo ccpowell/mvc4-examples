@@ -1,5 +1,5 @@
 ﻿using System;
-using DRCOG.Common.Services.MemberShipServiceSupport;
+//using DRCOG.Common.Services.MemberShipServiceSupport;
 
 namespace DRCOG.Domain.Models
 {

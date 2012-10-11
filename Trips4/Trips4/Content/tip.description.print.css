@@ -1,0 +1,100 @@
+﻿/*-----------------------------------------
+CertPrint.css
+Structural CSS for Print version of Certification form
+-----------------------------------------*/
+body
+{
+    background-color: #ffffff;
+    text-align: left; 
+    font-size: 10pt; 
+    width: 432pt;
+}
+
+a:link
+{
+    text-decoration: none;
+}
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+ul, li { list-style: none; list-style-type: none; padding: 0px; margin: 0px; }
+
+th 
+{
+    text-align: left;
+    text-decoration: underline;
+}
+
+table { width: 100%; }
+table, td, th
+{
+    border:1px solid #fff;
+}
+table th { border: 1px solid #ffffff; }
+td, th
+{
+    font-size: 10pt; 
+}
+td { margin: 0 8px; text-align: left; }
+
+.page { border: none; }
+#banner, #panel, #tabnav, legend, #status-summary, #breadCrumbs { display: none; }
+#details > fieldset { border: none; }
+
+/*
+#printarea #scope { position: relative; width: 100%; }
+#printarea #scope.box { background-color: #cccccc; margin: 10px 0; clear: both; }
+#printarea #scope.box #scope-info { float: left; width: 300px; padding: 0px; position: static; }
+#printarea #scope.box #scope-info h3 { text-align: center; }
+#printarea #scope.box #scope-affected { position: static; bottom: 0px; left: 0px; }
+#scope-affected #scope-muni, #scope-affected #scope-county { float: left; margin: 10px; }
+#scope-affected #scope-muni ul li, #scope-affected #scope-county ul li { margin: 0px; padding: 0px; }
+#printarea #scope.box #location-image { float: right; border: 2px solid black; padding: 5px; width: 300px; }
+
+#printarea #scope > ul li, #printarea ul#status-summary li { display: inline; margin: 0 5px; padding: 0; list-style: none;}
+
+#printarea #summary-snapshot { padding: 10px 0; position: static; clear: both; display: none; }
+#printarea #summary-snapshot div { float: left; padding-right: 30px; }
+*/
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+
+.box { border: 1px solid #CCC; margin: 5px 0; padding: 3px 6px;  }
+.clear { clear: both; float: none; }
+.boldFont { font-weight:bold; }
+.floatLeft { float:left; }
+.floatRight { float:right; }
