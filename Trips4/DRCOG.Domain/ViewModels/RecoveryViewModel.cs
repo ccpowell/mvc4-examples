@@ -48,7 +48,7 @@ namespace DRCOG.Domain.ViewModels
             foreach (var frame in trace.GetFrames())
             {
                 var assembly = frame.GetMethod().DeclaringType.Assembly;
-                if (assembly.GetName().Name.Equals("DRCOG.Web"))
+                if (assembly.GetName().Name.Equals("Trips4"))
                 {
                     return assembly.GetName().Version.ToString();
                 }

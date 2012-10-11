@@ -54,7 +54,7 @@
                     <label for="ConfirmEmail">Confirm Email</label>
                 </td>
                 <td>
-                    <span class="editor-field"><%=Html.DrcogTextBox("ConfirmEmail", "", new { size = "40", @class = "required", @equalTo = "#profile_Email", @maxlength = "256" })%></span>
+                    <span class="editor-field"><%=Html.TextBox("ConfirmEmail", "", new { size = "40", @class = "required", @equalTo = "#profile_Email", @maxlength = "256" })%></span>
                 </td>
             </tr>
             <tr>

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Trips4")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard Company")]
+[assembly: AssemblyCompany("DRCOG")]
 [assembly: AssemblyProduct("Trips4")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2012")]
+[assembly: AssemblyCopyright("Copyright © DRCOG")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

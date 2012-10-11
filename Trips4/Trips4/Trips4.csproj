@@ -730,6 +730,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\images\Sorting icons.psd" />
     <None Include="Views\Survey\Partials\ManagerRibbonPartial.ascx.bak" />
     <None Include="Views\Survey\ProjectList.aspx.bak" />
