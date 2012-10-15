@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DRCOG.TIP.Services</RootNamespace>
     <AssemblyName>DRCOG.TIP.Services</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -127,14 +128,11 @@
     <Compile Include="DeleteStrategy\RTP\InprogressDelete.cs" />
     <Compile Include="DeleteStrategy\TIP\DeleteToSubmitted.cs" />
     <Compile Include="ImageServiceExtender.cs" />
-    <Compile Include="ProfileServiceExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestoreStrategy\RTP\AllRestore.cs" />
     <Compile Include="RestoreStrategy\RTP\RestoreStrategy.cs" />
     <Compile Include="RestoreStrategy\TIP\AllRestore.cs" />
     <Compile Include="RestoreStrategy\TIP\RestoreStrategy.cs" />
-    <Compile Include="UserService.cs">
-    </Compile>
     <Compile Include="XMLService.cs" />
   </ItemGroup>
   <ItemGroup>

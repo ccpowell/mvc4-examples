@@ -1,235 +1,113 @@
-﻿#region INFORMATION
-/*======================================================
- * Copyright (c) 2009-2010 DRCOG (www.drcog.org)
- * 
- * DATE		    AUTHOR			        REMARKS
- * 08/04/2009	Nick Kirkes             1. Initial Creation (DTS). 
- * 01/25/2010	Danny Davidson	2. Reformatted.
- * 
- * DESCRIPTION:
- * 
- * ======================================================*/
-#endregion
-
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System;
 using DRCOG.Domain.Interfaces;
-using DRCOG.Domain.Models;
+using System.Web.Security;
+using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+using System.Web.Profile;
+using DRCOG.Common.Services.MemberShipServiceSupport;
 
 namespace DRCOG.Data
 {
     /// <summary>
     /// Account Repository
     /// </summary>
+    /// <remarks>Assumes unique UserName and unique Email.</remarks>
     public class AccountRepository : BaseRepository, IAccountRepository
     {
 
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-       
-        ///// <summary>
-        ///// Retreives an account by the ID
-        ///// </summary>
-        ///// <param name="accountId"></param>
-        ///// <returns></returns>
-        //public Account GetAccountById(int accountId)
-        //{
-        //    SqlCommand cmd = new SqlCommand("[dbo].[GetPersonById]");
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.Parameters.Add(new SqlParameter("@PERSONID", SqlDbType.Int));
-        //    cmd.Parameters[0].Value = accountId;         
+        public System.Web.Security.MembershipCreateStatus CreateUserWithProfile(Common.Services.MemberShipServiceSupport.Profile profile, bool p)
+        {
+            try
+            {
+                // TODO: use TransactionScope
+                var user = Membership.CreateUser(profile.UserName, profile.Password, profile.RecoveryEmail);
+                user.IsApproved = p;
+                Membership.UpdateUser(user);
 
-        //    using (IDataReader rdr = this.ExecuteReader(cmd))
-        //    {
-        //        //be sure we got a reader                
-        //        if (rdr.Read())
-        //        {
-        //            Account account = new Account();
-        //            account.AccountId = (int)rdr["PersonId"];
-        //            account.FirstName = rdr["FirstName"].ToString();
-        //            account.LastName = rdr["LastName"].ToString();
-        //            account.Login = rdr["Address"].ToString();
-        //            account.PasswordHash = rdr["Password"].ToString();
-        //            account.Roles = this.GetRolesForAccount(accountId);
-        //            return account;
-        //        }
-        //        else
-        //        {
-        //            //No rows returned, auth failed
-        //            return null;
-        //        }
-        //    }
-        //}
+                // TODO: profile properties
+                // copy from ProfileService in Common
+                var mp = (MemberProfile)ProfileBase.Create(user.UserName, user.IsApproved);
+                mp.HomeAddress = profile.Address;
+                mp.Save();
+            }
+            catch (MembershipCreateUserException cex)
+            {
+                Logger.ErrorException("failed to create user", cex);
+                return cex.StatusCode;
+            }
+            return MembershipCreateStatus.Success;
+        }
 
-        ///// <summary>
-        ///// Authorize a user
-        ///// </summary>
-        ///// <param name="username"></param>
-        ///// <param name="password"></param>
-        ///// <returns></returns>
-        //public Account AuthorizeUser(string username, string password)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand("[dbo].[AuthenticateLogin]"))
-        //    {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.Add(new SqlParameter("@LOGIN", SqlDbType.NVarChar));
-        //        cmd.Parameters[0].Value = username;
-        //        cmd.Parameters.Add(new SqlParameter("@HASHEDPWD", SqlDbType.NVarChar));
-        //        cmd.Parameters[1].Value = password;
-        //        using (IDataReader rdr = this.ExecuteReader(cmd))
-        //        {
-        //            //be sure we got a reader                
-        //            if (rdr.Read())
-        //            {
-        //                Account account = new Account();
-        //                account.AccountId = (int)rdr["PersonId"];
-        //                account.FirstName = rdr["FirstName"].ToString();
-        //                account.LastName = rdr["LastName"].ToString();
-        //                account.OrganizationName = rdr["OrganizationName"].ToString();
-        //                account.Login = username;
-        //                account.PasswordHash = password;
-        //                account.Roles = this.GetRolesForAccount(account.AccountId);
-        //                return account;
-        //            }
-        //            else
-        //                //No rows returned, auth failed
-        //                return null;
-        //        }
-        //    }
-        //}
+        public void AddUserToRole(string userName, string role)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Common.Services.MemberShipServiceSupport.Profile GetUserByName(string userName, bool loadRoles)
+        {
+            throw new NotImplementedException();
+        }
 
-        ///// <summary>
-        ///// Get a list of Roles for an account
-        ///// </summary>
-        ///// <param name="accountId"></param>
-        ///// <returns></returns>
-        //public IList<Role> GetRolesForAccount(int accountId)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand("[dbo].[GetRolesForAccount]"))
-        //    {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.Add(new SqlParameter("@PERSONID", SqlDbType.Int));
-        //        cmd.Parameters[0].Value = accountId;
-        //        IList<Role> roles = new List<Role>();
-        //        using (IDataReader rdr = this.ExecuteReader(cmd))
-        //        {
-        //            //be sure we got a reader                
-        //            if (rdr.Read())
-        //            {
-        //                Role r = new Role();
-        //                r.Name = rdr["Role"].ToString();
-        //                r.RoleId = (int)rdr["RoleId"];
-        //                roles.Add(r);
-        //            }
-        //        }
-        //        return roles;
-        //    }
-        //}
+        public Common.Services.MemberShipServiceSupport.Profile GetUserByID(Guid guid, bool loadRoles)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Common.Services.MemberShipServiceSupport.Profile GetUserByEmail(string emailAddress, bool loadRoles)
+        {
+            var found = Membership.FindUsersByEmail(emailAddress);
+            if (found.Count == 0)
+            {
+                throw new Exception("Email not found.");
+            }
+            if (found.Count > 1)
+            {
+                Logger.Error("Multiple users found with email address {0}", emailAddress);
+                throw new Exception("Multiple users found with email address " + emailAddress);
+            }
+        }
+        public void UpdateUserApproval(Guid userId, bool isApproved)
+        {
+            var found = Membership.GetUser(userId);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            if (found.IsApproved != isApproved)
+            {
+                found.IsApproved = isApproved;
+                Membership.UpdateUser(found);
+            }
+        }
 
-        ///// <summary>
-        ///// Change the password for an account. Assumes the password is already hashed
-        ///// </summary>
-        ///// <param name="accountId"></param>
-        ///// <param name="newPassword"></param>
-        //public void ChangePassword(int accountId, string newPassword)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand("[TIP].[ChangePassword]"))
-        //    {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.Add(new SqlParameter("@PERSONID", SqlDbType.Int));
-        //        cmd.Parameters[0].Value = accountId;
-        //        cmd.Parameters.Add(new SqlParameter("@HASHEDPWD", SqlDbType.NVarChar));
-        //        cmd.Parameters[1].Value = newPassword;
-        //        this.ExecuteNonQuery(cmd);
-        //    }
-        //}
+        public void ChangePassword(Guid id, string oldPassword, string newPassword)
+        {
+            var found = Membership.GetUser(id);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            var result = found.ChangePassword(oldPassword, newPassword);
+            if (!result)
+            {
+                throw new Exception("Failed to change password.");
+            }
+        }
 
-        /////// <summary>
-        /////// Update an existing account. We only handle very simple stuff
-        /////// at this point. Will need to be extended on further contracts
-        /////// </summary>
-        /////// <param name="account"></param>
-        ////public void UpdateAccount(Account account)
-        ////{
+        public string ResetPassword(Guid id)
+        {
+            var found = Membership.GetUser(id);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            return found.ResetPassword();
+        }
 
-        ////    SqlCommand cmd = new SqlCommand("[TIP].[ChangePassword]");
-            
-        ////    cmd.CommandType = CommandType.StoredProcedure;
-            
-        ////    cmd.Parameters.Add(new SqlParameter("@PERSONID", SqlDbType.Int));
-        ////    cmd.Parameters[0].Value = account.AccountId;
-        ////    cmd.Parameters.Add(new SqlParameter("@PASSWORD", SqlDbType.NVarChar));
-        ////    cmd.Parameters[1].Value = account.PasswordHash;
-        ////    cmd.Parameters.Add(new SqlParameter("@FIRSTNAME", SqlDbType.NVarChar));
-        ////    cmd.Parameters[2].Value = account.FirstName;
-        ////    cmd.Parameters.Add(new SqlParameter("@LASTNAME", SqlDbType.NVarChar));
-        ////    cmd.Parameters[3].Value = account.LastName;
-
-        ////    //Do the update
-        ////    this.ExecuteNonQuery(cmd);
-
-        ////    //For TIP Internal, the roles are not editable
-
-        ////}
-
-        ////A bunch of Account stuff was stubbed out during TIP Internal - they are left as notimplemented
-
-        //public string ResetPassword(int accountId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IList<Role> GetRoles()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Account GetUserById(int userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Role GetRoleById(int roleId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Account GetUser(string username, string password)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IList<Account> SearchForAccounts(string search_type, string search_FirstName, string search_LastName, string search_email)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Account GetAccountBy(string email)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand("[dbo].[GetAccountByEmail]") { CommandType = CommandType.StoredProcedure })
-        //    {
-        //        cmd.Parameters.Add(new SqlParameter("@LOGIN", SqlDbType.NVarChar));
-        //        cmd.Parameters["@LOGIN"].Value = email;
-        //        using (IDataReader rdr = ExecuteReader(cmd))
-        //        {
-        //            //be sure we got a reader                
-        //            if (rdr.Read())
-        //            {
-        //                Account account = new Account();
-        //                account.AccountId = (int)rdr["PersonId"];
-        //                account.FirstName = rdr["FirstName"].ToString();
-        //                account.LastName = rdr["LastName"].ToString();
-        //                account.OrganizationName = rdr["OrganizationName"].ToString();
-        //                return account;
-        //            }
-        //            else
-        //                //No rows returned, couldn't find account
-        //                return null;
-        //        }
-        //    }
-        //}
+        public bool ValidateUser(string userName, string password)
+        {
+            return Membership.ValidateUser(userName, password);
+        }
     }
 }

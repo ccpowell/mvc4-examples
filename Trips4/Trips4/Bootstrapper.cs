@@ -40,6 +40,8 @@ namespace Trips4
             container.RegisterType<ISurveyRepository, SurveyRepository>();
             container.RegisterType<IFileRepositoryExtender, FileRepository>();
             container.RegisterType<IUserRepositoryExtension, UserRepository>();
+            container.RegisterType<DRCOG.Common.Service.MemberShipServiceSupport.Interfaces.IProfileService,
+                DRCOG.Common.Services.MemberShipServiceSupport.ProfileService>();
 
             return container;
         }

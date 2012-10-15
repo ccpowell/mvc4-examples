@@ -57,7 +57,6 @@ namespace Trips4.Controllers
         /// authentication logic. Allows for testing.
         /// </summary>
         public IAccountRepository AccountRepository { get; set; }
-        //public IMembershipService MembershipService { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref=this.ControllerName/> class.
@@ -102,13 +101,7 @@ namespace Trips4.Controllers
             }
 
         }
-
-        private bool ValidateUser()
-        {
-            Logger.Error("Validation not implemented!!!");
-            return true;
-        }
-
+        
         /// <summary>
         /// Attempts to log the user into the system. If successful, user object stored in session.
         /// </summary>
@@ -132,7 +125,7 @@ namespace Trips4.Controllers
 
                     ValidateUserResultType result = ValidateUserResultType.Membership;
                     // First try to authenicate through service
-                    if (ValidateUser())
+                    if (AccountRepository.ValidateUser(model.UserName, model.Password))
                     {
                         return base.SetAuthCookie(model, result, returnUrl);
                     }

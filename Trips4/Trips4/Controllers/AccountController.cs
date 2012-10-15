@@ -36,31 +36,22 @@ namespace Trips4.Controllers
     //[RemoteRequireHttps]
     public class AccountController : ControllerBase
     {
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private IAccountRepository _accountRepository;
         private IEmailService _emailService;
-        private IUserService _userService;
-
-        /// <summary>
-        /// IFormsAuthentication instance that abstracts the actual
-        /// authentication logic. Allows for testing.
-        /// </summary>
-        //private IFormsAuthentication _formsAuthentication;
-        public IFormsAuthenticationService FormsService { get; set; }
-
-        public IMembershipService MembershipService { get; set; }
+        private IUserRepositoryExtension _userService;
 
         /// <summary>
         /// Inject the account repository
         /// </summary>
         /// <param name="accountRepository"></param>
         public AccountController(IAccountRepository accountRepository, IEmailService emailService, IUserRepositoryExtension userRepository)
-            : base("AccountController", userRepository)      
+            : base("AccountController", userRepository)
         {
             _accountRepository = accountRepository;
             _emailService = emailService;
-            _userService = new UserService(userRepository);
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+            _userService = userRepository;
         }
 
         [HttpPost]
@@ -79,25 +70,15 @@ namespace Trips4.Controllers
             string message = String.Empty;
             try
             {
-                // Test user auto delete
-                if (profile.RecoveryEmail == "dtucker1.trips@drcog.dev")
-                {
-                    var user = SSOFederationHelper.FederationObject.GetUserByEmail(profile.RecoveryEmail, false);
-                    if (user.UserName != null)
-                    {
-                        SSOFederationHelper.FederationObject.DeleteUser(user.UserName);
-                    }
-                }
-
                 profile.BusinessEmail = profile.RecoveryEmail;
-                
-                // Attempt to register the user
-                var createStatus = SSOFederationHelper.FederationObject.CreateUserWithProfile(profile, true);
 
-                if (createStatus.StatusEnum == MembershipCreateStatus.Success)
+                // Attempt to register the user
+                var createStatus = _accountRepository.CreateUserWithProfile(profile, true);
+
+                if (createStatus == MembershipCreateStatus.Success)
                 {
-                    SSOFederationHelper.FederationObject.AddUserToRole(profile.UserName, "Viewer", RoleProviderType.TRIPS);
-                    person.profile = SSOFederationHelper.FederationObject.GetUserByName(profile.UserName, true);
+                    _accountRepository.AddUserToRole(profile.UserName, "Viewer");
+                    person.profile = _accountRepository.GetUserByName(profile.UserName, true);
 
                     SendVerificationMail(person.profile);
                     result = true;
@@ -108,7 +89,7 @@ namespace Trips4.Controllers
                     {
                         data = result
                         ,
-                        message = AccountValidation.ErrorCodeToString(createStatus.StatusEnum)
+                        message = AccountValidation.ErrorCodeToString(createStatus)
                         ,
                         error = "true"
                     });
@@ -182,19 +163,19 @@ namespace Trips4.Controllers
                 appSession = (ApplicationState)this.GetNewSession();
             }
 
-            var user = SSOFederationHelper.FederationObject.GetUserByID(ShortGuid.Decode(id), false);
+            var user = _accountRepository.GetUserByID(ShortGuid.Decode(id), false);
 
             //Guid guid = new Guid(id);
             //MembershipUser user = Membership.GetUser(guid);
             if (user != null && user.IsApproved == false)
             {
-                SSOFederationHelper.FederationObject.UpdateUserApproval(user.PersonGUID, true);
-                
+                _accountRepository.UpdateUserApproval(user.PersonGUID, true);
+
                 Person person = new Person() { profile = user };
                 appSession.CurrentUser = person;
                 Session["isValidated"] = true;
                 TempData["Message"] = "Thank you for verifying your Account";
-                
+
                 return base.SetAuthCookie(new LogOnModel() { UserName = user.UserName }, ValidateUserResultType.Membership, String.Empty);
                 //return RedirectToAction("Index", "Home");
             }
@@ -209,7 +190,7 @@ namespace Trips4.Controllers
         //[Authorize]
         public ActionResult ChangePassword(string id)
         {
-            var user = SSOFederationHelper.FederationObject.GetUserByID(ShortGuid.Decode(id), false);
+            var user = _accountRepository.GetUserByID(ShortGuid.Decode(id), false);
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(new ChangePasswordModel() { UserName = user.UserName });
         }
@@ -220,23 +201,18 @@ namespace Trips4.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (SSOFederationHelper.FederationObject.ChangePassword(model.UserName, model.OldPassword, model.NewPassword))
+                try
                 {
-                    if (!(SSOFederationHelper.FederationObject.ValidateUser(model.UserName, model.NewPassword)).Equals(ValidateUserResultType.Error))
+
+                    var user = _accountRepository.GetUserByName(model.UserName, false);
+                    _accountRepository.ChangePassword(user.PersonGUID, model.OldPassword, model.NewPassword);
+
+                    // check results
+                    if (_accountRepository.ValidateUser(model.UserName, model.NewPassword))
                     {
                         this.LoadSession();
                         //FormsService.SignIn(model.UserName, false);
                         this.SetAuthCookie(new LogOnModel() { UserName = model.UserName });
-
-                        //ApplicationState appSession = this.GetSession();
-                        //State appState = null;
-                        //if (appSession == null)
-                        //{   // this can happen if a user lets the session time out on the login page...
-                        //    appSession = (ApplicationState)this.GetNewSession();
-                        //    appState = (DefaultApplicationState)appSession.State;
-                        //}
-
-                        var user = SSOFederationHelper.FederationObject.GetUserByName(model.UserName, false);
                         Person person = new Person() { profile = user };
                         CurrentSessionApplicationState.CurrentUser = person;
                         this.SaveSession(CurrentSessionApplicationState);
@@ -246,13 +222,16 @@ namespace Trips4.Controllers
                     }
                     return RedirectToAction("Index", "Login");
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    Logger.ErrorException("Failed to change password. ", ex);
+                    ModelState.AddModelError("", "An error occurred while changing your password. " + ex.Message);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
+            else
+            {
+                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+            }
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
         }
@@ -278,7 +257,7 @@ namespace Trips4.Controllers
             if (ModelState.IsValid)
             {
                 //MembershipUser user = Membership.GetUser(model.UserName);
-                var user = SSOFederationHelper.FederationObject.GetUserByEmail(model.UserName, false);
+                var user = _accountRepository.GetUserByEmail(model.UserName, false);
                 if (user != null && !user.IsApproved)
                 {
                     SendVerificationMail(user);
@@ -308,7 +287,7 @@ namespace Trips4.Controllers
             {
                 try
                 {
-                    var user = SSOFederationHelper.FederationObject.GetUserByEmail(model.Email, false);
+                    var user = _accountRepository.GetUserByEmail(model.Email, false);
 
                     if (user == null)
                     {
@@ -326,42 +305,28 @@ namespace Trips4.Controllers
                     string recoverypage = config.PasswordRecoveryPage;
                     string changepasswordpage = config.ChangePasswordBaseUrl;
 
-                    PasswordResetResult result;
-
-                    if ((result = SSOFederationHelper.FederationObject.ResetPassword(model.Email)).PasswordResetResultType.Equals(PasswordResetResultType.Successful))
+                    string newPassword = _accountRepository.ResetPassword(user.PersonGUID);
+                    IEmailService mail = new EmailService()
                     {
+                        Body = "<h1>Password Recovery was Requested!</h1>" +
+                            "Your new password is now set to:<br/><br/><b>" + newPassword + "</b><br/><br />" +
+                            "-------------------------------------------------------------------<br/>" +
+                            "<u><b>What do I do now?</b></u><br/>" +
+                            "1. Copy the above password<br/>" +
+                            "2. Login with the password OR Follow this link to change your password: " +
+                            "<a href=\"" + changepasswordpage + user.PersonShortGuid + "\">Change your Password</a>",
+                        Subject = "DRCOG (T.R.I.P.S.) - Password Recovery email",
+                        To = model.Email
+                    };
 
-                        IEmailService mail = new EmailService()
-                        {
-                            Body = "<h1>Password Recovery was Requested!</h1>" +
-                                "Your new password is now set to:<br/><br/><b>" + result.Password + "</b><br/><br />" +
-                                "-------------------------------------------------------------------<br/>" +
-                                "<u><b>What do I do now?</b></u><br/>" +
-                                "1. Copy the above password<br/>" +
-                                "2. Login with the password OR Follow this link to change your password: " +
-                                "<a href=\"" + changepasswordpage + user.PersonShortGuid + "\">Change your Password</a>",
-                            Subject = "DRCOG (T.R.I.P.S.) - Password Recovery email",
-                            To = model.Email
-                        };
-
-                        mail.Send("no.reply@drcog.org", "DRCOG (TRIPS) Password Recovery Service");
-                        return Json(new
-                        {
-                            data = result
-                            ,
-                            message = "Please check your email and click on the link to reset your password."
-                            ,
-                            error = "false"
-                        });
-                    }
-
+                    mail.Send("no.reply@drcog.org", "DRCOG (TRIPS) Password Recovery Service");
                     return Json(new
                     {
-                        message = "There was an error resetting your password."
+                        data = "Password Changed"
                         ,
-                        error = "true"
+                        message = "Please check your email and click on the link to reset your password."
                         ,
-                        exceptionMessage = "Ensure that you have entered your recovery email account properly."
+                        error = "false"
                     });
 
                 }
@@ -421,7 +386,7 @@ namespace Trips4.Controllers
         //            if (MembershipService.ValidateUser(model.Email, model.Password))
         //            {
         //                FormsService.SignIn(model.Email, false);
-                        
+
         //                ApplicationState appSession = this.GetSession();
         //                State appState = null;
         //                if (appSession == null)
@@ -473,13 +438,13 @@ namespace Trips4.Controllers
             //}
             //else
             //{
-                //return the SearchView
-                var viewModel = new AccountViewModel(new AccountDetailModel(), new AccountSearchModel());
-                //viewModel.CurrentUser = appSession.CurrentUser;
-                //Since we do not have any search criteria, or a current user, we do not need to 
-                //setup anything on the submodels
-                //**Need to specify the view name if we want to validate the view by name in tests
-                return View("search", viewModel);
+            //return the SearchView
+            var viewModel = new AccountViewModel(new AccountDetailModel(), new AccountSearchModel());
+            //viewModel.CurrentUser = appSession.CurrentUser;
+            //Since we do not have any search criteria, or a current user, we do not need to 
+            //setup anything on the submodels
+            //**Need to specify the view name if we want to validate the view by name in tests
+            return View("search", viewModel);
             //}
         }
 
@@ -584,7 +549,7 @@ namespace Trips4.Controllers
         //        //{
         //        //    //CurrentUser = appSession.CurrentUser
         //        //};
-            
+
         //    return this.GetView(format, "AccountDetailPartial", "~/Views/Account/Partials/AccountDetailPartial.ascx", viewModel);
         //}
 
@@ -600,7 +565,7 @@ namespace Trips4.Controllers
             //Get the current user's ID
             var viewModel = new ProfileViewModel
             {
-                Profile = new ProfileModel()                
+                Profile = new ProfileModel()
             };
             viewModel.Profile.CurrentUser = CurrentSessionApplicationState.CurrentUser;
 
@@ -809,7 +774,7 @@ namespace Trips4.Controllers
         //            newPassword,
         //            url,
         //            account.AccountId);
-                
+
         //        _emailService.SendEmail(config.SMTPServer,
         //                                config.SMTPPort ?? 25,
         //                                config.SMTPUseSSL.Value,
@@ -829,7 +794,7 @@ namespace Trips4.Controllers
         //        ModelState.AddModelError("email", new Exception("User could not be found."));
         //        return View();
         //    }
-            
+
 
         //}
     }

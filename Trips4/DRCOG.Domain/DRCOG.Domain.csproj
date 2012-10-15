@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DRCOG.Domain</RootNamespace>
     <AssemblyName>DRCOG.Domain</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +100,7 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
     </Reference>
     <Reference Include="System.Xml.Linq">
@@ -119,7 +121,6 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Extensions\jQueryDataTableParamModelExtension.cs" />
     <Compile Include="Factories\AddOnFactory.cs" />
-    <Compile Include="Helpers\ApiFederationHelper.cs" />
     <Compile Include="Helpers\WildCardRegEx.cs" />
     <Compile Include="Interfaces\IFileRepositoryExtender.cs" />
     <Compile Include="Interfaces\IPerson.cs" />
@@ -244,7 +245,6 @@
     <Compile Include="ServiceInterfaces\IAmendmentStrategy.cs" />
     <Compile Include="ServiceInterfaces\IDomainSearchService.cs" />
     <Compile Include="ServiceInterfaces\IRestoreStrategy.cs" />
-    <Compile Include="ServiceInterfaces\IUserService.cs" />
     <Compile Include="TIPSearchModel.cs" />
     <Compile Include="Utility\RetryUtility.cs" />
     <Compile Include="ViewModels\AmendmentListViewModel.cs" />

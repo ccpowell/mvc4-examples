@@ -77,18 +77,12 @@ namespace Trips4.Controllers
             if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
         }
 
-        private IUserService _userService;
-        public IUserService UserService
+        public IUserRepositoryExtension UserService
         {
             get
             {
-                if (_userService == null)
-                {
-                    return new UserService(_userRepository);
-                }
-                return _userService;
+                return _userRepository;
             }
-            protected set { _userService = value; }
         }
 
         protected ApplicationState CurrentSessionApplicationState

@@ -20,6 +20,9 @@ namespace DRCOG.Data
 {
     public class UserRepository : BaseRepository, IUserRepositoryExtension
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         //protected readonly Profile Profile;
 
         public UserRepository()
@@ -82,7 +85,7 @@ namespace DRCOG.Data
             return false;
         }
 
-        
+
 
         public List<int> SponsoredProjectVersionIds(int personId)
         {
@@ -91,7 +94,7 @@ namespace DRCOG.Data
             SqlCommand cmd = new SqlCommand("[Survey].[GetPersonsProjectVersionIds]");
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@PersonId", personId);
-            
+
             using (IDataReader rdr = this.ExecuteReader(cmd))
             {
                 //be sure we got a reader                
@@ -103,7 +106,7 @@ namespace DRCOG.Data
 
             return list;
         }
-        
+
 
         public void CreatePerson(ref Profile profile)
         {
@@ -131,23 +134,27 @@ namespace DRCOG.Data
                     try
                     {
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected < 1) { profile.Success = false; throw new Exception("Save to Person table was not successful"); }
+                        if (rowsAffected < 1)
+                        {
+                            profile.Success = false;
+                            throw new Exception("Save to Person table was not successful");
+                        }
                         profile.Success = true;
                         profile.PersonID = (int)cmd.Parameters["@PersonID"].Value;
                     }
                     catch (Exception exc)
                     {
-
+                        Logger.WarnException("Failed to CreatePerson", exc);
                     }
+
+                    // TODO: connect sponsor
                 }
             }
         }
 
         public void ReplaceSponsor(Guid newSponsor, int currentSponsorId)
         {
-
-
-            throw new UserException("Current Sponsor was not updated");
+            throw new NotImplementedException();
         }
 
         public void LinkUserWithSponsor(Profile profile)
@@ -156,7 +163,7 @@ namespace DRCOG.Data
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@PersonGUID", profile.PersonGUID);
             cmd.Parameters.AddWithValue("@SponsorKey", profile.SponsorCode);
-            
+
 
             SqlParameter param = new SqlParameter("@PersonID", SqlDbType.Int);
             param.Direction = ParameterDirection.Output;
@@ -171,7 +178,7 @@ namespace DRCOG.Data
             }
             catch (Exception exc)
             {
-                throw new UserException("Sponsor code is invalid or already used");
+                Logger.WarnException("Failed to LinkUserWithSponsor", exc);
             }
         }
 
@@ -195,7 +202,7 @@ namespace DRCOG.Data
             }
             catch (Exception exc)
             {
-                //Do nothing. Will return false.
+                Logger.WarnException("Failed to GetUserApproval", exc);
             }
 
             return retval;
@@ -241,7 +248,7 @@ namespace DRCOG.Data
             }
             catch (Exception exc)
             {
-                
+                Logger.WarnException("Failed to GetProfilePropertyValues", exc);
             }
             return list;
         }
@@ -281,37 +288,19 @@ namespace DRCOG.Data
             throw new NotImplementedException();
         }
 
-        [Obsolete("RefreshUserCache() is depreciated, Use RefreshUserCache(string userName) in its place", true)]
+
         public void RefreshUserCache()
         {
-            SqlCommand cmd = new SqlCommand("dbo.ContactList_RebuildUserCache");
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            this.ExecuteNonQuery(cmd);
+            Logger.Info("RefreshUserCache ignored");
         }
-
         public void RefreshUserCache(string userName)
         {
-            Dictionary<String, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@UserName", userName);
-
-            SqlCommand cmd = new SqlCommand("dbo.ContactList_RebuildUserCache");
-            cmd.CommandType = CommandType.StoredProcedure;
-            AddParameters(cmd, parameters);
-
-            this.ExecuteNonQuery(cmd);
+            Logger.Info("RefreshUserCache ignored");
         }
 
         public void RefreshUserCache(string userName, bool delete)
         {
-            Dictionary<String, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@UserName", userName);
-
-            SqlCommand cmd = new SqlCommand("dbo.ContactList_RebuildUserCache");
-            cmd.CommandType = CommandType.StoredProcedure;
-            AddParameters(cmd, parameters);
-
-            this.ExecuteNonQuery(cmd);
+            Logger.Info("RefreshUserCache ignored");
         }
 
 
@@ -359,6 +348,6 @@ namespace DRCOG.Data
         }
 
 
-        
+
     }
 }
