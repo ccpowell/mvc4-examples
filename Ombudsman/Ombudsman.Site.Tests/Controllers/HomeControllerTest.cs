@@ -12,6 +12,9 @@ namespace Ombudsman.Site.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        // TODO: Stupid MSTest shouldn't need this but it won't copy the file without it.
+        // CCP 10/18/2012
+        [DeploymentItem(@"System.Web.Providers.dll")]
         [TestMethod]
         public void Index()
         {
