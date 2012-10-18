@@ -33,90 +33,16 @@ namespace Trips4.Controllers
     /// Actual login validation is handled in the <see cref="LoginController"/>
     /// </summary>
     [HandleError]
-    //[RemoteRequireHttps]
     public class AccountController : ControllerBase
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private IAccountRepository _accountRepository;
         private IEmailService _emailService;
-        private IUserRepositoryExtension _userService;
 
-        /// <summary>
-        /// Inject the account repository
-        /// </summary>
-        /// <param name="accountRepository"></param>
-        public AccountController(IAccountRepository accountRepository, IEmailService emailService, IUserRepositoryExtension userRepository)
+        public AccountController(IEmailService emailService, IUserRepositoryExtension userRepository)
             : base("AccountController", userRepository)
         {
-            _accountRepository = accountRepository;
             _emailService = emailService;
-            _userService = userRepository;
-        }
-
-        [HttpPost]
-        public JsonResult Register(Profile profile)
-        {
-            Person person = new Person();
-            person.profile = profile;
-
-            ApplicationState appSession = this.GetSession();
-            if (appSession == null)
-            {   // this can happen if a user lets the session time out on the login page...
-                appSession = GetNewSession();
-            }
-
-            bool result = false;
-            string message = String.Empty;
-            try
-            {
-                profile.BusinessEmail = profile.RecoveryEmail;
-
-                // Attempt to register the user
-                var createStatus = _accountRepository.CreateUserWithProfile(profile, true);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    _accountRepository.AddUserToRole(profile.UserName, "Viewer");
-                    person.profile = _accountRepository.GetUserByName(profile.UserName, true);
-
-                    SendVerificationMail(person.profile);
-                    result = true;
-                }
-                else
-                {
-                    return Json(new
-                    {
-                        data = result
-                        ,
-                        message = AccountValidation.ErrorCodeToString(createStatus)
-                        ,
-                        error = "true"
-                    });
-                }
-
-                // If we got this far, something failed, redisplay form
-                ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    message = "Changes could not be stored. An error has been logged."
-                    ,
-                    error = "true"
-                    ,
-                    exceptionMessage = ex.Message
-                });
-            }
-            return Json(new
-            {
-                data = result
-                ,
-                message = "Account successfully created."
-                ,
-                error = "false"
-            });
         }
 
         private void SendVerificationMail(Profile profile)
@@ -163,39 +89,37 @@ namespace Trips4.Controllers
                 appSession = (ApplicationState)this.GetNewSession();
             }
 
-            var user = _accountRepository.GetUserByID(ShortGuid.Decode(id), false);
-
-            //Guid guid = new Guid(id);
-            //MembershipUser user = Membership.GetUser(guid);
-            if (user != null && user.IsApproved == false)
+            var user = _userRepository.GetUserByID(ShortGuid.Decode(id), false);
+            if (user == null)
             {
-                _accountRepository.UpdateUserApproval(user.PersonGUID, true);
-
-                Person person = new Person() { profile = user };
-                appSession.CurrentUser = person;
+            }
+            else if (user.IsApproved)
+            {
+                TempData["Message"] = "Thank you, Your account has already been verified.";
+            }
+            else 
+            {
+                _userRepository.UpdateUserApproval(user.profile.PersonGUID, true);
+                appSession.CurrentUser = user;
                 Session["isValidated"] = true;
                 TempData["Message"] = "Thank you for verifying your Account";
 
-                return base.SetAuthCookie(new LogOnModel() { UserName = user.UserName }, ValidateUserResultType.Membership, String.Empty);
+                return base.SetAuthCookie(new LogOnModel() { UserName = user.profile.UserName }, ValidateUserResultType.Membership, String.Empty);
                 //return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                TempData["Message"] = "Thank you, Your account has already been verified.";
             }
 
             return RedirectToAction("Index", "Login");
         }
 
-        //[Authorize]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult ChangePassword(string id)
         {
-            var user = _accountRepository.GetUserByID(ShortGuid.Decode(id), false);
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View(new ChangePasswordModel() { UserName = user.UserName });
+            var user = _userRepository.GetUserByID(ShortGuid.Decode(id), false);
+            ViewData["PasswordLength"] = Membership.MinRequiredPasswordLength;
+            return View(new ChangePasswordModel() { UserName = user.profile.UserName });
         }
 
-        //[Authorize]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
@@ -203,18 +127,16 @@ namespace Trips4.Controllers
             {
                 try
                 {
-
-                    var user = _accountRepository.GetUserByName(model.UserName, false);
-                    _accountRepository.ChangePassword(user.PersonGUID, model.OldPassword, model.NewPassword);
+                    var user = _userRepository.GetUserByName(model.UserName, false);
+                    _userRepository.ChangePassword(user.profile.PersonGUID, model.OldPassword, model.NewPassword);
 
                     // check results
-                    if (_accountRepository.ValidateUser(model.UserName, model.NewPassword))
+                    if (_userRepository.ValidateUser(model.UserName, model.NewPassword))
                     {
                         this.LoadSession();
                         //FormsService.SignIn(model.UserName, false);
                         this.SetAuthCookie(new LogOnModel() { UserName = model.UserName });
-                        Person person = new Person() { profile = user };
-                        CurrentSessionApplicationState.CurrentUser = person;
+                        CurrentSessionApplicationState.CurrentUser = user;
                         this.SaveSession(CurrentSessionApplicationState);
 
                         TempData["Message"] = "Thank you. Your password has been successfully changed";
@@ -232,7 +154,7 @@ namespace Trips4.Controllers
             {
                 ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
             }
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = Membership.MinRequiredPasswordLength;
             return View(model);
         }
 
@@ -244,12 +166,12 @@ namespace Trips4.Controllers
         {
             return View();
         }
+#if mailing
 
         public ActionResult ResendVerificationMail()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult ResendVerificationMail(LogOnModel model)
         {
@@ -257,7 +179,7 @@ namespace Trips4.Controllers
             if (ModelState.IsValid)
             {
                 //MembershipUser user = Membership.GetUser(model.UserName);
-                var user = _accountRepository.GetUserByEmail(model.UserName, false);
+                var user = _userRepository.GetUserByEmail(model.UserName, false);
                 if (user != null && !user.IsApproved)
                 {
                     SendVerificationMail(user);
@@ -287,7 +209,7 @@ namespace Trips4.Controllers
             {
                 try
                 {
-                    var user = _accountRepository.GetUserByEmail(model.Email, false);
+                    var user = _userRepository.GetUserByEmail(model.Email, false);
 
                     if (user == null)
                     {
@@ -305,7 +227,7 @@ namespace Trips4.Controllers
                     string recoverypage = config.PasswordRecoveryPage;
                     string changepasswordpage = config.ChangePasswordBaseUrl;
 
-                    string newPassword = _accountRepository.ResetPassword(user.PersonGUID);
+                    string newPassword = _userRepository.ResetPassword(user.PersonGUID);
                     IEmailService mail = new EmailService()
                     {
                         Body = "<h1>Password Recovery was Requested!</h1>" +
@@ -413,6 +335,7 @@ namespace Trips4.Controllers
         //        return View(model);
         //    }
         //}
+#endif
 
         //Functions:
         //Search for Logins/Contacts
@@ -424,8 +347,8 @@ namespace Trips4.Controllers
         /// Get the search view
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth(Roles="Administrator")]
-        [Authorize]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles="Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpGet]
         public ActionResult Index()
         {
@@ -457,7 +380,7 @@ namespace Trips4.Controllers
         /// <param name="search_email"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Search(string search_type, string search_FirstName, string search_LastName, string search_email, int page)        
         //{
@@ -471,7 +394,7 @@ namespace Trips4.Controllers
         //        //}
 
         //        //Get the list of customers for the criteria
-        //        IList<Account> accounts = _accountRepository.SearchForAccounts(search_type, search_FirstName, search_LastName, search_email);
+        //        IList<Account> accounts = _userRepository.SearchForAccounts(search_type, search_FirstName, search_LastName, search_email);
 
         //        if (accounts == null || accounts.Count == 0)
         //        {
@@ -515,18 +438,18 @@ namespace Trips4.Controllers
         //}
 
         /// <summary>
-        /// Get the details of a user by the user id
+        /// Get the details of a user by the user guid
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Detail(int AccountId)
         //{
         //    ResponseFormatEnum format = this.GetResponseFormat(Request.QueryString);
 
         //    //Get the user and assign to the model
-        //    Account userAccount = _accountRepository.GetUserById(AccountId);
+        //    Account userAccount = _userRepository.GetUserById(AccountId);
         //    if (userAccount == null)
         //    {
         //        ErrorViewModel em = new ErrorViewModel("No user with Id " + AccountId.ToString() + " was found.", null, "UserController", "Index");
@@ -558,7 +481,7 @@ namespace Trips4.Controllers
         /// Display the profile view
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Profile()
         {
@@ -580,54 +503,32 @@ namespace Trips4.Controllers
         /// <param name="confirmPassword"></param>
         /// <remarks>The only thing a user can do in this version is change their password</remarks>
         /// <returns></returns>
-        //[RoleAuth]
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Profile(string currentPassword, string newPassword, string confirmPassword)
-        //{
-        //    TIPApplicationState appSession = (TIPApplicationState)Session[DRCOGApp.SessionIdentifier];            
-        //    // Validate the user
-        //    var viewModel = new ProfileViewModel 
-        //        {                    
-        //            Profile = new ProfileModel()
-        //        };
-        //    viewModel.Profile.CurrentUser = appSession.ApplicationState.CurrentUser;
+        [Trips4.Filters.SessionAuthorizeAttribute]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Profile(string currentPassword, string newPassword, string confirmPassword)
+        {
+            var viewModel = new ProfileViewModel
+            {
+                Profile = new ProfileModel()
+            };
+            viewModel.Profile.CurrentUser = CurrentSessionApplicationState.CurrentUser;
 
-        //    if (currentPassword == "")
-        //    {
-        //        ModelState.AddModelError("changePwdForm", "The old password is incorrect.");
-        //        return View(viewModel);
-        //    }
+            if (newPassword != confirmPassword)
+            {
+                ModelState.AddModelError("changePwdForm", "The new password does not match the confirm new password.");
+                return View(viewModel);
+            }
 
-        //    if (newPassword == "" || confirmPassword == "")
-        //    {
-        //        ModelState.AddModelError("changePwdForm", "New Password can not be an empty string");
-        //        return View(viewModel);
-        //    }
+            //Update password in database...
+            var id = CurrentSessionApplicationState.CurrentUser.profile.PersonGUID;
+            _userRepository.ChangePassword(id, currentPassword, newPassword);
 
-        //    string hashedPwd = Security.EncodePassword(currentPassword);
-        //    if (hashedPwd != appSession.ApplicationState.CurrentUser.PasswordHash)
-        //    {                                             
-        //        ModelState.AddModelError("changePwdForm", "The old password is incorrect.");
-        //        return View(viewModel);
-        //    }
+            //Redirect to the home page and call it good.
+            return View("PasswordChanged");
+        }
 
-        //    if (newPassword != confirmPassword)
-        //    {
-        //        ModelState.AddModelError("changePwdForm", "The new password does not match the confirm new password.");
-        //        return View(viewModel);
-        //    }
-
-        //    //Update password in database...
-        //    _accountRepository.ChangePassword(appSession.ApplicationState.CurrentUser.AccountId, Security.EncodePassword(newPassword));
-
-        //    //update the hash stored in session 
-        //    appSession.ApplicationState.CurrentUser.PasswordHash = Security.EncodePassword(newPassword);
-
-        //    //Redirect to the home page and call it good.
-        //    return RedirectToAction("PasswordChanged", "Account");
-        //}
-
-        //[RoleAuth()]
+        [Trips4.Filters.SessionAuthorizeAttribute()]
+        [Obsolete]
         public ActionResult PasswordChanged()
         {
             //just a simple confirmation view. Could be done via a popup
@@ -638,7 +539,7 @@ namespace Trips4.Controllers
         /// Returns the RoleDialog view
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //public ActionResult GetRoleDialog()
         //{
         //    ActionResult result = null;
@@ -652,7 +553,7 @@ namespace Trips4.Controllers
         //    //{
         //        var model = new RoleDialogModel();
 
-        //        var allRoles = _accountRepository.GetRoles();
+        //        var allRoles = _userRepository.GetRoles();
         //        var rolesDic = new Dictionary<int, string>();
         //        foreach (var role in allRoles)
         //        {
@@ -671,9 +572,9 @@ namespace Trips4.Controllers
         /// Reset the user's password
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //[AcceptVerbs(HttpVerbs.Get)]
-        //public JsonResult ResetPassword(int id)
+        //public JsonResult ResetPassword(int guid)
         //{
         //    JsonResult result = null;
 
@@ -690,11 +591,11 @@ namespace Trips4.Controllers
         //        //else if (appSession.CurrentUser.IsAdministrator())
         //        //{
 
-        //        Account user = _accountRepository.GetUserById(id);
+        //        Account user = _userRepository.GetUserById(guid);
         //        if (user != null)
         //        {
         //            //reset the password
-        //            string newPassword = _accountRepository.ResetPassword(id);
+        //            string newPassword = _userRepository.ResetPassword(guid);
         //            DRCOGConfig config = DRCOGConfig.GetConfig();
         //            //email the new password to the user                    
         //            //var absoluteUri = Request.Url.AbsoluteUri;
@@ -703,7 +604,7 @@ namespace Trips4.Controllers
         //            //rootUrl = (!rootUrl.EndsWith("/")) ? rootUrl : rootUrl.Substring(rootUrl.Length - 1);
         //            string url = config.ChangePasswordBaseUrl; // +Url.Action("ChangePassword", "Account");
 
-        //            string body = "A Administrator has reset your password. Your new password is " + newPassword + ".\r\n" + "Please follow this link to change your password.\r\n" + "Link: " + url + "?AccountID=" + id.ToString();
+        //            string body = "A Administrator has reset your password. Your new password is " + newPassword + ".\r\n" + "Please follow this link to change your password.\r\n" + "Link: " + url + "?AccountID=" + guid.ToString();
         //            //Get int value for the port...
         //            int port = 25;
         //            if (config.SMTPPort.HasValue)
@@ -759,13 +660,13 @@ namespace Trips4.Controllers
         //    }
 
         //    // get teh account
-        //    var account = _accountRepository.GetAccountBy(email);
+        //    var account = _userRepository.GetAccountBy(email);
 
         //    if (account != null)
         //    {
         //        // reset the password
         //        string newPassword = Security.EncodePassword(Security.GenerateRandomPassword(8));
-        //        _accountRepository.ChangePassword(account.AccountId, newPassword);
+        //        _userRepository.ChangePassword(account.AccountId, newPassword);
 
         //        // ... and email it to them
         //        DRCOGConfig config = DRCOGConfig.GetConfig();

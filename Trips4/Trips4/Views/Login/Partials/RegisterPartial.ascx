@@ -4,7 +4,7 @@
 
     <h2>Create Account</h2>
     <% using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "registrationForm" })) %>
-    <% { Model.profile.HidePropertyNotFoundText = true; %>
+    <% { %>
     <fieldset>
         <legend>Please fill out the following information</legend>
         <table>

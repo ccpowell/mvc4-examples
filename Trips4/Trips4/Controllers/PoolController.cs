@@ -23,8 +23,8 @@ using DRCOG.Common.Web.MvcSupport.Attributes;
 
 namespace Trips4.Controllers
 {
-    [Authorize]
-    //[RoleAuth]
+    [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.SessionAuthorizeAttribute]
     //[RemoteRequireHttps]
     public class PoolController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Detail/Edit view for a pool
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
         public ActionResult Detail(string year, int id)
         {
@@ -65,7 +65,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Create()
         {
             //route back to the Funding Sources list for the specified TIP

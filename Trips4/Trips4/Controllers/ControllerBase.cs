@@ -37,10 +37,7 @@ namespace Trips4.Controllers
 
         private const string _jsonResultContentType = "text/json-comment-filtered";
         private string _name = string.Empty;
-        private readonly IUserRepositoryExtension _userRepository;
-        protected readonly ISurveyRepository _surveyRepository;
-
-        public IMembershipService MembershipService { get; set; }
+        protected readonly IUserRepositoryExtension _userRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerBase"/> class.
@@ -56,26 +53,10 @@ namespace Trips4.Controllers
         /// <param name="logger">The logger.</param>
         public ControllerBase(string controllerName, IUserRepositoryExtension userRepository)
         {
-            //_logService = logger;
-            //_logger = new LogHelper(logger);
             _name = controllerName;
             _userRepository = userRepository;
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ControllerBase"/> class.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        public ControllerBase(string controllerName, IUserRepositoryExtension userRepository, ISurveyRepository surveyRepository)
-        {
-            //_logService = logger;
-            //_logger = new LogHelper(logger);
-            _name = controllerName;
-            _userRepository = userRepository;
-            _surveyRepository = surveyRepository;
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
-        }
 
         public IUserRepositoryExtension UserService
         {
@@ -90,33 +71,16 @@ namespace Trips4.Controllers
             get { return GetSession(); }
         }
 
-        protected void LoadSession()
-        {
-            this.LoadSession(DRCOG.Domain.Enums.ApplicationState.Default);
-        }
 
-        protected void LoadSession(DRCOG.Domain.Enums.ApplicationState? applicationState)
+        protected void LoadSession(DRCOG.Domain.Enums.ApplicationState applicationState = DRCOG.Domain.Enums.ApplicationState.Default)
         {
             ApplicationState appstate = this.GetSession();
             if (appstate == null)
             {
                 appstate = GetNewSession();
             }
-            if (applicationState.HasValue)
-                appstate.SetStateType(applicationState.Value);
+            appstate.SetStateType(applicationState);
 
-            if (appstate.CurrentUser != null
-                && (
-                    appstate.CurrentUser.profile.PersonID.Equals(default(int))
-                    || appstate.CurrentUser.profile.PersonGUID.Equals(default(Guid))
-                    )
-                )
-            {
-                appstate.CurrentUser.profile.PersonGUID = MembershipService.PersonGuid;
-                var person = appstate.CurrentUser;
-                LoadPerson(ref person);
-                appstate.CurrentUser = person;
-            }
             SaveSession(appstate);
         }
 
@@ -136,7 +100,7 @@ namespace Trips4.Controllers
         protected ActionResult SetAuthCookie(LogOnModel model, ValidateUserResultType validateResultType, string returnUrl)
         {
             // we need the profile first to get the username just in case the login is AD based
-            CurrentSessionApplicationState.LoadProfile(validateResultType, model.UserName);
+            CurrentSessionApplicationState.CurrentUser = _userRepository.GetUserByName(model.UserName, true);
 
             SetAuthCookie(model);
 
@@ -151,11 +115,6 @@ namespace Trips4.Controllers
             {
                 return RedirectToAction("index", "home");
             }
-        }
-
-        private void LoadPerson(ref Person person)
-        {
-            UserService.LoadPerson(ref person);
         }
 
         /// <summary>
@@ -197,7 +156,7 @@ namespace Trips4.Controllers
         /// Returns the confirm dialog
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult GetConfirmDialog()
         {
             return View("ConfirmDialog");
@@ -237,7 +196,7 @@ namespace Trips4.Controllers
 #endif
 
         #region Session Methods
-        
+
         /// <summary>
         /// Gets the session if it exists.
         /// </summary>
@@ -429,7 +388,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Gets ProjectTypeId from ImprovementTypeId
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
         protected JsonResult GetImprovementTypeMatch(int id, ITransportationRepository repo)
         {
@@ -453,7 +412,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Gets ImprovementTypeId from ProjectTypeId
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
         protected JsonResult GetProjectTypeMatch(int id, ITransportationRepository repo)
         {
@@ -585,8 +544,8 @@ namespace Trips4.Controllers
             }
             return shares;
         }
-
-        //[RoleAuth]
+#if bozo
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult GetAmendableSurveyProjects(int timePeriodId)
         {
             var result = new List<SelectListItem>();
@@ -607,7 +566,7 @@ namespace Trips4.Controllers
             return Json(result);
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AmendForNewSurvey(int projectVersionId, int surveyId)
         {
             try
@@ -643,7 +602,7 @@ namespace Trips4.Controllers
 
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public PartialViewResult BecomeASpsonsor(string year)
         {
             BecomeASponsorViewModel model = new BecomeASponsorViewModel();
@@ -652,7 +611,7 @@ namespace Trips4.Controllers
             return PartialView("BecomeASpsonsor", model);
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult BecomeASponsor(Profile profile)
         {
             try
@@ -680,6 +639,6 @@ namespace Trips4.Controllers
                 error = "false"
             });
         }
-
+#endif
     }
 }

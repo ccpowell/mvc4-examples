@@ -243,7 +243,7 @@ namespace DRCOG.Web.Extensions
         /// Extension for TextArea which supports disabled
         /// </summary>
         /// <param name="helper"></param>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="isEditable"></param>
         /// <param name="value"></param>
         /// <param name="htmlAttributes"></param>
@@ -281,8 +281,8 @@ namespace DRCOG.Web.Extensions
             {
                 output = helper.FakeTextArea(TagName.div, id, value, rows, htmlDict);
                 //tagBuilder = new TagBuilder("textarea");
-                //tagBuilder.MergeAttribute("id", id);
-                //tagBuilder.MergeAttribute("name", id);
+                //tagBuilder.MergeAttribute("guid", guid);
+                //tagBuilder.MergeAttribute("name", guid);
                 //tagBuilder.MergeAttribute("rows", rows.ToString());
                 //tagBuilder.MergeAttribute("cols", cols.ToString());
                 //tagBuilder.MergeAttribute("readonly", "readonly");
@@ -344,7 +344,7 @@ namespace DRCOG.Web.Extensions
         #endregion
 
         #region DropDownList
-        //Adding an id and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.DrcogTextBox overloads
+        //Adding an guid and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.DrcogTextBox overloads
 
         public static MvcHtmlString DropDownList(this HtmlHelper helper, string name, bool isEditable, SelectList selectList)
         {
@@ -400,7 +400,7 @@ namespace DRCOG.Web.Extensions
         #endregion
 
         #region CheckBox
-        //Adding an id and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.CheckBox overloads
+        //Adding an guid and an isEditable argument to each of the System.Web.Mvc.HtmlHelper.CheckBox overloads
 
         public static MvcHtmlString CheckBox(this HtmlHelper helper, string name, bool isEditable, bool isChecked)
         {
@@ -494,7 +494,7 @@ namespace DRCOG.Web.Extensions
         /// <remarks>
         /// <b>Usage</b>
         /// <code>
-        /// <%= Html.Image( Url.Content( "~/Content/images/img.png" ), "alt text", new { id = "myImage", border = "0" } ) %>
+        /// <%= Html.Image( Url.Content( "~/Content/images/img.png" ), "alt text", new { guid = "myImage", border = "0" } ) %>
         /// </code>
         /// </returns>
         /// </remarks>

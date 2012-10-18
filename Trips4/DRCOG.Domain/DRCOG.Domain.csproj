@@ -123,7 +123,6 @@
     <Compile Include="Factories\AddOnFactory.cs" />
     <Compile Include="Helpers\WildCardRegEx.cs" />
     <Compile Include="Interfaces\IFileRepositoryExtender.cs" />
-    <Compile Include="Interfaces\IPerson.cs" />
     <Compile Include="Interfaces\ISurveyProject.cs" />
     <Compile Include="Interfaces\ISurveyRepository.cs" />
     <Compile Include="Interfaces\IUserRepositoryExtension.cs">

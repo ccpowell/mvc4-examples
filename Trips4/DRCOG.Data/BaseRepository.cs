@@ -28,7 +28,7 @@ namespace DRCOG.Data
 {
     public class BaseRepository : IBaseRepository
     {
-        private const string _conStrName = "DRCOG"; //BatchAddImages.Properties.Settings.
+        private const string _conStrName = "DRCOG"; 
         private string _conStr = null;
 
         public BaseRepository()

@@ -50,13 +50,6 @@ namespace Trips4.Controllers
     {
 
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        
-
-        /// <summary>
-        /// IAuthenticator instance that abstracts the actual
-        /// authentication logic. Allows for testing.
-        /// </summary>
-        public IAccountRepository AccountRepository { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref=this.ControllerName/> class.
@@ -65,11 +58,7 @@ namespace Trips4.Controllers
         public LoginController(IAccountRepository accountRepository, IUserRepositoryExtension userRepository)
             : base("LoginController", userRepository)
         {
-            AccountRepository = accountRepository;
         }
-
-        
-
 
         /// <summary>
         /// Base view showing the login form
@@ -116,16 +105,12 @@ namespace Trips4.Controllers
                 {
                     this.LoadSession();
 
-                    if (model.UserName.Contains("@"))
-                    {
-                        model.UserName = Membership.GetUserNameByEmail(model.UserName);
-                    }
-
                     Person person = new Person(model.UserName);
 
                     ValidateUserResultType result = ValidateUserResultType.Membership;
+
                     // First try to authenicate through service
-                    if (AccountRepository.ValidateUser(model.UserName, model.Password))
+                    if (Membership.ValidateUser(model.UserName, model.Password))
                     {
                         return base.SetAuthCookie(model, result, returnUrl);
                     }
@@ -174,7 +159,7 @@ namespace Trips4.Controllers
         /// login page
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpGet]
         public ActionResult Logout()
         {

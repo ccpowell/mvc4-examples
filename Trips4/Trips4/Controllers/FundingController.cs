@@ -24,7 +24,7 @@ using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 
 namespace Trips4.Controllers
 {
-    [Authorize]
+    [Trips4.Filters.SessionAuthorizeAttribute]
     //[RemoteRequireHttps]
     public class FundingController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Detail/Edit view for a funding record
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
         public ActionResult Detail(string year, int id)
         {
@@ -75,7 +75,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Create()
         {
             //route back to the Funding Sources list for the specified TIP

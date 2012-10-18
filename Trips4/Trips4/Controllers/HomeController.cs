@@ -18,8 +18,8 @@ namespace Trips4.Controllers
     /// Main splash page for the application
     /// </summary>
     [HandleError]
-    //[RoleAuth]
-    //[Authorize]
+    [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.SessionAuthorizeAttribute]
     //[RemoteRequireHttps]
     public class HomeController : ControllerBase
     {
@@ -43,7 +43,7 @@ namespace Trips4.Controllers
         }
 
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Index()
         {
             LoadSession();

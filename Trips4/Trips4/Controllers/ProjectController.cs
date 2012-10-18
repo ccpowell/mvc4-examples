@@ -46,8 +46,8 @@ using System.Text;
 
 namespace Trips4.Controllers
 {
-    //[Authorize]
-    //[RoleAuth]
+    [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.SessionAuthorizeAttribute]
     //[RemoteRequireHttps]
     public class ProjectController : ControllerBase
     {
@@ -102,7 +102,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// The reports tab for a project
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="year"></param>
         /// <returns></returns>
         public ActionResult Reports(int id, string year)
@@ -115,7 +115,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// The Details tab for a project
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="year"></param>
         /// <returns></returns>
         public ActionResult Details(int id, string year, string message)
@@ -184,7 +184,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// This takes you to the most current version of a project
         /// </summary>
-        /// <param name="id">TIP-ID</param>
+        /// <param name="guid">TIP-ID</param>
         /// <param name="year">TimePeriod</param>
         /// <returns>Redirects to the Details page of a project</returns>
         public ActionResult Active(string id, string year)
@@ -199,7 +199,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the General Information for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Info(string year, int id, string message)
         {
@@ -214,7 +214,7 @@ namespace Trips4.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateInfo(InfoViewModel viewModel)
         {
             int projectVersionId = viewModel.InfoModel.ProjectVersionId.Value;
@@ -269,7 +269,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateImage(FormCollection collection)
         {
             int projectVersionId = Int32.Parse(collection["ProjectVersionId"]);
@@ -312,7 +312,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Location", new { controller = "Project", id = projectVersionId, tipyear = year, message = message.Equals(String.Empty) ? "Image update successfully." : message });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeleteLocationMap(int imageId, int projectVersionId)
         {
             try
@@ -341,7 +341,7 @@ namespace Trips4.Controllers
         /// <param name="projectVersionId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amend(AmendmentsViewModel amendmentViewModel)
         {
             /* Get Current Amendment Status
@@ -366,7 +366,7 @@ namespace Trips4.Controllers
             return projectVersionId;
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amend(int projectVersionId, int previousVersionId)
         {
             ProjectAmendments amendment = new ProjectAmendments()
@@ -382,7 +382,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Funding", new { controller = "Project", id = result, message = "Amendment processed successfully." });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Restore(string year, int id)
         {
             //Restore projectVersionID (ID) to the given TIPYear (year)
@@ -393,7 +393,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Funding", new { controller = "Project", id = id, message = "Project restored successfully." });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult DeleteAmendment(Int32 projectVersionId, Int32 previousProjectVersionId, string year)
         {
             ProjectAmendments amendment = new ProjectAmendments()
@@ -422,7 +422,7 @@ namespace Trips4.Controllers
         /// <param name="removed"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAgencies(string projectVersionID, List<int> added, List<int> removed)
         {
             if (added == null)
@@ -456,7 +456,7 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -471,7 +471,7 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
 
@@ -487,7 +487,7 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -502,7 +502,7 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
             var jsr = new JsonServerResponse();
@@ -516,7 +516,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Scope for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Scope(string year, int id)
         {
@@ -527,7 +527,7 @@ namespace Trips4.Controllers
         }
 
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
             int projectVersionId = viewModel.TipProjectScope.ProjectVersionId;
@@ -563,7 +563,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Location for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Location(string year, int id)
         {
@@ -576,7 +576,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateLocation()
         {
             //Manually parse up the form b/c of the muni & county split stuff
@@ -623,7 +623,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Changes successfully saved." });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPoolProject(int poolMasterVersionId, string projectName, string description, string beginAt, string endAt, decimal cost)
         {
             PoolProject model = new PoolProject()
@@ -652,7 +652,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Pool Project successfully added.", poolprojectid = poolProjectId });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeletePoolProject(int poolProjectId)
         {
             try
@@ -667,7 +667,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Pool Project successfully removed." });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdatePoolProject(int poolProjectId, string projectName, string description, string beginAt, string endAt, decimal cost)
         {
             PoolProject model = new PoolProject()
@@ -738,7 +738,7 @@ namespace Trips4.Controllers
         }
         */
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateFinancialRecord(int financialRecordId, decimal previous, decimal future, decimal tipfunding, decimal federaltotal, decimal statetotal, decimal localtotal, decimal totalcost)
         {
             FundingModel model = new FundingModel()
@@ -768,7 +768,7 @@ namespace Trips4.Controllers
                 , error = "false" });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateFinancialRecordDetail(int projectFinancialRecordID, int fundingTypeID, int fundingLevelID, int fundingPeriodID, decimal incr01, decimal incr02, decimal incr03, decimal incr04, decimal incr05)
         {
             ProjectFinancialRecordDetail model = new ProjectFinancialRecordDetail()
@@ -799,7 +799,7 @@ namespace Trips4.Controllers
                 , error = "false" });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddFinancialRecordDetail(int projectVersionID, int fundingPeriodID, int fundingTypeID)
         {
             try
@@ -822,7 +822,7 @@ namespace Trips4.Controllers
             });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeleteFinancialRecordDetail(int projectVersionID, int fundingResourceId)
         {
             try
@@ -892,7 +892,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary)
         {
             CountyShareModel model = new CountyShareModel();
@@ -919,7 +919,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult RemoveCountyShare(int projectId, int countyId)
         {
             try
@@ -942,7 +942,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -968,7 +968,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult RemoveMuniShare(int projectId, int muniId)
         {
             try
@@ -1112,7 +1112,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPhase(FundingPhase phase)
         {
             try
@@ -1138,7 +1138,7 @@ namespace Trips4.Controllers
             });
         }
 
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult DeletePhase(FundingPhase phase)
         {
             try
@@ -1186,9 +1186,9 @@ namespace Trips4.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAmendmentDetails(ProjectAmendments amendment)
         {
             try
@@ -1217,9 +1217,9 @@ namespace Trips4.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, TIP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();

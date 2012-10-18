@@ -9,6 +9,7 @@ using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services;
 using Trips4.Services;
+using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 
 namespace Trips4
 {
@@ -39,9 +40,7 @@ namespace Trips4
             container.RegisterType<IRtpProjectRepository, RtpProjectRepository>();
             container.RegisterType<ISurveyRepository, SurveyRepository>();
             container.RegisterType<IFileRepositoryExtender, FileRepository>();
-            container.RegisterType<IUserRepositoryExtension, UserRepository>();
-            container.RegisterType<DRCOG.Common.Service.MemberShipServiceSupport.Interfaces.IProfileService,
-                DRCOG.Common.Services.MemberShipServiceSupport.ProfileService>();
+            container.RegisterType<IUserRepositoryExtension, Trips4.Data.UserRepository>();
 
             return container;
         }

@@ -35,11 +35,16 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -99,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="UserRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -107,6 +113,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DRCOG.Domain\DRCOG.Domain.csproj">
+      <Project>{10038254-3677-4C98-A326-BC69B7D69808}</Project>
+      <Name>DRCOG.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Trips4.Data\Trips4.Data.csproj">
+      <Project>{0FB16734-C990-4676-A348-D541B9D30E8D}</Project>
+      <Name>Trips4.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Trips4\Trips4.csproj">
       <Project>{B75E8223-F70C-4493-B373-B771217E3AE7}</Project>
       <Name>Trips4</Name>

@@ -8,7 +8,7 @@ namespace DRCOG.Domain.Models.Survey
 {
     public class SearchModel : ProjectSearchModel
     {
-        public Profile Profile { get; set; }
+        public ShortProfile Profile { get; set; }
 
         public string Year { get; set; }
         public int YearId { get; set; }

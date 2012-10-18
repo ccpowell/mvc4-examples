@@ -28,6 +28,7 @@ using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.Domain.ViewModels.Survey;
 using DRCOG.TIP.Services;
 using DRCOG.TIP.Services.AmendmentStrategy.Survey;
+using Trips4.Filters;
 using Trips4.Services;
 using Trips4.Utilities.ApplicationState;
 using DTS.Web.MVC;
@@ -35,28 +36,20 @@ using DTS.Web.MVC;
 
 namespace Trips4.Controllers
 {
-    //[RemoteRequireHttps]
     public class SurveyController : ControllerBase
     {
-        //private readonly ISurveyRepository _surveyRepository;
+        private readonly ISurveyRepository _surveyRepository;
         private readonly IRtpProjectRepository _rtpProjectRepository;
 
         public SurveyController(ISurveyRepository surveyRepository, IRtpProjectRepository rtpProjectRepository, IUserRepositoryExtension userRepository)
-            : base("SurveyController", userRepository, surveyRepository)
+            : base("SurveyController", userRepository)
         {
             _rtpProjectRepository = rtpProjectRepository;
+            _surveyRepository = surveyRepository;
         }
 
-        private void LoadSession()
+        private void LoadSessionData()
         {
-            
-            //appstate = this.GetSession();
-            //if (appstate == null)
-            //{
-            //    appstate = (ApplicationState)this.GetNewSession(Enums.ApplicationState.Survey);
-            //}
-            //else appstate.State.CurrentProgram = Enums.ApplicationState.Survey;
-
             base.LoadSession(DRCOG.Domain.Enums.ApplicationState.Survey);
 
             if (CurrentSessionApplicationState.CurrentUser != null)
@@ -64,20 +57,8 @@ namespace Trips4.Controllers
                 ViewData["PersonOrganizationId"] = CurrentSessionApplicationState.CurrentUser.SponsorOrganizationId;
                 ViewData["PersonId"] = CurrentSessionApplicationState.CurrentUser.profile.PersonID;
             }
-            else CurrentSessionApplicationState.CurrentUser = new Person();
         }
 
-        private bool LoadSession(Project project)
-        {
-            this.LoadSession();
-
-            CurrentSessionApplicationState.CurrentUser.LastProjectVersionId = project.ProjectVersionId;
-            CurrentSessionApplicationState.CurrentUser.LastSponsorContactId = project.SponsorContactId;
-
-            return CurrentSessionApplicationState.CurrentUser.SponsorsProject(project.ProjectVersionId);
-
-            //return project.SponsorContactId == appstate.CurrentUser.profile.PersonID ? true : false;
-        }
 
         #region RTP Eligible Agencies Tab
 
@@ -86,7 +67,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Agencies(string year)
         {
 
@@ -106,7 +87,7 @@ namespace Trips4.Controllers
         ///// <param name="removed"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         //public JsonResult UpdateAgencies(string plan, List<int> added, List<int> removed)
         //{
         //    if (added == null)
@@ -140,10 +121,10 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleAgency(string timePeriod, int agencyId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.AddAgencyToTimePeriod(timePeriod, agencyId, DRCOG.Domain.Enums.ApplicationState.Survey);
@@ -159,10 +140,10 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleAgency(string timePeriod, int agencyId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.DropAgencyFromTimePeriod(timePeriod, agencyId, DRCOG.Domain.Enums.ApplicationState.Survey);
@@ -180,10 +161,10 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleImprovementType(string timePeriod, int improvementTypeId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.AddImprovementTypeToTimePeriod(timePeriod, improvementTypeId, DRCOG.Domain.Enums.ApplicationState.Survey);
@@ -199,10 +180,10 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleImprovementType(string timePeriod, int improvementTypeId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.DropImprovementTypeFromTimePeriod(timePeriod, improvementTypeId, DRCOG.Domain.Enums.ApplicationState.Survey) ? "" : "The improvementType is used in the current Survey. It can not be removed.";
@@ -220,10 +201,10 @@ namespace Trips4.Controllers
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult AddEligibleFundingResource(string timePeriod, int fundingResourceId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.AddFundingResourceToTimePeriod(_surveyRepository.GetYearId(timePeriod, DRCOG.Domain.Enums.TimePeriodType.Survey), fundingResourceId);
@@ -239,10 +220,10 @@ namespace Trips4.Controllers
         /// <param name="improvementTypeId"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult DropEligibleFundingResource(string timePeriod, int fundingResourceId)
         {
-            LoadSession();
+            LoadSessionData();
 
             var jsr = new JsonServerResponse();
             jsr.Error = _surveyRepository.DropFundingResourceFromTimePeriod(_surveyRepository.GetYearId(timePeriod, DRCOG.Domain.Enums.TimePeriodType.Survey), fundingResourceId, DRCOG.Domain.Enums.ApplicationState.Survey) ? "" : "The funding resource is used in the current Survey. It can not be removed.";
@@ -253,8 +234,8 @@ namespace Trips4.Controllers
 
         #region Survey Status
 
-        
-        
+
+
 
         #endregion
 
@@ -264,12 +245,12 @@ namespace Trips4.Controllers
         /// Returns a list of the current Surveys
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth]
+        [SessionAuthorize]
         public ActionResult Index(string year)
         {
-            LoadSession();
+            LoadSessionData();
             // if coming in fresh from main menu then take to current survey
-            if (String.IsNullOrEmpty(year) || year == "0") 
+            if (String.IsNullOrEmpty(year) || year == "0")
             {
                 year = _surveyRepository.GetCurrentSurveyYear();
                 if (CurrentSessionApplicationState.CurrentUser != null && !CurrentSessionApplicationState.CurrentUser.profile.PersonGUID.Equals(default(Guid)))
@@ -284,7 +265,7 @@ namespace Trips4.Controllers
                 return RedirectToAction("Dashboard", new { @year = year, @listType = "Sponsor" });
             }
             else CurrentSessionApplicationState.CurrentUser.HasProjects = UserService.CheckPersonHasProjects(CurrentSessionApplicationState.CurrentUser, _surveyRepository.GetYearId(year, DRCOG.Domain.Enums.TimePeriodType.Survey));
-            
+
             var viewModel = _surveyRepository.GetListViewModel();
             //viewModel.Current = 
             //viewModel.RtpSummary = _surveyRepository.GetSummary(year);
@@ -301,13 +282,13 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the RTP Dashboard
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="listType"></param>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Dashboard(string year, string listType, bool? showAll)
         {
-            LoadSession();
+            LoadSessionData();
 
             //if (String.IsNullOrEmpty(year))
             //{
@@ -324,8 +305,8 @@ namespace Trips4.Controllers
             //}
             //Sets the default of the Dashboard type. I will set it to Sponsor.
             var dashboardListType =
-                String.IsNullOrEmpty(listType) 
-                ? 
+                String.IsNullOrEmpty(listType)
+                ?
                 (
                     CurrentSessionApplicationState.CurrentUser.IsInRole("Survey Administrator") || CurrentSessionApplicationState.CurrentUser.IsInRole("Administrator")
                     ? DRCOG.Domain.Enums.SurveyDashboardListType.Sponsor
@@ -347,18 +328,20 @@ namespace Trips4.Controllers
 
             // get the view model from the repo
             viewModel = _surveyRepository.GetDashboardViewModel(viewModel /*year, dashboardListType*/);
-            
+
 
             if (viewModel.Person.HasProjects)
             {
                 viewModel.Current.AgencyProjectList = _surveyRepository.GetProjects(this.ValidateSearchData(new SearchModel() { SponsorContactId = CurrentSessionApplicationState.CurrentUser.profile.PersonID, Year = year, ShowAllForAgency = true }, StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram)));
 
-                CurrentSessionApplicationState.CurrentUser.SponsoredProjectVersionIds = new List<int>();
+                // TODO: shouldn't the data from the database be accurate?
+#if bozo
+                CurrentSessionApplicationState.CurrentUser.SponsoredProjectVersionIds.Clear();
                 foreach (var project in viewModel.Current.AgencyProjectList)
                 {
                     CurrentSessionApplicationState.CurrentUser.SponsoredProjectVersionIds.Add(project.ProjectVersionId);
                 }
-
+#endif
                 int index = viewModel.Current.AgencyProjectList.FindIndex(FindIncompleteUpdateStatus);
                 if (index >= 0 && viewModel.Current.AgencyProjectList.Count > 0)
                 {
@@ -393,10 +376,10 @@ namespace Trips4.Controllers
 
         #region Project List
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult ResetSearchModel(string year)
         //{
-        //    LoadSession();
+        //    LoadSessionData();
         //    CurrentSessionApplicationState.ProjectSearchModel = null;
         //    return RedirectToAction("ProjectList", new { year = year });
         //}
@@ -404,12 +387,12 @@ namespace Trips4.Controllers
         /// <summary>
         /// Returns a list of projects associated with this RTP
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult ProjectList(string year, string dft, string df, int? page)
         {
-            LoadSession();
+            LoadSessionData();
             //if (String.IsNullOrEmpty(year))
             //{
             //    year = _surveyRepository.GetCurrentRtpPlanYear();
@@ -474,7 +457,7 @@ namespace Trips4.Controllers
                         case "MyProjects":
                             projectSearchModel.SponsorAgency = df;
                             //projectSearchModel.SponsorContactId = appstate.CurrentUser.profile.PersonID;
-                            projectSearchModel.ShowMySponsorAgencies = true; 
+                            projectSearchModel.ShowMySponsorAgencies = true;
                             projectSearchModel.ShowAllForAgency = true;
                             projectSearchModel.Profile = CurrentSessionApplicationState.CurrentUser.profile;
                             break;
@@ -504,7 +487,7 @@ namespace Trips4.Controllers
             viewModel.Current = survey;
             //viewModel.RtpSummary.RtpYear = year;
             viewModel.ProjectList = _surveyRepository.GetProjects(projectSearchModel);
-            
+
             viewModel.ListCriteria = df;
             viewModel.ListType = dft;
             if (viewModel.ProjectList.Count > 1000)
@@ -581,7 +564,7 @@ namespace Trips4.Controllers
                 || p.UpdateStatusId.Equals((int)DRCOG.Domain.Enums.SurveyUpdateStatus.AwaitingAction);
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //public JsonResult GetAvailableRestoreProjects(string plan)
         //{
 
@@ -603,7 +586,7 @@ namespace Trips4.Controllers
         //    return Json(result);
         //}
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //public JsonResult GetAmendableProjects(string plan)
         //{
 
@@ -625,7 +608,7 @@ namespace Trips4.Controllers
         //    return Json(result);
         //}
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DeleteProjectVersion(int projectVersionId)
         //{
         //    bool result = false;
@@ -654,14 +637,14 @@ namespace Trips4.Controllers
         //    });
 
         //}
-        
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
-        //public JsonResult Restore(string plan, int id)
+
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //public JsonResult Restore(string plan, int guid)
         //{
         //    RtpSummary result = null;
         //    try
         //    {
-        //        IRestoreStrategy strategy = new RestoreStrategy(this._rtpProjectRepository, id).PickStrategy();
+        //        IRestoreStrategy strategy = new RestoreStrategy(this._rtpProjectRepository, guid).PickStrategy();
         //        result = (RtpSummary)strategy.Restore(plan);
         //    }
         //    catch (Exception ex)
@@ -696,7 +679,7 @@ namespace Trips4.Controllers
         //}
 
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult Amend(int projectVersionId, int cycleId)
         //{
         //    int result = default(int);
@@ -729,16 +712,16 @@ namespace Trips4.Controllers
 
         //}
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public PartialViewResult CreatePartial(Survey model)
         {
-            LoadSession();
+            LoadSessionData();
 
             CreateProjectViewModel viewModel = _surveyRepository.GetCreateProjectViewModel(model);
             return PartialView("~/Views/Survey/Partials/CreatePartial.ascx", viewModel);
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult CreateProject(string projectName, string facilityName, int timePeriodId, int sponsorOrganizationId, int sponsorContactId, int improvementTypeId, string startAt, string endAt)
         {
             int projectVersionId = default(int);
@@ -747,7 +730,7 @@ namespace Trips4.Controllers
             {
                 projectVersionId = _surveyRepository.CreateProject(projectName, facilityName, timePeriodId, sponsorOrganizationId, sponsorContactId, improvementTypeId, startAt, endAt);
 
-                
+
             }
             catch (Exception ex)
             {
@@ -779,11 +762,11 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult ProjectSearch(string year)
         //{
-        //    LoadSession();
+        //    LoadSessionData();
         //    var viewModel = new ProjectSearchViewModel();
 
         //    //Get the current criteria out of session and stuff into the view model
@@ -805,7 +788,7 @@ namespace Trips4.Controllers
         //    //ToDo: Add a variable for the application, so that each application can specifiy its own defaults?
 
         //    var result = new RTPSearchModel();
-        //    LoadSession();
+        //    LoadSessionData();
         //    //Get a reference to session object
         //    //ApplicationState appSession = this.GetSession();
 
@@ -837,11 +820,11 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="model"></param>
         ///// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult ProjectSearch(ProjectSearchViewModel model)
         //{
-        //    LoadSession();
+        //    LoadSessionData();
 
         //    //Save search options to session
         //    if (CurrentSessionApplicationState.ProjectSearchModel != null) CurrentSessionApplicationState.ProjectSearchModel = null;
@@ -858,7 +841,7 @@ namespace Trips4.Controllers
         //                });
         //}
 
-        
+
         //public JsonResult GetPlanScenarios(int planYearId)
         //{
         //    var result = new List<SelectListItem>();
@@ -898,14 +881,14 @@ namespace Trips4.Controllers
         //    }
         //    return Json(result);
         //}
-        
+
 
 
         #endregion
 
         #region RTP Amendments Tab
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Amendments(string year)
         //{
         //    var viewModel = new RtpBaseViewModel();
@@ -923,7 +906,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public ActionResult Status(string year)
         //{
         //    // get the view model from the repo
@@ -938,7 +921,7 @@ namespace Trips4.Controllers
         ///// <param name="viewModel"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public ActionResult UpdateStatus(StatusViewModel viewModel)
         //{
 
@@ -965,7 +948,7 @@ namespace Trips4.Controllers
         //}
 
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateTimePeriodStatusId(int timePeriodId, int statusId)
         //{
         //    string error = String.Empty;
@@ -999,7 +982,7 @@ namespace Trips4.Controllers
         ///// <param name="cycleId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult AddCycle(string plan, int cycleId)
         //{
         //    var jsr = new JsonServerResponse();
@@ -1013,10 +996,10 @@ namespace Trips4.Controllers
         ///// <param name="cycleId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DropCycle(int cycleId)
         //{
-        //    LoadSession();
+        //    LoadSessionData();
 
         //    var jsr = new JsonServerResponse();
         //    jsr.Error = _surveyRepository.RemoveCycleFromTimePeriod(cycleId);
@@ -1033,7 +1016,7 @@ namespace Trips4.Controllers
         ///// <param name="cycle"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult CreateCycle(string cycle)
         //{
         //    string error = String.Empty;
@@ -1061,7 +1044,7 @@ namespace Trips4.Controllers
         //}
 
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateCycleName(int cycleId, string cycle)
         //{
         //    string error = String.Empty;
@@ -1099,7 +1082,7 @@ namespace Trips4.Controllers
         //    };
         //}
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult SetActiveCycle(int cycleId, int timePeriodId)
         //{
         //    string error = String.Empty;
@@ -1147,7 +1130,7 @@ namespace Trips4.Controllers
         //    return Json(result);
         //}
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateCycleSort(string cycles)
         //{
 
@@ -1175,16 +1158,16 @@ namespace Trips4.Controllers
         //    });
         //} 
 
-        ////[RoleAuth]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         ////public ActionResult Amend(StatusViewModel model)
         ////{
         ////    var amendment = model.Cycle;
         ////    //this.Amend(amendment);
         ////    return View();
-        ////    //return RedirectToAction("Funding", new { controller = "Project", id = projectVersionId, message = "Amendment processed successfully." });
+        ////    //return RedirectToAction("Funding", new { controller = "Project", guid = projectVersionId, message = "Amendment processed successfully." });
         ////}
 
-        ////[RoleAuth]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         ////public ActionResult Amend(Cycle cycle)
         ////{
         ////    foreach (CycleAmendment amendment in cycle.Projects)
@@ -1200,7 +1183,7 @@ namespace Trips4.Controllers
         /////// </summary>
         /////// <param name="year"></param>
         /////// <returns></returns>
-        ////[RoleAuth]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         ////public ActionResult Reports(string year)
         ////{
         ////    //Create the ViewModel
@@ -1218,7 +1201,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Agencies(string year)
         //{
 
@@ -1234,7 +1217,7 @@ namespace Trips4.Controllers
         ///// <param name="year"></param>
         ///// <param name="agencyId"></param>
         ///// <returns></returns>
-        ////[RoleAuth]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         ////public ActionResult CheckAgency(string year, int agencyId)
         ////{
         ////    if (_tipRepository.CanAgencyBeDropped(year, agencyId))
@@ -1255,7 +1238,7 @@ namespace Trips4.Controllers
         ///// <param name="removed"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateAgencies(string plan, List<int> added, List<int> removed)
         //{
         //    if (added == null)
@@ -1292,10 +1275,10 @@ namespace Trips4.Controllers
         ///// <param name="agencyId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DropEligibleAgency(string plan, int agencyId)
         //{
-        //    LoadSession();
+        //    LoadSessionData();
 
         //    var jsr = new JsonServerResponse();
         //    jsr.Error = _surveyRepository.DropAgencyFromTimePeriod(plan, agencyId, appstate.State.CurrentProgram);
@@ -1319,11 +1302,11 @@ namespace Trips4.Controllers
         //    return View("FundingList", viewModel);
         //}
 
-        #endregion 
+        #endregion
 
         #region Project Controller Members
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult SetSurveyStatus(Project project)
         {
             try
@@ -1331,20 +1314,30 @@ namespace Trips4.Controllers
                 if (project.UpdateStatusId.Equals((int)DRCOG.Domain.Enums.SurveyUpdateStatus.Edited))
                 {
 
-                } else _surveyRepository.SetSurveyStatus(project);
+                }
+                else _surveyRepository.SetSurveyStatus(project);
                 //_surveyRepository.CheckUpdateStatusId(_surveyRepository.GetProjectBasics(projectVersionId));
             }
             catch (Exception ex)
             {
-                return Json(new { message = "Changes could not be stored. An error has been logged."
-                    , error = "true"
-                    , exceptionMessage = ex.Message });
+                return Json(new
+                {
+                    message = "Changes could not be stored. An error has been logged."
+                    ,
+                    error = "true"
+                    ,
+                    exceptionMessage = ex.Message
+                });
             }
-            return Json(new { message = "Changes were successful."
-                    , error = "false" });
+            return Json(new
+            {
+                message = "Changes were successful."
+                ,
+                error = "false"
+            });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public ActionResult Edit(int projectVersionId, int previousVersionId)
         {
             Instance version = new Instance()
@@ -1361,7 +1354,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Info", new { controller = "Survey", id = projectVersionId, message = "Amendment processed successfully." });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         //public JsonResult CarryOver(int projectVersionId)
         //{
         //    try
@@ -1384,18 +1377,18 @@ namespace Trips4.Controllers
         //    return Json(new { message = "Changes were successful."
         //            , error = "false" });
 
-        //    //return RedirectToAction("Info", new { controller = "Survey", id = projectVersionId, message = "Amendment processed successfully." });
+        //    //return RedirectToAction("Info", new { controller = "Survey", guid = projectVersionId, message = "Amendment processed successfully." });
         //}
 
         #region Project Info
 
         public ActionResult Info(string year, int id)
         {
-            this.LoadSession();
+            this.LoadSessionData();
             var viewModel = _surveyRepository.GetProjectInfoViewModel(id, year);
 
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
-            
+
             //viewModel.Person = appstate.CurrentUser.profile;
             return View(viewModel);
         }
@@ -1406,66 +1399,66 @@ namespace Trips4.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public ActionResult UpdateInfo(InfoViewModel viewModel)
         {
-            LoadSession();
+            LoadSessionData();
 
             //if (appstate.CurrentUser.LastProjectVersionId == viewModel.Project.ProjectVersionId)
             //{
-                int projectVersionId = viewModel.Project.ProjectVersionId;
-                string year = viewModel.Current.Name;
-                //Get the model from the database
-                Project model = _surveyRepository.GetProjectInfo(projectVersionId, year);
-                //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
-                model.AdministrativeLevelId = viewModel.Project.AdministrativeLevelId;
-                model.DRCOGNotes = viewModel.Project.DRCOGNotes;
-                model.ImprovementTypeId = viewModel.Project.ImprovementTypeId;
-                model.ProjectId = viewModel.Project.ProjectId;
-                model.ProjectName = viewModel.Project.ProjectName;
-                model.ProjectVersionId = viewModel.Project.ProjectVersionId;
-                model.SponsorContactId = viewModel.Project.SponsorContactId;
-                model.SponsorId = (int)viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
-                model.SponsorNotes = viewModel.Project.SponsorNotes;
-                model.TimePeriod = viewModel.Current.Name;
-                model.TransportationTypeId = viewModel.Project.TransportationTypeId;
-                model.UpdateStatusId = viewModel.Project.UpdateStatusId;
-                model.Funding = viewModel.Project.Funding;
+            int projectVersionId = viewModel.Project.ProjectVersionId;
+            string year = viewModel.Current.Name;
+            //Get the model from the database
+            Project model = _surveyRepository.GetProjectInfo(projectVersionId, year);
+            //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
+            model.AdministrativeLevelId = viewModel.Project.AdministrativeLevelId;
+            model.DRCOGNotes = viewModel.Project.DRCOGNotes;
+            model.ImprovementTypeId = viewModel.Project.ImprovementTypeId;
+            model.ProjectId = viewModel.Project.ProjectId;
+            model.ProjectName = viewModel.Project.ProjectName;
+            model.ProjectVersionId = viewModel.Project.ProjectVersionId;
+            model.SponsorContactId = viewModel.Project.SponsorContactId;
+            model.SponsorId = (int)viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
+            model.SponsorNotes = viewModel.Project.SponsorNotes;
+            model.TimePeriod = viewModel.Current.Name;
+            model.TransportationTypeId = viewModel.Project.TransportationTypeId;
+            model.UpdateStatusId = viewModel.Project.UpdateStatusId;
+            model.Funding = viewModel.Project.Funding;
 
-                ModelState.Remove("Project.SponsorContactId");
+            ModelState.Remove("Project.SponsorContactId");
 
-                if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                var errorList = ModelState.Values.SelectMany(m => m.Errors)
+                                 .Select(e => e.ErrorMessage)
+                                 .ToList();
+                string html_ul_errors = "<ul>";
+
+                foreach (string error in errorList)
                 {
-                    var errorList = ModelState.Values.SelectMany(m => m.Errors)
-                                     .Select(e => e.ErrorMessage)
-                                     .ToList();
-                    string html_ul_errors = "<ul>";
+                    html_ul_errors += "<li>" + error + "</li>";
+                }
+                html_ul_errors += "</ul>";
+                return Json(new { error = "Changes could not be stored. An error has been logged." + "<br />" + html_ul_errors });
+            }
 
-                    foreach (string error in errorList)
-                    {
-                        html_ul_errors += "<li>" + error + "</li>";
-                    }
-                    html_ul_errors += "</ul>";
-                    return Json(new { error = "Changes could not be stored. An error has been logged." + "<br />" + html_ul_errors });
-                }
-
-                //Send update to repo
-                try
-                {
-                    _surveyRepository.UpdateProjectInfo(model);
-                }
-                catch (Exception ex)
-                {
-                    //this.Logger.LogMethodError("ProjectController", "UpdateInfo", "TipProjectInfoViewModel", ex);
-                    return Json(new { error = "Changes could not be stored. An error has been logged." });
-                }
-                return Json(new { message = "Changes successfully saved." });
+            //Send update to repo
+            try
+            {
+                _surveyRepository.UpdateProjectInfo(model);
+            }
+            catch (Exception ex)
+            {
+                //this.Logger.LogMethodError("ProjectController", "UpdateInfo", "TipProjectInfoViewModel", ex);
+                return Json(new { error = "Changes could not be stored. An error has been logged." });
+            }
+            return Json(new { message = "Changes successfully saved." });
             //}
             //return Json(new { message = "You are not authorized to modifiy this page." });
 
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();
@@ -1479,7 +1472,7 @@ namespace Trips4.Controllers
 
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1494,7 +1487,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Funding Source successfully Added." });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult DeleteFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1516,20 +1509,20 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Scope for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Scope(string year, int id)
         {
-            this.LoadSession();
+            this.LoadSessionData();
             var viewModel = _surveyRepository.GetScopeViewModel(id, year);
             //viewModel.ProjectSummary.IsEditable = false;     
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
-            //viewModel.Project.IsSponsorContact = LoadSession(viewModel.Project);
+            //viewModel.Project.IsSponsorContact = LoadSessionData(viewModel.Project);
 
             return View(viewModel);
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         [HttpPost]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
@@ -1553,7 +1546,7 @@ namespace Trips4.Controllers
             try
             {
                 _surveyRepository.UpdateProjectScope(model, project);
-                
+
             }
             catch (Exception ex)
             {
@@ -1623,10 +1616,10 @@ namespace Trips4.Controllers
                 iTotalDisplayRecords = filteredLists.Count(),
                 aaData = result
             }, JsonRequestBehavior.AllowGet);
-            
+
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId)
         {
             GridView grid = new GridView();
@@ -1648,7 +1641,7 @@ namespace Trips4.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddSegment(SegmentModel model)
         {
             int segmentId = 0;
@@ -1667,7 +1660,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully added.", segmentId = segmentId });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateProjectUpdateStatusBySegment(int segmentId)
         {
             try
@@ -1682,9 +1675,9 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully added.", segmentId = segmentId });
         }
 
-        
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult DeleteSegment(int segmentId)
         {
             try
@@ -1698,7 +1691,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully removed." });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateSegment(SegmentModel model)
         {
             try
@@ -1706,9 +1699,9 @@ namespace Trips4.Controllers
                 XMLService xml = new XMLService(_surveyRepository);
                 if (!String.IsNullOrEmpty(model.LRSRecord))
                 {
-                    
+
                     string data = xml.GenerateXml(xml.GetScheme((int)SchemeName.LRSProjects), new LRSRecord() { Columns = model.LRSRecord.ToDictionary(',') });
-                    
+
                     model.LRSxml = data;
                 }
                 else model.LRSxml = xml.GenerateXml(null, null);
@@ -1722,7 +1715,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateSegmentSummary(SegmentModel model)
         {
             try
@@ -1736,7 +1729,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        
+
 
         #endregion
 
@@ -1745,14 +1738,14 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Location for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Location(string year, int id)
         {
-            this.LoadSession();
+            this.LoadSessionData();
             var viewModel = _surveyRepository.GetProjectLocationViewModel(id, year);
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
-            //viewModel.Project.IsSponsorContact = LoadSession(viewModel.Project);
+            //viewModel.Project.IsSponsorContact = LoadSessionData(viewModel.Project);
             return View(viewModel);
         }
 
@@ -1760,7 +1753,7 @@ namespace Trips4.Controllers
         /// Update the Location information from the /Location view
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         [HttpPost]
         public ActionResult UpdateLocation()
         {
@@ -1812,7 +1805,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary, int projectVersionId)
         {
             CountyShareModel model = new CountyShareModel();
@@ -1820,7 +1813,7 @@ namespace Trips4.Controllers
             model.CountyId = countyId;
             model.Primary = isPrimary;
             model.Share = share / 100;
-            
+
             try
             {
                 _surveyRepository.AddCountyShare(model);
@@ -1843,7 +1836,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateCountyShare(int projectId, int countyId, double share, bool isPrimary, int projectVersionId)
         {
             CountyShareModel model = new CountyShareModel();
@@ -1871,7 +1864,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult RemoveCountyShare(int projectId, int countyId, int projectVersionId)
         {
             try
@@ -1895,7 +1888,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary, int projectVersionId)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1924,7 +1917,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateMuniShare(int projectId, int muniId, double share, bool isPrimary, int projectVersionId)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1951,7 +1944,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult RemoveMuniShare(int projectId, int muniId, int projectVersionId)
         {
             try
@@ -1971,7 +1964,7 @@ namespace Trips4.Controllers
 
         #region Funding
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateProjectUpdateStatus(int projectVersionId)
         {
             try
@@ -1988,14 +1981,14 @@ namespace Trips4.Controllers
 
         public ActionResult Funding(string year, int id)
         {
-            this.LoadSession();
+            this.LoadSessionData();
             var viewModel = _surveyRepository.GetFundingViewModel(id, year);
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
-            //viewModel.Project.IsSponsorContact = LoadSession(viewModel.Project);
+            //viewModel.Project.IsSponsorContact = LoadSessionData(viewModel.Project);
             return View(viewModel);
         }
 
-        //[RoleAuth(Roles = "Administrator, Survey Administrator, Sponsor")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
         public JsonResult UpdateFinancialRecord(Project model)
         {
             try
@@ -2021,13 +2014,13 @@ namespace Trips4.Controllers
             });
         }
 
-        
+
 
         #endregion
 
         #endregion
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult SendPrintVerification(string sponsorName)
         {
             //DRCOGConfig config = DRCOGConfig.GetConfig();

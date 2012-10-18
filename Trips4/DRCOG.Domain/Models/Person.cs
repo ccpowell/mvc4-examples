@@ -13,12 +13,35 @@ using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 
 namespace DRCOG.Domain.Models
 {
-    public partial class Person : IPerson
+
+    public class ShortProfile
     {
-        public Profile profile;
+        public ShortProfile()
+        {
+            Roles = new List<string>();
+        }
 
-        public IMembershipService MembershipService { get; set; }
+        public int PersonID { get; set; }
+        public Guid PersonGUID { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string RecoveryEmail { get; set; }
+        public string Phone { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string SponsorCode { get; set; }
+        public string Organization { get; set; }
+        public string Title { get; set; }
+        public List<string> Roles { get; set; }
 
+        // TODO: get rid of this
+        public bool Success { get; set; }
+    }
+
+    public partial class Person
+    {
+        public ShortProfile profile;
+        public bool IsApproved { get; set; }
         public int LastProjectVersionId { get; set; }
         public int LastSponsorContactId { get; set; }
         public int SponsorOrganizationId { get; set; }
@@ -26,7 +49,7 @@ namespace DRCOG.Domain.Models
 
         public bool HasProjects { get; set; }
 
-        public List<int> SponsoredProjectVersionIds { get; set; }
+        public List<int> SponsoredProjectVersionIds { get; private set; }
 
         public bool SponsorsProject()
         {
@@ -35,7 +58,6 @@ namespace DRCOG.Domain.Models
 
         public bool SponsorsProject(int projectVersionId)
         {
-            if (SponsoredProjectVersionIds == null) return false;
             return SponsoredProjectVersionIds.Contains(projectVersionId);
         }
 
@@ -53,65 +75,20 @@ namespace DRCOG.Domain.Models
 
         private void Initialize()
         {
-            profile = new Profile();
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
-            if (SponsoredProjectVersionIds == null) { SponsoredProjectVersionIds = new List<int>(); }
+            profile = new ShortProfile();
+            SponsoredProjectVersionIds = new List<int>(); 
         }
 
         public virtual bool IsInRole(string role)
         {
+            // TODO: WTF?
             if (this.HasProjects)
             {
                 return true;
             }
 
-            if ((profile.Roles != null) && (profile.Roles.Count > 0))
-            {
-                var collection = profile.Roles.Where(x => x.Key == "TripsRoleProvider")
-                    .Select(x => x.Value)
-                    .Select(x => x.Where(y => (y.Value == true && y.Key == role) || (y.Key == "Administrator" && y.Value == true)))
-                    .FirstOrDefault();
-
-                var value = collection.Count() > 0 ? true : false;
-                return value;
-            }
-            return false;
+            return Roles.IsUserInRole(profile.UserName, role);
         }
 
-        public virtual void AddRole(string role)
-        {
-            var count = profile.Roles.Where(x => x.Key == "TripsRoleProvider")
-                .Select(x => x.Value)
-                .Select(x => x.Where(y => (y.Key == role))).Count();
-
-            var dictionary = profile.Roles.Where(x => x.Key == "TripsRoleProvider")
-                    .Select(x => x.Value).FirstOrDefault();
-
-            if (count > 0)
-            {
-                dictionary[role] = true;
-            }
-            else
-            {
-                dictionary.Add(role, true);
-            }
-        }
-
-        public void Load()
-        {
-            Profile person = new Profile() { BusinessEmail = profile.BusinessEmail, UserName = profile.UserName };
-            //ProfileService.Load(ref person, Membership.Providers["AspNetSqlMembershipProvider"]);
-            //person = ProfileService.GetUserProfile(profile.UserName, Common.Services.MemberShipServiceSupport.Enums.MembershipProvider.DRCOG);
-            person.PersonGUID = MembershipService.PersonGuid;
-            
-            profile = person;
-        }
-
-        public bool ValidateUser(string userName, string password)
-        {
-            //return AuthenticationService.ValidateUser(userName, password);
-            return MembershipService.ValidateUser(userName, password);
-            
-        }
     }
 }

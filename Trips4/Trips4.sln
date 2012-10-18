@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRCOG.TIP.Services", "DRCOG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRCOG.Utility", "DRCOG.Utility\DRCOG.Utility.csproj", "{6DD1B4E6-E49B-4955-B026-B4DDAF1D2585}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trips4.Data", "Trips4.Data\Trips4.Data.csproj", "{0FB16734-C990-4676-A348-D541B9D30E8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,12 @@ Global
 		{6DD1B4E6-E49B-4955-B026-B4DDAF1D2585}.QA|Any CPU.Build.0 = QA|Any CPU
 		{6DD1B4E6-E49B-4955-B026-B4DDAF1D2585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DD1B4E6-E49B-4955-B026-B4DDAF1D2585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.QA|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.QA|Any CPU.Build.0 = Release|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB16734-C990-4676-A348-D541B9D30E8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

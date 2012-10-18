@@ -195,6 +195,7 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ListItem.cs" />
+    <Compile Include="Filters\SessionAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -727,6 +728,10 @@
       <Project>{16B7F60D-2DE1-464D-A925-17FE03A3E1F1}</Project>
       <Name>DRCOG.TIP.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Trips4.Data\Trips4.Data.csproj">
+      <Project>{0FB16734-C990-4676-A348-D541B9D30E8D}</Project>
+      <Name>Trips4.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
@@ -757,7 +762,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63866</DevelopmentServerPort>
+          <DevelopmentServerPort>63882</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -15,21 +15,95 @@ using DRCOG.Domain.CustomExceptions;
 using DRCOG.Domain.Models;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using DRCOG.Common.Util;
+using System.Web.Security;
+using System.Linq;
 
 namespace DRCOG.Data
 {
-    public class UserRepository : BaseRepository, IUserRepositoryExtension
+    public class UserRepositoryXXX : BaseRepository, IUserRepositoryExtension
     {
 
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        //protected readonly Profile Profile;
-
-        public UserRepository()
+        public void AddUserToRole(string userName, string role)
         {
+            Roles.AddUserToRole(userName, role);
         }
 
-        public void LoadPerson(ref Person person)
+        public Person GetUserByName(string userName, bool loadRoles)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Person GetUserByID(Guid guid, bool loadRoles)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Person GetUserByEmail(string emailAddress, bool loadRoles)
+        {
+            var found = Membership.FindUsersByEmail(emailAddress);
+            if (found.Count == 0)
+            {
+                throw new Exception("Email not found.");
+            }
+            if (found.Count > 1)
+            {
+                Logger.Error("Multiple users found with email address {0}", emailAddress);
+                throw new Exception("Multiple users found with email address " + emailAddress);
+            }
+            var users = new MembershipUser[1];
+            found.CopyTo(users, 0);
+            var user = users[0];
+            var person = new Person();
+            person.IsApproved = user.IsApproved;
+            return person;
+        }
+
+        public void UpdateUserApproval(Guid userId, bool isApproved)
+        {
+            var found = Membership.GetUser(userId);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            if (found.IsApproved != isApproved)
+            {
+                found.IsApproved = isApproved;
+                Membership.UpdateUser(found);
+            }
+        }
+
+        public void ChangePassword(Guid id, string oldPassword, string newPassword)
+        {
+            var found = Membership.GetUser(id);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            var result = found.ChangePassword(oldPassword, newPassword);
+            if (!result)
+            {
+                throw new Exception("Failed to change password.");
+            }
+        }
+
+        public string ResetPassword(Guid id)
+        {
+            var found = Membership.GetUser(id);
+            if (found == null)
+            {
+                throw new Exception("User not found.");
+            }
+            return found.ResetPassword();
+        }
+
+        public bool ValidateUser(string userName, string password)
+        {
+            return Membership.ValidateUser(userName, password);
+        }
+
+        public void LoadPerson(Person person)
         {
 
             SqlCommand cmd = new SqlCommand("[dbo].[GetPersonById]");
@@ -57,7 +131,8 @@ namespace DRCOG.Data
 
             if (person.profile.PersonID.Equals(default(int)) && !person.profile.PersonGUID.Equals(default(Guid)))
             {
-                CreatePerson(ref person.profile);
+                Logger.Error("Person has a GUID but no entry in Person Table.");
+                //CreatePerson(ref person.profile);
             }
         }
 
@@ -108,7 +183,7 @@ namespace DRCOG.Data
         }
 
 
-        public void CreatePerson(ref Profile profile)
+        public void CreatePerson(ShortProfile profile)
         {
             string sqlConn = ConfigurationManager.ConnectionStrings["DRCOG"].ToString();
             using (SqlConnection conn = new SqlConnection(sqlConn))

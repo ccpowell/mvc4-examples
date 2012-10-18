@@ -39,9 +39,7 @@ using Trips4.Configuration;
 
 namespace Trips4.Controllers
 {
-    //[Authorize]
-    //[RoleAuth]
-    //[RemoteRequireHttps]
+    [Trips4.Filters.SessionAuthorizeAttribute]
     public class RtpProjectController : ControllerBase
     {
         private readonly IRtpRepository _rtpRepository;
@@ -65,10 +63,10 @@ namespace Trips4.Controllers
         /// <summary>
         /// The reports tab for a project
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Reports(int id, string year)
         {
             var model = new ProjectBaseViewModel();
@@ -79,7 +77,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// The Details tab for a project
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <param name="year"></param>
         /// <returns></returns>
         public ActionResult Details(int id, string year)
@@ -95,7 +93,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the General Information for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Info(string year, int id)
         {
@@ -109,7 +107,7 @@ namespace Trips4.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateInfo(InfoViewModel viewModel)
         {
             int projectVersionId = viewModel.InfoModel.ProjectVersionId;
@@ -166,18 +164,18 @@ namespace Trips4.Controllers
         ///// <summary>
         ///// Gets ProjectTypeId from ImprovementTypeId
         ///// </summary>
-        ///// <param name="id"></param>
+        ///// <param name="guid"></param>
         ///// <returns></returns>
-        //public JsonResult GetImprovementTypeMatch(int id)
+        //public JsonResult GetImprovementTypeMatch(int guid)
         //{
         //    IList<SqlParameter> sqlParms = new List<SqlParameter>();
-        //    sqlParms.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, ParameterName = "@Id", Value = id });
+        //    sqlParms.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, ParameterName = "@Id", Value = guid });
         //    try
         //    {
         //        //var result = _rtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
         //        var result = _rtpProjectRepository.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
 
-        //        return Json(new { id = result.First().Key, value = result.First().Value });
+        //        return Json(new { guid = result.First().Key, value = result.First().Value });
         //    }
         //    catch (Exception ex)
         //    {
@@ -190,12 +188,12 @@ namespace Trips4.Controllers
         ///// <summary>
         ///// Gets ImprovementTypeId from ProjectTypeId
         ///// </summary>
-        ///// <param name="id"></param>
+        ///// <param name="guid"></param>
         ///// <returns></returns>
-        //public JsonResult GetProjectTypeMatch(int id)
+        //public JsonResult GetProjectTypeMatch(int guid)
         //{
         //    IList<SqlParameter> sqlParms = new List<SqlParameter>();
-        //    sqlParms.Add(new SqlParameter("@Id", id));
+        //    sqlParms.Add(new SqlParameter("@Id", guid));
         //    try
         //    {
         //        var result = _rtpProjectRepository.GetLookupSingle<Int32>("[dbo].[Lookup_GetImprovementTypeIdByProjectTypeId]", "ID", sqlParms);
@@ -217,7 +215,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Create(string year)
         //{
@@ -229,7 +227,7 @@ namespace Trips4.Controllers
         //    return View(viewModel);
         //}
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult Create( ProjectVersionGeneralInfoModel model, string year)
         //{
@@ -244,7 +242,7 @@ namespace Trips4.Controllers
         //        //model.ProjectVersionId = _projectRepository.CreateProject(model, year);
         //        //amendment = amendment.AmendProject();
 
-        //        return RedirectToAction("Info", new { controller = "Project", id = model.ProjectVersionId });
+        //        return RedirectToAction("Info", new { controller = "Project", guid = model.ProjectVersionId });
         //    }
         //}
 
@@ -254,7 +252,7 @@ namespace Trips4.Controllers
         ///// to /Project/{tipyear}/Info/{pvid]
         ///// </summary>
         ///// <returns></returns>
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult Create_orginal(InfoViewModel model)
         //{
@@ -310,7 +308,7 @@ namespace Trips4.Controllers
         //        //store and redirect to the new project version
         //        int pvId = _projectRepository.CreateProject(model.InfoModel);
         //        string year = model.InfoModel.TipYear;
-        //        return RedirectToAction("Info", new { controller = "Project", tipyear = year, id = pvId });
+        //        return RedirectToAction("Info", new { controller = "Project", tipyear = year, guid = pvId });
         //    }
 
         //}
@@ -320,7 +318,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="projectVersionId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult Amend(AmendmentsViewModel amendmentViewModel /*Int32 projectVersionId, String year2*/)
         {
@@ -353,11 +351,11 @@ namespace Trips4.Controllers
             //IAmendmentStrategy strategy = new DRCOG.TIP.Services.AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
             //int projectVersionId = strategy.Amend();
 
-            //return RedirectToAction("Details", new { controller = "Project", id = projectVersionId });
-            //return RedirectToAction("Details", new { controller = "Project", id = amendment.ProjectVersionId });
+            //return RedirectToAction("Details", new { controller = "Project", guid = projectVersionId });
+            //return RedirectToAction("Details", new { controller = "Project", guid = amendment.ProjectVersionId });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public ActionResult DeleteAmendment(Int32 projectVersionId, Int32 previousProjectVersionId)
         {
             //throw new NotImplementedException();
@@ -385,7 +383,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Index", new { controller = "Rtp", year = String.Empty });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult DropAmendment(CycleAmendment amendment)
         {
             try
@@ -421,7 +419,7 @@ namespace Trips4.Controllers
         /// <param name="added"></param>
         /// <param name="removed"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult UpdateAgencies(string projectVersionID, List<int> added, List<int> removed)
         {
@@ -455,7 +453,7 @@ namespace Trips4.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -470,7 +468,7 @@ namespace Trips4.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -486,7 +484,7 @@ namespace Trips4.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -501,7 +499,7 @@ namespace Trips4.Controllers
         /// <param name="projectVersionID"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public JsonResult DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
@@ -516,7 +514,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Scope for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Scope(string year, int id)
         {
@@ -526,7 +524,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
         {
@@ -564,7 +562,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Display the Location for a project
         /// </summary>
-        /// <param name="id">project id</param>
+        /// <param name="guid">project guid</param>
         /// <returns></returns>
         public ActionResult Location(string year, int id)
         {
@@ -576,7 +574,7 @@ namespace Trips4.Controllers
         /// Update the Location information from the /Location view
         /// </summary>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         [HttpPost]
         public ActionResult UpdateLocation()
         {
@@ -670,7 +668,7 @@ namespace Trips4.Controllers
             return Json(model);
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddSegment(SegmentModel model)
         {
             int segmentId = 0;
@@ -689,7 +687,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully added.", segmentId = segmentId });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteSegment(int segmentId)
         {
             try
@@ -703,7 +701,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully removed." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddLRSRecord(SegmentModel model)
         {
             try
@@ -726,7 +724,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteLRSRecord(int lrsId)
         {
             try
@@ -740,7 +738,7 @@ namespace Trips4.Controllers
             return Json(new { message = "LRS Record successfully removed." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateLRSRecord(SegmentModel model)
         {
             try
@@ -763,7 +761,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateSegment(SegmentModel model)
         {
             try
@@ -783,7 +781,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Segment successfully updated." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateSegmentSummary(SegmentModel model)
         {
             try
@@ -843,7 +841,7 @@ namespace Trips4.Controllers
         }
         */
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateFinancialRecord(Funding model)//(int projectVersionId, decimal constantCost, decimal VisionCost, decimal yoeCost)
         {
             //Funding model = new Funding()
@@ -872,7 +870,7 @@ namespace Trips4.Controllers
                 , error = "false" });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateFinancialRecordDetail(int projectFinancialRecordID, int fundingTypeID, int fundingLevelID, int fundingPeriodID, decimal incr01, decimal incr02, decimal incr03, decimal incr04, decimal incr05)
         {
             ProjectFinancialRecordDetail model = new ProjectFinancialRecordDetail()
@@ -903,7 +901,7 @@ namespace Trips4.Controllers
                 , error = "false" });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddFinancialRecordDetail(int projectVersionID, int fundingPeriodID, int fundingTypeID)
         {
             try
@@ -971,7 +969,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddCountyShare(int projectId, int countyId, double share, bool isPrimary)
         {
             CountyShareModel model = new CountyShareModel();
@@ -998,7 +996,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult RemoveCountyShare(int projectId, int countyId)
         {
             try
@@ -1021,7 +1019,7 @@ namespace Trips4.Controllers
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddMuniShare(int projectId, int muniId, double share, bool isPrimary)
         {
             MunicipalityShareModel model = new MunicipalityShareModel();
@@ -1047,7 +1045,7 @@ namespace Trips4.Controllers
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult RemoveMuniShare(int projectId, int muniId)
         {
             try
@@ -1178,7 +1176,7 @@ namespace Trips4.Controllers
             return Json(viewModel);
         }
 
-        //[RoleAuth]
+        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Amendments(string year, int id)
         {
             var viewModel = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
@@ -1218,19 +1216,19 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        //[RoleAuth]
-        //public ActionResult Strikes(string year, int id)
+        [Trips4.Filters.SessionAuthorizeAttribute]
+        //public ActionResult Strikes(string year, int guid)
         //{
-        //    var viewModel = _rtpProjectRepository.GetStrikesViewModel(id, year);
+        //    var viewModel = _rtpProjectRepository.GetStrikesViewModel(guid, year);
         //    return View(viewModel);
         //}
        
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
         {
             var result = new List<SelectListItem>();
@@ -1244,7 +1242,7 @@ namespace Trips4.Controllers
 
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult AddFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1259,7 +1257,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Funding Source successfully Added." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult DeleteFundingSource(int fundingResourceId, int projectVersionId)
         {
             var fundingSource = new FundingSource() { Id = fundingResourceId };
@@ -1274,7 +1272,7 @@ namespace Trips4.Controllers
             return Json(new { message = "Funding Source successfully removed." });
         }
 
-        //[RoleAuth(Roles = "Administrator, RTP Administrator")]
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateCategory(string categoryName, string shortName, string description, string plan)
         {
             int result;
