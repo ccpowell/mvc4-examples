@@ -47,7 +47,7 @@ namespace Trips4.Controllers
         private readonly IRtpProjectRepository _rtpProjectRepository;
         private readonly ISurveyRepository _surveyRepository;
 
-        public RtpController(IRtpRepository rtpRepository, IRtpProjectRepository rtpProjectRepository, ISurveyRepository surveyRepository, IUserRepositoryExtension userRepository)
+        public RtpController(IRtpRepository rtpRepository, IRtpProjectRepository rtpProjectRepository, ISurveyRepository surveyRepository, ITripsUserRepository userRepository)
             : base("RtpController", userRepository)
         {
             _rtpRepository = rtpRepository;

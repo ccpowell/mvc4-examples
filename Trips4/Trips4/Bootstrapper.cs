@@ -40,7 +40,7 @@ namespace Trips4
             container.RegisterType<IRtpProjectRepository, RtpProjectRepository>();
             container.RegisterType<ISurveyRepository, SurveyRepository>();
             container.RegisterType<IFileRepositoryExtender, FileRepository>();
-            container.RegisterType<IUserRepositoryExtension, Trips4.Data.UserRepository>();
+            container.RegisterType<ITripsUserRepository, Trips4.Data.UserRepository>();
 
             return container;
         }

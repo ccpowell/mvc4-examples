@@ -10,7 +10,7 @@ using DRCOG.Domain.Models;
 namespace DRCOG.Domain.Interfaces
 {
 
-    public interface IUserRepositoryExtension 
+    public interface ITripsUserRepository 
     {
         //void LoadPerson(Person person); //???
         Person GetUserByName(string userName, bool loadRoles);

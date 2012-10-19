@@ -1,30 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
+using DRCOG.Common.Services.MemberShipServiceSupport;
+using DRCOG.Common.Util;
 using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.Models;
-using DTS.Web.MVC;
-//using DTS.Web.MVC.Extensions;
-using DTS.Extensions;
+using DRCOG.Domain.Security;
 //using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
 using Trips4.Configuration;
-using Trips4.Utilities.ApplicationState;
-using System.Web.Security;
-using System.Net.Configuration;
-using System.Configuration;
 using Trips4.Services;
-using DRCOG.Domain.ServiceInterfaces;
-using DRCOG.TIP.Services;
-using DRCOG.Domain.Security;
-using DRCOG.Common.Services.MemberShipServiceSupport;
-using DRCOG.Common.Services.MemberShipServiceSupport.Validation;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Web.MvcSupport.Attributes;
-using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
-using DRCOG.Common.Services.MemberShipServiceSupport.Domain;
-using DRCOG.Common.Util;
+using Trips4.Utilities.ApplicationState;
 
 namespace Trips4.Controllers
 {
@@ -32,14 +18,13 @@ namespace Trips4.Controllers
     /// Controller that will manage the Account Administration aspects of the DRCOG application.
     /// Actual login validation is handled in the <see cref="LoginController"/>
     /// </summary>
-    [HandleError]
     public class AccountController : ControllerBase
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private IEmailService _emailService;
 
-        public AccountController(IEmailService emailService, IUserRepositoryExtension userRepository)
+        public AccountController(IEmailService emailService, ITripsUserRepository userRepository)
             : base("AccountController", userRepository)
         {
             _emailService = emailService;

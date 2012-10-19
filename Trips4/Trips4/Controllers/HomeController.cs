@@ -17,10 +17,7 @@ namespace Trips4.Controllers
     /// <summary>
     /// Main splash page for the application
     /// </summary>
-    [HandleError]
     [Trips4.Filters.SessionAuthorizeAttribute]
-    [Trips4.Filters.SessionAuthorizeAttribute]
-    //[RemoteRequireHttps]
     public class HomeController : ControllerBase
     {
 
@@ -29,7 +26,7 @@ namespace Trips4.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref=this.ControllerName/> class.
         /// </summary>
-        public HomeController(IUserRepositoryExtension userRepository)
+        public HomeController(ITripsUserRepository userRepository)
             : base("HomeController", userRepository)
         {
                         

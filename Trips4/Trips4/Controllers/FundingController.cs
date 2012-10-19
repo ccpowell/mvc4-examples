@@ -31,7 +31,7 @@ namespace Trips4.Controllers
 
         private ITipRepository _tipRepository;
 
-        public FundingController(ITipRepository tipRepository, IUserRepositoryExtension userRepository)
+        public FundingController(ITipRepository tipRepository, ITripsUserRepository userRepository)
             : base("FundingController", userRepository)
         {
             _tipRepository = tipRepository;

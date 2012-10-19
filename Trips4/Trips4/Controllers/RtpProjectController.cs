@@ -46,7 +46,7 @@ namespace Trips4.Controllers
         private readonly IRtpProjectRepository _rtpProjectRepository;
         private readonly DRCOGConfig _config;
 
-        public RtpProjectController(IRtpRepository rtpRepository, IRtpProjectRepository rtpProjectRepository, IUserRepositoryExtension userRepository)
+        public RtpProjectController(IRtpRepository rtpRepository, IRtpProjectRepository rtpProjectRepository, ITripsUserRepository userRepository)
             : base("RtpProjectController", userRepository)
         {
             _rtpRepository = rtpRepository;

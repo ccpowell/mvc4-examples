@@ -15,40 +15,27 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Transactions;
+using System.Web;
 using System.Web.Mvc;
+using DRCOG.Common.Services;
 using DRCOG.Domain.Interfaces;
-using DRCOG.Domain.ServiceInterfaces;
-using DRCOG.TIP.Services;
 using DRCOG.Domain.Models;
 using DRCOG.Domain.Models.TIPProject;
+using DRCOG.Domain.ServiceInterfaces;
 //using DRCOG.Domain.Models.TIPProject.Amendment;
-using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.ViewModels.TIPProject;
-using Trips4;
+using DRCOG.TIP.Services;
+using DRCOG.TIP.Services.DeleteStrategy.TIP;
+using DRCOG.TIP.Services.RestoreStrategy.TIP;
+using DRCOG.TIP.Services.TIP;
 using DTS.Web.MVC;
 using Trips4.Configuration;
-using DRCOG.Domain;
-using Elmah;
-using DRCOG.TIP.Services.TIP;
-using DRCOG.TIP.Services.RestoreStrategy.TIP;
-using Trips4.CustomResults;
-using DRCOG.Common.Services.Interfaces;
-using DRCOG.Common.Services;
-using System.Web;
-using Trips4.Utilities.ApplicationState;
-using DRCOG.TIP.Services.DeleteStrategy.TIP;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using System.Transactions;
-using DRCOG.Common.Web.MvcSupport.Attributes;
 //using System.Runtime.Serialization.Json;
-using System.IO;
-using System.Text;
 
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
-    [Trips4.Filters.SessionAuthorizeAttribute]
-    //[RemoteRequireHttps]
     public class ProjectController : ControllerBase
     {
         private readonly ITipRepository _tipRepository;
@@ -58,7 +45,7 @@ namespace Trips4.Controllers
         protected readonly ImageService ImageService;
 
         public ProjectController(ITipRepository tipRepository,
-            IProjectRepository projectRepository, IFileRepositoryExtender fileRepository, IUserRepositoryExtension userRepository)
+            IProjectRepository projectRepository, IFileRepositoryExtender fileRepository, ITripsUserRepository userRepository)
             : base("ProjectController", userRepository)
         {
             _tipRepository = tipRepository;
@@ -91,11 +78,10 @@ namespace Trips4.Controllers
             // including the image byte array from the image column in
             // a database.
             Image image = ImageService.Load(id, maxWidth, maxHeight);
+
             //As you can see the use is stupid simple.  Just get the image bytes and the
             //  saved content type.  See this is where the contentType comes in real handy.
-            ImageResult result = new ImageResult(image.Data, image.MediaType);
-
-            return result;
+            return File(image.Data, image.MediaType);
         }
 
 

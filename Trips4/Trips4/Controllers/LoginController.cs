@@ -55,7 +55,7 @@ namespace Trips4.Controllers
         /// Initializes a new instance of the <see cref=this.ControllerName/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        public LoginController(IAccountRepository accountRepository, IUserRepositoryExtension userRepository)
+        public LoginController(IAccountRepository accountRepository, ITripsUserRepository userRepository)
             : base("LoginController", userRepository)
         {
         }

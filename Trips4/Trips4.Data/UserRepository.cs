@@ -20,7 +20,7 @@ namespace Trips4.Data
     /// Handles user accounts using .net providers and EF. 
     /// </summary>
     /// <remarks>original is in DRCOG.Data</remarks>
-    public class UserRepository : IUserRepositoryExtension
+    public class UserRepository : ITripsUserRepository
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 

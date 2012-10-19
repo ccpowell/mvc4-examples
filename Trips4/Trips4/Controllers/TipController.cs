@@ -45,20 +45,23 @@ using System.Drawing;
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
-    //[RemoteRequireHttps]
-    [HandleError]
     public class TipController : ControllerBase
     {
         private readonly ITipRepository _tipRepository;
         private readonly IProjectRepository _projectRepository;
 
-        public TipController(ITipRepository tipRepository, IProjectRepository projectRepository, IUserRepositoryExtension userRepository)
+        public TipController(ITipRepository tipRepository, IProjectRepository projectRepository, ITripsUserRepository userRepository)
             : base("TipController", userRepository)
         {
             _tipRepository = tipRepository;
             _projectRepository = projectRepository;
 
             
+        }
+
+        public ActionResult Boom()
+        {
+            throw new Exception("Danger Will Robinson!");
         }
 
         private void LoadSession()

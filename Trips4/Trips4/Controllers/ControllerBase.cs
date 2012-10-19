@@ -30,14 +30,13 @@ namespace Trips4.Controllers
     /// <summary>
     /// Controller base class containing common functionalities.
     /// </summary>
-    [HandleError]
     public class ControllerBase : Controller
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private const string _jsonResultContentType = "text/json-comment-filtered";
         private string _name = string.Empty;
-        protected readonly IUserRepositoryExtension _userRepository;
+        protected readonly ITripsUserRepository _userRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ControllerBase"/> class.
@@ -51,14 +50,14 @@ namespace Trips4.Controllers
         /// Initializes a new instance of the <see cref="ControllerBase"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public ControllerBase(string controllerName, IUserRepositoryExtension userRepository)
+        public ControllerBase(string controllerName, ITripsUserRepository userRepository)
         {
             _name = controllerName;
             _userRepository = userRepository;
         }
 
 
-        public IUserRepositoryExtension UserService
+        public ITripsUserRepository UserService
         {
             get
             {
