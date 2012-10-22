@@ -24,6 +24,10 @@ namespace Ombudsman.Site.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }

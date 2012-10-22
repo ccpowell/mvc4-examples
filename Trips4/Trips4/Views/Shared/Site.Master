@@ -26,6 +26,7 @@
     <script src="<%= Page.ResolveClientUrl("~/scripts/MicrosoftAjax.js")%>" type="text/javascript" ></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/MicrosoftMvcAjax.js")%>" type="text/javascript" ></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.min.js")%>" type="text/javascript" ></script>
+    <script src="<%= Url.Content("~/Scripts/jquery-ajax-setup.js") %>" type="text/javascript"></script>
     
     <script type="text/javascript">
 

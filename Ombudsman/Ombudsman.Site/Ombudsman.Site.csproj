@@ -319,6 +319,7 @@
     <Content Include="Web.QA.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ombudsman.Models\Ombudsman.Models.csproj">

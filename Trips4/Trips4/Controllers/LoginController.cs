@@ -70,16 +70,33 @@ namespace Trips4.Controllers
             try
             {
                 LoadSession();
+                // But if the identity is not authenticated then the user didn't even log in.
+                var appState = Session[Trips4.DRCOGApp.SessionIdentifier] as ApplicationState;
+                bool noUser = ((appState == null) ||
+                (appState.CurrentUser == null) ||
+                (appState.CurrentUser.profile == null) ||
+                (appState.CurrentUser.profile.PersonGUID == Guid.Empty));
+                string timeoutMessage = string.Empty;
+                if (noUser && User.Identity.IsAuthenticated)
+                {
+                    timeoutMessage = "Your session has timed out. Please log in again to proceed.";
+                }
 
                 FormsAuthentication.SignOut();
                 Session.Abandon();
 
                 // Clear invalid login text
-                var viewModel = new LoginViewModel 
+                var viewModel = new LoginViewModel
                 {
-                    Message = Request["message"] ?? TempData["message"] as String ?? String.Empty,
+                    Message = Request["message"] ?? TempData["message"] as String ?? timeoutMessage,
                     ReturnUrl = Request["ReturnUrl"] ?? String.Empty
                 };
+
+                // N.B. Adding a header requires Integrated Pipeline mode, so either IIS or IIS Express is
+                // required to run this (Cassini won't do it).
+                // Adding this header allows the global ajax handler to detect the login page without
+                // examining the HTML.
+                Response.Headers.Add("LoginPage", "This is it.");
                 return View(viewModel);
             }
             catch (Exception ex)
@@ -90,12 +107,12 @@ namespace Trips4.Controllers
             }
 
         }
-        
+
         /// <summary>
         /// Attempts to log the user into the system. If successful, user object stored in session.
         /// </summary>
         /// <returns></returns>
-        [HttpPost]       
+        [HttpPost]
         public ActionResult Index(LoginViewModel viewModel, string returnUrl)
         {
             LogOnModel model = viewModel.LogOnModel;
@@ -139,7 +156,7 @@ namespace Trips4.Controllers
 
                 return View(viewModel);
             }
-            catch (SqlException sqlex) 
+            catch (SqlException sqlex)
             {
                 //Send to error message on Login view
                 viewModel.Message = "A database has occurred while attempting to log you into the system.";
@@ -152,7 +169,7 @@ namespace Trips4.Controllers
             }
         }
 
-        
+
 
         /// <summary>
         /// Logs the user out of the application and re-directs to the 

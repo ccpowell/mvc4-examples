@@ -15,6 +15,9 @@ namespace Trips4.Filters
     /// </summary>
     public class SessionAuthorizeAttribute : AuthorizeAttribute
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         // This method must be thread-safe since it is called by the thread-safe OnCacheAuthorization() method.
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -24,12 +27,23 @@ namespace Trips4.Filters
             }
 
             // See if the session is active with a real user
-            ApplicationState appState = httpContext.Session[Trips4.DRCOGApp.SessionIdentifier] as ApplicationState;
-            if ((appState == null) ||
+            var appState = httpContext.Session[Trips4.DRCOGApp.SessionIdentifier] as ApplicationState;
+            bool noUser = ((appState == null) ||
                 (appState.CurrentUser == null) ||
                 (appState.CurrentUser.profile == null) ||
-                (appState.CurrentUser.profile.PersonGUID == Guid.Empty))
+                (appState.CurrentUser.profile.PersonGUID == Guid.Empty));
+            if (noUser)
             {
+                // not authorized if session timed out.
+                // But if the identity is not authenticated then the user didn't even log in.
+                if (httpContext.User.Identity.IsAuthenticated)
+                {
+                    Logger.Debug("User session timed out.");
+                }
+                else
+                {
+                    Logger.Debug("User session has no user.");
+                }
                 return false;
             }
 

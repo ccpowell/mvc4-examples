@@ -75,6 +75,7 @@ namespace Trips4.Tests
             Guid id = Guid.Parse("F543E678-E37F-46EC-8B95-E22B651D866F");
             target.CreatePersonForUser(id, "XXX");
         }
+
 #if cleanudup
         /// <summary>
         ///A test for CreateUserAndPerson
@@ -96,6 +97,7 @@ namespace Trips4.Tests
             Assert.IsTrue(profile.PersonID > 0);
         }
 #endif
+
         /// <summary>
         ///A test for ValidateUser
         ///</summary>

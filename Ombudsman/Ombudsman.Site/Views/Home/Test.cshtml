@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+<h2>
+    Test</h2>
+<button id="test-api">
+    api</button>
+<button id="test-indexjq">
+    indexjq</button>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#test-api").button().click(function () {
+                $.ajax("/Ombudsman/Api/Facility");
+            });
+            $("#test-indexjq").button().click(function () {
+                $.ajax("/Ombudsman/Home/IndexJq");
+            });
+            $(document).ajaxError(function (event, jqXHR, ajaxSettings, thrownError) {
+                alert("error");
+            });
+        });
+    </script>
+}

@@ -114,7 +114,6 @@ namespace Trips4.Controllers
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpPost]
         public JsonResult CreateProject(string projectName, string facilityName, string tipYear, int sponsorOrganizationId, int amendmentTypeId)
         {
@@ -146,6 +145,29 @@ namespace Trips4.Controllers
                 Data = result
             };
         }
+
+
+
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Denied")]
+        public JsonResult GetSponsorOrganizationsUnauth()
+        {
+            return new JsonResult
+            {
+                Data = "WTF? This should not succeed."
+            };
+        }
+
+        public JsonResult ExpireSession()
+        {
+            Session.Abandon();
+            return new JsonResult
+            {
+                Data = "Session is now defunct.",
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
 
         /// <summary>
         /// Create a new TIP

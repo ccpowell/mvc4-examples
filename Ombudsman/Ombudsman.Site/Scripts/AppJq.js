@@ -32,6 +32,7 @@ App.Facility = function () {
 
 App.Ombudsman = function () {
     "use strict";
+    
     return {
         OmbudsmanId: 0,
         Name: '',
