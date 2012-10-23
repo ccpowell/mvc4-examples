@@ -8,7 +8,6 @@ using System.Web.Security;
 namespace Ombudsman.Site.Controllers
 {
     [Authorize]
-    //[SessionState(System.Web.SessionState.SessionStateBehavior.Required)]
     public class HomeController : Controller
     {
 

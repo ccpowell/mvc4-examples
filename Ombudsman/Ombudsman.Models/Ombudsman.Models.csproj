@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Facility.cs" />
     <Compile Include="FacilityType.cs" />
+    <Compile Include="NewUser.cs" />
     <Compile Include="Ombudsman.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

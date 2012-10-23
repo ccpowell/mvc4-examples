@@ -120,7 +120,7 @@ namespace Ombudsman.Site.Controllers
         {
             return ModelState.SelectMany(x => x.Value.Errors.Select(error => error.ErrorMessage));
         }
-
+#if needed
         [AllowAnonymous]
         public ActionResult SetupManagers()
         {
@@ -137,6 +137,34 @@ namespace Ombudsman.Site.Controllers
 
             return this.Content("okay", "text/plain");
         }
+#endif
+        [Authorize(Roles="Administrator")]
+        public ActionResult CreateUser()
+        {
+            return View(new Ombudsman.Models.NewUser() { Password = "Passw0rd" });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public ActionResult CreateUser(Ombudsman.Models.NewUser user)
+        {
+            try
+            {
+                var memres = Membership.CreateUser(user.Username, user.Password, user.Email);
+                if (user.IsManager)
+                {
+                    Roles.AddUserToRole(user.Username, "Manager");
+                }
+
+                return this.Content("okay", "text/plain");
+            }
+            catch (Exception ex)
+            {
+                return this.Content("could not create user " + ex.Message, "text/plain");
+            }
+        }
+
+
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
