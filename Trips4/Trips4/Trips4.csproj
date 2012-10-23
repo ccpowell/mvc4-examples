@@ -801,4 +801,23 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="WriteContentBuildFile">
+    <PropertyGroup>
+      <CCNetLabel Condition=" '$(CCNetLabel)' == ''">development</CCNetLabel>
+      <CCNetBuildDate Condition=" '$(CCNetBuildDate)' == ''">$([System.DateTime]::Now.ToString(`yyyy-MM-dd`))</CCNetBuildDate>
+      <CCNetBuildTime Condition=" '$(CCNetBuildTime)' == ''">$([System.DateTime]::Now.ToString(`hh:mm:ss`))</CCNetBuildTime>
+    </PropertyGroup>
+    <Message Importance="high" Text="CCNet Build Label $(CCNetLabel)" />
+    <WriteLinesToFile File="Content\build.txt" Overwrite="True" Encoding="us-ascii" Lines="
+Build Label: $(CCNetLabel)
+Build Date: $(CCNetBuildDate)
+Build Time: $(CCNetBuildTime)" />
+    <ItemGroup>
+      <Content Include="Content\build.txt" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="BeforeBuild" DependsOnTargets="WriteContentBuildFile">
+  </Target>
+
 </Project>
