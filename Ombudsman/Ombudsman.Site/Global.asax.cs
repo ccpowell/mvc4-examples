@@ -14,6 +14,7 @@ namespace Ombudsman.Site
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -21,6 +22,8 @@ namespace Ombudsman.Site
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Logger.Debug("Ombudsman started.");
         }
     }
 }
