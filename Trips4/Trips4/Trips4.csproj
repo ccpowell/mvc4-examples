@@ -16,6 +16,8 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -42,6 +44,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +54,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DRCOG.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -808,16 +814,11 @@
       <CCNetBuildTime Condition=" '$(CCNetBuildTime)' == ''">$([System.DateTime]::Now.ToString(`hh:mm:ss`))</CCNetBuildTime>
     </PropertyGroup>
     <Message Importance="high" Text="CCNet Build Label $(CCNetLabel)" />
-    <WriteLinesToFile File="Content\build.txt" Overwrite="True" Encoding="us-ascii" Lines="
-Build Label: $(CCNetLabel)
-Build Date: $(CCNetBuildDate)
-Build Time: $(CCNetBuildTime)" />
+    <WriteLinesToFile File="Content\build.txt" Overwrite="True" Encoding="us-ascii" Lines="&#xD;&#xA;Build Label: $(CCNetLabel)&#xD;&#xA;Build Date: $(CCNetBuildDate)&#xD;&#xA;Build Time: $(CCNetBuildTime)" />
     <ItemGroup>
       <Content Include="Content\build.txt" />
     </ItemGroup>
   </Target>
-
   <Target Name="BeforeBuild" DependsOnTargets="WriteContentBuildFile">
   </Target>
-
 </Project>
