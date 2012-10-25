@@ -9,7 +9,7 @@ namespace Trips4.Data
     public class RtpRepository2
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        
+
         public ReportsViewModel GetReportsViewModel(string year)
         {
             var result = new ReportsViewModel();
@@ -54,7 +54,13 @@ namespace Trips4.Data
                 result.SurveyYears = new List<KeyValuePair<int, string>>();
                 foreach (var tp in db.TimePeriods.OrderBy(t => t.TimePeriod1))
                 {
-                    result.SurveyYears.Add(new KeyValuePair<int, string>(tp.TimePeriodID, tp.TimePeriod1));
+                    var name = tp.TimePeriod1;
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        name = "<No Name>";
+                    }
+
+                    result.SurveyYears.Add(new KeyValuePair<int, string>(tp.TimePeriodID, name));
                 }
             }
 
