@@ -42,5 +42,7 @@ namespace DRCOG.Domain.ViewModels.RTP
 
         public string ReturnUrl { get; set; }
 
+        public List<KeyValuePair<int, string>> CurrentPlanCycles { get; set; }
+        public List<KeyValuePair<int, string>> SurveyYears { get; set; }
     }
 }

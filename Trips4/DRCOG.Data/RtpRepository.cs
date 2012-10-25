@@ -1126,13 +1126,5 @@ namespace DRCOG.Data
 
         #endregion
 
-        public ReportsViewModel GetReportsViewModel(string year)
-        {
-            var result = new ReportsViewModel();
-
-            result.RtpSummary = GetSummary(year);
-
-            return result;
-        }
     }
 }

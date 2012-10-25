@@ -18,142 +18,142 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Processed_Report", "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Report), "Processed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Processed), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Address_AddressType", "AddressType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.AddressType), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Address_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Organization), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Address_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_StreetAddress_Address", "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Address), "StreetAddress", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.StreetAddress), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Category_CategoryType", "CategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CategoryType), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Category), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_CDOTInvestmentTypeCategory_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "CDOTInvestmentTypeCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CDOTInvestmentTypeCategory), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Project_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Project_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Project_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectVersion_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectVersion_CDOTRegionCategory", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_Category4", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPReportGroupingCategory_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "RTPReportGroupingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPReportGroupingCategory), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SponsorOrganization_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SponsorOrganization), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Strike_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_GeographyCounty_Geography", "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Geography), "CountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CountyGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectCountyGeography_CountyGeography", "CountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.CountyGeography), "ProjectCountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectCountyGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Cycle_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "Cycle1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Cycle), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Cycle_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Cycle), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_CycleProjectVersion_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Cycle), "CycleProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.CycleProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Network_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "Network", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Network), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TimePeriodCycles_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Cycle), "TimePeriodCycles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriodCycle), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Document_DocumentType", "DocumentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.DocumentType), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Document), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Feature_FeatureType", "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FeatureType), "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Feature), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_FundingType_FundingGroup", "FundingGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FundingGroup), "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_FundingResourceAmount_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "FundingResourceAmount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResourceAmount), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "ProjectFinancialRecordDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetail), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_FundingResource_FundingType", "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingType), "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResource), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_FundingResource_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResource), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Pool_FundingResource", "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FundingResource), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingResource), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_FundingType_Organization2", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Organization), "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Geography_GeographyType", "GeographyType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.GeographyType), "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Geography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_MuniGeography_Geography", "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Geography), "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.MuniGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_MuniGeography_GeographyType", "GeographyType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GeographyType), "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MuniGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_GISCategory_GISCategoryType", "GISCategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.GISCategoryType), "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.GISCategory), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_GISCategory", "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GISCategory), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_GISCategory1", "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GISCategory), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ImprovementType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ImprovementType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_ImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ImprovementType), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPImprovementType_ImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ImprovementType), "RTPImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPImprovementType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRS_LRSScheme", "LRSScheme", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSScheme), "LRS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LR), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRS_ProjectSegment", "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectSegment), "LRS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LR), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRSCategory_LRSCategoryType", "LRSCategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSCategoryType), "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSCategory), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.LRSCategory), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.LRSCategory), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_LRSSchemeAttr_LRSScheme", "LRSScheme", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSScheme), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.MetroVisionMeasure), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectMuniGeography_MuniGeography", "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.MuniGeography), "ProjectMuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectMuniGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_Network", "Network", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Network), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_OrganizationPersonRole_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Organization), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SponsorOrganization_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Organization), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SponsorOrganization), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_OrganizationPersonRole_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Person), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_OrganizationPersonRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Role), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Project_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SponsorOrganization_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SponsorOrganization), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_PoolProject_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "PoolProject", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.PoolProject), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProfileAttribute_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Profile), "ProfileAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttribute), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProfileAttributeType), "ProfileAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttribute), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProfileAttributeTypeClass), "ProfileAttributeType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttributeType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstance_Program", "Program", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Program), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstance_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstance_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectPool_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "SurveyProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "TIPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectType), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType1", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectType), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "TIPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectMuniGeography_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "ProjectMuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectMuniGeography), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSponsor_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "ProjectSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Strike_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectCDOTData_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectCDOTData", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectCDOTData), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectFinancialRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecord), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectFinancialRecord), "ProjectFinancialRecordDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetail), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectModelCoding_ProjectSegment", "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectSegment), "ProjectModelCoding", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectModelCoding), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectModelCoding_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectModelCoding", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectModelCoding), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectPool_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectVersion_Pool", "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectPool), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSegment_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "ProjectSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectType_ProjectType1", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectType), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectVersion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectVersion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ReportProjectVersionSorting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ReportProjectVersionSorting), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Report_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "Report1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Report1), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_ReportProjectVersionSorting_Report", "Report1", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Report1), "ReportProjectVersionSorting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ReportProjectVersionSorting), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Role_RoleType", "RoleType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RoleType), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Role), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod1", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod2", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RTPProgramInstance), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RTPProjectVersion), "CycleProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.CycleProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPReportGroupingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPReportGroupingCategory), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "TIPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_Strike_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Status), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProjectVersion_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProjectVersion_Status2", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProjectVersion_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SurveyProgramInstance), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_SurveyProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TimePeriod_TimePeriodType", "TimePeriodType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriodType), "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriod), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TimePeriodCycles_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "TimePeriodCycles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriodCycle), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FK_TIPProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
-[assembly: EdmRelationshipAttribute("TripsModel", "FundingSourceOrganization", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Organization))]
-[assembly: EdmRelationshipAttribute("TripsModel", "OrganizationOrganizationType", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Organization), "OrganizationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationType))]
-[assembly: EdmRelationshipAttribute("TripsModel", "ProgramInstanceImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ImprovementType), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance))]
-[assembly: EdmRelationshipAttribute("TripsModel", "TimePeriodFundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingIncrement), "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriod))]
-[assembly: EdmRelationshipAttribute("TripsModel", "TIPProjectEvaluation2010Feature", "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Feature), "TIPProjectEvaluation2010", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010))]
-[assembly: EdmRelationshipAttribute("TripsModel", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010), "TIPProjectEvaluation2010Mode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010Mode))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Processed_Report", "Report", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Report), "Processed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Processed), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Address_AddressType", "AddressType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.AddressType), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Address_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Organization), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Address_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Address), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_StreetAddress_Address", "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Address), "StreetAddress", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.StreetAddress), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Category_CategoryType", "CategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CategoryType), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Category), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_CDOTInvestmentTypeCategory_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "CDOTInvestmentTypeCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CDOTInvestmentTypeCategory), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Project_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Project_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Project_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectVersion_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectVersion_CDOTRegionCategory", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category4", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Category), "RTPReportGroupingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPReportGroupingCategory), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SponsorOrganization), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Strike_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_GeographyCounty_Geography", "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Geography), "CountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.CountyGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectCountyGeography_CountyGeography", "CountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.CountyGeography), "ProjectCountyGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectCountyGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Cycle_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "Cycle1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Cycle), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Cycle_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Cycle), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Cycle), "CycleProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.CycleProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Network_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "Network", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Network), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Cycle), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_Cycle", "Cycle", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Cycle), "TimePeriodCycles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriodCycle), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Document_DocumentType", "DocumentType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.DocumentType), "Document", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Document), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Feature_FeatureType", "FeatureType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FeatureType), "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Feature), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_FundingType_FundingGroup", "FundingGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FundingGroup), "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_FundingResourceAmount_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "FundingResourceAmount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResourceAmount), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "ProjectFinancialRecordDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetail), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingIncrement), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_FundingResource_FundingType", "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingType), "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResource), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_FundingResource_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingResource), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Pool_FundingResource", "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.FundingResource), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.FundingResource), "ProjectFinancialRecordDetailPhase", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetailPhase), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_FundingType_Organization2", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Organization), "FundingType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Geography_GeographyType", "GeographyType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.GeographyType), "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Geography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_MuniGeography_Geography", "Geography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Geography), "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.MuniGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_MuniGeography_GeographyType", "GeographyType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GeographyType), "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MuniGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_GISCategory_GISCategoryType", "GISCategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.GISCategoryType), "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.GISCategory), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory", "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GISCategory), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory1", "GISCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.GISCategory), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ImprovementType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ImprovementType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_ImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ImprovementType), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPImprovementType_ImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ImprovementType), "RTPImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPImprovementType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRS_LRSScheme", "LRSScheme", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSScheme), "LRS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LR), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRS_ProjectSegment", "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectSegment), "LRS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LR), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRSCategory_LRSCategoryType", "LRSCategoryType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSCategoryType), "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSCategory), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.LRSCategory), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.LRSCategory), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSScheme", "LRSScheme", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.LRSScheme), "LRSSchemeAttr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.LRSSchemeAttr), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.MetroVisionMeasure), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "MetroVisionMeasureSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.MetroVisionMeasureSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_MuniGeography", "MuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.MuniGeography), "ProjectMuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectMuniGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_Network", "Network", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Network), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Organization), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Organization", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Organization), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SponsorOrganization), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Person), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Role), "OrganizationPersonRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationPersonRole), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Project_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Project), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Person), "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SponsorOrganization), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_PoolProject_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "PoolProject", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.PoolProject), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProfileAttribute_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Profile), "ProfileAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttribute), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProfileAttributeType), "ProfileAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttribute), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProfileAttributeTypeClass), "ProfileAttributeType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProfileAttributeType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstance_Program", "Program", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Program), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstance_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstance_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectPool_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "SurveyProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProgramInstance_ProgramInstance", "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstance), "TIPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectType), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType1", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectType), "ProgramInstanceProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceProjectType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProgramInstanceSponsor), "TIPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "ProjectMuniGeography", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectMuniGeography), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSponsor_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "ProjectSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Strike_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Project), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectCDOTData_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectCDOTData", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectCDOTData), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectFinancialRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecord), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectFinancialRecord), "ProjectFinancialRecordDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectFinancialRecordDetail), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectSegment", "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectSegment), "ProjectModelCoding", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectModelCoding), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectModelCoding", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectModelCoding), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectPool_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectPool), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectVersion_Pool", "ProjectPool", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectPool), "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "ProjectSegment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSegment), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "ProjectSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType1", "ProjectType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectType), "ProjectType1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectType), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectVersion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.ProjectVersion), "ProjectVersion1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "ReportProjectVersionSorting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ReportProjectVersionSorting), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_ProjectVersion", "ProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.ProjectVersion), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Report_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "Report1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Report1), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_Report", "Report1", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Report1), "ReportProjectVersionSorting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ReportProjectVersionSorting), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Role_RoleType", "RoleType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RoleType), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Role), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod1", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod2", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstance), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RTPProgramInstance), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "RTPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.RTPProjectVersion), "CycleProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.CycleProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "RTPReportGroupingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.RTPReportGroupingCategory), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SponsorOrganization), "TIPProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_Strike_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.Status), "Strike", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Strike), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status2", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status1", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Status), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.SurveyProgramInstance), "SurveyProgramInstanceSponsor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProgramInstanceSponsor), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "SurveyProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.SurveyProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TimePeriod_TimePeriodType", "TimePeriodType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriodType), "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriod), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips4.Data.Models.TimePeriod), "TimePeriodCycles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriodCycle), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_TimePeriod", "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.TimePeriod), "TIPProjectVersion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectVersion), true)]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "FundingSourceOrganization", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Trips4.Data.Models.Category), "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Organization))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "OrganizationOrganizationType", "Organization", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Organization), "OrganizationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.OrganizationType))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "ProgramInstanceImprovementType", "ImprovementType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ImprovementType), "ProgramInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.ProgramInstance))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "TimePeriodFundingIncrement", "FundingIncrement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.FundingIncrement), "TimePeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TimePeriod))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010Feature", "Feature", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.Feature), "TIPProjectEvaluation2010", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010))]
+[assembly: EdmRelationshipAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010), "TIPProjectEvaluation2010Mode", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips4.Data.Models.TIPProjectEvaluation2010Mode))]
 
 #endregion
 
@@ -2849,6 +2849,55 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction("CreatePerson", personGUIDParameter, personID, firstNameParameter, lastNameParameter, sponsorCodeParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="plan">No Metadata Documentation available.</param>
+        /// <param name="cycleId">No Metadata Documentation available.</param>
+        public ObjectResult<RtpGetSummary_Result> RtpGetSummary(global::System.String plan, Nullable<global::System.Int32> cycleId)
+        {
+            ObjectParameter planParameter;
+            if (plan != null)
+            {
+                planParameter = new ObjectParameter("Plan", plan);
+            }
+            else
+            {
+                planParameter = new ObjectParameter("Plan", typeof(global::System.String));
+            }
+    
+            ObjectParameter cycleIdParameter;
+            if (cycleId.HasValue)
+            {
+                cycleIdParameter = new ObjectParameter("CycleId", cycleId);
+            }
+            else
+            {
+                cycleIdParameter = new ObjectParameter("CycleId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<RtpGetSummary_Result>("RtpGetSummary", planParameter, cycleIdParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="timePeriodId">No Metadata Documentation available.</param>
+        public ObjectResult<RtpGetCurrentPlanCycles_Result> RtpGetCurrentPlanCycles(Nullable<global::System.Int32> timePeriodId)
+        {
+            ObjectParameter timePeriodIdParameter;
+            if (timePeriodId.HasValue)
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", timePeriodId);
+            }
+            else
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<RtpGetCurrentPlanCycles_Result>("RtpGetCurrentPlanCycles", timePeriodIdParameter);
+        }
 
         #endregion
     }
@@ -2861,7 +2910,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Address")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Address")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Address : EntityObject
@@ -3091,16 +3140,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_AddressType", "AddressType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_AddressType", "AddressType")]
         public AddressType AddressType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("TripsModel.FK_Address_AddressType", "AddressType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("Trips4.Data.Models.FK_Address_AddressType", "AddressType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("TripsModel.FK_Address_AddressType", "AddressType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("Trips4.Data.Models.FK_Address_AddressType", "AddressType").Value = value;
             }
         }
         /// <summary>
@@ -3112,13 +3161,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("TripsModel.FK_Address_AddressType", "AddressType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AddressType>("Trips4.Data.Models.FK_Address_AddressType", "AddressType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AddressType>("TripsModel.FK_Address_AddressType", "AddressType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AddressType>("Trips4.Data.Models.FK_Address_AddressType", "AddressType", value);
                 }
             }
         }
@@ -3129,16 +3178,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_Organization", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_Organization", "Organization")]
         public Organization Organization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_Address_Organization", "Organization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_Address_Organization", "Organization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_Address_Organization", "Organization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_Address_Organization", "Organization").Value = value;
             }
         }
         /// <summary>
@@ -3150,13 +3199,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_Address_Organization", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_Address_Organization", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("TripsModel.FK_Address_Organization", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("Trips4.Data.Models.FK_Address_Organization", "Organization", value);
                 }
             }
         }
@@ -3167,16 +3216,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Address_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Address_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Address_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Address_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -3188,13 +3237,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Address_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Address_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("TripsModel.FK_Address_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("Trips4.Data.Models.FK_Address_Person", "Person", value);
                 }
             }
         }
@@ -3205,16 +3254,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_StreetAddress_Address", "StreetAddress")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_StreetAddress_Address", "StreetAddress")]
         public StreetAddress StreetAddress
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("TripsModel.FK_StreetAddress_Address", "StreetAddress").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("Trips4.Data.Models.FK_StreetAddress_Address", "StreetAddress").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("TripsModel.FK_StreetAddress_Address", "StreetAddress").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("Trips4.Data.Models.FK_StreetAddress_Address", "StreetAddress").Value = value;
             }
         }
         /// <summary>
@@ -3226,13 +3275,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("TripsModel.FK_StreetAddress_Address", "StreetAddress");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StreetAddress>("Trips4.Data.Models.FK_StreetAddress_Address", "StreetAddress");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StreetAddress>("TripsModel.FK_StreetAddress_Address", "StreetAddress", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StreetAddress>("Trips4.Data.Models.FK_StreetAddress_Address", "StreetAddress", value);
                 }
             }
         }
@@ -3243,7 +3292,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="AddressType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="AddressType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class AddressType : EntityObject
@@ -3325,18 +3374,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_AddressType", "Address")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_AddressType", "Address")]
         public EntityCollection<Address> Addresses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("TripsModel.FK_Address_AddressType", "Address");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("Trips4.Data.Models.FK_Address_AddressType", "Address");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("TripsModel.FK_Address_AddressType", "Address", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("Trips4.Data.Models.FK_Address_AddressType", "Address", value);
                 }
             }
         }
@@ -3347,7 +3396,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="AdhocProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="AdhocProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class AdhocProjectVersion : EntityObject
@@ -3402,7 +3451,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Category")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Category")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Category : EntityObject
@@ -3584,16 +3633,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Category_CategoryType", "CategoryType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Category_CategoryType", "CategoryType")]
         public CategoryType CategoryType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("TripsModel.FK_Category_CategoryType", "CategoryType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("Trips4.Data.Models.FK_Category_CategoryType", "CategoryType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("TripsModel.FK_Category_CategoryType", "CategoryType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("Trips4.Data.Models.FK_Category_CategoryType", "CategoryType").Value = value;
             }
         }
         /// <summary>
@@ -3605,13 +3654,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("TripsModel.FK_Category_CategoryType", "CategoryType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CategoryType>("Trips4.Data.Models.FK_Category_CategoryType", "CategoryType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CategoryType>("TripsModel.FK_Category_CategoryType", "CategoryType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CategoryType>("Trips4.Data.Models.FK_Category_CategoryType", "CategoryType", value);
                 }
             }
         }
@@ -3622,16 +3671,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory")]
         public CDOTInvestmentTypeCategory CDOTInvestmentTypeCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory").Value = value;
             }
         }
         /// <summary>
@@ -3643,13 +3692,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CDOTInvestmentTypeCategory>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CDOTInvestmentTypeCategory>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CDOTInvestmentTypeCategory>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "CDOTInvestmentTypeCategory", value);
                 }
             }
         }
@@ -3660,18 +3709,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category", "Project")]
         public EntityCollection<Project> Projects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("TripsModel.FK_Project_Category", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("TripsModel.FK_Project_Category", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category", "Project", value);
                 }
             }
         }
@@ -3682,18 +3731,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category1", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category1", "Project")]
         public EntityCollection<Project> Projects1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("TripsModel.FK_Project_Category1", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category1", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("TripsModel.FK_Project_Category1", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category1", "Project", value);
                 }
             }
         }
@@ -3704,18 +3753,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category2", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category2", "Project")]
         public EntityCollection<Project> Projects2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("TripsModel.FK_Project_Category2", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category2", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("TripsModel.FK_Project_Category2", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Category2", "Project", value);
                 }
             }
         }
@@ -3726,18 +3775,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase")]
         public EntityCollection<ProjectFinancialRecordDetailPhase> ProjectFinancialRecordDetailPhases
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "ProjectFinancialRecordDetailPhase", value);
                 }
             }
         }
@@ -3748,18 +3797,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_Category", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_Category", "ProjectVersion")]
         public EntityCollection<ProjectVersion> ProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_Category", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_Category", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_Category", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_Category", "ProjectVersion", value);
                 }
             }
         }
@@ -3770,18 +3819,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion")]
         public EntityCollection<ProjectVersion> ProjectVersions1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "ProjectVersion", value);
                 }
             }
         }
@@ -3792,18 +3841,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category1", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category1", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category1", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category1", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "RTPProjectVersion", value);
                 }
             }
         }
@@ -3814,18 +3863,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category2", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category2", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category2", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category2", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "RTPProjectVersion", value);
                 }
             }
         }
@@ -3836,18 +3885,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category4", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category4", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category4", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Category4", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "RTPProjectVersion", value);
                 }
             }
         }
@@ -3858,16 +3907,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory")]
         public RTPReportGroupingCategory RTPReportGroupingCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory").Value = value;
             }
         }
         /// <summary>
@@ -3879,13 +3928,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "RTPReportGroupingCategory", value);
                 }
             }
         }
@@ -3896,18 +3945,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Category", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Category", "SponsorOrganization")]
         public EntityCollection<SponsorOrganization> SponsorOrganizations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Category", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Category", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Category", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Category", "SponsorOrganization", value);
                 }
             }
         }
@@ -3918,18 +3967,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Category", "Strike")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Category", "Strike")]
         public EntityCollection<Strike> Strikes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("TripsModel.FK_Strike_Category", "Strike");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Category", "Strike");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("TripsModel.FK_Strike_Category", "Strike", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Category", "Strike", value);
                 }
             }
         }
@@ -3940,18 +3989,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FundingSourceOrganization", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FundingSourceOrganization", "Organization")]
         public EntityCollection<Organization> Organizations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Organization>("TripsModel.FundingSourceOrganization", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Organization>("Trips4.Data.Models.FundingSourceOrganization", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Organization>("TripsModel.FundingSourceOrganization", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Organization>("Trips4.Data.Models.FundingSourceOrganization", "Organization", value);
                 }
             }
         }
@@ -3962,7 +4011,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="CategoryType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="CategoryType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CategoryType : EntityObject
@@ -4070,18 +4119,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Category_CategoryType", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Category_CategoryType", "Category")]
         public EntityCollection<Category> Categories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("TripsModel.FK_Category_CategoryType", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("Trips4.Data.Models.FK_Category_CategoryType", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("TripsModel.FK_Category_CategoryType", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("Trips4.Data.Models.FK_Category_CategoryType", "Category", value);
                 }
             }
         }
@@ -4092,7 +4141,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="CDOTCorridorGISCategory")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="CDOTCorridorGISCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CDOTCorridorGISCategory : EntityObject
@@ -4171,7 +4220,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="CDOTInvestmentTypeCategory")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="CDOTInvestmentTypeCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CDOTInvestmentTypeCategory : EntityObject
@@ -4301,16 +4350,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CDOTInvestmentTypeCategory_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CDOTInvestmentTypeCategory_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -4322,13 +4371,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_CDOTInvestmentTypeCategory_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_CDOTInvestmentTypeCategory_Category", "Category", value);
                 }
             }
         }
@@ -4339,7 +4388,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="CountyGeography")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="CountyGeography")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CountyGeography : EntityObject
@@ -4445,16 +4494,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_GeographyCounty_Geography", "Geography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_GeographyCounty_Geography", "Geography")]
         public Geography Geography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_GeographyCounty_Geography", "Geography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "Geography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_GeographyCounty_Geography", "Geography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "Geography").Value = value;
             }
         }
         /// <summary>
@@ -4466,13 +4515,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_GeographyCounty_Geography", "Geography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "Geography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Geography>("TripsModel.FK_GeographyCounty_Geography", "Geography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Geography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "Geography", value);
                 }
             }
         }
@@ -4483,18 +4532,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography")]
         public EntityCollection<ProjectCountyGeography> ProjectCountyGeographies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectCountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectCountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectCountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectCountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "ProjectCountyGeography", value);
                 }
             }
         }
@@ -4505,7 +4554,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Cycle")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Cycle")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Cycle : EntityObject
@@ -4515,7 +4564,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new Cycle object.
         /// </summary>
-        /// <param name="guid">Initial value of the guid property.</param>
+        /// <param name="id">Initial value of the id property.</param>
         /// <param name="cycle1">Initial value of the cycle1 property.</param>
         /// <param name="cycleGuid">Initial value of the cycleGuid property.</param>
         public static Cycle CreateCycle(global::System.Int32 id, global::System.String cycle1, global::System.Guid cycleGuid)
@@ -4663,18 +4712,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Cycle_Cycle", "Cycle1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Cycle_Cycle", "Cycle1")]
         public EntityCollection<Cycle> Cycle11
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle1", value);
                 }
             }
         }
@@ -4685,16 +4734,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Cycle_Cycle", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Cycle_Cycle", "Cycle")]
         public Cycle Cycle2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle").Value = value;
             }
         }
         /// <summary>
@@ -4706,13 +4755,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("TripsModel.FK_Cycle_Cycle", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("Trips4.Data.Models.FK_Cycle_Cycle", "Cycle", value);
                 }
             }
         }
@@ -4723,16 +4772,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Cycle_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Cycle_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Cycle_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Cycle_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Cycle_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Cycle_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -4744,13 +4793,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Cycle_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Cycle_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_Cycle_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_Cycle_Status", "Status", value);
                 }
             }
         }
@@ -4761,18 +4810,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CycleProjectVersion_Cycle", "CycleProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_Cycle", "CycleProjectVersion")]
         public EntityCollection<CycleProjectVersion> CycleProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CycleProjectVersion>("TripsModel.FK_CycleProjectVersion_Cycle", "CycleProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CycleProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "CycleProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CycleProjectVersion>("TripsModel.FK_CycleProjectVersion_Cycle", "CycleProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CycleProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "CycleProjectVersion", value);
                 }
             }
         }
@@ -4783,18 +4832,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Network_Cycle", "Network")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Network_Cycle", "Network")]
         public EntityCollection<Network> Networks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Network>("TripsModel.FK_Network_Cycle", "Network");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Network>("Trips4.Data.Models.FK_Network_Cycle", "Network");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Network>("TripsModel.FK_Network_Cycle", "Network", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Network>("Trips4.Data.Models.FK_Network_Cycle", "Network", value);
                 }
             }
         }
@@ -4805,18 +4854,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Cycle", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Cycle", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Cycle", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Cycle", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "RTPProjectVersion", value);
                 }
             }
         }
@@ -4827,18 +4876,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriodCycles_Cycle", "TimePeriodCycles")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_Cycle", "TimePeriodCycles")]
         public EntityCollection<TimePeriodCycle> TimePeriodCycles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriodCycle>("TripsModel.FK_TimePeriodCycles_Cycle", "TimePeriodCycles");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriodCycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "TimePeriodCycles");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriodCycle>("TripsModel.FK_TimePeriodCycles_Cycle", "TimePeriodCycles", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriodCycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "TimePeriodCycles", value);
                 }
             }
         }
@@ -4849,7 +4898,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="CycleProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="CycleProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CycleProjectVersion : EntityObject
@@ -4962,16 +5011,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CycleProjectVersion_Cycle", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_Cycle", "Cycle")]
         public Cycle Cycle
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_CycleProjectVersion_Cycle", "Cycle").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "Cycle").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_CycleProjectVersion_Cycle", "Cycle").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "Cycle").Value = value;
             }
         }
         /// <summary>
@@ -4983,13 +5032,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_CycleProjectVersion_Cycle", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("TripsModel.FK_CycleProjectVersion_Cycle", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("Trips4.Data.Models.FK_CycleProjectVersion_Cycle", "Cycle", value);
                 }
             }
         }
@@ -5000,16 +5049,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion")]
         public RTPProjectVersion RTPProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -5021,13 +5070,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "RTPProjectVersion", value);
                 }
             }
         }
@@ -5038,7 +5087,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Document")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Document")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Document : EntityObject
@@ -5168,16 +5217,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Document_DocumentType", "DocumentType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Document_DocumentType", "DocumentType")]
         public DocumentType DocumentType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("TripsModel.FK_Document_DocumentType", "DocumentType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("Trips4.Data.Models.FK_Document_DocumentType", "DocumentType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("TripsModel.FK_Document_DocumentType", "DocumentType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("Trips4.Data.Models.FK_Document_DocumentType", "DocumentType").Value = value;
             }
         }
         /// <summary>
@@ -5189,13 +5238,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("TripsModel.FK_Document_DocumentType", "DocumentType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DocumentType>("Trips4.Data.Models.FK_Document_DocumentType", "DocumentType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DocumentType>("TripsModel.FK_Document_DocumentType", "DocumentType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DocumentType>("Trips4.Data.Models.FK_Document_DocumentType", "DocumentType", value);
                 }
             }
         }
@@ -5206,7 +5255,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="DocumentType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="DocumentType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class DocumentType : EntityObject
@@ -5288,18 +5337,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Document_DocumentType", "Document")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Document_DocumentType", "Document")]
         public EntityCollection<Document> Documents
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Document>("TripsModel.FK_Document_DocumentType", "Document");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Document>("Trips4.Data.Models.FK_Document_DocumentType", "Document");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Document>("TripsModel.FK_Document_DocumentType", "Document", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Document>("Trips4.Data.Models.FK_Document_DocumentType", "Document", value);
                 }
             }
         }
@@ -5310,7 +5359,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="EvaluationCriterion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="EvaluationCriterion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class EvaluationCriterion : EntityObject
@@ -5461,7 +5510,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="EvaluationCriterionProjectType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="EvaluationCriterionProjectType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class EvaluationCriterionProjectType : EntityObject
@@ -5569,7 +5618,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Feature")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Feature")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Feature : EntityObject
@@ -5795,16 +5844,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Feature_FeatureType", "FeatureType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Feature_FeatureType", "FeatureType")]
         public FeatureType FeatureType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("TripsModel.FK_Feature_FeatureType", "FeatureType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("Trips4.Data.Models.FK_Feature_FeatureType", "FeatureType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("TripsModel.FK_Feature_FeatureType", "FeatureType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("Trips4.Data.Models.FK_Feature_FeatureType", "FeatureType").Value = value;
             }
         }
         /// <summary>
@@ -5816,13 +5865,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("TripsModel.FK_Feature_FeatureType", "FeatureType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FeatureType>("Trips4.Data.Models.FK_Feature_FeatureType", "FeatureType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FeatureType>("TripsModel.FK_Feature_FeatureType", "FeatureType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FeatureType>("Trips4.Data.Models.FK_Feature_FeatureType", "FeatureType", value);
                 }
             }
         }
@@ -5833,18 +5882,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010")]
         public EntityCollection<TIPProjectEvaluation2010> TIPProjectEvaluation2010
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010>("TripsModel.TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010>("Trips4.Data.Models.TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010>("TripsModel.TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010>("Trips4.Data.Models.TIPProjectEvaluation2010Feature", "TIPProjectEvaluation2010", value);
                 }
             }
         }
@@ -5855,7 +5904,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FeatureType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FeatureType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FeatureType : EntityObject
@@ -5985,18 +6034,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Feature_FeatureType", "Feature")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Feature_FeatureType", "Feature")]
         public EntityCollection<Feature> Features
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Feature>("TripsModel.FK_Feature_FeatureType", "Feature");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Feature>("Trips4.Data.Models.FK_Feature_FeatureType", "Feature");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Feature>("TripsModel.FK_Feature_FeatureType", "Feature", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Feature>("Trips4.Data.Models.FK_Feature_FeatureType", "Feature", value);
                 }
             }
         }
@@ -6007,7 +6056,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingGroup")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingGroup")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingGroup : EntityObject
@@ -6091,18 +6140,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingType_FundingGroup", "FundingType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingType_FundingGroup", "FundingType")]
         public EntityCollection<FundingType> FundingTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingType>("TripsModel.FK_FundingType_FundingGroup", "FundingType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingType>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingType>("TripsModel.FK_FundingType_FundingGroup", "FundingType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingType>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingType", value);
                 }
             }
         }
@@ -6113,7 +6162,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingIncrement")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingIncrement")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingIncrement : EntityObject
@@ -6275,18 +6324,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount")]
         public EntityCollection<FundingResourceAmount> FundingResourceAmounts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResourceAmount>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResourceAmount>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResourceAmount>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResourceAmount>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingResourceAmount", value);
                 }
             }
         }
@@ -6297,18 +6346,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail")]
         public EntityCollection<ProjectFinancialRecordDetail> ProjectFinancialRecordDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetail>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetail>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetail>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetail>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "ProjectFinancialRecordDetail", value);
                 }
             }
         }
@@ -6319,18 +6368,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase")]
         public EntityCollection<ProjectFinancialRecordDetailPhase> ProjectFinancialRecordDetailPhases
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "ProjectFinancialRecordDetailPhase", value);
                 }
             }
         }
@@ -6341,18 +6390,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TimePeriodFundingIncrement", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TimePeriodFundingIncrement", "TimePeriod")]
         public EntityCollection<TimePeriod> TimePeriods
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriod>("TripsModel.TimePeriodFundingIncrement", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriod>("Trips4.Data.Models.TimePeriodFundingIncrement", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriod>("TripsModel.TimePeriodFundingIncrement", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriod>("Trips4.Data.Models.TimePeriodFundingIncrement", "TimePeriod", value);
                 }
             }
         }
@@ -6363,7 +6412,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingLevel")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingLevel")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingLevel : EntityObject
@@ -6444,7 +6493,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingResource")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingResource")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingResource : EntityObject
@@ -6604,16 +6653,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResource_FundingType", "FundingType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResource_FundingType", "FundingType")]
         public FundingType FundingType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("TripsModel.FK_FundingResource_FundingType", "FundingType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("TripsModel.FK_FundingResource_FundingType", "FundingType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingType").Value = value;
             }
         }
         /// <summary>
@@ -6625,13 +6674,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("TripsModel.FK_FundingResource_FundingType", "FundingType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingType>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingType>("TripsModel.FK_FundingResource_FundingType", "FundingType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingType>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingType", value);
                 }
             }
         }
@@ -6642,16 +6691,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResource_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResource_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_FundingResource_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_FundingResource_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -6663,13 +6712,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_FundingResource_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_FundingResource_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -6680,18 +6729,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Pool_FundingResource", "ProjectPool")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Pool_FundingResource", "ProjectPool")]
         public EntityCollection<ProjectPool> ProjectPools
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("TripsModel.FK_Pool_FundingResource", "ProjectPool");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_Pool_FundingResource", "ProjectPool");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("TripsModel.FK_Pool_FundingResource", "ProjectPool", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_Pool_FundingResource", "ProjectPool", value);
                 }
             }
         }
@@ -6702,18 +6751,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase")]
         public EntityCollection<ProjectFinancialRecordDetailPhase> ProjectFinancialRecordDetailPhases
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetailPhase>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "ProjectFinancialRecordDetailPhase", value);
                 }
             }
         }
@@ -6724,7 +6773,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingResourceAmount")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingResourceAmount")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingResourceAmount : EntityObject
@@ -6882,16 +6931,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResourceAmount_FundingIncrement", "FundingIncrement")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResourceAmount_FundingIncrement", "FundingIncrement")]
         public FundingIncrement FundingIncrement
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement").Value = value;
             }
         }
         /// <summary>
@@ -6903,13 +6952,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("TripsModel.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_FundingResourceAmount_FundingIncrement", "FundingIncrement", value);
                 }
             }
         }
@@ -6920,7 +6969,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingResourceTimePeriod")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingResourceTimePeriod")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingResourceTimePeriod : EntityObject
@@ -7004,7 +7053,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingType : EntityObject
@@ -7256,16 +7305,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingType_FundingGroup", "FundingGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingType_FundingGroup", "FundingGroup")]
         public FundingGroup FundingGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("TripsModel.FK_FundingType_FundingGroup", "FundingGroup").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingGroup").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("TripsModel.FK_FundingType_FundingGroup", "FundingGroup").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingGroup").Value = value;
             }
         }
         /// <summary>
@@ -7277,13 +7326,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("TripsModel.FK_FundingType_FundingGroup", "FundingGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingGroup>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingGroup>("TripsModel.FK_FundingType_FundingGroup", "FundingGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingGroup>("Trips4.Data.Models.FK_FundingType_FundingGroup", "FundingGroup", value);
                 }
             }
         }
@@ -7294,18 +7343,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResource_FundingType", "FundingResource")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResource_FundingType", "FundingResource")]
         public EntityCollection<FundingResource> FundingResources
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResource>("TripsModel.FK_FundingResource_FundingType", "FundingResource");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResource>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingResource");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResource>("TripsModel.FK_FundingResource_FundingType", "FundingResource", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResource>("Trips4.Data.Models.FK_FundingResource_FundingType", "FundingResource", value);
                 }
             }
         }
@@ -7316,16 +7365,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingType_Organization2", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingType_Organization2", "Organization")]
         public Organization Organization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_FundingType_Organization2", "Organization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_FundingType_Organization2", "Organization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_FundingType_Organization2", "Organization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_FundingType_Organization2", "Organization").Value = value;
             }
         }
         /// <summary>
@@ -7337,13 +7386,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_FundingType_Organization2", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_FundingType_Organization2", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("TripsModel.FK_FundingType_Organization2", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("Trips4.Data.Models.FK_FundingType_Organization2", "Organization", value);
                 }
             }
         }
@@ -7354,7 +7403,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="FundingTypeLevel")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="FundingTypeLevel")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class FundingTypeLevel : EntityObject
@@ -7467,7 +7516,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Geography")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Geography")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Geography : EntityObject
@@ -7577,16 +7626,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_GeographyCounty_Geography", "CountyGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_GeographyCounty_Geography", "CountyGeography")]
         public CountyGeography CountyGeography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_GeographyCounty_Geography", "CountyGeography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "CountyGeography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_GeographyCounty_Geography", "CountyGeography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "CountyGeography").Value = value;
             }
         }
         /// <summary>
@@ -7598,13 +7647,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_GeographyCounty_Geography", "CountyGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "CountyGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CountyGeography>("TripsModel.FK_GeographyCounty_Geography", "CountyGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CountyGeography>("Trips4.Data.Models.FK_GeographyCounty_Geography", "CountyGeography", value);
                 }
             }
         }
@@ -7615,16 +7664,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Geography_GeographyType", "GeographyType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Geography_GeographyType", "GeographyType")]
         public GeographyType GeographyType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_Geography_GeographyType", "GeographyType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_Geography_GeographyType", "GeographyType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_Geography_GeographyType", "GeographyType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_Geography_GeographyType", "GeographyType").Value = value;
             }
         }
         /// <summary>
@@ -7636,13 +7685,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_Geography_GeographyType", "GeographyType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_Geography_GeographyType", "GeographyType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GeographyType>("TripsModel.FK_Geography_GeographyType", "GeographyType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GeographyType>("Trips4.Data.Models.FK_Geography_GeographyType", "GeographyType", value);
                 }
             }
         }
@@ -7653,16 +7702,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MuniGeography_Geography", "MuniGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MuniGeography_Geography", "MuniGeography")]
         public MuniGeography MuniGeography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_MuniGeography_Geography", "MuniGeography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_Geography", "MuniGeography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_MuniGeography_Geography", "MuniGeography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_Geography", "MuniGeography").Value = value;
             }
         }
         /// <summary>
@@ -7674,13 +7723,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_MuniGeography_Geography", "MuniGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_Geography", "MuniGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MuniGeography>("TripsModel.FK_MuniGeography_Geography", "MuniGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_Geography", "MuniGeography", value);
                 }
             }
         }
@@ -7691,7 +7740,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="GeographyType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="GeographyType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class GeographyType : EntityObject
@@ -7773,18 +7822,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Geography_GeographyType", "Geography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Geography_GeographyType", "Geography")]
         public EntityCollection<Geography> Geographies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Geography>("TripsModel.FK_Geography_GeographyType", "Geography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Geography>("Trips4.Data.Models.FK_Geography_GeographyType", "Geography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Geography>("TripsModel.FK_Geography_GeographyType", "Geography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Geography>("Trips4.Data.Models.FK_Geography_GeographyType", "Geography", value);
                 }
             }
         }
@@ -7795,18 +7844,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MuniGeography_GeographyType", "MuniGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MuniGeography_GeographyType", "MuniGeography")]
         public EntityCollection<MuniGeography> MuniGeographies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MuniGeography>("TripsModel.FK_MuniGeography_GeographyType", "MuniGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "MuniGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MuniGeography>("TripsModel.FK_MuniGeography_GeographyType", "MuniGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MuniGeography>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "MuniGeography", value);
                 }
             }
         }
@@ -7817,7 +7866,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="GISCategory")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="GISCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class GISCategory : EntityObject
@@ -7977,16 +8026,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_GISCategory_GISCategoryType", "GISCategoryType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_GISCategory_GISCategoryType", "GISCategoryType")]
         public GISCategoryType GISCategoryType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategoryType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategoryType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategoryType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategoryType").Value = value;
             }
         }
         /// <summary>
@@ -7998,13 +8047,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategoryType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategoryType>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategoryType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategoryType>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategoryType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategoryType>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategoryType", value);
                 }
             }
         }
@@ -8015,18 +8064,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_GISCategory", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_GISCategory", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_GISCategory", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "ProjectSegment", value);
                 }
             }
         }
@@ -8037,18 +8086,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_GISCategory1", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory1", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_GISCategory1", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_GISCategory1", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "ProjectSegment", value);
                 }
             }
         }
@@ -8059,7 +8108,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="GISCategoryType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="GISCategoryType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class GISCategoryType : EntityObject
@@ -8143,18 +8192,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_GISCategory_GISCategoryType", "GISCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_GISCategory_GISCategoryType", "GISCategory")]
         public EntityCollection<GISCategory> GISCategories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<GISCategory>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<GISCategory>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<GISCategory>("TripsModel.FK_GISCategory_GISCategoryType", "GISCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<GISCategory>("Trips4.Data.Models.FK_GISCategory_GISCategoryType", "GISCategory", value);
                 }
             }
         }
@@ -8165,7 +8214,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ImprovementType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ImprovementType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ImprovementType : EntityObject
@@ -8417,16 +8466,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ImprovementType_ProjectType", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ImprovementType_ProjectType", "ProjectType")]
         public ProjectType ProjectType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ImprovementType_ProjectType", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ImprovementType_ProjectType", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -8438,13 +8487,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ImprovementType_ProjectType", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ImprovementType_ProjectType", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ProjectType", value);
                 }
             }
         }
@@ -8455,18 +8504,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_ImprovementType", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_ImprovementType", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_ImprovementType", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_ImprovementType", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ProjectSegment", value);
                 }
             }
         }
@@ -8477,16 +8526,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPImprovementType_ImprovementType", "RTPImprovementType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPImprovementType_ImprovementType", "RTPImprovementType")]
         public RTPImprovementType RTPImprovementType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "RTPImprovementType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "RTPImprovementType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "RTPImprovementType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "RTPImprovementType").Value = value;
             }
         }
         /// <summary>
@@ -8498,13 +8547,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "RTPImprovementType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "RTPImprovementType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "RTPImprovementType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "RTPImprovementType", value);
                 }
             }
         }
@@ -8515,18 +8564,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "ProgramInstanceImprovementType", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "ProgramInstanceImprovementType", "ProgramInstance")]
         public EntityCollection<ProgramInstance> ProgramInstances
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("TripsModel.ProgramInstanceImprovementType", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("Trips4.Data.Models.ProgramInstanceImprovementType", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("TripsModel.ProgramInstanceImprovementType", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("Trips4.Data.Models.ProgramInstanceImprovementType", "ProgramInstance", value);
                 }
             }
         }
@@ -8537,7 +8586,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LoginProfile")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LoginProfile")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LoginProfile : EntityObject
@@ -8642,7 +8691,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LR")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LR")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LR : EntityObject
@@ -8652,7 +8701,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new LR object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="lRSSchemeId">Initial value of the LRSSchemeId property.</param>
         /// <param name="data">Initial value of the Data property.</param>
         public static LR CreateLR(global::System.Int32 id, global::System.Int32 lRSSchemeId, global::System.String data)
@@ -8776,16 +8825,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRS_LRSScheme", "LRSScheme")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRS_LRSScheme", "LRSScheme")]
         public LRSScheme LRSScheme
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRS_LRSScheme", "LRSScheme").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRSScheme").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRS_LRSScheme", "LRSScheme").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRSScheme").Value = value;
             }
         }
         /// <summary>
@@ -8797,13 +8846,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRS_LRSScheme", "LRSScheme");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRSScheme");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSScheme>("TripsModel.FK_LRS_LRSScheme", "LRSScheme", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRSScheme", value);
                 }
             }
         }
@@ -8814,16 +8863,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRS_ProjectSegment", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRS_ProjectSegment", "ProjectSegment")]
         public ProjectSegment ProjectSegment
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_LRS_ProjectSegment", "ProjectSegment").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_LRS_ProjectSegment", "ProjectSegment").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_LRS_ProjectSegment", "ProjectSegment").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_LRS_ProjectSegment", "ProjectSegment").Value = value;
             }
         }
         /// <summary>
@@ -8835,13 +8884,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_LRS_ProjectSegment", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_LRS_ProjectSegment", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectSegment>("TripsModel.FK_LRS_ProjectSegment", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_LRS_ProjectSegment", "ProjectSegment", value);
                 }
             }
         }
@@ -8852,7 +8901,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LRSCategory")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LRSCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LRSCategory : EntityObject
@@ -8862,7 +8911,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new LRSCategory object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="categoryTypeId">Initial value of the CategoryTypeId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         public static LRSCategory CreateLRSCategory(global::System.Int32 id, global::System.Int32 categoryTypeId, global::System.String name)
@@ -8962,16 +9011,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSCategory_LRSCategoryType", "LRSCategoryType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSCategory_LRSCategoryType", "LRSCategoryType")]
         public LRSCategoryType LRSCategoryType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategoryType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategoryType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategoryType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategoryType").Value = value;
             }
         }
         /// <summary>
@@ -8983,13 +9032,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategoryType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategoryType>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategoryType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategoryType>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategoryType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategoryType>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategoryType", value);
                 }
             }
         }
@@ -9000,18 +9049,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr")]
         public EntityCollection<LRSSchemeAttr> LRSSchemeAttrs
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSSchemeAttr", value);
                 }
             }
         }
@@ -9022,18 +9071,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr")]
         public EntityCollection<LRSSchemeAttr> LRSSchemeAttrs1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSSchemeAttr", value);
                 }
             }
         }
@@ -9044,7 +9093,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LRSCategoryType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LRSCategoryType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LRSCategoryType : EntityObject
@@ -9054,7 +9103,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new LRSCategoryType object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="category">Initial value of the Category property.</param>
         public static LRSCategoryType CreateLRSCategoryType(global::System.Int32 id, global::System.String category)
         {
@@ -9128,18 +9177,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSCategory_LRSCategoryType", "LRSCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSCategory_LRSCategoryType", "LRSCategory")]
         public EntityCollection<LRSCategory> LRSCategories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSCategory>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSCategory>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSCategory>("TripsModel.FK_LRSCategory_LRSCategoryType", "LRSCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSCategory>("Trips4.Data.Models.FK_LRSCategory_LRSCategoryType", "LRSCategory", value);
                 }
             }
         }
@@ -9150,7 +9199,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LRSProjectsLookup")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LRSProjectsLookup")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LRSProjectsLookup : EntityObject
@@ -9263,7 +9312,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LRSScheme")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LRSScheme")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LRSScheme : EntityObject
@@ -9273,7 +9322,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new LRSScheme object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         public static LRSScheme CreateLRSScheme(global::System.Int32 id, global::System.String name)
         {
@@ -9371,18 +9420,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRS_LRSScheme", "LRS")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRS_LRSScheme", "LRS")]
         public EntityCollection<LR> LRS
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LR>("TripsModel.FK_LRS_LRSScheme", "LRS");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LR>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRS");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LR>("TripsModel.FK_LRS_LRSScheme", "LRS", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LR>("Trips4.Data.Models.FK_LRS_LRSScheme", "LRS", value);
                 }
             }
         }
@@ -9393,18 +9442,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr")]
         public EntityCollection<LRSSchemeAttr> LRSSchemeAttrs
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LRSSchemeAttr>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSSchemeAttr", value);
                 }
             }
         }
@@ -9415,7 +9464,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="LRSSchemeAttr")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="LRSSchemeAttr")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class LRSSchemeAttr : EntityObject
@@ -9425,7 +9474,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new LRSSchemeAttr object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="lRSSchemeId">Initial value of the LRSSchemeId property.</param>
         /// <param name="cOLUMN_NAME">Initial value of the COLUMN_NAME property.</param>
         /// <param name="iS_NULLABLE">Initial value of the IS_NULLABLE property.</param>
@@ -9697,16 +9746,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory")]
         public LRSCategory LRSCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory").Value = value;
             }
         }
         /// <summary>
@@ -9718,13 +9767,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DataType", "LRSCategory", value);
                 }
             }
         }
@@ -9735,16 +9784,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory")]
         public LRSCategory LRSCategory1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory").Value = value;
             }
         }
         /// <summary>
@@ -9756,13 +9805,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategory>("TripsModel.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSCategory>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSCategory_DisplayType", "LRSCategory", value);
                 }
             }
         }
@@ -9773,16 +9822,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRSSchemeAttr_LRSScheme", "LRSScheme")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRSSchemeAttr_LRSScheme", "LRSScheme")]
         public LRSScheme LRSScheme
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSScheme").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSScheme").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSScheme").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSScheme").Value = value;
             }
         }
         /// <summary>
@@ -9794,13 +9843,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSScheme");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSScheme");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSScheme>("TripsModel.FK_LRSSchemeAttr_LRSScheme", "LRSScheme", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<LRSScheme>("Trips4.Data.Models.FK_LRSSchemeAttr_LRSScheme", "LRSScheme", value);
                 }
             }
         }
@@ -9811,7 +9860,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Medium")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Medium")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Medium : EntityObject
@@ -9968,7 +10017,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="MetroVisionMeasure")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="MetroVisionMeasure")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MetroVisionMeasure : EntityObject
@@ -10122,18 +10171,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor")]
         public EntityCollection<MetroVisionMeasureSponsor> MetroVisionMeasureSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasureSponsor", value);
                 }
             }
         }
@@ -10144,7 +10193,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="MetroVisionMeasureSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="MetroVisionMeasureSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MetroVisionMeasureSponsor : EntityObject
@@ -10278,16 +10327,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure")]
         public MetroVisionMeasure MetroVisionMeasure
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure").Value = value;
             }
         }
         /// <summary>
@@ -10299,13 +10348,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MetroVisionMeasure>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetroVisionMeasure>("TripsModel.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MetroVisionMeasure>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_MetroVisionMeasure", "MetroVisionMeasure", value);
                 }
             }
         }
@@ -10316,16 +10365,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -10337,13 +10386,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -10354,16 +10403,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -10375,13 +10424,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -10392,7 +10441,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="MuniGeography")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="MuniGeography")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MuniGeography : EntityObject
@@ -10522,16 +10571,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MuniGeography_Geography", "Geography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MuniGeography_Geography", "Geography")]
         public Geography Geography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_MuniGeography_Geography", "Geography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_MuniGeography_Geography", "Geography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_MuniGeography_Geography", "Geography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_MuniGeography_Geography", "Geography").Value = value;
             }
         }
         /// <summary>
@@ -10543,13 +10592,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("TripsModel.FK_MuniGeography_Geography", "Geography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Geography>("Trips4.Data.Models.FK_MuniGeography_Geography", "Geography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Geography>("TripsModel.FK_MuniGeography_Geography", "Geography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Geography>("Trips4.Data.Models.FK_MuniGeography_Geography", "Geography", value);
                 }
             }
         }
@@ -10560,16 +10609,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MuniGeography_GeographyType", "GeographyType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MuniGeography_GeographyType", "GeographyType")]
         public GeographyType GeographyType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_MuniGeography_GeographyType", "GeographyType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "GeographyType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_MuniGeography_GeographyType", "GeographyType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "GeographyType").Value = value;
             }
         }
         /// <summary>
@@ -10581,13 +10630,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("TripsModel.FK_MuniGeography_GeographyType", "GeographyType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GeographyType>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "GeographyType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GeographyType>("TripsModel.FK_MuniGeography_GeographyType", "GeographyType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GeographyType>("Trips4.Data.Models.FK_MuniGeography_GeographyType", "GeographyType", value);
                 }
             }
         }
@@ -10598,18 +10647,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography")]
         public EntityCollection<ProjectMuniGeography> ProjectMuniGeographies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectMuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectMuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectMuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectMuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "ProjectMuniGeography", value);
                 }
             }
         }
@@ -10620,7 +10669,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Network")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Network")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Network : EntityObject
@@ -10776,16 +10825,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Network_Cycle", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Network_Cycle", "Cycle")]
         public Cycle Cycle
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Network_Cycle", "Cycle").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Network_Cycle", "Cycle").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Network_Cycle", "Cycle").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Network_Cycle", "Cycle").Value = value;
             }
         }
         /// <summary>
@@ -10797,13 +10846,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_Network_Cycle", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_Network_Cycle", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("TripsModel.FK_Network_Cycle", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("Trips4.Data.Models.FK_Network_Cycle", "Cycle", value);
                 }
             }
         }
@@ -10814,18 +10863,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Network", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Network", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Network", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Network", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Network", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Network", "ProjectSegment", value);
                 }
             }
         }
@@ -10836,7 +10885,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Organization")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Organization")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Organization : EntityObject
@@ -10968,18 +11017,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_Organization", "Address")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_Organization", "Address")]
         public EntityCollection<Address> Addresses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("TripsModel.FK_Address_Organization", "Address");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("Trips4.Data.Models.FK_Address_Organization", "Address");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("TripsModel.FK_Address_Organization", "Address", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("Trips4.Data.Models.FK_Address_Organization", "Address", value);
                 }
             }
         }
@@ -10990,18 +11039,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingType_Organization2", "FundingType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingType_Organization2", "FundingType")]
         public EntityCollection<FundingType> FundingTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingType>("TripsModel.FK_FundingType_Organization2", "FundingType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingType>("Trips4.Data.Models.FK_FundingType_Organization2", "FundingType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingType>("TripsModel.FK_FundingType_Organization2", "FundingType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingType>("Trips4.Data.Models.FK_FundingType_Organization2", "FundingType", value);
                 }
             }
         }
@@ -11012,18 +11061,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Organization", "OrganizationPersonRole")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Organization", "OrganizationPersonRole")]
         public EntityCollection<OrganizationPersonRole> OrganizationPersonRoles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Organization", "OrganizationPersonRole");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "OrganizationPersonRole");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Organization", "OrganizationPersonRole", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "OrganizationPersonRole", value);
                 }
             }
         }
@@ -11034,16 +11083,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Organization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Organization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Organization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Organization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -11055,13 +11104,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Organization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Organization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "SponsorOrganization", value);
                 }
             }
         }
@@ -11072,16 +11121,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FundingSourceOrganization", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FundingSourceOrganization", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FundingSourceOrganization", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FundingSourceOrganization", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FundingSourceOrganization", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FundingSourceOrganization", "Category").Value = value;
             }
         }
         /// <summary>
@@ -11093,13 +11142,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FundingSourceOrganization", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FundingSourceOrganization", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FundingSourceOrganization", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FundingSourceOrganization", "Category", value);
                 }
             }
         }
@@ -11110,18 +11159,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "OrganizationOrganizationType", "OrganizationType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "OrganizationOrganizationType", "OrganizationType")]
         public EntityCollection<OrganizationType> OrganizationTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationType>("TripsModel.OrganizationOrganizationType", "OrganizationType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationType>("Trips4.Data.Models.OrganizationOrganizationType", "OrganizationType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationType>("TripsModel.OrganizationOrganizationType", "OrganizationType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationType>("Trips4.Data.Models.OrganizationOrganizationType", "OrganizationType", value);
                 }
             }
         }
@@ -11132,7 +11181,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="OrganizationPersonRole")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="OrganizationPersonRole")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class OrganizationPersonRole : EntityObject
@@ -11272,16 +11321,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Organization", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Organization", "Organization")]
         public Organization Organization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_OrganizationPersonRole_Organization", "Organization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "Organization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_OrganizationPersonRole_Organization", "Organization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "Organization").Value = value;
             }
         }
         /// <summary>
@@ -11293,13 +11342,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_OrganizationPersonRole_Organization", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("TripsModel.FK_OrganizationPersonRole_Organization", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("Trips4.Data.Models.FK_OrganizationPersonRole_Organization", "Organization", value);
                 }
             }
         }
@@ -11310,16 +11359,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_OrganizationPersonRole_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_OrganizationPersonRole_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -11331,13 +11380,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_OrganizationPersonRole_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("TripsModel.FK_OrganizationPersonRole_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "Person", value);
                 }
             }
         }
@@ -11348,16 +11397,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Role", "Role")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Role", "Role")]
         public Role Role
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TripsModel.FK_OrganizationPersonRole_Role", "Role").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "Role").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TripsModel.FK_OrganizationPersonRole_Role", "Role").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "Role").Value = value;
             }
         }
         /// <summary>
@@ -11369,13 +11418,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("TripsModel.FK_OrganizationPersonRole_Role", "Role");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "Role");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("TripsModel.FK_OrganizationPersonRole_Role", "Role", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "Role", value);
                 }
             }
         }
@@ -11386,7 +11435,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="OrganizationType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="OrganizationType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class OrganizationType : EntityObject
@@ -11470,18 +11519,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "OrganizationOrganizationType", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "OrganizationOrganizationType", "Organization")]
         public EntityCollection<Organization> Organizations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Organization>("TripsModel.OrganizationOrganizationType", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Organization>("Trips4.Data.Models.OrganizationOrganizationType", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Organization>("TripsModel.OrganizationOrganizationType", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Organization>("Trips4.Data.Models.OrganizationOrganizationType", "Organization", value);
                 }
             }
         }
@@ -11492,7 +11541,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Person")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Person")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Person : EntityObject
@@ -11794,18 +11843,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Address_Person", "Address")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Address_Person", "Address")]
         public EntityCollection<Address> Addresses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("TripsModel.FK_Address_Person", "Address");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Address>("Trips4.Data.Models.FK_Address_Person", "Address");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("TripsModel.FK_Address_Person", "Address", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Address>("Trips4.Data.Models.FK_Address_Person", "Address", value);
                 }
             }
         }
@@ -11816,18 +11865,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Person", "OrganizationPersonRole")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Person", "OrganizationPersonRole")]
         public EntityCollection<OrganizationPersonRole> OrganizationPersonRoles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Person", "OrganizationPersonRole");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "OrganizationPersonRole");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Person", "OrganizationPersonRole", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Person", "OrganizationPersonRole", value);
                 }
             }
         }
@@ -11838,18 +11887,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Person", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Person", "Project")]
         public EntityCollection<Project> Projects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("TripsModel.FK_Project_Person", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Person", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("TripsModel.FK_Project_Person", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("Trips4.Data.Models.FK_Project_Person", "Project", value);
                 }
             }
         }
@@ -11860,18 +11909,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Person", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Person", "SponsorOrganization")]
         public EntityCollection<SponsorOrganization> SponsorOrganizations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Person", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Person", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SponsorOrganization>("TripsModel.FK_SponsorOrganization_Person", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SponsorOrganization>("Trips4.Data.Models.FK_SponsorOrganization_Person", "SponsorOrganization", value);
                 }
             }
         }
@@ -11882,7 +11931,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="PlanSurvey")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="PlanSurvey")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class PlanSurvey : EntityObject
@@ -11966,7 +12015,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="PoolProject")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="PoolProject")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class PoolProject : EntityObject
@@ -12168,16 +12217,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_PoolProject_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_PoolProject_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_PoolProject_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_PoolProject_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -12189,13 +12238,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_PoolProject_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_PoolProject_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -12206,7 +12255,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Processed")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Processed")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Processed : EntityObject
@@ -12389,16 +12438,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Processed_Report", "Report")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Processed_Report", "Report")]
         public Report Report
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("TripsModel.FK_Processed_Report", "Report").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("Trips4.Data.Models.FK_Processed_Report", "Report").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("TripsModel.FK_Processed_Report", "Report").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("Trips4.Data.Models.FK_Processed_Report", "Report").Value = value;
             }
         }
         /// <summary>
@@ -12410,13 +12459,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("TripsModel.FK_Processed_Report", "Report");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report>("Trips4.Data.Models.FK_Processed_Report", "Report");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Report>("TripsModel.FK_Processed_Report", "Report", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Report>("Trips4.Data.Models.FK_Processed_Report", "Report", value);
                 }
             }
         }
@@ -12427,7 +12476,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Profile")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Profile")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Profile : EntityObject
@@ -12537,18 +12586,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttribute_Profile", "ProfileAttribute")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttribute_Profile", "ProfileAttribute")]
         public EntityCollection<ProfileAttribute> ProfileAttributes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttribute>("TripsModel.FK_ProfileAttribute_Profile", "ProfileAttribute");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttribute>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "ProfileAttribute");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttribute>("TripsModel.FK_ProfileAttribute_Profile", "ProfileAttribute", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttribute>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "ProfileAttribute", value);
                 }
             }
         }
@@ -12559,7 +12608,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProfileAttribute")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProfileAttribute")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProfileAttribute : EntityObject
@@ -12672,16 +12721,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttribute_Profile", "Profile")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttribute_Profile", "Profile")]
         public Profile Profile
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("TripsModel.FK_ProfileAttribute_Profile", "Profile").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "Profile").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("TripsModel.FK_ProfileAttribute_Profile", "Profile").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "Profile").Value = value;
             }
         }
         /// <summary>
@@ -12693,13 +12742,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("TripsModel.FK_ProfileAttribute_Profile", "Profile");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "Profile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("TripsModel.FK_ProfileAttribute_Profile", "Profile", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Trips4.Data.Models.FK_ProfileAttribute_Profile", "Profile", value);
                 }
             }
         }
@@ -12710,16 +12759,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType")]
         public ProfileAttributeType ProfileAttributeType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType").Value = value;
             }
         }
         /// <summary>
@@ -12731,13 +12780,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProfileAttributeType>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttributeType", value);
                 }
             }
         }
@@ -12748,7 +12797,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProfileAttributeType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProfileAttributeType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProfileAttributeType : EntityObject
@@ -12858,18 +12907,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute")]
         public EntityCollection<ProfileAttribute> ProfileAttributes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttribute>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttribute>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttribute>("TripsModel.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttribute>("Trips4.Data.Models.FK_ProfileAttribute_ProfileAttributeType", "ProfileAttribute", value);
                 }
             }
         }
@@ -12880,16 +12929,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass")]
         public ProfileAttributeTypeClass ProfileAttributeTypeClass
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass").Value = value;
             }
         }
         /// <summary>
@@ -12901,13 +12950,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProfileAttributeTypeClass>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProfileAttributeTypeClass>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProfileAttributeTypeClass>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeTypeClass", value);
                 }
             }
         }
@@ -12918,7 +12967,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProfileAttributeTypeClass")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProfileAttributeTypeClass")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProfileAttributeTypeClass : EntityObject
@@ -13002,18 +13051,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType")]
         public EntityCollection<ProfileAttributeType> ProfileAttributeTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttributeType>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttributeType>("TripsModel.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProfileAttributeType>("Trips4.Data.Models.FK_ProfileAttributeType_ProfileAttributeTypeClass", "ProfileAttributeType", value);
                 }
             }
         }
@@ -13024,7 +13073,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProfileType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProfileType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProfileType : EntityObject
@@ -13105,7 +13154,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Program")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Program")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Program : EntityObject
@@ -13189,18 +13238,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_Program", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_Program", "ProgramInstance")]
         public EntityCollection<ProgramInstance> ProgramInstances
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_Program", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_Program", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_Program", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_Program", "ProgramInstance", value);
                 }
             }
         }
@@ -13211,7 +13260,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProgramInstance")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProgramInstance")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProgramInstance : EntityObject
@@ -13466,18 +13515,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_FundingResource_ProgramInstance", "FundingResource")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_FundingResource_ProgramInstance", "FundingResource")]
         public EntityCollection<FundingResource> FundingResources
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResource>("TripsModel.FK_FundingResource_ProgramInstance", "FundingResource");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingResource>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "FundingResource");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResource>("TripsModel.FK_FundingResource_ProgramInstance", "FundingResource", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingResource>("Trips4.Data.Models.FK_FundingResource_ProgramInstance", "FundingResource", value);
                 }
             }
         }
@@ -13488,16 +13537,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_Program", "Program")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_Program", "Program")]
         public Program Program
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("TripsModel.FK_ProgramInstance_Program", "Program").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("Trips4.Data.Models.FK_ProgramInstance_Program", "Program").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("TripsModel.FK_ProgramInstance_Program", "Program").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("Trips4.Data.Models.FK_ProgramInstance_Program", "Program").Value = value;
             }
         }
         /// <summary>
@@ -13509,13 +13558,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("TripsModel.FK_ProgramInstance_Program", "Program");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Program>("Trips4.Data.Models.FK_ProgramInstance_Program", "Program");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Program>("TripsModel.FK_ProgramInstance_Program", "Program", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Program>("Trips4.Data.Models.FK_ProgramInstance_Program", "Program", value);
                 }
             }
         }
@@ -13526,16 +13575,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProgramInstance_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProgramInstance_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProgramInstance_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProgramInstance_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -13547,13 +13596,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProgramInstance_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProgramInstance_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_ProgramInstance_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_ProgramInstance_Status", "Status", value);
                 }
             }
         }
@@ -13564,16 +13613,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_ProgramInstance_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_ProgramInstance_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -13585,13 +13634,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_ProgramInstance_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_ProgramInstance_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -13602,18 +13651,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType")]
         public EntityCollection<ProgramInstanceProjectType> ProgramInstanceProjectTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstanceProjectType", value);
                 }
             }
         }
@@ -13624,18 +13673,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor")]
         public EntityCollection<ProgramInstanceSponsor> ProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceSponsor>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceSponsor>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceSponsor>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceSponsor>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstanceSponsor", value);
                 }
             }
         }
@@ -13646,18 +13695,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectPool_ProgramInstance", "ProjectPool")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectPool_ProgramInstance", "ProjectPool")]
         public EntityCollection<ProjectPool> ProjectPools
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("TripsModel.FK_ProjectPool_ProgramInstance", "ProjectPool");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProjectPool");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("TripsModel.FK_ProjectPool_ProgramInstance", "ProjectPool", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProjectPool", value);
                 }
             }
         }
@@ -13668,16 +13717,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance")]
         public RTPProgramInstance RTPProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -13689,13 +13738,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "RTPProgramInstance", value);
                 }
             }
         }
@@ -13706,16 +13755,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance")]
         public SurveyProgramInstance SurveyProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -13727,13 +13776,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "SurveyProgramInstance", value);
                 }
             }
         }
@@ -13744,16 +13793,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance")]
         public TIPProgramInstance TIPProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -13765,13 +13814,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "TIPProgramInstance", value);
                 }
             }
         }
@@ -13782,18 +13831,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "ProgramInstanceImprovementType", "ImprovementType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "ProgramInstanceImprovementType", "ImprovementType")]
         public EntityCollection<ImprovementType> ImprovementTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImprovementType>("TripsModel.ProgramInstanceImprovementType", "ImprovementType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImprovementType>("Trips4.Data.Models.ProgramInstanceImprovementType", "ImprovementType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImprovementType>("TripsModel.ProgramInstanceImprovementType", "ImprovementType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImprovementType>("Trips4.Data.Models.ProgramInstanceImprovementType", "ImprovementType", value);
                 }
             }
         }
@@ -13804,7 +13853,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProgramInstanceProjectType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProgramInstanceProjectType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProgramInstanceProjectType : EntityObject
@@ -13920,16 +13969,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -13941,13 +13990,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -13958,16 +14007,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType", "ProjectType")]
         public ProjectType ProjectType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -13979,13 +14028,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProjectType", value);
                 }
             }
         }
@@ -13996,16 +14045,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType1", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType1", "ProjectType")]
         public ProjectType ProjectType1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -14017,13 +14066,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProjectType", value);
                 }
             }
         }
@@ -14034,7 +14083,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProgramInstanceSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProgramInstanceSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProgramInstanceSponsor : EntityObject
@@ -14150,16 +14199,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -14171,13 +14220,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstanceSponsor_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -14188,16 +14237,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -14209,13 +14258,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -14226,16 +14275,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor")]
         public RTPProgramInstanceSponsor RTPProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -14247,13 +14296,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "RTPProgramInstanceSponsor", value);
                 }
             }
         }
@@ -14264,16 +14313,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor")]
         public SurveyProgramInstanceSponsor SurveyProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -14285,13 +14334,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "SurveyProgramInstanceSponsor", value);
                 }
             }
         }
@@ -14302,16 +14351,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor")]
         public TIPProgramInstanceSponsor TIPProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -14323,13 +14372,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "TIPProgramInstanceSponsor", value);
                 }
             }
         }
@@ -14340,7 +14389,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Project")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Project")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Project : EntityObject
@@ -14664,16 +14713,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -14685,13 +14734,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_Project_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category", "Category", value);
                 }
             }
         }
@@ -14702,16 +14751,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category1", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category1", "Category")]
         public Category Category1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category1", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category1", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category1", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category1", "Category").Value = value;
             }
         }
         /// <summary>
@@ -14723,13 +14772,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category1", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category1", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_Project_Category1", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category1", "Category", value);
                 }
             }
         }
@@ -14740,16 +14789,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Category2", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Category2", "Category")]
         public Category Category2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category2", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category2", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category2", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category2", "Category").Value = value;
             }
         }
         /// <summary>
@@ -14761,13 +14810,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Project_Category2", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category2", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_Project_Category2", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_Project_Category2", "Category", value);
                 }
             }
         }
@@ -14778,16 +14827,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Project_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Project_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Project_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Project_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Project_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Project_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -14799,13 +14848,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_Project_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_Project_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("TripsModel.FK_Project_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("Trips4.Data.Models.FK_Project_Person", "Person", value);
                 }
             }
         }
@@ -14816,18 +14865,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectMuniGeography_Project", "ProjectMuniGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_Project", "ProjectMuniGeography")]
         public EntityCollection<ProjectMuniGeography> ProjectMuniGeographies
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectMuniGeography>("TripsModel.FK_ProjectMuniGeography_Project", "ProjectMuniGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectMuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "ProjectMuniGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectMuniGeography>("TripsModel.FK_ProjectMuniGeography_Project", "ProjectMuniGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectMuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "ProjectMuniGeography", value);
                 }
             }
         }
@@ -14838,18 +14887,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSponsor_Project", "ProjectSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSponsor_Project", "ProjectSponsor")]
         public EntityCollection<ProjectSponsor> ProjectSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSponsor>("TripsModel.FK_ProjectSponsor_Project", "ProjectSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSponsor>("Trips4.Data.Models.FK_ProjectSponsor_Project", "ProjectSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSponsor>("TripsModel.FK_ProjectSponsor_Project", "ProjectSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSponsor>("Trips4.Data.Models.FK_ProjectSponsor_Project", "ProjectSponsor", value);
                 }
             }
         }
@@ -14860,18 +14909,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Project", "Strike")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Project", "Strike")]
         public EntityCollection<Strike> Strikes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("TripsModel.FK_Strike_Project", "Strike");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Project", "Strike");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("TripsModel.FK_Strike_Project", "Strike", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Project", "Strike", value);
                 }
             }
         }
@@ -14882,7 +14931,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectCDOTData")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectCDOTData")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectCDOTData : EntityObject
@@ -15492,16 +15541,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectCDOTData_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectCDOTData_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -15513,13 +15562,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -15530,7 +15579,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectCountyGeography")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectCountyGeography")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectCountyGeography : EntityObject
@@ -15665,16 +15714,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectCountyGeography_CountyGeography", "CountyGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectCountyGeography_CountyGeography", "CountyGeography")]
         public CountyGeography CountyGeography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "CountyGeography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "CountyGeography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "CountyGeography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "CountyGeography").Value = value;
             }
         }
         /// <summary>
@@ -15686,13 +15735,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "CountyGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "CountyGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CountyGeography>("TripsModel.FK_ProjectCountyGeography_CountyGeography", "CountyGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CountyGeography>("Trips4.Data.Models.FK_ProjectCountyGeography_CountyGeography", "CountyGeography", value);
                 }
             }
         }
@@ -15703,7 +15752,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectFinancialRecord")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectFinancialRecord")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectFinancialRecord : EntityObject
@@ -16003,16 +16052,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -16024,13 +16073,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -16041,18 +16090,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail")]
         public EntityCollection<ProjectFinancialRecordDetail> ProjectFinancialRecordDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetail>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecordDetail>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetail>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecordDetail>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecordDetail", value);
                 }
             }
         }
@@ -16063,7 +16112,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectFinancialRecordDetail")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectFinancialRecordDetail")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectFinancialRecordDetail : EntityObject
@@ -16251,16 +16300,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement")]
         public FundingIncrement FundingIncrement
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement").Value = value;
             }
         }
         /// <summary>
@@ -16272,13 +16321,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_FundingIncrement", "FundingIncrement", value);
                 }
             }
         }
@@ -16289,16 +16338,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord")]
         public ProjectFinancialRecord ProjectFinancialRecord
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord").Value = value;
             }
         }
         /// <summary>
@@ -16310,13 +16359,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecordDetail_ProjectFinancialRecord", "ProjectFinancialRecord", value);
                 }
             }
         }
@@ -16327,7 +16376,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectFinancialRecordDetailPhase")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectFinancialRecordDetailPhase")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectFinancialRecordDetailPhase : EntityObject
@@ -16644,16 +16693,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -16665,13 +16714,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_ProjectFinancialRecordDetailPhase_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_Category", "Category", value);
                 }
             }
         }
@@ -16682,16 +16731,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement")]
         public FundingIncrement FundingIncrement
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement").Value = value;
             }
         }
         /// <summary>
@@ -16703,13 +16752,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingIncrement>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingIncrement", "FundingIncrement", value);
                 }
             }
         }
@@ -16720,16 +16769,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource")]
         public FundingResource FundingResource
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource").Value = value;
             }
         }
         /// <summary>
@@ -16741,13 +16790,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingResource>("TripsModel.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingResource>("Trips4.Data.Models.FK_ProjectFinancialRecordDetailPhase_FundingResource", "FundingResource", value);
                 }
             }
         }
@@ -16758,7 +16807,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectModelCoding")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectModelCoding")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectModelCoding : EntityObject
@@ -17032,16 +17081,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectModelCoding_ProjectSegment", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectSegment", "ProjectSegment")]
         public ProjectSegment ProjectSegment
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment").Value = value;
             }
         }
         /// <summary>
@@ -17053,13 +17102,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectSegment>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectSegment>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectSegment", value);
                 }
             }
         }
@@ -17070,16 +17119,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectModelCoding_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -17091,13 +17140,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -17108,7 +17157,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectMuniGeography")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectMuniGeography")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectMuniGeography : EntityObject
@@ -17243,16 +17292,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectMuniGeography_MuniGeography", "MuniGeography")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_MuniGeography", "MuniGeography")]
         public MuniGeography MuniGeography
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "MuniGeography").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "MuniGeography").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "MuniGeography").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "MuniGeography").Value = value;
             }
         }
         /// <summary>
@@ -17264,13 +17313,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "MuniGeography");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "MuniGeography");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MuniGeography>("TripsModel.FK_ProjectMuniGeography_MuniGeography", "MuniGeography", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MuniGeography>("Trips4.Data.Models.FK_ProjectMuniGeography_MuniGeography", "MuniGeography", value);
                 }
             }
         }
@@ -17281,16 +17330,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectMuniGeography_Project", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectMuniGeography_Project", "Project")]
         public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectMuniGeography_Project", "Project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "Project").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectMuniGeography_Project", "Project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "Project").Value = value;
             }
         }
         /// <summary>
@@ -17302,13 +17351,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectMuniGeography_Project", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("TripsModel.FK_ProjectMuniGeography_Project", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("Trips4.Data.Models.FK_ProjectMuniGeography_Project", "Project", value);
                 }
             }
         }
@@ -17319,7 +17368,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectPool")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectPool")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectPool : EntityObject
@@ -17575,16 +17624,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Pool_FundingResource", "FundingResource")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Pool_FundingResource", "FundingResource")]
         public FundingResource FundingResource
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_Pool_FundingResource", "FundingResource").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_Pool_FundingResource", "FundingResource").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_Pool_FundingResource", "FundingResource").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_Pool_FundingResource", "FundingResource").Value = value;
             }
         }
         /// <summary>
@@ -17596,13 +17645,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("TripsModel.FK_Pool_FundingResource", "FundingResource");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FundingResource>("Trips4.Data.Models.FK_Pool_FundingResource", "FundingResource");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingResource>("TripsModel.FK_Pool_FundingResource", "FundingResource", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FundingResource>("Trips4.Data.Models.FK_Pool_FundingResource", "FundingResource", value);
                 }
             }
         }
@@ -17613,16 +17662,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectPool_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectPool_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProjectPool_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProjectPool_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -17634,13 +17683,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_ProjectPool_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_ProjectPool_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_ProjectPool_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -17651,16 +17700,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectPool_ProjectType", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectPool_ProjectType", "ProjectType")]
         public ProjectType ProjectType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectPool_ProjectType", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectPool_ProjectType", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -17672,13 +17721,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectPool_ProjectType", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ProjectPool_ProjectType", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectType", value);
                 }
             }
         }
@@ -17689,18 +17738,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_Pool", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_Pool", "ProjectVersion")]
         public EntityCollection<ProjectVersion> ProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_Pool", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_Pool", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectVersion", value);
                 }
             }
         }
@@ -17711,7 +17760,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectSegment")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectSegment")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectSegment : EntityObject
@@ -18325,16 +18374,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_GISCategory", "GISCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory", "GISCategory")]
         public GISCategory GISCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory", "GISCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "GISCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory", "GISCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "GISCategory").Value = value;
             }
         }
         /// <summary>
@@ -18346,13 +18395,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory", "GISCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "GISCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory", "GISCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory", "GISCategory", value);
                 }
             }
         }
@@ -18363,16 +18412,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_GISCategory1", "GISCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_GISCategory1", "GISCategory")]
         public GISCategory GISCategory1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory1", "GISCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "GISCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory1", "GISCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "GISCategory").Value = value;
             }
         }
         /// <summary>
@@ -18384,13 +18433,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory1", "GISCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "GISCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategory>("TripsModel.FK_ProjectSegment_GISCategory1", "GISCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<GISCategory>("Trips4.Data.Models.FK_ProjectSegment_GISCategory1", "GISCategory", value);
                 }
             }
         }
@@ -18401,16 +18450,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_ImprovementType", "ImprovementType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_ImprovementType", "ImprovementType")]
         public ImprovementType ImprovementType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_ProjectSegment_ImprovementType", "ImprovementType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ImprovementType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_ProjectSegment_ImprovementType", "ImprovementType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ImprovementType").Value = value;
             }
         }
         /// <summary>
@@ -18422,13 +18471,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_ProjectSegment_ImprovementType", "ImprovementType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ImprovementType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ImprovementType>("TripsModel.FK_ProjectSegment_ImprovementType", "ImprovementType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ImprovementType>("Trips4.Data.Models.FK_ProjectSegment_ImprovementType", "ImprovementType", value);
                 }
             }
         }
@@ -18439,18 +18488,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_LRS_ProjectSegment", "LRS")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_LRS_ProjectSegment", "LRS")]
         public EntityCollection<LR> LRS
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LR>("TripsModel.FK_LRS_ProjectSegment", "LRS");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LR>("Trips4.Data.Models.FK_LRS_ProjectSegment", "LRS");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LR>("TripsModel.FK_LRS_ProjectSegment", "LRS", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LR>("Trips4.Data.Models.FK_LRS_ProjectSegment", "LRS", value);
                 }
             }
         }
@@ -18461,16 +18510,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Network", "Network")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Network", "Network")]
         public Network Network
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("TripsModel.FK_ProjectSegment_Network", "Network").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("Trips4.Data.Models.FK_ProjectSegment_Network", "Network").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("TripsModel.FK_ProjectSegment_Network", "Network").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("Trips4.Data.Models.FK_ProjectSegment_Network", "Network").Value = value;
             }
         }
         /// <summary>
@@ -18482,13 +18531,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("TripsModel.FK_ProjectSegment_Network", "Network");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Network>("Trips4.Data.Models.FK_ProjectSegment_Network", "Network");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Network>("TripsModel.FK_ProjectSegment_Network", "Network", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Network>("Trips4.Data.Models.FK_ProjectSegment_Network", "Network", value);
                 }
             }
         }
@@ -18499,18 +18548,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding")]
         public EntityCollection<ProjectModelCoding> ProjectModelCodings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectModelCoding>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectModelCoding>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectModelCoding>("TripsModel.FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectModelCoding>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectSegment", "ProjectModelCoding", value);
                 }
             }
         }
@@ -18521,16 +18570,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -18542,13 +18591,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -18559,16 +18608,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -18580,13 +18629,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status", "Status", value);
                 }
             }
         }
@@ -18597,16 +18646,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Status1", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status1", "Status")]
         public Status Status1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status1", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status1", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status1", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status1", "Status").Value = value;
             }
         }
         /// <summary>
@@ -18618,13 +18667,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status1", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status1", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_ProjectSegment_Status1", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_ProjectSegment_Status1", "Status", value);
                 }
             }
         }
@@ -18635,7 +18684,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectSponsor : EntityObject
@@ -18746,16 +18795,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSponsor_Project", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSponsor_Project", "Project")]
         public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectSponsor_Project", "Project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectSponsor_Project", "Project").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectSponsor_Project", "Project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectSponsor_Project", "Project").Value = value;
             }
         }
         /// <summary>
@@ -18767,13 +18816,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_ProjectSponsor_Project", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_ProjectSponsor_Project", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("TripsModel.FK_ProjectSponsor_Project", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("Trips4.Data.Models.FK_ProjectSponsor_Project", "Project", value);
                 }
             }
         }
@@ -18784,16 +18833,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -18805,13 +18854,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -18822,7 +18871,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectType : EntityObject
@@ -18954,18 +19003,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ImprovementType_ProjectType", "ImprovementType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ImprovementType_ProjectType", "ImprovementType")]
         public EntityCollection<ImprovementType> ImprovementTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImprovementType>("TripsModel.FK_ImprovementType_ProjectType", "ImprovementType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImprovementType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ImprovementType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImprovementType>("TripsModel.FK_ImprovementType_ProjectType", "ImprovementType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImprovementType>("Trips4.Data.Models.FK_ImprovementType_ProjectType", "ImprovementType", value);
                 }
             }
         }
@@ -18976,18 +19025,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType")]
         public EntityCollection<ProgramInstanceProjectType> ProgramInstanceProjectTypes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType", "ProgramInstanceProjectType", value);
                 }
             }
         }
@@ -18998,18 +19047,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType")]
         public EntityCollection<ProgramInstanceProjectType> ProgramInstanceProjectTypes1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("TripsModel.FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceProjectType>("Trips4.Data.Models.FK_ProgramInstanceProjectType_ProjectType1", "ProgramInstanceProjectType", value);
                 }
             }
         }
@@ -19020,18 +19069,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectPool_ProjectType", "ProjectPool")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectPool_ProjectType", "ProjectPool")]
         public EntityCollection<ProjectPool> ProjectPools
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("TripsModel.FK_ProjectPool_ProjectType", "ProjectPool");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectPool");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("TripsModel.FK_ProjectPool_ProjectType", "ProjectPool", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectPool>("Trips4.Data.Models.FK_ProjectPool_ProjectType", "ProjectPool", value);
                 }
             }
         }
@@ -19042,18 +19091,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectType_ProjectType", "ProjectType1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType", "ProjectType1")]
         public EntityCollection<ProjectType> ProjectType11
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType1", value);
                 }
             }
         }
@@ -19064,16 +19113,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectType_ProjectType", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType", "ProjectType")]
         public ProjectType ProjectType2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -19085,13 +19134,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType", "ProjectType", value);
                 }
             }
         }
@@ -19102,18 +19151,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectType_ProjectType1", "ProjectType1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType1", "ProjectType1")]
         public EntityCollection<ProjectType> ProjectType12
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType1", value);
                 }
             }
         }
@@ -19124,16 +19173,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectType_ProjectType1", "ProjectType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectType_ProjectType1", "ProjectType")]
         public ProjectType ProjectType3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType").Value = value;
             }
         }
         /// <summary>
@@ -19145,13 +19194,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("TripsModel.FK_ProjectType_ProjectType1", "ProjectType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectType>("Trips4.Data.Models.FK_ProjectType_ProjectType1", "ProjectType", value);
                 }
             }
         }
@@ -19162,7 +19211,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectVersion : EntityObject
@@ -19990,16 +20039,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -20011,13 +20060,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_ProjectVersion_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_Category", "Category", value);
                 }
             }
         }
@@ -20028,16 +20077,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_CDOTRegionCategory", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_CDOTRegionCategory", "Category")]
         public Category Category1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "Category").Value = value;
             }
         }
         /// <summary>
@@ -20049,13 +20098,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_ProjectVersion_CDOTRegionCategory", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_ProjectVersion_CDOTRegionCategory", "Category", value);
                 }
             }
         }
@@ -20066,18 +20115,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor")]
         public EntityCollection<MetroVisionMeasureSponsor> MetroVisionMeasureSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_ProjectVersion", "MetroVisionMeasureSponsor", value);
                 }
             }
         }
@@ -20088,18 +20137,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_PoolProject_ProjectVersion", "PoolProject")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_PoolProject_ProjectVersion", "PoolProject")]
         public EntityCollection<PoolProject> PoolProjects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PoolProject>("TripsModel.FK_PoolProject_ProjectVersion", "PoolProject");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PoolProject>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "PoolProject");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PoolProject>("TripsModel.FK_PoolProject_ProjectVersion", "PoolProject", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PoolProject>("Trips4.Data.Models.FK_PoolProject_ProjectVersion", "PoolProject", value);
                 }
             }
         }
@@ -20110,16 +20159,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData")]
         public ProjectCDOTData ProjectCDOTData
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData").Value = value;
             }
         }
         /// <summary>
@@ -20131,13 +20180,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectCDOTData>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectCDOTData>("TripsModel.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectCDOTData>("Trips4.Data.Models.FK_ProjectCDOTData_ProjectVersion", "ProjectCDOTData", value);
                 }
             }
         }
@@ -20148,18 +20197,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord")]
         public EntityCollection<ProjectFinancialRecord> ProjectFinancialRecords
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecord>("TripsModel.FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectFinancialRecord>("Trips4.Data.Models.FK_ProjectFinancialRecord_ProjectVersion", "ProjectFinancialRecord", value);
                 }
             }
         }
@@ -20170,18 +20219,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding")]
         public EntityCollection<ProjectModelCoding> ProjectModelCodings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectModelCoding>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectModelCoding>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectModelCoding>("TripsModel.FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectModelCoding>("Trips4.Data.Models.FK_ProjectModelCoding_ProjectVersion", "ProjectModelCoding", value);
                 }
             }
         }
@@ -20192,16 +20241,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_Pool", "ProjectPool")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_Pool", "ProjectPool")]
         public ProjectPool ProjectPool
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("TripsModel.FK_ProjectVersion_Pool", "ProjectPool").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectPool").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("TripsModel.FK_ProjectVersion_Pool", "ProjectPool").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectPool").Value = value;
             }
         }
         /// <summary>
@@ -20213,13 +20262,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("TripsModel.FK_ProjectVersion_Pool", "ProjectPool");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectPool>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectPool");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectPool>("TripsModel.FK_ProjectVersion_Pool", "ProjectPool", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectPool>("Trips4.Data.Models.FK_ProjectVersion_Pool", "ProjectPool", value);
                 }
             }
         }
@@ -20230,18 +20279,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_ProjectVersion", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_ProjectVersion", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_ProjectVersion", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_ProjectVersion", "ProjectSegment", value);
                 }
             }
         }
@@ -20252,18 +20301,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion", "ProjectVersion1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion", "ProjectVersion1")]
         public EntityCollection<ProjectVersion> ProjectVersion1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion1", value);
                 }
             }
         }
@@ -20274,16 +20323,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -20295,13 +20344,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -20312,18 +20361,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion1")]
         public EntityCollection<ProjectVersion> ProjectVersion11
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion1", value);
                 }
             }
         }
@@ -20334,16 +20383,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectVersion_ProjectVersion1", "ProjectVersion")]
         public ProjectVersion ProjectVersion3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -20355,13 +20404,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ProjectVersion_ProjectVersion1", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ProjectVersion_ProjectVersion1", "ProjectVersion", value);
                 }
             }
         }
@@ -20372,18 +20421,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting")]
         public EntityCollection<ReportProjectVersionSorting> ReportProjectVersionSortings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportProjectVersionSorting>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportProjectVersionSorting>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportProjectVersionSorting>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportProjectVersionSorting>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ReportProjectVersionSorting", value);
                 }
             }
         }
@@ -20394,16 +20443,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion")]
         public RTPProjectVersion RTPProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -20415,13 +20464,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "RTPProjectVersion", value);
                 }
             }
         }
@@ -20432,16 +20481,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion")]
         public SurveyProjectVersion SurveyProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -20453,13 +20502,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "SurveyProjectVersion", value);
                 }
             }
         }
@@ -20470,16 +20519,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion")]
         public TIPProjectVersion TIPProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -20491,13 +20540,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "TIPProjectVersion", value);
                 }
             }
         }
@@ -20508,7 +20557,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ProjectVersionReporting")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ProjectVersionReporting")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ProjectVersionReporting : EntityObject
@@ -20635,7 +20684,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Raw")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Raw")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Raw : EntityObject
@@ -20791,7 +20840,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Report")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Report")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Report : EntityObject
@@ -20801,7 +20850,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new Report object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="reportYear">Initial value of the ReportYear property.</param>
         public static Report CreateReport(global::System.Guid id, global::System.String reportYear)
         {
@@ -20875,18 +20924,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Processed_Report", "Processed")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Processed_Report", "Processed")]
         public EntityCollection<Processed> Processeds
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Processed>("TripsModel.FK_Processed_Report", "Processed");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Processed>("Trips4.Data.Models.FK_Processed_Report", "Processed");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Processed>("TripsModel.FK_Processed_Report", "Processed", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Processed>("Trips4.Data.Models.FK_Processed_Report", "Processed", value);
                 }
             }
         }
@@ -20897,7 +20946,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Report1")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Report1")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Report1 : EntityObject
@@ -20907,7 +20956,7 @@ namespace Trips4.Data.Models
         /// <summary>
         /// Create a new Report1 object.
         /// </summary>
-        /// <param name="guid">Initial value of the Id property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="timePeriodId">Initial value of the TimePeriodId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="isActive">Initial value of the IsActive property.</param>
@@ -21033,16 +21082,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Report_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Report_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_Report_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_Report_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_Report_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_Report_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -21054,13 +21103,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_Report_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_Report_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_Report_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_Report_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -21071,18 +21120,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting")]
         public EntityCollection<ReportProjectVersionSorting> ReportProjectVersionSortings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportProjectVersionSorting>("TripsModel.FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReportProjectVersionSorting>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportProjectVersionSorting>("TripsModel.FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReportProjectVersionSorting>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "ReportProjectVersionSorting", value);
                 }
             }
         }
@@ -21093,7 +21142,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ReportOverride")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ReportOverride")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ReportOverride : EntityObject
@@ -21304,7 +21353,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="ReportProjectVersionSorting")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="ReportProjectVersionSorting")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ReportProjectVersionSorting : EntityObject
@@ -21415,16 +21464,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -21436,13 +21485,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_ReportProjectVersionSorting_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -21453,16 +21502,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ReportProjectVersionSorting_Report", "Report1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ReportProjectVersionSorting_Report", "Report1")]
         public Report1 Report1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("TripsModel.FK_ReportProjectVersionSorting_Report", "Report1").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "Report1").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("TripsModel.FK_ReportProjectVersionSorting_Report", "Report1").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "Report1").Value = value;
             }
         }
         /// <summary>
@@ -21474,13 +21523,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("TripsModel.FK_ReportProjectVersionSorting_Report", "Report1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Report1>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "Report1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Report1>("TripsModel.FK_ReportProjectVersionSorting_Report", "Report1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Report1>("Trips4.Data.Models.FK_ReportProjectVersionSorting_Report", "Report1", value);
                 }
             }
         }
@@ -21491,7 +21540,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Role")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Role")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Role : EntityObject
@@ -21601,18 +21650,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_OrganizationPersonRole_Role", "OrganizationPersonRole")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_OrganizationPersonRole_Role", "OrganizationPersonRole")]
         public EntityCollection<OrganizationPersonRole> OrganizationPersonRoles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Role", "OrganizationPersonRole");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "OrganizationPersonRole");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("TripsModel.FK_OrganizationPersonRole_Role", "OrganizationPersonRole", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrganizationPersonRole>("Trips4.Data.Models.FK_OrganizationPersonRole_Role", "OrganizationPersonRole", value);
                 }
             }
         }
@@ -21623,16 +21672,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Role_RoleType", "RoleType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Role_RoleType", "RoleType")]
         public RoleType RoleType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("TripsModel.FK_Role_RoleType", "RoleType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("Trips4.Data.Models.FK_Role_RoleType", "RoleType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("TripsModel.FK_Role_RoleType", "RoleType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("Trips4.Data.Models.FK_Role_RoleType", "RoleType").Value = value;
             }
         }
         /// <summary>
@@ -21644,13 +21693,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("TripsModel.FK_Role_RoleType", "RoleType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoleType>("Trips4.Data.Models.FK_Role_RoleType", "RoleType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoleType>("TripsModel.FK_Role_RoleType", "RoleType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoleType>("Trips4.Data.Models.FK_Role_RoleType", "RoleType", value);
                 }
             }
         }
@@ -21661,7 +21710,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RoleType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RoleType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RoleType : EntityObject
@@ -21745,18 +21794,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Role_RoleType", "Role")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Role_RoleType", "Role")]
         public EntityCollection<Role> Roles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("TripsModel.FK_Role_RoleType", "Role");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("Trips4.Data.Models.FK_Role_RoleType", "Role");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("TripsModel.FK_Role_RoleType", "Role", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("Trips4.Data.Models.FK_Role_RoleType", "Role", value);
                 }
             }
         }
@@ -21767,7 +21816,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RTPImprovementType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RTPImprovementType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RTPImprovementType : EntityObject
@@ -21897,16 +21946,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPImprovementType_ImprovementType", "ImprovementType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPImprovementType_ImprovementType", "ImprovementType")]
         public ImprovementType ImprovementType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "ImprovementType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "ImprovementType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "ImprovementType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "ImprovementType").Value = value;
             }
         }
         /// <summary>
@@ -21918,13 +21967,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "ImprovementType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "ImprovementType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ImprovementType>("TripsModel.FK_RTPImprovementType_ImprovementType", "ImprovementType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ImprovementType>("Trips4.Data.Models.FK_RTPImprovementType_ImprovementType", "ImprovementType", value);
                 }
             }
         }
@@ -21935,7 +21984,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RTPProgramInstance")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RTPProgramInstance")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RTPProgramInstance : EntityObject
@@ -22238,16 +22287,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -22259,13 +22308,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -22276,16 +22325,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -22297,13 +22346,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -22314,16 +22363,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod1", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod1", "TimePeriod")]
         public TimePeriod TimePeriod1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -22335,13 +22384,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "TimePeriod", value);
                 }
             }
         }
@@ -22352,16 +22401,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod2", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod2", "TimePeriod")]
         public TimePeriod TimePeriod2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -22373,13 +22422,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "TimePeriod", value);
                 }
             }
         }
@@ -22390,18 +22439,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor")]
         public EntityCollection<RTPProgramInstanceSponsor> RTPProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstanceSponsor", value);
                 }
             }
         }
@@ -22412,7 +22461,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RTPProgramInstanceSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RTPProgramInstanceSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RTPProgramInstanceSponsor : EntityObject
@@ -22600,16 +22649,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
         public ProgramInstanceSponsor ProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -22621,13 +22670,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
                 }
             }
         }
@@ -22638,16 +22687,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance")]
         public RTPProgramInstance RTPProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -22659,13 +22708,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstance>("TripsModel.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_RTPProgramInstance", "RTPProgramInstance", value);
                 }
             }
         }
@@ -22676,16 +22725,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -22697,13 +22746,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -22714,7 +22763,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RTPProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RTPProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RTPProjectVersion : EntityObject
@@ -23132,16 +23181,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category1", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category1", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category1", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category1", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "Category").Value = value;
             }
         }
         /// <summary>
@@ -23153,13 +23202,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category1", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category1", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category1", "Category", value);
                 }
             }
         }
@@ -23170,16 +23219,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category2", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category2", "Category")]
         public Category Category1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category2", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category2", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "Category").Value = value;
             }
         }
         /// <summary>
@@ -23191,13 +23240,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category2", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category2", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category2", "Category", value);
                 }
             }
         }
@@ -23208,16 +23257,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Category4", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Category4", "Category")]
         public Category Category2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category4", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category4", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "Category").Value = value;
             }
         }
         /// <summary>
@@ -23229,13 +23278,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category4", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_RTPProjectVersion_Category4", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_RTPProjectVersion_Category4", "Category", value);
                 }
             }
         }
@@ -23246,16 +23295,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Cycle", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Cycle", "Cycle")]
         public Cycle Cycle
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_RTPProjectVersion_Cycle", "Cycle").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "Cycle").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_RTPProjectVersion_Cycle", "Cycle").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "Cycle").Value = value;
             }
         }
         /// <summary>
@@ -23267,13 +23316,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_RTPProjectVersion_Cycle", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("TripsModel.FK_RTPProjectVersion_Cycle", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("Trips4.Data.Models.FK_RTPProjectVersion_Cycle", "Cycle", value);
                 }
             }
         }
@@ -23284,16 +23333,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -23305,13 +23354,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -23322,18 +23371,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion")]
         public EntityCollection<CycleProjectVersion> CycleProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CycleProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CycleProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CycleProjectVersion>("TripsModel.FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CycleProjectVersion>("Trips4.Data.Models.FK_CycleProjectVersion_RTPProjectVersion", "CycleProjectVersion", value);
                 }
             }
         }
@@ -23344,16 +23393,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_RTPProjectVersion_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_RTPProjectVersion_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -23365,13 +23414,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_RTPProjectVersion_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_RTPProjectVersion_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "Status", value);
                 }
             }
         }
@@ -23382,16 +23431,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProjectVersion_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProjectVersion_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -23403,13 +23452,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPProjectVersion_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_RTPProjectVersion_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -23420,7 +23469,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="RTPReportGroupingCategory")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RTPReportGroupingCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class RTPReportGroupingCategory : EntityObject
@@ -23574,16 +23623,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPReportGroupingCategory_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPReportGroupingCategory_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPReportGroupingCategory_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -23595,13 +23644,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_RTPReportGroupingCategory_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_RTPReportGroupingCategory_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_RTPReportGroupingCategory_Category", "Category", value);
                 }
             }
         }
@@ -23612,16 +23661,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -23633,13 +23682,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -23650,7 +23699,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Security")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Security")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Security : EntityObject
@@ -23758,7 +23807,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="SponsorOrganization")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="SponsorOrganization")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SponsorOrganization : EntityObject
@@ -23936,16 +23985,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_SponsorOrganization_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_SponsorOrganization_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_SponsorOrganization_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_SponsorOrganization_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -23957,13 +24006,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_SponsorOrganization_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_SponsorOrganization_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_SponsorOrganization_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_SponsorOrganization_Category", "Category", value);
                 }
             }
         }
@@ -23974,18 +24023,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor")]
         public EntityCollection<MetroVisionMeasureSponsor> MetroVisionMeasureSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("TripsModel.FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MetroVisionMeasureSponsor>("Trips4.Data.Models.FK_MetroVisionMeasureSponsor_SponsorOrganization", "MetroVisionMeasureSponsor", value);
                 }
             }
         }
@@ -23996,16 +24045,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Organization", "Organization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Organization", "Organization")]
         public Organization Organization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_SponsorOrganization_Organization", "Organization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "Organization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_SponsorOrganization_Organization", "Organization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "Organization").Value = value;
             }
         }
         /// <summary>
@@ -24017,13 +24066,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("TripsModel.FK_SponsorOrganization_Organization", "Organization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Organization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "Organization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("TripsModel.FK_SponsorOrganization_Organization", "Organization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Organization>("Trips4.Data.Models.FK_SponsorOrganization_Organization", "Organization", value);
                 }
             }
         }
@@ -24034,16 +24083,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SponsorOrganization_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SponsorOrganization_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_SponsorOrganization_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_SponsorOrganization_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_SponsorOrganization_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_SponsorOrganization_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -24055,13 +24104,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("TripsModel.FK_SponsorOrganization_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("Trips4.Data.Models.FK_SponsorOrganization_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("TripsModel.FK_SponsorOrganization_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("Trips4.Data.Models.FK_SponsorOrganization_Person", "Person", value);
                 }
             }
         }
@@ -24072,18 +24121,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor")]
         public EntityCollection<ProgramInstanceSponsor> ProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceSponsor>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstanceSponsor>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceSponsor>("TripsModel.FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstanceSponsor>("Trips4.Data.Models.FK_ProgramInstanceSponsor_SponsorOrganization", "ProgramInstanceSponsor", value);
                 }
             }
         }
@@ -24094,18 +24143,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor")]
         public EntityCollection<ProjectSponsor> ProjectSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSponsor>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSponsor>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSponsor>("TripsModel.FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSponsor>("Trips4.Data.Models.FK_ProjectSponsor_SponsorOrganization", "ProjectSponsor", value);
                 }
             }
         }
@@ -24116,18 +24165,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor")]
         public EntityCollection<RTPProgramInstanceSponsor> RTPProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstanceSponsor>("TripsModel.FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstanceSponsor>("Trips4.Data.Models.FK_RTPProgramInstanceSponsor_SponsorOrganization", "RTPProgramInstanceSponsor", value);
                 }
             }
         }
@@ -24138,18 +24187,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor")]
         public EntityCollection<SurveyProgramInstanceSponsor> SurveyProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SurveyProgramInstanceSponsor", value);
                 }
             }
         }
@@ -24160,18 +24209,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor")]
         public EntityCollection<TIPProgramInstanceSponsor> TIPProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "TIPProgramInstanceSponsor", value);
                 }
             }
         }
@@ -24182,7 +24231,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Status")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Status")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Status : EntityObject
@@ -24312,18 +24361,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Cycle_Status", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Cycle_Status", "Cycle")]
         public EntityCollection<Cycle> Cycles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cycle>("TripsModel.FK_Cycle_Status", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cycle>("Trips4.Data.Models.FK_Cycle_Status", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cycle>("TripsModel.FK_Cycle_Status", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cycle>("Trips4.Data.Models.FK_Cycle_Status", "Cycle", value);
                 }
             }
         }
@@ -24334,18 +24383,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_Status", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_Status", "ProgramInstance")]
         public EntityCollection<ProgramInstance> ProgramInstances
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_Status", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_Status", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_Status", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_Status", "ProgramInstance", value);
                 }
             }
         }
@@ -24356,18 +24405,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Status", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Status", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Status", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Status", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Status", "ProjectSegment", value);
                 }
             }
         }
@@ -24378,18 +24427,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProjectSegment_Status1", "ProjectSegment")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProjectSegment_Status1", "ProjectSegment")]
         public EntityCollection<ProjectSegment> ProjectSegments1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Status1", "ProjectSegment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Status1", "ProjectSegment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("TripsModel.FK_ProjectSegment_Status1", "ProjectSegment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectSegment>("Trips4.Data.Models.FK_ProjectSegment_Status1", "ProjectSegment", value);
                 }
             }
         }
@@ -24400,18 +24449,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_Status", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_Status", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Status", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_Status", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_Status", "RTPProjectVersion", value);
                 }
             }
         }
@@ -24422,18 +24471,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Status", "Strike")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Status", "Strike")]
         public EntityCollection<Strike> Strikes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("TripsModel.FK_Strike_Status", "Strike");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Status", "Strike");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("TripsModel.FK_Strike_Status", "Strike", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Strike>("Trips4.Data.Models.FK_Strike_Status", "Strike", value);
                 }
             }
         }
@@ -24444,18 +24493,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status", "SurveyProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status", "SurveyProjectVersion")]
         public EntityCollection<SurveyProjectVersion> SurveyProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status", "SurveyProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "SurveyProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status", "SurveyProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "SurveyProjectVersion", value);
                 }
             }
         }
@@ -24466,18 +24515,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status1", "SurveyProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status1", "SurveyProjectVersion")]
         public EntityCollection<SurveyProjectVersion> SurveyProjectVersions1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status1", "SurveyProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "SurveyProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status1", "SurveyProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "SurveyProjectVersion", value);
                 }
             }
         }
@@ -24488,18 +24537,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status2", "SurveyProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status2", "SurveyProjectVersion")]
         public EntityCollection<SurveyProjectVersion> SurveyProjectVersions2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status2", "SurveyProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "SurveyProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_Status2", "SurveyProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "SurveyProjectVersion", value);
                 }
             }
         }
@@ -24510,18 +24559,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_Status", "TIPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status", "TIPProjectVersion")]
         public EntityCollection<TIPProjectVersion> TIPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_Status", "TIPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "TIPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_Status", "TIPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "TIPProjectVersion", value);
                 }
             }
         }
@@ -24532,18 +24581,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_Status1", "TIPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status1", "TIPProjectVersion")]
         public EntityCollection<TIPProjectVersion> TIPProjectVersions1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_Status1", "TIPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "TIPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_Status1", "TIPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "TIPProjectVersion", value);
                 }
             }
         }
@@ -24554,7 +24603,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="StatusType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="StatusType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class StatusType : EntityObject
@@ -24657,7 +24706,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="StreetAddress")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="StreetAddress")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class StreetAddress : EntityObject
@@ -24811,16 +24860,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_StreetAddress_Address", "Address")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_StreetAddress_Address", "Address")]
         public Address Address
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("TripsModel.FK_StreetAddress_Address", "Address").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("Trips4.Data.Models.FK_StreetAddress_Address", "Address").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("TripsModel.FK_StreetAddress_Address", "Address").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("Trips4.Data.Models.FK_StreetAddress_Address", "Address").Value = value;
             }
         }
         /// <summary>
@@ -24832,13 +24881,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("TripsModel.FK_StreetAddress_Address", "Address");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Address>("Trips4.Data.Models.FK_StreetAddress_Address", "Address");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Address>("TripsModel.FK_StreetAddress_Address", "Address", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Address>("Trips4.Data.Models.FK_StreetAddress_Address", "Address", value);
                 }
             }
         }
@@ -24849,7 +24898,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="Strike")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="Strike")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Strike : EntityObject
@@ -25103,16 +25152,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Category", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Category", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Strike_Category", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Strike_Category", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Strike_Category", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Strike_Category", "Category").Value = value;
             }
         }
         /// <summary>
@@ -25124,13 +25173,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("TripsModel.FK_Strike_Category", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Trips4.Data.Models.FK_Strike_Category", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("TripsModel.FK_Strike_Category", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Trips4.Data.Models.FK_Strike_Category", "Category", value);
                 }
             }
         }
@@ -25141,16 +25190,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Project", "Project")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Project", "Project")]
         public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_Strike_Project", "Project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_Strike_Project", "Project").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_Strike_Project", "Project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_Strike_Project", "Project").Value = value;
             }
         }
         /// <summary>
@@ -25162,13 +25211,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("TripsModel.FK_Strike_Project", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("Trips4.Data.Models.FK_Strike_Project", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("TripsModel.FK_Strike_Project", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("Trips4.Data.Models.FK_Strike_Project", "Project", value);
                 }
             }
         }
@@ -25179,16 +25228,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Strike_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Strike_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Strike_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Strike_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Strike_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Strike_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -25200,13 +25249,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_Strike_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_Strike_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_Strike_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_Strike_Status", "Status", value);
                 }
             }
         }
@@ -25217,7 +25266,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="SurveyProgramInstance")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="SurveyProgramInstance")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SurveyProgramInstance : EntityObject
@@ -25352,16 +25401,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -25373,13 +25422,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstance_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -25390,18 +25439,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor")]
         public EntityCollection<SurveyProgramInstanceSponsor> SurveyProgramInstanceSponsors
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstanceSponsor", value);
                 }
             }
         }
@@ -25412,7 +25461,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="SurveyProgramInstanceSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="SurveyProgramInstanceSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SurveyProgramInstanceSponsor : EntityObject
@@ -25600,16 +25649,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
         public ProgramInstanceSponsor ProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -25621,13 +25670,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
                 }
             }
         }
@@ -25638,16 +25687,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -25659,13 +25708,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -25676,16 +25725,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance")]
         public SurveyProgramInstance SurveyProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -25697,13 +25746,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstance>("TripsModel.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SurveyProgramInstance>("Trips4.Data.Models.FK_SurveyProgramInstanceSponsor_SurveyProgramInstance", "SurveyProgramInstance", value);
                 }
             }
         }
@@ -25714,7 +25763,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="SurveyProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="SurveyProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SurveyProjectVersion : EntityObject
@@ -25988,16 +26037,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -26009,13 +26058,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -26026,16 +26075,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -26047,13 +26096,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status", "Status", value);
                 }
             }
         }
@@ -26064,16 +26113,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status1", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status1", "Status")]
         public Status Status1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status1", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status1", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "Status").Value = value;
             }
         }
         /// <summary>
@@ -26085,13 +26134,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status1", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status1", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status1", "Status", value);
                 }
             }
         }
@@ -26102,16 +26151,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_Status2", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_Status2", "Status")]
         public Status Status2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status2", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status2", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "Status").Value = value;
             }
         }
         /// <summary>
@@ -26123,13 +26172,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status2", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_SurveyProjectVersion_Status2", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_SurveyProjectVersion_Status2", "Status", value);
                 }
             }
         }
@@ -26140,16 +26189,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -26161,13 +26210,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -26178,7 +26227,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="sysdiagram")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="sysdiagram")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class sysdiagram : EntityObject
@@ -26333,7 +26382,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TimePeriod")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TimePeriod")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TimePeriod : EntityObject
@@ -26491,18 +26540,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_ProgramInstance_TimePeriod", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_ProgramInstance_TimePeriod", "ProgramInstance")]
         public EntityCollection<ProgramInstance> ProgramInstances
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_TimePeriod", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("TripsModel.FK_ProgramInstance_TimePeriod", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProgramInstance>("Trips4.Data.Models.FK_ProgramInstance_TimePeriod", "ProgramInstance", value);
                 }
             }
         }
@@ -26513,18 +26562,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_Report_TimePeriod", "Report1")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_Report_TimePeriod", "Report1")]
         public EntityCollection<Report1> Report1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report1>("TripsModel.FK_Report_TimePeriod", "Report1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Report1>("Trips4.Data.Models.FK_Report_TimePeriod", "Report1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report1>("TripsModel.FK_Report_TimePeriod", "Report1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Report1>("Trips4.Data.Models.FK_Report_TimePeriod", "Report1", value);
                 }
             }
         }
@@ -26535,18 +26584,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance")]
         public EntityCollection<RTPProgramInstance> RTPProgramInstances
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod", "RTPProgramInstance", value);
                 }
             }
         }
@@ -26557,18 +26606,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance")]
         public EntityCollection<RTPProgramInstance> RTPProgramInstances1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod1", "RTPProgramInstance", value);
                 }
             }
         }
@@ -26579,18 +26628,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance")]
         public EntityCollection<RTPProgramInstance> RTPProgramInstances2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("TripsModel.FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProgramInstance>("Trips4.Data.Models.FK_RTPProgramInstance_TimePeriod2", "RTPProgramInstance", value);
                 }
             }
         }
@@ -26601,18 +26650,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion")]
         public EntityCollection<RTPProjectVersion> RTPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("TripsModel.FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPProjectVersion>("Trips4.Data.Models.FK_RTPProjectVersion_TimePeriod", "RTPProjectVersion", value);
                 }
             }
         }
@@ -26623,18 +26672,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory")]
         public EntityCollection<RTPReportGroupingCategory> RTPReportGroupingCategories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPReportGroupingCategory>("TripsModel.FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RTPReportGroupingCategory>("Trips4.Data.Models.FK_RTPReportGroupingCategory_TimePeriod", "RTPReportGroupingCategory", value);
                 }
             }
         }
@@ -26645,18 +26694,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion")]
         public EntityCollection<SurveyProjectVersion> SurveyProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("TripsModel.FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SurveyProjectVersion>("Trips4.Data.Models.FK_SurveyProjectVersion_TimePeriod", "SurveyProjectVersion", value);
                 }
             }
         }
@@ -26667,16 +26716,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriod_TimePeriodType", "TimePeriodType")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriod_TimePeriodType", "TimePeriodType")]
         public TimePeriodType TimePeriodType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriodType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriodType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriodType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriodType").Value = value;
             }
         }
         /// <summary>
@@ -26688,13 +26737,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriodType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriodType>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriodType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriodType>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriodType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriodType>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriodType", value);
                 }
             }
         }
@@ -26705,18 +26754,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles")]
         public EntityCollection<TimePeriodCycle> TimePeriodCycles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriodCycle>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriodCycle>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriodCycle>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriodCycle>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriodCycles", value);
                 }
             }
         }
@@ -26727,18 +26776,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion")]
         public EntityCollection<TIPProjectVersion> TIPProjectVersions
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TIPProjectVersion", value);
                 }
             }
         }
@@ -26749,18 +26798,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TimePeriodFundingIncrement", "FundingIncrement")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TimePeriodFundingIncrement", "FundingIncrement")]
         public EntityCollection<FundingIncrement> FundingIncrements
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingIncrement>("TripsModel.TimePeriodFundingIncrement", "FundingIncrement");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FundingIncrement>("Trips4.Data.Models.TimePeriodFundingIncrement", "FundingIncrement");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingIncrement>("TripsModel.TimePeriodFundingIncrement", "FundingIncrement", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FundingIncrement>("Trips4.Data.Models.TimePeriodFundingIncrement", "FundingIncrement", value);
                 }
             }
         }
@@ -26771,7 +26820,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TimePeriodCycle")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TimePeriodCycle")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TimePeriodCycle : EntityObject
@@ -26882,16 +26931,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriodCycles_Cycle", "Cycle")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_Cycle", "Cycle")]
         public Cycle Cycle
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_TimePeriodCycles_Cycle", "Cycle").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "Cycle").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_TimePeriodCycles_Cycle", "Cycle").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "Cycle").Value = value;
             }
         }
         /// <summary>
@@ -26903,13 +26952,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("TripsModel.FK_TimePeriodCycles_Cycle", "Cycle");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "Cycle");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("TripsModel.FK_TimePeriodCycles_Cycle", "Cycle", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cycle>("Trips4.Data.Models.FK_TimePeriodCycles_Cycle", "Cycle", value);
                 }
             }
         }
@@ -26920,16 +26969,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriodCycles_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriodCycles_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -26941,13 +26990,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_TimePeriodCycles_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TimePeriodCycles_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -26958,7 +27007,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TimePeriodType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TimePeriodType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TimePeriodType : EntityObject
@@ -27042,18 +27091,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TimePeriod_TimePeriodType", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TimePeriod_TimePeriodType", "TimePeriod")]
         public EntityCollection<TimePeriod> TimePeriods
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriod>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TimePeriod>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriod>("TripsModel.FK_TimePeriod_TimePeriodType", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TimePeriod>("Trips4.Data.Models.FK_TimePeriod_TimePeriodType", "TimePeriod", value);
                 }
             }
         }
@@ -27064,7 +27113,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TipImprovementType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TipImprovementType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TipImprovementType : EntityObject
@@ -27148,7 +27197,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProgramInstance")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProgramInstance")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProgramInstance : EntityObject
@@ -27403,16 +27452,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstance_ProgramInstance", "ProgramInstance")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstance_ProgramInstance", "ProgramInstance")]
         public ProgramInstance ProgramInstance
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance").Value = value;
             }
         }
         /// <summary>
@@ -27424,13 +27473,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("TripsModel.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstance>("Trips4.Data.Models.FK_TIPProgramInstance_ProgramInstance", "ProgramInstance", value);
                 }
             }
         }
@@ -27441,7 +27490,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProgramInstanceSponsor")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProgramInstanceSponsor")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProgramInstanceSponsor : EntityObject
@@ -27653,16 +27702,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor")]
         public ProgramInstanceSponsor ProgramInstanceSponsor
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor").Value = value;
             }
         }
         /// <summary>
@@ -27674,13 +27723,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("TripsModel.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProgramInstanceSponsor>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_ProgramInstanceSponsor", "ProgramInstanceSponsor", value);
                 }
             }
         }
@@ -27691,16 +27740,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization")]
         public SponsorOrganization SponsorOrganization
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization").Value = value;
             }
         }
         /// <summary>
@@ -27712,13 +27761,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("TripsModel.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SponsorOrganization>("Trips4.Data.Models.FK_TIPProgramInstanceSponsor_SponsorOrganization", "SponsorOrganization", value);
                 }
             }
         }
@@ -27729,7 +27778,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProjectEvaluation2010")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProjectEvaluation2010")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProjectEvaluation2010 : EntityObject
@@ -32611,18 +32660,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TIPProjectEvaluation2010Feature", "Feature")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010Feature", "Feature")]
         public EntityCollection<Feature> Features
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Feature>("TripsModel.TIPProjectEvaluation2010Feature", "Feature");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Feature>("Trips4.Data.Models.TIPProjectEvaluation2010Feature", "Feature");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Feature>("TripsModel.TIPProjectEvaluation2010Feature", "Feature", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Feature>("Trips4.Data.Models.TIPProjectEvaluation2010Feature", "Feature", value);
                 }
             }
         }
@@ -32633,18 +32682,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode")]
         public EntityCollection<TIPProjectEvaluation2010Mode> TIPProjectEvaluation2010Mode
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010Mode>("TripsModel.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010Mode>("Trips4.Data.Models.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010Mode>("TripsModel.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010Mode>("Trips4.Data.Models.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010Mode", value);
                 }
             }
         }
@@ -32655,7 +32704,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProjectEvaluation2010Mode")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProjectEvaluation2010Mode")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProjectEvaluation2010Mode : EntityObject
@@ -32737,18 +32786,18 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010")]
         public EntityCollection<TIPProjectEvaluation2010> TIPProjectEvaluation2010
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010>("TripsModel.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TIPProjectEvaluation2010>("Trips4.Data.Models.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010>("TripsModel.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TIPProjectEvaluation2010>("Trips4.Data.Models.TIPProjectEvaluation2010ModeSelected", "TIPProjectEvaluation2010", value);
                 }
             }
         }
@@ -32759,7 +32808,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProjectEvaluation2010ServiceType")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProjectEvaluation2010ServiceType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProjectEvaluation2010ServiceType : EntityObject
@@ -32838,7 +32887,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProjectVersion")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProjectVersion")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProjectVersion : EntityObject
@@ -33066,16 +33115,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_ProjectVersion", "ProjectVersion")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_ProjectVersion", "ProjectVersion")]
         public ProjectVersion ProjectVersion
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion").Value = value;
             }
         }
         /// <summary>
@@ -33087,13 +33136,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("TripsModel.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectVersion>("Trips4.Data.Models.FK_TIPProjectVersion_ProjectVersion", "ProjectVersion", value);
                 }
             }
         }
@@ -33104,16 +33153,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_Status", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status", "Status")]
         public Status Status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "Status").Value = value;
             }
         }
         /// <summary>
@@ -33125,13 +33174,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status", "Status", value);
                 }
             }
         }
@@ -33142,16 +33191,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_Status1", "Status")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_Status1", "Status")]
         public Status Status1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status1", "Status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "Status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status1", "Status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "Status").Value = value;
             }
         }
         /// <summary>
@@ -33163,13 +33212,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status1", "Status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "Status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("TripsModel.FK_TIPProjectVersion_Status1", "Status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("Trips4.Data.Models.FK_TIPProjectVersion_Status1", "Status", value);
                 }
             }
         }
@@ -33180,16 +33229,16 @@ namespace Trips4.Data.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TripsModel", "FK_TIPProjectVersion_TimePeriod", "TimePeriod")]
+        [EdmRelationshipNavigationPropertyAttribute("Trips4.Data.Models", "FK_TIPProjectVersion_TimePeriod", "TimePeriod")]
         public TimePeriod TimePeriod
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TimePeriod").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TimePeriod").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TimePeriod").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TimePeriod").Value = value;
             }
         }
         /// <summary>
@@ -33201,13 +33250,13 @@ namespace Trips4.Data.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TimePeriod");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TimePeriod");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("TripsModel.FK_TIPProjectVersion_TimePeriod", "TimePeriod", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TimePeriod>("Trips4.Data.Models.FK_TIPProjectVersion_TimePeriod", "TimePeriod", value);
                 }
             }
         }
@@ -33218,7 +33267,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="TripsModel", Name="TIPProjectVersionArchive")]
+    [EdmEntityTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TIPProjectVersionArchive")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class TIPProjectVersionArchive : EntityObject
@@ -33446,7 +33495,7 @@ namespace Trips4.Data.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmComplexTypeAttribute(NamespaceName="TripsModel", Name="GetPerson_Result")]
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="GetPerson_Result")]
     [DataContractAttribute(IsReference=true)]
     [Serializable()]
     public partial class GetPerson_Result : ComplexObject
@@ -33686,6 +33735,446 @@ namespace Trips4.Data.Models
         private global::System.String _SponsorOrganization;
         partial void OnSponsorOrganizationChanging(global::System.String value);
         partial void OnSponsorOrganizationChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RtpGetCurrentPlanCycles_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class RtpGetCurrentPlanCycles_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RtpGetCurrentPlanCycles_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="cycle">Initial value of the cycle property.</param>
+        public static RtpGetCurrentPlanCycles_Result CreateRtpGetCurrentPlanCycles_Result(global::System.Int32 id, global::System.String cycle)
+        {
+            RtpGetCurrentPlanCycles_Result rtpGetCurrentPlanCycles_Result = new RtpGetCurrentPlanCycles_Result();
+            rtpGetCurrentPlanCycles_Result.id = id;
+            rtpGetCurrentPlanCycles_Result.cycle = cycle;
+            return rtpGetCurrentPlanCycles_Result;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String cycle
+        {
+            get
+            {
+                return _cycle;
+            }
+            set
+            {
+                OncycleChanging(value);
+                ReportPropertyChanging("cycle");
+                _cycle = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("cycle");
+                OncycleChanged();
+            }
+        }
+        private global::System.String _cycle;
+        partial void OncycleChanging(global::System.String value);
+        partial void OncycleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> statusId
+        {
+            get
+            {
+                return _statusId;
+            }
+            set
+            {
+                OnstatusIdChanging(value);
+                ReportPropertyChanging("statusId");
+                _statusId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("statusId");
+                OnstatusIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _statusId;
+        partial void OnstatusIdChanging(Nullable<global::System.Int32> value);
+        partial void OnstatusIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                OnStatusChanging(value);
+                ReportPropertyChanging("Status");
+                _Status = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Status");
+                OnStatusChanged();
+            }
+        }
+        private global::System.String _Status;
+        partial void OnStatusChanging(global::System.String value);
+        partial void OnStatusChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RtpGetSummary_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class RtpGetSummary_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RtpGetSummary_Result object.
+        /// </summary>
+        /// <param name="timePeriodID">Initial value of the TimePeriodID property.</param>
+        public static RtpGetSummary_Result CreateRtpGetSummary_Result(global::System.Int16 timePeriodID)
+        {
+            RtpGetSummary_Result rtpGetSummary_Result = new RtpGetSummary_Result();
+            rtpGetSummary_Result.TimePeriodID = timePeriodID;
+            return rtpGetSummary_Result;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> AdoptionDate
+        {
+            get
+            {
+                return _AdoptionDate;
+            }
+            set
+            {
+                OnAdoptionDateChanging(value);
+                ReportPropertyChanging("AdoptionDate");
+                _AdoptionDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AdoptionDate");
+                OnAdoptionDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _AdoptionDate;
+        partial void OnAdoptionDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnAdoptionDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 TimePeriodID
+        {
+            get
+            {
+                return _TimePeriodID;
+            }
+            set
+            {
+                OnTimePeriodIDChanging(value);
+                ReportPropertyChanging("TimePeriodID");
+                _TimePeriodID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TimePeriodID");
+                OnTimePeriodIDChanged();
+            }
+        }
+        private global::System.Int16 _TimePeriodID;
+        partial void OnTimePeriodIDChanging(global::System.Int16 value);
+        partial void OnTimePeriodIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> TimePeriodStatusId
+        {
+            get
+            {
+                return _TimePeriodStatusId;
+            }
+            set
+            {
+                OnTimePeriodStatusIdChanging(value);
+                ReportPropertyChanging("TimePeriodStatusId");
+                _TimePeriodStatusId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TimePeriodStatusId");
+                OnTimePeriodStatusIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _TimePeriodStatusId;
+        partial void OnTimePeriodStatusIdChanging(Nullable<global::System.Int32> value);
+        partial void OnTimePeriodStatusIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CycleId
+        {
+            get
+            {
+                return _CycleId;
+            }
+            set
+            {
+                OnCycleIdChanging(value);
+                ReportPropertyChanging("CycleId");
+                _CycleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CycleId");
+                OnCycleIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CycleId;
+        partial void OnCycleIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCycleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CycleName
+        {
+            get
+            {
+                return _CycleName;
+            }
+            set
+            {
+                OnCycleNameChanging(value);
+                ReportPropertyChanging("CycleName");
+                _CycleName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CycleName");
+                OnCycleNameChanged();
+            }
+        }
+        private global::System.String _CycleName;
+        partial void OnCycleNameChanging(global::System.String value);
+        partial void OnCycleNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CycleStatusId
+        {
+            get
+            {
+                return _CycleStatusId;
+            }
+            set
+            {
+                OnCycleStatusIdChanging(value);
+                ReportPropertyChanging("CycleStatusId");
+                _CycleStatusId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CycleStatusId");
+                OnCycleStatusIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CycleStatusId;
+        partial void OnCycleStatusIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCycleStatusIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CycleStatus
+        {
+            get
+            {
+                return _CycleStatus;
+            }
+            set
+            {
+                OnCycleStatusChanging(value);
+                ReportPropertyChanging("CycleStatus");
+                _CycleStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CycleStatus");
+                OnCycleStatusChanged();
+            }
+        }
+        private global::System.String _CycleStatus;
+        partial void OnCycleStatusChanging(global::System.String value);
+        partial void OnCycleStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> priorCycleId
+        {
+            get
+            {
+                return _priorCycleId;
+            }
+            set
+            {
+                OnpriorCycleIdChanging(value);
+                ReportPropertyChanging("priorCycleId");
+                _priorCycleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("priorCycleId");
+                OnpriorCycleIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _priorCycleId;
+        partial void OnpriorCycleIdChanging(Nullable<global::System.Int32> value);
+        partial void OnpriorCycleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String nextCycle
+        {
+            get
+            {
+                return _nextCycle;
+            }
+            set
+            {
+                OnnextCycleChanging(value);
+                ReportPropertyChanging("nextCycle");
+                _nextCycle = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("nextCycle");
+                OnnextCycleChanged();
+            }
+        }
+        private global::System.String _nextCycle;
+        partial void OnnextCycleChanging(global::System.String value);
+        partial void OnnextCycleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> nextCycleId
+        {
+            get
+            {
+                return _nextCycleId;
+            }
+            set
+            {
+                OnnextCycleIdChanging(value);
+                ReportPropertyChanging("nextCycleId");
+                _nextCycleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("nextCycleId");
+                OnnextCycleIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _nextCycleId;
+        partial void OnnextCycleIdChanging(Nullable<global::System.Int32> value);
+        partial void OnnextCycleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String nextStatus
+        {
+            get
+            {
+                return _nextStatus;
+            }
+            set
+            {
+                OnnextStatusChanging(value);
+                ReportPropertyChanging("nextStatus");
+                _nextStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("nextStatus");
+                OnnextStatusChanged();
+            }
+        }
+        private global::System.String _nextStatus;
+        partial void OnnextStatusChanging(global::System.String value);
+        partial void OnnextStatusChanged();
 
         #endregion
     }

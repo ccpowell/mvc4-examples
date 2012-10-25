@@ -95,6 +95,7 @@ namespace DRCOG.Domain.Interfaces
 
         string UpdateTimePeriodStatusId(int timePeriodId, int statusId);
 
-        ReportsViewModel GetReportsViewModel(string year);
+        // moved to RtpRepository2
+        // ReportsViewModel GetReportsViewModel(string year);
     }
 }

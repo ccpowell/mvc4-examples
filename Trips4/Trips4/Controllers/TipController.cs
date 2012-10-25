@@ -128,10 +128,7 @@ namespace Trips4.Controllers
                 jsr.Error = "An error occured creating the TIP";
                 return Json(jsr);
             }
-            return new JsonResult
-            {
-                Data = projectVersionId
-            };
+            return Json(projectVersionId);
         }
 
         
@@ -140,34 +137,25 @@ namespace Trips4.Controllers
             var result = new List<SelectListItem>();
             var sponsorOrganizations = _tipRepository.GetAvailableSponsors();
             sponsorOrganizations.ToList().ForEach(x => { result.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() }); });
-            return new JsonResult
-            {
-                Data = result
-            };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
-
+        // for debugging only.
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Denied")]
         public JsonResult GetSponsorOrganizationsUnauth()
         {
-            return new JsonResult
-            {
-                Data = "WTF? This should not succeed."
-            };
+            return Json("WTF?", JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Expire the session. Used for debugging session handling.
+        /// </summary>
+        /// <returns></returns>
         public JsonResult ExpireSession()
         {
             Session.Abandon();
-            return new JsonResult
-            {
-                Data = "Session is now defunct.",
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+            return Json("Session is now defunct.", JsonRequestBehavior.AllowGet);
         }
-
-
 
         /// <summary>
         /// Create a new TIP
@@ -210,10 +198,7 @@ namespace Trips4.Controllers
 
             GetRestoreYears(tipYearDestination).ToList().ForEach(x => { result.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() }); });
 
-            return new JsonResult
-            {
-                Data = result
-            };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetCurrentTimePeriodSponsorAgencies(string year)
@@ -221,11 +206,8 @@ namespace Trips4.Controllers
             var result = new List<SelectListItem>();
             var sponsors = _tipRepository.GetCurrentTimePeriodSponsorAgencies(year, Enums.ApplicationState.TIP).ToDictionary(x => (int)x.OrganizationId, x => x.OrganizationName);
             sponsors.ToList().ForEach(x => { result.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() }); });
-            
-            return new JsonResult
-            {
-                Data = result
-            };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         

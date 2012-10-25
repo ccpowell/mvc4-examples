@@ -10,7 +10,7 @@
         <div class="ui-widget leftColumn">
             <h2>
                 General Reports</h2>
-                <a id="button-nd-conformity" class="fg-button w380 ui-state-default ui-corner-all"
+            <a id="button-nd-conformity" class="fg-button w380 ui-state-default ui-corner-all"
                 href="#">NDConformity</a><a id="button-appendix-4" class="fg-button w380 ui-state-default ui-corner-all"
                     href="#">Appendix 4</a> <a id="button-project-list" class="fg-button w380 ui-state-default ui-corner-all"
                         href="#">Project List</a>
@@ -23,71 +23,161 @@
     <div style='display: none'>
         <div id="dialog-nd-conformity" class="dialog">
             <h2>
-                Report: NDConformity</h2>
+                Report: NDConformity
+            </h2>
+            <div>
+                <label for="report-nd-conformity-planCycle" class="big">
+                    For Cycle:
+                </label>
+                <%= Html.DropDownList("report-nd-conformity-planCycle", new SelectList(Model.CurrentPlanCycles, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+            </div>
+            <div>
+                <label for="report-nd-conformity-excludeBefore" class="big">
+                    Exclude Before Year:
+                </label>
+                <input type="text" id="report-nd-conformity-excludeBefore" class="big" />
+            </div>
+            <div>
+                <label for="report-nd-conformity-surveyYear" class="big">
+                    Survey Year:
+                </label>
+                <%= Html.DropDownList("report-nd-conformity-surveyYear", new SelectList(Model.SurveyYears, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+            </div>
+            <div>
+                <label for="report-nd-conformity-excludeSurveyBefore" class="big">
+                    Exclude Before Year:
+                </label>
+                <input type="text" id="report-nd-conformity-excludeSurveyBefore" class="big" />
+            </div>
             <% Html.RenderPartial("DocumentFormatSelection", "report-nd-conformity-format"); %>
             <button id="report-nd-conformity" class="fg-button ui-state-default big ui-priority-primarystate-enabled ui-corner-all">
-                Run the Report</button>
+                Run the Report
+            </button>
         </div>
         <div id="dialog-appendix-4" class="dialog">
             <h2>
-                Report: Appendix 4</h2>
+                Report: Appendix 4
+            </h2>
+            <div>
+                <label for="report-appendix-4-planCycle" class="big">
+                    For Cycle:
+                </label>
+                <%= Html.DropDownList("report-appendix-4-planCycle", new SelectList(Model.CurrentPlanCycles, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+            </div>
+            <div>
+                <label for="report-appendix-4-excludeBefore" class="big">
+                    Exclude Before Year:
+                </label>
+                <input type="text" id="report-appendix-4-excludeBefore" class="big" />
+            </div>
             <% Html.RenderPartial("DocumentFormatSelection", "report-appendix-4-format"); %>
             <button id="report-appendix-4" class="fg-button ui-state-default big ui-priority-primarystate-enabled ui-corner-all">
-                Run the Report</button>
+                Run the Report
+            </button>
         </div>
         <div id="dialog-project-list" class="dialog">
             <h2>
-                Report: Project List</h2>
+                Report: Project List
+            </h2>
+            <div>
+                <label for="report-project-list-planCycle" class="big">
+                    For Cycle:
+                </label>
+                <%= Html.DropDownList("report-project-list-planCycle", new SelectList(Model.CurrentPlanCycles, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+            </div>
+            <div>
+                <label for="report-project-list-excludeBefore" class="big">
+                    Exclude Before Year:
+                </label>
+                <input type="text" id="report-project-list-excludeBefore" class="big" />
+            </div>
             <% Html.RenderPartial("DocumentFormatSelection", "report-project-list-format"); %>
             <button id="report-project-list" class="fg-button ui-state-default big ui-priority-primarystate-enabled ui-corner-all">
-                Run the Report</button>
+                Run the Report
+            </button>
         </div>
     </div>
     <script type="text/javascript">
 
         $(function () {
+            "use strict";
+            function getReportOptions(prefix) {
+                var format = $("input[name=" + prefix + "-format]:checked").val(),
+                    planCycle = $("#" + prefix + "-planCycle").val(),
+                    excludeBefore = $("#" + prefix + "-excludeBefore").val(),
+                    surveyYear = $("#" + prefix + "-surveyYear").val(),
+                    excludeSurveyBefore = $("#" + prefix + "-excludeSurveyBefore").val();
+
+                return {
+                    format: format,
+                    planCycle: planCycle,
+                    surveyYear: surveyYear,
+                    excludeSurveyBefore: excludeSurveyBefore,
+                    excludeBefore: excludeBefore
+                };
+            }
+
+            function getReportUrl(prefix, allCycleUrl, singleCycleUrl) {
+                var options = getReportOptions(prefix),
+                    reportUrl = allCycleUrl;
+                if (options.planCycle > 0) {
+                    reportUrl = singleCycleUrl;
+                    reportUrl += "&rs:CycldID=" + options.planCycle;
+                }
+                if (options.excludeBefore > 0) {
+                    reportUrl += "&rs:ExcludeOpenBefore=" + options.excludeBefore;
+                }
+                if (options.surveyYear > 0) {
+                    reportUrl += "&rs:IncludeSurveyYearID=" + options.surveyYear;
+                }
+                if (options.excludeSurveyBefore > 0) {
+                    reportUrl += "&rs:ExcludeSurveyOpenBefore=" + options.excludeSurveyBefore;
+                }
+                reportUrl += "&rs:Format=" + options.format;
+                return reportUrl;
+            }
+
             $("#report-nd-conformity").click(function () {
-                var reportUrl,
-                    format = $("input[name=report-nd-conformity-format]:checked").val();
-                reportUrl = "http://sqlprod/reportserver/TransportationReports/RTP.NetworkChangesByLocation.ConformityModeling.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>" + "&rs:Format=" + format;
+                var allCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.NetworkChangesByLocation.ConformityModeling&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    singleCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.NetworkChangesByLocation.ConformityModeling.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    reportUrl = getReportUrl("report-nd-conformity", allCycleUrl, singleCycleUrl);
+                
                 location.assign(reportUrl);
                 $.fn.colorbox.close();
             });
 
             $("#button-nd-conformity").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-nd-conformity"
             });
-        });
 
-        $(function () {
             $("#report-appendix-4").click(function () {
-                var reportUrl,
-                    format = $("input[name=report-appendix-4-format]:checked").val();
-                reportUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>" + "&rs:Format=" + format;
+                var allCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    singleCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    reportUrl = getReportUrl("report-appendix-4", allCycleUrl, singleCycleUrl);
+
                 location.assign(reportUrl);
                 $.fn.colorbox.close();
             });
 
             $("#button-appendix-4").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-appendix-4"
             });
-        });
 
-        $(function () {
             $("#report-project-list").click(function () {
-                var reportUrl,
-                    format = $("input[name=report-project-list-format]:checked").val();
-                reportUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>" + "&rs:Format=" + format;
+                var allCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    singleCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.ProjectsList.Appendix4&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
+                    reportUrl = getReportUrl("report-project-list", allCycleUrl, singleCycleUrl);
+
                 location.assign(reportUrl);
                 $.fn.colorbox.close();
             });
 
             $("#button-project-list").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-project-list"
             });

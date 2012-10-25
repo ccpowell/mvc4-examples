@@ -46,13 +46,19 @@ namespace Trips4.Controllers
         private readonly IRtpRepository _rtpRepository;
         private readonly IRtpProjectRepository _rtpProjectRepository;
         private readonly ISurveyRepository _surveyRepository;
+        private Trips4.Data.RtpRepository2 RtpRepository2 { get; set; }
 
-        public RtpController(IRtpRepository rtpRepository, IRtpProjectRepository rtpProjectRepository, ISurveyRepository surveyRepository, ITripsUserRepository userRepository)
+        public RtpController(IRtpRepository rtpRepository, 
+            IRtpProjectRepository rtpProjectRepository, 
+            ISurveyRepository surveyRepository, 
+            ITripsUserRepository userRepository,
+            Trips4.Data.RtpRepository2 rtp2)
             : base("RtpController", userRepository)
         {
             _rtpRepository = rtpRepository;
             _rtpProjectRepository = rtpProjectRepository;
             _surveyRepository = surveyRepository;
+            RtpRepository2 = rtp2;
         }
         private void LoadSession()
         {
@@ -1218,12 +1224,10 @@ namespace Trips4.Controllers
         public ActionResult Reports(string year)
         {
             LoadSession();
-            //Create the ViewModel
-            ReportsViewModel model = new ReportsViewModel();
-            model = _rtpRepository.GetReportsViewModel(year);
 
-            //var val = model.ReportDetails.HasCurrentPolicy();
-            return View("reports", model);
+            //Create the ViewModel
+            ReportsViewModel model = RtpRepository2.GetReportsViewModel(year);
+            return View(model);
         }
 
         #region PRIVATE HELPERS

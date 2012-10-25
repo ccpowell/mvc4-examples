@@ -44,11 +44,8 @@ namespace Trips4.Controllers
     /// guarantee that users can only enter their credentials when they are posting via an encrypted channel. If you configure the login.aspx page to require 
     /// SSL, IIS 7.0 will block browsers from accessing it unless they are doing so over SSL.
     /// </remarks>
-    [HandleError]
-    //[RemoteRequireHttps]
     public class LoginController : ControllerBase
     {
-
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -176,30 +173,21 @@ namespace Trips4.Controllers
         /// login page
         /// </summary>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpGet]
         public ActionResult Logout()
         {
             var ReturnUrl = Request["ReturnUrl"] ?? String.Empty;
-            try
-            {
-                FormsAuthentication.SignOut();
-                Session.Abandon();
+            FormsAuthentication.SignOut();
+            Session.Abandon();
 
-                if (!String.IsNullOrEmpty(ReturnUrl))
-                {
-                    return Redirect(ReturnUrl);
-                }
-                else
-                {
-                    // Take us back to the homepage after logout
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            catch (Exception ex)
+            if (!String.IsNullOrEmpty(ReturnUrl))
             {
-                ErrorViewModel model = new ErrorViewModel("An unexpected error has occurred while attempting to log you out of the system.", "This error has been logged.", ex, this.ControllerName, "Logout");
-                return View("CustomError", model);
+                return Redirect(ReturnUrl);
+            }
+            else
+            {
+                // Take us back to the homepage after logout
+                return RedirectToAction("Index", "Home");
             }
         }
     }

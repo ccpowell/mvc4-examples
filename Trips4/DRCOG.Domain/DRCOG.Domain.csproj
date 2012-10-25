@@ -127,9 +127,7 @@
     <Compile Include="Interfaces\IFileRepositoryExtender.cs" />
     <Compile Include="Interfaces\ISurveyProject.cs" />
     <Compile Include="Interfaces\ISurveyRepository.cs" />
-    <Compile Include="Interfaces\IUserRepositoryExtension.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Interfaces\ITripsUserRepository.cs" />
     <Compile Include="Models\ProjectSponsorsModel.cs" />
     <Compile Include="Models\Survey\SurveyOverview.cs" />
     <Compile Include="Models\TIP\Delay.cs" />

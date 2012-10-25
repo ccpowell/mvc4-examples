@@ -65,8 +65,9 @@ namespace Trips4.Controllers
                 //Survey is open, Are they a sponsor?
                 if ((this.CurrentSessionApplicationState.CurrentUser != null) && (this.CurrentSessionApplicationState.CurrentUser.SponsorOrganizationName != null))
                 {
-                    //On development, the TRIPS/ is not needed. In production it is.
-                    redirectUrl = ConfigurationManager.AppSettings["SiteIdentifier"] + @"/Survey/" + currentSurvey.Name + @"/ProjectList?df=" + HttpUtility.HtmlEncode(this.CurrentSessionApplicationState.CurrentUser.SponsorOrganizationName) + @"&dft=Sponsor";
+                    // include application path
+                    string path = "/Trips4";
+                    redirectUrl = path + @"/Survey/" + currentSurvey.Name + @"/ProjectList?df=" + HttpUtility.HtmlEncode(this.CurrentSessionApplicationState.CurrentUser.SponsorOrganizationName) + @"&dft=Sponsor";
                     return Redirect(redirectUrl);
                 }
             }

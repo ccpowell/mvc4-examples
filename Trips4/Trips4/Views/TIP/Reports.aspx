@@ -332,7 +332,7 @@
             });
 
             $("#button-projectsbysponsor").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-report",
                 onLoad: function () {
@@ -353,7 +353,7 @@
             });
 
             $("#button-projectDescriptionsReport").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-projectDescriptionsReport"
             });
@@ -369,7 +369,7 @@
             });
 
             $("#button-appendixA_ProjectsByCity").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-appendixA_ProjectsByCity"
             });
@@ -385,7 +385,7 @@
             });
 
             $("#button-appendixA_ProjectsByCounty").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-appendixA_ProjectsByCounty"
             });
@@ -401,7 +401,7 @@
             });
 
             $("#button-appendixA_ProjectsByProjectType").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-appendixA_ProjectsByProjectType"
             });
@@ -417,7 +417,7 @@
             });
 
             $("#button-projectsFundingBySource").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-projectsFundingBySource"
             });
@@ -452,7 +452,7 @@
             $("input[name=report-alopReport-format][value=PDF]").hide().closest("label").hide();
             $("input[name=report-alopReport-format][value=Excel]").prop("checked", true);
             $("#button-alopReport").colorbox({
-                width: "500px",
+                width: "700px",
                 inline: true,
                 href: "#dialog-alopReport"
             });
