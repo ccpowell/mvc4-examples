@@ -19,11 +19,35 @@ namespace DRCOG.Data
 {
     public class RtpRepository : TransportationRepository, IRtpRepository
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         public RtpRepository()
         {
             _appState = Enums.ApplicationState.RTP;
         }
 
+        public DataTable GetModelerExtractResults(int timePeriodId)
+        {
+            DataTable result;
+
+            try
+            {
+                using (SqlCommand command = new SqlCommand("RTP.ModelerExtract") { CommandType = CommandType.StoredProcedure })
+                {
+                    command.Parameters.AddWithValue("@TimePeriodId", timePeriodId);
+
+                    result = this.ExecuteDataTable(command);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("Failed to run RTP.ModelerExtract", ex);
+                result = new DataTable();
+            }
+
+            return result;
+        }
         private IDictionary<int, string> GetPlanScenarios(List<SqlParameter> sqlParams)
         {
             return GetLookupCollection("[RTP].[GetPlanScenarios]", "NetworkID", "Scenario", sqlParams);

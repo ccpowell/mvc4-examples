@@ -13,7 +13,8 @@
             <a id="button-nd-conformity" class="fg-button w380 ui-state-default ui-corner-all"
                 href="#">NDConformity</a><a id="button-appendix-4" class="fg-button w380 ui-state-default ui-corner-all"
                     href="#">Appendix 4</a> <a id="button-project-list" class="fg-button w380 ui-state-default ui-corner-all"
-                        href="#">Project List</a>
+                        href="#">Project List</a><a id="button-modeler" class="fg-button w380 ui-state-default ui-corner-all" href="#">
+                    Modeler Extract</a>
         </div>
         <div class="ui-widget rightColumn">
         </div>
@@ -96,6 +97,21 @@
                 Run the Report
             </button>
         </div>
+        <div id="dialog-modeler" class="dialog">
+            <h2>
+                Report: Modeler Extract
+            </h2>
+            <div>
+                <label for="report-modeler-excludeBefore" class="big">
+                    Exclude Before Year:
+                </label>
+                <input type="text" id="report-modeler-excludeBefore" class="big" />
+            </div>
+            <div>This report is only available in Excel format.</div>
+            <button id="report-modeler" class="fg-button ui-state-default big ui-priority-primarystate-enabled ui-corner-all">
+                Run the Report
+            </button>
+        </div>
     </div>
     <script type="text/javascript">
 
@@ -141,7 +157,7 @@
                 var allCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.NetworkChangesByLocation.ConformityModeling&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
                     singleCycleUrl = "http://sqlprod/reportserver?/TransportationReports/RTP.NetworkChangesByLocation.ConformityModeling.AllCycles&rs:Command=Render&rc:Parameters=false&YearID=<%= Model.RtpSummary.RTPYearTimePeriodID %>",
                     reportUrl = getReportUrl("report-nd-conformity", allCycleUrl, singleCycleUrl);
-                
+
                 location.assign(reportUrl);
                 $.fn.colorbox.close();
             });
@@ -180,6 +196,24 @@
                 width: "700px",
                 inline: true,
                 href: "#dialog-project-list"
+            });
+
+            $("#report-modeler").click(function () {
+                var excludeBefore = $("#report-modeler-excludeBefore").val(),
+                    reportUrl = '<%= Url.Action("DownloadModelerExtract", new {timePeriodId = Model.RtpSummary.RTPYearTimePeriodID}) %>';
+
+                if (excludeBefore > 0) {
+                    reportUrl += "&excludeOpenBefore=" + excludeBefore;
+                }
+                    
+                location.assign(reportUrl);
+                $.fn.colorbox.close();
+            });
+
+            $("#button-modeler").colorbox({
+                width: "700px",
+                inline: true,
+                href: "#dialog-modeler"
             });
         });
     

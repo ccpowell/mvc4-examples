@@ -35,6 +35,9 @@ using DRCOG.TIP.Services;
 using DRCOG.Domain.Models.Survey;
 using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using DRCOG.Common.Web.MvcSupport.Attributes;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace Trips4.Controllers
 {
@@ -1228,6 +1231,21 @@ namespace Trips4.Controllers
             //Create the ViewModel
             ReportsViewModel model = RtpRepository2.GetReportsViewModel(year);
             return View(model);
+        }
+
+
+        [Trips4.Filters.SessionAuthorizeAttribute]
+        public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
+        {
+            GridView grid = new GridView();
+            grid.DataSource = _rtpRepository.GetModelerExtractResults(timePeriodId);
+            grid.DataBind();
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            grid.RenderControl(htw);
+
+            Response.AddHeader("Content-Disposition", "attachment; filename=RTPModelerExtract.xls");
+            return Content(sw.ToString(), "application/vnd.ms-excel");
         }
 
         #region PRIVATE HELPERS

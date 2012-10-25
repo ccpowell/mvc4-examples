@@ -16,6 +16,7 @@ using DRCOG.Domain.ViewModels.RTP;
 using DRCOG.Domain;
 using DRCOG.Domain.Models.RTP;
 using DRCOG.Domain.Models;
+using System.Data;
 
 namespace DRCOG.Domain.Interfaces
 {
@@ -95,6 +96,7 @@ namespace DRCOG.Domain.Interfaces
 
         string UpdateTimePeriodStatusId(int timePeriodId, int statusId);
 
+        DataTable GetModelerExtractResults(int timePeriodId);
         // moved to RtpRepository2
         // ReportsViewModel GetReportsViewModel(string year);
     }

@@ -1625,20 +1625,12 @@ namespace Trips4.Controllers
             GridView grid = new GridView();
             grid.DataSource = _surveyRepository.GetModelerExtractResults(timePeriodId);
             grid.DataBind();
-
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=SurveyModelerExtract.xls");
-            Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             grid.RenderControl(htw);
-            Response.Write(sw.ToString());
-            Response.End();
 
-            return Json(new
-            {
-                message = "Extract success"
-            }, JsonRequestBehavior.AllowGet);
+            Response.AddHeader("Content-Disposition", "attachment; filename=SurveyModelerExtract.xls");
+            return Content(sw.ToString(), "application/vnd.ms-excel");
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]

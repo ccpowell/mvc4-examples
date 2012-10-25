@@ -81,8 +81,7 @@ $(document).ready(function() {
     $('#report-modelerextract-xls').click(function (e) {
         e.preventDefault();
         
-        var reportAction = '<%= Url.Action("DownloadModelerExtract", "Survey", new { @timePeriodId = "r_timeperiodId" }) %>';
-        reportAction = reportAction.replace("r_timeperiodId", timePeriodId);
+        var reportAction = '<%= Url.Action("DownloadModelerExtract", "Survey", new { @timePeriodId = Model.Id }) %>';
 
         if (timePeriodId.length > 0) {
             var redirectUrl = reportAction;
