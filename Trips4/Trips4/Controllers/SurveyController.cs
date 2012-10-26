@@ -464,7 +464,7 @@ namespace Trips4.Controllers
                     }
                 }
                 //Check to see if there is a projectSearchModel in Session. If not, then we have nt selected a dashboard or project search tab option.
-                if (CurrentSessionApplicationState.ProjectSearchModel != null)
+                if ((CurrentSessionApplicationState.ProjectSearchModel as SearchModel) != null)
                 {
                     //Pull ProjectSearchModel from session and use
                     projectSearchModel = (SearchModel)CurrentSessionApplicationState.ProjectSearchModel;

@@ -96,7 +96,7 @@ namespace DRCOG.Domain.Interfaces
 
         string UpdateTimePeriodStatusId(int timePeriodId, int statusId);
 
-        DataTable GetModelerExtractResults(int timePeriodId);
+        DataTable GetModelerExtractResults(int timePeriodId, int? excludeBeforeYear);
         // moved to RtpRepository2
         // ReportsViewModel GetReportsViewModel(string year);
     }

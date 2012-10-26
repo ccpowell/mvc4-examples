@@ -95,14 +95,18 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.ProjectListViewMod
         <%Html.RenderPartial("~/Views/RTP/Partials/AmendPendingPartial.ascx", Model); %>
     <% } %>
     
-    <h2>
+    <div class="big-bold">
+        <div>
         Project List for: 
         <%if ( !String.IsNullOrEmpty(Model.ListCriteria)) { %> <%= Model.ListCriteria %> <% } else { %>Cycle <%= Model.RtpSummary.Cycle.Name %> <%= Model.RtpSummary.Cycle.Status %> <% } %> 
+        </div>
         <% if (!Model.RtpSummary.Cycle.NextCycleId.Equals(default(int)) && (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator")))
            { %>
-            >> <%= Html.ActionLink(Model.RtpSummary.Cycle.NextCycleName + " " + Model.RtpSummary.Cycle.NextCycleStatus, "ProjectList", new { controller = "RTP", year = Model.RtpSummary.RtpYear, cycleId = Model.RtpSummary.Cycle.NextCycleId }) %>
+        <div>
+            Next Cycle: <%= Html.ActionLink(Model.RtpSummary.Cycle.NextCycleName + " " + Model.RtpSummary.Cycle.NextCycleStatus, "ProjectList", new { controller = "RTP", year = Model.RtpSummary.RtpYear, cycleId = Model.RtpSummary.Cycle.NextCycleId }) %>
+        </div>
         <% } %>
-    </h2>
+    </div>
     
     
     <% if (ViewData.ContainsKey("ShowMessage"))

@@ -187,7 +187,6 @@ namespace Trips4.Controllers
             //Make a ProjectViewModel object from the search criteria
             var projectSearchModel = new RTPSearchModel();
 
-
             //If there is a 'df' dashboard filter, then the Session search criteria are reset.
             if (df != null)
             {
@@ -225,10 +224,11 @@ namespace Trips4.Controllers
             else
             {
                 //Check to see if there is a projectSearchModel in Session. If not, then we have nt selected a dashboard or project search tab option.
-                if (CurrentSessionApplicationState.ProjectSearchModel != null)
+                var sm = CurrentSessionApplicationState.ProjectSearchModel as RTPSearchModel;
+                if (sm != null)
                 {
                     //Pull ProjectSearchModel from session and use
-                    projectSearchModel = (RTPSearchModel)CurrentSessionApplicationState.ProjectSearchModel;
+                    projectSearchModel = sm;
                 }
                 else
                 {
@@ -577,7 +577,7 @@ namespace Trips4.Controllers
             //Get a reference to session object
             //ApplicationState appSession = this.GetSession();
 
-            if (CurrentSessionApplicationState.ProjectSearchModel != null)
+            if ((CurrentSessionApplicationState.ProjectSearchModel as RTPSearchModel) != null)
             {
                 result = (RTPSearchModel)CurrentSessionApplicationState.ProjectSearchModel;
             }
@@ -1238,7 +1238,7 @@ namespace Trips4.Controllers
         public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
         {
             GridView grid = new GridView();
-            grid.DataSource = _rtpRepository.GetModelerExtractResults(timePeriodId);
+            grid.DataSource = _rtpRepository.GetModelerExtractResults(timePeriodId, excludeOpenBefore);
             grid.DataBind();
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);

@@ -11,7 +11,7 @@
         <%--<h2 ><%=Html.ActionLink("TIP List", "Index",new {controller="TIP"}) %> / TIP <%=Model.TipSummary.TipYear%></h2>--%>
         <div class="clear">
         </div>
-        <%Html.RenderPartial("~/Views/TIP/Partials/TipTabPartial.ascx", Model.TipSummary); %>
+        <% Html.RenderPartial("~/Views/TIP/Partials/TipTabPartial.ascx", Model.TipSummary); %>
         <div class="tab-form-container">
             <h2>
                 Summary of
@@ -19,7 +19,7 @@
                 TIP Projects</h2>
             <label for="projectFilter">
                 View Projects by:</label>
-            <%=Html.DropDownList("projectFilter", Model.GetProjectListTypes())%>
+            <%= Html.DropDownList("projectFilter", Model.GetProjectListTypes())%>
             <br />
             <% Html.Grid(Model.DashboardItems)
             .Columns(column =>
@@ -38,7 +38,7 @@
         </div>
         <div style='display: none'>
             <div id="dialog-restore-project" class="dialog" title="Restore projects ...">
-                <%Html.RenderPartial("~/Views/TIP/Partials/RestoreProjects.ascx", Model); %>
+                <% Html.RenderPartial("~/Views/TIP/Partials/RestoreProjects.ascx", Model); %>
             </div>
         </div>
         <div class="helpContainer" style="display: none;">
@@ -51,14 +51,6 @@
         </div>
         <div class="clear">
         </div>
-        <div id="tests">
-            <button id="test-unauth">
-                unauthorized response</button>
-            <button id="test-auth">
-                authorized response</button>
-            <button id="test-expire">
-                expire session</button>
-        </div>
     </div>
     <script type="text/javascript">
         var baseUrl = '<%=Url.Action("Dashboard","Tip",new {tipYear=Model.TipSummary.TipYear}) %>';
@@ -67,22 +59,6 @@
                 var paramMarker = (baseUrl.indexOf('?') > -1) ? '&' : '?';
                 var url = baseUrl + paramMarker + 'listType=' + $('#projectFilter').val();
                 window.location = url;
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#test-auth").button().click(function () {
-                $.post("/Trips4/tip/2012/GetSponsorOrganizations");
-                return false;
-            });
-            $("#test-unauth").button().click(function () {
-                $.post("/Trips4/tip/2012/GetSponsorOrganizationsUnauth");
-                return false;
-            });
-            $("#test-expire").button().click(function () {
-                $.post("/Trips4/tip/2012/ExpireSession");
-                return false;
             });
         });
     </script>

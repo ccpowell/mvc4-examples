@@ -27,7 +27,7 @@ namespace DRCOG.Data
             _appState = Enums.ApplicationState.RTP;
         }
 
-        public DataTable GetModelerExtractResults(int timePeriodId)
+        public DataTable GetModelerExtractResults(int timePeriodId, int? excludeBeforeYear)
         {
             DataTable result;
 
@@ -36,6 +36,10 @@ namespace DRCOG.Data
                 using (SqlCommand command = new SqlCommand("RTP.ModelerExtract") { CommandType = CommandType.StoredProcedure })
                 {
                     command.Parameters.AddWithValue("@TimePeriodId", timePeriodId);
+                    if (excludeBeforeYear.HasValue)
+                    {
+                        command.Parameters.AddWithValue("@ExcludeOpenYearBefore", excludeBeforeYear.Value);
+                    }
 
                     result = this.ExecuteDataTable(command);
                 }
@@ -48,6 +52,7 @@ namespace DRCOG.Data
 
             return result;
         }
+
         private IDictionary<int, string> GetPlanScenarios(List<SqlParameter> sqlParams)
         {
             return GetLookupCollection("[RTP].[GetPlanScenarios]", "NetworkID", "Scenario", sqlParams);

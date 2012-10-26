@@ -66,14 +66,6 @@ namespace Trips4.Controllers
 
         private void LoadSession()
         {
-            //appstate = this.GetSession();
-            //if (appstate == null)
-            //{
-            //    appstate = (ApplicationState)this.GetNewSession(Enums.ApplicationState.TIP);
-            //}
-            //else appstate.State.CurrentProgram = Enums.ApplicationState.TIP;
-            //CurrentSessionApplicationState = (TIPApplicationState)appstate.State;
-
             base.LoadSession(Enums.ApplicationState.TIP);
         }
 
@@ -540,7 +532,7 @@ namespace Trips4.Controllers
             //ApplicationState appSession = (ApplicationState)Session[DRCOGApp.SessionIdentifier];
 
             //Make a ProjectViewModel object from the search criteria
-            var projectSearchModel = (TIPSearchModel)CurrentSessionApplicationState.ProjectSearchModel ?? new TIPSearchModel();
+            var projectSearchModel = (CurrentSessionApplicationState.ProjectSearchModel as TIPSearchModel) ?? new TIPSearchModel();
             //CurrentSessionApplicationState.ProjectSearchModel = null;
             
 
@@ -590,7 +582,7 @@ namespace Trips4.Controllers
             else
             {
                 //Check to see if there is a projectSearchModel in Session. If not, then we have nt selected a dashboard or project search tab option.
-                if (CurrentSessionApplicationState.ProjectSearchModel != null)
+                if ((CurrentSessionApplicationState.ProjectSearchModel as TIPSearchModel) != null)
                 {
                     //Pull ProjectSearchModel from session and use
                     projectSearchModel = (TIPSearchModel)CurrentSessionApplicationState.ProjectSearchModel;
