@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TripsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="TripsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="TripsModelStoreContainer">
           <EntitySet Name="Processed" EntityType="TripsModel.Store.Processed" store:Type="Tables" store:Schema="alop" store:Name="Processed">
             <DefiningQuery>SELECT 
@@ -4677,6 +4677,7 @@
         </Function>
         <Function Name="ModelerExtract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="RTP">
           <Parameter Name="TimePeriodId" Type="int" Mode="In" />
+          <Parameter Name="ExcludeOpenYearBefore" Type="int" Mode="In" />
         </Function>
         <Function Name="RemoveCycleFromTimePeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="RTP">
           <Parameter Name="CycleId" Type="int" Mode="In" />
@@ -5256,6 +5257,7 @@
           <Parameter Name="AmendmentStatusID" Type="int" Mode="In" />
           <Parameter Name="AmendmentTypeID" Type="int" Mode="In" />
           <Parameter Name="FundingTypeID" Type="int" Mode="In" />
+          <Parameter Name="SuppressZero" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetProjectsWithAmendmentInProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TIP">
           <Parameter Name="tipYearID" Type="int" Mode="In" />
@@ -5462,26 +5464,7 @@
           <Parameter Name="EPADATE" Type="date" Mode="In" />
           <Parameter Name="ShowDelayDate" Type="date" Mode="In" />
         </Function>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'TRIPS.dbo.t_output' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="t_output">
-        <Property Name="ProjectVersionID" Type="int" />
-        <Property Name="ProjectFinancialRecordID" Type="int" />
-        <Property Name="SourceGroup" Type="varchar" MaxLength="50" />
-        <Property Name="Code" Type="varchar" MaxLength="10" />
-        <Property Name="SourceGroupReport" Type="varchar" MaxLength="75" />
-        <Property Name="SourceLevel" Type="varchar" MaxLength="50" />
-        <Property Name="SourceLevelListOrder" Type="smallint" />
-        <Property Name="FundingIncrement" Type="varchar" MaxLength="50" />
-        <Property Name="FundingIncrementListOrder" Type="smallint" />
-        <Property Name="FundingTypeID" Type="int" />
-        <Property Name="FundingLevelID" Type="int" />
-        <Property Name="FundingLevelActive" Type="bit" />
-        <Property Name="Amount" Type="money" />
-      </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Trips4.Data.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -6139,7 +6122,7 @@
             <Parameter Name="PersonGUID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="GetPersonsProjectVersionIds" ReturnType="Collection(Int32)">
-            <Parameter Name="PersonId" Mode="In" Type="Int32" />
+          <Parameter Name="PersonId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CheckPersonSponsorsProject" ReturnType="Collection(Boolean)">
             <Parameter Name="PersonID" Mode="In" Type="Int32" />
@@ -6158,7 +6141,11 @@
             <Parameter Name="CycleId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RtpGetCurrentPlanCycles" ReturnType="Collection(Trips4.Data.Models.RtpGetCurrentPlanCycles_Result)">
+          <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RtpModelerExtract" ReturnType="Collection(Trips4.Data.Models.RtpModelerExtract_Result)">
             <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+            <Parameter Name="ExcludeOpenYearBefore" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Processed">
@@ -9405,6 +9392,31 @@
           <Property Type="Int32" Name="statusId" Nullable="true" />
           <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="RtpModelerExtract_Result">
+          <Property Type="String" Name="COGID" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StartAt" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EndAt" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ImprovementType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Network" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Staging" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="OpenYear" Nullable="true" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="75" />
+          <Property Type="Int16" Name="LanesBase" Nullable="true" />
+          <Property Type="Int16" Name="LanesFuture" Nullable="true" />
+          <Property Type="Int16" Name="NewLanes" Nullable="true" />
+          <Property Type="String" Name="FacilityType" Nullable="true" MaxLength="75" />
+          <Property Type="Decimal" Name="ConstantCost" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="VisionCost" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="YOECost" Nullable="true" Precision="19" />
+          <Property Type="String" Name="RTPCategoryDescription" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Routename" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="BEGINMEASU" Nullable="true" />
+          <Property Type="Double" Name="ENDMEASURE" Nullable="true" />
+          <Property Type="Int32" Name="OFFSET" Nullable="true" />
+          <Property Type="String" Name="ModelingFacilityType" Nullable="true" MaxLength="75" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10477,6 +10489,35 @@
                 <ScalarProperty Name="cycle" ColumnName="cycle" />
                 <ScalarProperty Name="statusId" ColumnName="statusId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RtpModelerExtract" FunctionName="TripsModel.Store.ModelerExtract">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Trips4.Data.Models.RtpModelerExtract_Result">
+                <ScalarProperty Name="COGID" ColumnName="COGID" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="ImprovementType" ColumnName="ImprovementType" />
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="Staging" ColumnName="Staging" />
+                <ScalarProperty Name="OpenYear" ColumnName="OpenYear" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="LanesBase" ColumnName="LanesBase" />
+                <ScalarProperty Name="LanesFuture" ColumnName="LanesFuture" />
+                <ScalarProperty Name="NewLanes" ColumnName="NewLanes" />
+                <ScalarProperty Name="FacilityType" ColumnName="FacilityType" />
+                <ScalarProperty Name="ConstantCost" ColumnName="ConstantCost" />
+                <ScalarProperty Name="VisionCost" ColumnName="VisionCost" />
+                <ScalarProperty Name="YOECost" ColumnName="YOECost" />
+                <ScalarProperty Name="RTPCategoryDescription" ColumnName="RTPCategoryDescription" />
+                <ScalarProperty Name="Routename" ColumnName="Routename" />
+                <ScalarProperty Name="BEGINMEASU" ColumnName="BEGINMEASU" />
+                <ScalarProperty Name="ENDMEASURE" ColumnName="ENDMEASURE" />
+                <ScalarProperty Name="OFFSET" ColumnName="OFFSET" />
+                <ScalarProperty Name="ModelingFacilityType" ColumnName="ModelingFacilityType" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

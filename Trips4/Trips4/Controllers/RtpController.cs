@@ -1,49 +1,23 @@
-#region INFORMATION
-/*======================================================
- * Copyright (c) 2010 DRCOG (www.drcog.org)
- * 
- * DATE		    AUTHOR	        REMARKS
- * 05/05/2010	DDavidson       1. Initial Creation. 
- * 
- * DESCRIPTION:
- * 
- * ======================================================*/
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using DRCOG.Domain;
-using DRCOG.Domain.Interfaces;
-using DRCOG.Domain.ServiceInterfaces;
-using DRCOG.Domain.Models;
-using DRCOG.Domain.ViewModels;
-using Trips4;
-using DTS.Web.MVC;
-//using MvcContrib.Pagination;
-using Trips4.Utilities.ApplicationState;
-using DRCOG.Domain.Helpers;
-using DRCOG.Domain.ViewModels.RTP;
 using System.Web.Routing;
+using DRCOG.Domain;
+using DRCOG.Domain.Helpers;
+using DRCOG.Domain.Interfaces;
+using DRCOG.Domain.Models;
 using DRCOG.Domain.Models.RTP;
+using DRCOG.Domain.Models.Survey;
+using DRCOG.Domain.ServiceInterfaces;
+using DRCOG.Domain.ViewModels.RTP;
 using DRCOG.TIP.Services.AmendmentStrategy.RTP;
 using DRCOG.TIP.Services.RestoreStrategy.RTP;
-using DRCOG.TIP.Services;
-using DRCOG.Domain.Models.Survey;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Web.MvcSupport.Attributes;
-using System.Web.UI.WebControls;
-using System.IO;
-using System.Web.UI;
+using DTS.Web.MVC;
 
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
-    [Trips4.Filters.SessionAuthorizeAttribute]
-    //[RemoteRequireHttps]
     public class RtpController : ControllerBase
     {
         private readonly IRtpRepository _rtpRepository;
@@ -1237,17 +1211,11 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
         {
-            /*
-            GridView grid = new GridView();
-            grid.DataSource = _rtpRepository.GetModelerExtractResults(timePeriodId, excludeOpenBefore);
-            grid.DataBind();
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            grid.RenderControl(htw);
-            */
-            var dt = _rtpRepository.GetModelerExtractResults(timePeriodId, excludeOpenBefore);
-            Response.AddHeader("Content-Disposition", "attachment; filename=RTPModelerExtract.xls");
-            return Content(sw.ToString(), "application/vnd.ms-excel");
+            var results = RtpRepository2.GetModelerExtract(timePeriodId, excludeOpenBefore);
+            var exp = new Utilities.ExcelExporter();
+            var bytes = exp.GetRtpModelerExtractDocument(results);
+            Response.AddHeader("Content-Disposition", "attachment; filename=RTPModelerExtract.xlsx");
+            return File(bytes, "application/vnd.ms-excel");
         }
 
         #region PRIVATE HELPERS

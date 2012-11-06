@@ -10,6 +10,20 @@ namespace Trips4.Data
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        public IEnumerable<Trips4.Data.Models.RtpModelerExtract_Result> GetModelerExtract(int? timePeriodId, int? excludeBeforeYear)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var extracts = db.RtpModelerExtract(timePeriodId, excludeBeforeYear);
+                if (extracts == null)
+                {
+                    Logger.Debug("No modeler extract for " + (timePeriodId ?? 0).ToString());
+                    return null;
+                }
+                return extracts.ToArray();
+            }
+        }
+
         public ReportsViewModel GetReportsViewModel(string year)
         {
             var result = new ReportsViewModel();
