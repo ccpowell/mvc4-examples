@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DRCOG.Domain.ViewModels.RTP;
+using OfficeOpenXml;
 
 namespace Trips4.Data
 {
@@ -10,7 +11,26 @@ namespace Trips4.Data
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public IEnumerable<Trips4.Data.Models.RtpModelerExtract_Result> GetModelerExtract(int? timePeriodId, int? excludeBeforeYear)
+        public byte[] GetRtpModelerExtractDocument(int? timePeriodId, int? excludeBeforeYear)
+        {
+            var results = GetModelerExtract(timePeriodId, excludeBeforeYear);
+            if (results == null)
+            {
+                throw new Exception("Could not run report.");
+            }
+            using (var pck = new ExcelPackage())
+            {
+                //Create the worksheet
+                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("ModelerExtract");
+
+                //Load the datatable into the sheet, starting from cell A1. Print the column names on row 1
+                ws.Cells["A1"].LoadFromCollection(results, true);
+                ws.Cells.AutoFitColumns();
+                return pck.GetAsByteArray();
+            }
+        }
+
+        private IEnumerable<Trips4.Data.Models.RtpModelerExtract_Result> GetModelerExtract(int? timePeriodId, int? excludeBeforeYear)
         {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
             {

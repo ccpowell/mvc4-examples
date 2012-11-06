@@ -333,7 +333,6 @@ namespace Trips4.Controllers
         /// </summary>
         /// <returns></returns>
         [Trips4.Filters.SessionAuthorizeAttribute(Roles="Administrator")]
-        [Trips4.Filters.SessionAuthorizeAttribute]
         [HttpGet]
         public ActionResult Index()
         {

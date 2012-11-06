@@ -1211,11 +1211,9 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
         {
-            var results = RtpRepository2.GetModelerExtract(timePeriodId, excludeOpenBefore);
-            var exp = new Utilities.ExcelExporter();
-            var bytes = exp.GetRtpModelerExtractDocument(results);
-            Response.AddHeader("Content-Disposition", "attachment; filename=RTPModelerExtract.xlsx");
-            return File(bytes, "application/vnd.ms-excel");
+            var results = RtpRepository2.GetRtpModelerExtractDocument(timePeriodId, excludeOpenBefore);
+            return File(results, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "RTP_ModelerExtract.xlsx");
         }
 
         #region PRIVATE HELPERS

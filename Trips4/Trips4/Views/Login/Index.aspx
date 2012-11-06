@@ -34,10 +34,6 @@
                             or <a id="btn_forgotPassword" href="#">Forgot Password?</a>
                             <%--<%= Html.ActionLink("Forgot Password?", "RecoverPassword", "Account")%>--%>
                         </p>
-                        <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="GrayText" Font-Italic="true">
-                            Do you need an Account? 
-                            <a id="btn_register" href="#">Register</a><br />                 
-                        </asp:Label>
                         <br />
                         <asp:Label ID="LabelMessage" runat="server" Text="Message" ForeColor="Red" Font-Bold="true">
                         <%= Model.Message %>
