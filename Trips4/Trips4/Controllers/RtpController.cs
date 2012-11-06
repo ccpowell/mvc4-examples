@@ -1237,13 +1237,15 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
         {
+            /*
             GridView grid = new GridView();
             grid.DataSource = _rtpRepository.GetModelerExtractResults(timePeriodId, excludeOpenBefore);
             grid.DataBind();
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
             grid.RenderControl(htw);
-
+            */
+            var dt = _rtpRepository.GetModelerExtractResults(timePeriodId, excludeOpenBefore);
             Response.AddHeader("Content-Disposition", "attachment; filename=RTPModelerExtract.xls");
             return Content(sw.ToString(), "application/vnd.ms-excel");
         }
