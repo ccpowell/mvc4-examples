@@ -23,19 +23,19 @@ namespace Trips4.Controllers
         private readonly IRtpRepository _rtpRepository;
         private readonly IRtpProjectRepository _rtpProjectRepository;
         private readonly ISurveyRepository _surveyRepository;
-        private Trips4.Data.RtpRepository2 RtpRepository2 { get; set; }
+        private Trips4.Data.TripsRepository TripsRepository { get; set; }
 
         public RtpController(IRtpRepository rtpRepository, 
             IRtpProjectRepository rtpProjectRepository, 
             ISurveyRepository surveyRepository, 
             ITripsUserRepository userRepository,
-            Trips4.Data.RtpRepository2 rtp2)
+            Trips4.Data.TripsRepository trepo)
             : base("RtpController", userRepository)
         {
             _rtpRepository = rtpRepository;
             _rtpProjectRepository = rtpProjectRepository;
             _surveyRepository = surveyRepository;
-            RtpRepository2 = rtp2;
+            TripsRepository = trepo;
         }
         private void LoadSession()
         {
@@ -1203,7 +1203,7 @@ namespace Trips4.Controllers
             LoadSession();
 
             //Create the ViewModel
-            ReportsViewModel model = RtpRepository2.GetReportsViewModel(year);
+            ReportsViewModel model = TripsRepository.GetReportsViewModel(year);
             return View(model);
         }
 
@@ -1211,7 +1211,7 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId, int? excludeOpenBefore)
         {
-            var results = RtpRepository2.GetRtpModelerExtractDocument(timePeriodId, excludeOpenBefore);
+            var results = TripsRepository.GetRtpModelerExtractDocument(timePeriodId, excludeOpenBefore);
             return File(results, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "RTP_ModelerExtract.xlsx");
         }

@@ -2928,6 +2928,25 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction<RtpModelerExtract_Result>("RtpModelerExtract", timePeriodIdParameter, excludeOpenYearBeforeParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="timePeriodId">No Metadata Documentation available.</param>
+        public ObjectResult<SurveyModelerExtract_Result> SurveyModelerExtract(Nullable<global::System.Int32> timePeriodId)
+        {
+            ObjectParameter timePeriodIdParameter;
+            if (timePeriodId.HasValue)
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", timePeriodId);
+            }
+            else
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<SurveyModelerExtract_Result>("SurveyModelerExtract", timePeriodIdParameter);
+        }
 
         #endregion
     }
@@ -34770,6 +34789,323 @@ namespace Trips4.Data.Models
         private global::System.String _ModelingFacilityType;
         partial void OnModelingFacilityTypeChanging(global::System.String value);
         partial void OnModelingFacilityTypeChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="SurveyModelerExtract_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class SurveyModelerExtract_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SurveyModelerExtract_Result object.
+        /// </summary>
+        /// <param name="network">Initial value of the Network property.</param>
+        /// <param name="facilityType">Initial value of the FacilityType property.</param>
+        public static SurveyModelerExtract_Result CreateSurveyModelerExtract_Result(global::System.String network, global::System.String facilityType)
+        {
+            SurveyModelerExtract_Result surveyModelerExtract_Result = new SurveyModelerExtract_Result();
+            surveyModelerExtract_Result.Network = network;
+            surveyModelerExtract_Result.FacilityType = facilityType;
+            return surveyModelerExtract_Result;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String COGID
+        {
+            get
+            {
+                return _COGID;
+            }
+            set
+            {
+                OnCOGIDChanging(value);
+                ReportPropertyChanging("COGID");
+                _COGID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("COGID");
+                OnCOGIDChanged();
+            }
+        }
+        private global::System.String _COGID;
+        partial void OnCOGIDChanging(global::System.String value);
+        partial void OnCOGIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sponsor
+        {
+            get
+            {
+                return _Sponsor;
+            }
+            set
+            {
+                OnSponsorChanging(value);
+                ReportPropertyChanging("Sponsor");
+                _Sponsor = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sponsor");
+                OnSponsorChanged();
+            }
+        }
+        private global::System.String _Sponsor;
+        partial void OnSponsorChanging(global::System.String value);
+        partial void OnSponsorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectName
+        {
+            get
+            {
+                return _ProjectName;
+            }
+            set
+            {
+                OnProjectNameChanging(value);
+                ReportPropertyChanging("ProjectName");
+                _ProjectName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProjectName");
+                OnProjectNameChanged();
+            }
+        }
+        private global::System.String _ProjectName;
+        partial void OnProjectNameChanging(global::System.String value);
+        partial void OnProjectNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImprovementType
+        {
+            get
+            {
+                return _ImprovementType;
+            }
+            set
+            {
+                OnImprovementTypeChanging(value);
+                ReportPropertyChanging("ImprovementType");
+                _ImprovementType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImprovementType");
+                OnImprovementTypeChanged();
+            }
+        }
+        private global::System.String _ImprovementType;
+        partial void OnImprovementTypeChanging(global::System.String value);
+        partial void OnImprovementTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Network
+        {
+            get
+            {
+                return _Network;
+            }
+            set
+            {
+                OnNetworkChanging(value);
+                ReportPropertyChanging("Network");
+                _Network = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Network");
+                OnNetworkChanged();
+            }
+        }
+        private global::System.String _Network;
+        partial void OnNetworkChanging(global::System.String value);
+        partial void OnNetworkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> OpenYear
+        {
+            get
+            {
+                return _OpenYear;
+            }
+            set
+            {
+                OnOpenYearChanging(value);
+                ReportPropertyChanging("OpenYear");
+                _OpenYear = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OpenYear");
+                OnOpenYearChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _OpenYear;
+        partial void OnOpenYearChanging(Nullable<global::System.Int16> value);
+        partial void OnOpenYearChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FacilityName
+        {
+            get
+            {
+                return _FacilityName;
+            }
+            set
+            {
+                OnFacilityNameChanging(value);
+                ReportPropertyChanging("FacilityName");
+                _FacilityName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FacilityName");
+                OnFacilityNameChanged();
+            }
+        }
+        private global::System.String _FacilityName;
+        partial void OnFacilityNameChanging(global::System.String value);
+        partial void OnFacilityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String StartAt
+        {
+            get
+            {
+                return _StartAt;
+            }
+            set
+            {
+                OnStartAtChanging(value);
+                ReportPropertyChanging("StartAt");
+                _StartAt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("StartAt");
+                OnStartAtChanged();
+            }
+        }
+        private global::System.String _StartAt;
+        partial void OnStartAtChanging(global::System.String value);
+        partial void OnStartAtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EndAt
+        {
+            get
+            {
+                return _EndAt;
+            }
+            set
+            {
+                OnEndAtChanging(value);
+                ReportPropertyChanging("EndAt");
+                _EndAt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EndAt");
+                OnEndAtChanged();
+            }
+        }
+        private global::System.String _EndAt;
+        partial void OnEndAtChanging(global::System.String value);
+        partial void OnEndAtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> LanesBase
+        {
+            get
+            {
+                return _LanesBase;
+            }
+            set
+            {
+                OnLanesBaseChanging(value);
+                ReportPropertyChanging("LanesBase");
+                _LanesBase = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LanesBase");
+                OnLanesBaseChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _LanesBase;
+        partial void OnLanesBaseChanging(Nullable<global::System.Int16> value);
+        partial void OnLanesBaseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> LanesFuture
+        {
+            get
+            {
+                return _LanesFuture;
+            }
+            set
+            {
+                OnLanesFutureChanging(value);
+                ReportPropertyChanging("LanesFuture");
+                _LanesFuture = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LanesFuture");
+                OnLanesFutureChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _LanesFuture;
+        partial void OnLanesFutureChanging(Nullable<global::System.Int16> value);
+        partial void OnLanesFutureChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FacilityType
+        {
+            get
+            {
+                return _FacilityType;
+            }
+            set
+            {
+                OnFacilityTypeChanging(value);
+                ReportPropertyChanging("FacilityType");
+                _FacilityType = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FacilityType");
+                OnFacilityTypeChanged();
+            }
+        }
+        private global::System.String _FacilityType;
+        partial void OnFacilityTypeChanging(global::System.String value);
+        partial void OnFacilityTypeChanged();
 
         #endregion
     }

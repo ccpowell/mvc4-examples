@@ -40,12 +40,17 @@ namespace Trips4.Controllers
     {
         private readonly ISurveyRepository _surveyRepository;
         private readonly IRtpProjectRepository _rtpProjectRepository;
+        private Trips4.Data.TripsRepository TripsRepository { get; set; }
 
-        public SurveyController(ISurveyRepository surveyRepository, IRtpProjectRepository rtpProjectRepository, ITripsUserRepository userRepository)
+        public SurveyController(ISurveyRepository surveyRepository, 
+            IRtpProjectRepository rtpProjectRepository,
+            ITripsUserRepository userRepository,
+            Trips4.Data.TripsRepository trepo)
             : base("SurveyController", userRepository)
         {
             _rtpProjectRepository = rtpProjectRepository;
             _surveyRepository = surveyRepository;
+            TripsRepository = trepo;
         }
 
         private void LoadSessionData()
@@ -1622,15 +1627,9 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadModelerExtract(int timePeriodId)
         {
-            GridView grid = new GridView();
-            grid.DataSource = _surveyRepository.GetModelerExtractResults(timePeriodId);
-            grid.DataBind();
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            grid.RenderControl(htw);
-
-            Response.AddHeader("Content-Disposition", "attachment; filename=SurveyModelerExtract.xls");
-            return Content(sw.ToString(), "application/vnd.ms-excel");
+            var results = TripsRepository.GetSurveyModelerExtractDocument(timePeriodId);
+            return File(results, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "SurveyModelerExtract.xlsx");
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]

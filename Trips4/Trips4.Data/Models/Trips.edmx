@@ -6147,6 +6147,9 @@
             <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
             <Parameter Name="ExcludeOpenYearBefore" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SurveyModelerExtract" ReturnType="Collection(Trips4.Data.Models.SurveyModelerExtract_Result)">
+            <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Processed">
           <Key>
@@ -9417,6 +9420,20 @@
           <Property Type="Int32" Name="OFFSET" Nullable="true" />
           <Property Type="String" Name="ModelingFacilityType" Nullable="true" MaxLength="75" />
         </ComplexType>
+        <ComplexType Name="SurveyModelerExtract_Result">
+          <Property Type="String" Name="COGID" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ImprovementType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Network" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="OpenYear" Nullable="true" />
+          <Property Type="String" Name="FacilityName" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="StartAt" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EndAt" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="LanesBase" Nullable="true" />
+          <Property Type="Int16" Name="LanesFuture" Nullable="true" />
+          <Property Type="String" Name="FacilityType" Nullable="false" MaxLength="75" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10518,6 +10535,24 @@
                 <ScalarProperty Name="ENDMEASURE" ColumnName="ENDMEASURE" />
                 <ScalarProperty Name="OFFSET" ColumnName="OFFSET" />
                 <ScalarProperty Name="ModelingFacilityType" ColumnName="ModelingFacilityType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SurveyModelerExtract" FunctionName="TripsModel.Store.ModelerExtract1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Trips4.Data.Models.SurveyModelerExtract_Result">
+                <ScalarProperty Name="COGID" ColumnName="COGID" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ImprovementType" ColumnName="ImprovementType" />
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="OpenYear" ColumnName="OpenYear" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="LanesBase" ColumnName="LanesBase" />
+                <ScalarProperty Name="LanesFuture" ColumnName="LanesFuture" />
+                <ScalarProperty Name="FacilityType" ColumnName="FacilityType" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

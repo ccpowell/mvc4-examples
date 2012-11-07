@@ -76,7 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TripsUser.edmx</DependentUpon>
     </Compile>
-    <Compile Include="RtpRepository2.cs" />
+    <Compile Include="TripsRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

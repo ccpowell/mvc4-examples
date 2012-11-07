@@ -7,42 +7,47 @@ using OfficeOpenXml;
 
 namespace Trips4.Data
 {
-    public class RtpRepository2
+    public class TripsRepository
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public byte[] GetRtpModelerExtractDocument(int? timePeriodId, int? excludeBeforeYear)
         {
-            var results = GetModelerExtract(timePeriodId, excludeBeforeYear);
-            if (results == null)
-            {
-                throw new Exception("Could not run report.");
-            }
-            using (var pck = new ExcelPackage())
-            {
-                //Create the worksheet
-                ExcelWorksheet ws = pck.Workbook.Worksheets.Add("ModelerExtract");
-
-                //Load the datatable into the sheet, starting from cell A1. Print the column names on row 1
-                ws.Cells["A1"].LoadFromCollection(results, true);
-                ws.Cells.AutoFitColumns();
-                return pck.GetAsByteArray();
-            }
-        }
-
-        private IEnumerable<Trips4.Data.Models.RtpModelerExtract_Result> GetModelerExtract(int? timePeriodId, int? excludeBeforeYear)
-        {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
             {
                 var extracts = db.RtpModelerExtract(timePeriodId, excludeBeforeYear);
-                if (extracts == null)
+                var results = extracts.ToArray();
+                using (var pck = new ExcelPackage())
                 {
-                    Logger.Debug("No modeler extract for " + (timePeriodId ?? 0).ToString());
-                    return null;
+                    // Create the worksheet
+                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("ModelerExtract");
+
+                    // Load the datatable into the sheet, starting from cell A1. Print the column names on row 1
+                    ws.Cells["A1"].LoadFromCollection(results, true);
+                    ws.Cells.AutoFitColumns();
+                    return pck.GetAsByteArray();
                 }
-                return extracts.ToArray();
             }
         }
+        public byte[] GetSurveyModelerExtractDocument(int? timePeriodId)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var extracts = db.SurveyModelerExtract(timePeriodId);
+                var results = extracts.ToArray();
+                using (var pck = new ExcelPackage())
+                {
+                    // Create the worksheet
+                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("ModelerExtract");
+
+                    // Load the datatable into the sheet, starting from cell A1. Print the column names on row 1
+                    ws.Cells["A1"].LoadFromCollection(results, true);
+                    ws.Cells.AutoFitColumns();
+                    return pck.GetAsByteArray();
+                }
+            }
+        }
+
 
         public ReportsViewModel GetReportsViewModel(string year)
         {
