@@ -41,7 +41,6 @@ function reset_form_elements(formElements) {
     <div class="tab-content-container">
 
         <h2>Search for Project in the TIP</h2>
-        <p>This will be the search form instructions. </p>
         <!---<p>When you submit the search, the criteria will be stored in session, and the page will re-direct to
         the Project List tab. The Project List tab will always respect that last set of search criteria applied.</p>
         <p>We are awaiting further confirmation about how the users interact with the search UI. The hope is
@@ -51,7 +50,7 @@ function reset_form_elements(formElements) {
     <%{ %>
     
        <fieldset>
-       
+       <legend>Search By...</legend>
        <table>
        <tr>
        <td valign="top">
@@ -233,6 +232,14 @@ function reset_form_elements(formElements) {
                         Exclude
                     </span> 
             </p>
+              <p>
+                <label>Funding Increment:</label>            
+                <%= Html.DropDownList("ProjectSearchModel.FundingIncrementID", 
+                    true,
+                    new SelectList(new SelectListItem[0]),
+                    "---(Include all or select from list)---", 
+                    new { @class = "mediumInputElement not-required", title="Please select a valid Funding Increment" })%>
+            </p>
             <p>
                 <label for="ProjectSearchModel.ScopeTerm">Search Project Scopes:<br />
                     <%= Html.TextBoxFor(x => x.ProjectSearchModel.ScopeTerm, new { @class = "w300", @maxlength = "256" })%>
@@ -299,9 +306,7 @@ function reset_form_elements(formElements) {
     $(document).ready(function () {
         $(".tt-exclude[title]").tooltip();
         var ProjectSearchModel_ImprovementTypeID = $('#ProjectSearchModel_ImprovementTypeID');
-
         ProjectSearchModel_ImprovementTypeID.prop("disabled", true);
-
 
         ProjectSearchModel_ImprovementTypeID.bind('change', function () {
             var improvementtypeid = $('#ProjectSearchModel_ImprovementTypeID :selected').val();
@@ -337,12 +342,52 @@ function reset_form_elements(formElements) {
                         .fillSelect(response.data, { 'defaultOptionText': '---(Include all or select from list)---' })
                         .sortOptions();
                     ProjectSearchModel_ImprovementTypeID.prop("disabled", false);
-                },
-                error: function (response) {
-                    $('#result').html(response.data);
                 }
             });
         });
+
+        // load valid Funding Increments or disable ProjectSearchModel_FundingIncrementID
+        function setFundingIncrements(increments) {
+            var $select = $("#ProjectSearchModel_FundingIncrementID");
+
+            // remove all but first option
+            $select.find("option:gt(0)").remove();
+
+            // add options and reenable,
+            // or disable 
+            if (increments && increments.length > 0) {
+                $select.prop('disabled', false);
+                $.each(increments, function (index, item) {
+                    $select.append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                });
+            } else {
+                $select.prop('disabled', true);
+            }
+        }
+
+        // get Funding Increments for the selected TIP Year
+        function getFundingIncrements() {
+            var val = $('#ProjectSearchModel_TipYearID :selected').val(),
+                isExcluded = $('#ProjectSearchModel_Exclude_TipYear').prop('checked'),
+                tipYearId = parseInt(val);
+
+            if ((tipYearId > 0) && (!isExcluded)) {
+                $.ajax({
+                    type: "POST",
+                    url: '<%= Url.Action("GetFundingIncrements")%>',
+                    data: { tipYearId: tipYearId },
+                    dataType: "json",
+                    success: function (response) {
+                        setFundingIncrements(response.data);
+                    }
+                });
+            } else {
+                setFundingIncrements(null);
+            }
+        }
+
+        $("#ProjectSearchModel_TipYearID, #ProjectSearchModel_Exclude_TipYear").change(getFundingIncrements);
+        getFundingIncrements();
     });
 </script>
 

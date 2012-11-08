@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DRCOG.Domain.ViewModels.RTP;
 using OfficeOpenXml;
+using System.Web.Mvc;
 
 namespace Trips4.Data
 {
@@ -29,6 +30,7 @@ namespace Trips4.Data
                 }
             }
         }
+
         public byte[] GetSurveyModelerExtractDocument(int? timePeriodId)
         {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
@@ -48,6 +50,22 @@ namespace Trips4.Data
             }
         }
 
+        public IEnumerable<SelectListItem> GetFundingIncrements(int tipYearId)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var tps = db.TimePeriods.Where(tp => tp.TimePeriodID == tipYearId).SingleOrDefault();
+                if (tps == null)
+                {
+                    throw new Exception("No such TimePeriod " + tipYearId);
+                }
+                return tps.FundingIncrements.Select(fi => new SelectListItem()
+                    {
+                        Text = fi.FundingIncrement1,
+                        Value = fi.FundingIncrementID.ToString()
+                    }).ToArray();
+            }
+        }
 
         public ReportsViewModel GetReportsViewModel(string year)
         {

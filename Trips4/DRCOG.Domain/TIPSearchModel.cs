@@ -11,6 +11,7 @@ namespace DRCOG.Domain.Models
         public string TipID { get; set; }
         public string TipYear { get; set; }
         public int? TipYearID { get; set; }
+        public int? FundingIncrementID { get; set; }
 
         public bool Exclude_TipID { get; set; }
         public bool Exclude_TipYear { get; set; }

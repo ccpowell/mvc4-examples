@@ -49,14 +49,15 @@ namespace Trips4.Controllers
     {
         private readonly ITipRepository _tipRepository;
         private readonly IProjectRepository _projectRepository;
+        private Trips4.Data.TripsRepository TripsRepository { get; set; }
 
-        public TipController(ITipRepository tipRepository, IProjectRepository projectRepository, ITripsUserRepository userRepository)
+        public TipController(ITipRepository tipRepository, IProjectRepository projectRepository, ITripsUserRepository userRepository,
+            Trips4.Data.TripsRepository trepo)
             : base("TipController", userRepository)
         {
             _tipRepository = tipRepository;
             _projectRepository = projectRepository;
-
-            
+            TripsRepository = trepo;
         }
 
         public ActionResult Boom()
@@ -79,7 +80,14 @@ namespace Trips4.Controllers
             return base.GetProjectTypeMatch(id, _tipRepository);
         }
 
-#region TIP List /TIP
+        public JsonResult GetFundingIncrements(int tipYearId)
+        {
+            var result = TripsRepository.GetFundingIncrements(tipYearId);
+            return Json(new { data = result });
+        }
+
+
+        #region TIP List /TIP
 
         /// <summary>
         /// Returns a list of the current TIPs
@@ -123,7 +131,7 @@ namespace Trips4.Controllers
             return Json(projectVersionId);
         }
 
-        
+
         public JsonResult GetSponsorOrganizations()
         {
             var result = new List<SelectListItem>();
@@ -162,7 +170,7 @@ namespace Trips4.Controllers
             JsonServerResponse jsr = new JsonServerResponse();
             string newTipYear = startYear.ToString() + "-" + endYear.ToString();
             try
-            {                
+            {
                 _tipRepository.CreateTip(newTipYear, offset);
                 jsr.Data = true;
             }
@@ -176,14 +184,14 @@ namespace Trips4.Controllers
         }
 
 
-        public IDictionary<int,string> GetRestoreYears(string tipYearDestination)
+        public IDictionary<int, string> GetRestoreYears(string tipYearDestination)
         {
             var result = new Dictionary<int, string>();
             var restoreYears = _tipRepository.GetAvailableTipYears().Where(x => !x.Value.Equals(tipYearDestination));
-            restoreYears.ToList().ForEach(x => result.Add(x.Key, x.Value) );
+            restoreYears.ToList().ForEach(x => result.Add(x.Key, x.Value));
             return result;
         }
-        
+
         public JsonResult GetRestoreYearsJSON(string tipYearDestination)
         {
             var result = new List<SelectListItem>();
@@ -202,11 +210,11 @@ namespace Trips4.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        
 
-#endregion
 
-#region TIP Dashboard Tab /TIP/Dashboard/<tipyear>
+        #endregion
+
+        #region TIP Dashboard Tab /TIP/Dashboard/<tipyear>
 
         /// <summary>
         /// Display the TIP Dashboard
@@ -231,7 +239,7 @@ namespace Trips4.Controllers
                 String.IsNullOrEmpty(listType) ? Enums.TIPDashboardListType.Sponsor : (Enums.TIPDashboardListType)Enum.Parse(typeof(Enums.TIPDashboardListType), listType, true);
 
             // get the view model from the repo
-            var viewModel = _tipRepository.GetTipDashboardViewModel(year,  dashboardListType);
+            var viewModel = _tipRepository.GetTipDashboardViewModel(year, dashboardListType);
 
             // TODO: the following line can/should be set in the repo
             viewModel.ListType = dashboardListType;
@@ -263,9 +271,9 @@ namespace Trips4.Controllers
             return Json(result);
         }
 
-#endregion
-        
-#region TIP Status /TIP/Status/<tipyear>
+        #endregion
+
+        #region TIP Status /TIP/Status/<tipyear>
 
         /// <summary>
         /// Display the status for a TIP
@@ -277,7 +285,7 @@ namespace Trips4.Controllers
         {
             // get the view model from the repo
             var viewModel = _tipRepository.GetTipStatusViewModel(year);
-            return View("Status",viewModel);            
+            return View("Status", viewModel);
         }
 
         /// <summary>
@@ -294,7 +302,7 @@ namespace Trips4.Controllers
             model = _tipRepository.GetReportsViewModel(StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram), year);
 
             var val = model.ReportDetails.HasCurrentPolicy();
-            return View("reports",model);
+            return View("reports", model);
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
@@ -389,9 +397,9 @@ namespace Trips4.Controllers
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateStatus(StatusViewModel viewModel)
-        {                       
-            
-            TipStatusModel model = new TipStatusModel();            
+        {
+
+            TipStatusModel model = new TipStatusModel();
             UpdateModel(model);
 
             if (!ModelState.IsValid)
@@ -400,7 +408,7 @@ namespace Trips4.Controllers
                 //return Json(new {foo = "bar"});
                 return View("Status", viewModel);
             }
-                       
+
             //Send update to repo
             try
             {
@@ -411,12 +419,12 @@ namespace Trips4.Controllers
                 //this.Logger.LogMethodError("TipController", "UpdateStatus", "TipStatusViewModel", ex);
                 return Json(new { message = "Changes could not be stored. An error has been logged." });
             }
-            return Json(new { message = "Changes successfully saved." });            
+            return Json(new { message = "Changes successfully saved." });
         }
 
-#endregion
+        #endregion
 
-#region Project Search
+        #region Project Search
 
         /// <summary>
         /// Get the ProjectSearch view.
@@ -431,7 +439,7 @@ namespace Trips4.Controllers
 
             //Get the current criteria out of session and stuff into the view model
             //ApplicationState session = this.GetSession();
-            viewModel = _tipRepository.GetProjectSearchViewModel(StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram),year);
+            viewModel = _tipRepository.GetProjectSearchViewModel(StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram), year);
             viewModel.ProjectSearchModel = this.GetProjectSearchModel();
 
             viewModel.TipSummary.TipYear = year;
@@ -464,22 +472,22 @@ namespace Trips4.Controllers
 
             _tipRepository.SetProjectSearchDefaults(result);
 
-                //Just return some general defaults for now
-                //result.AmendmentStatus = "";
-                result.AmendmentStatusID = null;
-                result.COGID = "";
-                result.ProjectName = "";
-                result.ProjectType = "";
-                result.FundingType = "";
-                //result.SponsorAgency = "";
-                result.SponsorAgencyID = null;
-                result.TipID = "";
-                result.StipId = String.Empty;
-                //result.TipYear = "2008-2013";
-                //result.TipYearID = 8; 
-                //result.ImprovementType = "";
-                result.ImprovementTypeID = null;
-                result.VersionStatusId = (int)Enums.TIPVersionStatus.Active;
+            //Just return some general defaults for now
+            //result.AmendmentStatus = "";
+            result.AmendmentStatusID = null;
+            result.COGID = "";
+            result.ProjectName = "";
+            result.ProjectType = "";
+            result.FundingType = "";
+            //result.SponsorAgency = "";
+            result.SponsorAgencyID = null;
+            result.TipID = "";
+            result.StipId = String.Empty;
+            //result.TipYear = "2008-2013";
+            //result.TipYearID = 8; 
+            //result.ImprovementType = "";
+            result.ImprovementTypeID = null;
+            result.VersionStatusId = (int)Enums.TIPVersionStatus.Active;
             //}
 
             return result;
@@ -495,11 +503,6 @@ namespace Trips4.Controllers
         public ActionResult ProjectSearch(ProjectSearchViewModel model)
         {
             LoadSession();
-            //Get a reference to session object
-            //TIPApplicationState appSession = (TIPApplicationState)Session[DRCOGApp.SessionIdentifier];
-
-            //Save search options to session
-            if (CurrentSessionApplicationState.ProjectSearchModel != null) CurrentSessionApplicationState.ProjectSearchModel = null; 
             CurrentSessionApplicationState.ProjectSearchModel = model.ProjectSearchModel;
 
             //Redirect to the project list. Determine TIP Year (text) for redirect from appSession
@@ -511,9 +514,9 @@ namespace Trips4.Controllers
                         });
         }
 
-#endregion
+        #endregion
 
-#region TIP Project List
+        #region TIP Project List
 
         /// <summary>
         /// Returns a list of projects associated with this TIP
@@ -534,10 +537,10 @@ namespace Trips4.Controllers
             //Make a ProjectViewModel object from the search criteria
             var projectSearchModel = (CurrentSessionApplicationState.ProjectSearchModel as TIPSearchModel) ?? new TIPSearchModel();
             //CurrentSessionApplicationState.ProjectSearchModel = null;
-            
+
 
             //If there is a 'df' dashboard filter, then the Session search criteria are reset.
-            if (df != null) 
+            if (df != null)
             {
                 //Reset Session search criteria
                 //CurrentSessionApplicationState.ProjectSearchModel = null;
@@ -607,7 +610,7 @@ namespace Trips4.Controllers
             viewModel.TipSummary.TipYear = year;
             viewModel.ProjectList = GetProjectList(projectSearchModel);
             viewModel.CurrentSponsors = _tipRepository.GetCurrentTimePeriodSponsorAgencies(year, Enums.ApplicationState.TIP).ToDictionary(x => (int)x.OrganizationId, x => x.OrganizationName);
-            
+
             var allowedTypes = new List<Enums.AmendmentType>();
             allowedTypes.Add(Enums.AmendmentType.Administrative);
             allowedTypes.Add(Enums.AmendmentType.Policy);
@@ -617,8 +620,9 @@ namespace Trips4.Controllers
                 viewModel.AmendmentTypes.Add((int)type, StringEnum.GetStringValue(type));
             }
 
+            // ??? why save it in GetProjectList?
             CurrentSessionApplicationState.ProjectSearchModel = null;
-            
+
             return View(viewModel);
         }
 
@@ -659,14 +663,14 @@ namespace Trips4.Controllers
             return projectList;
         }
 
-#endregion
+        #endregion
 
         #region Delays
 
         public ActionResult Delays(string year, string id)
         {
             LoadSession();
-            
+
             var viewModel = new DelaysViewModel();
             viewModel.TipSummary.TipYear = year;
             var tpId = _tipRepository.GetYearId(year, Enums.TimePeriodType.TimePeriod);
@@ -698,7 +702,7 @@ namespace Trips4.Controllers
                     using (ExcelRange r = ws.Cells["B2:D2"])
                     {
                         r.Merge = true;
-                        
+
                         r.Style.Font.Bold = true;
                         r.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         r.Style.Fill.BackgroundColor.SetColor(Color.LightGreen);
@@ -752,7 +756,7 @@ namespace Trips4.Controllers
                     ws.Cells["I1"].Value = "End of Year Status";
                     ws.Cells["J1"].Value = "Additional Notes";
 
-                    ws.Cells[1,2,1,10].AutoFitColumns();
+                    ws.Cells[1, 2, 1, 10].AutoFitColumns();
                     ws.Column(11).Hidden = true;
                     ws.Column(3).Width = 25;
                     ws.Column(4).AutoFit();
@@ -804,7 +808,7 @@ namespace Trips4.Controllers
         public ActionResult DelayUpdate(Delay model)
         {
             model = _tipRepository.GetDelay(model);
-            
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("Partials/_DelaysUpdate", model);
@@ -816,7 +820,7 @@ namespace Trips4.Controllers
         public ActionResult DelayUpdate(FormCollection collection)
         {
             Delay model = new Delay();
-            
+
             if (TryUpdateModel(model, new string[] { 
                 "ProjectFinancialRecordId"
                 , "FundingIncrementId"
@@ -877,9 +881,9 @@ namespace Trips4.Controllers
         /// <param name="guid"></param>
         /// <returns></returns>
         public ActionResult Agencies(string year)
-        { 
+        {
             //get the mode from the repo
-            SponsorsViewModel model = _tipRepository.GetSponsorsViewModel(year);                      
+            SponsorsViewModel model = _tipRepository.GetSponsorsViewModel(year);
 
             return View(model);
         }
@@ -912,7 +916,7 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult UpdateAgencies(string tipYear,List<int> added, List<int> removed )
+        public JsonResult UpdateAgencies(string tipYear, List<int> added, List<int> removed)
         {
             if (added == null)
             {
@@ -933,11 +937,11 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 JsonServerResponse jsr = new JsonServerResponse();
-                jsr.Error = ex.Message;                
+                jsr.Error = ex.Message;
                 return Json(jsr);
-            }           
+            }
         }
-        
+
         /// <summary>
         /// Add an agency to the eligible agencies list
         /// </summary>
@@ -945,8 +949,8 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult AddEligibleAgency(string tipYear, int agencyId )
-        {     
+        public JsonResult AddEligibleAgency(string tipYear, int agencyId)
+        {
             var jsr = new JsonServerResponse();
             jsr.Error = _tipRepository.AddAgencyToTimePeriod(tipYear, agencyId, Enums.ApplicationState.TIP);
             return Json(jsr);
@@ -961,7 +965,7 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult DropEligibleAgency(string tipYear, int agencyId )
+        public JsonResult DropEligibleAgency(string tipYear, int agencyId)
         {
             var jsr = new JsonServerResponse();
             jsr.Error = _tipRepository.DropAgencyFromTimePeriod(tipYear, agencyId, Enums.ApplicationState.TIP);
@@ -973,9 +977,9 @@ namespace Trips4.Controllers
             return Json(jsr);
         }
 
-#endregion
+        #endregion
 
-#region TIP Amendments Tab
+        #region TIP Amendments Tab
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Amendments(string year)
@@ -987,27 +991,27 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-#endregion
+        #endregion
 
-#region TIP Pool List
+        #region TIP Pool List
 
         public ActionResult PoolList(string year)
         {
             //TODO: Implement - this is just scaffolding
             var viewModel = new PoolListViewModel();
             viewModel.TipSummary.TipYear = year;
-           
+
             return View(viewModel);
         }
 
-#endregion 
+        #endregion
 
-#region FundingList Tab
+        #region FundingList Tab
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult FundingList(string year,int? page)
+        public ActionResult FundingList(string year, int? page)
         {
-            
+
             var viewModel = new FundingSourceListViewModel();
             viewModel.TipSummary.TipYear = year;
             viewModel.TipSummary.TipYearTimePeriodID = (short)_tipRepository.GetYearId(year, Enums.TimePeriodType.TimePeriod);
@@ -1019,7 +1023,7 @@ namespace Trips4.Controllers
             {
                 viewModel.SourceAgencies.Add(new KeyValuePair<int, string>((int)o.OrganizationId, o.OrganizationName));
             }
-            
+
             viewModel.RecipientAgencies = viewModel.SourceAgencies;
             return View("FundingList", viewModel);
         }
@@ -1121,14 +1125,14 @@ namespace Trips4.Controllers
 
         }
 
-#endregion 
+        #endregion
 
-#region Amendment Mgt
+        #region Amendment Mgt
 
         public ActionResult CreateAmendmentList(string year)
         {
             var viewModel = new ProjectListViewModel();
-            viewModel.TipSummary.TipYear = year;           
+            viewModel.TipSummary.TipYear = year;
             viewModel.ProjectList = _tipRepository.GetAmendableTIPProjects(year);
 
             return View(viewModel);
@@ -1254,7 +1258,7 @@ namespace Trips4.Controllers
 
             try
             {
-                result = _tipRepository.GetProjectsByAmendmentStatusId(_tipRepository.GetYearId(timePeriod, Enums.TimePeriodType.TimePeriod), amendmentStatus ).ToList();
+                result = _tipRepository.GetProjectsByAmendmentStatusId(_tipRepository.GetYearId(timePeriod, Enums.TimePeriodType.TimePeriod), amendmentStatus).ToList();
             }
             catch (Exception ex)
             {
@@ -1314,9 +1318,9 @@ namespace Trips4.Controllers
             return RedirectToAction("ProjectList", new { tipYear = year });
         }
 
-#endregion
+        #endregion
 
-#region PRIVATE HELPERS
+        #region PRIVATE HELPERS
 
         private TIPSearchModel ValidateSearchData(TIPSearchModel projectSearchModel, string currentProgram)
         {
@@ -1405,7 +1409,7 @@ namespace Trips4.Controllers
             return projectSearchModel;
         }
 
-#endregion
+        #endregion
 
     }
 }

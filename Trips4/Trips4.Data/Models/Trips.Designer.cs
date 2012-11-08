@@ -2947,6 +2947,36 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction<SurveyModelerExtract_Result>("SurveyModelerExtract", timePeriodIdParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="projectVersionID">No Metadata Documentation available.</param>
+        /// <param name="showFullYear">No Metadata Documentation available.</param>
+        public ObjectResult<TipGetFundingIncrements_Result> TipGetFundingIncrements(Nullable<global::System.Int32> projectVersionID, Nullable<global::System.Boolean> showFullYear)
+        {
+            ObjectParameter projectVersionIDParameter;
+            if (projectVersionID.HasValue)
+            {
+                projectVersionIDParameter = new ObjectParameter("ProjectVersionID", projectVersionID);
+            }
+            else
+            {
+                projectVersionIDParameter = new ObjectParameter("ProjectVersionID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter showFullYearParameter;
+            if (showFullYear.HasValue)
+            {
+                showFullYearParameter = new ObjectParameter("ShowFullYear", showFullYear);
+            }
+            else
+            {
+                showFullYearParameter = new ObjectParameter("ShowFullYear", typeof(global::System.Boolean));
+            }
+    
+            return base.ExecuteFunction<TipGetFundingIncrements_Result>("TipGetFundingIncrements", projectVersionIDParameter, showFullYearParameter);
+        }
 
         #endregion
     }
@@ -35106,6 +35136,133 @@ namespace Trips4.Data.Models
         private global::System.String _FacilityType;
         partial void OnFacilityTypeChanging(global::System.String value);
         partial void OnFacilityTypeChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="TipGetFundingIncrements_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class TipGetFundingIncrements_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TipGetFundingIncrements_Result object.
+        /// </summary>
+        /// <param name="fundingIncrementID">Initial value of the FundingIncrementID property.</param>
+        /// <param name="baseYearModifier">Initial value of the BaseYearModifier property.</param>
+        /// <param name="listOrder">Initial value of the ListOrder property.</param>
+        public static TipGetFundingIncrements_Result CreateTipGetFundingIncrements_Result(global::System.Int32 fundingIncrementID, global::System.Byte baseYearModifier, global::System.Byte listOrder)
+        {
+            TipGetFundingIncrements_Result tipGetFundingIncrements_Result = new TipGetFundingIncrements_Result();
+            tipGetFundingIncrements_Result.FundingIncrementID = fundingIncrementID;
+            tipGetFundingIncrements_Result.BaseYearModifier = baseYearModifier;
+            tipGetFundingIncrements_Result.ListOrder = listOrder;
+            return tipGetFundingIncrements_Result;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FundingIncrementID
+        {
+            get
+            {
+                return _FundingIncrementID;
+            }
+            set
+            {
+                OnFundingIncrementIDChanging(value);
+                ReportPropertyChanging("FundingIncrementID");
+                _FundingIncrementID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FundingIncrementID");
+                OnFundingIncrementIDChanged();
+            }
+        }
+        private global::System.Int32 _FundingIncrementID;
+        partial void OnFundingIncrementIDChanging(global::System.Int32 value);
+        partial void OnFundingIncrementIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FundingIncrement
+        {
+            get
+            {
+                return _FundingIncrement;
+            }
+            set
+            {
+                OnFundingIncrementChanging(value);
+                ReportPropertyChanging("FundingIncrement");
+                _FundingIncrement = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FundingIncrement");
+                OnFundingIncrementChanged();
+            }
+        }
+        private global::System.String _FundingIncrement;
+        partial void OnFundingIncrementChanging(global::System.String value);
+        partial void OnFundingIncrementChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte BaseYearModifier
+        {
+            get
+            {
+                return _BaseYearModifier;
+            }
+            set
+            {
+                OnBaseYearModifierChanging(value);
+                ReportPropertyChanging("BaseYearModifier");
+                _BaseYearModifier = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BaseYearModifier");
+                OnBaseYearModifierChanged();
+            }
+        }
+        private global::System.Byte _BaseYearModifier;
+        partial void OnBaseYearModifierChanging(global::System.Byte value);
+        partial void OnBaseYearModifierChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte ListOrder
+        {
+            get
+            {
+                return _ListOrder;
+            }
+            set
+            {
+                OnListOrderChanging(value);
+                ReportPropertyChanging("ListOrder");
+                _ListOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ListOrder");
+                OnListOrderChanged();
+            }
+        }
+        private global::System.Byte _ListOrder;
+        partial void OnListOrderChanging(global::System.Byte value);
+        partial void OnListOrderChanged();
 
         #endregion
     }

@@ -155,27 +155,27 @@ namespace DRCOG.Domain.Interfaces
         /// <param name="TIPID"></param>
         /// <returns></returns>
         IList<TipSummary> GetTIPRestoreCandidateProjects(string tipYearDestination, int tipYearSourceID, string tipID);
-
+#if impl
         /// <summary>
         /// Get a single project summary based on the project id
         /// </summary>
         /// <param name="projectId">project id</param>
         /// <returns></returns>
-        //TipSummary GetProjectSummaryById(int projectId);
+        TipSummary GetProjectSummaryById(int projectId);
 
         /// <summary>
         /// Get the populated model for a project
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        //ProjectModel GetProjectById(int projectId);
+        ProjectModel GetProjectById(int projectId);
 
         /// <summary>
         /// Get the populated model for TIP Table 1 report
         /// </summary>
         /// <returns>IList<TipSortedProjectListModel></returns>
-        //IList<TipSortedProjectListModel> GetTIPProjectList();
-
+        IList<TipSortedProjectListModel> GetTIPProjectList();
+#endif
         ProjectSearchViewModel GetProjectSearchViewModel(string currentProgram, string year);
 
         //Lookups
