@@ -485,7 +485,7 @@ namespace DRCOG.Data
             //What I would like to do is make a dynamic Linq statement with the parameters from ProjectSearchModel. -DBD
             IList<TipSummary> list = new List<TipSummary>();
 
-            SqlCommand cmd = new SqlCommand("[TIP].[GetProjects]");
+            SqlCommand cmd = new SqlCommand("[TIP].[GetProjects2]");
             cmd.CommandType = CommandType.StoredProcedure;
 
             //cmd.Parameters.Add(new SqlParameter("@TIPYEAR", SqlDbType.NVarChar));
@@ -514,6 +514,10 @@ namespace DRCOG.Data
             if (!projectSearchModel.FundingTypeId.Equals(default(int)))
             {
                 cmd.Parameters.AddWithValue("@FundingTypeId", projectSearchModel.FundingTypeId);
+            } 
+            if (!projectSearchModel.FundingIncrementID.Equals(default(int)))
+            {
+                cmd.Parameters.AddWithValue("@FundingIncrementId", projectSearchModel.FundingIncrementID);
             }
             if (!String.IsNullOrEmpty(projectSearchModel.ScopeTerm))
             {
