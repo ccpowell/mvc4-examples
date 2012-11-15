@@ -70,7 +70,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\DTS.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="DTS.Web.MVC">
+    <Reference Include="DTS.Web.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\DTS.Web.MVC.dll</HintPath>
     </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
