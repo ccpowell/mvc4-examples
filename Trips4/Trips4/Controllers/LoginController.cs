@@ -18,10 +18,10 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Services.MemberShipServiceSupport;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Services.MemberShipServiceSupport;
 //using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 using DRCOG.Domain;
 //using DTS.Web.MVC;
 using DRCOG.Domain.Interfaces;
@@ -121,12 +121,10 @@ namespace Trips4.Controllers
 
                     Person person = new Person(model.UserName);
 
-                    ValidateUserResultType result = ValidateUserResultType.Membership;
-
                     // First try to authenicate through service
                     if (Membership.ValidateUser(model.UserName, model.Password))
                     {
-                        return base.SetAuthCookie(model, result, returnUrl);
+                        return base.SetAuthCookie(model, returnUrl);
                     }
                     else
                     {

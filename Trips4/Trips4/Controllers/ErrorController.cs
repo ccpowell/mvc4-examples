@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.ViewModels.TIPProject;
 using DRCOG.Domain.ViewModels;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 
 namespace Trips4.Controllers
 {

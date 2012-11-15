@@ -13,10 +13,10 @@ using DRCOG.TIP.Services;
 using DRCOG.Domain.Models;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using DRCOG.Common.Services.MemberShipServiceSupport;
+//using DRCOG.Common.Services.MemberShipServiceSupport;
 using System.Linq;
 using System.Xml.Linq;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 using System.Data.SqlClient;
 using System.Data;
 using DRCOG.Domain.Security;
@@ -96,7 +96,7 @@ namespace Trips4.Controllers
             Response.Cookies.Add(cookie);
         }
 
-        protected ActionResult SetAuthCookie(LogOnModel model, ValidateUserResultType validateResultType, string returnUrl)
+        protected ActionResult SetAuthCookie(LogOnModel model, string returnUrl)
         {
             // we need the profile first to get the username just in case the login is AD based
             CurrentSessionApplicationState.CurrentUser = _userRepository.GetUserByName(model.UserName, true);

@@ -19,13 +19,11 @@ using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.Interfaces;
 //using Trips4.Filters;
 using DRCOG.Domain.ViewModels.TIP;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
-    [Trips4.Filters.SessionAuthorizeAttribute]
-    //[RemoteRequireHttps]
     public class PoolController : ControllerBase
     {
 

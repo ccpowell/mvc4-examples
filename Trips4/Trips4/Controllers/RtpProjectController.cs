@@ -33,8 +33,8 @@ using System.Data;
 using DRCOG.Domain.Helpers;
 using Trips4.Utilities.ApplicationState;
 using DRCOG.TIP.Services.DeleteStrategy.RTP;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 using Trips4.Configuration;
 
 namespace Trips4.Controllers

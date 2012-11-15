@@ -9,7 +9,7 @@ using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.ServiceInterfaces;
 using DRCOG.TIP.Services;
 using Trips4.Services;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 
 namespace Trips4
 {

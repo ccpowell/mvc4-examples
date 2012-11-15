@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
-using DRCOG.Common.Services.MemberShipServiceSupport;
+//using DRCOG.Common.Services.MemberShipServiceSupport;
 using DRCOG.Common.Util;
 using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.Models;
@@ -30,17 +30,16 @@ namespace Trips4.Controllers
             _emailService = emailService;
         }
 
-        private void SendVerificationMail(Profile profile)
+        private void SendVerificationMail(string emailTo, string shortGuid)
         {
             //Guid guid = (Guid)user.ProviderUserKey;
 
             DRCOGConfig config = DRCOGConfig.GetConfig();
             string emailConfirmationPage = config.EmailConfirmationPage;
 
-            string emailTo = profile.BusinessEmail;
             string emailSubject = "DRCOG (T.R.I.P.S.) - Account Validation Email";
             string emailBody = "";
-            string emailLink = emailConfirmationPage + profile.PersonShortGuid;
+            string emailLink = emailConfirmationPage + shortGuid;
 
             //Make body of email
             //if (user.) emailBody = "<p>Dear " + firstName + ",</p>";
@@ -61,7 +60,7 @@ namespace Trips4.Controllers
             }
             catch (Exception exc)
             {
-                Exception exci = new Exception("Re/SendVerificationEmail; TO:" + profile.UserName, exc);
+                Exception exci = new Exception("Re/SendVerificationEmail; TO:" + emailTo, exc);
                 Elmah.ErrorSignal.FromCurrentContext().Raise(exci);
             }
         }
@@ -89,7 +88,7 @@ namespace Trips4.Controllers
                 Session["isValidated"] = true;
                 TempData["Message"] = "Thank you for verifying your Account";
 
-                return base.SetAuthCookie(new LogOnModel() { UserName = user.profile.UserName }, ValidateUserResultType.Membership, String.Empty);
+                return base.SetAuthCookie(new LogOnModel() { UserName = user.profile.UserName }, String.Empty);
                 //return RedirectToAction("Index", "Home");
             }
 

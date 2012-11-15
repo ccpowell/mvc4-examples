@@ -19,7 +19,7 @@ using Trips4;
 //using Trips4.Filters;
 using DRCOG.Domain.ViewModels;
 using DRCOG.Domain.ViewModels.TIP;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
 //using DRCOG.Common.Web.MvcSupport.Attributes;
 
 namespace Trips4.Controllers

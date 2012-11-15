@@ -1,8 +1,7 @@
 ﻿using System;
 using DRCOG.Domain;
 using DRCOG.Domain.Models;
-using DRCOG.Common.Services.MemberShipServiceSupport;
-using DRCOG.Common.Services.MemberShipServiceSupport.SSO.Domain;
+//using DRCOG.Common.Services.MemberShipServiceSupport;
 
 namespace Trips4.Utilities.ApplicationState
 {

@@ -7,8 +7,8 @@ using Trips4.Utilities.ApplicationState;
 using DRCOG.Domain.Security;
 using DRCOG.TIP.Services;
 using DRCOG.Domain;
-using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
-using DRCOG.Common.Web.MvcSupport.Attributes;
+//using DRCOG.Common.Service.MemberShipServiceSupport.Interfaces;
+//using DRCOG.Common.Web.MvcSupport.Attributes;
 using System.Web;
 using System.Configuration;
 
