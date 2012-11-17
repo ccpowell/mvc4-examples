@@ -252,6 +252,7 @@
     <Compile Include="ViewModels\RTP\AmendmentsViewModel.cs" />
     <Compile Include="ViewModels\RTP\FundingSourceListViewModel.cs" />
     <Compile Include="ViewModels\RTP\FundingSourceViewModel.cs" />
+    <Compile Include="ViewModels\RTP\PlanCyclesViewModel.cs" />
     <Compile Include="ViewModels\RTP\ProjectListViewModel.cs" />
     <Compile Include="ViewModels\RTP\ReportsViewModel.cs" />
     <Compile Include="ViewModels\RTP\ProjectSearchViewModel.cs" />

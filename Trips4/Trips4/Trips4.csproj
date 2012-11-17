@@ -555,6 +555,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\rtp-search.js" />
+    <Content Include="Scripts\RtpPlanCycles.js" />
     <Content Include="Scripts\slide.js" />
     <Content Include="Scripts\swf\copy_cvs_xls.swf" />
     <Content Include="Scripts\swf\copy_cvs_xls_pdf.swf" />
@@ -632,6 +633,7 @@
     <Content Include="Views\RTPProject\Scope.aspx" />
     <Content Include="Views\RTP\Agencies.aspx" />
     <Content Include="Views\RTP\Amendments.aspx" />
+    <Content Include="Views\RTP\PlanCycles.aspx" />
     <Content Include="Views\RTP\Dashboard.aspx" />
     <Content Include="Views\RTP\FundingList.aspx" />
     <Content Include="Views\RTP\Partials\AddCycle.ascx" />

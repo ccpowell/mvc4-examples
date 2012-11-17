@@ -93,7 +93,6 @@ namespace Trips4.Controllers
         /// Returns a list of the current TIPs
         /// </summary>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Index(string year)
         {
             LoadSession();
@@ -111,6 +110,17 @@ namespace Trips4.Controllers
             //viewModel.TipSummary = _tipRepository.GetTIPSummary(year);
 
             //return View("Dashboard", viewModel);
+
+        }
+
+        public ActionResult TipList(string year)
+        {
+            LoadSession();
+
+            var viewModel = _tipRepository.GetTipListViewModel();
+            viewModel.TipSummary = _tipRepository.GetTIPSummary(year);
+
+            return View(viewModel);
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
@@ -138,23 +148,6 @@ namespace Trips4.Controllers
             var sponsorOrganizations = _tipRepository.GetAvailableSponsors();
             sponsorOrganizations.ToList().ForEach(x => { result.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() }); });
             return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        // for debugging only.
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Denied")]
-        public JsonResult GetSponsorOrganizationsUnauth()
-        {
-            return Json("WTF?", JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Expire the session. Used for debugging session handling.
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult ExpireSession()
-        {
-            Session.Abandon();
-            return Json("Session is now defunct.", JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -210,8 +203,6 @@ namespace Trips4.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
-
         #endregion
 
         #region TIP Dashboard Tab /TIP/Dashboard/<tipyear>
@@ -222,7 +213,6 @@ namespace Trips4.Controllers
         /// <param name="guid"></param>
         /// <param name="listType"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Dashboard(string year, string listType)
         {
             LoadSession();
@@ -249,7 +239,6 @@ namespace Trips4.Controllers
 
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult GetAvailableRestoreProjects(int timePeriodId)
         {
 
@@ -293,7 +282,6 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Reports(string year)
         {
             LoadSession();
@@ -361,7 +349,6 @@ namespace Trips4.Controllers
             });
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult DownloadReportList(string reportId, string referrerYear)
         {
             GridView grid = new GridView();
@@ -380,7 +367,6 @@ namespace Trips4.Controllers
             return RedirectToAction("Reports", new { @year = referrerYear });
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult RenderAlopReport(string reportShortGuid, string reportFolder, string reportFormat)
         {
             string url = "http://sqlprod/reportserver?/" + reportFolder + "&rs:Command=Render&rs:Format=" + reportFormat + "&rc:Parameters=false&ReportID=";
@@ -894,7 +880,6 @@ namespace Trips4.Controllers
         /// <param name="year"></param>
         /// <param name="agencyId"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult CheckAgency(string year, int agencyId)
         //{
         //    if (_tipRepository.CanAgencyBeDropped(year, agencyId))
@@ -1240,7 +1225,6 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult GetProjectsByAmendmentStatusId(string timePeriod, int amendmentStatusId)
         {
 
@@ -1310,7 +1294,6 @@ namespace Trips4.Controllers
 
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult ResetSearchModel(string year)
         {
             LoadSession();

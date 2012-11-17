@@ -888,25 +888,19 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult CreateCycle(string cycle)
         {
-            string error = String.Empty;
-            try
-            {
-                error = _rtpRepository.CreateCycle(cycle);
-            }
-            catch (Exception ex)
+            string error = _rtpRepository.CreateCycle(cycle);
+            if (!String.IsNullOrEmpty(error))
             {
                 return Json(new
                 {
-                    message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+                    message =  error
                     ,
                     error = "true"
-                    ,
-                    exceptionMessage = ex.Message
                 });
             }
             return Json(new
             {
-                message = "Project Financial Record Detail successfully added."
+                message = "Cycle successfully added."
                 ,
                 error = "false"
             });
@@ -1180,14 +1174,31 @@ namespace Trips4.Controllers
 
         #region RTP FundingList Tab
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult FundingList(string year, int? page)
         {
 
             var viewModel = new FundingSourceListViewModel();
             viewModel.RtpSummary = _rtpRepository.GetSummary(year);
             viewModel.FundingSources = _rtpRepository.GetFundingSources(year); //.AsPagination(page.GetValueOrDefault(1), 10);                               
-            return View("FundingList", viewModel);
+            return View(viewModel);
+        }
+
+        #endregion
+
+        #region Plan Cycles Tab
+
+        public ActionResult PlanCycles(string year)
+        {
+            var viewModel = new PlanCyclesViewModel();
+            viewModel.RtpSummary = _rtpRepository.GetSummary(year);
+            var cycles = new List<PlanCycle>();
+            cycles.Add(new PlanCycle() { Id = 666, Name = "2012-1", Status = "Pending", Description = "Another Fine Mess" });
+            for (int i = 70; i > 0; i--)
+            {
+                cycles.Add(new PlanCycle() { Id = i, Name = "2011-" + i.ToString(), Status = "Inactive", Description = "Description of another cycle " + i.ToString() });
+            }
+            viewModel.Cycles = cycles;
+            return View(viewModel);
         }
 
         #endregion

@@ -79,10 +79,6 @@
     <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport">
       <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DRCOG\Lib\Elmah.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">

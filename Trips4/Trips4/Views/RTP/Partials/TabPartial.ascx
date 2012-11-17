@@ -8,6 +8,7 @@
     <% if (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator")) { %>
 	    <li><a <%=Html.IsActionCurrent("Agencies") ? "class='activetab'" : "" %> href="<%=Url.Action("Agencies","RTP", new {year=Model.RtpYear}) %>">Sponsors</a></li>
 	    <li><a <%=Html.IsActionCurrent("FundingList") ? "class='activetab'" : "" %> href="<%=Url.Action("FundingList","RTP", new {year=Model.RtpYear}) %>">Funding Sources</a></li>
+	    <li><a <%=Html.IsActionCurrent("PlanCycles") ? "class='activetab'" : "" %> href="<%=Url.Action("PlanCycles","RTP", new {year=Model.RtpYear}) %>">Plan Cycles</a></li>
 	    <li ><a <%=Html.IsActionCurrent("Status") ? "class='activetab'" : "" %> href="<%=Url.Action("Status","RTP", new {year=Model.RtpYear}) %>">RTP Status</a></li>
 	<% } %>
 </ul>
