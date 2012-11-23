@@ -91,6 +91,10 @@
     <Reference Include="Microsoft.Practices.Unity.Configuration">
       <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
@@ -193,6 +197,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Configuration\DRCOGConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\RtpPlanCycleController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FundingController.cs" />
@@ -439,6 +444,7 @@
     <Content Include="Content\tip.description.print.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="MvcDiagnostics.aspx" />
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
     <Content Include="Scripts\FixedHeader.js" />
@@ -773,6 +779,7 @@
     <None Include="Views\Web.config.2" />
     <Content Include="Web.QA.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <PropertyGroup>

@@ -1191,13 +1191,9 @@ namespace Trips4.Controllers
         {
             var viewModel = new PlanCyclesViewModel();
             viewModel.RtpSummary = _rtpRepository.GetSummary(year);
-            var cycles = new List<PlanCycle>();
-            cycles.Add(new PlanCycle() { Id = 666, Name = "2012-1", Status = "Pending", Description = "Another Fine Mess" });
-            for (int i = 70; i > 0; i--)
-            {
-                cycles.Add(new PlanCycle() { Id = i, Name = "2011-" + i.ToString(), Status = "Inactive", Description = "Description of another cycle " + i.ToString() });
-            }
-            viewModel.Cycles = cycles;
+            int id = TripsRepository.GetRtpPlanYearId(year);
+            viewModel.Cycles = TripsRepository.GetRtpPlanCycles(id);
+            viewModel.ExistsNewPlanCycle = (null != viewModel.Cycles.FirstOrDefault(c => c.Status == "New"));
             return View(viewModel);
         }
 

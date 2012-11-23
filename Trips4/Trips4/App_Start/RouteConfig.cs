@@ -16,6 +16,12 @@ namespace Trips4
             routes.IgnoreRoute("elmah.axd");
             routes.IgnoreRoute("favicon.ico");
 
+            routes.MapHttpRoute(
+                "DefaultApi",
+                "api/{controller}/{id}",
+                new { id = RouteParameter.Optional }
+            );
+
             routes.MapRoute(
                 "AccountRoutes",                                              // Route name
                 "Account/{action}/{id}",                           // URL with parameters
@@ -27,7 +33,6 @@ namespace Trips4
                 "Login/{action}",                           // URL with parameters
                 new { controller = "Login", action = "Index" }  // Parameter defaults
             );
-
 
             routes.MapRoute(
                 "TipYear",                                              // Route name

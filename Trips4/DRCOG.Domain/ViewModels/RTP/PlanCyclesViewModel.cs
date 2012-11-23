@@ -16,5 +16,6 @@ namespace DRCOG.Domain.ViewModels.RTP
     public class PlanCyclesViewModel : RtpBaseViewModel
     {
         public IEnumerable<PlanCycle> Cycles { get; set; }
+        public bool ExistsNewPlanCycle { get; set; }
     }
 }

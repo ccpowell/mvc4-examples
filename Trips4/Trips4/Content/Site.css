@@ -1315,3 +1315,21 @@ span.report-label
     text-align: center;
 }
 
+/* Data Table styles, used in RTP Plan Cycles and maybe more */
+
+table.data-table
+{
+    width: 95%;
+}
+
+table.data-table tbody td.pointer
+{
+    cursor: pointer;
+    color: #009ce0;
+    text-decoration: underline;
+}
+table.data-table tbody td.pointer:hover
+{
+    border: 1px solid #7ac0da;    
+    text-decoration: none;
+}

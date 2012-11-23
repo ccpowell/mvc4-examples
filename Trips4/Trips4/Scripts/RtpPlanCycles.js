@@ -11,24 +11,44 @@ var App = App || {};
 App.ui = (function ($) {
     "use strict";
 
-    var $dlgAddCycle;
+    var $dlgAddCycle, editPlanCycleId;
 
-    // Accept the Add New Cycle dialog
+    function setEditPlanCycle(data) {
+        editPlanCycleId = data.Id || 0;
+        $("#cycle-Name").val(data.Name || "");
+        $("#cycle-Description").val(data.Description || "");
+    }
+
+    function getEditPlanCycle() {
+        return {
+            Name: $("#cycle-Name").val(),
+            Description: $("#cycle-Description").val(),
+            RtpYearId: $("#RtpYearId").val(),
+            Id: editPlanCycleId
+        };
+    }
+
+    // Accept the New Cycle dialog
     function acceptCycle() {
+        var pc = getEditPlanCycle(),
+            type = "PUT";
 
         if (!$("form", $dlgAddCycle).valid()) {
             alert("Please enter all required fields");
             return false;
         }
 
-        $.ajax("/Trips4/RTP/someyear/CreateCycle", {
-            type: "POST",
-            data: { cycle: $("#cycle-Name").val() },
+        // POST to create, PUT to update
+        if (!pc.Id) {
+            type = "POST";
+        }
+
+        $.ajax("/Trips4/api/RtpPlanCycle", {
+            type: type,
+            data: pc,
             success: function (data, textStatus, jqXHR) {
-                alert(data.message);
-                if (data.error === "false") {
-                    window.location.reload();
-                }
+                alert("okay");
+                window.location.reload();
             }
         });
 
@@ -43,7 +63,20 @@ App.ui = (function ($) {
 
     // Show the Add New Cycle dialog
     function addCycle() {
-        $dlgAddCycle.dialog("open").find("form").validate().resetForm();
+        setEditPlanCycle({});
+        $dlgAddCycle.dialog("open")
+            .dialog("option", {title: "Add New Plan Cycle"})
+            .find("form").validate().resetForm();
+        return false;
+    }
+
+    // Edit the cycle just fetched from the server
+    function editCycle(cycle) {
+        setEditPlanCycle(cycle);
+        $dlgAddCycle.dialog("open")
+            .dialog("option", { title: "Edit Plan Cycle" })
+            .find("form").validate().resetForm();
+        return false;
     }
 
     // Initialize the Add New Cycle dialog
@@ -66,7 +99,10 @@ App.ui = (function ($) {
         });
     }
 
-    function initialize() {
+    // initialize the table displaying the Plan cycles
+    // stash the IDs from the hidden first column
+    // The order is predetermined by Status and cannot be changed.
+    function initializeCycleTable() {
         $('#cyclesGrid').dataTable({
             "bPaginate": true,
             "bLengthChange": false,
@@ -75,11 +111,38 @@ App.ui = (function ($) {
             "bInfo": false,
             "bAutoWidth": true,
             "iDisplayLength": 10,
-            "aoColumns": [{ "bVisible": false }, null, null, null]
+            "aoColumns": [{ "bVisible": false }, { sClass: "pointer" }, null, null],
+            bJQueryUI: true,
+            fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                var $row = $(nRow);
+                // attach ID to row for callbacks to use
+                $row.data("id", aData[0]);
+
+                // add class to row depending on status?
+                if (aData[2] === "New") {
+                    $row.addClass("plancycle-row-new");
+                } else {
+                    $row.removeClass("plancycle-row-new");
+                }
+            }
         }).show();
 
+        // bind click on the first column of the row
+        $('#cyclesGrid tbody').on("click", "tr td:first-child", function (e) {
+            var id = $(this).closest("tr").data("id");
+            $.getJSON("/Trips4/api/RtpPlanCycle", { id: id }, editCycle);
+            return false; // stop propagation and default behavior
+        });
+    }
+
+    function initialize() {
+        // initialize table 
+        initializeCycleTable();
+
+        // initialize Add/Edit Plan Cycle dialog
         initializeAddCycle();
 
+        // initialize button for Add Plan Cycle (if present)
         $("#addCycle")
             .button()
             .click(addCycle);

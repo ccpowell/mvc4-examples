@@ -844,6 +844,7 @@
           <Property Name="cycleGuid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="priorCycleId" Type="int" />
           <Property Name="statusId" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -6310,6 +6311,7 @@
           <NavigationProperty Name="Networks" Relationship="Trips4.Data.Models.FK_Network_Cycle" FromRole="Cycle" ToRole="Network" />
           <NavigationProperty Name="RTPProjectVersions" Relationship="Trips4.Data.Models.FK_RTPProjectVersion_Cycle" FromRole="Cycle" ToRole="RTPProjectVersion" />
           <NavigationProperty Name="TimePeriodCycles" Relationship="Trips4.Data.Models.FK_TimePeriodCycles_Cycle" FromRole="Cycle" ToRole="TimePeriodCycles" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -9524,7 +9526,8 @@
             <ScalarProperty Name="StateCode" ColumnName="StateCode" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Cycles"><EntityTypeMapping TypeName="Trips4.Data.Models.Cycle"><MappingFragment StoreEntitySet="Cycle">
-            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="cycle1" ColumnName="cycle" />
             <ScalarProperty Name="cycleGuid" ColumnName="cycleGuid" />
             <ScalarProperty Name="priorCycleId" ColumnName="priorCycleId" />
@@ -10596,7 +10599,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Trips">
+      <Diagram Name="Trips" ZoomLevel="100">
         <EntityTypeShape EntityType="Trips4.Data.Models.Processed" Width="1.5" PointX="8" PointY="7" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="Trips4.Data.Models.Raw" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="Trips4.Data.Models.Report" Width="1.5" PointX="5.75" PointY="7.375" Height="1.5956835937499996" IsExpanded="true" />

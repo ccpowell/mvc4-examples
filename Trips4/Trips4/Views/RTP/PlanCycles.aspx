@@ -25,21 +25,31 @@
             column.For(x => x.Name);
             column.For(x => x.Status);
             column.For(x => x.Description);            
-            }).Attributes(id => "cyclesGrid", @class => "ui-helper-hidden")%>
+            }).Attributes(id => "cyclesGrid", @class => "ui-helper-hidden data-table")%>
             <div class="clear">
             </div>
             <div class="belowTable">
+                <% if (!Model.ExistsNewPlanCycle)
+                   { %>
                 <button id="addCycle">
                     Add New Cycle</button>
+                <% } %>
             </div>
         </div>
     </div>
     <div id="cycle-dialog" title="New Cycle">
         <form class="cycle-form" action="">
+        <%= Html.Hidden("RtpYearId", Model.RtpSummary.RTPYearTimePeriodID)%>
         <p>
             <label>
                 Name:
                 <input id="cycle-Name" type="text" class="required" />
+            </label>
+        </p>
+        <p>
+            <label>
+                Description:
+                <input id="cycle-Description" type="text" class="w600" />
             </label>
         </p>
         </form>

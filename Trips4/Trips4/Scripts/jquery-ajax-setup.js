@@ -7,7 +7,7 @@
 (function ($) {
     "use strict";
     $(document).ajaxError(function (event, jqXHR, ajaxSettings, thrownError) {
-        alert("There was an error communicating with the server.");
+        alert("There was an error - " + thrownError);
     });
     $(document).ajaxComplete(function (event, jqXHR, ajaxSettings, thrownError) {
         // The custom header is added in LoginController.
