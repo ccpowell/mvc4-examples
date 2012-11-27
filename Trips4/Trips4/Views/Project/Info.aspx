@@ -29,12 +29,12 @@
         //$('#Current2Agencies').removeAttr('multiple');
 
         $(".growable").growing({ buffer: 5 });
-//        var ppy1options = {
-//            caption: true,
-//            navigation: 'hover',
-//            direction: 'left'
-//        }
-//        $('#ppy1').popeye(ppy1options);
+        //        var ppy1options = {
+        //            caption: true,
+        //            navigation: 'hover',
+        //            direction: 'left'
+        //        }
+        //        $('#ppy1').popeye(ppy1options);
 
         // Prevent accidental navigation away
         $(':input', document.dataForm).bind("change", function () { setConfirmUnload(true); });
@@ -60,13 +60,13 @@
                 $(form).ajaxSubmit({
                     dataType: 'json',
                     success: function (response) {
-                        //$('#result').html(response.message).addClass('success').show();
-                        //$('#submitForm').addClass('ui-state-disabled');
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error");
-                        //$('#result').text(data.message);
-                        //$('#result').addClass('error');
+                        var error = response.error || "Something went wrong";
+                        if (response.message) {
+                            $('#result').html(response.message).addClass('success').removeClass('error').show();
+                        } else {
+                            $('#result').html(error).addClass('error').removeClass('success').show();
+                        }
+                        $('#submitForm').addClass('ui-state-disabled');
                     }
                 });
             }

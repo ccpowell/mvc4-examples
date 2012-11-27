@@ -43,6 +43,7 @@ namespace Trips4.Controllers
         private readonly IFileRepositoryExtender _fileRepository;
         private readonly DRCOGConfig _config;
         protected readonly ImageService ImageService;
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public ProjectController(ITipRepository tipRepository,
             IProjectRepository projectRepository, IFileRepositoryExtender fileRepository, ITripsUserRepository userRepository)
@@ -95,7 +96,7 @@ namespace Trips4.Controllers
         {
             var model = new ProjectBaseViewModel();
             model = _projectRepository.GetDetailViewModel(id, year);
-            return View("reports",model);
+            return View("reports", model);
         }
 
         /// <summary>
@@ -125,10 +126,11 @@ namespace Trips4.Controllers
                 model.InfoModel.Image = null;
 
 
-                output = new VersionDetailsJson() { 
+                output = new VersionDetailsJson()
+                {
                     InfoModel = model.InfoModel
-                    , 
-                    TipProjectFunding = model.TipProjectFunding 
+                    ,
+                    TipProjectFunding = model.TipProjectFunding
                     ,
                     GeneralInfo = model.GeneralInfo
                     ,
@@ -180,7 +182,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Details", new { controller = "Project", id = versionId });
         }
 
-#region General Info
+        #region General Info
 
         /// <summary>
         /// Display the General Information for a project
@@ -191,7 +193,7 @@ namespace Trips4.Controllers
         {
             var viewModel = _projectRepository.GetProjectInfoViewModel(id, year);
             ViewData["message"] = message;
-            return View(viewModel);            
+            return View(viewModel);
         }
 
         /// <summary>
@@ -207,8 +209,9 @@ namespace Trips4.Controllers
             string year = viewModel.InfoModel.TipYear;
             //Get the model from the database
             InfoModel model = _projectRepository.GetProjectInfo(projectVersionId, year);
-            
+
             //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
+            // TODO: remove prefixes from view and use UpdateModel
             model.AdministrativeLevelId = viewModel.InfoModel.AdministrativeLevelId;
             model.DRCOGNotes = viewModel.InfoModel.DRCOGNotes;
             model.ImprovementTypeId = viewModel.InfoModel.ImprovementTypeId;
@@ -227,27 +230,18 @@ namespace Trips4.Controllers
             model.IsRegionallySignificant = viewModel.InfoModel.IsRegionallySignificant;
             model.STIPID = viewModel.InfoModel.STIPID;
 
-            if (!ModelState.IsValid)
-            {                
-                return View("Info", viewModel);
-            }
-
             //Send update to repo
             try
             {
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    _projectRepository.UpdateProjectInfo(model);
-
-                    scope.Complete();
-                }
+                throw new Exception("fooey");
+                _projectRepository.UpdateProjectInfo(model);
             }
             catch (Exception ex)
             {
-                //this.Logger.LogMethodError("ProjectController", "UpdateInfo", "TipProjectInfoViewModel", ex);
+                Logger.WarnException("Unable to update Project Info", ex);
                 return Json(new { error = "Changes could not be stored. An error has been logged." });
             }
-            return Json(new {message ="Changes successfully saved."});
+            return Json(new { message = "Changes successfully saved." });
 
         }
 
@@ -388,7 +382,7 @@ namespace Trips4.Controllers
                 ProjectVersionId = projectVersionId
             };
 
-            IDeleteStrategy strategy = new DeleteStrategy(this._projectRepository,amendment).PickStrategy();
+            IDeleteStrategy strategy = new DeleteStrategy(this._projectRepository, amendment).PickStrategy();
             int returnId = strategy.Delete();
             previousProjectVersionId = returnId != 0 ? returnId : previousProjectVersionId;
 
@@ -496,7 +490,7 @@ namespace Trips4.Controllers
             return Json(jsr);
         }
 
-#endregion
+        #endregion
 
 
         /// <summary>
@@ -553,7 +547,7 @@ namespace Trips4.Controllers
         /// <returns></returns>
         public ActionResult Location(string year, int id)
         {
-            var viewModel = _projectRepository.GetProjectLocationViewModel(id, year);           
+            var viewModel = _projectRepository.GetProjectLocationViewModel(id, year);
             return View(viewModel);
         }
 
@@ -577,7 +571,7 @@ namespace Trips4.Controllers
             int cdotRegion = default(int), delaysLocation = default(int);
             Int32.TryParse(Request.Form["TipProjectLocation.CdotRegionId"], out cdotRegion);
             Int32.TryParse(Request.Form["TipProjectLocation.AffectedProjectDelaysLocationId"], out delaysLocation);
-            
+
             model.CdotRegionId = cdotRegion;
             model.AffectedProjectDelaysLocationId = delaysLocation;
 
@@ -590,7 +584,7 @@ namespace Trips4.Controllers
             {
                 _projectRepository.UpdateProjectLocationModel(model);
                 //Update the county shares
-                foreach(CountyShareModel m in countyShares.Values)
+                foreach (CountyShareModel m in countyShares.Values)
                 {
                     _projectRepository.UpdateCountyShare(m);
                 }
@@ -615,11 +609,16 @@ namespace Trips4.Controllers
             PoolProject model = new PoolProject()
             {
                 PoolMasterVersionID = poolMasterVersionId
-                , ProjectName = projectName
-                , Description = description
-                , BeginAt = beginAt
-                , EndAt = endAt
-                , Cost = cost
+                ,
+                ProjectName = projectName
+                ,
+                Description = description
+                ,
+                BeginAt = beginAt
+                ,
+                EndAt = endAt
+                ,
+                Cost = cost
             };
             int poolProjectId = 0;
 
@@ -659,13 +658,18 @@ namespace Trips4.Controllers
             PoolProject model = new PoolProject()
             {
                 PoolProjectID = poolProjectId
-                , ProjectName = projectName
-                , Description = description
-                , BeginAt = beginAt
-                , EndAt = endAt
-                , Cost = cost
+                ,
+                ProjectName = projectName
+                ,
+                Description = description
+                ,
+                BeginAt = beginAt
+                ,
+                EndAt = endAt
+                ,
+                Cost = cost
             };
-            
+
             try
             {
                 _projectRepository.UpdatePoolProject(model);
@@ -730,13 +734,20 @@ namespace Trips4.Controllers
             FundingModel model = new FundingModel()
             {
                 ProjectFinancialRecordID = financialRecordId
-                , Previous = (double)previous
-                , Future = (double)future
-                , Funding = (double)tipfunding
-                , FederalTotal = (double)federaltotal
-                , StateTotal = (double)statetotal
-                , LocalTotal = (double)localtotal
-                , TotalCost = (double)totalcost
+                ,
+                Previous = (double)previous
+                ,
+                Future = (double)future
+                ,
+                Funding = (double)tipfunding
+                ,
+                FederalTotal = (double)federaltotal
+                ,
+                StateTotal = (double)statetotal
+                ,
+                LocalTotal = (double)localtotal
+                ,
+                TotalCost = (double)totalcost
             };
 
             try
@@ -746,12 +757,21 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 //this.Logger.LogMethodError("ProjectController", "UpdateFinancialRecord", Request.Form.ToString(), ex);
-                return Json(new { message = "Changes could not be stored. An error has been logged."
-                    , error = "true"
-                    , exceptionMessage = ex.Message });
+                return Json(new
+                {
+                    message = "Changes could not be stored. An error has been logged."
+                    ,
+                    error = "true"
+                    ,
+                    exceptionMessage = ex.Message
+                });
             }
-            return Json(new { message = "Project Financial Record successfully updated."
-                , error = "false" });
+            return Json(new
+            {
+                message = "Project Financial Record successfully updated."
+                ,
+                error = "false"
+            });
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
@@ -760,14 +780,22 @@ namespace Trips4.Controllers
             ProjectFinancialRecordDetail model = new ProjectFinancialRecordDetail()
             {
                 ProjectFinancialRecordID = projectFinancialRecordID
-               , FundingLevelID = fundingLevelID
-               , FundingTypeID = fundingTypeID
-               , FundingPeriodID = fundingPeriodID
-               , Incr01 = incr01
-               , Incr02 = incr02
-               , Incr03 = incr03
-               , Incr04 = incr04
-               , Incr05 = incr05
+               ,
+                FundingLevelID = fundingLevelID
+               ,
+                FundingTypeID = fundingTypeID
+               ,
+                FundingPeriodID = fundingPeriodID
+               ,
+                Incr01 = incr01
+               ,
+                Incr02 = incr02
+               ,
+                Incr03 = incr03
+               ,
+                Incr04 = incr04
+               ,
+                Incr05 = incr05
             };
 
             try
@@ -777,12 +805,21 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 //this.Logger.LogMethodError("ProjectController", "UpdateFinancialRecordDetail", Request.Form.ToString(), ex);
-                return Json(new { message = "Changes could not be stored. An error has been logged."
-                    , error = "true"
-                    , exceptionMessage = ex.Message });
+                return Json(new
+                {
+                    message = "Changes could not be stored. An error has been logged."
+                    ,
+                    error = "true"
+                    ,
+                    exceptionMessage = ex.Message
+                });
             }
-            return Json(new { message = "Project Financial Record Detail successfully updated."
-                , error = "false" });
+            return Json(new
+            {
+                message = "Project Financial Record Detail successfully updated."
+                ,
+                error = "false"
+            });
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
@@ -797,14 +834,17 @@ namespace Trips4.Controllers
                 return Json(new
                 {
                     message = "Changes could not be stored. An error has been logged."
-                    , error = "true"
-                    , exceptionMessage = ex.Message
+                    ,
+                    error = "true"
+                    ,
+                    exceptionMessage = ex.Message
                 });
             }
             return Json(new
             {
                 message = "Project Financial Record Detail successfully added."
-                , error = "false"
+                ,
+                error = "false"
             });
         }
 
@@ -865,7 +905,7 @@ namespace Trips4.Controllers
         //{
         //    ViewData.Model = new FundingDetailPivotModel()
         //    {
-                
+
         //    };
         //    return PartialView("~/Views/Project/Partials/ProjectFundingDetailPartial.ascx", Model.FundingDetailPivotModel);
         //}
@@ -910,7 +950,7 @@ namespace Trips4.Controllers
         {
             try
             {
-                _projectRepository.DropCountyShare(projectId,countyId);
+                _projectRepository.DropCountyShare(projectId, countyId);
             }
             catch (Exception ex)
             {
@@ -976,17 +1016,17 @@ namespace Trips4.Controllers
         /// <returns></returns>
         public Dictionary<int, CountyShareModel> ExtractCountyShares(NameValueCollection formParams)
         {
-            Dictionary<int, CountyShareModel> countyShares = new Dictionary<int, CountyShareModel>();           
+            Dictionary<int, CountyShareModel> countyShares = new Dictionary<int, CountyShareModel>();
             //Get the projectId, as we need that in order to persist the share
             int projectId = Convert.ToInt32(formParams["ProjectId"]);
-            
+
             foreach (string key in formParams)
             {
                 if (key.StartsWith("cty_"))
                 {
                     //Parse into Dict keyed by the CountyId
                     int ctyId = Convert.ToInt32(key.Split('_')[1]);
-                    
+
 
                     CountyShareModel ctyItem = null;
                     if (countyShares.ContainsKey(ctyId))
@@ -1011,7 +1051,7 @@ namespace Trips4.Controllers
                         if (formParams[key] == "on")
                         {
                             ctyItem.Primary = true;
-                        }                        
+                        }
                     }
                     if (key.EndsWith("_share"))
                     {
@@ -1019,7 +1059,7 @@ namespace Trips4.Controllers
                         //so we divide by 100                        
                         ctyItem.Share = Convert.ToDouble(formParams[key]) / 100;
                     }
-                }                
+                }
             }
             return countyShares;
         }
@@ -1078,7 +1118,7 @@ namespace Trips4.Controllers
             }
             return shares;
         }
-        
+
         public JsonResult MuniShares(string tipYear, int id)
         {
             var viewModel = _projectRepository.GetProjectLocationViewModel(id, tipYear);
@@ -1199,7 +1239,7 @@ namespace Trips4.Controllers
                 error = "false"
             });
         }
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -1218,6 +1258,6 @@ namespace Trips4.Controllers
 
         }
 
-        
+
     }
 }
