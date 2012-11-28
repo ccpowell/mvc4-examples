@@ -13,6 +13,7 @@
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpPlanCycles.js") %>'></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%= Html.Hidden("RtpYearId", Model.RtpSummary.RTPYearTimePeriodID)%>
     <div class="view-content-container">
         <div class="clear">
         </div>
@@ -39,7 +40,6 @@
     </div>
     <div id="cycle-dialog" title="New Cycle">
         <form class="cycle-form" action="">
-        <%= Html.Hidden("RtpYearId", Model.RtpSummary.RTPYearTimePeriodID)%>
         <p>
             <label>
                 Name:

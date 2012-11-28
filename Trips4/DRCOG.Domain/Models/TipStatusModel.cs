@@ -55,8 +55,16 @@ namespace DRCOG.Domain.Models
             if (this.IsPending) { status =  "Pending"; }
             return status;
         }
-        
 
+
+        public bool FundingIncrement_Year_1 { get; set; }
+        public bool FundingIncrement_Year_2 { get; set; }
+        public bool FundingIncrement_Year_3 { get; set; }
+        public bool FundingIncrement_Year_4 { get; set; }
+        public bool FundingIncrement_Year_5 { get; set; }
+        public bool FundingIncrement_Year_6 { get; set; }
+        public bool FundingIncrement_Years_4_6 { get; set; }
+        public bool FundingIncrement_Years_5_6 { get; set; }
     }
 
 }

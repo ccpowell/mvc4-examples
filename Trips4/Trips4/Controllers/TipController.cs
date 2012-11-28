@@ -47,6 +47,9 @@ namespace Trips4.Controllers
     [Trips4.Filters.SessionAuthorizeAttribute]
     public class TipController : ControllerBase
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         private readonly ITipRepository _tipRepository;
         private readonly IProjectRepository _projectRepository;
         private Trips4.Data.TripsRepository TripsRepository { get; set; }
@@ -382,28 +385,19 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult UpdateStatus(StatusViewModel viewModel)
+        public ActionResult UpdateStatus()
         {
-
-            TipStatusModel model = new TipStatusModel();
-            UpdateModel(model);
-
-            if (!ModelState.IsValid)
-            {
-                viewModel.TipStatus = model;
-                //return Json(new {foo = "bar"});
-                return View("Status", viewModel);
-            }
-
             //Send update to repo
             try
             {
+                TipStatusModel model = new TipStatusModel();
+                UpdateModel(model);
                 _tipRepository.UpdateTipStatus(model);
             }
             catch (Exception ex)
             {
-                //this.Logger.LogMethodError("TipController", "UpdateStatus", "TipStatusViewModel", ex);
-                return Json(new { message = "Changes could not be stored. An error has been logged." });
+                Logger.WarnException("Could not update TIP Status", ex);
+                throw;// return Json(new { message = "Changes could not be stored. An error has been logged." });
             }
             return Json(new { message = "Changes successfully saved." });
         }

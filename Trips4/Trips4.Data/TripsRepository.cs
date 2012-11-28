@@ -260,5 +260,50 @@ namespace Trips4.Data
                 return mcycle.id;
             }
         }
+
+        /// <summary>
+        /// Get TIP Status
+        /// </summary>
+        /// <remarks>obsoletes TIP.GetStatus</remarks>
+        /// <param name="rtpYearId"></param>
+        /// <returns></returns>
+        public DRCOG.Domain.Models.TipStatusModel GetTipStatus(int rtpYearId)
+        {
+            var model = new DRCOG.Domain.Models.TipStatusModel();
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var p = db.ProgramInstances.Single(pi => pi.TimePeriodID == rtpYearId);
+                var tp = db.TimePeriods.Single(t => t.TimePeriodID == rtpYearId);
+                var tpi = db.TIPProgramInstances.Single(pi => pi.TimePeriodID == rtpYearId && pi.TIPProgramID == p.ProgramID);
+                model.Adoption = tpi.AdoptionDate;
+                model.EPAApproval = tpi.USEPAApprovalDate;
+                model.GovernorApproval = tpi.GovernorApprovalDate;
+                model.IsCurrent = p.Current.Value;
+                model.IsPending = p.Pending.Value;
+                model.IsPrevious = p.Previous.Value;
+                model.LastAmended = tpi.LastAmendmentDate;
+                model.Notes = p.Notes;
+                model.ProgramId = p.ProgramID;
+                model.PublicHearing = tpi.PublicHearingDate;
+                model.ShowDelayDate = tpi.ShowDelayDate.Value;
+                model.TimePeriodId = tpi.TimePeriodID;
+                model.TipYear = tp.TimePeriod1;
+                model.USDOTApproval = tpi.USDOTApprovalDate;
+
+                model.FundingIncrement_Year_1 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 1") != null;
+                model.FundingIncrement_Year_2 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 2") != null;
+                model.FundingIncrement_Year_3 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 3") != null;
+                model.FundingIncrement_Year_4 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 4") != null;
+                model.FundingIncrement_Year_5 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 5") != null;
+                model.FundingIncrement_Year_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 6") != null;
+                model.FundingIncrement_Years_4_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Years 4-6") != null;
+                model.FundingIncrement_Years_5_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Years 5-6") != null;
+            }
+            return model;
+        }
+
+        public void UpdateTipStatus(DRCOG.Domain.Models.TipStatusModel model)
+        {
+        }
     }
 }

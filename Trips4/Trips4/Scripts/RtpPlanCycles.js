@@ -43,7 +43,7 @@ App.ui = (function ($) {
             type = "POST";
         }
 
-        $.ajax("/Trips4/api/RtpPlanCycle", {
+        $.ajax(App.env.applicationPath + "/api/RtpPlanCycle", {
             type: type,
             data: pc,
             success: function (data, textStatus, jqXHR) {

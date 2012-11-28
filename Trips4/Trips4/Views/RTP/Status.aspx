@@ -16,13 +16,13 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
 
 <script type="text/javascript">
     var isDirty = false, formSubmittion = false;
-    var addurl = '<%=Url.Action("AddCycle","RTP", new {plan=Model.RtpSummary.RtpYear}) %>';
-    var removeurl = '<%=Url.Action("DropCycle","RTP") %>';
-    var createCycleUrl = '<%=Url.Action("CreateCycle","RTP") %>';
+    //var addurl = '<%=Url.Action("AddCycle","RTP", new {plan=Model.RtpSummary.RtpYear}) %>';
+    //var removeurl = '<%=Url.Action("DropCycle","RTP") %>';
+    //var createCycleUrl = '<%=Url.Action("CreateCycle","RTP") %>';
     var GetPlanAvailableProjects = '<%=Url.Action("GetPlanAvailableProjects","RTP") %>';
     var AmendProjects = '<%=Url.Action("Amend","RTP") %>';
-    var SetActiveCycle = '<%=Url.Action("SetActiveCycle","RTP") %>';
-    var updateCycleSortUrl = '<%=Url.Action("UpdateCycleSort","RTP") %>';
+    //var SetActiveCycle = '<%=Url.Action("SetActiveCycle","RTP") %>';
+    //var updateCycleSortUrl = '<%=Url.Action("UpdateCycleSort","RTP") %>';
     var updateTimePeriodStatusIdUrl = '<%=Url.Action("UpdateTimePeriodStatusId","RTP") %>';
     var SetSurveyDatesUrl = '<%=Url.Action("SetSurveyDates","RTP") %>';
     var GetSurveyDatesUrl = '<%=Url.Action("GetSurveyDates","RTP") %>';
@@ -35,131 +35,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
     var CreateSurveyUrl = '<%=Url.Action("CreateSurvey","RTP") %>';
     
     $(document).ready(function() {
-        
-        var AvailableCycles = $("#AvailableCycles");
-        var CurrentPlanCycles = $("#CurrentPlanCycles");
-        
-            if("<%= Model.RtpSummary.IsEditable() %>" == "False") {
-                $(".isdatepicker").removeClass("isdatepicker");
-            } else {
-                $(".isdatepicker").removeClass("isdatepicker").addClass("datepicker");
-            }
-            
-        
-        
         $(".growable").growing({buffer:5});
-        // Context Menus
-        $(AvailableCycles).contextMenu({
-           menu: "myMenu"
-        }, 
-        function(action, el, pos) {
-            switch (action)
-            {
-                case "add": AddAvailableCycles(); break;
-                case "edit":
-                    var cycleModifier = $("#cycle-modifier");
-                    buildCycleModifier(AvailableCycles, cycleModifier);
-                    break;
-            }
-        }, 
-        function() {
-            if(resetContextMenu(AvailableCycles)) {
-                $('#myMenu').enableContextMenuItems('#add');
-            }
-        });
-        
-        $(CurrentPlanCycles).contextMenu({
-           menu: "myMenu"
-        }, 
-        function(action, el, pos) {
-            switch (action)
-            {
-                case "remove": RemoveCurrentCycles(); break;
-                case "edit":
-                    var cycleModifier = $("#cycle-modifier");
-                    buildCycleModifier(CurrentPlanCycles, cycleModifier);
-                    break;
-            }
-        },  
-        function() {
-            if(resetContextMenu(CurrentPlanCycles)) {
-                $('#myMenu').enableContextMenuItems('#remove');
-            }
-        });
-        
-        function resetContextMenu(source) {
-            $('#myMenu').disableContextMenuItems();
-            if($(source).selectedOptions().size() > 0 ) { 
-                $('#myMenu').enableContextMenuItems('#edit');
-                return true;
-            }
-            return false;
-        }
-        // End Context Menus
-        
-        
-        function buildCycleModifier(source, target) {
-            var options = $(source).selectedOptions();
-            var sourceid = source.attr("id");
-            target.html('');
-            var container = "<ul>";
-            $.each(options, function() {
-                var id = $(this).val();
-                var value = $(this).text();
-                
-                var content = '<li id="update-cycle-' + id + '">';
-                    content += '<input type="text" name="cycleName.' + sourceid + '" value="' + value + '" />';
-                    content += '<span class="update-cycle fg-button ui-state-default ui-priority-primary ui-corner-all">Update</span>';
-                    content += '</li>';
-                container += content;
-            });
-            container += "</table>";
-            target.append(container);
-            target.show();
-            update();
-        }
-        
-        
-        var update = function() {
-            var UpdateCycleName = '<%=Url.Action("UpdateCycleName","RTP") %>';
-            $('.update-cycle').click(function() {
-                var parent = $(this).parent();
-                var cycle = $(parent).children("input");
-                var cycleName = cycle.val();
-                var sourceName = $(cycle).attr("name").replace("cycleName.", "");
-                var id = $(parent).attr("id").replace("update-cycle-", "");
-                
-                $.ajax({
-                    type: "POST",
-                    url: UpdateCycleName,
-                    data: "cycleId=" + id
-                        + "&cycle=" + cycleName,
-                    dataType: "json",
-                    success: function(response, textStatus, XMLHttpRequest) {
-                        if (response.error == "false") {
-                            $("#update-cycle-" + id).remove();
-                            $("#" + sourceName).removeOption(id);
-                            $("#" + sourceName).addOption(id, cycleName);
-                            //$('').html(response.message);
-                            //$('').addClass('success');
-                            //autoHide(2500);
-                        } else {
-                            alert(response.exceptionMessage);
-                            //$('.dialog-result').html(response.message + " Details: " + response.exceptionMessage);
-                            //$('.dialog-result').addClass('error');
-                            //autoHide(10000);
-                        }
-                    },
-                    error: function(response, textStatus, AjaxException) {
-                        alert(response.exceptionMessage);
-                        //$('').html(response.statusText);
-                        //$('').addClass('error');
-                        //autoHide(10000);
-                    }
-                });
-                return false;
-            });
-        };
         
         //setup the date pickers
         $(".datepicker").datepicker();
@@ -170,21 +46,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
         if ($('#submitForm')) {
             $('#submitForm').click(function() { window.onbeforeunload = null; return true; });
         }
-        
-
-        $('#cycle-nextCycleId').bind("change", function() {
-            if ($(this).val() == '') {
-                $('#plan-change-cycle').addClass('ui-state-disabled');
-            } else { $('#plan-change-cycle').removeClass('ui-state-disabled'); }
-            $('#availableProjects').clearSelect();
-            $('#selectedProjects').clearSelect();
-        });
-        
-        $('#cycle-initialCycleId').bind("change", function() {
-            if ($(this).val() == '') {
-                $('#button-set-initial-cycle').addClass('ui-state-disabled');
-            } else { $('#button-set-initial-cycle').removeClass('ui-state-disabled'); }
-        });
         
         function SurveyAction(id, action) {
             switch (action) {
@@ -399,113 +260,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             
             return false;
         });
-        
-        $(function() {
-            $("#sortable2").sortable({
-                connectWith: '.connectedSortable'
-                ,
-                placeholder: 'ui-state-highlight'
-                ,
-                items: 'li:not(.ui-state-disabled)'
-                ,
-                receive: function(event, ui) {
-                    addCycle($(ui.item).attr("id").replace("cycle_",""));
-                },
-                remove: function(event, ui) {
-                    removeCycle($(ui.item).attr("id").replace("cycle_",""));
-                },
-                update: function() {
-                    $("#sortable2").sortable("refresh");
-                    updateCycleSort();
-                }
-            })
-            
-            $("#sortable1").sortable({
-                connectWith: '.connectedSortable'
-                ,
-                placeholder: 'ui-state-highlight'
-            })
-            
-            $("#sortable1 li, #sortable2 li").disableSelection();
-        });
-        
-        function updateCycleSort() {
-            var values = $("#sortable2").sortable({items: 'li'}).sortable('toArray');
-            var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
-            if(values.length > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: updateCycleSortUrl,
-                    data: "cycles=" + values,
-                    dataType: "json",
-                    success: function(response, textStatus, XMLHttpRequest) {
-                        if (response.error == "false") {
-                            //$('div#resultRecordDetail').html(response.message);
-                            //$('div#resultRecordDetail').addClass('success');
-                            //autoHide(2500);
-                        }
-                        else {
-                            //$("#sortable2").sortable('cancel');
-                            alert("Cycle error");
-                        }
-                    },
-                    error: function(response, textStatus, AjaxException) {
-                        alert("BIG error " + response.statusText);
-                        //$('div.dialog-result').html(response.statusText);
-                        //$('div.dialog-result').addClass('error').show();
-                        //autoHide(10000);
-                    }
-                });
-            }
-            return false;
-        }
-        
-        $(function() {
-            var container = $("#plan-before-cycle");
-            var statusId = <%= Model.RtpSummary.Cycle.StatusId %>;
-            var message = "";
-            
-            $(":input.cycle-required", "#dataForm").each(function() {
-                var element = $(this);
-                
-                var title = "";
-                switch( element.get(0).nodeName.toLowerCase() ) {
-                    
-		            case 'select':
-			            // could be an array for select-multiple or a string, both are fine this way
-			            var val = $(element).val();
-			            if (val.length == 0) { 
-			                title += element.attr("title");
-			            }
-			            break;
-		            case 'input':
-			            if ( checkable(element) )
-				            alert(getLength(value, element) > 0);
-		            default:
-			            return $.trim(element.val()).length > 0;
-		        }
-                
-                if(title.length > 0) {
-                    message += "<h3>" + title + "</h3>";
-                }
-            });
-            
-            if( message.length == 0 && statusId == 0 ) {
-                message += "<h3>Below please move cycles from available to current. Put the initial cycle at the top then click the <span style='font-weight: bold'>Set Initial</span> button</h3>";
-                $("#plan-initial-cycle").show();
-                $("#button-set-initial-cycle").show();
-            }
-            else if (statusId != null) {
-                $("#button-set-initial-cycle").hide();
-                $("#plan-initial-cycle").hide();
-            }
-            
-            if(message.length > 0) {
-                container.prepend("<h2>Before you can continue...</h2>" + message);
-                container.show();
-            } else container.hide();
-            
-        });
+             
         
         function checkable( element ) {
 	        return /radio|checkbox/i.test(element.type);
@@ -544,28 +299,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             }
         });
 
-        $('#add').click(function() {
-            updateCycleSort();
-            //AddAvailableCycles();
-            return false;
-        });
-        
-        $('#remove').click(function() {
-            RemoveCurrentCycles();
-            return false;
-        });
-        
-        function AddAvailableCycles() {
-            $('#AvailableCycles option:selected').each(function(i) {
-                addCycle($(this).val());
-            });
-        }
-        
-        function RemoveCurrentCycles() {
-            $('#CurrentPlanCycles option:selected').each(function(i) {
-                removeCycle($(this).val());
-            });
-        }
         
         $('#addProject').click(function() {
             $('#availableProjects option:selected').each(function(i) {
@@ -581,13 +314,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             return false;
         });
         
-        $('#button-set-initial-cycle').live("click", function() {
-            var cycleId = $("#sortable2 li").first().attr("id").replace("cycle_","");
-            var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
-            
-            setActiveCycle(cycleId, timePeriodId);
-            return false;
-        });
         
         $('#button-plan-unlock').live("click", function() {
             var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
@@ -596,7 +322,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             var message = "Are you sure you want to unlock this plan?";
 
             if (confirm(message) == true) {
-                
             
                 if(updateTimePeriodStatusId(timePeriodId, statusId)) {
                     //$("#button-plan-unlock").hide();
@@ -608,6 +333,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             }
             return false;
         });
+
         $('#button-plan-close').live("click", function() {
             var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
             var statusId = "<%= (int)DRCOG.Domain.Enums.RtpTimePeriodStatus.Inactive %>";
@@ -621,130 +347,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
                 }
             }
             return false;
-        });
-        
-        $('#button-process-cycle').click(function() {
-            var projectList = $("#selectedProjects")
-            
-            $.ajax({
-                type: "POST",
-                url: AmendProjects,
-                data: "CycleAmendment.SelectedProjects=" + projectList,
-                dataType: "json",
-                success: function(response, textStatus, XMLHttpRequest) {
-                    if (response.error == "false") {
-                        location.reload();
-                        //$('div#resultRecordDetail').html(response.message);
-                        //$('div#resultRecordDetail').addClass('success');
-                        //autoHide(2500);
-                        window.onbeforeunload = null;
-                    }
-                    else {
-                        //$.fn.colorbox.close();
-                        //$('div.dialog-result').html(response.message + " Details: " + response.exceptionMessage);
-                        //$('div.dialog-result').addClass('error').show();
-                        //autoHide(10000);
-                    }
-                },
-                error: function(response, textStatus, AjaxException) {
-                    //$.fn.colorbox.close();
-                    //$('div.dialog-result').html(response.statusText);
-                    //$('div.dialog-result').addClass('error').show();
-                    //autoHide(10000);
-                }
-            });
-            return false;
-            
-        });
-
-        $('.button-process-cycle-close').click(function() {
-            $('#process-cycle-step2').fadeOut("fast");
-            
-            $('#plan-current-cycle.box').animate({
-                "top": "+=230px",
-                "left": "+=425px",
-                "height": "70px",
-                "width": "340px"
-            }, "slow", function() {
-                $('#process-cycle-step1').show();
-
-
-            });
-        });
-
-        $('#plan-change-cycle').click(function() {
-            getAvailableProjects($('#cycle-nextCycleId option:selected'));
-            $('#process-cycle-step1').fadeOut("fast");
-
-            $('#plan-current-cycle.box').animate({
-                "top": "-=230px",
-                "left": "-=425px",
-                "height": "300px",
-                "width": "850px"
-            }, "slow", function() {
-                $('#process-cycle-step2').delay(100).fadeIn("fast");
-            });
-
-        });
-
-        //        $("#plan-change-cycle").colorbox({
-        //            width: "460px",
-        //            height: "340px",
-        //            inline: true,
-        //            href: "#dialog-cycle-projects",
-        //            onLoad: function() {
-        //                var $buttonCreateCycle = $('<span id="button-amend-cycle" class="cboxBtn">Amend to Cycle</span>').appendTo('#cboxContent');
-        //            }
-        //        });
-
-        
-        
-        $("#button-create-cycle").colorbox({
-            width: "460px",
-            height: "240px",
-            inline: true,
-            href: "#dialog-create-cycle",
-            onLoad: function() {
-                var $buttonCreateCycle = $('<span id="createCycle" class="cboxBtn">Create</span>').appendTo('#cboxContent');
-
-                $('#createCycle').live("click", function() {
-                    var cycle = $('#Cycle').val();
-                    $.ajax({
-                        type: "POST",
-                        url: createCycleUrl,
-                        data: "cycle=" + cycle,
-                        dataType: "json",
-                        success: function(response, textStatus, XMLHttpRequest) {
-                            if (response.error == "false") {
-                                location.reload();
-                                $.fn.colorbox.close();
-                                //$('div#resultRecordDetail').html(response.message);
-                                //$('div#resultRecordDetail').addClass('success');
-                                //autoHide(2500);
-                                window.onbeforeunload = null;
-                            }
-                            else {
-                                //$.fn.colorbox.close();
-                                $('div.dialog-result').html(response.message + " Details: " + response.exceptionMessage);
-                                $('div.dialog-result').addClass('error').show();
-                                autoHide(10000);
-                            }
-
-                        },
-                        error: function(response, textStatus, AjaxException) {
-                            //$.fn.colorbox.close();
-                            $('div.dialog-result').html(response.statusText);
-                            $('div.dialog-result').addClass('error').show();
-                            autoHide(10000);
-                        }
-                    });
-                    return false;
-                });
-            },
-            onClosed: function() {
-                $('.cboxBtn').remove();
-                $('div.dialog-result').html('').removeClass('error').hide();
-            }
         });
 
     });
@@ -799,52 +401,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
         });
     }
 
-    function addCycle(id) {
-        $.ajax({
-            type: "POST",
-            url: addurl,
-            dataType: "json",
-            data: { cycleid: id },
-            success: function(response) {
-                if ((response.Error == null) || (response.Error == "")) {
-                    //success
-                    //var selector = "#AvailableCycles option[value='" + id + "']";
-                    //var clone = $(selector).clone();
-                    //$(selector).remove().prependTo('#CurrentPlanCycles');
-                    //$(clone).appendTo("#cycle-nextCycleId");
-                    //sortDropDownListByText("#cycle-nextCycleId");
-                    var source = $("#cycle_" + id);
-                    var sourceText = source.text();
-                    //$("#cycle-initialCycleId").addOption(id, sourceText);
-                } else {
-                    ShowMessageDialog('Error adding Cycle', response.Error);
-                }
-            }
-        });
-    }
-    
-
-    function removeCycle(id) {
-        $.ajax({
-            type: "POST",
-            url: removeurl,
-            dataType: "json",
-            data: { cycleid: id },
-            success: function(response) {
-                //alert("success");
-                if ((response.Error == null) || (response.Error == "")) {
-                    //success
-                    //$("#CurrentPlanCycles option[value='" + id + "']").remove().prependTo('#AvailableCycles');
-                    //$("#cycle-nextCycleId option[value='" + id + "']").remove();
-                    //sortDropDownListByText("#AvailableCycles");
-                    //$("#cycle-initialCycleId").removeOption(id);
-                } else {
-                    //alert(response.Error);
-                    //ShowMessageDialog('Cycle not Removed', response.Error);
-                }
-            }
-        });
-    }
+   
     
     function getAvailableProjects(selected) {
         $.ajax({
@@ -878,40 +435,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             $(this).val(selectedValue);
         });
     }
-    function setActiveCycle(cycleId, timePeriodId) {
-            $.ajax({
-                type: "POST",
-                url: SetActiveCycle,
-                data: "cycleId=" + cycleId
-                    + "&timePeriodId=" + timePeriodId,
-                dataType: "json",
-                success: function(response, textStatus, XMLHttpRequest) {
-                    if (response.error == "false") {
-                        location.reload();
-                        //$('div#resultRecordDetail').html(response.message);
-                        //$('div#resultRecordDetail').addClass('success');
-                        //autoHide(2500);
-                        window.onbeforeunload = null;
-                        $("#plan-initial-cycle").hide();
-                        $("#button-set-initial-cycle").hide();
-                    }
-                    else {
-                        //$('div.dialog-result').html(response.message + " Details: " + response.exceptionMessage);
-                        //$('div.dialog-result').addClass('error').show();
-                        //autoHide(10000);
-                    }
-
-                },
-                error: function(response, textStatus, AjaxException) {
-                    //$('div.dialog-result').html(response.statusText);
-                    //$('div.dialog-result').addClass('error').show();
-                    //autoHide(10000);
-                }
-            });
-            return false;
-        }
-
-
+    
    $.fn.clearSelect = function() {
         return this.each(function() {
             if (this.tagName == 'SELECT')
@@ -1044,70 +568,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
         <%} %>
         </div>
         <div id="plan-cycles">
-            <div id="plan-before-cycle" style="display: none;" class="box">
-                <div id="plan-initial-cycle" style="display: none;">
-                    <% if (!Model.RtpStatus.BaseYearId.Equals(0))
-                       { %>
-                        <%--<h3>Please pick the first cycle for this plan</h3><br />--%>
-                        <%--<label for="InitialCycleId" class="boldFont">Initial Cycle:</label>
-                        <%= Html.DropDownList("InitialCycleId",
-                            new SelectList(Model.PlanUnusedCycles, "key", "value"),
-                            "-- Select --",
-                            new { title = "Please select a Cycle.", @id = "cycle-initialCycleId", @class = "nobind" })%>
-                        <span id="button-set-initial-cycle_old" class="fg-button w100 ui-state-default ui-corner-all ui-state-disabled">Set</span>--%>
-                    <% }
-                       else
-                       { %>
-                        <h2>Before you can continue...</h2>
-                        <h3>Please select a Financial Year then Save.</h3>
-                    <% } %>
-                </div>
-            </div>
-            
-            <div class="box" style="position: relative;">
-            <h2>Plan Cycle Administration</h2>
-            
-            <p>Note: Changes are stored to the database as they are made in the interface.</p>
-                <div id="availableCycles">
-                    Available Cycles:
-                    <ul id="sortable1" class="connectedSortable">
-                    <%foreach (KeyValuePair<int,string> item in Model.AvailableCycles)
-                    { %>
-	                    <li id="cycle_<%= item.Key %>" class="ui-state-default"><%= item.Value %></li>
-                    <% } %>
-                    </ul>
-                    <div>
-                        <span id="button-create-cycle" class="fg-button w380 ui-state-default ui-corner-all">Create new Cycle</span>
-                        <span id="button-create-scenario" style="display: none;" class="fg-button ui-state-default ui-corner-all">Create new Scenario</span>
-                        
-                            <span id="button-plan-unlock" class="fg-button ui-state-default ui-corner-all">
-                                <%= Model.RtpSummary.NextStatusText %>
-                            </span>
-                            <% if (Model.RtpSummary.TimePeriodStatusId.Equals((int)DRCOG.Domain.Enums.RtpTimePeriodStatus.CurrentLocked)){ %>
-                            <span id="button-plan-close" class="fg-button ui-state-default ui-corner-all">
-                                Set Inactive
-                            </span>
-                            <% } %>
-                    </div>
-                    
-                    <%--alert($("#sortable2 li").first().attr("id"));--%>
-                </div>
-                <div id="currentCycles">
-                    Current Cycles:
-                    <ul id="sortable2" class="connectedSortable">
-                    <%foreach (KeyValuePair<int,string> item in Model.CurrentPlanCycles)
-                    { %>
-	                    <li id="cycle_<%= item.Key %>" class="ui-state-highlight <%= Model.IsUnusedCycle(item.Key) ? "" : "ui-state-disabled"%>"><%= item.Value %></li>
-                    
-                    <% } %>
-                    </ul>
-                    <span id="button-set-initial-cycle" style="display: none;" class="fg-button w75 ui-state-default ui-corner-all">Set Initial</span>
-                </div>
-                <br clear="both" /> 
-            </div>
-            
-            
-            <div class="box" style="position: relative;">
+            <div class="box">
                 <h2>Plan Survey Administration</h2>
                 <table id="planSurveys">
                     <thead>

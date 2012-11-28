@@ -1164,7 +1164,7 @@ table#segments tr td table tr td { border-style:none; }
 /* RTP Status View
 ----------------------------------------------------------*/
 #StatusForm-wrapper { float: left; width: 415px; }
-#plan-cycles { position: relative; float: right; width: 355px; }
+#plan-cycles { float: right; }
 #plan-cycles table { border: none; }
 #plan-cycles table tr td { border: none;}
 #plan-current-cycle.box { margin-top: 20px; position: relative; background-color: #fff;}

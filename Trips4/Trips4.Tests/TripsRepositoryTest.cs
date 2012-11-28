@@ -4,6 +4,7 @@ using System;
 using DRCOG.Domain.ViewModels.RTP;
 using System.Collections.Generic;
 using System.Linq;
+using DRCOG.Domain.Models;
 
 namespace Trips4.Tests
 {
@@ -96,6 +97,31 @@ namespace Trips4.Tests
             Assert.AreEqual(editCycle.Description, actual.Description, "UpdateRtpPlanCycle updates Description");
 
             target.DeleteRtpPlanCycle(cid);
+        }
+
+        /// <summary>
+        ///A test for GetTipStatus
+        ///</summary>
+        [TestMethod()]
+        public void GetTipStatusTest()
+        {
+            TripsRepository target = new TripsRepository(); 
+            int rtpYearId = 80; 
+            TipStatusModel actual;
+            actual = target.GetTipStatus(rtpYearId);
+            Assert.IsNotNull(actual);
+        }
+
+        /// <summary>
+        ///A test for UpdateTipStatus
+        ///</summary>
+        [TestMethod()]
+        public void UpdateTipStatusTest()
+        {
+            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
+            TipStatusModel model = null; // TODO: Initialize to an appropriate value
+            target.UpdateTipStatus(model);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
     }
 }
