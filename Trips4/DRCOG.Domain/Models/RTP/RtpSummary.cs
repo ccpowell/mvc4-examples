@@ -34,8 +34,6 @@ namespace DRCOG.Domain.Models.RTP
         public int PlanTypeId { get; set; }
         public int CategoryId { get; set; }
 
-        
-
         #region ISummary Members
 
         public string VersionStatus { get; set; }

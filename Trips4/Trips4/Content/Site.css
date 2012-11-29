@@ -862,6 +862,12 @@ div#result
 	left: 150px;
 	top: 0px;
 }
+
+div#submit-result
+{
+    position: relative;
+}
+
 #scenario-container { display: inline; position: relative; top: 5px; left: 45px; }
 #scenario-container label { display: inline; }
 

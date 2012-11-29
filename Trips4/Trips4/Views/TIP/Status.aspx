@@ -9,48 +9,17 @@
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
         type="text/javascript"></script>
     <script type="text/javascript">
-        var isDirty = false, formSubmittion = false;
-
         $(document).ready(function () {
+            "use strict";
+
+            // Prevent accidental navigation away
+            App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+            $('#submitForm').button({ disabled: true });
+
             //setup the date pickers
             $(".datepicker").datepicker();
-            $(':input', document.statusForm).bind("change", setConfirmUnload); // Prevent accidental navigation away
-            $(':input', document.statusForm).bind("keyup", setConfirmUnload);
             $("#Notes").growing();
-
-            //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-            $("#dataForm").validate({
-                //Keep this in $().ready or add a $("#form").ajaxForm(); in $().ready
-                submitHandler: function (form) {
-                    $(form).ajaxSubmit({
-                        success: function (response) {
-                            $('#result').html(response.message).addClass("success").removeClass("error").show();
-                            $('#submitForm').addClass('ui-state-disabled');
-                            window.onbeforeunload = null;
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            $('#result').text(errorThrown).addClass('error').removeClass("success").show();
-                        },
-                        dataType: 'json'
-                    });
-                }
-            });
         });
-
-        function setConfirmUnload() {
-            $('#submitForm').removeClass('ui-state-disabled');
-            $('#result').empty().hide();
-            window.onbeforeunload = unloadMessage;
-        }
-
-        function unloadMessage() {
-            return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
-        }
-
-
-   
-
-   
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -186,12 +155,12 @@
             <br />
             <%if (Model.IsEditable())
               { %>
-            <p>
-                <button type="submit" id="submitForm" class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all">
+            <div>
+                <button type="submit" id="submitForm">
                     Save Changes</button>
-                <div id="result" style="position: relative; left: 0;">
+                <div id="submit-result">
                 </div>
-            </p>
+            </div>
             <%} %>
             <%} %>
         </div>

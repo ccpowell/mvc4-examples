@@ -40,7 +40,6 @@ namespace Trips4
                 new { controller = "TIP", action = "Index", id = "" }  // Parameter defaults
             );
 
-
             routes.MapRoute(
                 "Home",                                              // Route name
                 "{controller}/{action}",                           // URL with parameters

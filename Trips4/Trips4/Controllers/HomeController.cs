@@ -86,6 +86,6 @@ namespace Trips4.Controllers
                 return HandleErrorHtml(ex, methodName);
             }
         }
-       
+
     }
 }

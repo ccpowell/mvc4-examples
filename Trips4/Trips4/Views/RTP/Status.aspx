@@ -1,20 +1,23 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
-Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">RTP Status</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="BannerContent" runat="server">Regional Transportation Plan <%= Model.RtpSummary.RtpYear %></asp:Content>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    RTP Status</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="BannerContent" runat="server">
+    Regional Transportation Plan
+    <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-<link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-<link href="<%= ResolveUrl("~/Content/jquery.contextMenu.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery-ui-1.8.5.custom.min.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.contextMenu.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>" type="text/javascript"></script>
-
-<script type="text/javascript">
+    <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Content/jquery.contextMenu.css") %>" rel="stylesheet"
+        type="text/css" />
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery-ui-1.8.5.custom.min.js")%>"
+        type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.contextMenu.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
+        type="text/javascript"></script>
+    <script type="text/javascript">
     var isDirty = false, formSubmittion = false;
     //var addurl = '<%=Url.Action("AddCycle","RTP", new {plan=Model.RtpSummary.RtpYear}) %>';
     //var removeurl = '<%=Url.Action("DropCycle","RTP") %>';
@@ -39,13 +42,10 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
         
         //setup the date pickers
         $(".datepicker").datepicker();
-        $(':input', document.statusForm).bind("change", function() { setConfirmUnload(true); }); // Prevent accidental navigation away
-        $(':input', document.statusForm).bind("keyup", function() { setConfirmUnload(true); });
-        $(':input.nobind', document.dataForm).unbind("change");
-        $(':input.nobind', document.dataForm).unbind("keyup");
-        if ($('#submitForm')) {
-            $('#submitForm').click(function() { window.onbeforeunload = null; return true; });
-        }
+        
+        // Prevent accidental navigation away
+        App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+        $('#submitForm').button({disabled: true});
         
         function SurveyAction(id, action) {
             switch (action) {
@@ -277,28 +277,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
 		    return value.length;
         }
 
-        //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-        $("#dataForm").validate({
-            //Keep this in $().ready or add a $("#form").ajaxForm(); in $().ready
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    success: function(response) {
-                        $('#result').html(response.message);
-                        $('div#result').addClass('success');
-                        $('#submitForm').addClass('ui-state-disabled');
-                        location.reload();
-                        autoHide(2500);
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        $('#result').text(data.message);
-                        $('#result').addClass('error');
-
-                    },
-                    dataType: 'json'
-                });
-            }
-        });
-
         
         $('#addProject').click(function() {
             $('#availableProjects option:selected').each(function(i) {
@@ -361,18 +339,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
             });
         }, timeout);
     }
-    
-    function setConfirmUnload(on) {
-
-        $('#submitForm').removeClass('ui-state-disabled');
-        $('#result').html("");        
-        window.onbeforeunload = (on) ? unloadMessage : null;
-    }
-
-    function unloadMessage() {
-        return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
-    }
-    
+        
     function updateTimePeriodStatusId(timePeriodId, statusId) {
         $.ajax({
             type: "POST",
@@ -461,55 +428,50 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
     };
 
    
-</script>
+    </script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<ul id="myMenu" class="contextMenu">
-    <li class="edit">
-        <a href="#edit">Edit</a>
-    </li>
-    <li class="copy disabled separator">
-        <a href="#add">Add</a>
-    </li>
-    <li class="delete disabled">
-        <a href="#remove">Remove</a>
-    </li>
-</ul>
-<div class="view-content-container">
-<%--<h2 ><%=Html.ActionLink("RTP List", "Index",new {controller="RTP"}) %> / RTP <%=Model.RtpSummary.RtpYear%></h2>--%>
-<div class="clear"></div>
-
-<%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
-
-    <div id="StatusForm" class="tab-form-container">
-        <div id="StatusForm-wrapper">
-        <% using (Html.BeginForm("UpdateStatus", "RTP", FormMethod.Post, new { @id = "dataForm"})) %>
-        <%{ %>
-            <fieldset>
-                <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
-
-                <h2>Program Start and End Dates</h2>
-                <%=Html.Hidden("TimePeriodId", Model.RtpStatus.TimePeriodId)%>
-                <%=Html.Hidden("ProgramId", Model.RtpStatus.ProgramId)%>
-                <p>
-                    <label>Plan:</label>
-                    <%--<%=Html.DrcogTextBox("Plan", Model.RtpSummary.IsCurrent, Model.RtpSummary.RtpYear, new { @id = "Plan", @class = "required", title = "Please specify a tip year (i.e. 2008-2013)" })%>--%>
-                    <span class="fakeinput"><%= Html.Encode(Model.RtpSummary.RtpYear) %></span>
-                    <%= Html.Hidden("Plan", Model.RtpSummary.RtpYear, new { @id = "Plan" }) %>
-                    <br />
-                </p>
-                <p>
-                    <label>Base Year:</label>
-                    <%= Html.DropDownList("BaseYearId",
+    <ul id="myMenu" class="contextMenu">
+        <li class="edit"><a href="#edit">Edit</a> </li>
+        <li class="copy disabled separator"><a href="#add">Add</a> </li>
+        <li class="delete disabled"><a href="#remove">Remove</a> </li>
+    </ul>
+    <div class="view-content-container">
+        <%--<h2 ><%=Html.ActionLink("RTP List", "Index",new {controller="RTP"}) %> / RTP <%=Model.RtpSummary.RtpYear%></h2>--%>
+        <div class="clear">
+        </div>
+        <%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
+        <div id="StatusForm" class="tab-form-container">
+            <div id="StatusForm-wrapper">
+                <% using (Html.BeginForm("UpdateStatus", "RTP", FormMethod.Post, new { @id = "dataForm" })) %>
+                <%{ %>
+                <fieldset>
+                    <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
+                    <h2>
+                        Program Start and End Dates</h2>
+                    <%=Html.Hidden("TimePeriodId", Model.RtpStatus.TimePeriodId)%>
+                    <%=Html.Hidden("ProgramId", Model.RtpStatus.ProgramId)%>
+                    <p>
+                        <label>
+                            Plan:</label>
+                        <%--<%=Html.DrcogTextBox("Plan", Model.RtpSummary.IsCurrent, Model.RtpSummary.RtpYear, new { @id = "Plan", @class = "required", title = "Please specify a tip year (i.e. 2008-2013)" })%>--%>
+                        <span class="fakeinput">
+                            <%= Html.Encode(Model.RtpSummary.RtpYear) %></span>
+                        <%= Html.Hidden("Plan", Model.RtpSummary.RtpYear, new { @id = "Plan" }) %>
+                        <br />
+                    </p>
+                    <p>
+                        <label>
+                            Base Year:</label>
+                        <%= Html.DropDownList("BaseYearId",
                         Model.RtpSummary.IsEditable(),
                         new SelectList(Model.AvailableYears, "key", "value", Model.RtpStatus.BaseYearId), 
                         "-- Select --",
                         new { title = "Please select a financial year.", @id = "BaseYearId", @class = "cycle-required" })%>
-                    <%--<%=Html.DrcogTextBox("BaseYear", Model.RtpSummary.IsCurrent, Model.RtpStatus.BaseYear, new { @id = "BaseYear", @class = "required", title = "Please specify a base year" })%>--%>
-                    <br />
-                </p>
-                <%--<p>
+                        <%--<%=Html.DrcogTextBox("BaseYear", Model.RtpSummary.IsCurrent, Model.RtpStatus.BaseYear, new { @id = "BaseYear", @class = "required", title = "Please specify a base year" })%>--%>
+                        <br />
+                    </p>
+                    <%--<p>
                     <label for="CurrentStatus">Current:</label>
                     <%= Html.CheckBox("IsCurrent", Model.IsEditable(), Model.RtpStatus.IsCurrent, new { @id = "CurrentStatus" })%>
                 </p>
@@ -521,86 +483,112 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
                     <label for="PreviousStatus">Previous:</label>
                     <%= Html.CheckBox("IsPrevious", Model.IsEditable(), Model.RtpStatus.IsPrevious, new { @id = "PreviousStatus" })%>
                 </p>
-                --%>
-                
-                <h2>RTP Meeting and Approval Dates</h2>
-                <p>
-                <label for="summary_PublicHearing" class="beside" >Public Hearing:</label>
-                <%= Html.DrcogTextBox("PublicHearing", Model.RtpSummary.IsEditable(), Model.RtpStatus.PublicHearing.HasValue ? Model.RtpStatus.PublicHearing.Value.ToShortDateString() : "", new { @class = "shortInputElement isdatepicker" })%>
-                </p>
-                <p>
-                <label for="summary_BoardApproval">Board Adoption:</label>
-                <%= Html.DrcogTextBox("Adoption", Model.RtpSummary.IsEditable(), Model.RtpStatus.Adoption.HasValue ? Model.RtpStatus.Adoption.Value.ToShortDateString() : "", new { @class = "isdatepicker" })%>
-                </p>
-                <p>
-                <label for="summary_LastAmended">Last Amended:</label>
-                <span class="fakeinput"><%= Model.RtpStatus.LastAmended.HasValue ? Html.Encode(Model.RtpStatus.LastAmended.Value.ToShortDateString()) : String.Empty %></span>
-                <%--<%= Html.DrcogTextBox("LastAmended", Model.IsEditable(), Model.RtpStatus.LastAmended.HasValue ? Model.RtpStatus.LastAmended.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>--%>
-                </p>
-                <p>
-                <label for="CDOTAction">CDOT Action:</label>
-                <%= Html.DrcogTextBox("CDOTAction", Model.RtpSummary.IsEditable(), Model.RtpStatus.CDOTAction.HasValue ? Model.RtpStatus.CDOTAction.Value.ToShortDateString() : "", new { @class = "shortInputElement isdatepicker" })%>            
-                </p>
-                <p>
-                <p>
-                <label for="summary_USDOTApproval">U.S. DOT Approval:</label>
-                <%= Html.DrcogTextBox("USDOTApproval", Model.RtpSummary.IsEditable(), Model.RtpStatus.USDOTApproval.HasValue ? Model.RtpStatus.USDOTApproval.Value.ToShortDateString() : "", new { @class = "shortInputElement isdatepicker" })%>            
-                </p>
-                <p>
-                <label for="summary_Notes">Notes:</label>
-                <%= Html.TextArea2("Notes", Model.RtpSummary.IsEditable(), Model.RtpStatus.Notes,5,0, new { @name = "Notes", @class = "mediumInputElement growable" })%>
-                </p>
-                <p>
-                <label for="summary_Description">Description:</label>
-                <%= Html.TextArea2("Description", Model.RtpSummary.IsEditable(), Model.RtpStatus.Description, 5, 0, new { @name = "Description", @class = "mediumInputElement growable" })%>
-                </p>
-                
-            </fieldset>
-            <br />
-            
-            <%if (Model.RtpSummary.IsEditable())
-              { %>        
-                <p>
-                <button type="submit" id="submitForm" class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all" >Save Changes</button>
-                <div id="result"></div>
-                </p>    
-           <%} %>       
-        <%} %>
-        </div>
-        <div id="plan-cycles">
-            <div class="box">
-                <h2>Plan Survey Administration</h2>
-                <table id="planSurveys">
-                    <thead>
-                        <tr>
-                            <th>Survey</th>
-                            <th>Status</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <%foreach (DRCOG.Domain.Models.Survey.Survey item in Model.Surveys) { %>
+                    --%>
+                    <h2>
+                        RTP Meeting and Approval Dates</h2>
+                    <p>
+                        <label for="summary_PublicHearing" class="beside">
+                            Public Hearing:</label>
+                        <%= Html.DrcogTextBox("PublicHearing", Model.RtpSummary.IsEditable(), Model.RtpStatus.PublicHearing.HasValue ? Model.RtpStatus.PublicHearing.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>
+                    </p>
+                    <p>
+                        <label for="summary_BoardApproval">
+                            Board Adoption:</label>
+                        <%= Html.DrcogTextBox("Adoption", Model.RtpSummary.IsEditable(), Model.RtpStatus.Adoption.HasValue ? Model.RtpStatus.Adoption.Value.ToShortDateString() : "", new { @class = "datepicker" })%>
+                    </p>
+                    <p>
+                        <label for="summary_LastAmended">
+                            Last Amended:</label>
+                        <span class="fakeinput">
+                            <%= Model.RtpStatus.LastAmended.HasValue ? Html.Encode(Model.RtpStatus.LastAmended.Value.ToShortDateString()) : String.Empty %></span>
+                        <%--<%= Html.DrcogTextBox("LastAmended", Model.IsEditable(), Model.RtpStatus.LastAmended.HasValue ? Model.RtpStatus.LastAmended.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>--%>
+                    </p>
+                    <p>
+                        <label for="CDOTAction">
+                            CDOT Action:</label>
+                        <%= Html.DrcogTextBox("CDOTAction", Model.RtpSummary.IsEditable(), Model.RtpStatus.CDOTAction.HasValue ? Model.RtpStatus.CDOTAction.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>
+                    </p>
+                    <p>
+                    <p>
+                        <label for="summary_USDOTApproval">
+                            U.S. DOT Approval:</label>
+                        <%= Html.DrcogTextBox("USDOTApproval", Model.RtpSummary.IsEditable(), Model.RtpStatus.USDOTApproval.HasValue ? Model.RtpStatus.USDOTApproval.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>
+                    </p>
+                    <p>
+                        <label for="summary_Notes">
+                            Notes:</label>
+                        <%= Html.TextArea2("Notes", Model.RtpSummary.IsEditable(), Model.RtpStatus.Notes,5,0, new { @name = "Notes", @class = "mediumInputElement growable" })%>
+                    </p>
+                    <p>
+                        <label for="summary_Description">
+                            Description:</label>
+                        <%= Html.TextArea2("Description", Model.RtpSummary.IsEditable(), Model.RtpStatus.Description, 5, 0, new { @name = "Description", @class = "mediumInputElement growable" })%>
+                    </p>
+                </fieldset>
+                <br />
+                <%if (Model.RtpSummary.IsEditable())
+                  { %>
+                <div>
+                    <button type="submit" id="submitForm">
+                        Save Changes</button>
+                    <div id="submit-result">
+                    </div>
+                </div>
+                <%} %>
+                <%} %>
+            </div>
+            <div id="plan-cycles">
+                <div class="box">
+                    <h2>
+                        Plan Survey Administration</h2>
+                    <table id="planSurveys">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Survey
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <%foreach (DRCOG.Domain.Models.Survey.Survey item in Model.Surveys)
+                          { %>
                         <tr id="survey_<%= item.Id %>">
-                            <td><%= Html.ActionLink(item.Name, "Dashboard", new {controller="Survey", year = item.Name }) %></td>
+                            <td>
+                                <%= Html.ActionLink(item.Name, "Dashboard", new {controller="Survey", year = item.Name }) %>
+                            </td>
                             <td id="survey_status_<%= item.Id %>">
                                 <%= item.GetStatusText() %>
                             </td>
-                            <td><span id="btn_survey_<%= item.Id %>" style="display: block;" class="action_<%= item.ButtonActionCode %> fg-button w100 ui-state-default ui-corner-all"><%= item.ButtonActionText %></span></td>
+                            <td>
+                                <span id="btn_survey_<%= item.Id %>" style="display: block;" class="action_<%= item.ButtonActionCode %> fg-button w100 ui-state-default ui-corner-all">
+                                    <%= item.ButtonActionText %></span>
+                            </td>
                         </tr>
-                    <% } %>
-                    <tr>
-                        <td colspan="3">New Survey Name</td>
-                    </tr>
-                    <tr id="new_survey">
-                        <td colspan="2"><input type="text" id="surveyname" name="surveyname" maxlength="50" size="30" /></td>
-                        <td><span id="btn_createsurvey" style="display: block;" class="fg-button w100 ui-state-default ui-corner-all">Create New</span></td>
-                    </tr>
-                </table>
-                <div id="survey-result"></div>
-            </div>
-            
-            
-            <% if (!Model.RtpStatus.BaseYearId.Equals(0))
-               { %>
+                        <% } %>
+                        <tr>
+                            <td colspan="3">
+                                New Survey Name
+                            </td>
+                        </tr>
+                        <tr id="new_survey">
+                            <td colspan="2">
+                                <input type="text" id="surveyname" name="surveyname" maxlength="50" size="30" />
+                            </td>
+                            <td>
+                                <span id="btn_createsurvey" style="display: block;" class="fg-button w100 ui-state-default ui-corner-all">
+                                    Create New</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="survey-result">
+                    </div>
+                </div>
+                <% if (!Model.RtpStatus.BaseYearId.Equals(0))
+                   { %>
                 <%--<table>
                     <tr>
                         <%if (!Model.RtpSummary.IsCurrent)
@@ -626,92 +614,76 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.StatusViewModel>" 
                         </td>
                     </tr>
                 </table>--%>
-                
-                
                 <div id="cycle-modifier" style="display: none;">
-                    
                 </div>
-                
-                
-                
                 <div id="plan-current-cycle" class="box" style="display: none;">
                     <div id="process-cycle-step1">
-                        <h2>Process Cycle</h2>
+                        <h2>
+                            Process Cycle</h2>
                         <% if (!String.IsNullOrEmpty(Model.RtpSummary.Cycle.Name))
-                               
                            { %>
-                            <p>Current: <%= Model.RtpSummary.Cycle.Name%></p>
-                            <div id="plan-next-cycle">
-                                <label for="NextCycleId" class="boldFont">Next Cycle:</label>
-                                <%= Html.DropDownList("NextCycleId",
+                        <p>
+                            Current:
+                            <%= Model.RtpSummary.Cycle.Name%></p>
+                        <div id="plan-next-cycle">
+                            <label for="NextCycleId" class="boldFont">
+                                Next Cycle:</label>
+                            <%= Html.DropDownList("NextCycleId",
                                     new SelectList(Model.PlanUnusedCycles, "key", "value"),
                                 //new SelectList(Model.CurrentPlanCycles.Where(pair => pair.Value != Model.RtpSummary.Cycle.Name).ToDictionary(pair => pair.Key, pair => pair.Value), "key", "value"), 
                                     "-- Select --",
                                     new { title = "Please select a Cycle.", @id = "cycle-nextCycleId", @class = "nobind" })%>
-                                    <br />
-                                <span id="plan-change-cycle" class="fg-button w100 ui-state-default ui-corner-all ui-state-disabled">Change Cycles</span>
-                            </div>
+                            <br />
+                            <span id="plan-change-cycle" class="fg-button w100 ui-state-default ui-corner-all ui-state-disabled">
+                                Change Cycles</span>
+                        </div>
                         <% }
                            else
                            { %>
-                            
                         <% } %>
                     </div>
-                    
                     <div id="process-cycle-step2" class="dialog" title="Move Projects to new Cycle">
                         <% Html.RenderPartial("~/Views/RTP/Partials/AmendableProjects.ascx"); %>
                     </div>
                 </div>
-            <% } %>
+                <% } %>
+            </div>
+            <div class="clear">
+            </div>
         </div>
-        <div class="clear"></div>
     </div>
-
-</div>
-
-<div class="clear"></div>
-
-<div style='display:none'>
-    <div id="dialog-create-cycle" class="dialog" title="Create a new Cycle">
-        <% Html.RenderPartial("~/Views/RTP/Partials/AddCycle.ascx"); %>
+    <div class="clear">
     </div>
-</div>
-
-<div style='display:none'>
-    <div id="dialog-create-scenario" class="dialog" title="Create a new Scenario">
-        
+    <div style='display: none'>
+        <div id="dialog-create-cycle" class="dialog" title="Create a new Cycle">
+            <% Html.RenderPartial("~/Views/RTP/Partials/AddCycle.ascx"); %>
+        </div>
     </div>
-    
-    <div id="dialog-set-survey-date" class="dialog">
-        <h2>Survey Management: Set Open Period</h2>
-        <%= Html.Hidden("dialog_SurveyId") %>
-        <fieldset>
-            <p>
-                <label for="dialog_SurveyOpen" class="big">Open Date:</label>
-                <%= Html.DrcogTextBox("dialog_SurveyOpen", true, DateTime.Now.ToShortDateString(), new { @class = "datepicker big nobind" })%>
-            </p>
-            <p>
-                <label for="dialog_SurveyClose" class="big">Close Date:</label>
-                <%= Html.DrcogTextBox("dialog_SurveyClose", true, DateTime.Now.ToShortDateString(), new { @class = "datepicker big nobind" })%>
-            </p>
-        </fieldset>
+    <div style='display: none'>
+        <div id="dialog-create-scenario" class="dialog" title="Create a new Scenario">
+        </div>
+        <div id="dialog-set-survey-date" class="dialog">
+            <h2>
+                Survey Management: Set Open Period</h2>
+            <%= Html.Hidden("dialog_SurveyId") %>
+            <fieldset>
+                <p>
+                    <label for="dialog_SurveyOpen" class="big">
+                        Open Date:</label>
+                    <%= Html.DrcogTextBox("dialog_SurveyOpen", true, DateTime.Now.ToShortDateString(), new { @class = "datepicker big nobind" })%>
+                </p>
+                <p>
+                    <label for="dialog_SurveyClose" class="big">
+                        Close Date:</label>
+                    <%= Html.DrcogTextBox("dialog_SurveyClose", true, DateTime.Now.ToShortDateString(), new { @class = "datepicker big nobind" })%>
+                </p>
+            </fieldset>
+        </div>
     </div>
-</div>
-
-<div style='display:none'>
-    <div id="dialog-cycle-projects" class="dialog" title="Move Projects to new Cycle">
-        <% Html.RenderPartial("~/Views/RTP/Partials/AmendableProjects.ascx"); %>
+    <div style='display: none'>
+        <div id="dialog-cycle-projects" class="dialog" title="Move Projects to new Cycle">
+            <% Html.RenderPartial("~/Views/RTP/Partials/AmendableProjects.ascx"); %>
+        </div>
     </div>
-</div>
-
-<% Html.RenderPartial("~/Views/Survey/Partials/AmendPartial.ascx"); %>
-
-
-
-
-
-
+    <% Html.RenderPartial("~/Views/Survey/Partials/AmendPartial.ascx"); %>
 </asp:Content>
-
-
-

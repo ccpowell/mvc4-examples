@@ -197,6 +197,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Configuration\DRCOGConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\MiscController.cs" />
     <Compile Include="Controllers\Api\RtpPlanCycleController.cs" />
     <Compile Include="Controllers\Api\TipDataController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
@@ -448,6 +449,7 @@
     <Content Include="MvcDiagnostics.aspx" />
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
+    <Content Include="Scripts\App.js" />
     <Content Include="Scripts\FixedHeader.js" />
     <Content Include="Scripts\FixedHeader.min.js" />
     <Content Include="Scripts\Funding-rtp.js" />
