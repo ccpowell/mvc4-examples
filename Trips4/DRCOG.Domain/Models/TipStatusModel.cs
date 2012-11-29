@@ -45,7 +45,7 @@ namespace DRCOG.Domain.Models
         public bool IsPending { get; set; }
         public bool IsPrevious { get; set; }
 
-        public DateTime ShowDelayDate { get; set; }
+        public DateTime? ShowDelayDate { get; set; }
 
         public string GetStatus()
         {

@@ -27,13 +27,12 @@ namespace Trips4.Controllers.Api
             //Send update to repo
             try
             {
-                throw new Exception("fooey");
-                //_tipRepository.UpdateTipStatus(model);
+                TripsRepository.UpdateTipStatus(model);
             }
             catch (Exception ex)
             {
                 Logger.WarnException("Could not update TIP Status", ex);
-                throw;// return Json(new { message = "Changes could not be stored. An error has been logged." });
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
             return new JsonResult() { message = "Changes successfully saved." };
         }

@@ -1219,7 +1219,7 @@ namespace DRCOG.Data
         {
             IList<FundingPhase> phases = new List<FundingPhase>();
 
-            DateTime showDelayDate =  base.GetTipStatusViewModel(tipYear).TipStatus.ShowDelayDate;
+            DateTime showDelayDate =  base.GetTipStatusViewModel(tipYear).TipStatus.ShowDelayDate.Value;
 
             using (SqlCommand command = new SqlCommand("[TIP].[GetProjectFundingPhases]") { CommandType = CommandType.StoredProcedure })
             {

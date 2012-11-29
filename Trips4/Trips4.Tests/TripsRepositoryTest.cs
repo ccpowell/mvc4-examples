@@ -118,10 +118,12 @@ namespace Trips4.Tests
         [TestMethod()]
         public void UpdateTipStatusTest()
         {
-            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
-            TipStatusModel model = null; // TODO: Initialize to an appropriate value
-            target.UpdateTipStatus(model);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            TripsRepository target = new TripsRepository();
+            int rtpYearId = 80;
+            TipStatusModel actual;
+            actual = target.GetTipStatus(rtpYearId);
+            Assert.IsNotNull(actual);
+            target.UpdateTipStatus(actual);
         }
     }
 }

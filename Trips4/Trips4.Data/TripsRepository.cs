@@ -27,6 +27,19 @@ namespace Trips4.Data
             }
         }
 
+        public int GetTipYearId(string year)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var tper = db.TimePeriods.FirstOrDefault(tp => tp.TimePeriod1 == year && tp.TimePeriodTypeID == 2);
+                if (tper == null)
+                {
+                    throw new Exception("No such TIP Year " + year);
+                }
+                return tper.TimePeriodID;
+            }
+        }
+
         public IEnumerable<DRCOG.Domain.ViewModels.RTP.PlanCycle> GetRtpPlanCycles(int rtpYearId)
         {
             var result = new List<DRCOG.Domain.ViewModels.RTP.PlanCycle>();
@@ -261,6 +274,45 @@ namespace Trips4.Data
             }
         }
 
+
+
+        /// <summary>
+        /// This gets/sets Funding Increments for a given time period.
+        /// </summary>
+        /// <remarks>TODO: cache the Funding Increment labels and IDs?</remarks>
+        private class FundingIncrementSetter
+        {
+            private Trips4.Data.Models.TRIPSEntities Db { get; set; }
+            private Models.TimePeriod Tp { get; set; }
+
+            public FundingIncrementSetter(Trips4.Data.Models.TRIPSEntities db, Models.TimePeriod tp)
+            {
+                Db = db;
+                Tp = tp;
+            }
+
+            public bool GetFundingIncrement(string label)
+            {
+                return (Tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1.Trim() == label) != null);
+            }
+
+            public void SetFundingIncrement(bool set, string label)
+            {
+                var fi = Db.FundingIncrements.Single(f => f.FundingIncrement1 == label);
+                if (set)
+                {
+                    if (!Tp.FundingIncrements.Contains(fi))
+                    {
+                        Tp.FundingIncrements.Add(fi);
+                    }
+                }
+                else
+                {
+                    Tp.FundingIncrements.Remove(fi);
+                }
+            }
+        }
+
         /// <summary>
         /// Get TIP Status
         /// </summary>
@@ -285,25 +337,61 @@ namespace Trips4.Data
                 model.Notes = p.Notes;
                 model.ProgramId = p.ProgramID;
                 model.PublicHearing = tpi.PublicHearingDate;
-                model.ShowDelayDate = tpi.ShowDelayDate.Value;
+                model.ShowDelayDate = tpi.ShowDelayDate;
                 model.TimePeriodId = tpi.TimePeriodID;
                 model.TipYear = tp.TimePeriod1;
                 model.USDOTApproval = tpi.USDOTApprovalDate;
 
-                model.FundingIncrement_Year_1 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 1") != null;
-                model.FundingIncrement_Year_2 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 2") != null;
-                model.FundingIncrement_Year_3 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 3") != null;
-                model.FundingIncrement_Year_4 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 4") != null;
-                model.FundingIncrement_Year_5 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 5") != null;
-                model.FundingIncrement_Year_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Year 6") != null;
-                model.FundingIncrement_Years_4_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Years 4-6") != null;
-                model.FundingIncrement_Years_5_6 = tp.FundingIncrements.SingleOrDefault(fi => fi.FundingIncrement1 == "Years 5-6") != null;
+                foreach (var f in tp.FundingIncrements)
+                {
+                    Logger.Debug("'" + f.FundingIncrement1 + "'");
+                }
+
+                var fs = new FundingIncrementSetter(db, tp);
+                model.FundingIncrement_Year_1 = fs.GetFundingIncrement("Year 1");
+                model.FundingIncrement_Year_2 = fs.GetFundingIncrement("Year 2");
+                model.FundingIncrement_Year_3 = fs.GetFundingIncrement("Year 3");
+                model.FundingIncrement_Year_4 = fs.GetFundingIncrement("Year 4");
+                model.FundingIncrement_Year_5 = fs.GetFundingIncrement("Year 5");
+                model.FundingIncrement_Year_6 = fs.GetFundingIncrement("Year 6");
+                model.FundingIncrement_Years_4_6 = fs.GetFundingIncrement("Years 4-6");
+                model.FundingIncrement_Years_5_6 = fs.GetFundingIncrement("Years 5-6");
             }
             return model;
         }
 
         public void UpdateTipStatus(DRCOG.Domain.Models.TipStatusModel model)
         {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var p = db.ProgramInstances.Single(pi => pi.TimePeriodID == model.TimePeriodId);
+                var tp = db.TimePeriods.Single(t => t.TimePeriodID == model.TimePeriodId);
+                var tpi = db.TIPProgramInstances.Single(pi => pi.TimePeriodID == model.TimePeriodId && pi.TIPProgramID == p.ProgramID);
+                //p.ClosingDate = ?
+                p.Current = model.IsCurrent;
+                p.Notes = model.Notes;
+                p.Pending = model.IsPending;
+                p.Previous = model.IsPrevious;
+
+                tpi.AdoptionDate = model.Adoption;
+                tpi.GovernorApprovalDate = model.GovernorApproval;
+                tpi.PublicHearingDate = model.PublicHearing;
+                tpi.ShowDelayDate = model.ShowDelayDate;
+                tpi.USDOTApprovalDate = model.USDOTApproval;
+                tpi.USEPAApprovalDate = model.EPAApproval;
+
+                var fs = new FundingIncrementSetter(db, tp);
+                fs.SetFundingIncrement(model.FundingIncrement_Year_1, "Year 1");
+                fs.SetFundingIncrement(model.FundingIncrement_Year_2, "Year 2");
+                fs.SetFundingIncrement(model.FundingIncrement_Year_3, "Year 3");
+                fs.SetFundingIncrement(model.FundingIncrement_Year_4, "Year 4");
+                fs.SetFundingIncrement(model.FundingIncrement_Year_5, "Year 5");
+                fs.SetFundingIncrement(model.FundingIncrement_Year_6, "Year 6");
+                fs.SetFundingIncrement(model.FundingIncrement_Years_4_6, "Years 4-6");
+                fs.SetFundingIncrement(model.FundingIncrement_Years_5_6, "Years 5-6");
+
+                db.SaveChanges();
+            }
         }
     }
 }

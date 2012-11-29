@@ -276,8 +276,11 @@ namespace Trips4.Controllers
         public ActionResult Status(string year)
         {
             // get the view model from the repo
-            var viewModel = _tipRepository.GetTipStatusViewModel(year);
-            return View("Status", viewModel);
+            var tipYearId = TripsRepository.GetTipYearId(year);
+            var viewModel = new StatusViewModel();
+            viewModel.TipSummary.TipYear = year;
+            viewModel.TipStatus = TripsRepository.GetTipStatus(tipYearId);
+            return View(viewModel);
         }
 
         /// <summary>
@@ -377,31 +380,7 @@ namespace Trips4.Controllers
             var reportId = ShortGuid.Decode(reportShortGuid);
             return Redirect(url + reportId.ToString());
         }
-
-        /// <summary>
-        /// Update the Status for a TIP
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult UpdateStatus()
-        {
-            //Send update to repo
-            try
-            {
-                TipStatusModel model = new TipStatusModel();
-                UpdateModel(model);
-                _tipRepository.UpdateTipStatus(model);
-            }
-            catch (Exception ex)
-            {
-                Logger.WarnException("Could not update TIP Status", ex);
-                throw;// return Json(new { message = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
-
+        
         #endregion
 
         #region Project Search

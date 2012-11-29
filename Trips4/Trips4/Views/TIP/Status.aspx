@@ -74,49 +74,49 @@
                     <p>
                         <label>
                             Year 1:
-                            <%= Html.CheckBox("FundingIncrement_Year_1", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_1", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_1)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Year 2:
-                            <%= Html.CheckBox("FundingIncrement_Year_2", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_2", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_2)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Year 3:
-                            <%= Html.CheckBox("FundingIncrement_Year_3", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_3", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_3)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Year 4:
-                            <%= Html.CheckBox("FundingIncrement_Year_4", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_4", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_4)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Year 5:
-                            <%= Html.CheckBox("FundingIncrement_Year_5", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_5", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_5)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Year 6:
-                            <%= Html.CheckBox("FundingIncrement_Year_6", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Year_6", Model.IsEditable(), Model.TipStatus.FundingIncrement_Year_6)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Years 4-6:
-                            <%= Html.CheckBox("FundingIncrement_Years_4_6", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Years_4_6", Model.IsEditable(), Model.TipStatus.FundingIncrement_Years_4_6)%>
                         </label>
                     </p>
                     <p>
                         <label>
                             Years 5-6:
-                            <%= Html.CheckBox("FundingIncrement_Years_5_6", Model.IsEditable(), Model.TipStatus.IsCurrent)%>
+                            <%= Html.CheckBox("FundingIncrement_Years_5_6", Model.IsEditable(), Model.TipStatus.FundingIncrement_Years_5_6)%>
                         </label>
                     </p>
                 </fieldset>
@@ -179,7 +179,7 @@
                 <p>
                     <label for="summary_ShowDelayDate">
                         Delay visibility Date:</label>
-                    <%= Html.DrcogTextBox("ShowDelayDate", Model.IsEditable(), !Model.TipStatus.ShowDelayDate.Equals(default(DateTime)) ? Model.TipStatus.ShowDelayDate.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>
+                    <%= Html.DrcogTextBox("ShowDelayDate", Model.IsEditable(), Model.TipStatus.ShowDelayDate.HasValue ? Model.TipStatus.ShowDelayDate.Value.ToShortDateString() : "", new { @class = "shortInputElement datepicker" })%>
                 </p>
                 <p>
                     <label for="summary_Notes">
