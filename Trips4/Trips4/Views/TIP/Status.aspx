@@ -14,11 +14,8 @@
         $(document).ready(function () {
             //setup the date pickers
             $(".datepicker").datepicker();
-            $(':input', document.statusForm).bind("change", function () { setConfirmUnload(true); }); // Prevent accidental navigation away
-            $(':input', document.statusForm).bind("keyup", function () { setConfirmUnload(true); });
-            if ($('#submitForm')) {
-                $('#submitForm').click(function () { window.onbeforeunload = null; return true; });
-            }
+            $(':input', document.statusForm).bind("change", setConfirmUnload); // Prevent accidental navigation away
+            $(':input', document.statusForm).bind("keyup", setConfirmUnload);
             $("#Notes").growing();
 
             //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
@@ -27,12 +24,12 @@
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
                         success: function (response) {
-                            $('#result').html(response.message).addClass("success");
+                            $('#result').html(response.message).addClass("success").removeClass("error").show();
                             $('#submitForm').addClass('ui-state-disabled');
+                            window.onbeforeunload = null;
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            $('#result').text(errorThrown);
-                            $('#result').addClass('error');
+                            $('#result').text(errorThrown).addClass('error').removeClass("success").show();
                         },
                         dataType: 'json'
                     });
@@ -40,11 +37,10 @@
             });
         });
 
-        function setConfirmUnload(on) {
-
+        function setConfirmUnload() {
             $('#submitForm').removeClass('ui-state-disabled');
-            $('#result').html("");
-            window.onbeforeunload = (on) ? unloadMessage : null;
+            $('#result').empty().hide();
+            window.onbeforeunload = unloadMessage;
         }
 
         function unloadMessage() {
