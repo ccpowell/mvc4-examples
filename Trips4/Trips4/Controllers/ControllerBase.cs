@@ -395,7 +395,7 @@ namespace Trips4.Controllers
             sqlParms.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, ParameterName = "@Id", Value = id });
             try
             {
-                //var result = _rtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
+                //var result = RtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
                 var result = repo.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
 
                 return Json(new { id = result.First().Key, value = result.First().Value });
@@ -439,7 +439,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="formParams"></param>
         /// <returns></returns>
-        public Dictionary<int, CountyShareModel> ExtractCountyShares(NameValueCollection formParams)
+        public static Dictionary<int, CountyShareModel> ExtractCountyShares(NameValueCollection formParams)
         {
             Dictionary<int, CountyShareModel> countyShares = new Dictionary<int, CountyShareModel>();
             //Get the projectId, as we need that in order to persist the share
@@ -494,7 +494,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="formParams"></param>
         /// <returns></returns>
-        public Dictionary<int, MunicipalityShareModel> ExtractMuniShares(NameValueCollection formParams)
+        public static Dictionary<int, MunicipalityShareModel> ExtractMuniShares(NameValueCollection formParams)
         {
             Dictionary<int, MunicipalityShareModel> shares = new Dictionary<int, MunicipalityShareModel>();
             //Get the projectId, as we need that in order to persist the share

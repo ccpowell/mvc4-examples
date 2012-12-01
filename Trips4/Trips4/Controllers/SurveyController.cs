@@ -38,6 +38,8 @@ namespace Trips4.Controllers
 {
     public class SurveyController : ControllerBase
     {
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         private readonly ISurveyRepository _surveyRepository;
         private readonly IRtpProjectRepository _rtpProjectRepository;
         private Trips4.Data.TripsRepository TripsRepository { get; set; }
@@ -619,7 +621,7 @@ namespace Trips4.Controllers
         //    bool result = false;
         //    try
         //    {
-        //        result = _rtpProjectRepository.DeleteProjectVersion(projectVersionId, Enums.RTPAmendmentStatus.Submitted);
+        //        result = RtpProjectRepository.DeleteProjectVersion(projectVersionId, Enums.RTPAmendmentStatus.Submitted);
         //    }
         //    catch (Exception ex)
         //    {
@@ -649,7 +651,7 @@ namespace Trips4.Controllers
         //    RtpSummary result = null;
         //    try
         //    {
-        //        IRestoreStrategy strategy = new RestoreStrategy(this._rtpProjectRepository, guid).PickStrategy();
+        //        IRestoreStrategy strategy = new RestoreStrategy(this.RtpProjectRepository, guid).PickStrategy();
         //        result = (RtpSummary)strategy.Restore(plan);
         //    }
         //    catch (Exception ex)
@@ -691,9 +693,9 @@ namespace Trips4.Controllers
         //    CycleAmendment amendment = new CycleAmendment() { ProjectVersionId = projectVersionId, Id = cycleId };
         //    try
         //    {
-        //        IAmendmentStrategy strategy = new AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
+        //        IAmendmentStrategy strategy = new AmendmentStrategy(RtpProjectRepository, amendment).PickStrategy();
         //        result = strategy.Amend();
-        //        //result = _rtpProjectRepository.DeleteProjectVersion(projectVersionId, RTPAmendmentStatus.Submitted);
+        //        //result = RtpProjectRepository.DeleteProjectVersion(projectVersionId, RTPAmendmentStatus.Submitted);
         //    }
         //    catch (Exception ex)
         //    {
@@ -1177,7 +1179,7 @@ namespace Trips4.Controllers
         ////{
         ////    foreach (CycleAmendment amendment in cycle.Projects)
         ////    {
-        ////        IAmendmentStrategy strategy = new AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
+        ////        IAmendmentStrategy strategy = new AmendmentStrategy(RtpProjectRepository, amendment).PickStrategy();
         ////        //strategy.Amend();
         ////    }
         ////    return View();
@@ -1393,11 +1395,11 @@ namespace Trips4.Controllers
             var viewModel = _surveyRepository.GetProjectInfoViewModel(id, year);
 
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
-
-            //viewModel.Person = appstate.CurrentUser.profile;
+            Logger.Debug("Editable? " + viewModel.Current.IsEditable());
             return View(viewModel);
         }
 
+        // TODO: move to api/SurveyInfoController
         /// <summary>
         /// Update the General Information for a project
         /// </summary>
@@ -1413,8 +1415,10 @@ namespace Trips4.Controllers
             //{
             int projectVersionId = viewModel.Project.ProjectVersionId;
             string year = viewModel.Current.Name;
+
             //Get the model from the database
             Project model = _surveyRepository.GetProjectInfo(projectVersionId, year);
+
             //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
             model.AdministrativeLevelId = viewModel.Project.AdministrativeLevelId;
             model.DRCOGNotes = viewModel.Project.DRCOGNotes;
@@ -1430,23 +1434,6 @@ namespace Trips4.Controllers
             model.UpdateStatusId = viewModel.Project.UpdateStatusId;
             model.Funding = viewModel.Project.Funding;
 
-            ModelState.Remove("Project.SponsorContactId");
-
-            if (!ModelState.IsValid)
-            {
-                var errorList = ModelState.Values.SelectMany(m => m.Errors)
-                                 .Select(e => e.ErrorMessage)
-                                 .ToList();
-                string html_ul_errors = "<ul>";
-
-                foreach (string error in errorList)
-                {
-                    html_ul_errors += "<li>" + error + "</li>";
-                }
-                html_ul_errors += "</ul>";
-                return Json(new { error = "Changes could not be stored. An error has been logged." + "<br />" + html_ul_errors });
-            }
-
             //Send update to repo
             try
             {
@@ -1458,9 +1445,6 @@ namespace Trips4.Controllers
                 return Json(new { error = "Changes could not be stored. An error has been logged." });
             }
             return Json(new { message = "Changes successfully saved." });
-            //}
-            //return Json(new { message = "You are not authorized to modifiy this page." });
-
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
@@ -1740,6 +1724,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
+        // TODO: move to api/SurveyLocationController
         /// <summary>
         /// Update the Location information from the /Location view
         /// </summary>

@@ -470,7 +470,7 @@ namespace Trips4.Controllers
             {
                 IAmendmentStrategy strategy = new AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
                 result = strategy.Amend();
-                //result = _rtpProjectRepository.DeleteProjectVersion(projectVersionId, RTPAmendmentStatus.Submitted);
+                //result = RtpProjectRepository.DeleteProjectVersion(projectVersionId, RTPAmendmentStatus.Submitted);
             }
             catch (Exception ex)
             {
@@ -784,6 +784,7 @@ namespace Trips4.Controllers
             });
         }
 
+        // TODO: moved to /api/RtpStatusController
         /// <summary>
         /// Update the Status for a RTP
         /// </summary>
@@ -1037,7 +1038,7 @@ namespace Trips4.Controllers
         //{
         //    foreach (CycleAmendment amendment in cycle.Projects)
         //    {
-        //        IAmendmentStrategy strategy = new AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
+        //        IAmendmentStrategy strategy = new AmendmentStrategy(RtpProjectRepository, amendment).PickStrategy();
         //        //strategy.Amend();
         //    }
         //    return View();

@@ -19,37 +19,36 @@ Inherits="System.Web.Mvc.ViewPage<LocationViewModel>" %>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".growable").growing({ buffer: 5 });
-            var ppy1options = {
-                caption: true,
-                navigation: 'hover',
-                direction: 'left'
-        }
+        var ppy1options = {
+            caption: true,
+            navigation: 'hover',
+            direction: 'left'
+        };
 
         $('#ppy1').popeye(ppy1options);
-    
+
         // Prevent accidental navigation away
-        $(':input', document.dataForm).bind("change", function() { setConfirmUnload(true); });
-        $(':input', document.dataForm).bind("keyup", function() { setConfirmUnload(true); });
-        $(':button', document.dataForm).unbind("keyup", function() { setConfirmUnload(true); }); // Want to not do this for my hyperlink buttons. -DBD
+        $(':input', document.dataForm).bind("change", function () { setConfirmUnload(true); });
+        $(':input', document.dataForm).bind("keyup", function () { setConfirmUnload(true); });
+        $(':button', document.dataForm).unbind("keyup", function () { setConfirmUnload(true); }); // Want to not do this for my hyperlink buttons. -DBD
         //disable the onbeforeunload message if we are using the submitform button
         if ($('#submitForm')) {
-            $('#submitForm').click(function() { window.onbeforeunload = null; return true; });
+            $('#submitForm').click(function () { window.onbeforeunload = null; return true; });
         }
         if ($('#submitImageForm')) {
             $('#submitImageForm').click(function () { window.onbeforeunload = null; return true; });
         }
 
-
         //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
         $("#dataForm").validate({
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     dataType: 'json',
-                    success: function(response) {
+                    success: function (response) {
                         $('#result').html(response.message);
                         $('#submitForm').addClass('ui-state-disabled');
                     },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
                         $('#result').text(data.message);
                         $('#result').addClass('error');
                     }
@@ -92,7 +91,7 @@ Inherits="System.Web.Mvc.ViewPage<LocationViewModel>" %>
 
 
         var top_fullwidth_height = $("#top-fullwidth").height();
-//        var uploadwrapperheight = $("#uploadwrapper").height();
+        //        var uploadwrapperheight = $("#uploadwrapper").height();
 
 
         $("#uploadwrapper").css('position', 'absolute');
@@ -100,13 +99,13 @@ Inherits="System.Web.Mvc.ViewPage<LocationViewModel>" %>
         $("#uploadwrapper").css('top', top_fullwidth_height + 40);
         //alert(uploadtop + ' ' + uploadtop);
 
-//        var pageheight = $(".page").height();
-//        var pagesizeleft = (pageheight - (tabinforightheight + uploadwrapperheight + 40 + 193));
+        //        var pageheight = $(".page").height();
+        //        var pagesizeleft = (pageheight - (tabinforightheight + uploadwrapperheight + 40 + 193));
 
-//        if (pagesizeleft < 0) {
-//            // need to grow the size of the page
-//            $(".page").height(pageheight + 40);
-//        }
+        //        if (pagesizeleft < 0) {
+        //            // need to grow the size of the page
+        //            $(".page").height(pageheight + 40);
+        //        }
     });
 
     function setConfirmUnload(on) {

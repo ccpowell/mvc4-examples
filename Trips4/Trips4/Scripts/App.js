@@ -15,7 +15,8 @@ App.utility = (function ($) {
     function bindInputToConfirmUnload(form, button, result) {
         var $form = $(form),
             $button = $(button),
-            $result = $(result);
+            $result = $(result),
+            url = $form.attr("action");
 
         function setConfirmUnload() {
             $button.button("enable");
@@ -25,6 +26,7 @@ App.utility = (function ($) {
             }
         }
 
+        // Bind inputs to enable the submit button
         $(':input', $form)
             .bind("change", setConfirmUnload)
             .bind("keyup", setConfirmUnload);
@@ -32,17 +34,24 @@ App.utility = (function ($) {
             .unbind("change")
             .unbind("keyup");
 
+        // fix the URL
+        if (url.indexOf(App.env.applicationPath) !== 0) {
+            url = App.env.applicationPath + url;
+        }
+        //alert("submitting to " + url);
+
         //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-        $(form).validate({
+        $form.validate({
             submitHandler: function (form) {
                 $button.button("disable");
                 $form.ajaxSubmit({
+                    url: url,
                     success: function (response) {
-                        $result.html(response.message).addClass("success").removeClass("error").show();
+                        $result.html(response || "Your changes have been saved.").addClass("success").removeClass("error").show();
                         window.onbeforeunload = null;
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $result.text(errorThrown).addClass('error').removeClass("success").show();
+                        $result.text(errorThrown.toString()).addClass('error').removeClass("success").show();
                         $button.button("enable");
                     },
                     dataType: 'json'

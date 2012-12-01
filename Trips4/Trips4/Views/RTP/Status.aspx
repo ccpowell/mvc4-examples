@@ -36,16 +36,20 @@
     var AmendProjects = '<%=Url.Action("AmendForNewSurvey","RTP") %>';
     var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
     var CreateSurveyUrl = '<%=Url.Action("CreateSurvey","RTP") %>';
+
+    var isEditable = <%= Model.RtpSummary.IsEditable().ToString().ToLower() %>;
     
     $(document).ready(function() {
         $(".growable").growing({buffer:5});
         
-        //setup the date pickers
-        $(".datepicker").datepicker();
+        if (isEditable) {
+            //setup the date pickers
+            $(".datepicker").datepicker();
         
-        // Prevent accidental navigation away
-        App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
-        $('#submitForm').button({disabled: true});
+            // Prevent accidental navigation away
+            App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+            $('#submitForm').button({disabled: true});
+        }
         
         function SurveyAction(id, action) {
             switch (action) {
@@ -443,9 +447,9 @@
         <%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
         <div id="StatusForm" class="tab-form-container">
             <div id="StatusForm-wrapper">
-                <% using (Html.BeginForm("UpdateStatus", "RTP", FormMethod.Post, new { @id = "dataForm" })) %>
-                <%{ %>
+            <form method="put" action="/api/RtpStatus" id="dataForm">
                 <fieldset>
+                <legend></legend>
                     <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
                     <h2>
                         Program Start and End Dates</h2>
@@ -535,7 +539,7 @@
                     </div>
                 </div>
                 <%} %>
-                <%} %>
+                </form>
             </div>
             <div id="plan-cycles">
                 <div class="box">

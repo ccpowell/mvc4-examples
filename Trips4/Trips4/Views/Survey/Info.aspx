@@ -1,21 +1,26 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.Survey.InfoViewModel>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Project General Information</asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="BannerContent" runat="server"><%= Model.Current.Name %> Survey Projects</asp:Content>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    Project General Information</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="BannerContent" runat="server">
+    <%= Model.Current.Name %>
+    Survey Projects</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-<link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript" ></script>
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript" ></script>
-<link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript" ></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.sort.js")%>" type="text/javascript" ></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>" type="text/javascript"></script>
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>" type="text/javascript" ></script>
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskMoney.js")%>" type="text/javascript" ></script>
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript" ></script>
-
-<script type="text/javascript">
+    <link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet"
+        type="text/css" />
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
+    <link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
+    <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.sort.js")%>" type="text/javascript"></script>
+    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
+        type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>"
+        type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskMoney.js")%>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>"
+        type="text/javascript"></script>
+    <script type="text/javascript">
     var isDirty = false, formSubmittion = false;
     var add1url = '<%=Url.Action("AddCurrent1Agency","RtpProject", new {year=Model.Current.Name, projectVersionId=Model.Project.ProjectVersionId}) %>';
     var remove1url = '<%=Url.Action("DropCurrent1Agency","RtpProject", new {year=Model.Current.Name, projectVersionId=Model.Project.ProjectVersionId}) %>';
@@ -49,54 +54,10 @@
         function removeMask() {
             $(".money").unmaskMoney();
         }
+        
         // Prevent accidental navigation away
-        $(':input', document.dataForm).bind("change", function () { setConfirmUnload(true); });
-        $(':input', document.dataForm).bind("keyup", function () { setConfirmUnload(true); });
-        $(':input.nobind', document.dataForm).unbind("change");
-        $(':input.nobind', document.dataForm).unbind("keyup");
-
-        var $scrollingDiv = $("#update-inview");
-
-        $(window).scroll(function () {
-            $scrollingDiv
-			.stop()
-			.animate({ "marginTop": ($(window).scrollTop() + 80) + "px" }, "slow");
-        });
-
-        if ($('#submitForm')) {
-            $('#submitForm').click(function () { 
-                window.onbeforeunload = null; 
-                
-                return true; 
-            });
-        }
-
-        //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-        $("#dataForm").validate({
-            submitHandler: function (form) {
-                $(form).ajaxSubmit({
-                    beforeSubmit: cleanRequest,
-                    dataType: 'json',
-                    success: function (response) {
-                        //alert(response.error == 'undefined');
-                        if (typeof response.error == 'undefined' || response.error == '') {
-                            $('#site-message').text(response.message).removeClass('error').addClass('success').show().delay(5000).slideUp(300);
-                            $('#submitForm').addClass('ui-state-disabled');
-                            $('#submitForm').removeClass('bg-green');
-                            $("#actionbar").show();
-                        } else {
-                            $('#site-message').html(response.error).addClass('error').show().delay(5000).slideUp(300);
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $('#site-message').text(textStatus);
-                        $('#site-message').addClass('error').show().delay(5000).slideUp(300);
-                        $('#submitForm').addClass('ui-state-disabled');
-                        $('#submitForm').removeClass('bg-green');
-                    }
-                });
-            }
-        });
+        App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+        $('#submitForm').button({ disabled: true });
 
         function cleanRequest(formData, jqForm, options) {
             formData[9].value = formData[9].value.replace('$', '').replace(',', ''); // clean money (TotalCost)
@@ -138,18 +99,6 @@
                 }
             }
         });
-
-        function setConfirmUnload(on) {
-            $('#submitForm').removeClass('ui-state-disabled');
-            $('#submitForm').addClass('bg-green');
-            $('#site-message').html("").hide();
-            //$("#actionbar").hide();
-            window.onbeforeunload = (on) ? unloadMessage : null;
-        }
-
-        function unloadMessage() {
-            return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
-        }
 
         $('#ProjectSponsorsModel_PrimarySponsor_OrganizationId').change(function () {
             var sponsorId = $('#ProjectSponsorsModel_PrimarySponsor_OrganizationId').val();
@@ -335,74 +284,78 @@
         });
     }
     */
-</script>
+    </script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<% string value = String.Empty; %>
-<div class="tab-content-container">
-    <%Html.RenderPartial("~/Views/Survey/Partials/ProjectTabPartial.ascx", Model); %>
-    <div class="tab-form-container">
-    
-    <% if ( !Model.Project.UpdateStatusId.Equals(default(int)) ) { %>
-        
-        <h2 id="status">Current Status: <%= Model.Project.UpdateStatus %></h2> 
-    <% } %>
-    <% using (Html.BeginForm("UpdateInfo", "Survey", FormMethod.Post, new { @id = "dataForm" })) %>
-    <%{ %>
-        <% if (Model.Current.IsEditable()) { Html.RenderPartial("~/Views/Survey/Partials/ManagerRibbonPartial.ascx", Model); } %>
-        <fieldset>
-        
-        <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
-        <%= Html.Hidden("Current.Name", Model.Current.Name)%>         
-        <%= Html.Hidden("Project.ProjectVersionId", Model.Project.ProjectVersionId)%>
-        <%= Html.Hidden("Project.ProjectId", Model.Project.ProjectId)%>
-        <div id="tab-info-left">
-        <p>
-            <label>Project Name/Location:</label>
-            <%= Html.DrcogTextBox("Project.ProjectName", 
+    <% string value = String.Empty; %>
+    <div class="tab-content-container">
+        <%Html.RenderPartial("~/Views/Survey/Partials/ProjectTabPartial.ascx", Model); %>
+        <div class="tab-form-container">
+            <% if (!Model.Project.UpdateStatusId.Equals(default(int)))
+               { %>
+            <h2 id="status">
+                Current Status:
+                <%= Model.Project.UpdateStatus %></h2>
+            <% } %>
+            <form method="put" action="/api/SurveyInfo" id="dataForm">
+            <% if (Model.Current.IsEditable()) { Html.RenderPartial("~/Views/Survey/Partials/ManagerRibbonPartial.ascx", Model); } %>
+            <fieldset>
+            <legend></legend>
+                <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
+                <%= Html.Hidden("Current.Name", Model.Current.Name)%>
+                <%= Html.Hidden("Project.ProjectVersionId", Model.Project.ProjectVersionId)%>
+                <%= Html.Hidden("Project.ProjectId", Model.Project.ProjectId)%>
+                <div id="tab-info-left">
+                    <p>
+                        <label>
+                            Project Name/Location:</label>
+                        <%= Html.DrcogTextBox("Project.ProjectName", 
                     (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin), 
                     Model.Project.ProjectName.ToString(), 
                     new { @class = "longInputElement required", title="Please enter a project title.", @MAXLENGTH = 100 })%>
-            <br />       
-        </p>
-        <p>
-            <label>Primary Sponsor:</label>
-            <%if (Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
-              { %>
-            <%= Html.DropDownList("ProjectSponsorsModel.PrimarySponsor.OrganizationId",
+                        <br />
+                    </p>
+                    <p>
+                        <label>
+                            Primary Sponsor:</label>
+                        <%if (Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+                          { %>
+                        <%= Html.DropDownList("ProjectSponsorsModel.PrimarySponsor.OrganizationId",
                                 Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin),
                 new SelectList(Model.ProjectSponsorsModel.GetAvailableAgenciesList(), "key", "value", Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId),
                 "-- Select a Primary Sponsor --", 
                 new { @class = "mediumInputElement required", title="Please select a Primary Sponsor" })%>
-            <%}
-              else
-              {%> 
-            <% value = "None Selected"; if (Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId != null) { Model.ProjectSponsorsModel.GetAvailableAgenciesList().TryGetValue((int)Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId, out value); } %>
-            <span class="fakeinput medium"><%= Html.Encode(value)%></span>
-            <%= Html.Hidden("ProjectSponsorsModel.PrimarySponsor.OrganizationId", Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId)%>
-            <br />
-            <% } %>
-        </p>
-        <p>
-            <label>Agency Contact:</label>
-            <%if (Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
-              { %>
-                <%= Html.DropDownList("Project.SponsorContactId",
+                        <%}
+                          else
+                          {%>
+                        <% value = "None Selected"; if (Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId != null) { Model.ProjectSponsorsModel.GetAvailableAgenciesList().TryGetValue((int)Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId, out value); } %>
+                        <span class="fakeinput medium">
+                            <%= Html.Encode(value)%></span>
+                        <%= Html.Hidden("ProjectSponsorsModel.PrimarySponsor.OrganizationId", Model.ProjectSponsorsModel.PrimarySponsor.OrganizationId)%>
+                        <br />
+                        <% } %>
+                    </p>
+                    <p>
+                        <label>
+                            Agency Contact:</label>
+                        <%if (Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+                          { %>
+                        <%= Html.DropDownList("Project.SponsorContactId",
                     Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin),
                     new SelectList(Model.AvailableSponsorContacts, "key", "value", Model.Project.SponsorContactId),
                     "-- Select a Sponsor Contact --",
                     new { @class = "mediumInputElement not-required", title = "Please select a project sponsor" })%>
-            <%}
-              else
-              {%> 
-            <% value = "None Selected"; if (Model.Project.SponsorContactId != null) { Model.AvailableSponsorContacts.TryGetValue((int)Model.Project.SponsorContactId, out value); } %>
-            <span class="fakeinput medium"><%= Html.Encode(value)%></span>
-            <%= Html.Hidden("Project.SponsorContactId", Model.Project.SponsorContactId)%>
-            <br />
-            <% } %>
-        </p>
-        <%--<p>
+                        <%}
+                          else
+                          {%>
+                        <% value = "None Selected"; if (Model.Project.SponsorContactId != null) { Model.AvailableSponsorContacts.TryGetValue((int)Model.Project.SponsorContactId, out value); } %>
+                        <span class="fakeinput medium">
+                            <%= Html.Encode(value)%></span>
+                        <%= Html.Hidden("Project.SponsorContactId", Model.Project.SponsorContactId)%>
+                        <br />
+                        <% } %>
+                    </p>
+                    <%--<p>
             <label>Admin Level:</label>
             <%if (Model.Project.IsEditable())
               { %>
@@ -420,8 +373,7 @@
                 <br />
             <% } %>
         </p>--%>
-       
-        <%--<p>
+                    <%--<p>
             <label>Project Type:</label>
             <% value = "None Selected"; if (Model.Project.ProjectTypeId != null) 
                {
@@ -431,70 +383,81 @@
             <%= Html.Hidden("InfoModel.ProjectTypeId", Model.Project.ProjectTypeId)%>
             <br />
         </p>--%>
-         <p>
-            <label>Improvement Type:</label>
-            <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
-              { %>
-                <%= Html.DropDownList("Project.ImprovementTypeId",
+                    <p>
+                        <label>
+                            Improvement Type:</label>
+                        <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+                          { %>
+                        <%= Html.DropDownList("Project.ImprovementTypeId",
                     (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin), 
                     new SelectList(Model.AvailableImprovementTypes, "key", "value", Model.Project.ImprovementTypeId), 
                     "-- Select Improvment Type--", 
                     new { @class = "mediumInputElement required", title="Please select an improvment type." })%>
-            <%}
-              else
-              {%> 
-                <% value = "None Selected"; if (Model.Project.ImprovementTypeId != null) { Model.AvailableImprovementTypes.TryGetValue((int)Model.Project.ImprovementTypeId, out value); } %>
-                <span class="fakeinput medium"><%= Html.Encode(value)%></span>
-                <%= Html.Hidden("Project.ImprovementTypeId", Model.Project.ImprovementTypeId)%>
-                <br />
-            <% } %>
-        </p>
-        <% 
-            System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("en-US", false).NumberFormat;
-            nfi.CurrencyGroupSeparator = ",";
-            nfi.CurrencySymbol = "$";
-            nfi.CurrencyDecimalDigits = 0; 
-        %>
-        <p>
-            <label>Total Cost:</label>
-            
-            <%= Html.DrcogTextBox("Project.Funding.TotalCost", (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin), Model.Project.Funding.TotalCost.ToString("C", nfi), new { @class = "money w100" })%> &nbsp;($1,000s)
-        </p>
-        
-        <br />
-        <br />
-        
-        <h2>Funding Source(s)</h2>
-            <table id="fundingsources">
-            <%foreach (DRCOG.Domain.Models.Survey.FundingSource source in Model.Project.FundingSources)
-             { 
-                  Model.AvailableFundingResources.Remove(source.Id);
-                  %>
-                <tr id="fundingsource_row_<%=source.Id %>">
-                    <td>
-                        <span class="fakeinput w250" id="fundingsource_<%= source.Id %>_name"><%= source.Name %></span>
-                    </td>
-                <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
-                  { %>
-                    <td><button class="fundingsource-delete fg-button ui-state-default ui-priority-primary ui-corner-all" id='fundingsource_delete_<%=source.Id.ToString() %>'>Delete</button></td>                                
-                <%} %> 
-                </tr>
-            <%} %>
-            <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
-              { %>
-                <tr id="fundingsource-editor">
-                <td><%= Html.DropDownList("fundingsource_new_name",
+                        <%}
+                          else
+                          {%>
+                        <% value = "None Selected"; if (Model.Project.ImprovementTypeId != null) { Model.AvailableImprovementTypes.TryGetValue((int)Model.Project.ImprovementTypeId, out value); } %>
+                        <span class="fakeinput medium">
+                            <%= Html.Encode(value)%></span>
+                        <%= Html.Hidden("Project.ImprovementTypeId", Model.Project.ImprovementTypeId)%>
+                        <br />
+                        <% } %>
+                    </p>
+                    <% 
+                          System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("en-US", false).NumberFormat;
+                          nfi.CurrencyGroupSeparator = ",";
+                          nfi.CurrencySymbol = "$";
+                          nfi.CurrencyDecimalDigits = 0; 
+                    %>
+                    <p>
+                        <label>
+                            Total Cost:</label>
+                        <%= Html.DrcogTextBox("Project.Funding.TotalCost", (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin), Model.Project.Funding.TotalCost.ToString("C", nfi), new { @class = "money w100" })%>
+                        &nbsp;($1,000s)
+                    </p>
+                    <br />
+                    <br />
+                    <h2>
+                        Funding Source(s)</h2>
+                    <table id="fundingsources">
+                        <%foreach (DRCOG.Domain.Models.Survey.FundingSource source in Model.Project.FundingSources)
+                          {
+                              Model.AvailableFundingResources.Remove(source.Id);
+                        %>
+                        <tr id="fundingsource_row_<%=source.Id %>">
+                            <td>
+                                <span class="fakeinput w250" id="fundingsource_<%= source.Id %>_name">
+                                    <%= source.Name %></span>
+                            </td>
+                            <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+                              { %>
+                            <td>
+                                <button class="fundingsource-delete fg-button ui-state-default ui-priority-primary ui-corner-all"
+                                    id='fundingsource_delete_<%=source.Id.ToString() %>'>
+                                    Delete</button>
+                            </td>
+                            <%} %>
+                        </tr>
+                        <%} %>
+                        <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+                          { %>
+                        <tr id="fundingsource-editor">
+                            <td>
+                                <%= Html.DropDownList("fundingsource_new_name",
                     (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin),
                     new SelectList(Model.AvailableFundingResources, "key", "value"),
                     "-- Select --",
                     new { @class = "longInputElement not-required nobind", title = "Please select a project sponsor" })%>
-                </td>
-                <td><button id="btn-fundingsource-new" disabled='disabled' class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all add">Add</button></td>                                
-                </tr>                      
-            <%} %>
-            </table>
-        </div>
-        <%--<p>
+                            </td>
+                            <td>
+                                <button id="btn-fundingsource-new" disabled='disabled' class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all add">
+                                    Add</button>
+                            </td>
+                        </tr>
+                        <%} %>
+                    </table>
+                </div>
+                <%--<p>
             <label>Road or Transit:</label>
             <%if (Model.Project.IsEditable())
               { %>
@@ -512,7 +475,7 @@
                 <br />
             <% } %>   
         </p>--%>
-        <%--<p>
+                <%--<p>
             <label>Selection Agency:</label>
             <%if (Model.Project.IsEditable())
               { %>
@@ -530,7 +493,7 @@
                 <br />
             <% } %> 
         </p>--%>
-        <%--<p>
+                <%--<p>
            <label>Regionally Significant?:</label>
            <%if (Model.Project.IsEditable())
               { %>
@@ -547,47 +510,48 @@
                 <br />
             <% } %> 
         </p>--%>
-        </div>
         <div id="tab-info-right">
-        <p><label>Sponsor Notes:</label></p>
-        <p>
-        <%= Html.TextArea2("Project.SponsorNotes", 
+            <p>
+                <label>
+                    Sponsor Notes:</label></p>
+            <p>
+                <%= Html.TextArea2("Project.SponsorNotes", 
                             (Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin),
                             Model.Project.SponsorNotes,
                             0,
                             0,
                             new { @name = "Project.SponsorNotes", @class = "mediumInputElement not-required growable", title = "Please add the sponsor comments." })%>
-        </p>
-        <% if(Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin)) { %>
-        <p><label>DRCOG Notes:</label></p>
-        <p>
-        <%= Html.TextArea2("Project.DRCOGNotes",
+            </p>
+            <% if (Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+               { %>
+            <p>
+                <label>
+                    DRCOG Notes:</label></p>
+            <p>
+                <%= Html.TextArea2("Project.DRCOGNotes",
                             Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin),
                             Model.Project.DRCOGNotes,
                             0,
                             0,
                             new { @name = "Project.DRCOGNotes", @class = "mediumInputElement growable" })%>
-        </p>
-        <% } %>
+            </p>
+            <% } %>
         </div>
-        <div class="clear"></div> 
-        
-        <%if((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin)){ %>
-            <div class="relative" style="top: 80px;" id="update-inview">
-            <button type="submit" id="submitForm" class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all" >Save Changes</button>
-            
+        <div class="clear">
+        </div>
+        <%if ((Model.Project.IsEditable() && Model.Current.IsOpen()) || Model.Project.IsEditable(DRCOG.Domain.Models.Survey.InstanceSecurity.EditLevel.Admin))
+          { %>
+        <div class="relative">
+            <button type="submit" id="submitForm">
+                Save Changes</button>
+            <div id="submit-result">
             </div>
+        </div>
         <%} %>
-        
-        
         </fieldset>
-    <%} %>
-</div>
-   
-<div class="clear"></div>
-</div>
-
+        </form>
+    </div>
+    <div class="clear">
+    </div>
+    </div>
 </asp:Content>
-
-
-

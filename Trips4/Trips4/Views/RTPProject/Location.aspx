@@ -13,43 +13,13 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.Project.LocationVi
 <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
+        "use strict";
+
         // Prevent accidental navigation away
-        $(':input', document.dataForm).bind("change", function() { setConfirmUnload(true); });
-        $(':input', document.dataForm).bind("keyup", function() { setConfirmUnload(true); });
-        $(':button', document.dataForm).unbind("keyup", function() { setConfirmUnload(true); }); // Want to not do this for my hyperlink buttons. -DBD
-        //disable the onbeforeunload message if we are using the submitform button
-        if ($('#submitForm')) {
-            $('#submitForm').click(function() { window.onbeforeunload = null; return true; });
-        }
-
-        //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-        $("#dataForm").validate({
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#result').html(response.message).addClass("success");
-                        $('#submitForm').addClass('ui-state-disabled');
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        $('#result').text(textStatus);
-                        $('#result').addClass('error');
-                    }
-                });
-            }
-        });
+        App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+        $('#submitForm').button({ disabled: true });
     });
-
-    function setConfirmUnload(on) {
-        $('#submitForm').removeClass('ui-state-disabled');
-        $('#result').html("");
-        window.onbeforeunload = (on) ? unloadMessage : null;
-    }
-
-    function unloadMessage() {
-        return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
-    }
 </script>
 
 </asp:Content>
@@ -59,8 +29,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.Project.LocationVi
     <% Html.RenderPartial("~/Views/RtpProject/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
     
     <div class="tab-form-container"> 
-        <% using (Html.BeginForm("UpdateLocation", "RTPProject", FormMethod.Post, new { @id = "dataForm" })) %>
-        <%{ %>
+        <form method="put" action="/api/RtpProjectLocation" id="dataForm">
             <%=Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
             <%=Html.Hidden("RtpYear", Model.ProjectSummary.RtpYear)%>
             <%=Html.Hidden("ProjectVersionId", Model.ProjectSummary.ProjectVersionId)%>
@@ -94,9 +63,11 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.Project.LocationVi
                     new { @class = "mediumInputElement", title = "Please select a route #.", @id="RouteId" })%>            
             </p>
             <%if(Model.ProjectSummary.IsEditable()){ %>
-                <div style="position: relative;">
-                    <button type="submit" id="submitForm" class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all" >Save Changes</button>
-                    <div id="result"></div>
+                <div class="relative">
+                    <button type="submit" id="submitForm">
+                        Save Changes</button>
+                    <div id="submit-result">
+                    </div>
                 </div>
                 <br />
             <%} %>
@@ -183,14 +154,9 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.Project.LocationVi
                 <td>&nbsp;</td><td>&nbsp;</td></tr>
            </table>
            </div>
-           
-           
-           
-           
-                                   
-                       
-        <%} %>
+        </form>
     </div>
+
 <div class="clear"></div>
 </div>
 

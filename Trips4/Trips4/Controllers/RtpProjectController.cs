@@ -101,6 +101,7 @@ namespace Trips4.Controllers
             return View(viewModel);            
         }
 
+        //TODO: moved to /api/RtpProjectInfoController
         /// <summary>
         /// Update the General Information for a project
         /// </summary>
@@ -172,8 +173,8 @@ namespace Trips4.Controllers
         //    sqlParms.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, ParameterName = "@Id", Value = guid });
         //    try
         //    {
-        //        //var result = _rtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
-        //        var result = _rtpProjectRepository.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
+        //        //var result = RtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
+        //        var result = RtpProjectRepository.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
 
         //        return Json(new { guid = result.First().Key, value = result.First().Value });
         //    }
@@ -196,7 +197,7 @@ namespace Trips4.Controllers
         //    sqlParms.Add(new SqlParameter("@Id", guid));
         //    try
         //    {
-        //        var result = _rtpProjectRepository.GetLookupSingle<Int32>("[dbo].[Lookup_GetImprovementTypeIdByProjectTypeId]", "ID", sqlParms);
+        //        var result = RtpProjectRepository.GetLookupSingle<Int32>("[dbo].[Lookup_GetImprovementTypeIdByProjectTypeId]", "ID", sqlParms);
         //        return new JsonResult
         //        {
         //            Data = result
@@ -348,7 +349,7 @@ namespace Trips4.Controllers
 
             //ProjectAmendments amendment = amendmentViewModel.ProjectAmendments;
             //amendment.LocationMapPath = DRCOGConfig.GetConfig().LocationMapPath;
-            //IAmendmentStrategy strategy = new DRCOG.TIP.Services.AmendmentStrategy(_rtpProjectRepository, amendment).PickStrategy();
+            //IAmendmentStrategy strategy = new DRCOG.TIP.Services.AmendmentStrategy(RtpProjectRepository, amendment).PickStrategy();
             //int projectVersionId = strategy.Amend();
 
             //return RedirectToAction("Details", new { controller = "Project", guid = projectVersionId });
@@ -570,6 +571,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
+        // TODO: move to /api/RtpProjectLocationController
         /// <summary>
         /// Update the Location information from the /Location view
         /// </summary>
@@ -1219,7 +1221,7 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Strikes(string year, int guid)
         //{
-        //    var viewModel = _rtpProjectRepository.GetStrikesViewModel(guid, year);
+        //    var viewModel = RtpProjectRepository.GetStrikesViewModel(guid, year);
         //    return View(viewModel);
         //}
        

@@ -197,9 +197,14 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Configuration\DRCOGConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Api\MiscController.cs" />
+    <Compile Include="Controllers\Api\BuildInfoController.cs" />
+    <Compile Include="Controllers\Api\RtpStatusController.cs" />
+    <Compile Include="Controllers\Api\RtpProjectInfoController.cs" />
+    <Compile Include="Controllers\Api\RtpProjectLocationController.cs" />
+    <Compile Include="Controllers\Api\SurveyInfoController.cs" />
     <Compile Include="Controllers\Api\RtpPlanCycleController.cs" />
-    <Compile Include="Controllers\Api\TipDataController.cs" />
+    <Compile Include="Controllers\Api\SurveyLocationController.cs" />
+    <Compile Include="Controllers\Api\TipStatusController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FundingController.cs" />

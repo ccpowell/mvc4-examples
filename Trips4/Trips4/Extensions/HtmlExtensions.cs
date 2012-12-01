@@ -271,7 +271,10 @@ namespace DRCOG.Web.Extensions
             {
                 tagBuilder = new TagBuilder("textarea");
                 tagBuilder.MergeAttribute("id", id);
-                tagBuilder.MergeAttribute("name", id);
+                if (!htmlDict.ContainsKey("name"))
+                {
+                    tagBuilder.MergeAttribute("name", id);
+                }
                 tagBuilder.MergeAttributes(htmlDict);
 
                 tagBuilder.SetInnerText(value != null ? value.ToString() : String.Empty);

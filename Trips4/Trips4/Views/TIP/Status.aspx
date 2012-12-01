@@ -29,8 +29,7 @@
         </div>
         <%Html.RenderPartial("~/Views/TIP/Partials/TipTabPartial.ascx", Model.TipSummary); %>
         <div id="tipStatusForm" class="tab-form-container">
-            <% using (Html.BeginForm("UpdateStatus", "api/TipData", FormMethod.Post, new { @id = "dataForm" })) %>
-            <%{ %>
+            <form id="dataForm" action="/api/TipStatus" method="put">
             <div style="margin-right: 50px; margin-top: 10px; float: right;">
                 <h2>
                     Funding Increments</h2>
@@ -155,14 +154,14 @@
             <br />
             <%if (Model.IsEditable())
               { %>
-            <div>
+            <div class="relative">
                 <button type="submit" id="submitForm">
                     Save Changes</button>
                 <div id="submit-result">
                 </div>
             </div>
             <%} %>
-            <%} %>
+            </form>
         </div>
     </div>
     <div class="clear">

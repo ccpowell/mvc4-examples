@@ -128,6 +128,7 @@
     <Compile Include="Interfaces\ISurveyProject.cs" />
     <Compile Include="Interfaces\ISurveyRepository.cs" />
     <Compile Include="Interfaces\ITripsUserRepository.cs" />
+    <Compile Include="Models\JsonMessage.cs" />
     <Compile Include="Models\ProjectSponsorsModel.cs" />
     <Compile Include="Models\Survey\SurveyOverview.cs" />
     <Compile Include="Models\TIP\Delay.cs" />

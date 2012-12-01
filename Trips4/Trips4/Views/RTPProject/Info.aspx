@@ -27,40 +27,8 @@
         $(".growable").growing({ buffer: 5 });
 
         // Prevent accidental navigation away
-        $(':input', document.dataForm).bind("change", function() { setConfirmUnload(true); });
-        $(':input', document.dataForm).bind("keyup", function() { setConfirmUnload(true); });
-        $(':input.nobind', document.dataForm).unbind("change");
-        $(':input.nobind', document.dataForm).unbind("keyup");
-
-        //$(':button', document.dataForm).unbind("keyup", function() { setConfirmUnload(true); }); // Want to not do this for my hyperlink buttons. -DBD
-        //disable the onbeforeunload message if we are using the submitform button
-        if ($('#submitForm')) {
-            $('#submitForm').click(function() { window.onbeforeunload = null; return true; });
-        }
-
-        //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
-        $("#dataForm").validate({
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    //beforeSubmit: showRequest,
-                    dataType: 'json',
-                    success: function(response) {
-                        //alert(response.error == 'undefined');
-                        if (typeof response.error == 'undefined' || response.error == '') {
-                            $('#result').text(response.message).addClass('success').show();
-                            $('#submitForm').addClass('ui-state-disabled');
-                        } else {
-                            $('#result').text(response.error).addClass('error').show();
-                        }
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        $('#result').text(textStatus);
-                        $('#result').addClass('error').show();
-                        $('#submitForm').addClass('ui-state-disabled');
-                    }
-                });
-            }
-        });
+        App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
+        $('#submitForm').button({ disabled: true });
 
         // pre-submit callback 
         function showRequest(formData, jqForm, options) {
@@ -97,17 +65,7 @@
                 }
             }
         });
-
-        function setConfirmUnload(on) {
-            $('#submitForm').removeClass('ui-state-disabled');
-            $('#result').html("").hide();
-            window.onbeforeunload = (on) ? unloadMessage : null;
-        }
-
-        function unloadMessage() {
-            return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
-        }
-
+        
         //        $('#SponsorId').change(function() {
         //            var sponsorId = $('#SponsorId').val();
         //            $.getJSON('<%= Url.Action("UpdateAvailableSponsorContacts")%>/' + sponsorId, null, function(data) {
@@ -160,11 +118,11 @@
 <div class="tab-content-container">
     <% Html.RenderPartial("~/Views/RTPProject/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
     
-    <div class="tab-form-container">    
-    <% using (Html.BeginForm("UpdateInfo", "RtpProject", FormMethod.Post, new { @id = "dataForm" })) %>
-    <%{ %>
+    <div class="tab-form-container">   
+    <form method="put" action="/api/RtpProjectInfo" id="dataForm">
         <%Html.RenderPartial("~/Views/RtpProject/Partials/ManagerRibbonPartial.ascx", Model.ProjectSummary); %>
         <fieldset>
+        <legend></legend>
         <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
         <%= Html.Hidden("InfoModel.RtpYear", Model.InfoModel.RtpYear)%>         
         <%= Html.Hidden("InfoModel.ProjectVersionId", Model.ProjectSummary.ProjectVersionId)%>
@@ -336,14 +294,14 @@
         
         <%if(Model.ProjectSummary.IsEditable()){ %>
             <div class="relative">
-            <button type="submit" id="submitForm" class="fg-button ui-state-default ui-priority-primary ui-state-disabled ui-corner-all" >Save Changes</button>
-            <div id="result" class="relative"></div>
+                <button type="submit" id="submitForm">
+                    Save Changes</button>
+                <div id="submit-result">
+                </div>
             </div>
         <%} %>
-        
-        
         </fieldset>
-    <%} %>
+    </form>
 </div>
    
 <div class="clear"></div>
