@@ -211,7 +211,6 @@ namespace Trips4.Controllers
             InfoModel model = _projectRepository.GetProjectInfo(projectVersionId, year);
 
             //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
-            // TODO: remove prefixes from view and use UpdateModel
             model.AdministrativeLevelId = viewModel.InfoModel.AdministrativeLevelId;
             model.DRCOGNotes = viewModel.InfoModel.DRCOGNotes;
             model.ImprovementTypeId = viewModel.InfoModel.ImprovementTypeId;

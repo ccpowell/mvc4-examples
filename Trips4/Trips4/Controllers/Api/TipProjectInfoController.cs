@@ -4,38 +4,32 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DRCOG.Domain.Models;
-using DRCOG.Domain.Models.Survey;
-using System.Net.Http.Formatting;
 using DRCOG.Domain.Interfaces;
+using DRCOG.Domain.ViewModels.TIPProject;
 
 namespace Trips4.Controllers.Api
 {
-    public class SurveyInfoController : ApiController
+    public class TipProjectInfoController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private Trips4.Data.TripsRepository TripsRepository { get; set; }
-        private ISurveyRepository SurveyRepository { get; set; }
+        private IProjectRepository ProjectRepository { get; set; }
 
-        public SurveyInfoController(ISurveyRepository surveyRepository,
+        public TipProjectInfoController(IProjectRepository projectRepository,
             Trips4.Data.TripsRepository trepo)
         {
             TripsRepository = trepo;
-            SurveyRepository = surveyRepository;
+            ProjectRepository = projectRepository;
         }
 
-        [AuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
-        public void Put(DRCOG.Domain.ViewModels.Survey.InfoViewModel viewModel)
+        public void Put(InfoViewModel viewModel)
         {
-            // not in the form where we expect it
-            viewModel.Project.SponsorId = viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId.Value;
-            viewModel.Project.TimePeriod = viewModel.Current.Name;
-
             //Send update to repo
             try
             {
-                SurveyRepository.UpdateProjectInfo(viewModel.Project);
+                //throw new Exception("fooey");
+                ProjectRepository.UpdateProjectInfo(viewModel.InfoModel);
             }
             catch (Exception ex)
             {

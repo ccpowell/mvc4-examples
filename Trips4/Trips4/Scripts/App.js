@@ -43,7 +43,7 @@ App.utility = (function ($) {
         //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
         $form.validate({
             submitHandler: function (form) {
-                $button.button("disable");
+                $button.button("disable").blur().removeClass('ui-state-hover');
                 $form.ajaxSubmit({
                     url: url,
                     success: function (response) {

@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Api\SurveyInfoController.cs" />
     <Compile Include="Controllers\Api\RtpPlanCycleController.cs" />
     <Compile Include="Controllers\Api\SurveyLocationController.cs" />
+    <Compile Include="Controllers\Api\TipProjectInfoController.cs" />
     <Compile Include="Controllers\Api\TipStatusController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\ErrorController.cs" />

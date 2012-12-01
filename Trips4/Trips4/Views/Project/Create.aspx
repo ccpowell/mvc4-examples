@@ -13,14 +13,13 @@
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
 
     <script type="text/javascript">
-        var isDirty = false, formSubmittion = false;
-
         var add1url = '<%=Url.Action("AddCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         var remove1url = '<%=Url.Action("DropCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         var add2url = '<%=Url.Action("AddCurrent2Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         var remove2url = '<%=Url.Action("DropCurrent2Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+
             // Prevent accidental navigation away
             $(':input', document.dataForm).bind("change", function() { setConfirmUnload(true); });
             $(':input', document.dataForm).bind("keyup", function() { setConfirmUnload(true); });
