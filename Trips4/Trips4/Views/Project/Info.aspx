@@ -40,7 +40,6 @@
             //        $('#ppy1').popeye(ppy1options);
 
             // Prevent accidental navigation away
-
             if (isEditable) {
                 App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
                 $('#submitForm').button({ disabled: true });

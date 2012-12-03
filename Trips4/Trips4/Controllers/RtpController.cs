@@ -784,38 +784,6 @@ namespace Trips4.Controllers
             });
         }
 
-        // TODO: moved to /api/RtpStatusController
-        /// <summary>
-        /// Update the Status for a RTP
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
-        public ActionResult UpdateStatus(StatusViewModel viewModel)
-        {
-
-            RtpStatusModel model = new RtpStatusModel();
-            //StatusViewModel model = new StatusViewModel();
-            UpdateModel(model);
-
-            if (!ModelState.IsValid)
-            {
-                viewModel.RtpStatus = model;
-                return View("Status", viewModel);
-            }
-
-            //Send update to repo
-            try
-            {
-                _rtpRepository.UpdateRtpStatus(model);
-            }
-            catch (Exception ex)
-            {
-                return Json(new { message = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
 
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]

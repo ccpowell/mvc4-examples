@@ -101,56 +101,6 @@ namespace Trips4.Controllers
             return View(viewModel);            
         }
 
-        //TODO: moved to /api/RtpProjectInfoController
-        /// <summary>
-        /// Update the General Information for a project
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
-        public JsonResult UpdateInfo(InfoViewModel viewModel)
-        {
-            int projectVersionId = viewModel.InfoModel.ProjectVersionId;
-            string year = viewModel.InfoModel.RtpYear;
-            //Get the model from the database
-            InfoModel model = _rtpProjectRepository.GetProjectInfo(projectVersionId, year);
-            //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
-            model.AdministrativeLevelId = viewModel.InfoModel.AdministrativeLevelId;
-            model.DRCOGNotes = viewModel.InfoModel.DRCOGNotes;
-            model.ImprovementTypeId = viewModel.InfoModel.ImprovementTypeId;
-            model.IsPoolMaster = viewModel.InfoModel.IsPoolMaster;
-            model.ProjectId = viewModel.InfoModel.ProjectId;
-            model.ProjectName = viewModel.InfoModel.ProjectName;
-            model.ProjectPoolId = viewModel.InfoModel.ProjectPoolId;
-            model.ProjectTypeId = viewModel.InfoModel.ProjectTypeId;
-            model.ProjectVersionId = viewModel.InfoModel.ProjectVersionId;
-            model.SelectionAgencyId = viewModel.InfoModel.SelectionAgencyId;
-            model.SponsorContactId = viewModel.InfoModel.SponsorContactId;
-            model.SponsorId = viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
-            model.SponsorNotes = viewModel.InfoModel.SponsorNotes;
-            model.RtpYear = viewModel.InfoModel.RtpYear;
-            model.TransportationTypeId = viewModel.InfoModel.TransportationTypeId;
-            model.IsRegionallySignificant = viewModel.InfoModel.IsRegionallySignificant;
-
-            if (!ModelState.IsValid)
-            {
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-
-            //Send update to repo
-            try
-            {
-                _rtpProjectRepository.UpdateProjectInfo(model);
-            }
-            catch (Exception ex)
-            {
-                //this.Logger.LogMethodError("ProjectController", "UpdateInfo", "TipProjectInfoViewModel", ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new {message ="Changes successfully saved."});
-
-        }
 
         public JsonResult GetImprovementTypeMatch(int id)
         {
@@ -571,53 +521,6 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        // TODO: move to /api/RtpProjectLocationController
-        /// <summary>
-        /// Update the Location information from the /Location view
-        /// </summary>
-        /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
-        [HttpPost]
-        public ActionResult UpdateLocation()
-        {
-            //Manually parse up the form b/c of the muni & county split stuff
-            int projectVersionId = Convert.ToInt32(Request.Form["ProjectVersionId"]);
-            string year = Request.Form["RtpYear"];
-            //Get the existing model from the datagbase
-            LocationModel model = _rtpProjectRepository.GetProjectLocationModel(projectVersionId, year);
-            //Update values
-            model.Limits = Request.Form["Limits"];
-            model.FacilityName = Request.Form["FacilityName"];
-            int testOut;
-            model.RouteId = Int32.TryParse(Request.Form["RouteId"], out testOut) ? Int32.Parse(Request.Form["RouteId"]) : 0;
-            
-            //parse out the county & muni shares stuff... 
-            Dictionary<int, CountyShareModel> countyShares = ExtractCountyShares(Request.Form);
-            Dictionary<int, MunicipalityShareModel> muniShares = ExtractMuniShares(Request.Form);
-
-            //Send updates to repo
-            try
-            {
-                _rtpProjectRepository.UpdateProjectLocationModel(model);
-                //Update the county shares
-                foreach(CountyShareModel m in countyShares.Values)
-                {
-                    _rtpProjectRepository.UpdateCountyShare(m);
-                }
-                //Update the muni shares
-                foreach (MunicipalityShareModel m in muniShares.Values)
-                {
-                    _rtpProjectRepository.UpdateMunicipalityShare(m);
-                }
-                //Ok, we're good.
-            }
-            catch (Exception ex)
-            {
-                //this.Logger.LogMethodError("ProjectController", "UpdateLocation", Request.Form.ToString(), ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
 
         public JsonResult GetSegmentDetails(int segmentId)
         {

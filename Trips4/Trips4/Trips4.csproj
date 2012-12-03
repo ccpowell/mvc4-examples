@@ -198,6 +198,7 @@
     <Compile Include="Configuration\DRCOGConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BuildInfoController.cs" />
+    <Compile Include="Controllers\Api\TipProjectLocationController.cs" />
     <Compile Include="Controllers\Api\RtpStatusController.cs" />
     <Compile Include="Controllers\Api\RtpProjectInfoController.cs" />
     <Compile Include="Controllers\Api\RtpProjectLocationController.cs" />

@@ -1399,53 +1399,6 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        // TODO: move to api/SurveyInfoController
-        /// <summary>
-        /// Update the General Information for a project
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
-        public ActionResult UpdateInfo(InfoViewModel viewModel)
-        {
-            LoadSessionData();
-
-            //if (appstate.CurrentUser.LastProjectVersionId == viewModel.Project.ProjectVersionId)
-            //{
-            int projectVersionId = viewModel.Project.ProjectVersionId;
-            string year = viewModel.Current.Name;
-
-            //Get the model from the database
-            Project model = _surveyRepository.GetProjectInfo(projectVersionId, year);
-
-            //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
-            model.AdministrativeLevelId = viewModel.Project.AdministrativeLevelId;
-            model.DRCOGNotes = viewModel.Project.DRCOGNotes;
-            model.ImprovementTypeId = viewModel.Project.ImprovementTypeId;
-            model.ProjectId = viewModel.Project.ProjectId;
-            model.ProjectName = viewModel.Project.ProjectName;
-            model.ProjectVersionId = viewModel.Project.ProjectVersionId;
-            model.SponsorContactId = viewModel.Project.SponsorContactId;
-            model.SponsorId = (int)viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
-            model.SponsorNotes = viewModel.Project.SponsorNotes;
-            model.TimePeriod = viewModel.Current.Name;
-            model.TransportationTypeId = viewModel.Project.TransportationTypeId;
-            model.UpdateStatusId = viewModel.Project.UpdateStatusId;
-            model.Funding = viewModel.Project.Funding;
-
-            //Send update to repo
-            try
-            {
-                _surveyRepository.UpdateProjectInfo(model);
-            }
-            catch (Exception ex)
-            {
-                //this.Logger.LogMethodError("ProjectController", "UpdateInfo", "TipProjectInfoViewModel", ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         public JsonResult UpdateAvailableSponsorContacts(int id)
@@ -1724,54 +1677,6 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        // TODO: move to api/SurveyLocationController
-        /// <summary>
-        /// Update the Location information from the /Location view
-        /// </summary>
-        /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator, Sponsor")]
-        [HttpPost]
-        public ActionResult UpdateLocation()
-        {
-            //Manually parse up the form b/c of the muni & county split stuff
-            int projectVersionId = Convert.ToInt32(Request.Form["ProjectVersionId"]);
-            string year = Request.Form["Year"];
-            //Get the existing model from the datagbase
-            LocationModel model = _surveyRepository.GetProjectLocationModel(projectVersionId, year);
-            //Update values
-            model.Limits = Request.Form["Limits"];
-            model.FacilityName = Request.Form["FacilityName"];
-            int testOut;
-            model.RouteId = Int32.TryParse(Request.Form["RouteId"], out testOut) ? Int32.Parse(Request.Form["RouteId"]) : 0;
-
-            //parse out the county & muni shares stuff... 
-            Dictionary<int, CountyShareModel> countyShares = ExtractCountyShares(Request.Form);
-            Dictionary<int, MunicipalityShareModel> muniShares = ExtractMuniShares(Request.Form);
-
-            //Send updates to repo
-            try
-            {
-                _surveyRepository.UpdateProjectLocationModel(model, projectVersionId);
-                _surveyRepository.CheckUpdateStatusId(_surveyRepository.GetProjectBasics(projectVersionId));
-                //Update the county shares
-                foreach (CountyShareModel m in countyShares.Values)
-                {
-                    _surveyRepository.UpdateCountyShare(m);
-                }
-                //Update the muni shares
-                foreach (MunicipalityShareModel m in muniShares.Values)
-                {
-                    _surveyRepository.UpdateMunicipalityShare(m);
-                }
-                //Ok, we're good.
-            }
-            catch (Exception ex)
-            {
-                //this.Logger.LogMethodError("ProjectController", "UpdateLocation", Request.Form.ToString(), ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
 
         /// <summary>
         /// Add a county share record (ProjectCountyGeography table)

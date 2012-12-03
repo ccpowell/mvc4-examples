@@ -197,54 +197,6 @@ namespace Trips4.Controllers
         }
 
         /// <summary>
-        /// Update the General Information for a project
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult UpdateInfo(InfoViewModel viewModel)
-        {
-            int projectVersionId = viewModel.InfoModel.ProjectVersionId.Value;
-            string year = viewModel.InfoModel.TipYear;
-            //Get the model from the database
-            InfoModel model = _projectRepository.GetProjectInfo(projectVersionId, year);
-
-            //Update it - UpdateModel was being wonky so it's a left/right-copy -DB    -- Did he say 'wonky'? Is that a word? -DBD
-            model.AdministrativeLevelId = viewModel.InfoModel.AdministrativeLevelId;
-            model.DRCOGNotes = viewModel.InfoModel.DRCOGNotes;
-            model.ImprovementTypeId = viewModel.InfoModel.ImprovementTypeId;
-            model.IsPoolMaster = viewModel.InfoModel.IsPoolMaster;
-            model.ProjectId = viewModel.InfoModel.ProjectId;
-            model.ProjectName = viewModel.InfoModel.ProjectName;
-            model.ProjectPoolId = viewModel.InfoModel.ProjectPoolId;
-            model.ProjectTypeId = viewModel.InfoModel.ProjectTypeId;
-            model.ProjectVersionId = viewModel.InfoModel.ProjectVersionId;
-            model.SelectionAgencyId = viewModel.InfoModel.SelectionAgencyId;
-            model.SponsorContactId = viewModel.InfoModel.SponsorContactId;
-            model.SponsorId = viewModel.InfoModel.SponsorId;
-            model.SponsorNotes = viewModel.InfoModel.SponsorNotes;
-            model.TipYear = viewModel.InfoModel.TipYear;
-            model.TransportationTypeId = viewModel.InfoModel.TransportationTypeId;
-            model.IsRegionallySignificant = viewModel.InfoModel.IsRegionallySignificant;
-            model.STIPID = viewModel.InfoModel.STIPID;
-
-            //Send update to repo
-            try
-            {
-                throw new Exception("fooey");
-                _projectRepository.UpdateProjectInfo(model);
-            }
-            catch (Exception ex)
-            {
-                Logger.WarnException("Unable to update Project Info", ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-
-        }
-
-        /// <summary>
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -550,57 +502,6 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-        /// <summary>
-        /// Update the Location information from the /Location view
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult UpdateLocation()
-        {
-            //Manually parse up the form b/c of the muni & county split stuff
-            int projectVersionId = Convert.ToInt32(Request.Form["ProjectVersionId"]);
-            string year = Request.Form["TipYear"];
-            //Get the existing model from the datagbase
-            LocationModel model = _projectRepository.GetProjectLocationModel(projectVersionId, year);
-            //Update values
-            model.Limits = Request.Form["Limits"];
-            model.FacilityName = Request.Form["FacilityName"];
-            //model.CdotRegionId = 
-            int cdotRegion = default(int), delaysLocation = default(int);
-            Int32.TryParse(Request.Form["TipProjectLocation.CdotRegionId"], out cdotRegion);
-            Int32.TryParse(Request.Form["TipProjectLocation.AffectedProjectDelaysLocationId"], out delaysLocation);
-
-            model.CdotRegionId = cdotRegion;
-            model.AffectedProjectDelaysLocationId = delaysLocation;
-
-            //parse out the county & muni shares stuff... 
-            Dictionary<int, CountyShareModel> countyShares = ExtractCountyShares(Request.Form);
-            Dictionary<int, MunicipalityShareModel> muniShares = ExtractMuniShares(Request.Form);
-
-            //Send updates to repo
-            try
-            {
-                _projectRepository.UpdateProjectLocationModel(model);
-                //Update the county shares
-                foreach (CountyShareModel m in countyShares.Values)
-                {
-                    _projectRepository.UpdateCountyShare(m);
-                }
-                //Update the muni shares
-                foreach (MunicipalityShareModel m in muniShares.Values)
-                {
-                    _projectRepository.UpdateMunicipalityShare(m);
-                }
-                //Ok, we're good.
-            }
-            catch (Exception ex)
-            {
-                //this.Logger.LogMethodError("ProjectController", "UpdateLocation", Request.Form.ToString(), ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
-            }
-            return Json(new { message = "Changes successfully saved." });
-        }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPoolProject(int poolMasterVersionId, string projectName, string description, string beginAt, string endAt, decimal cost)
