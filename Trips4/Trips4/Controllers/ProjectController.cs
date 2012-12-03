@@ -457,6 +457,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
+
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateScope(ScopeViewModel viewModel)

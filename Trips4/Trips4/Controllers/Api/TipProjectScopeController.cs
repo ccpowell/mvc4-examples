@@ -9,31 +9,31 @@ using DRCOG.Domain.ViewModels.TIPProject;
 
 namespace Trips4.Controllers.Api
 {
-    public class TipProjectInfoController : ApiController
+    public class TipProjectScopeController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private Trips4.Data.TripsRepository TripsRepository { get; set; }
         private IProjectRepository ProjectRepository { get; set; }
 
-        public TipProjectInfoController(IProjectRepository projectRepository,
+        public TipProjectScopeController(IProjectRepository projectRepository,
             Trips4.Data.TripsRepository trepo)
         {
             TripsRepository = trepo;
             ProjectRepository = projectRepository;
         }
 
-        public void Put(InfoViewModel viewModel)
+        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        public void Put(ScopeViewModel viewModel)
         {
             //Send update to repo
             try
             {
-                //throw new Exception("fooey");
-                ProjectRepository.UpdateProjectInfo(viewModel.InfoModel);
+                ProjectRepository.UpdateProjectScope(viewModel.TipProjectScope);
             }
             catch (Exception ex)
             {
-                Logger.WarnException("Could not update TIP Project Info", ex);
+                Logger.WarnException("Could not TIP Project Scope", ex);
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
         }
