@@ -69,10 +69,11 @@ namespace Trips4.Controllers
                 LoadSession();
                 // But if the identity is not authenticated then the user didn't even log in.
                 var appState = Session[Trips4.DRCOGApp.SessionIdentifier] as ApplicationState;
-                bool noUser = ((appState == null) ||
-                (appState.CurrentUser == null) ||
-                (appState.CurrentUser.profile == null) ||
-                (appState.CurrentUser.profile.PersonGUID == Guid.Empty));
+                bool noUser = (
+                    (appState == null) ||
+                    (appState.CurrentUser == null) ||
+                    (appState.CurrentUser.profile == null) ||
+                    (appState.CurrentUser.profile.PersonGUID == Guid.Empty));
                 string timeoutMessage = string.Empty;
                 if (noUser && User.Identity.IsAuthenticated)
                 {
@@ -88,6 +89,7 @@ namespace Trips4.Controllers
                     Message = Request["message"] ?? TempData["message"] as String ?? timeoutMessage,
                     ReturnUrl = Request["ReturnUrl"] ?? String.Empty
                 };
+                viewModel.RefreshAssemblyVersion();
 
                 // N.B. Adding a header requires Integrated Pipeline mode, so either IIS or IIS Express is
                 // required to run this (Cassini won't do it).
@@ -115,6 +117,14 @@ namespace Trips4.Controllers
             LogOnModel model = viewModel.LogOnModel;
             try
             {
+                LoadSession();
+
+                if (GuestUser(model))
+                {
+                    return base.SetAuthCookie(model, returnUrl);
+                }
+
+                viewModel.RefreshAssemblyVersion();
                 if (ModelState.IsValid)
                 {
                     this.LoadSession();
@@ -132,21 +142,18 @@ namespace Trips4.Controllers
 
                         string exceptionMessage;
                         bool isApproved = UserService.GetUserApproval(model.UserName);
-                        if ((bool)isApproved) exceptionMessage = "The user name or password provided is incorrect.";
-                        else exceptionMessage = "Your account has not been activated. Please click on the link in your verification email or use the link above to resend the verification email to this email address.";
+                        if (isApproved)
+                            exceptionMessage = "The user name or password provided is incorrect.";
+                        else
+                            exceptionMessage = "Your account has not been activated. Please click on the link in your verification email or use the link above to resend the verification email to this email address.";
                         //ModelState.AddModelError("", exceptionMessage);
                         viewModel.Message = exceptionMessage;
-                        viewModel.RefreshAssemblyVersion();
                     }
                 }
                 else
                 {
-                    //check to see if user is not approved
-                    string exceptionMessage = "The user name or password provided is incorrect.";
-
                     //pass back the error
-                    viewModel.Message = exceptionMessage;
-                    viewModel.RefreshAssemblyVersion();
+                    viewModel.Message = "User name and password must be entered.";
                 }
 
                 return View(viewModel);
@@ -162,6 +169,39 @@ namespace Trips4.Controllers
                 ErrorViewModel error = new ErrorViewModel(ex + "An unexpected error has occurred while attempting to log you into the system.", "This error has been logged.", ex, this.ControllerName, "Index - Post");
                 return View("CustomError", error);
             }
+        }
+
+        private bool GuestUser(LogOnModel model)
+        {
+            if (model.LoginType != "guest")
+            {
+                return false;
+            }
+            model.UserName = "guest";
+            model.Password = "!!Test123";
+
+            // TODO: remove this
+            //Membership.DeleteUser(model.UserName);
+
+            // see if this is a valid user
+            if (Membership.ValidateUser(model.UserName, model.Password))
+            {
+                Logger.Debug("found guest");
+                return true;
+            }
+
+            // if not, add the user and roles
+            Logger.Debug("creating user " + model.UserName);
+            var profile = new ShortProfile()
+            {
+                FirstName = "Anonymous",
+                LastName = "Guest",
+                Password = model.Password,
+                RecoveryEmail = "trips.guest@drcog.org",
+                UserName = model.UserName
+            };
+            _userRepository.CreateUserAndPerson(profile);
+            return true;
         }
 
 

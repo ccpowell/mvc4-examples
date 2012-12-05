@@ -27,11 +27,17 @@
                             <%= Html.CheckBoxFor(m => m.LogOnModel.RememberMe) %>
                         </p>
                         <p>
-                            <button type="submit" class="">
-                                <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" />
+                            <button type="submit" name="LogOnModel.LoginType" value="administrator">
+                                <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" alt="lock" />
                                 Log In
                             </button>
-                            or <a id="btn_forgotPassword" href="#">Forgot Password?</a>
+                        </p>
+                        <p>
+                            <button type="submit" name="LogOnModel.LoginType" value="guest">Log In as Guest</button>
+                            <br />No user name or password required.
+                        </p>
+                        <p>
+                            <a id="btn_forgotPassword" href="#">Forgot Password?</a>
                             <%--<%= Html.ActionLink("Forgot Password?", "RecoverPassword", "Account")%>--%>
                         </p>
                         <br />

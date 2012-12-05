@@ -496,13 +496,14 @@ namespace DRCOG.Data
                             summary.Cycle.Name = rdr["CycleName"].ToString();
                             summary.Cycle.Id = rdr["CycleId"].ToString().SmartParseDefault<int>(default(int));
                             list.Add(summary);
+                            //Logger.Debug("Amendment Status " + rdr["AmendmentStatusId"].ToString());
                         }
                     }
                 }
             }
             catch (Exception exc)
             {
-
+                Logger.WarnException("Exception in RtpRepository.GetAmendableProjects", exc);
             }
 
             return list;

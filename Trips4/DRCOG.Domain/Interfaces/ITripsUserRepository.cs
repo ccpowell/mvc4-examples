@@ -23,5 +23,6 @@ namespace DRCOG.Domain.Interfaces
         void ChangePassword(Guid userId, string oldPaassword, string newPassword);
         string ResetPassword(Guid userId);
         bool ValidateUser(string userName, string password);
+        void CreateUserAndPerson(ShortProfile profile);
     }
 }

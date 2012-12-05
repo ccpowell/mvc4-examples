@@ -105,7 +105,7 @@ namespace Trips4.Controllers
 
             this.SaveSession(CurrentSessionApplicationState);
 
-            if (!String.IsNullOrEmpty(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+            if (!String.IsNullOrEmpty(returnUrl) && returnUrl.StartsWith("/")
                 && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
             {
                 return Redirect(returnUrl);
@@ -202,13 +202,13 @@ namespace Trips4.Controllers
         /// <returns></returns>
         protected ApplicationState GetSession()
         {
-            var sessionObject = this.Session[DRCOGApp.SessionIdentifier];
+            var sessionObject = this.Session[DRCOGApp.SessionIdentifier] as ApplicationState;
             if (sessionObject == null)
             {
                 Logger.Debug("Session object was null");
                 Logger.Debug("Session.IsNew = " + Session.IsNewSession);
             }
-            return sessionObject as ApplicationState;
+            return sessionObject;
         }
 
 
@@ -218,7 +218,7 @@ namespace Trips4.Controllers
         protected void SaveSession(ApplicationState sessionObject)
         {
             //Session[DRCOGApp.SessionIdentifier] = null;
-            Logger.Debug("Saving session " + Session.SessionID);
+            Logger.Debug("Saving app state in session " + Session.SessionID);
             Session[DRCOGApp.SessionIdentifier] = sessionObject;
         }
 

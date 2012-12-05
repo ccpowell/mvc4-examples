@@ -22,6 +22,11 @@ namespace Trips4
                 new { id = RouteParameter.Optional }
             );
 
+            routes.MapHttpRoute(
+                "Operation",
+                "operation/{controller}/{action}"
+            );
+
             routes.MapRoute(
                 "AccountRoutes",                                              // Route name
                 "Account/{action}/{id}",                           // URL with parameters

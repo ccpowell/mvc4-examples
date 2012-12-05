@@ -352,7 +352,8 @@ namespace Trips4.Data
             }
 
             // give the new user roles
-            string[] roles = { "Contact Manager", "Contact", "Viewer", "SponsorRoleManager", "Administrator" };
+            //string[] roles = { "Contact Manager", "Contact", "Viewer", "SponsorRoleManager", "Administrator" };
+            string[] roles = { "Contact", "Viewer" };
             Roles.AddUserToRoles(profile.UserName, roles);
 
             using (var tdb = new Trips4.Data.Models.TRIPSEntities())

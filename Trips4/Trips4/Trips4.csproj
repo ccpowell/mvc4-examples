@@ -213,6 +213,7 @@
     <Compile Include="Controllers\FundingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\Operation\MiscController.cs" />
     <Compile Include="Controllers\PoolController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\RtpController.cs" />
@@ -458,6 +459,7 @@
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\RtpProjects.js" />
     <Content Include="Scripts\FixedHeader.js" />
     <Content Include="Scripts\FixedHeader.min.js" />
     <Content Include="Scripts\Funding-rtp.js" />
@@ -596,6 +598,7 @@
     <Content Include="Views\Funding\Create.aspx" />
     <Content Include="Views\Funding\Detail.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\TestPage.aspx" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Login\Index_old.aspx" />
     <Content Include="Views\Login\Partials\ForgotPasswordPartial.ascx" />

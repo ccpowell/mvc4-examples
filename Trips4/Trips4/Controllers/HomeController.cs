@@ -39,6 +39,12 @@ namespace Trips4.Controllers
             base.LoadSession(Enums.ApplicationState.Default);
         }
 
+        [AllowAnonymous]
+        public ActionResult TestPage()
+        {
+            return View();
+        }
+
 
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Index()
@@ -87,5 +93,6 @@ namespace Trips4.Controllers
             }
         }
 
+        
     }
 }
