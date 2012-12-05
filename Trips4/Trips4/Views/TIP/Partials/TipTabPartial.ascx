@@ -18,7 +18,7 @@
         Amendments</a></li>
     <% } %>
     <li>
-        <% if (Request.IsAuthenticated)
+        <% if (HttpContext.Current.User.IsInRole("TIP Administrator") || HttpContext.Current.User.IsInRole("Administrator"))
            { %>
         <a <%=Html.IsActionCurrent("Reports") ? "class='activetab'" : "" %> href="<%=Url.Action("Reports","TIP", new {tipYear=Model.TipYear}) %>">
             Reports</a>
