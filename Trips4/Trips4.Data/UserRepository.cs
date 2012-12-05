@@ -232,8 +232,8 @@ namespace Trips4.Data
                 }
                 Debug.Assert(guid == found.UserId.Value);
 
-                first = found.FirstName;
-                last = found.LastName;
+                first = found.FirstName ?? string.Empty;
+                last = found.LastName ?? string.Empty;
             }
             using (var tdb = new Trips4.Data.Models.TRIPSEntities())
             {
