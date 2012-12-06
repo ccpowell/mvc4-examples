@@ -10,7 +10,7 @@
     <button id='amend-projects'>Amend Projects</button>
     </div>
 
-    <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpProjects.js") %>'></script>
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpProjectList.js") %>'></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>

@@ -245,7 +245,7 @@ namespace Trips4.Controllers
 
             viewModel.ReturnUrl = Request["ReturnUrl"] ?? String.Empty;
 
-            return View(viewModel);
+            return View("ProjectList2", viewModel);
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute]

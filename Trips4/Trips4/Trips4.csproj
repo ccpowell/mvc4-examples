@@ -459,7 +459,7 @@
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
     <Content Include="Scripts\App.js" />
-    <Content Include="Scripts\RtpProjects.js" />
+    <Content Include="Scripts\RtpProjectList.js" />
     <Content Include="Scripts\FixedHeader.js" />
     <Content Include="Scripts\FixedHeader.min.js" />
     <Content Include="Scripts\Funding-rtp.js" />
@@ -653,6 +653,7 @@
     <Content Include="Views\RTPProject\Scope.aspx" />
     <Content Include="Views\RTP\Agencies.aspx" />
     <Content Include="Views\RTP\Amendments.aspx" />
+    <Content Include="Views\RTP\ProjectList2.aspx" />
     <Content Include="Views\RTP\PlanCycles.aspx" />
     <Content Include="Views\RTP\Dashboard.aspx" />
     <Content Include="Views\RTP\FundingList.aspx" />
