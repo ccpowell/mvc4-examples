@@ -9,36 +9,44 @@
 var App = App || {};
 
 App.pp = {
-    CurrentCycleId: 19,
-    PreviousCycleId: 18,
+    CurrentCycleId: 22,
+    PreviousCycleId: 19,
     NextCycleId: 0,
-    RtpPlanYear: "2035-S",
+    RtpPlanYear: '2035-S',
     RtpPlanYearId: 78,
-    CurrentCycleName: "2011-1",
-    NextCycleName: ""
+    CurrentCycleName: '2011-1',
+    NextCycleName: ''
 };
 
 
 App.ui = (function ($) {
-    "use strict";
+    'use strict';
 
-    function setActiveCycle() {
+    function amendSelectedProjects() {
         var stuff = {
-            Name: "hoover",
-            Ints: [1, 2, 3]
+            rtpPlanYearId: App.pp.RtpPlanYearId,
+            projectIds: []
         },
-            sstuff = JSON.stringify(stuff, null, 2);
+            sstuff;
 
-        $.ajax(App.env.applicationPath + '/operation/misc/PostStuff', {
+        // get list of project ids
+        $('#amend-selectedProjects option').each(function (index, el) {
+            stuff.projectIds.push(el.value);
+        });
+
+        sstuff = JSON.stringify(stuff, null, 2);
+
+        $.ajax(App.env.applicationPath + '/operation/misc/RtpAmendProjects', {
             type: 'POST',
             contentType: 'application/json',
             dataType: 'json',
             data: sstuff,
             success: function (data) {
-                alert("Okay ");
+                alert('Projects amended');
+                $('#amend-selectedProjects').empty();
             },
             error: function () {
-                alert("bummer");
+                alert('bummer');
             }
         });
     }
@@ -46,16 +54,21 @@ App.ui = (function ($) {
     // ajax callback 
     // fill in #amend-availableProjects
     function showAmendableProjects(data) {
-        var options = "";
+        var options = '';
         $.each(data, function (index, el) {
             options += '<option value="' + el.Value + '">' + el.Text + '</option>';
         });
-        $("#amend-availableProjects").html(options);
+        $('#amend-availableProjects').html(options);
+        if (data.length) {
+            $('#dialog-amend-project').dialog('open');
+        } else {
+            alert('There are no amendable projects in this RTP Plan Year.');
+        }
     }
 
     function getAmendableProjects() {
         var stuff = {
-            cycleId: App.pp.CurrentCycleId,
+            cycleId: App.pp.CurrentCycleId, // shouldn't be needed
             rtpPlanYearId: App.pp.RtpPlanYearId
         },
             sstuff = JSON.stringify(stuff, null, 2);
@@ -67,35 +80,48 @@ App.ui = (function ($) {
             data: sstuff,
             success: showAmendableProjects,
             error: function () {
-                alert("bummer");
+                alert('bummer');
             }
         });
     }
 
     function amendProjects() {
         getAmendableProjects();
-        $("#dialog-amend-project").dialog("open");
     }
 
     function initialize() {
-        $("#dialog-amend-project").dialog({
+        $('#dialog-amend-project').dialog({
             autoOpen: false,
             width: 900,
             height: 600,
             modal: true,
             buttons: {
-                "Amend": function () {
-                    alert("amending things");
+                'Amend': function () {
+                    amendSelectedProjects();
                 },
-                "Close": function () {
-                    $(this).dialog("close");
+                'Close': function () {
+                    $(this).dialog('close');
                 }
             }
         });
 
-        $("#amend-projects")
+        $('#amend-projects')
             .button()
             .click(amendProjects);
+
+        $('#amend-addProject').click(function () {
+            $('#amend-availableProjects option:selected').each(function (index, el) {
+                $(this).remove().prependTo('#amend-selectedProjects').attr('selected', false);
+            });
+        });
+
+
+        $('#amend-removeProject').click(function () {
+            $('amend-selectedProjects option:selected').each(function (index, el) {
+                $(this).remove().prependTo('#amend-availableProjects').attr('selected', false);
+            });
+        });
+
     }
 
     return {

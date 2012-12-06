@@ -71,5 +71,16 @@ namespace Trips4.Controllers.Operation
 
             return results;
         }
+
+        public class RtpAmendProjectsRequest
+        {
+            public int rtpPlanYearId;
+            public int[] projectIds;
+        }
+
+        [HttpPost]
+        public void RtpAmendProjects(RtpAmendProjectsRequest request)
+        {
+        }
     }
 }
