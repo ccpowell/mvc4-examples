@@ -58,8 +58,9 @@ App.ui = (function ($) {
         $.each(data, function (index, el) {
             options += '<option value="' + el.Value + '">' + el.Text + '</option>';
         });
-        $('#amend-availableProjects').html(options);
         if (data.length) {
+            $('#amend-availableProjects').html(options);
+            $('#amend-removeProjects').html('');
             $('#dialog-amend-project').dialog('open');
         } else {
             alert('There are no amendable projects in this RTP Plan Year.');
@@ -117,7 +118,7 @@ App.ui = (function ($) {
 
 
         $('#amend-removeProject').click(function () {
-            $('amend-selectedProjects option:selected').each(function (index, el) {
+            $('#amend-selectedProjects option:selected').each(function (index, el) {
                 $(this).remove().prependTo('#amend-availableProjects').attr('selected', false);
             });
         });

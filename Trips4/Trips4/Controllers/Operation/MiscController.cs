@@ -20,39 +20,10 @@ namespace Trips4.Controllers.Operation
             RtpRepository = rrepo;
         }
 
-        [HttpGet]
-        public string Hello()
-        {
-            try
-            {
-                return "hello";
-            }
-            catch (Exception ex)
-            {
-                Logger.WarnException("Could not say hello", ex);
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
-            }
-        }
-
-
-        public class Stuff
-        {
-            public string Name { get; set; }
-            public List<int> Ints { get; set; }
-        }
-
-
-        [HttpPost]
-        public Stuff PostStuff(Stuff stuff)
-        {
-            return stuff;
-        }
-
-
         public class RtpGetAmendableProjectsRequest
         {
-            public int cycleId;
             public int rtpPlanYearId;
+            public int cycleId;
         }
 
         [HttpPost]
@@ -61,11 +32,13 @@ namespace Trips4.Controllers.Operation
             var results = new List<System.Web.Mvc.SelectListItem>();
             try
             {
+                // TODO: shouldn't need cycleId
                 var availableProjects = RtpRepository.GetAmendableProjects(request.rtpPlanYearId, request.cycleId, true, true).ToList();
                 availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
             }
             catch (Exception ex)
             {
+                Logger.WarnException("RtpGetAmendableProjects failed", ex);
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
 
@@ -81,6 +54,15 @@ namespace Trips4.Controllers.Operation
         [HttpPost]
         public void RtpAmendProjects(RtpAmendProjectsRequest request)
         {
+            try
+            {
+                TripsRepository.RtpAmendProjects(request.rtpPlanYearId, request.projectIds);
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpAmendProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
         }
     }
 }

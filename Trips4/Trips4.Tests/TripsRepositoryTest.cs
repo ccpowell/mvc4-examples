@@ -125,5 +125,23 @@ namespace Trips4.Tests
             Assert.IsNotNull(actual);
             target.UpdateTipStatus(actual);
         }
+
+        /// <summary>
+        ///A test for TryCatchError
+        ///</summary>
+        [TestMethod()]
+        public void TryCatchErrorTest()
+        {
+            TripsRepository target = new TripsRepository();
+            try
+            {
+                target.TryCatchError();
+                Assert.Fail("TryCatchError did not throw an error!");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(true, "it's okay");
+            }
+        }
     }
 }

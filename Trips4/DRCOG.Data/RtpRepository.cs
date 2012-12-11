@@ -476,7 +476,6 @@ namespace DRCOG.Data
                     command.Parameters.AddWithValue("@CycleId", cycleId);
                     command.Parameters.AddWithValue("@ExcludeHasPending", excludeHasPending);
                     command.Parameters.AddWithValue("@ShowScenario", showScenerio);
-                    
                     command.Parameters.AddWithValue("@ExcludeCancelled", true);
 
                     using (IDataReader rdr = this.ExecuteReader(command))
@@ -496,7 +495,7 @@ namespace DRCOG.Data
                             summary.Cycle.Name = rdr["CycleName"].ToString();
                             summary.Cycle.Id = rdr["CycleId"].ToString().SmartParseDefault<int>(default(int));
                             list.Add(summary);
-                            //Logger.Debug("Amendment Status " + rdr["AmendmentStatusId"].ToString());
+                            Logger.Debug("Amendment Status " + rdr["AmendmentStatusId"].ToString());
                         }
                     }
                 }

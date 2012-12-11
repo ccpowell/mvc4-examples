@@ -2977,6 +2977,85 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction<TipGetFundingIncrements_Result>("TipGetFundingIncrements", projectVersionIDParameter, showFullYearParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="currentProjectVersionID">No Metadata Documentation available.</param>
+        /// <param name="timePeriod">No Metadata Documentation available.</param>
+        /// <param name="timePeriodId">No Metadata Documentation available.</param>
+        /// <param name="cycleId">No Metadata Documentation available.</param>
+        public ObjectResult<RtpProjectSummary> RtpCopyProject(Nullable<global::System.Int32> currentProjectVersionID, global::System.String timePeriod, Nullable<global::System.Int32> timePeriodId, Nullable<global::System.Int32> cycleId)
+        {
+            ObjectParameter currentProjectVersionIDParameter;
+            if (currentProjectVersionID.HasValue)
+            {
+                currentProjectVersionIDParameter = new ObjectParameter("CurrentProjectVersionID", currentProjectVersionID);
+            }
+            else
+            {
+                currentProjectVersionIDParameter = new ObjectParameter("CurrentProjectVersionID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter timePeriodParameter;
+            if (timePeriod != null)
+            {
+                timePeriodParameter = new ObjectParameter("TimePeriod", timePeriod);
+            }
+            else
+            {
+                timePeriodParameter = new ObjectParameter("TimePeriod", typeof(global::System.String));
+            }
+    
+            ObjectParameter timePeriodIdParameter;
+            if (timePeriodId.HasValue)
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", timePeriodId);
+            }
+            else
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter cycleIdParameter;
+            if (cycleId.HasValue)
+            {
+                cycleIdParameter = new ObjectParameter("CycleId", cycleId);
+            }
+            else
+            {
+                cycleIdParameter = new ObjectParameter("CycleId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<RtpProjectSummary>("RtpCopyProject", currentProjectVersionIDParameter, timePeriodParameter, timePeriodIdParameter, cycleIdParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="projectVersionId">No Metadata Documentation available.</param>
+        public ObjectResult<RtpProjectSummary> RtpGetProjectSummary(Nullable<global::System.Int32> projectVersionId)
+        {
+            ObjectParameter projectVersionIdParameter;
+            if (projectVersionId.HasValue)
+            {
+                projectVersionIdParameter = new ObjectParameter("ProjectVersionId", projectVersionId);
+            }
+            else
+            {
+                projectVersionIdParameter = new ObjectParameter("ProjectVersionId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<RtpProjectSummary>("RtpGetProjectSummary", projectVersionIdParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int TryCatchError()
+        {
+            return base.ExecuteFunction("TryCatchError");
+        }
 
         #endregion
     }
@@ -34843,6 +34922,351 @@ namespace Trips4.Data.Models
         private global::System.String _ModelingFacilityType;
         partial void OnModelingFacilityTypeChanging(global::System.String value);
         partial void OnModelingFacilityTypeChanged();
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Trips4.Data.Models", Name="RtpProjectSummary")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class RtpProjectSummary : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RtpProjectSummary object.
+        /// </summary>
+        /// <param name="rTPProjectVersionID">Initial value of the RTPProjectVersionID property.</param>
+        /// <param name="rtpYear">Initial value of the RtpYear property.</param>
+        /// <param name="sponsor">Initial value of the Sponsor property.</param>
+        /// <param name="cOGID">Initial value of the COGID property.</param>
+        public static RtpProjectSummary CreateRtpProjectSummary(global::System.Int32 rTPProjectVersionID, global::System.String rtpYear, global::System.String sponsor, global::System.String cOGID)
+        {
+            RtpProjectSummary rtpProjectSummary = new RtpProjectSummary();
+            rtpProjectSummary.RTPProjectVersionID = rTPProjectVersionID;
+            rtpProjectSummary.RtpYear = rtpYear;
+            rtpProjectSummary.Sponsor = sponsor;
+            rtpProjectSummary.COGID = cOGID;
+            return rtpProjectSummary;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RTPProjectVersionID
+        {
+            get
+            {
+                return _RTPProjectVersionID;
+            }
+            set
+            {
+                OnRTPProjectVersionIDChanging(value);
+                ReportPropertyChanging("RTPProjectVersionID");
+                _RTPProjectVersionID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RTPProjectVersionID");
+                OnRTPProjectVersionIDChanged();
+            }
+        }
+        private global::System.Int32 _RTPProjectVersionID;
+        partial void OnRTPProjectVersionIDChanging(global::System.Int32 value);
+        partial void OnRTPProjectVersionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TIPID
+        {
+            get
+            {
+                return _TIPID;
+            }
+            set
+            {
+                OnTIPIDChanging(value);
+                ReportPropertyChanging("TIPID");
+                _TIPID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TIPID");
+                OnTIPIDChanged();
+            }
+        }
+        private global::System.String _TIPID;
+        partial void OnTIPIDChanging(global::System.String value);
+        partial void OnTIPIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanType
+        {
+            get
+            {
+                return _PlanType;
+            }
+            set
+            {
+                OnPlanTypeChanging(value);
+                ReportPropertyChanging("PlanType");
+                _PlanType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanType");
+                OnPlanTypeChanged();
+            }
+        }
+        private global::System.String _PlanType;
+        partial void OnPlanTypeChanging(global::System.String value);
+        partial void OnPlanTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RtpYear
+        {
+            get
+            {
+                return _RtpYear;
+            }
+            set
+            {
+                OnRtpYearChanging(value);
+                ReportPropertyChanging("RtpYear");
+                _RtpYear = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RtpYear");
+                OnRtpYearChanged();
+            }
+        }
+        private global::System.String _RtpYear;
+        partial void OnRtpYearChanging(global::System.String value);
+        partial void OnRtpYearChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Sponsor
+        {
+            get
+            {
+                return _Sponsor;
+            }
+            set
+            {
+                OnSponsorChanging(value);
+                ReportPropertyChanging("Sponsor");
+                _Sponsor = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Sponsor");
+                OnSponsorChanged();
+            }
+        }
+        private global::System.String _Sponsor;
+        partial void OnSponsorChanging(global::System.String value);
+        partial void OnSponsorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectName
+        {
+            get
+            {
+                return _ProjectName;
+            }
+            set
+            {
+                OnProjectNameChanging(value);
+                ReportPropertyChanging("ProjectName");
+                _ProjectName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProjectName");
+                OnProjectNameChanged();
+            }
+        }
+        private global::System.String _ProjectName;
+        partial void OnProjectNameChanging(global::System.String value);
+        partial void OnProjectNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImprovementType
+        {
+            get
+            {
+                return _ImprovementType;
+            }
+            set
+            {
+                OnImprovementTypeChanging(value);
+                ReportPropertyChanging("ImprovementType");
+                _ImprovementType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImprovementType");
+                OnImprovementTypeChanged();
+            }
+        }
+        private global::System.String _ImprovementType;
+        partial void OnImprovementTypeChanging(global::System.String value);
+        partial void OnImprovementTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AmendmentStatus
+        {
+            get
+            {
+                return _AmendmentStatus;
+            }
+            set
+            {
+                OnAmendmentStatusChanging(value);
+                ReportPropertyChanging("AmendmentStatus");
+                _AmendmentStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AmendmentStatus");
+                OnAmendmentStatusChanged();
+            }
+        }
+        private global::System.String _AmendmentStatus;
+        partial void OnAmendmentStatusChanging(global::System.String value);
+        partial void OnAmendmentStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> AmendmentDate
+        {
+            get
+            {
+                return _AmendmentDate;
+            }
+            set
+            {
+                OnAmendmentDateChanging(value);
+                ReportPropertyChanging("AmendmentDate");
+                _AmendmentDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AmendmentDate");
+                OnAmendmentDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _AmendmentDate;
+        partial void OnAmendmentDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnAmendmentDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Scope
+        {
+            get
+            {
+                return _Scope;
+            }
+            set
+            {
+                OnScopeChanging(value);
+                ReportPropertyChanging("Scope");
+                _Scope = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Scope");
+                OnScopeChanged();
+            }
+        }
+        private global::System.String _Scope;
+        partial void OnScopeChanging(global::System.String value);
+        partial void OnScopeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectVersionStatus
+        {
+            get
+            {
+                return _ProjectVersionStatus;
+            }
+            set
+            {
+                OnProjectVersionStatusChanging(value);
+                ReportPropertyChanging("ProjectVersionStatus");
+                _ProjectVersionStatus = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProjectVersionStatus");
+                OnProjectVersionStatusChanged();
+            }
+        }
+        private global::System.String _ProjectVersionStatus;
+        partial void OnProjectVersionStatusChanging(global::System.String value);
+        partial void OnProjectVersionStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectType
+        {
+            get
+            {
+                return _ProjectType;
+            }
+            set
+            {
+                OnProjectTypeChanging(value);
+                ReportPropertyChanging("ProjectType");
+                _ProjectType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProjectType");
+                OnProjectTypeChanged();
+            }
+        }
+        private global::System.String _ProjectType;
+        partial void OnProjectTypeChanging(global::System.String value);
+        partial void OnProjectTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String COGID
+        {
+            get
+            {
+                return _COGID;
+            }
+            set
+            {
+                OnCOGIDChanging(value);
+                ReportPropertyChanging("COGID");
+                _COGID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("COGID");
+                OnCOGIDChanged();
+            }
+        }
+        private global::System.String _COGID;
+        partial void OnCOGIDChanging(global::System.String value);
+        partial void OnCOGIDChanged();
 
         #endregion
     }

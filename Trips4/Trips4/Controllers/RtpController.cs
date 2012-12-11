@@ -461,6 +461,7 @@ namespace Trips4.Controllers
 
         }
 
+        // TODO: this has moved to /operation/misc/RtpAmendProjects
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public JsonResult Amend(int projectVersionId, int cycleId)
         {

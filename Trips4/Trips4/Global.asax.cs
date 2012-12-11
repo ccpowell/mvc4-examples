@@ -26,5 +26,10 @@ namespace Trips4
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Bootstrapper.Initialise();
         }
+
+        protected void Application_End()
+        {
+            Logger.Info("TRIPS ending");
+        }
     }
 }

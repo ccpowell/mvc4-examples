@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using OfficeOpenXml;
 using System.Web.Mvc;
+using DRCOG.Domain;
 
 namespace Trips4.Data
 {
@@ -391,6 +392,63 @@ namespace Trips4.Data
                 fs.SetFundingIncrement(model.FundingIncrement_Years_5_6, "Years 5-6");
 
                 db.SaveChanges();
+            }
+        }
+
+        // either find the current pending cycle or promote the new cycle. 
+        // if neither exists, return null.
+        private Models.Cycle RtpAssurePendingCycle(Trips4.Data.Models.TRIPSEntities db, int rtpPlanYearId)
+        {
+            var tp = db.TimePeriods.First(t => t.TimePeriodID == rtpPlanYearId);
+            var pc = tp.TimePeriodCycles.FirstOrDefault(tpc => tpc.Cycle.statusId == (int)Enums.RTPCycleStatus.Pending);
+            if (pc == null)
+            {
+                pc = tp.TimePeriodCycles.FirstOrDefault(tpc => tpc.Cycle.statusId == (int)Enums.RTPCycleStatus.New);
+                if (pc == null)
+                {
+                    throw new Exception("There is no New or Pending Cycle in the RTP Plan Year");
+                }
+                pc.Cycle.statusId = (int)Enums.RTPCycleStatus.Pending;
+            }
+            return pc.Cycle;
+        }
+
+        /// <summary>
+        /// Copy the given projects into the given RTP Plan Year and mark them Amended.
+        /// </summary>
+        /// <param name="rtpPlanYearId"></param>
+        /// <param name="projects"></param>
+        public void RtpAmendProjects(int rtpPlanYearId, IEnumerable<int> projects)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
+                Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
+                db.SaveChanges();
+
+                foreach (var pid in projects)
+                {
+                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                    var npid = result.First().RTPProjectVersionID;
+                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
+
+                    // get the newly created RTPProjectVersion
+                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+
+                    // set status to Amended
+                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        public void TryCatchError()
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                db.TryCatchError();
             }
         }
     }

@@ -4299,6 +4299,7 @@
         <Function Name="TimeOnly" ReturnType="datetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DateTime" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="TryCatchError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UpdateFundingSource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FundingTypeId" Type="int" Mode="In" />
           <Parameter Name="FundingGroupId" Type="int" Mode="In" />
@@ -6155,6 +6156,16 @@
             <Parameter Name="ProjectVersionID" Mode="In" Type="Int32" />
             <Parameter Name="ShowFullYear" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="RtpCopyProject" ReturnType="Collection(Trips4.Data.Models.RtpProjectSummary)">
+            <Parameter Name="CurrentProjectVersionID" Mode="In" Type="Int32" />
+            <Parameter Name="TimePeriod" Mode="In" Type="String" />
+            <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+            <Parameter Name="CycleId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RtpGetProjectSummary" ReturnType="Collection(Trips4.Data.Models.RtpProjectSummary)">
+          <Parameter Name="ProjectVersionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TryCatchError" />
         </EntityContainer>
         <EntityType Name="Processed">
           <Key>
@@ -9446,6 +9457,21 @@
           <Property Type="Byte" Name="BaseYearModifier" Nullable="false" />
           <Property Type="Byte" Name="ListOrder" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="RtpProjectSummary">
+          <Property Type="Int32" Name="RTPProjectVersionID" Nullable="false" />
+          <Property Type="String" Name="TIPID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PlanType" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="RtpYear" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Sponsor" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ImprovementType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AmendmentStatus" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="AmendmentDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Scope" Nullable="true" />
+          <Property Type="String" Name="ProjectVersionStatus" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProjectType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="COGID" Nullable="false" MaxLength="25" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10579,6 +10605,45 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RtpCopyProject" FunctionName="TripsModel.Store.CopyProject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Trips4.Data.Models.RtpProjectSummary">
+                <ScalarProperty Name="RTPProjectVersionID" ColumnName="RTPProjectVersionID" />
+                <ScalarProperty Name="TIPID" ColumnName="TIPID" />
+                <ScalarProperty Name="PlanType" ColumnName="PlanType" />
+                <ScalarProperty Name="RtpYear" ColumnName="RtpYear" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ImprovementType" ColumnName="ImprovementType" />
+                <ScalarProperty Name="AmendmentStatus" ColumnName="AmendmentStatus" />
+                <ScalarProperty Name="AmendmentDate" ColumnName="AmendmentDate" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="ProjectVersionStatus" ColumnName="ProjectVersionStatus" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="COGID" ColumnName="COGID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RtpGetProjectSummary" FunctionName="TripsModel.Store.GetProjectForList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Trips4.Data.Models.RtpProjectSummary">
+                <ScalarProperty Name="RTPProjectVersionID" ColumnName="RTPProjectVersionID" />
+                <ScalarProperty Name="TIPID" ColumnName="TIPID" />
+                <ScalarProperty Name="PlanType" ColumnName="PlanType" />
+                <ScalarProperty Name="RtpYear" ColumnName="RtpYear" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ImprovementType" ColumnName="ImprovementType" />
+                <ScalarProperty Name="AmendmentStatus" ColumnName="AmendmentStatus" />
+                <ScalarProperty Name="AmendmentDate" ColumnName="AmendmentDate" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="ProjectVersionStatus" ColumnName="ProjectVersionStatus" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="COGID" ColumnName="COGID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TryCatchError" FunctionName="TripsModel.Store.TryCatchError" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
