@@ -5,6 +5,7 @@ using System.Text;
 using OfficeOpenXml;
 using System.Web.Mvc;
 using DRCOG.Domain;
+using System.Transactions;
 
 namespace Trips4.Data
 {
@@ -420,28 +421,28 @@ namespace Trips4.Data
         /// <param name="projects"></param>
         public void RtpAmendProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
-            {
-                var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
-                Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
-                db.SaveChanges();
-
-                foreach (var pid in projects)
+                using (var db = new Trips4.Data.Models.TRIPSEntities())
                 {
-                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
-                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
-                    var npid = result.First().RTPProjectVersionID;
-                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
+                    var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
+                    Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
+                    db.SaveChanges();
 
-                    // get the newly created RTPProjectVersion
-                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+                    foreach (var pid in projects)
+                    {
+                        Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                        var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                        var npid = result.First().RTPProjectVersionID;
+                        Logger.Debug("created RTPProjectVersion " + npid.ToString());
 
-                    // set status to Amended
-                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                        // get the newly created RTPProjectVersion
+                        var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+
+                        // set status to Amended
+                        npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                    }
+
+                    db.SaveChanges();
                 }
-
-                db.SaveChanges();
-            }
         }
 
         public void TryCatchError()

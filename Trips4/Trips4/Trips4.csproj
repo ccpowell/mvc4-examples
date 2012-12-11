@@ -16,7 +16,7 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
-    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <DeployIisAppPath>www3.drcog.org/Trips</DeployIisAppPath>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -44,7 +44,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <DeployIisAppPath>www3.drcog.org/Trips</DeployIisAppPath>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -54,7 +54,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DeployIisAppPath>www3.drcog.org/Trips4</DeployIisAppPath>
+    <DeployIisAppPath>www3.drcog.org/Trips</DeployIisAppPath>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <ItemGroup>

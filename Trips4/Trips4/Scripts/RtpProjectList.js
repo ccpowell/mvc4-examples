@@ -18,6 +18,17 @@ App.pp = {
     NextCycleName: ''
 };
 
+App.postit = function (url, options) {
+    'use strict';
+    $.extend(options, {
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json'
+    });
+
+    $.ajax(App.env.applicationPath + url, options);
+};
+
 
 App.ui = (function ($) {
     'use strict';
@@ -36,17 +47,11 @@ App.ui = (function ($) {
 
         sstuff = JSON.stringify(stuff, null, 2);
 
-        $.ajax(App.env.applicationPath + '/operation/misc/RtpAmendProjects', {
-            type: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
+        App.postit('/operation/misc/RtpAmendProjects', {
             data: sstuff,
             success: function (data) {
                 alert('Projects amended');
                 $('#amend-selectedProjects').empty();
-            },
-            error: function () {
-                alert('bummer');
             }
         });
     }
@@ -74,15 +79,9 @@ App.ui = (function ($) {
         },
             sstuff = JSON.stringify(stuff, null, 2);
 
-        $.ajax(App.env.applicationPath + '/operation/misc/RtpGetAmendableProjects', {
-            type: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
+        App.postit('/operation/misc/RtpGetAmendableProjects', {
             data: sstuff,
-            success: showAmendableProjects,
-            error: function () {
-                alert('bummer');
-            }
+            success: showAmendableProjects
         });
     }
 
@@ -115,7 +114,6 @@ App.ui = (function ($) {
                 $(this).remove().prependTo('#amend-selectedProjects').attr('selected', false);
             });
         });
-
 
         $('#amend-removeProject').click(function () {
             $('#amend-selectedProjects option:selected').each(function (index, el) {
