@@ -9,9 +9,13 @@
     <div>
         <button id='amend-projects'>
             Amend Projects</button>
+        <button id='include-projects'>
+            Include More Projects</button>
+        <button id='restore-projects'>
+            Restore Projects</button>
     </div>
-    <div id="dialog-amend-project" title="Amend Plan Projects">
-        <div class="info">
+    <div id="dialog-amend-projects">
+        <div class="info" id="amend-info">
             Select the projects you wish to amend in the next cycle</div>
         <table id="amendProjects">
             <tr>
@@ -32,9 +36,9 @@
                 </td>
                 <td>
                     <a href="#" id="amend-addProject" title="Add Project">
-                        <img src="<%=ResolveUrl("~/content/images/24-arrow-next.png")%>" alt="add" /></a><br />
+                        <img src="<%=Url.Content("~/content/images/24-arrow-next.png")%>" alt="add" /></a><br />
                     <a href="#" id="amend-removeProject" title="Remove Project">
-                        <img src="<%=ResolveUrl("~/content/images/24-arrow-previous.png")%>" alt="remove" /></a><br />
+                        <img src="<%=Url.Content("~/content/images/24-arrow-previous.png")%>" alt="remove" /></a><br />
                 </td>
                 <td>
                     <select id="amend-selectedProjects" class="w400 nobind" size="25" multiple="multiple">
@@ -42,8 +46,6 @@
                 </td>
             </tr>
         </table>
-        <div class="dialog-result" style="display: none;">
-        </div>
     </div>
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpProjectList.js") %>'></script>
 </asp:Content>

@@ -33,6 +33,25 @@ App.postit = function (url, options) {
 App.ui = (function ($) {
     'use strict';
 
+    var mode = null,
+        modeAmend = {
+            title: 'Amend Projects',
+            buttonLabel: 'Amend',
+            info: 'Select the projects you wish to amend in the next cycle',
+            getUrl: '/operation/misc/RtpGetAmendableProjects',
+            setUrl: '/operation/misc/RtpAmendProjects',
+            noneMessage: 'There are no amendable projects in this RTP Plan Year.'
+        },
+        modeRestore = {
+            title: 'Restore Projects',
+            buttonLabel: 'Restore',
+            info: 'Select the projects you wish to restore',
+            getUrl: '/operation/misc/RtpGetAvailableRestoreProjects',
+            setUrl: '/operation/misc/RtpRestoreProjects',
+            noneMessage: 'There are no restorable projects in this RTP Plan Year.'
+        };
+
+    // Amend
     function amendSelectedProjects() {
         var stuff = {
             rtpPlanYearId: App.pp.RtpPlanYearId,
@@ -47,10 +66,10 @@ App.ui = (function ($) {
 
         sstuff = JSON.stringify(stuff, null, 2);
 
-        App.postit('/operation/misc/RtpAmendProjects', {
+        App.postit(mode.setUrl, {
             data: sstuff,
             success: function (data) {
-                alert('Projects amended');
+                alert('Cycle Updated');
                 $('#amend-selectedProjects').empty();
             }
         });
@@ -66,48 +85,56 @@ App.ui = (function ($) {
         if (data.length) {
             $('#amend-availableProjects').html(options);
             $('#amend-removeProjects').html('');
-            $('#dialog-amend-project').dialog('open');
+            $('#amend-info').text(mode.info);
+            $('#dialog-amend-projects')
+                .dialog('option', 'buttons', [{
+                    text: mode.buttonLabel,
+                    click: amendSelectedProjects
+                }, {
+                    text: 'Close', 
+                    click: function () {
+                        $(this).dialog('close');
+                    }
+                }])
+                .dialog('option', 'title', mode.title)
+                .dialog('open');
         } else {
-            alert('There are no amendable projects in this RTP Plan Year.');
+            alert(mode.noneMessage);
         }
     }
 
-    function getAmendableProjects() {
+    function getProjects() {
         var stuff = {
             cycleId: App.pp.CurrentCycleId, // shouldn't be needed
             rtpPlanYearId: App.pp.RtpPlanYearId
         },
             sstuff = JSON.stringify(stuff, null, 2);
 
-        App.postit('/operation/misc/RtpGetAmendableProjects', {
+        App.postit(mode.getUrl, {
             data: sstuff,
             success: showAmendableProjects
         });
     }
 
-    function amendProjects() {
-        getAmendableProjects();
+    function getAmendableProjects() {
+        mode = modeAmend;
+        getProjects();
     }
 
+    function getRestorableProjects() {
+        mode = modeRestore;
+        getProjects();
+    }
+
+
     function initialize() {
-        $('#dialog-amend-project').dialog({
+        // amend dialog and actions
+        $('#dialog-amend-projects').dialog({
             autoOpen: false,
             width: 900,
             height: 600,
-            modal: true,
-            buttons: {
-                'Amend': function () {
-                    amendSelectedProjects();
-                },
-                'Close': function () {
-                    $(this).dialog('close');
-                }
-            }
+            modal: true
         });
-
-        $('#amend-projects')
-            .button()
-            .click(amendProjects);
 
         $('#amend-addProject').click(function () {
             $('#amend-availableProjects option:selected').each(function (index, el) {
@@ -121,6 +148,13 @@ App.ui = (function ($) {
             });
         });
 
+        $('#amend-projects, #include-projects')
+            .button()
+            .click(getAmendableProjects);
+
+        $('#restore-projects')
+            .button()
+            .click(getRestorableProjects);
     }
 
     return {

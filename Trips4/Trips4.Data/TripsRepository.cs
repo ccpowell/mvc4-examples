@@ -415,34 +415,69 @@ namespace Trips4.Data
         }
 
         /// <summary>
-        /// Copy the given projects into the given RTP Plan Year and mark them Amended.
+        /// Copy the given projects into the given RTP Plan Year and mark them Pending.
         /// </summary>
         /// <param name="rtpPlanYearId"></param>
         /// <param name="projects"></param>
         public void RtpAmendProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
-                using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
+                Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
+                db.SaveChanges();
+
+                foreach (var pid in projects)
                 {
-                    var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
-                    Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
-                    db.SaveChanges();
+                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                    var npid = result.First().RTPProjectVersionID;
+                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
 
-                    foreach (var pid in projects)
-                    {
-                        Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
-                        var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
-                        var npid = result.First().RTPProjectVersionID;
-                        Logger.Debug("created RTPProjectVersion " + npid.ToString());
+                    // get the newly created RTPProjectVersion
+                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
 
-                        // get the newly created RTPProjectVersion
-                        var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
-
-                        // set status to Amended
-                        npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
-                    }
-
-                    db.SaveChanges();
+                    // set status to Pending
+                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
                 }
+
+                db.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// Copy the given projects into the given RTP Plan Year and mark them Pending.
+        /// </summary>
+        /// <remarks>seems identical to RtpAmendProjects. question the VersionStatus.</remarks>
+        /// <param name="rtpPlanYearId"></param>
+        /// <param name="projects"></param>
+        public void RtpRestoreProjects(int rtpPlanYearId, IEnumerable<int> projects)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
+                Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
+                db.SaveChanges();
+
+                foreach (var pid in projects)
+                {
+                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                    var npid = result.First().RTPProjectVersionID;
+                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
+
+                    // get the newly created RTPProjectVersion
+                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+
+                    // set status to Pending
+                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                    // TODO: ???
+                    npv.VersionStatusID = (int)Enums.RTPVersionStatus.Pending;
+                }
+
+                db.SaveChanges();
+            }
         }
 
         public void TryCatchError()

@@ -45,6 +45,27 @@ namespace Trips4.Controllers.Operation
             return results;
         }
 
+
+        [HttpPost]
+        public List<System.Web.Mvc.SelectListItem> RtpGetAvailableRestoreProjects(RtpGetAmendableProjectsRequest request)
+        {
+            var results = new List<System.Web.Mvc.SelectListItem>();
+            try
+            {
+                // don't need cycleId
+                var availableProjects = RtpRepository.GetRestoreProjectList(request.cycleId).ToList();
+                availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpGetAmendableProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+
+            return results;
+        }
+
+
         public class RtpAmendProjectsRequest
         {
             public int rtpPlanYearId;
@@ -61,6 +82,21 @@ namespace Trips4.Controllers.Operation
             catch (Exception ex)
             {
                 Logger.WarnException("RtpAmendProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+
+        [HttpPost]
+        public void RtpRestoreProjects(RtpAmendProjectsRequest request)
+        {
+            try
+            {
+                TripsRepository.RtpRestoreProjects(request.rtpPlanYearId, request.projectIds);
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpRestoreProjects failed", ex);
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
         }
