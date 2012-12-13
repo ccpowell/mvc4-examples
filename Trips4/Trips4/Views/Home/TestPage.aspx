@@ -47,6 +47,18 @@
             </tr>
         </table>
     </div>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = {
+            CurrentCycleId: 22,
+            PreviousCycleId: 19,
+            NextCycleId: 0,
+            RtpPlanYear: '2035-S',
+            RtpPlanYearId: 78,
+            CurrentCycleName: '2011-1',
+            NextCycleName: ''
+        };
+    </script>
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpProjectList.js") %>'></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">

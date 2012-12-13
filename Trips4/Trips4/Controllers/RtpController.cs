@@ -410,6 +410,7 @@ namespace Trips4.Controllers
             return Json(result);
         }
 
+        // TODO: moved to /operation/misc/GetAmendablePendingProjects
         [Trips4.Filters.SessionAuthorizeAttribute]
         public JsonResult GetAmendablePendingProjects(string plan, int cycleId)
         {

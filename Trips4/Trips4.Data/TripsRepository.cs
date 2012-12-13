@@ -429,16 +429,25 @@ namespace Trips4.Data
 
                 foreach (var pid in projects)
                 {
-                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
-                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
-                    var npid = result.First().RTPProjectVersionID;
-                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
+                    // Due to crappy data, we expect some operations to fail, but we 
+                    // want to do as much as possible.
+                    try
+                    {
+                        Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                        var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                        var npid = result.First().RTPProjectVersionID;
+                        Logger.Debug("created RTPProjectVersion " + npid.ToString());
 
-                    // get the newly created RTPProjectVersion
-                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+                        // get the newly created RTPProjectVersion
+                        var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
 
-                    // set status to Pending
-                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                        // set status to Pending
+                        npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WarnException("RtpCopyProject failed", ex);
+                    }
                 }
 
                 db.SaveChanges();
@@ -462,21 +471,44 @@ namespace Trips4.Data
 
                 foreach (var pid in projects)
                 {
-                    Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
-                    var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
-                    var npid = result.First().RTPProjectVersionID;
-                    Logger.Debug("created RTPProjectVersion " + npid.ToString());
+                    // Due to crappy data, we expect some operations to fail, but we 
+                    // want to do as much as possible.
+                    try
+                    {
+                        Logger.Debug("Copy RTPProjectVersion " + pid.ToString());
+                        var result = db.RtpCopyProject(pid, null, rtpPlanYearId, pc.id);
+                        var npid = result.First().RTPProjectVersionID;
+                        Logger.Debug("created RTPProjectVersion " + npid.ToString());
 
-                    // get the newly created RTPProjectVersion
-                    var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
+                        // get the newly created RTPProjectVersion
+                        var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npid);
 
-                    // set status to Pending
-                    npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
-                    // TODO: ???
-                    npv.VersionStatusID = (int)Enums.RTPVersionStatus.Pending;
+                        // set status to Pending
+                        npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Pending;
+
+                        // TODO: this seems to be the only difference
+                        npv.VersionStatusID = (int)Enums.RTPVersionStatus.Pending;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WarnException("RtpCopyProject failed", ex);
+                    }
                 }
 
                 db.SaveChanges();
+            }
+        }
+
+        public IEnumerable<SelectListItem> RtpGetSponsorOrganizations(int rtpPlanYearId)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var orgs = db.RTPProgramInstanceSponsors.Where(s => s.TimePeriodID == rtpPlanYearId).Select(r => r.SponsorOrganization.Organization).ToArray();
+                return orgs.Select(o => new SelectListItem()
+                {
+                    Text = o.OrganizationName,
+                    Value = o.OrganizationID.ToString()
+                }).ToArray();
             }
         }
 

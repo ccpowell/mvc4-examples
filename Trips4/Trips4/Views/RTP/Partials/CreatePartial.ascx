@@ -8,6 +8,7 @@
         </div>
         <form>
         <fieldset>
+        <legend></legend>
             <input type="hidden" id="rtpYear" value="<%=Model.RtpYear.ToString() %>" />
             <p>
                 <label for="facilityName">Facility Name:</label>

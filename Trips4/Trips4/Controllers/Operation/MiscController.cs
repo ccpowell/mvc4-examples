@@ -27,7 +27,7 @@ namespace Trips4.Controllers.Operation
         }
 
         [HttpPost]
-        public List<System.Web.Mvc.SelectListItem> RtpGetAmendableProjects(RtpGetAmendableProjectsRequest request)
+        public IEnumerable<System.Web.Mvc.SelectListItem> RtpGetAmendableProjects(RtpGetAmendableProjectsRequest request)
         {
             var results = new List<System.Web.Mvc.SelectListItem>();
             try
@@ -47,12 +47,11 @@ namespace Trips4.Controllers.Operation
 
 
         [HttpPost]
-        public List<System.Web.Mvc.SelectListItem> RtpGetAvailableRestoreProjects(RtpGetAmendableProjectsRequest request)
+        public IEnumerable<System.Web.Mvc.SelectListItem> RtpGetAvailableRestoreProjects(RtpGetAmendableProjectsRequest request)
         {
             var results = new List<System.Web.Mvc.SelectListItem>();
             try
             {
-                // don't need cycleId
                 var availableProjects = RtpRepository.GetRestoreProjectList(request.cycleId).ToList();
                 availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
             }
@@ -64,6 +63,37 @@ namespace Trips4.Controllers.Operation
 
             return results;
         }
+
+        [HttpPost]
+        public IEnumerable<DRCOG.Domain.Models.RTP.RtpSummary> RtpGetAmendablePendingProjects(RtpGetAmendableProjectsRequest request)
+        {
+            try
+            {
+                return RtpRepository.GetAmendableProjects(request.rtpPlanYearId, request.cycleId, false);
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpGetAmendableProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+
+        [HttpPost]
+        public IEnumerable<System.Web.Mvc.SelectListItem> RtpGetSponsorOrganizations(RtpGetAmendableProjectsRequest request)
+        {
+            try
+            {
+                var orgs = TripsRepository.RtpGetSponsorOrganizations(request.rtpPlanYearId);
+                return orgs;
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpGetSponsorOrganizations failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
 
 
         public class RtpAmendProjectsRequest

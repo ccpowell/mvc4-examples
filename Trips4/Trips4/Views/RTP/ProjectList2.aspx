@@ -13,31 +13,16 @@
     <script src="<%= Url.Content("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.quicksearch.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/RtpProjectList.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var oProjectListGrid;
-        $(document).ready(function () {
-
-            oProjectListGrid = $('#projectListGrid').dataTable({
-                "iDisplayLength": 100,
-                "aaSorting": [[1, "asc"]],
-                "aoColumns": [null, { sWidth: '60px' }, { sWidth: '110px' }, { sWidth: '60px' }, { sWidth: '190px' }, null, null, { "bVisible": false }, { "bVisible": false}]
-            });
-
-            if ($('#message').html != "") {
-                $('div#message').addClass('warning');
-                //autoHide(10000);
-            }
-
-            function autoHide(timeout) {
-                if (isNaN(timeout)) timeout = 5000;
-                setTimeout(function () {
-                    $("div#message").fadeOut("slow", function () {
-                        $("div#message").empty().removeClass().removeAttr('style');
-                    });
-                }, timeout);
-            }
-        });
-
+        var App = App || {};
+        App.pp = {
+            CurrentCycleId: <%= Model.RtpSummary.Cycle.Id %>,
+            PreviousCycleId: <%= Model.RtpSummary.Cycle.PriorCycleId %>,
+            NextCycleId: <%= Model.RtpSummary.Cycle.NextCycleId %>,
+            RtpPlanYear: '<%= Model.RtpSummary.RtpYear %>',
+            RtpPlanYearId: <%= Model.RtpSummary.RTPYearTimePeriodID %>
+        };
         function confirmDelete() {
             return !!(confirm('Are you sure you want to delete this amendment?'));
         }
@@ -47,8 +32,9 @@
     <div class="view-content-container">
         <div class="clear">
         </div>
-        <div>
-            EXPERIMENTAL</div>
+        <div class="big-bold">
+            EXPERIMENTAL
+        </div>
         <%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
         <div class="tab-content-container">
             <div id="button-container">
@@ -56,21 +42,21 @@
                    { %>
                 <% if (Model.RtpSummary.IsAmendable() && Model.RtpSummary.Cycle.StatusId == (int)DRCOG.Domain.Enums.RTPCycleStatus.Active)
                    { %>
-                <button id="btn-amendprojects">
+                <button id="amend-projects">
                     Amend Projects</button>
                 <% } %>
                 <% if (Model.RtpSummary.IsEditable())
                    { %>
-                <button id="btn-restoreproject">
+                <button id="restore-projects">
                     Restore Projects</button>
-                <button id="btn-newproject">
+                <button id="create-project">
                     New Project</button>
                 <% } %>
                 <% if (Model.RtpSummary.IsAmendable() && Model.RtpSummary.Cycle.StatusId == (int)DRCOG.Domain.Enums.RTPCycleStatus.Pending)
                    { %>
-                <button id="btn-includemore">
+                <button id="include-projects">
                     Include More</button>
-                <button id="btn-amendpendingprojects">
+                <button id="adopt-cycle">
                     Adopt Cycle</button>
                 <% } %>
                 <% } %>
@@ -152,9 +138,67 @@
             <div class="belowTable">
             </div>
         </div>
-        <div style='display: none'>
-            <div id="dialog-restore-project" class="dialog" title="Restore projects ...">
-            </div>
+        <div id="dialog-amendpending-project" class="dialog" title="Amend Plan Projects">
+            <h2>
+                Projects ready for amending:<span id="countReady"></span></h2>
+            <ul id="amend-list">
+            </ul>
+        </div>
+        <div id="dialog-create-project" title="Create New RTP Project">
+            <h2>
+                Create a new Project</h2>
+            <form action="" id="create-project-form">
+            <p>
+                <label for="facilityName">
+                    Facility Name:</label>
+                <input type="text" name="facilityName" class="big required" id="facilityName" />
+            </p>
+            <p>
+                <label for="projectName">
+                    Project Name:</label>
+                <input type="text" name="projectName" class="big required" id="projectName" />
+            </p>
+            <p>
+                <label for="availableSponsors">
+                    Sponsor:</label>
+                <select class="mediumInputElement big" id="availableSponsors" name="availableSponsors"
+                    size="1">
+                </select>
+            </p>
+            </form>
+        </div>
+        <div id="dialog-amend-projects">
+            <div class="info" id="amend-info">
+                Select the projects you wish to amend in the next cycle</div>
+            <table id="amendProjects">
+                <tr>
+                    <td>
+                        Available Projects:
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        Selected Projects: <span id="amend-countReady"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="amend-availableProjects" class="w400 nobind" size="25" multiple="multiple">
+                        </select>
+                    </td>
+                    <td>
+                        <a href="#" id="amend-addProject" title="Add Project">
+                            <img src="<%=Url.Content("~/content/images/24-arrow-next.png")%>" alt="add" /></a><br />
+                        <a href="#" id="amend-removeProject" title="Remove Project">
+                            <img src="<%=Url.Content("~/content/images/24-arrow-previous.png")%>" alt="remove" /></a><br />
+                    </td>
+                    <td>
+                        <select id="amend-selectedProjects" class="w400 nobind" size="25" multiple="multiple">
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </asp:Content>

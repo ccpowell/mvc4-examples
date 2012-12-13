@@ -29,31 +29,6 @@ namespace Trips4.Controllers.Api
         [AuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public void Put(InfoViewModel viewModel)
         {
-#if bozo
-            int projectVersionId = viewModel.InfoModel.ProjectVersionId;
-            string year = viewModel.InfoModel.RtpYear;
-
-            // TODO: just use InfoModel
-            //Get the model from the database
-            InfoModel model = RtpProjectRepository.GetProjectInfo(projectVersionId, year);
-
-            model.AdministrativeLevelId = viewModel.InfoModel.AdministrativeLevelId;
-            model.DRCOGNotes = viewModel.InfoModel.DRCOGNotes;
-            model.ImprovementTypeId = viewModel.InfoModel.ImprovementTypeId;
-            model.IsPoolMaster = viewModel.InfoModel.IsPoolMaster;
-            model.ProjectId = viewModel.InfoModel.ProjectId;
-            model.ProjectName = viewModel.InfoModel.ProjectName;
-            model.ProjectPoolId = viewModel.InfoModel.ProjectPoolId;
-            model.ProjectTypeId = viewModel.InfoModel.ProjectTypeId;
-            model.ProjectVersionId = viewModel.InfoModel.ProjectVersionId;
-            model.SelectionAgencyId = viewModel.InfoModel.SelectionAgencyId;
-            model.SponsorContactId = viewModel.InfoModel.SponsorContactId;
-            model.SponsorId = viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
-            model.SponsorNotes = viewModel.InfoModel.SponsorNotes;
-            model.RtpYear = viewModel.InfoModel.RtpYear;
-            model.TransportationTypeId = viewModel.InfoModel.TransportationTypeId;
-            model.IsRegionallySignificant = viewModel.InfoModel.IsRegionallySignificant;
-#endif
             // copy this one since it is not on the form
             viewModel.InfoModel.SponsorId = viewModel.ProjectSponsorsModel.PrimarySponsor.OrganizationId;
 
@@ -64,7 +39,7 @@ namespace Trips4.Controllers.Api
             }
             catch (Exception ex)
             {
-                Logger.WarnException("Could not update RTP Project Location", ex);
+                Logger.WarnException("Could not update RTP Project Info", ex);
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
         }

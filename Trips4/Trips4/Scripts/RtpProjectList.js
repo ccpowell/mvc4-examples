@@ -4,29 +4,19 @@
 /*jslint browser: true, debug: true, devel: true, white: true, plusplus: true, maxerr: 100, unparam: true, indent: 4 */
 /*global jQuery: false, Microsoft: false */
 
-// This is the script for the RTP view Projects.aspx
+// This is the script for the RTP view ProjectList.aspx
 
 var App = App || {};
 
-App.pp = {
-    CurrentCycleId: 22,
-    PreviousCycleId: 19,
-    NextCycleId: 0,
-    RtpPlanYear: '2035-S',
-    RtpPlanYearId: 78,
-    CurrentCycleName: '2011-1',
-    NextCycleName: ''
-};
-
 App.postit = function (url, options) {
     'use strict';
-    $.extend(options, {
+    jQuery.extend(options, {
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json'
     });
 
-    $.ajax(App.env.applicationPath + url, options);
+    jQuery.ajax(App.env.applicationPath + url, options);
 };
 
 
@@ -91,7 +81,7 @@ App.ui = (function ($) {
                     text: mode.buttonLabel,
                     click: amendSelectedProjects
                 }, {
-                    text: 'Close', 
+                    text: 'Close',
                     click: function () {
                         $(this).dialog('close');
                     }
@@ -101,6 +91,42 @@ App.ui = (function ($) {
         } else {
             alert(mode.noneMessage);
         }
+    }
+
+    // dialog callback. Create a project then browse to the new project location.
+    function createProject(e) {
+        var stuff = {
+            projectName: $("#projectName").val(),
+            facilityName: $("#facilityName").val(),
+            plan: App.pp.RtpPlanYear,
+            sponsorOrganizationId: $("#availableSponsors").val(),
+            cycleid: App.pp.CurrentCycleId
+        },
+        sstuff;
+
+        sstuff = JSON.stringify(stuff, null, 2);
+
+        App.postit('/api/RtpProjectItem', {
+            data: sstuff,
+            success: function (data) {
+                var redirectActionUrl = App.env.applicationPath
+                    + '/RtpProject/' + App.pp.RtpPlanYear
+                    + '/Info/' + data
+                    + '?message=' + encodeURIComponent('Project created successfully.');
+                alert('A new RTP Project has been created ' + data);
+                location = redirectActionUrl;
+            }
+        });
+    }
+
+    // ajax callback. Show the Create Project dialog.
+    function showCreateProject(data) {
+        var options = '';
+        $.each(data, function (index, el) {
+            options += '<option value="' + el.Value + '">' + el.Text + '</option>';
+        });
+        $('#availableSponsors').html(options);
+        $('#dialog-create-project').dialog('open');
     }
 
     function getProjects() {
@@ -116,6 +142,52 @@ App.ui = (function ($) {
         });
     }
 
+    function adopt() {
+    }
+
+    // ajax callback. Show the Adopt Cycle dialog.
+    function showAdoptCycle(data) {
+        var obj = "";
+        $.each(data, function (index, itemData) {
+            obj += "<li class='relative' id='row-amendable-" + itemData.ProjectVersionId + "'>"
+                + "<div class='iremove' id='" + itemData.ProjectVersionId + "' title='Remove " + itemData.ProjectName + "'></div>"
+                + itemData.SponsorAgency + " " + itemData.ProjectVersionId
+                + ": " + itemData.RtpYear
+                + ", " + itemData.ProjectName
+                + "</li>";
+        });
+        $('#amend-list').html(obj);
+        $('#dialog-amendpending-project').dialog('open');
+    }
+
+    // get data required for Adopt Cycle
+    function getAdoptCycleData() {
+        var stuff = {
+            cycleId: App.pp.CurrentCycleId, // shouldn't be needed
+            rtpPlanYearId: App.pp.RtpPlanYearId
+        },
+            sstuff = JSON.stringify(stuff, null, 2);
+
+        App.postit('/operation/misc/RtpGetAmendablePendingProjects', {
+            data: sstuff,
+            success: showAdoptCycle
+        });
+    }
+
+
+    // get data required for Create Project
+    function getCreateProjectData() {
+        var stuff = {
+            rtpPlanYearId: App.pp.RtpPlanYearId
+        },
+            sstuff = JSON.stringify(stuff, null, 2);
+
+        App.postit('/operation/misc/RtpGetSponsorOrganizations', {
+            data: sstuff,
+            success: showCreateProject
+        });
+    }
+
     function getAmendableProjects() {
         mode = modeAmend;
         getProjects();
@@ -128,6 +200,8 @@ App.ui = (function ($) {
 
 
     function initialize() {
+        var oProjectListGrid;
+
         // amend dialog and actions
         $('#dialog-amend-projects').dialog({
             autoOpen: false,
@@ -148,6 +222,34 @@ App.ui = (function ($) {
             });
         });
 
+        // create project dialog
+        $('#dialog-create-project').dialog({
+            autoOpen: false,
+            width: 600,
+            height: 400,
+            modal: true,
+            buttons: {
+                "Create": createProject,
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $('#dialog-amendpending-project').dialog({
+            autoOpen: false,
+            width: 900,
+            height: 600,
+            modal: true,
+            buttons: {
+                "Adopt": adopt,
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        // buttons
         $('#amend-projects, #include-projects')
             .button()
             .click(getAmendableProjects);
@@ -155,6 +257,32 @@ App.ui = (function ($) {
         $('#restore-projects')
             .button()
             .click(getRestorableProjects);
+
+        $('#create-project')
+            .button()
+            .click(getCreateProjectData);
+
+        $('#adopt-cycle')
+            .button()
+            .click(getAdoptCycleData);
+
+        // table
+        oProjectListGrid = $('#projectListGrid').dataTable({
+            "iDisplayLength": 100,
+            "bJQueryUI": true,
+            "aaSorting": [[1, "asc"]],
+            "aoColumns": [
+                null,
+                { sWidth: '60px' },
+                { sWidth: '110px' },
+                { sWidth: '60px' },
+                { sWidth: '190px' },
+                null,
+                null,
+                { "bVisible": false },
+                { "bVisible": false }
+            ]
+        });
     }
 
     return {
