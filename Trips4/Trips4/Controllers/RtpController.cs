@@ -230,7 +230,7 @@ namespace Trips4.Controllers
                 viewModel.ProjectList = viewModel.ProjectList.Take(1000).ToList();
                 ViewData["ShowMessage"] = "Your results exceeded 1000 records. Please refine your search to narrow your results";
             }
-            viewModel.RestorableProjectList = _rtpRepository.GetRestoreProjectList(_rtpRepository.GetYearId(year, Enums.TimePeriodType.PlanYear));
+            //viewModel.RestorableProjectList = _rtpRepository.GetRestoreProjectList(_rtpRepository.GetYearId(year, Enums.TimePeriodType.PlanYear));
             //Now save this projectSearchModel (for future searchs)
             CurrentSessionApplicationState.ProjectSearchModel = projectSearchModel;
 
@@ -329,7 +329,7 @@ namespace Trips4.Controllers
                 viewModel.ProjectList = viewModel.ProjectList.Take(1000).ToList();
                 ViewData["ShowMessage"] = "Your results exceeded 1000 records. Please refine your search to narrow your results";
             }
-            viewModel.RestorableProjectList = _rtpRepository.GetRestoreProjectList(_rtpRepository.GetYearId(year, Enums.TimePeriodType.PlanYear));
+            //viewModel.RestorableProjectList = _rtpRepository.GetRestoreProjectList(_rtpRepository.GetYearId(year, Enums.TimePeriodType.PlanYear));
             //Now save this projectSearchModel (for future searchs)
             CurrentSessionApplicationState.ProjectSearchModel = projectSearchModel;
 

@@ -6166,6 +6166,10 @@
           <Parameter Name="ProjectVersionId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="TryCatchError" />
+          <FunctionImport Name="RtpSetActiveCycle">
+            <Parameter Name="CycleId" Mode="InOut" Type="Int32" />
+            <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Processed">
           <Key>
@@ -10644,6 +10648,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TryCatchError" FunctionName="TripsModel.Store.TryCatchError" />
+          <FunctionImportMapping FunctionImportName="RtpSetActiveCycle" FunctionName="TripsModel.Store.SetActiveCycle" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

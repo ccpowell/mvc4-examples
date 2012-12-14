@@ -37,39 +37,48 @@
         </div>
         <%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
         <div class="tab-content-container">
+
             <div id="button-container">
                 <% if (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator"))
                    { %>
-                <% if (Model.RtpSummary.IsAmendable() && Model.RtpSummary.Cycle.StatusId == (int)DRCOG.Domain.Enums.RTPCycleStatus.Active)
+                <% if (Model.RtpSummary.IsCycleAmendable() && Model.RtpSummary.Cycle.StatusId == (int)DRCOG.Domain.Enums.RTPCycleStatus.Active)
                    { %>
                 <button id="amend-projects">
                     Amend Projects</button>
                 <% } %>
-                <% if (Model.RtpSummary.IsEditable())
+                <% if (Model.RtpSummary.IsCycleEditable())
                    { %>
                 <button id="restore-projects">
                     Restore Projects</button>
                 <button id="create-project">
                     New Project</button>
                 <% } %>
-                <% if (Model.RtpSummary.IsAmendable() && Model.RtpSummary.Cycle.StatusId == (int)DRCOG.Domain.Enums.RTPCycleStatus.Pending)
+                <% if (Model.RtpSummary.IsCycleIncludable())
                    { %>
                 <button id="include-projects">
                     Include More</button>
                 <button id="adopt-cycle">
                     Adopt Cycle</button>
                 <% } %>
+                <% if (Model.RtpSummary.IsMissingNextCycle())
+                   { %>
+                   There is no Pending or New cycle. Please use the Plan Cycles tab to add a New cycle.
+                   <% } %>
                 <% } %>
             </div>
+            <!-- clear the buttons -->
+            <div style="height: 45px; width: 1px; position: relative;">
+                &nbsp;</div>
             <div class="big-bold">
                 <div>
-                    Project List for:
                     <%if (!String.IsNullOrEmpty(Model.ListCriteria))
                       { %>
+                    Project List for:
                     <%= Model.ListCriteria %>
                     <% }
                       else
-                      { %>Cycle
+                      { %>
+                    Cycle
                     <%= Model.RtpSummary.Cycle.Name %>
                     <%= Model.RtpSummary.Cycle.Status %>
                     <% } %>
@@ -93,6 +102,7 @@
             <span id="currentCycleId" style="display: none;">
                 <%= Model.RtpSummary.Cycle.Id %></span> <span id="nextCycleId" style="display: none;">
                     <%= Model.RtpSummary.Cycle.NextCycleId %></span>
+            <br />
             <% Html.Grid(Model.ProjectList).Columns(column =>
         {
             //column.For(x => Html.ActionLink("Details", "Details", new { controller = "Project", year = Model.TipSummary.TipYear, id = x.ProjectVersionId })).Encode(false);

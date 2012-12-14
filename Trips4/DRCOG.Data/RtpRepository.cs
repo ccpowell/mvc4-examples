@@ -495,7 +495,7 @@ namespace DRCOG.Data
                             summary.Cycle.Name = rdr["CycleName"].ToString();
                             summary.Cycle.Id = rdr["CycleId"].ToString().SmartParseDefault<int>(default(int));
                             list.Add(summary);
-                            Logger.Debug("Amendment Status " + rdr["AmendmentStatusId"].ToString());
+                            //Logger.Debug("Amendment Status " + rdr["AmendmentStatusId"].ToString());
                         }
                     }
                 }
@@ -676,7 +676,6 @@ namespace DRCOG.Data
             {
                 this.ExecuteNonQuery(cmd);
                 result = cmd.Parameters["@CycleId"].Value.ToString();
-
             }
             catch (Exception ex)
             {

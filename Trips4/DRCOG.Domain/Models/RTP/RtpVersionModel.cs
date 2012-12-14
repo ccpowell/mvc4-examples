@@ -41,7 +41,7 @@ namespace DRCOG.Domain.Models.RTP
         {
             get { return InAmendmentCheck.Contains(AmendmentStatusId); }
         }
-        
+
         public Boolean CanDelete(String status)
         {
             if (((IList<string>)CAN_DELETE_STATUS).Contains(status.ToLower()))
@@ -60,7 +60,7 @@ namespace DRCOG.Domain.Models.RTP
 
             if (IsCycleEditable() && (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator")))// && IsPending)
                 return true;
-                
+
             return false;
         }
 
@@ -73,29 +73,94 @@ namespace DRCOG.Domain.Models.RTP
             return false;
         }
 
-        public bool IsCycleEditable()
+        public bool IsTimePeriodEditable()
         {
             if (TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Current) ||
                 TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.CurrentUnlocked) ||
                 TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Pending))
             {
-                if (!Cycle.NextCycleId.Equals(default(int))) { return false; }
-                if (Cycle.StatusId.Equals((int)Enums.RTPCycleStatus.Active) ||
-                    (Cycle.StatusId.Equals((int)Enums.RTPCycleStatus.Inactive) && 
-                        Cycle.NextCycleId.Equals(default(int)))) 
-                { return true; }
-            }
-            else if (TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.New))
-            {
-                var test = Cycle.StatusId;
                 return true;
             }
+            return false;
+        }
 
-            if ((!TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Inactive) ||
-                !TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Abandoned)) &&
-                Cycle.StatusId.Equals((int)Enums.RTPCycleStatus.Pending)) 
-            { return true; }
-            
+        /// <summary>
+        /// True if you can take projects and Amend them into a New cycle
+        /// to make a Pending cycle.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsCycleAmendable()
+        {
+            if (IsTimePeriodEditable())
+            {
+                if ((Cycle.StatusId == (int)Enums.RTPCycleStatus.Active) &&
+                    (Cycle.NextCycleId != 0) &&
+                    (Cycle.NextCycleStatus != "Pending"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// True if you can take projects from this cycle and Amend them into a Pending cycle.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsCycleIncludable()
+        {
+            if (IsTimePeriodEditable())
+            {
+                if (Cycle.StatusId == (int)Enums.RTPCycleStatus.Pending)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// True if this cycle would be editable but there is no next cycle.
+        /// The user must create a New Cycle.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsMissingNextCycle()
+        {
+            if (IsTimePeriodEditable())
+            {
+                if ((Cycle.StatusId == (int)Enums.RTPCycleStatus.Active) &&
+                    (Cycle.NextCycleId == 0))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        // To edit a cycle in the current plan year, either
+        //      this cycle is Pending
+        // or
+        //      this cycle is Active and there is a next cycle
+        // Note that in the latter case the next cycle will be Pending or New.
+        public bool IsCycleEditable()
+        {
+            return IsCycleAmendable() || IsCycleIncludable();
+            /*
+        else if (TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.New))
+        {
+            return true;
+        }
+
+        // TODO: what is this use case?
+        if ((!TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Inactive) ||
+            !TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Abandoned)) &&
+            Cycle.StatusId.Equals((int)Enums.RTPCycleStatus.Pending))
+        {
+            return true;
+        }
+             * */
+
             return false;
         }
 

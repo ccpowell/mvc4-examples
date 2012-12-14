@@ -116,6 +116,21 @@ namespace Trips4.Controllers.Operation
             }
         }
 
+        [HttpPost]
+        public void RtpAdoptProjects(RtpAmendProjectsRequest request)
+        {
+            try
+            {
+                TripsRepository.RtpAdoptProjects(request.rtpPlanYearId, request.projectIds);
+                // n.b. this sets the Cycle Status also
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpAdoptProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
 
         [HttpPost]
         public void RtpRestoreProjects(RtpAmendProjectsRequest request)

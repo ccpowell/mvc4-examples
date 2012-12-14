@@ -3056,6 +3056,26 @@ namespace Trips4.Data.Models
         {
             return base.ExecuteFunction("TryCatchError");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="cycleId">No Metadata Documentation available.</param>
+        /// <param name="timePeriodId">No Metadata Documentation available.</param>
+        public int RtpSetActiveCycle(ObjectParameter cycleId, Nullable<global::System.Int32> timePeriodId)
+        {
+            ObjectParameter timePeriodIdParameter;
+            if (timePeriodId.HasValue)
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", timePeriodId);
+            }
+            else
+            {
+                timePeriodIdParameter = new ObjectParameter("TimePeriodId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("RtpSetActiveCycle", cycleId, timePeriodIdParameter);
+        }
 
         #endregion
     }

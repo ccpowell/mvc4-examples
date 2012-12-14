@@ -15,7 +15,7 @@ namespace Trips4
         
         public const string SessionIdentifier = "TripsSessionIdentifier";
 
-        protected void Application_Start()
+        protected void Application_Start(object sender, EventArgs e)
         {
             Logger.Info("TRIPS starting");
 
@@ -27,7 +27,11 @@ namespace Trips4
             Bootstrapper.Initialise();
         }
 
-        protected void Application_End()
+        protected void Session_End(object sender, EventArgs e)
+        {
+            Logger.Info("Session ending");
+        }
+        protected void Application_End(object sender, EventArgs e)
         {
             Logger.Info("TRIPS ending");
         }

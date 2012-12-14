@@ -233,7 +233,7 @@ namespace Trips4.Data
         }
 
         /// <summary>
-        /// Create a new PlanCycle and attach it to the given plan year.
+        /// Create a New PlanCycle and attach it to the given plan year.
         /// </summary>
         /// <param name="cycle">with Name and Description</param>
         /// <param name="rtpYearId">ID of plan year</param>
@@ -245,28 +245,45 @@ namespace Trips4.Data
                 // there can be only one cycle in this plan year with a status of New
                 var stId = db.StatusTypes.First(st => st.StatusType1 == "Cycle Status").StatusTypeID;
                 var newId = db.Status.First(s => s.StatusTypeID == stId && s.Status1 == "New").StatusID;
+
+                // see if there is already a new plan cycle for this RTP Year
                 var previousNew = db.TimePeriodCycles.FirstOrDefault(tpc => tpc.TimePeriodId == rtpYearId && tpc.Cycle.statusId == newId);
                 if (previousNew != null)
                 {
                     throw new Exception("There is already a New Plan Cycle");
                 }
+
+                byte listOrder = 0;
+                int? priorCycleId = null;
+
+                // if this is not the first cycle in the time period, attach it to the end
+                // of the two lists - ListOrder and priorCycleId
+                if (db.TimePeriodCycles.Count() > 0)
+                {
+                    // find last cycle in this time period. "last" means highest ListOrder.
+                    var lo = db.TimePeriodCycles.Where(tpc => tpc.TimePeriodId == rtpYearId).Max(tpc => tpc.ListOrder);
+                    var prior = db.TimePeriodCycles.First(tpc => tpc.TimePeriodId == rtpYearId && tpc.ListOrder == lo);
+                    priorCycleId = prior.CycleId;
+                    listOrder = lo ?? 0;
+                }
+
+                // find largest ListOrder in these cycles and add 1
+                ++listOrder;
+
                 var mcycle = new Models.Cycle()
                 {
                     cycle1 = cycle.Name,
                     Description = cycle.Description,
-                    statusId = newId
+                    statusId = newId,
+                    priorCycleId = priorCycleId
                 };
                 db.Cycles.AddObject(mcycle);
-
-                // find largest ListOrder in these cycles and add 1
-                var lo = db.TimePeriodCycles.Where(tpc => tpc.TimePeriodId == rtpYearId).Max(tpc => tpc.ListOrder);
-                lo += 1;
 
                 var mtpc = new Models.TimePeriodCycle()
                 {
                     Cycle = mcycle,
                     TimePeriodId = (short)rtpYearId,
-                    ListOrder = lo
+                    ListOrder = listOrder
                 };
                 db.TimePeriodCycles.AddObject(mtpc);
 
@@ -319,7 +336,7 @@ namespace Trips4.Data
         /// Get TIP Status
         /// </summary>
         /// <remarks>obsoletes TIP.GetStatus</remarks>
-        /// <param name="rtpYearId"></param>
+        /// <param name="rtpYearId">ID of the RTP Plan Year</param>
         /// <returns></returns>
         public DRCOG.Domain.Models.TipStatusModel GetTipStatus(int rtpYearId)
         {
@@ -362,6 +379,10 @@ namespace Trips4.Data
             return model;
         }
 
+        /// <summary>
+        /// Update the TIP status.
+        /// </summary>
+        /// <param name="model"></param>
         public void UpdateTipStatus(DRCOG.Domain.Models.TipStatusModel model)
         {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
@@ -397,7 +418,7 @@ namespace Trips4.Data
         }
 
         // either find the current pending cycle or promote the new cycle. 
-        // if neither exists, return null.
+        // if neither exists, throw an exception.
         private Models.Cycle RtpAssurePendingCycle(Trips4.Data.Models.TRIPSEntities db, int rtpPlanYearId)
         {
             var tp = db.TimePeriods.First(t => t.TimePeriodID == rtpPlanYearId);
@@ -415,10 +436,10 @@ namespace Trips4.Data
         }
 
         /// <summary>
-        /// Copy the given projects into the given RTP Plan Year and mark them Pending.
+        /// Copy the given projects into the Pending Cycle of the given RTP Plan Year and mark them Pending.
         /// </summary>
-        /// <param name="rtpPlanYearId"></param>
-        /// <param name="projects"></param>
+        /// <param name="rtpPlanYearId">ID of the RTP Plan Year</param>
+        /// <param name="projects">list of RTP ProjectVersion IDs</param>
         public void RtpAmendProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
@@ -456,11 +477,59 @@ namespace Trips4.Data
 
 
         /// <summary>
+        /// Mark the projects Adopted, mark the Pending Cycle Active, and
+        /// mark the Active Cycle Inactive.
+        /// </summary>
+        /// <param name="rtpPlanYearId">ID of the RTP Plan Year</param>
+        /// <param name="projects">list of RTP ProjectVersion IDs</param>
+        public void RtpAdoptProjects(int rtpPlanYearId, IEnumerable<int> projects)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
+                Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
+                var tp = db.TimePeriods.First(t => t.TimePeriodID == rtpPlanYearId);
+
+                foreach (var pid in projects)
+                {
+                    // Due to crappy data, we expect some operations to fail, but we 
+                    // want to do as much as possible.
+                    try
+                    {
+                        var npv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == pid);
+
+                        // set statuses (stati?)
+                        npv.AmendmentStatusID = (int)Enums.RTPAmendmentStatus.Amended;
+                        npv.VersionStatusID = (int)Enums.RTPVersionStatus.Active;
+
+                        // TODO: set status of previous version, if any
+                        //var ppv = db.RTPProjectVersions.First(p => p.RTPProjectVersionID == npv.Pre);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WarnException("RtpAdoptProject failed for a ProjectVersion " + pid.ToString(), ex);
+                    }
+                }
+
+                /// Set the current Active Cycle (if any) to Inactive.
+                /// Set the current Pending Cycle to Active.
+                var ac = tp.TimePeriodCycles.FirstOrDefault(tpc => tpc.Cycle.statusId == (int)Enums.RTPCycleStatus.Active);
+                if (ac != null)
+                {
+                    ac.Cycle.statusId = (int)Enums.RTPCycleStatus.Inactive;
+                }
+                pc.statusId = (int)Enums.RTPCycleStatus.Active;
+
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// Copy the given projects into the given RTP Plan Year and mark them Pending.
         /// </summary>
         /// <remarks>seems identical to RtpAmendProjects. question the VersionStatus.</remarks>
-        /// <param name="rtpPlanYearId"></param>
-        /// <param name="projects"></param>
+        /// <param name="rtpPlanYearId">ID of the RTP Plan Year</param>
+        /// <param name="projects">list of RTP ProjectVersion IDs</param>
         public void RtpRestoreProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
             using (var db = new Trips4.Data.Models.TRIPSEntities())
