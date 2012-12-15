@@ -57,11 +57,7 @@ br { clear: both; }
 .bg-red { background: #ff0015; }
 .bg-red:hover { background: #be000f; }
 
-
-
 .iremove { position: relative; height: 16px; width: 16px; background: url('/Content/Images/remove.png') #fff;}
-
-
 
 
 /* HEADINGS   

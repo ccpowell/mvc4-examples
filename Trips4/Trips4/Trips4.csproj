@@ -654,7 +654,6 @@
     <Content Include="Views\RTPProject\Scope.aspx" />
     <Content Include="Views\RTP\Agencies.aspx" />
     <Content Include="Views\RTP\Amendments.aspx" />
-    <Content Include="Views\RTP\ProjectList2.aspx" />
     <Content Include="Views\RTP\PlanCycles.aspx" />
     <Content Include="Views\RTP\Dashboard.aspx" />
     <Content Include="Views\RTP\FundingList.aspx" />
