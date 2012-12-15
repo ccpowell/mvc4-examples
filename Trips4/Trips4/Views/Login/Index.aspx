@@ -12,35 +12,40 @@
             <div id="containers">
                 <div id="loginContainer">
                     <h2>
-                        Administrative Login</h2>
+                        Login</h2>
                     <div class="twothirds">
-                        <p>
-                            <%= Html.LabelFor(m => m.LogOnModel.UserName) %>
-                            <%= Html.TextBoxFor(m => m.LogOnModel.UserName) %>
-                        </p>
-                        <p>
-                            <%= Html.LabelFor(m => m.LogOnModel.Password) %>
-                            <%= Html.PasswordFor(m => m.LogOnModel.Password)%>
-                        </p>
-                        <p>
-                            <%= Html.LabelFor(m => m.LogOnModel.RememberMe) %>
-                            <%= Html.CheckBoxFor(m => m.LogOnModel.RememberMe) %>
-                        </p>
-                        <p>
-                            <button type="submit" name="LogOnModel.LoginType" value="administrator">
-                                <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" alt="lock" />
-                                Log In
-                            </button>
-                        </p>
-                        <p>
-                            <button type="submit" name="LogOnModel.LoginType" value="guest">Log In as Guest</button>
-                            <br />No user name or password required.
-                        </p>
-                        <p>
-                            <a id="btn_forgotPassword" href="#">Forgot Password?</a>
-                            <%--<%= Html.ActionLink("Forgot Password?", "RecoverPassword", "Account")%>--%>
-                        </p>
+                        <div class="border box">
+                                <button type="submit" name="LogOnModel.LoginType" value="guest">
+                                    Log In as Guest</button>
+                                <br />
+                                No user name or password required.
+                        </div>
                         <br />
+                        <div class="border box">
+                            <p>
+                                <%= Html.LabelFor(m => m.LogOnModel.UserName) %>
+                                <%= Html.TextBoxFor(m => m.LogOnModel.UserName) %>
+                            </p>
+                            <p>
+                                <%= Html.LabelFor(m => m.LogOnModel.Password) %>
+                                <%= Html.PasswordFor(m => m.LogOnModel.Password)%>
+                            </p>
+                            <p>
+                                <%= Html.LabelFor(m => m.LogOnModel.RememberMe) %>
+                                <%= Html.CheckBoxFor(m => m.LogOnModel.RememberMe) %>
+                            </p>
+                            <p>
+                                <button type="submit" name="LogOnModel.LoginType" value="administrator">
+                                    <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" alt="lock" />
+                                    Log In
+                                </button>
+                            </p>
+                            <p>
+                                <a id="btn_forgotPassword" href="#">Forgot Password?</a>
+                                <%--<%= Html.ActionLink("Forgot Password?", "RecoverPassword", "Account")%>--%>
+                            </p>
+                            <br />
+                        </div>
                         <asp:Label ID="LabelMessage" runat="server" Text="Message" ForeColor="Red" Font-Bold="true">
                         <%= Model.Message %>
                         </asp:Label>
@@ -111,14 +116,12 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.ghosttext.js") %>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.min.js") %>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js") %>"
-        type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.ghosttext.js") %>" type="text/javascript"></script>
-    <link href="<%= ResolveUrl("~/Content/reset.css") %>" rel="stylesheet" type="text/css" />
-    <link href="<%= ResolveUrl("~/Content/site.css") %>" rel="stylesheet" type="text/css" />
-    <link href="<%= ResolveUrl("~/Content/login.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/reset.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/login.css") %>" rel="stylesheet" type="text/css" />
+    <script src="<%= Url.Content("~/scripts/jquery.ghosttext.js") %>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.validate.min.js") %>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.maskedinput-1.2.2.min.js") %>" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>
