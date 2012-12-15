@@ -53,7 +53,7 @@ namespace Trips4.Controllers.Operation
             try
             {
                 var availableProjects = RtpRepository.GetRestoreProjectList(request.cycleId).ToList();
-                availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
+                availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.RtpYear + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
             }
             catch (Exception ex)
             {
