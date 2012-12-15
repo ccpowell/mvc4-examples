@@ -141,6 +141,7 @@ namespace Trips4.Controllers
             return RedirectToAction("ProjectList", new { year = year });
         }
 
+
         /// <summary>
         /// Returns a list of projects associated with this RTP
         /// </summary>
@@ -148,104 +149,6 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult ProjectList(string year, string dft, string df, int? page, int? cycleid)
-        {
-            LoadSession();
-            if (String.IsNullOrEmpty(year))
-            {
-                year = _rtpRepository.GetCurrentRtpPlanYear();
-                return RedirectToAction("Dashboard", new { @year = year });
-            }
-
-
-            //Make a ProjectViewModel object from the search criteria
-            var projectSearchModel = new RTPSearchModel();
-
-            //If there is a 'df' dashboard filter, then the Session search criteria are reset.
-            if (df != null)
-            {
-                //Reset Session search criteria
-                CurrentSessionApplicationState.ProjectSearchModel = null;
-
-                //Assign dashboard search filter criteria
-                projectSearchModel.RtpYear = year;
-
-                //ToDo: convert 'df' we need to know what DashboardListType ('dft') it is (Sponsor = 1,ProjectType = 2,AmendmentStatus = 3)
-                //ToDo: Assign the 'df' variable to projectSearchModel
-                switch (dft)
-                {
-                    case "AmendmentStatus":
-                        projectSearchModel.AmendmentStatus = df;
-                        break;
-                    case "Sponsor":
-                        projectSearchModel.SponsorAgency = df;
-                        break;
-                    case "ProjectType":
-                        projectSearchModel.ProjectType = df;
-                        break;
-                    case "ImprovementType":
-                        projectSearchModel.ImprovementType = df;
-                        break;
-                    case "SponsorWithTipid":
-                        projectSearchModel.SponsorAgency = df;
-                        projectSearchModel.RequireTipId = true;
-                        break;
-                }
-
-                //Assume from dashboard that we only want active projects.
-                //projectSearchModel.VersionStatusId = rtpSummary.IsPending ? (int)RTPVersionStatus.Pending : (int)RTPVersionStatus.Active;
-            }
-            else
-            {
-                //Check to see if there is a projectSearchModel in Session. If not, then we have nt selected a dashboard or project search tab option.
-                var sm = CurrentSessionApplicationState.ProjectSearchModel as RTPSearchModel;
-                if (sm != null)
-                {
-                    //Pull ProjectSearchModel from session and use
-                    projectSearchModel = sm;
-                }
-                else
-                {
-                    //Create search using RTPYear and Active Version only (default).
-                    projectSearchModel.RtpYear = year;
-                    //projectSearchModel.VersionStatusId = rtpSummary.IsPending ? (int)RTPVersionStatus.Pending : (int)RTPVersionStatus.Active;
-                }
-            }
-
-            projectSearchModel.CycleId = cycleid ?? 0;
-
-            //Before passing the ProjectSearchModel, make sure it is validated
-            projectSearchModel = this.ValidateSearchData((RTPSearchModel)projectSearchModel, StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram));
-
-            //DTS NOTE: We don't fetch the model from the Repo directly because we will have to handle some complex criteria and filtering options
-            var viewModel = new ProjectListViewModel();
-            viewModel.RtpSummary = cycleid != null ? _rtpRepository.GetSummary(year, (int)cycleid) : _rtpRepository.GetSummary(year);
-            //if (projectSearchModel.CycleId.Equals(default(int))) { projectSearchModel.CycleId = viewModel.RtpSummary.Cycle.Id; }
-            if (viewModel.RtpSummary.Cycle.StatusId.Equals((int)Enums.RTPCycleStatus.Pending)) projectSearchModel.ShowCancelledProjects = true;
-            viewModel.ProjectList = _rtpRepository.GetRTPProjects(projectSearchModel);
-            viewModel.ListCriteria = df;
-            viewModel.ListType = dft;
-            if (viewModel.ProjectList.Count > 1000)
-            {
-                int originalCount = viewModel.ProjectList.Count;
-                viewModel.ProjectList = viewModel.ProjectList.Take(1000).ToList();
-                ViewData["ShowMessage"] = "Your results exceeded 1000 records. Please refine your search to narrow your results";
-            }
-            //viewModel.RestorableProjectList = _rtpRepository.GetRestoreProjectList(_rtpRepository.GetYearId(year, Enums.TimePeriodType.PlanYear));
-            //Now save this projectSearchModel (for future searchs)
-            CurrentSessionApplicationState.ProjectSearchModel = projectSearchModel;
-
-            viewModel.ReturnUrl = Request["ReturnUrl"] ?? String.Empty;
-
-            return View(viewModel);
-        }
-
-        /// <summary>
-        /// Returns a list of projects associated with this RTP
-        /// </summary>
-        /// <param name="guid"></param>
-        /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
-        public ActionResult ProjectList2(string year, string dft, string df, int? page, int? cycleid)
         {
             LoadSession();
             if (String.IsNullOrEmpty(year))
