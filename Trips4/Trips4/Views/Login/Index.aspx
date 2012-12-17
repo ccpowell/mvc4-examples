@@ -7,6 +7,7 @@
         <% using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "loginForm" }))
            { %>
         <%= Html.Hidden("returnUrl", Model.ReturnUrl)%>
+        <input type="hidden" id="login-type" name="LogOnModel.LoginType" value="administrator" />
         <%--<%= Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.", new { @class="error"} )%>--%>
         <div id="loginWrapper">
             <div id="containers">
@@ -15,7 +16,7 @@
                         Login</h2>
                     <div class="twothirds">
                         <div class="border box">
-                                <button type="submit" name="LogOnModel.LoginType" value="guest">
+                                <button type="submit" id="login-guest">
                                     Log In as Guest</button>
                                 <br />
                                 No user name or password required.
@@ -35,7 +36,7 @@
                                 <%= Html.CheckBoxFor(m => m.LogOnModel.RememberMe) %>
                             </p>
                             <p>
-                                <button type="submit" name="LogOnModel.LoginType" value="administrator">
+                                <button type="submit" id="login-administrator">
                                     <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" alt="lock" />
                                     Log In
                                 </button>
@@ -110,8 +111,15 @@
     </div>
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
-            $(".ghost_text").ghostText();
-
+            // IE doesn't handle button value properly so we specifically set it
+            $("#login-guest").click(function () {
+                $("#login-type").val("guest");
+                return true;
+            });
+            $("#login-administrator").click(function () {
+                $("#login-type").val("administrator");
+                return true;
+            });
         });
     </script>
 </asp:Content>
