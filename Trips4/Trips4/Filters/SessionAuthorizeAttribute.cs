@@ -48,7 +48,12 @@ namespace Trips4.Filters
             }
 
             // the usual authorization
-            return base.AuthorizeCore(httpContext);
+            bool auth = base.AuthorizeCore(httpContext);
+            if (!auth)
+            {
+                Logger.Debug("Unauthorized user.");
+            }
+            return auth;
         }
     }
 }

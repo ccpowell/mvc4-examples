@@ -79,7 +79,7 @@ namespace Trips4.Controllers
                 {
                     timeoutMessage = "Your session has timed out. Please log in again to proceed.";
                 }
-
+                Logger.Debug("Clearing user information - logging out.");
                 FormsAuthentication.SignOut();
                 Session.Abandon();
 
