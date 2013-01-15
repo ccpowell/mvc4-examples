@@ -130,7 +130,7 @@ App.ui = (function ($) {
         // bind click on the first column of the row
         $('#cyclesGrid tbody').on("click", "tr td:first-child", function (e) {
             var id = $(this).closest("tr").data("id");
-            $.getJSON("/Trips4/api/RtpPlanCycle", { id: id }, editCycle);
+            $.getJSON(App.env.applicationPath + "/api/RtpPlanCycle", { id: id }, editCycle);
             return false; // stop propagation and default behavior
         });
     }

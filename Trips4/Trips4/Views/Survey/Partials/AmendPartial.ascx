@@ -205,10 +205,6 @@
             success: function(response, textStatus, XMLHttpRequest) {
                 resetRestoreSelects();
                 $('#amend-availableProjects').addItems(response);
-            },
-            error: function (response, textStatus, AjaxException) {
-                alert("Your session has expired." + " " + textStatus + " " + AjaxException);
-                location.reload();
             }
         });
     }

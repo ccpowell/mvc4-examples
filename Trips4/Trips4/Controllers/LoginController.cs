@@ -180,9 +180,6 @@ namespace Trips4.Controllers
             model.UserName = "guest";
             model.Password = "!!Test123";
 
-            // TODO: remove this
-            //Membership.DeleteUser(model.UserName);
-
             // see if this is a valid user
             if (Membership.ValidateUser(model.UserName, model.Password))
             {
@@ -191,7 +188,7 @@ namespace Trips4.Controllers
             }
 
             // if not, add the user and roles
-            Logger.Debug("creating user " + model.UserName);
+            Logger.Debug("creating guest " + model.UserName);
             var profile = new ShortProfile()
             {
                 FirstName = "Anonymous",

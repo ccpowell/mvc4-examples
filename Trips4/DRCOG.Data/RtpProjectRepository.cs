@@ -43,6 +43,8 @@ namespace DRCOG.Data
     public class RtpProjectRepository : RtpRepository, IRtpProjectRepository
     {
 
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         public RtpProjectRepository()
         {
             _appState = Enums.ApplicationState.RTP;
@@ -443,6 +445,7 @@ namespace DRCOG.Data
         /// <returns></returns>
         public Boolean DeleteProjectVersion(int projectVersionId/*, Enums.RTPAmendmentStatus expectedStatus*/)
         {
+            Logger.Debug("RTP DeleteProjectVersion " + projectVersionId.ToString());
             try
             {
                 using (SqlCommand command = new SqlCommand("[RTP].[DeleteProjectVersion]") { CommandType = CommandType.StoredProcedure })
@@ -452,30 +455,12 @@ namespace DRCOG.Data
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-
+                Logger.WarnException("RTP DeleteProjectVersion failed", ex);              
             }
             return false;
 
-            //string fileName = (String)cmd.Parameters["@fileName"].Value;
-            //try
-            //{
-            //    if (!fileName.Equals(String.Empty))
-            //    {
-            //        FileHandler.Delete(fileName, model.LocationMapPath);
-            //    }
-            //    else
-            //    {
-            //        throw new NoNullAllowedException();
-            //    }
-            //}
-            //catch
-            //{
-
-            //}
-
-            //return (String)cmd.Parameters["@fileName"].Value;
         }
 
         /// <summary>
