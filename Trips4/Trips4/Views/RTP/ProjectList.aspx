@@ -32,9 +32,6 @@
     <div class="view-content-container">
         <div class="clear">
         </div>
-        <div class="big-bold">
-            EXPERIMENTAL
-        </div>
         <%Html.RenderPartial("~/Views/RTP/Partials/TabPartial.ascx", Model.RtpSummary); %>
         <div class="tab-content-container">
 
