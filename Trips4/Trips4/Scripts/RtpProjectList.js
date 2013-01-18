@@ -228,7 +228,7 @@ App.ui = (function ($) {
         $('#dialog-amend-projects').dialog({
             autoOpen: false,
             width: 900,
-            height: 600,
+            height: 700,
             modal: true
         });
 

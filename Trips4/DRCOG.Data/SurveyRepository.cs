@@ -472,7 +472,12 @@ namespace DRCOG.Data
             return this.GetProjectBasics(newProjectVersionId);
         }
 
-        public IList<Project> GetAmendableProjects(int timePeriodId)
+        /// <summary>
+        /// Get projects available for inclusion in a Survey.
+        /// </summary>
+        /// <param name="timePeriodId"></param>
+        /// <returns></returns>
+        public IList<Project> GetAmendableProjects()
         {
             IList<Project> list = new List<Project>();
 

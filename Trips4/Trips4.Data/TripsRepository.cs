@@ -9,9 +9,6 @@ using System.Transactions;
 
 namespace Trips4.Data
 {
-    public class PlanCycle
-    {
-    }
     public class TripsRepository
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -467,7 +464,8 @@ namespace Trips4.Data
                     }
                     catch (Exception ex)
                     {
-                        Logger.WarnException("RtpCopyProject failed", ex);
+                        var message = string.Format("RtpAmendProjects failed for id {0}", pid);
+                        Logger.WarnException(message, ex);
                     }
                 }
 
@@ -507,7 +505,8 @@ namespace Trips4.Data
                     }
                     catch (Exception ex)
                     {
-                        Logger.WarnException("RtpAdoptProject failed for a ProjectVersion " + pid.ToString(), ex);
+                        var message = string.Format("RtpAdoptProjects failed for id {0}", pid);
+                        Logger.WarnException(message, ex);
                     }
                 }
 
@@ -560,7 +559,8 @@ namespace Trips4.Data
                     }
                     catch (Exception ex)
                     {
-                        Logger.WarnException("RtpCopyProject failed", ex);
+                        var message = string.Format("RtpRestoreProjects failed for id {0}", pid);
+                        Logger.WarnException(message, ex);
                     }
                 }
 
@@ -586,6 +586,38 @@ namespace Trips4.Data
             using (var db = new Trips4.Data.Models.TRIPSEntities())
             {
                 db.TryCatchError();
+            }
+        }
+
+        /// <summary>
+        /// Add projects to given Survey. Currently, this must be the latest Survey and must be in 
+        /// a New status. 
+        /// </summary>
+        /// <param name="surveyId"></param>
+        /// <param name="projects"></param>
+        public void SurveyAmendProjects(int surveyId, IEnumerable<int> projects)
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                foreach (var pid in projects)
+                {
+                    // Due to crappy data, we expect some operations to fail, but we 
+                    // want to do as much as possible.
+                    try
+                    {
+                        Logger.Debug("Copy SurveyProjectVersion " + pid.ToString());
+                        var ov = new System.Data.Objects.ObjectParameter("NewProjectVersionId", typeof(int));
+                        var result = db.SurveyCopyProject(pid, surveyId, null, ov);
+                        var npid = ov.Value;
+                        Logger.Debug("created SurveyProjectVersion " + npid.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        var message = string.Format("SurveyAmendProjects failed for id {0}", pid);
+                        Logger.WarnException(message, ex);
+                    }
+                }
+                db.SaveChanges();
             }
         }
     }

@@ -6170,6 +6170,12 @@
             <Parameter Name="CycleId" Mode="InOut" Type="Int32" />
             <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SurveyCopyProject">
+            <Parameter Name="ProjectVersionID" Mode="In" Type="Int32" />
+            <Parameter Name="SurveyId" Mode="In" Type="Int32" />
+            <Parameter Name="DestinationYear" Mode="In" Type="String" />
+            <Parameter Name="NewProjectVersionId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Processed">
           <Key>
@@ -10649,6 +10655,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TryCatchError" FunctionName="TripsModel.Store.TryCatchError" />
           <FunctionImportMapping FunctionImportName="RtpSetActiveCycle" FunctionName="TripsModel.Store.SetActiveCycle" />
+          <FunctionImportMapping FunctionImportName="SurveyCopyProject" FunctionName="TripsModel.Store.CopyProject1" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

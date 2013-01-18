@@ -13,11 +13,13 @@ namespace Trips4.Controllers.Operation
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private Trips4.Data.TripsRepository TripsRepository { get; set; }
         private IRtpRepository RtpRepository { get; set; }
+        private ISurveyRepository SurveyRepository { get; set; }
 
-        public MiscController(Trips4.Data.TripsRepository trepo, IRtpRepository rrepo)
+        public MiscController(Trips4.Data.TripsRepository trepo, IRtpRepository rrepo, ISurveyRepository srepo)
         {
             TripsRepository = trepo;
             RtpRepository = rrepo;
+            SurveyRepository = srepo;
         }
 
         public class RtpGetAmendableProjectsRequest
@@ -94,8 +96,6 @@ namespace Trips4.Controllers.Operation
             }
         }
 
-
-
         public class RtpAmendProjectsRequest
         {
             public int rtpPlanYearId;
@@ -142,6 +142,44 @@ namespace Trips4.Controllers.Operation
             catch (Exception ex)
             {
                 Logger.WarnException("RtpRestoreProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+
+        [HttpPost]
+        public IEnumerable<System.Web.Mvc.SelectListItem> SurveyGetAmendableProjects()
+        {
+            var results = new List<System.Web.Mvc.SelectListItem>();
+            try
+            {
+                var availableProjects = SurveyRepository.GetAmendableProjects().ToList();
+                availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("SurveyGetAmendableProjects failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+
+            return results;
+        }
+
+        public class SurveyAmendProjectsRequest
+        {
+            public int surveyId;
+            public int[] projectIds;
+        }
+        [HttpPost]
+        public void SurveyAmendProjects(SurveyAmendProjectsRequest request)
+        {
+            try
+            {
+                TripsRepository.SurveyAmendProjects(request.surveyId, request.projectIds);
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("RtpAmendProjects failed", ex);
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
         }

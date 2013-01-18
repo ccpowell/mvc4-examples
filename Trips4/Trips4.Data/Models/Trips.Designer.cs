@@ -3076,6 +3076,48 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction("RtpSetActiveCycle", cycleId, timePeriodIdParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="projectVersionID">No Metadata Documentation available.</param>
+        /// <param name="surveyId">No Metadata Documentation available.</param>
+        /// <param name="destinationYear">No Metadata Documentation available.</param>
+        /// <param name="newProjectVersionId">No Metadata Documentation available.</param>
+        public int SurveyCopyProject(Nullable<global::System.Int32> projectVersionID, Nullable<global::System.Int32> surveyId, global::System.String destinationYear, ObjectParameter newProjectVersionId)
+        {
+            ObjectParameter projectVersionIDParameter;
+            if (projectVersionID.HasValue)
+            {
+                projectVersionIDParameter = new ObjectParameter("ProjectVersionID", projectVersionID);
+            }
+            else
+            {
+                projectVersionIDParameter = new ObjectParameter("ProjectVersionID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter surveyIdParameter;
+            if (surveyId.HasValue)
+            {
+                surveyIdParameter = new ObjectParameter("SurveyId", surveyId);
+            }
+            else
+            {
+                surveyIdParameter = new ObjectParameter("SurveyId", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter destinationYearParameter;
+            if (destinationYear != null)
+            {
+                destinationYearParameter = new ObjectParameter("DestinationYear", destinationYear);
+            }
+            else
+            {
+                destinationYearParameter = new ObjectParameter("DestinationYear", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("SurveyCopyProject", projectVersionIDParameter, surveyIdParameter, destinationYearParameter, newProjectVersionId);
+        }
 
         #endregion
     }

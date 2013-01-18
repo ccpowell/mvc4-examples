@@ -17,7 +17,7 @@
             </a>
         </li>
     <% } %>
-    <%if (Model.IsAdmin() && !Model.Id.Equals(default(int))) { %><li><a id="btn-includemore" href="#" class="" title="Include more Project">Include More</a></li><% } %>
+    <%if (Model.IsAdmin() && !Model.Id.Equals(default(int))) { %><li><a id="btn-includemore" href="#" class="" title="Include more Projects">Include More</a></li><% } %>
     
     <% if (Model.AgencyProjectList != null) { %>
         <% if (Model.AgencyProjectList.Count > 0) { %>
@@ -33,7 +33,7 @@
 <% } %>--%>
 
 <script type="text/javascript">
-var GetAmendableProjects = '<%=Url.Action("GetAmendableSurveyProjects","Survey") %>'; //GetAvailableRestoreProjects
+var GetAmendableProjects = App.env.applicationPath + '/Operation/Misc/SurveyGetAmendableProjects'; 
 var AmendProjects = '<%=Url.Action("AmendForNewSurvey","Survey") %>';
 var SurveyOverview = '<%=Url.Action("GetDetailsOverview","Survey") %>';
 var timePeriodId = "<%= Model.Id %>";
@@ -258,7 +258,7 @@ $(document).ready(function() {
                 </p>  
                 
                 <p>
-                    Thank you for completing the 2011 Transportation Improvement Survey!
+                    Thank you for completing the 2013 Transportation Improvement Survey!
                     <br />
                     You may be contacted if further information is needed.
                 </p>              

@@ -94,7 +94,7 @@ namespace Trips4.Controllers
         ///// <param name="removed"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         //public JsonResult UpdateAgencies(string plan, List<int> added, List<int> removed)
         //{
         //    if (added == null)
@@ -323,10 +323,8 @@ namespace Trips4.Controllers
 
             DashboardViewModel viewModel = new DashboardViewModel()
             {
-                Year = year
-                ,
-                ListType = dashboardListType
-                ,
+                Year = year,
+                ListType = dashboardListType,
                 Person = CurrentSessionApplicationState.CurrentUser
             };
 
@@ -571,7 +569,9 @@ namespace Trips4.Controllers
                 || p.UpdateStatusId.Equals((int)DRCOG.Domain.Enums.SurveyUpdateStatus.AwaitingAction);
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        // moved to API
+        //public JsonResult GetAmendableProjects(string plan)
+
         //public JsonResult GetAvailableRestoreProjects(string plan)
         //{
 
@@ -593,29 +593,8 @@ namespace Trips4.Controllers
         //    return Json(result);
         //}
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
-        //public JsonResult GetAmendableProjects(string plan)
-        //{
 
-        //    var result = new List<RtpSummary>();
-
-        //    try
-        //    {
-        //        result = _surveyRepository.GetAmendableProjects(_surveyRepository.GetYearId(plan)).ToList();
-        //        //result.Add(new SelectListItem { Text = "", Value = "" });
-        //        //availableProjects.ToList();//.ForEach(x => { result.Add(new SelectListItem { Text = x.RtpYear + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Clear();
-        //        //result.Add(new SelectListItem { Text = "No Projects found", Value = "0" });
-        //        return Json(new { response = result });
-
-        //    }
-        //    return Json(result);
-        //}
-
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DeleteProjectVersion(int projectVersionId)
         //{
         //    bool result = false;
@@ -645,7 +624,7 @@ namespace Trips4.Controllers
 
         //}
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult Restore(string plan, int guid)
         //{
         //    RtpSummary result = null;
@@ -686,7 +665,7 @@ namespace Trips4.Controllers
         //}
 
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult Amend(int projectVersionId, int cycleId)
         //{
         //    int result = default(int);
@@ -769,7 +748,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult ProjectSearch(string year)
         //{
@@ -827,7 +806,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="model"></param>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult ProjectSearch(ProjectSearchViewModel model)
         //{
@@ -895,7 +874,7 @@ namespace Trips4.Controllers
 
         #region RTP Amendments Tab
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Amendments(string year)
         //{
         //    var viewModel = new RtpBaseViewModel();
@@ -913,7 +892,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public ActionResult Status(string year)
         //{
         //    // get the view model from the repo
@@ -928,7 +907,7 @@ namespace Trips4.Controllers
         ///// <param name="viewModel"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public ActionResult UpdateStatus(StatusViewModel viewModel)
         //{
 
@@ -955,7 +934,7 @@ namespace Trips4.Controllers
         //}
 
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateTimePeriodStatusId(int timePeriodId, int statusId)
         //{
         //    string error = String.Empty;
@@ -989,7 +968,7 @@ namespace Trips4.Controllers
         ///// <param name="cycleId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult AddCycle(string plan, int cycleId)
         //{
         //    var jsr = new JsonServerResponse();
@@ -1003,7 +982,7 @@ namespace Trips4.Controllers
         ///// <param name="cycleId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DropCycle(int cycleId)
         //{
         //    LoadSessionData();
@@ -1023,7 +1002,7 @@ namespace Trips4.Controllers
         ///// <param name="cycle"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult CreateCycle(string cycle)
         //{
         //    string error = String.Empty;
@@ -1051,7 +1030,7 @@ namespace Trips4.Controllers
         //}
 
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateCycleName(int cycleId, string cycle)
         //{
         //    string error = String.Empty;
@@ -1089,7 +1068,7 @@ namespace Trips4.Controllers
         //    };
         //}
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult SetActiveCycle(int cycleId, int timePeriodId)
         //{
         //    string error = String.Empty;
@@ -1137,7 +1116,7 @@ namespace Trips4.Controllers
         //    return Json(result);
         //}
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateCycleSort(string cycles)
         //{
 
@@ -1208,7 +1187,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Agencies(string year)
         //{
 
@@ -1245,7 +1224,7 @@ namespace Trips4.Controllers
         ///// <param name="removed"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateAgencies(string plan, List<int> added, List<int> removed)
         //{
         //    if (added == null)
@@ -1282,7 +1261,7 @@ namespace Trips4.Controllers
         ///// <param name="agencyId"></param>
         ///// <returns></returns>
         //[HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult DropEligibleAgency(string plan, int agencyId)
         //{
         //    LoadSessionData();
@@ -1361,7 +1340,7 @@ namespace Trips4.Controllers
             return RedirectToAction("Info", new { controller = "Survey", id = projectVersionId, message = "Amendment processed successfully." });
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, Survey Administrator")]
         //public JsonResult CarryOver(int projectVersionId)
         //{
         //    try

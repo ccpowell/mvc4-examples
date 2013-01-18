@@ -84,7 +84,12 @@ namespace DRCOG.Domain.Interfaces
 
         DRCOG.Domain.Models.ProjectSponsorsModel GetProjectSponsorsModel(int projectVersionID, string year);
 
-        IList<Project> GetAmendableProjects(int timePeriodId);
+        /// <summary>
+        /// Get list of projects available for a new survey, using the Current survey
+        /// </summary>
+        /// <returns>list of available projects from Current survey</returns>
+        IList<Project> GetAmendableProjects();
+
         int CreateSurvey(int planId, string surveyName);
 
         //IList<RtpSummary> GetRestoreProjectList(int timePeriodId);
