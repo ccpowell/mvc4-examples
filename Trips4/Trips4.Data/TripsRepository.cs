@@ -156,7 +156,12 @@ namespace Trips4.Data
                 }
 
                 result.SurveyYears = new List<KeyValuePair<int, string>>();
-                foreach (var tp in db.TimePeriods.OrderBy(t => t.TimePeriod1))
+                var years = db.TimePeriods.Join(db.ProgramInstances,
+                    tp => tp.TimePeriodID,
+                    pi => pi.TimePeriodID,
+                    (tp, pi) => tp)
+                    .Where(tp => tp.TimePeriodTypeID == (short)Enums.TimePeriodType.Survey);
+                foreach (var tp in years.OrderBy(t => t.TimePeriod1))
                 {
                     var name = tp.TimePeriod1;
                     if (string.IsNullOrWhiteSpace(name))
