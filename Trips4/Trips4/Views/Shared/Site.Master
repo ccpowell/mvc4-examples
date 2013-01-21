@@ -39,8 +39,9 @@
             InitButtons();
         });
 
-        function InitButtons() {
+        function InitButtons() 
             //all hover and click logic for buttons
+            // TODO: remove this and use jQuery UI buttons
             $(".fg-button:not(.ui-state-disabled)")
 		        .hover(
 			        function () {
@@ -83,7 +84,7 @@
                 <div id="banner-ribbon">
                     <% if (HttpContext.Current.User.IsInRole("Contact Manager"))
                        { %>
-                    <a href="http://www3.drcog.org/membership/" target="_blank">Contact Module</a>
+                    <a href="http://www3.drcog.org/Contacts/" target="_blank">Contact Module</a>
                     <% } %>
                     <div id="loginwrapper">
                         <% if (!Request.IsAuthenticated)
