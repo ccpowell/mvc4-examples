@@ -1,10 +1,10 @@
-﻿using Contacts.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Contacts.Data;
+using Contacts.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
-using System.Collections.Generic;
-using System.Linq;
-using Contacts.Models;
 
 namespace Contacts.Tests
 {
@@ -99,6 +99,7 @@ namespace Contacts.Tests
             ContactsRepository target = new ContactsRepository();
             Contact contact = new Contact()
             {
+                UserName = "BozoTheClown",
                 FirstName = "Bozo",
                 LastName = "Clown",
                 Phone = "6661231234"
@@ -119,6 +120,60 @@ namespace Contacts.Tests
             IEnumerable<Contact> actual;
             actual = target.GetContacts();
             Assert.IsTrue(actual.Count() > 0);
+        }
+
+        /// <summary>
+        ///A test for CreateContactList
+        ///</summary>
+        [TestMethod()]
+        public void CreateContactListTest()
+        {
+            ContactsRepository target = new ContactsRepository();
+            ContactList contactList = new ContactList()
+            {
+                Name = "MyFirstList"
+            };
+            bool expected = true;
+            bool actual;
+            actual = target.CreateContactList(contactList);
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for GetContactLists
+        ///</summary>
+        [TestMethod()]
+        public void GetContactListsTest()
+        {
+            ContactsRepository target = new ContactsRepository();
+            IEnumerable<ContactList> actual;
+            actual = target.GetContactLists();
+            Assert.IsTrue(actual.Count() > 0);
+        }
+
+        /// <summary>
+        ///A test for AddContact
+        ///</summary>
+        [TestMethod()]
+        public void AddContactTest()
+        {
+            ContactsRepository target = new ContactsRepository(); // TODO: Initialize to an appropriate value
+            target.AddContact();
+        }
+
+        /// <summary>
+        ///A test for GetContact
+        ///</summary>
+        [TestMethod()]
+        public void GetContactTest()
+        {
+            ContactsRepository target = new ContactsRepository(); // TODO: Initialize to an appropriate value
+            string id = string.Empty; // TODO: Initialize to an appropriate value
+            Contact expected = null; // TODO: Initialize to an appropriate value
+            Contact actual;
+            actual = target.GetContact(id);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

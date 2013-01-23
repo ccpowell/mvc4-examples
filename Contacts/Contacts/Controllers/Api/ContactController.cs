@@ -9,6 +9,9 @@ namespace Contacts.Controllers.Api
 {
     public class ContactController : ApiController
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         // GET api/contact
         public IEnumerable<Models.Contact> Get()
         {
@@ -22,6 +25,7 @@ namespace Contacts.Controllers.Api
             }
             catch (Exception ex)
             {
+                Logger.DebugException("Get failed", ex);
                 throw;
             }
         }
@@ -33,9 +37,21 @@ namespace Contacts.Controllers.Api
         }
 #endif
         // GET api/contact/5
-        public string Get(string id)
+        public Models.Contact Get(string id)
         {
-            return "value";
+            try
+            {
+                using (var repo = new Data.ContactsRepository())
+                {
+
+                    return repo.GetContact(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.DebugException("Get failed", ex);
+                throw;
+            }
         }
 
         // POST api/contact
