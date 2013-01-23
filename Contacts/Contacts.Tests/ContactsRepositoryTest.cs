@@ -175,5 +175,19 @@ namespace Contacts.Tests
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
+
+        /// <summary>
+        ///A test for GetContactListByName
+        ///</summary>
+        [TestMethod()]
+        public void GetContactListByNameTest()
+        {
+            ContactsRepository target = new ContactsRepository(); 
+            string name = "MyFirstList"; 
+            ContactList actual;
+            actual = target.GetContactListByName(name);
+            Assert.IsNotNull(actual.Contacts);
+            Assert.IsTrue(actual.Contacts.Count > 0);
+        }
     }
 }
