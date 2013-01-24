@@ -400,7 +400,6 @@ dojo.declare("dts.account.AccountDetailController", null,
 
                 //check if it already exists in the store
                 var exists;
-                debugger;
                 grid.store.fetch({ onComplete: function(items) {
                     exists = dojo.some(items, function(item) { return item.roleId[0] == roleSelect.options[roleSelect.selectedIndex].value; });
                 }
