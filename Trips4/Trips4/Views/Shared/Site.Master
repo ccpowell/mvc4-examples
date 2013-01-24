@@ -39,7 +39,7 @@
             InitButtons();
         });
 
-        function InitButtons() 
+        function InitButtons() {
             //all hover and click logic for buttons
             // TODO: remove this and use jQuery UI buttons
             $(".fg-button:not(.ui-state-disabled)")
@@ -62,6 +62,7 @@
 		        }
 		    });
         }
+
     </script>
     <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
 </head>

@@ -259,9 +259,17 @@
         });
 
         $('span[id=btn_createsurvey]').live("click",function() {
-            var surveyname = $("#new_survey #surveyname").val();
-            SurveyAction(id,action);
-            
+            var surveyname = $("#new_survey #surveyname").val(),
+                data = {
+                    planId: timePeriodId,
+                    surveyName: surveyname
+                };
+            // create the survey
+            // after survey is created, set the dates
+            $.post(CreateSurveyUrl, data, function(result) {
+                OpenSurveyDateDialog(result.data);
+            });
+
             return false;
         });
              
