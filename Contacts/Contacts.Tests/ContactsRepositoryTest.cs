@@ -42,10 +42,12 @@ namespace Contacts.Tests
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext testContext)
+        {
+            var repo = new ContactsRepository();
+            repo.InitializeCollections();
+        }
         //
         //Use ClassCleanup to run code after all tests in a class have run
         //[ClassCleanup()]
@@ -100,14 +102,12 @@ namespace Contacts.Tests
             Contact contact = new Contact()
             {
                 UserName = "BozoTheClown",
-                FirstName = "Bozo",
-                LastName = "Clown",
+                Organization = "BarnumAndBailey",
+                Title = "Clown",
                 Phone = "6661231234"
             };
             bool expected = true; 
-            bool actual;
-            actual = target.CreateContact(contact);
-            Assert.AreEqual(expected, actual);
+            target.CreateContact(contact);
         }
 
         /// <summary>
@@ -133,10 +133,7 @@ namespace Contacts.Tests
             {
                 Name = "MyFirstList"
             };
-            bool expected = true;
-            bool actual;
-            actual = target.CreateContactList(contactList);
-            Assert.AreEqual(expected, actual);
+            target.CreateContactList(contactList);
         }
 
         /// <summary>
@@ -152,13 +149,13 @@ namespace Contacts.Tests
         }
 
         /// <summary>
-        ///A test for AddContact
+        ///A test for Doit
         ///</summary>
         [TestMethod()]
-        public void AddContactTest()
+        public void DoitTest()
         {
             ContactsRepository target = new ContactsRepository(); // TODO: Initialize to an appropriate value
-            target.AddContact();
+            target.Doit();
         }
 
         /// <summary>
@@ -183,11 +180,52 @@ namespace Contacts.Tests
         public void GetContactListByNameTest()
         {
             ContactsRepository target = new ContactsRepository(); 
-            string name = "MyFirstList"; 
+            string name = "Alpha"; 
             ContactList actual;
             actual = target.GetContactListByName(name);
             Assert.IsNotNull(actual.Contacts);
             Assert.IsTrue(actual.Contacts.Count > 0);
+        }
+
+        /// <summary>
+        ///A test for AddContacts
+        ///</summary>
+        [TestMethod()]
+        public void AddContactsTest()
+        {
+            ContactsRepository target = new ContactsRepository(); // TODO: Initialize to an appropriate value
+            var cl = target.GetContactListByName("MyFirstList");
+            Assert.IsNotNull(cl.Contacts);
+            var all = target.GetContacts();
+            var ids = all.Select(c => c.Id).AsEnumerable();
+            target.AddContacts(cl, ids);
+        }
+
+        /// <summary>
+        ///A test for DeleteContact
+        ///</summary>
+        [TestMethod()]
+        public void DeleteContactTest()
+        {
+            ContactsRepository target = new ContactsRepository();
+            string name = "BozoTheClown";
+            Contact actual = null;
+            actual = target.GetContactByName(name);
+            Assert.IsNotNull(actual);
+            target.DeleteContact(actual.Id);
+        }
+
+        /// <summary>
+        ///A test for GetContactByName
+        ///</summary>
+        [TestMethod()]
+        public void GetContactByNameTest()
+        {
+            ContactsRepository target = new ContactsRepository();
+            string name = "BozoTheClown";
+            Contact actual = null;
+            actual = target.GetContactByName(name);
+            Assert.IsNotNull(actual);
         }
     }
 }

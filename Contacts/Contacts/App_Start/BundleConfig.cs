@@ -12,15 +12,19 @@ namespace Contacts
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
-
+#if oops
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
-
+                        "http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"));
+#endif
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/jquerytable").Include(
+                        "~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        "~/Content/DataTables-1.9.4/media/css/demo_table_jui.css",
+                        "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

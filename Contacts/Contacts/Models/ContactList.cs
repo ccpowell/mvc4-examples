@@ -8,18 +8,20 @@ namespace Contacts.Models
     public class ContactList
     {
         [MongoDB.Bson.Serialization.Attributes.BsonId]
-        public MongoDB.Bson.ObjectId Id { get; set; }
+        public string Id { get; set; }
+
+        public string OwnerId { get; set; }
 
         public string Name { get; set; }
 
-        public List<MongoDB.Bson.ObjectId> ContactIds { get; set; }
+        public List<string> ContactIds { get; set; }
 
         [MongoDB.Bson.Serialization.Attributes.BsonIgnoreAttribute]
         public List<Contact> Contacts { get; set; }
 
         public ContactList()
         {
-            ContactIds = new List<MongoDB.Bson.ObjectId>();
+            ContactIds = new List<string>();
             Contacts = new List<Contact>();
         }
     }

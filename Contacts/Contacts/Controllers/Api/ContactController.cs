@@ -19,7 +19,6 @@ namespace Contacts.Controllers.Api
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-
                     return repo.GetContacts();
                 }
             }
@@ -29,21 +28,14 @@ namespace Contacts.Controllers.Api
                 throw;
             }
         }
-#if hoo
-        // GET api/contact/5
-        public string Get(string id)
-        {
-            return "value";
-        }
-#endif
-        // GET api/contact/5
+
+        // GET api/contact/
         public Models.Contact Get(string id)
         {
             try
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-
                     return repo.GetContact(id);
                 }
             }
@@ -55,18 +47,56 @@ namespace Contacts.Controllers.Api
         }
 
         // POST api/contact
-        public void Post(string value)
+        [HttpPost]
+        public void Post(Models.Contact contact)
         {
+            try
+            {
+                using (var repo = new Data.ContactsRepository())
+                {
+                    repo.CreateContact(contact);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.DebugException("Post failed", ex);
+                throw;
+            }
         }
 
         // PUT api/contact/5
-        public void Put(int id, string value)
+        [HttpPut]
+        public void Put(Models.Contact contact)
         {
+            try
+            {
+                using (var repo = new Data.ContactsRepository())
+                {
+                    repo.UpdateContact(contact);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.DebugException("Put failed", ex);
+                throw;
+            }
         }
 
         // DELETE api/contact/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            try
+            {
+                using (var repo = new Data.ContactsRepository())
+                {
+                    repo.DeleteContact(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.DebugException("Put failed", ex);
+                throw;
+            }
         }
     }
 }
