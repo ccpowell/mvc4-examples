@@ -55,6 +55,8 @@ App.utility = (function ($) {
     function Autocompleter(field) {
         var self = this;
         this.items = [];
+
+        // jui autocomplete callback
         this.autocomplete = function (request, response) {
             $.ajax(App.env.applicationPath + "/operation/misc/GetAutoCompleteContact", {
                 data: { prefix: request.term, field: field },
@@ -304,7 +306,7 @@ App.ui = (function ($) {
 
                 aoColumns: [
                     { sTitle: "Name", mData: "Name" },
-                    { sTitle: "Operations", mData: "Name", mRender: function (field, op, oData) {
+                    { sTitle: "Operations", mData: "Name", bSortable: false, mRender: function (field, op, oData) {
                         return '<span class="table-button">View Members</span';
                     }
                     }
@@ -325,7 +327,7 @@ App.ui = (function ($) {
                 bStateSave: false,
                 bServerSide: false,
                 bProcessing: true,
-                bFilter: false,
+                bFilter: true,
                 bSort: true,
                 bAutoWidth: false,
                 bPaginate: true,
@@ -423,50 +425,82 @@ App.ui = (function ($) {
 
         function initializeAddContactsDialog() {
             var $dlg = $("#addcontacts-dialog"),
-                $uname = $("#addcontacts-UserName"),
-                $email = $("#addcontacts-Email"),
+                $uname = $("#addcontacts-UserName", $dlg),
+                $email = $("#addcontacts-Email", $dlg),
+                $org = $("#addcontacts-Organization", $dlg),
+                $addUserName = $("#addcontacts-add-UserName", $dlg),
+                $addEmail = $("#addcontacts-add-Email", $dlg),
                 acEmail = new App.utility.Autocompleter("Email"),
                 acUserName = new App.utility.Autocompleter("UserName");
 
-            $dlg.dialog({ autoOpen: false, resizable: true, modal: true, width: 'auto' });
+            function fillInFields(contact, which) {
+                var hasContact = !!contact;
+                if (!contact) {
+                    contact = new App.Contact();
+                }
+                $email.val(contact.Email);
+                $uname.val(contact.UserName);
+                $org.text(contact.Organization);
+                $addUserName.button((hasContact && which === "UserName") ? "enable" : "disable");
+                $addEmail.button((hasContact && which === "Email") ? "enable" : "disable");
+            }
 
+            $dlg.dialog({
+                autoOpen: false,
+                resizable: true,
+                modal: true,
+                width: 'auto',
+                open: function () { fillInFields(null, null); },
+                close: function () { fillInFields(null, null); }
+            });
+
+
+            // autocomplete fields fill in values for all fields
             $uname.autocomplete({
                 source: acUserName.autocomplete,
                 minLength: 3,
-                close: function () { $email.val(""); }
+                select: function (event, ui) {
+                    var contact = acUserName.isOnList(ui.item.value);
+                    fillInFields(contact, "UserName");
+                    return false;
+                }
             });
+
             $email.autocomplete({
                 source: acEmail.autocomplete,
                 minLength: 3,
-                close: function () { $uname.val(""); }
+                select: function (event, ui) {
+                    var contact = acEmail.isOnList(ui.item.value);
+                    fillInFields(contact, "Email");
+                    return false;
+                }
             });
 
-            $("#addcontacts-add-UserName", $dlg)
+            function contactAdded() {
+                fillInFields(null);
+                alert("Contact added");
+            }
+
+            $addUserName
                 .button()
                 .click(function () {
                     var contact = acUserName.isOnList($uname.val());
                     if (contact !== null) {
                         $.post(App.env.applicationPath + "/operation/misc/AddContact",
                             { contactlist: sclId, contact: contact.Id },
-                            function () {
-                                $uname.val("");
-                                alert("Contact added");
-                            });
+                            contactAdded);
                     }
                     return false;
                 });
 
-            $("#addcontacts-add-Email", $dlg)
+            $addEmail
                 .button()
                 .click(function () {
                     var contact = acEmail.isOnList($email.val());
                     if (contact !== null) {
                         $.post(App.env.applicationPath + "/operation/misc/AddContact",
                             { contactlist: sclId, contact: contact.Id },
-                            function () {
-                                $email.val("");
-                                alert("Contact added");
-                            });
+                            contactAdded);
                     }
                     return false;
                 });
@@ -474,8 +508,7 @@ App.ui = (function ($) {
             $("#addcontacts-cancel", $dlg)
                 .button()
                 .click(function () {
-                    $uname.val("");
-                    $email.val("");
+                    fillInFields(null);
                     $dlg.dialog("close");
                     reloadSclTable();
                     return false;
