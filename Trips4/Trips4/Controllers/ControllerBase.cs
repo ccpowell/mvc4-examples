@@ -359,7 +359,7 @@ namespace Trips4.Controllers
         }
 #endif
         /// <summary>
-        /// Handles the error by returning the error view.
+        /// Handles the Error by returning the Error view.
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <param name="methodName">Name of the method.</param>
@@ -370,7 +370,7 @@ namespace Trips4.Controllers
         }
 
         /// <summary>
-        /// Handles the error by returning the error view.
+        /// Handles the Error by returning the Error view.
         /// </summary>
         /// <param name="ex">The ex.</param>
         /// <param name="methodName">Name of the method.</param>

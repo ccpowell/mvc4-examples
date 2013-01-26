@@ -993,7 +993,7 @@ namespace Trips4.Controllers
         //    var amendment = model.Cycle;
         //    //this.Amend(amendment);
         //    return View();
-        //    //return RedirectToAction("Funding", new { controller = "Project", guid = projectVersionId, message = "Amendment processed successfully." });
+        //    //return RedirectToAction("Funding", new { controller = "Project", guid = projectVersionId, Message = "Amendment processed successfully." });
         //}
 
         [Trips4.Filters.SessionAuthorizeAttribute]

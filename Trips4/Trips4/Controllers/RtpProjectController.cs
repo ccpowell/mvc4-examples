@@ -724,9 +724,9 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 this.Logger.LogMethodError("ProjectController", "AddFinancialRecord", Request.Form.ToString(), ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
+                return Json(new { Error = "Changes could not be stored. An Error has been logged." });
             }
-            return Json(new { message = "Project Financial Record successfully added.", recordid = projectFinancialRecordId });
+            return Json(new { Message = "Project Financial Record successfully added.", recordid = projectFinancialRecordId });
         }
         */
 
@@ -740,9 +740,9 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 this.Logger.LogMethodError("ProjectController", "DeleteFinancialRecord", Request.Form.ToString(), ex);
-                return Json(new { error = "Changes could not be stored. An error has been logged." });
+                return Json(new { Error = "Changes could not be stored. An Error has been logged." });
             }
-            return Json(new { message = "Project Financial Record successfully removed." });
+            return Json(new { Message = "Project Financial Record successfully removed." });
         }
         */
 
@@ -848,12 +848,12 @@ namespace Trips4.Controllers
             catch (Exception ex)
             {
                 this.Logger.LogMethodError("ProjectController", "DeleteFinancialRecordDetail", Request.Form.ToString(), ex);
-                return Json(new { message = "Changes could not be stored. An error has been logged."
-                    , error = "true"
+                return Json(new { Message = "Changes could not be stored. An Error has been logged."
+                    , Error = "true"
                     , exceptionMessage = ex.Message });
             }
-            return Json(new { message = "Project Financial Record Detail successfully removed."
-                , error = "false" });
+            return Json(new { Message = "Project Financial Record Detail successfully removed."
+                , Error = "false" });
         }
         */
 

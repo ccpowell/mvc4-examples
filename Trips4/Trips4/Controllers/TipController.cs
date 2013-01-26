@@ -684,7 +684,7 @@ namespace Trips4.Controllers
                     var cDelays = locationCollection.Where(y => !y.IsDelay);
                     if (cDelays.Count() > 0)
                     {
-                        // There will be an error if you try and load in a record set that is 0
+                        // There will be an Error if you try and load in a record set that is 0
                         ws.Cells["B3"].LoadFromCollection(cDelays);
                     }
 
@@ -702,7 +702,7 @@ namespace Trips4.Controllers
                     var delays = locationCollection.Where(y => y.IsDelay);
                     if (delays.Count() > 0)
                     {
-                        // There will be an error if you try and load in a record set that is 0
+                        // There will be an Error if you try and load in a record set that is 0
                         ws.Cells[nextRow + 1, 2].LoadFromCollection(delays);
                     }
 
@@ -928,7 +928,7 @@ namespace Trips4.Controllers
         {
             var jsr = new JsonServerResponse();
             jsr.Error = _tipRepository.DropAgencyFromTimePeriod(tipYear, agencyId, Enums.ApplicationState.TIP);
-            //TODO: Translate this to make sure it is not a SQL error. Do this or handle it client side?
+            //TODO: Translate this to make sure it is not a SQL Error. Do this or handle it client side?
             if (!jsr.Error.Equals(""))
             {
                 jsr.Error = "That agency sponsors projects in the current TIP. They can not be removed.";

@@ -606,9 +606,9 @@ namespace Trips4.Controllers
         //    {
         //        return Json(new
         //        {
-        //            message = "Changes could not be stored. An error has been logged."
+        //            Message = "Changes could not be stored. An Error has been logged."
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
@@ -617,9 +617,9 @@ namespace Trips4.Controllers
         //    {
         //        data = result
         //        ,
-        //        message = "Project successfully removed."
+        //        Message = "Project successfully removed."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
 
         //}
@@ -637,9 +637,9 @@ namespace Trips4.Controllers
         //    {
         //        return Json(new
         //        {
-        //            message = "Changes could not be stored. An error has been logged."
+        //            Message = "Changes could not be stored. An Error has been logged."
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
@@ -658,9 +658,9 @@ namespace Trips4.Controllers
         //        //    SponsorAgency = result.SponsorAgency
         //        //}
         //        ,
-        //        message = "Project successfully restored to " + plan + "."
+        //        Message = "Project successfully restored to " + plan + "."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //}
 
@@ -680,9 +680,9 @@ namespace Trips4.Controllers
         //    {
         //        return Json(new
         //        {
-        //            message = "Changes could not be stored. An error has been logged."
+        //            Message = "Changes could not be stored. An Error has been logged."
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
@@ -691,9 +691,9 @@ namespace Trips4.Controllers
         //    {
         //        data = result
         //        ,
-        //        message = "Project successfully amended."
+        //        Message = "Project successfully amended."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
 
         //}
@@ -928,36 +928,36 @@ namespace Trips4.Controllers
         //    }
         //    catch (Exception ex)
         //    {
-        //        return Json(new { message = "Changes could not be stored. An error has been logged." });
+        //        return Json(new { Message = "Changes could not be stored. An Error has been logged." });
         //    }
-        //    return Json(new { message = "Changes successfully saved." });
+        //    return Json(new { Message = "Changes successfully saved." });
         //}
 
         //[HttpPost]
         //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateTimePeriodStatusId(int timePeriodId, int statusId)
         //{
-        //    string error = String.Empty;
+        //    string Error = String.Empty;
         //    try
         //    {
-        //        error = _surveyRepository.UpdateTimePeriodStatusId(timePeriodId, statusId);
+        //        Error = _surveyRepository.UpdateTimePeriodStatusId(timePeriodId, statusId);
         //    }
         //    catch (Exception ex)
         //    {
         //        return Json(new
         //        {
-        //            message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+        //            Message = String.IsNullOrEmpty(Error) ? "Changes could not be stored." : Error
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
         //    }
         //    return Json(new
         //    {
-        //        message = "Project Financial Record Detail successfully added."
+        //        Message = "Project Financial Record Detail successfully added."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //}
 
@@ -1005,27 +1005,27 @@ namespace Trips4.Controllers
         //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult CreateCycle(string cycle)
         //{
-        //    string error = String.Empty;
+        //    string Error = String.Empty;
         //    try
         //    {
-        //        error = _surveyRepository.CreateCycle(cycle);
+        //        Error = _surveyRepository.CreateCycle(cycle);
         //    }
         //    catch (Exception ex)
         //    {
         //        return Json(new
         //        {
-        //            message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+        //            Message = String.IsNullOrEmpty(Error) ? "Changes could not be stored." : Error
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
         //    }
         //    return Json(new
         //    {
-        //        message = "Project Financial Record Detail successfully added."
+        //        Message = "Project Financial Record Detail successfully added."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //}
 
@@ -1033,27 +1033,27 @@ namespace Trips4.Controllers
         //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult UpdateCycleName(int cycleId, string cycle)
         //{
-        //    string error = String.Empty;
+        //    string Error = String.Empty;
         //    try
         //    {
-        //        error = _surveyRepository.UpdateCycleName(cycleId, cycle);
+        //        Error = _surveyRepository.UpdateCycleName(cycleId, cycle);
         //    }
         //    catch (Exception ex)
         //    {
         //        return Json(new
         //        {
-        //            message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+        //            Message = String.IsNullOrEmpty(Error) ? "Changes could not be stored." : Error
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
         //    }
         //    return Json(new
         //    {
-        //        message = "Successfully updated."
+        //        Message = "Successfully updated."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //}
 
@@ -1071,27 +1071,27 @@ namespace Trips4.Controllers
         //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         //public JsonResult SetActiveCycle(int cycleId, int timePeriodId)
         //{
-        //    string error = String.Empty;
+        //    string Error = String.Empty;
         //    try
         //    {
-        //        error = _surveyRepository.SetActiveCycle(cycleId, timePeriodId);
+        //        Error = _surveyRepository.SetActiveCycle(cycleId, timePeriodId);
         //    }
         //    catch (Exception ex)
         //    {
         //        return Json(new
         //        {
-        //            message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+        //            Message = String.IsNullOrEmpty(Error) ? "Changes could not be stored." : Error
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
         //    }
         //    return Json(new
         //    {
-        //        message = "Project Financial Record Detail successfully added."
+        //        Message = "Project Financial Record Detail successfully added."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //}
 
@@ -1120,7 +1120,7 @@ namespace Trips4.Controllers
         //public JsonResult UpdateCycleSort(string cycles)
         //{
 
-        //    string error = String.Empty;
+        //    string Error = String.Empty;
         //    try
         //    {
         //        _surveyRepository.UpdateTimePeriodCycleOrder(cycles);
@@ -1129,18 +1129,18 @@ namespace Trips4.Controllers
         //    {
         //        return Json(new
         //        {
-        //            message = String.IsNullOrEmpty(error) ? "Changes could not be stored." : error
+        //            Message = String.IsNullOrEmpty(Error) ? "Changes could not be stored." : Error
         //            ,
-        //            error = "true"
+        //            Error = "true"
         //            ,
         //            exceptionMessage = ex.Message
         //        });
         //    }
         //    return Json(new
         //    {
-        //        message = "Project Financial Record Detail successfully added."
+        //        Message = "Project Financial Record Detail successfully added."
         //        ,
-        //        error = "false"
+        //        Error = "false"
         //    });
         //} 
 
@@ -1150,7 +1150,7 @@ namespace Trips4.Controllers
         ////    var amendment = model.Cycle;
         ////    //this.Amend(amendment);
         ////    return View();
-        ////    //return RedirectToAction("Funding", new { controller = "Project", guid = projectVersionId, message = "Amendment processed successfully." });
+        ////    //return RedirectToAction("Funding", new { controller = "Project", guid = projectVersionId, Message = "Amendment processed successfully." });
         ////}
 
         //[Trips4.Filters.SessionAuthorizeAttribute]
@@ -1356,14 +1356,14 @@ namespace Trips4.Controllers
         //    }
         //    catch (Exception ex)
         //    {
-        //        return Json(new { message = "Changes could not be stored. An error has been logged."
-        //            , error = "true"
+        //        return Json(new { Message = "Changes could not be stored. An Error has been logged."
+        //            , Error = "true"
         //            , exceptionMessage = ex.Message });
         //    }
-        //    return Json(new { message = "Changes were successful."
-        //            , error = "false" });
+        //    return Json(new { Message = "Changes were successful."
+        //            , Error = "false" });
 
-        //    //return RedirectToAction("Info", new { controller = "Survey", guid = projectVersionId, message = "Amendment processed successfully." });
+        //    //return RedirectToAction("Info", new { controller = "Survey", guid = projectVersionId, Message = "Amendment processed successfully." });
         //}
 
         #region Project Info

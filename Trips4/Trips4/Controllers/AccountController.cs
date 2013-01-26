@@ -150,12 +150,8 @@ namespace Trips4.Controllers
         {
             return View();
         }
-#if mailing
 
-        public ActionResult ResendVerificationMail()
-        {
-            return View();
-        }
+#if mailing
         [HttpPost]
         public ActionResult ResendVerificationMail(LogOnModel model)
         {
@@ -670,7 +666,7 @@ namespace Trips4.Controllers
         //                                body);
 
         //        // kick 'em back to the login screen so they can, you know, login
-        //        TempData["message"] = "Your password has been reset.  Please check your email.";
+        //        TempData["Message"] = "Your password has been reset.  Please check your email.";
         //        return RedirectToAction("Index", "Login");
         //    }
         //    else

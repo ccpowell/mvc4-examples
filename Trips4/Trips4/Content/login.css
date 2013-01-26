@@ -96,6 +96,11 @@ input[type="submit"]
     margin-top: 10px;
     
 }
+
+#forgot-password-email
+{
+    width: 400px;
+}
     
     
     label {

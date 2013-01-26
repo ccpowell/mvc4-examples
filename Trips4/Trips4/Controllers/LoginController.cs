@@ -152,7 +152,7 @@ namespace Trips4.Controllers
                 }
                 else
                 {
-                    //pass back the error
+                    //pass back the Error
                     viewModel.Message = "User name and password must be entered.";
                 }
 
@@ -160,7 +160,7 @@ namespace Trips4.Controllers
             }
             catch (SqlException sqlex)
             {
-                //Send to error message on Login view
+                //Send to Error Message on Login view
                 viewModel.Message = "A database has occurred while attempting to log you into the system.";
                 return View(viewModel);
             }

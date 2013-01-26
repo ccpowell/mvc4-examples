@@ -460,6 +460,7 @@
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\SurveyDashboard.js" />
     <Content Include="Scripts\RtpProjectList.js" />
     <Content Include="Scripts\FixedHeader.js" />

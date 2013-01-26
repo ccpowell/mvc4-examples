@@ -22,6 +22,36 @@ namespace Trips4.Controllers.Operation
             SurveyRepository = srepo;
         }
 
+
+        public class GeneralResult
+        {
+            public bool Error { get; set; }
+            public string Message { get; set; }
+        }
+
+        
+        [HttpPost]
+        public GeneralResult LoginResetPassword(string email)
+        {
+            if (true)
+            {
+                return new GeneralResult()
+                {
+                    Message = "Password reset is not implemented. Please call the TRIPS administrator.",
+                    Error = true
+                };
+            }
+            else
+            {
+                return new GeneralResult()
+                {
+                    Message = "Your password has been reset. An email will be sent with your new password.",
+                    Error = false
+                };
+            }
+        }
+
+
         public class RtpGetAmendableProjectsRequest
         {
             public int rtpPlanYearId;

@@ -16,10 +16,10 @@
                         Login</h2>
                     <div class="twothirds">
                         <div class="border box">
-                                <button type="submit" id="login-guest">
-                                    Log In as Guest</button>
-                                <br />
-                                No user name or password required.
+                            <button type="submit" id="login-guest">
+                                Log In as Guest</button>
+                            <br />
+                            No user name or password required.
                         </div>
                         <br />
                         <div class="border box">
@@ -37,13 +37,12 @@
                             </p>
                             <p>
                                 <button type="submit" id="login-administrator">
-                                    <img src="<%=ResolveUrl("~/content/images/16-security-lock.png") %>" alt="lock" />
                                     Log In
                                 </button>
                             </p>
                             <p>
-                                <a id="btn_forgotPassword" href="#">Forgot Password?</a>
-                                <%--<%= Html.ActionLink("Forgot Password?", "RecoverPassword", "Account")%>--%>
+                                <button id="forgot-password">
+                                    Forgot Password?</button>
                             </p>
                             <br />
                         </div>
@@ -102,26 +101,15 @@
     </div>
     <!-- This contains the hidden content for inline calls -->
     <div style='display: none'>
-        <div id='registrationContainer' style='padding: 10px; background: #fff;'>
-            <% Html.RenderPartial("~/Views/Login/Partials/RegisterPartial.ascx", new Person()); %>
-        </div>
-        <div id='forgotPasswordContainer' style='padding: 10px; background: #fff;'>
-            <% Html.RenderPartial("~/Views/Login/Partials/ForgotPasswordPartial.ascx", new DRCOG.Domain.Security.PasswordRecoveryModel()); %>
+        <div id="forgot-password-dialog" title="I Forgot My Password">
+            <h3>
+                Please enter your email address below and a recovery email will be sent to your
+                account</h3>
+            <br />
+            <input id="forgot-password-email" type="text" />
         </div>
     </div>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function () {
-            // IE doesn't handle button value properly so we specifically set it
-            $("#login-guest").click(function () {
-                $("#login-type").val("guest");
-                return true;
-            });
-            $("#login-administrator").click(function () {
-                $("#login-type").val("administrator");
-                return true;
-            });
-        });
-    </script>
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/Login.js") %>'></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= Url.Content("~/Content/reset.css") %>" rel="stylesheet" type="text/css" />
