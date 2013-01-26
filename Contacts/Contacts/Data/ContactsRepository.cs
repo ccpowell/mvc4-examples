@@ -80,7 +80,7 @@ namespace Contacts.Data
             var collection = db.GetCollection<Models.ContactList>("contactlists");
             contactList.Id = ObjectId.GenerateNewId().ToString();
             var result = collection.Save(contactList);
-            //return result.Ok;
+            ThrowIfNotOk(result);
         }
 
         public void DeleteContact(string id)
@@ -99,6 +99,24 @@ namespace Contacts.Data
             var contacts = db.GetCollection<Models.Contact>("contacts");
             var queryId = Query.EQ("_id", id);
             var result = contacts.Remove(queryId);
+            ThrowIfNotOk(result);
+        }
+
+        private void ThrowIfNotOk(WriteConcernResult result)
+        {
+            if (!result.Ok)
+            {
+                throw new Exception("MongoDB write failed");
+            }
+        }
+
+        public void DeleteContactList(string id)
+        {
+            var db = GetDb();
+            var clists = db.GetCollection<Models.ContactList>("contactlists");
+            var queryId = Query.EQ("_id", id);
+            var result = clists.Remove(queryId);
+            ThrowIfNotOk(result);
         }
                 
 
@@ -108,6 +126,10 @@ namespace Contacts.Data
             return db.GetCollection<Models.ContactList>("contactlists").FindAll();
         }
 
+        /// <summary>
+        /// Fill in the details of each Contact.
+        /// </summary>
+        /// <param name="list"></param>
         private void FillContacts(Models.ContactList list)
         {
             if (list.ContactIds == null)
@@ -154,20 +176,12 @@ namespace Contacts.Data
 #endif
         }
 
-        public void AddContacts(Models.ContactList cl, IEnumerable<string> ids)
-        {
-            var db = GetDb();
-            var coll = db.GetCollection<Models.ContactList>("contactlists");
-            var list = coll.AsQueryable().First(c => c.Id == cl.Id);
-            list.ContactIds.AddRange(ids.Where(i => !i.In(list.ContactIds)));
-            coll.Save(list);
-        }
-
         public void UpdateContactList(Models.ContactList cl)
         {
             var db = GetDb();
             var coll = db.GetCollection<Models.ContactList>("contactlists");
-            coll.Save(cl);
+            var result = coll.Save(cl);
+            ThrowIfNotOk(result);
         }
 
 
@@ -207,7 +221,7 @@ namespace Contacts.Data
                 contacts.Insert(CreateFakeContact(i, "TestOrg Alpha"));
             }
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 100; i < 150; i++)
             {
                 contacts.Insert(CreateFakeContact(i, "TestOrg Beta"));
             }
@@ -225,9 +239,24 @@ namespace Contacts.Data
                 Id = ObjectId.GenerateNewId().ToString(),
                 Name = "Beta"
             };
-            ids = contacts.AsQueryable().Where(c => c.Organization.Contains("Alpha")).Select(co => co.Id);
+            ids = contacts.AsQueryable().Where(c => c.Organization.Contains("Beta")).Select(co => co.Id);
             cl.ContactIds.AddRange(ids);
             contactLists.Save(cl);
+        }
+
+        /// <summary>
+        /// Return first 3 terms that match either UserName
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
+        public IEnumerable<Models.Contact> GetAutoCompleteContact(string field, string prefix)
+        {
+
+            var db = GetDb();
+            var coll = db.GetCollection<Models.Contact>("contacts");
+            var exp = new BsonRegularExpression(string.Format("^{0}", prefix), "i");
+            var query = Query.Matches(field, exp);
+            return coll.Find(query).Take(3);
         }
     }
 }

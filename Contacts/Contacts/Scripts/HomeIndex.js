@@ -42,6 +42,7 @@ App.utility = (function ($) {
             icons: { primary: this.checked ? 'ui-icon-check' : 'ui-icon-closethick' }
         });
     };
+
     function setCheckButton(jel, value) {
         jel.prop("checked", value)
             .button("refresh")
@@ -50,7 +51,39 @@ App.utility = (function ($) {
             });
     }
 
+    // This object will save the items and match on the named field.
+    function Autocompleter(field) {
+        var self = this;
+        this.items = [];
+        this.autocomplete = function (request, response) {
+            $.ajax(App.env.applicationPath + "/operation/misc/GetAutoCompleteContact", {
+                data: { prefix: request.term, field: field },
+                success: function (data) {
+                    self.items = data;
+                    var names = [];
+                    $.each(data, function (index, item) {
+                        names.push(item[field]);
+                    });
+                    response(names);
+                }
+            });
+        };
+
+        // return the item that matches
+        this.isOnList = function (term) {
+            var isOn = null;
+            $.each(self.items, function (index, item) {
+                if (item[field] === term) {
+                    isOn = item;
+                    return false;
+                }
+            });
+            return isOn;
+        };
+    }
+
     return {
+        Autocompleter: Autocompleter,
         setCheckButton: setCheckButton,
         checkbuttonChangeIcon: checkbuttonChangeIcon
     };
@@ -118,9 +151,22 @@ App.ViewModel = function ($) {
 
 App.ui = (function ($) {
     "use strict";
-    var contactListDataTable, contactDataTable;
+    var contactListDataTable, contactDataTable, sclDataTable, sclId;
 
     function reloadContactListTable() {
+        var url = App.env.applicationPath + "/api/contactlist";
+        contactListDataTable.fnClearTable();
+        $.getJSON(url, function (data) {
+            contactListDataTable.fnAddData(data, true);
+        });
+    }
+
+    function reloadSclTable() {
+        var url = App.env.applicationPath + "/api/contactlist";
+        sclDataTable.fnClearTable();
+        $.getJSON(url, { id: sclId }, function (data) {
+            sclDataTable.fnAddData(data.Contacts, true);
+        });
     }
 
     function reloadContactTable() {
@@ -209,17 +255,30 @@ App.ui = (function ($) {
         return false;
     }
 
-    // edit or create facility
-    function editContactList(facility) {
-        App.viewmodel.setEditContactList(facility);
+    // edit or create ContactList
+    function editContactList(clist) {
+        App.viewmodel.setEditContactList(clist);
         $("#contactlist-dialog").dialog("open").find("form").validate().resetForm();
         return false;
     }
 
-    // edit or create contact
+    // edit or create Contact
     function editContact(contact) {
         App.viewmodel.setEditContact(contact);
         $("#contact-dialog").dialog("open").find("form").validate().resetForm();
+        return false;
+    }
+
+    // add a tab to view this ContactList
+    function viewContactList(clist) {
+        sclId = clist.Id;
+        $("#scl-title").text(clist.Name);
+        $("#tabs").tabs({ disabled: [] }).tabs({ active: 2 });
+        reloadSclTable();
+    }
+
+    function addContacts() {
+        $("#addcontacts-dialog").dialog("open");
         return false;
     }
 
@@ -239,20 +298,24 @@ App.ui = (function ($) {
                 bJQueryUI: true,
                 fnRowCallback: function (nRow, aData, iDisplayIndex) {
                     var $row = $(nRow);
-                    // attach ID to row for callbacks to use
-                    $row.data("id", aData.Id);
+                    // attach ContactList to row for callbacks to use
+                    $row.data("clist", aData);
                 },
 
                 aoColumns: [
-                    { sTitle: "Name", mDataProp: "Name", sClass: "pointer" }
+                    { sTitle: "Name", mData: "Name" },
+                    { sTitle: "Operations", mData: "Name", mRender: function (field, op, oData) {
+                        return '<span class="table-button">View Members</span';
+                    }
+                    }
                 ]
             };
             contactListDataTable = $("#contactlist-table").dataTable(dtoptions);
 
-            // bind click on the first column of the row
-            $('#contactlist-table tbody').on("click", "tr td:first-child", function (e) {
-                var id = $(this).closest("tr").data("id");
-                $.getJSON("/ombudsman/api/facility", { id: id }, editContactList);
+            // operation buttons 
+            $('#contactlist-table tbody').on("click", "tr span.table-button", function (e) {
+                var clist = $(this).closest("tr").data("clist");
+                viewContactList(clist);
                 return false; // stop propagation and default behavior
             });
         }
@@ -291,13 +354,48 @@ App.ui = (function ($) {
             });
         }
 
+
+        function initializeSclTable() {
+            var dtoptions = {
+                bStateSave: false,
+                bServerSide: false,
+                bProcessing: true,
+                bFilter: false,
+                bSort: true,
+                bAutoWidth: false,
+                bPaginate: true,
+                sPaginationType: "full_numbers",
+                bJQueryUI: true,
+                fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                    var $row = $(nRow);
+                    // attach ID to row for callbacks to use
+                    $row.data("id", aData.Id);
+                },
+                aoColumns: [
+                    { sTitle: "UserName", mDataProp: "UserName", sClass: "pointer" },
+                    { sTitle: "Organization", mDataProp: "Organization" },
+                    { sTitle: "Title", mDataProp: "Title" },
+                    { sTitle: "Phone", mDataProp: "Phone" },
+                    { sTitle: "Email", mDataProp: "Email" }
+                ]
+            };
+            sclDataTable = $("#scl-table").dataTable(dtoptions);
+
+            // bind click on the first column of the row
+            $('#contact-table tbody').on("click", "tr td:first-child", function (e) {
+                var id = $(this).closest("tr").data("id");
+                $.getJSON(App.env.applicationPath + "/api/contact", { id: id }, editContact);
+                return false; // stop propagation and default behavior
+            });
+        }
+
         function initializeContactDialog() {
             var $dlg = $("#contact-dialog");
             $dlg.dialog({ autoOpen: false, resizable: true, modal: true, width: 'auto' });
-            $("#contactdlg-acceptEditContact", $dlg)
+            $("#contactdlg-accept", $dlg)
                 .button()
                 .click(acceptEditContact);
-            $("#contactdlg-cancelEditContact", $dlg)
+            $("#contactdlg-cancel", $dlg)
                 .button()
                 .click(cancelEditContact);
 
@@ -310,10 +408,10 @@ App.ui = (function ($) {
         function initializeContactListDialog() {
             var $dlg = $("#contactlist-dialog");
             $dlg.dialog({ autoOpen: false, resizable: true, modal: true, width: 'auto' });
-            $("#cldlg-acceptEditContactList", $dlg)
+            $("#cldlg-accept", $dlg)
                 .button()
                 .click(acceptEditContactList);
-            $("#cldlg-cancelEditContactList", $dlg)
+            $("#cldlg-cancel", $dlg)
                 .button()
                 .click(cancelEditContactList);
 
@@ -323,23 +421,91 @@ App.ui = (function ($) {
             });
         }
 
+        function initializeAddContactsDialog() {
+            var $dlg = $("#addcontacts-dialog"),
+                $uname = $("#addcontacts-UserName"),
+                $email = $("#addcontacts-Email"),
+                acEmail = new App.utility.Autocompleter("Email"),
+                acUserName = new App.utility.Autocompleter("UserName");
+
+            $dlg.dialog({ autoOpen: false, resizable: true, modal: true, width: 'auto' });
+
+            $uname.autocomplete({
+                source: acUserName.autocomplete,
+                minLength: 3,
+                close: function () { $email.val(""); }
+            });
+            $email.autocomplete({
+                source: acEmail.autocomplete,
+                minLength: 3,
+                close: function () { $uname.val(""); }
+            });
+
+            $("#addcontacts-add-UserName", $dlg)
+                .button()
+                .click(function () {
+                    var contact = acUserName.isOnList($uname.val());
+                    if (contact !== null) {
+                        $.post(App.env.applicationPath + "/operation/misc/AddContact",
+                            { contactlist: sclId, contact: contact.Id },
+                            function () {
+                                $uname.val("");
+                                alert("Contact added");
+                            });
+                    }
+                    return false;
+                });
+
+            $("#addcontacts-add-Email", $dlg)
+                .button()
+                .click(function () {
+                    var contact = acEmail.isOnList($email.val());
+                    if (contact !== null) {
+                        $.post(App.env.applicationPath + "/operation/misc/AddContact",
+                            { contactlist: sclId, contact: contact.Id },
+                            function () {
+                                $email.val("");
+                                alert("Contact added");
+                            });
+                    }
+                    return false;
+                });
+
+            $("#addcontacts-cancel", $dlg)
+                .button()
+                .click(function () {
+                    $uname.val("");
+                    $email.val("");
+                    $dlg.dialog("close");
+                    reloadSclTable();
+                    return false;
+                });
+        }
+
         function initializeMain() {
-            $("#tabs").tabs();
+            $("#tabs").tabs({ disabled: [2] });
 
             initializeContactListTable();
             initializeContactTable();
+            initializeSclTable();
 
             $("#create-contactlist")
                 .button()
                 .click(function () {
                     editContactList(new App.ContactList());
+                    return false;
                 });
 
             $("#create-contact")
                 .button()
                 .click(function () {
                     editContact(new App.Contact());
+                    return false;
                 });
+
+            $("#scl-add-contacts")
+                .button()
+                .click(addContacts);
         }
 
         function initView() {
@@ -348,6 +514,7 @@ App.ui = (function ($) {
             initializeMain();
             initializeContactListDialog();
             initializeContactDialog();
+            initializeAddContactsDialog();
             window.clearInterval(tid);
 
             reloadContactTable();

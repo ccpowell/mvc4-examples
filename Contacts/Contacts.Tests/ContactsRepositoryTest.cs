@@ -106,7 +106,6 @@ namespace Contacts.Tests
                 Title = "Clown",
                 Phone = "6661231234"
             };
-            bool expected = true; 
             target.CreateContact(contact);
         }
 
@@ -187,19 +186,6 @@ namespace Contacts.Tests
             Assert.IsTrue(actual.Contacts.Count > 0);
         }
 
-        /// <summary>
-        ///A test for AddContacts
-        ///</summary>
-        [TestMethod()]
-        public void AddContactsTest()
-        {
-            ContactsRepository target = new ContactsRepository(); // TODO: Initialize to an appropriate value
-            var cl = target.GetContactListByName("MyFirstList");
-            Assert.IsNotNull(cl.Contacts);
-            var all = target.GetContacts();
-            var ids = all.Select(c => c.Id).AsEnumerable();
-            target.AddContacts(cl, ids);
-        }
 
         /// <summary>
         ///A test for DeleteContact
@@ -226,6 +212,20 @@ namespace Contacts.Tests
             Contact actual = null;
             actual = target.GetContactByName(name);
             Assert.IsNotNull(actual);
+        }
+
+        /// <summary>
+        ///A test for GetAutoCompleteContact
+        ///</summary>
+        [TestMethod()]
+        public void GetAutoCompleteContactTest()
+        {
+            ContactsRepository target = new ContactsRepository(); 
+            string field = "UserName";
+            string prefix = "test"; 
+            IEnumerable<Contact> actual;
+            actual = target.GetAutoCompleteContact(field, prefix);
+            Assert.AreEqual(3, actual.Count());
         }
     }
 }

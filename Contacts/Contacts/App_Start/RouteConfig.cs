@@ -20,6 +20,12 @@ namespace Contacts
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            routes.MapHttpRoute(
+                "Operation",
+                "operation/{controller}/{action}",
+                new { action = "AddContact" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

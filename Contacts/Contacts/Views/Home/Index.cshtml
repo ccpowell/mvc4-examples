@@ -1,11 +1,11 @@
 ﻿@{
     ViewBag.Title = "TRIPS Contacts";
 }
-
 <div id="tabs">
     <ul>
-        <li><a href="#tab-contact">Contacts</a></li>
         <li><a href="#tab-contactlist">Contact Lists</a></li>
+        <li><a href="#tab-contact">All Contacts</a></li>
+        <li><a href="#tab-selected-contactlist">Contact List Members</a></li>
     </ul>
     <div id="tab-contactlist" class="table-controls">
         <h2>
@@ -20,12 +20,22 @@
     </div>
     <div id="tab-contact" class="table-controls">
         <h2>
-            Contacts</h2>
+            All Contacts</h2>
         <div>
             <button id="create-contact">
                 Create New Contact</button>
         </div>
         <table id="contact-table" class="data-table">
+        </table>
+    </div>
+    <div id="tab-selected-contactlist" class="table-controls">
+        <h2 id="scl-title">
+            My Contact List</h2>
+        <div>
+            <button id="scl-add-contacts">
+                Add Contacts</button>
+        </div>
+        <table id="scl-table" class="data-table">
         </table>
     </div>
 </div>
@@ -67,9 +77,9 @@
             <input id="contactdlg-Email" type="text" class="email wide" />
         </label>
     </p>
-    <button id="contactdlg-acceptEditContact">
+    <button id="contactdlg-accept">
         Accept</button>
-    <button id="contactdlg-cancelEditContact">
+    <button id="contactdlg-cancel">
         Cancel</button>
     </form>
 </div>
@@ -86,13 +96,34 @@
             <input id="cldlg-Name" type="text" class="required wide" />
         </label>
     </p>
-    <button id="cldlg-acceptEditFacility">
+    <button id="cldlg-accept">
         Accept</button>
-    <button id="cldlg-cancelEditFacility">
+    <button id="cldlg-cancel">
         Cancel</button>
     </form>
 </div>
-
+<div id="addcontacts-dialog" title="Add Contact" class="edit-dialog">
+    <form class="addcontacts-form" action="">
+    <p>
+        <label>
+            UserName:
+            <input id="addcontacts-UserName" type="text" class="wide" />
+        </label>
+        <button id="addcontacts-add-UserName">
+            Add</button>
+    </p>
+    <p>
+        <label>
+            Email:
+            <input id="addcontacts-Email" type="text" class="wide" />
+        </label>
+        <button id="addcontacts-add-Email">
+            Add</button>
+    </p>
+    <button id="addcontacts-cancel">
+        Close</button>
+    </form>
+</div>
 @section scripts {
-    @Scripts.Render("~/Scripts/HomeIndex.js")    
+    @Scripts.Render("~/Scripts/HomeIndex.js")
 }

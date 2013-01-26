@@ -7,19 +7,18 @@ using System.Web.Http;
 
 namespace Contacts.Controllers.Api
 {
-    public class ContactController : ApiController
+    public class ContactListController : ApiController
     {
-
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         
-        // GET api/contact
-        public IEnumerable<Models.Contact> Get()
+        // GET api/contactlist
+        public IEnumerable<Models.ContactList> Get()
         {
             try
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-                    return repo.GetContacts();
+                    return repo.GetContactLists();
                 }
             }
             catch (Exception ex)
@@ -29,14 +28,14 @@ namespace Contacts.Controllers.Api
             }
         }
 
-        // GET api/contact/
-        public Models.Contact Get(string id)
+        // GET api/contactlist/xxx
+        public Models.ContactList Get(string id)
         {
             try
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-                    return repo.GetContact(id);
+                    return repo.GetContactList(id);
                 }
             }
             catch (Exception ex)
@@ -48,13 +47,13 @@ namespace Contacts.Controllers.Api
 
         // POST api/contact
         [HttpPost]
-        public void Post(Models.Contact contact)
+        public void Post(Models.ContactList contact)
         {
             try
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-                    repo.CreateContact(contact);
+                    repo.CreateContactList(contact);
                 }
             }
             catch (Exception ex)
@@ -66,13 +65,13 @@ namespace Contacts.Controllers.Api
 
         // PUT api/contact
         [HttpPut]
-        public void Put(Models.Contact contact)
+        public void Put(Models.ContactList contact)
         {
             try
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-                    repo.UpdateContact(contact);
+                    repo.UpdateContactList(contact);
                 }
             }
             catch (Exception ex)
@@ -90,7 +89,7 @@ namespace Contacts.Controllers.Api
             {
                 using (var repo = new Data.ContactsRepository())
                 {
-                    repo.DeleteContact(id);
+                    repo.DeleteContactList(id);
                 }
             }
             catch (Exception ex)
