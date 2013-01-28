@@ -11,7 +11,7 @@ namespace DRCOG.Web.Extensions
     {
         public static string ToPrettyLowerString(this Enum value)
         {
-            return DTS.Extensions.EnumExtensions.ToPrettyString(value).ToLower();
+            return value.ToString().ToLower();
         }
     }
 }

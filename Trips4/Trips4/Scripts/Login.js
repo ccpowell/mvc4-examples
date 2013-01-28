@@ -8,18 +8,6 @@
 
 var App = App || {};
 
-App.postit = function (url, options) {
-    'use strict';
-    jQuery.extend(options, {
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json'
-    });
-
-    jQuery.ajax(App.env.applicationPath + url, options);
-};
-
-
 App.ui = (function ($) {
     'use strict';
 
@@ -37,11 +25,9 @@ App.ui = (function ($) {
         sstuff = JSON.stringify({ email: email });
         App.postit("/Operation/Misc/LoginResetPassword", {
             data: sstuff,
-            success: function (data) {
-                alert(data.Message);
-                if (!data.Error) {
-                    $('#forgot-password-dialog').dialog("close");
-                }
+            success: function (message) {
+                alert(message);
+                $('#forgot-password-dialog').dialog("close");
             }
         });
     }

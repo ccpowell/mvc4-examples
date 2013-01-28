@@ -4,9 +4,23 @@
 /*jslint browser: true, debug: true, devel: true, white: true, plusplus: true, maxerr: 100, unparam: true, indent: 4 */
 /*global jQuery: false, Microsoft: false */
 
-// This script defines some common functions
+// This script defines some common functions.
+// Since it is included in Site.Master, these functions are universal.
 
 var App = App || {};
+
+// POST an operation using JSON.
+// The data should be serialized using JSON.stringify.
+App.postit = function (url, options) {
+    'use strict';
+    jQuery.extend(options, {
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json'
+    });
+
+    jQuery.ajax(App.env.applicationPath + url, options);
+};
 
 App.utility = (function ($) {
     "use strict";
@@ -22,7 +36,7 @@ App.utility = (function ($) {
             $button.button("enable");
             $result.empty().hide();
             window.onbeforeunload = function unloadMessage() {
-                return 'You have entered new data on this page.  If you navigate away from this page without first saving your data, the changes will be lost.';
+                return 'You have entered new data on this page. If you navigate away from this page without first saving your data, the changes will be lost.';
             }
         }
 

@@ -1,15 +1,11 @@
 //======================================================
-#region DTSAgile License
-//Copyright (c) 2009 DTSAgile (www.DTSAgile.com)
-#endregion
-//======================================================
 // Author: dbouwman
 // Date Created: 7/3/2009 10:00:51 AM
 // Description:
 //
 //======================================================
 using System.Runtime.Serialization;
-using DTS.Extensions;
+//using DTS.Extensions;
 
 namespace DRCOG.Domain.Models
 {

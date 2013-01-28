@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DTS.Extensions;
+//using DTS.Extensions;
 using DRCOG.Entities;
 using DRCOG.Domain;
 using DRCOG.Domain.Interfaces;
@@ -32,7 +32,7 @@ namespace DRCOG.Domain.ViewModels.Survey
         public SelectList GetProjectListTypes()
         {
             var types = from Enums.SurveyDashboardListType t in Enum.GetValues(typeof(Enums.SurveyDashboardListType))
-                        select new { ID = t, Name = t.ToPrettyString() };
+                        select new { ID = t, Name = t.ToString() };
 
             return new SelectList(types, "ID", "Name", this.ListType.ToString());
         }

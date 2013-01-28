@@ -23,32 +23,20 @@ namespace Trips4.Controllers.Operation
         }
 
 
-        public class GeneralResult
-        {
-            public bool Error { get; set; }
-            public string Message { get; set; }
-        }
 
+        private bool ResetPassword(string email)
+        {
+            return false;
+        }
         
         [HttpPost]
-        public GeneralResult LoginResetPassword(string email)
+        public string LoginResetPassword(string email)
         {
-            if (true)
+            if (!ResetPassword(email))
             {
-                return new GeneralResult()
-                {
-                    Message = "Password reset is not implemented. Please call the TRIPS administrator.",
-                    Error = true
-                };
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = "Not Implemented" });
             }
-            else
-            {
-                return new GeneralResult()
-                {
-                    Message = "Your password has been reset. An email will be sent with your new password.",
-                    Error = false
-                };
-            }
+            return "Your password has been reset. An email will be sent with your new password.";
         }
 
 

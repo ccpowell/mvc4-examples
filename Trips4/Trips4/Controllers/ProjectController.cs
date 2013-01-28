@@ -1,21 +1,7 @@
-#region INFORMATION
-/*======================================================
- * Copyright (c) 2009-2010 DRCOG (www.drcog.org)
- * 
- * DATE		    AUTHOR	        REMARKS
- * 07/15/2009	DBouwman        1. Initial Creation (DTS). 
- * 02/03/2010   DDavidson       2. Multiple improvements.
- * 
- * DESCRIPTION:
- * 
- * ======================================================*/
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using DRCOG.Common.Services;

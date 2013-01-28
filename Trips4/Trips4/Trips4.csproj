@@ -66,14 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\DRCOG.Common.Services.dll</HintPath>
     </Reference>
-    <Reference Include="DTS.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\DTS.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="DTS.Web.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\DTS.Web.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
@@ -583,6 +575,7 @@
     <Content Include="Scripts\swf\copy_cvs_xls_pdf.swf" />
     <Content Include="Scripts\TableTools.js" />
     <Content Include="Scripts\TableTools.min.js" />
+    <Content Include="Scripts\TipProjectAmendments.js" />
     <Content Include="Scripts\ZeroClipboard.js" />
     <Content Include="Unity.Mvc3.README.txt" />
     <Content Include="Unity.WebAPI.README.txt" />
@@ -603,9 +596,6 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\TestPage.aspx" />
     <Content Include="Views\Login\Index.aspx" />
-    <Content Include="Views\Login\Index_old.aspx" />
-    <Content Include="Views\Login\Partials\ForgotPasswordPartial.ascx" />
-    <Content Include="Views\Login\Partials\RegisterPartial.ascx" />
     <Content Include="Views\Pool\Create.aspx" />
     <Content Include="Views\Pool\Detail.aspx" />
     <Content Include="Views\Project\Amendments.aspx" />
@@ -760,6 +750,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\dts\project\" />
     <Folder Include="CustomResults\" />
+    <Folder Include="Views\Login\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -776,6 +767,10 @@
     <ProjectReference Include="..\DRCOG.TIP.Services\DRCOG.TIP.Services.csproj">
       <Project>{16B7F60D-2DE1-464D-A925-17FE03A3E1F1}</Project>
       <Name>DRCOG.TIP.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kluge\Kluge.csproj">
+      <Project>{39250C45-7A08-43E1-9BC0-7818D4B70BFF}</Project>
+      <Name>Kluge</Name>
     </ProjectReference>
     <ProjectReference Include="..\Trips4.Data\Trips4.Data.csproj">
       <Project>{0FB16734-C990-4676-A348-D541B9D30E8D}</Project>

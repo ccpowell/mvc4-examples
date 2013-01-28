@@ -359,7 +359,7 @@ namespace Trips4.Controllers
         /// <param name="search_email"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Search(string search_type, string search_FirstName, string search_LastName, string search_email, int page)        
         //{
@@ -421,7 +421,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
+        //[Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator")]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Detail(int AccountId)
         //{
