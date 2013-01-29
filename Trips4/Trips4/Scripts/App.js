@@ -13,13 +13,21 @@ var App = App || {};
 // The data should be serialized using JSON.stringify.
 App.postit = function (url, options) {
     'use strict';
-    jQuery.extend(options, {
+
+    // extend options
+    var poptions = jQuery.extend({}, {
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json'
-    });
+    }, options);
 
-    jQuery.ajax(App.env.applicationPath + url, options);
+    // add application path if needed
+    if (url.toLowerCase().indexOf(App.env.applicationPath.toLowerCase()) != 0) {
+        url = App.env.applicationPath + url;
+    }
+
+    // send it along
+    jQuery.ajax(url, poptions);
 };
 
 App.utility = (function ($) {
@@ -74,7 +82,17 @@ App.utility = (function ($) {
         });
     }
 
+    function parseBoolean(string) {
+        if (!string) {
+            return false;
+        }
+        switch (string.toLowerCase()) {
+            case "true": case "yes": case "1": return true;
+            default: return false;
+        }
+    }
     return {
-        bindInputToConfirmUnload: bindInputToConfirmUnload
+        bindInputToConfirmUnload: bindInputToConfirmUnload,
+        parseBoolean: parseBoolean
     };
 } (jQuery));

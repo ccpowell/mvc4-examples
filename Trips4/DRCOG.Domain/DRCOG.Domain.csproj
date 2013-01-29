@@ -78,12 +78,6 @@
     <Reference Include="DRCOG.Common.Services.MemberShipServiceSupport">
       <HintPath>..\lib\DRCOG.Common.Services.MemberShipServiceSupport.dll</HintPath>
     </Reference>
-    <Reference Include="DTS.Extensions">
-      <HintPath>..\lib\DTS.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\lib\Elmah.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>

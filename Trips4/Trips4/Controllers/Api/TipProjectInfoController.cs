@@ -9,6 +9,7 @@ using DRCOG.Domain.ViewModels.TIPProject;
 
 namespace Trips4.Controllers.Api
 {
+    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
     public class TipProjectInfoController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();

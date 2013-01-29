@@ -13,102 +13,70 @@
     <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/TipProjectAmendments.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var UpdateAmendmentDetailsUrl = '<%=Url.Action("UpdateAmendmentDetails","Project") %>';
-        $(document).ready(function () {
-            $('#projectListGrid').dataTable({
-                "iDisplayLength": 10,
-                "bSort": false,
-                //"aaSorting": [[1, "desc"]],
-                "aoColumns": [{ "bSortable": false, "sWidth": "5%" }, { "sWidth": "15%" }, { "sWidth": "15%" }, { "sWidth": "15%" }, { "sWidth": "50%"}]
-            });
-            $('#projectListGrid_length').attr("style", "display:none");
-
-            $('#button-UpdateAmendmentDetails').live("click", function () {
-                var amendmentReason = $("#ProjectAmendments_AmendmentReason").text();
-                var amendmentCharacter = $("#ProjectAmendments_AmendmentCharacter").text();
-                $.ajax({
-                    type: "POST",
-                    url: UpdateAmendmentDetailsUrl,
-                    data: "ProjectVersionId=<%= Model.ProjectAmendments.ProjectVersionId %>"
-                    + "&AmendmentReason=" + amendmentReason
-                    + "&AmendmentCharacter=" + amendmentCharacter,
-                    dataType: "json",
-                    success: function (response, textStatus, XMLHttpRequest) {
-                        if (response.error == "false") {
-                            $('#result').html(response.message).addClass('success').autoHide();
-                        } else {
-                            $('.dialog-result').html(response.message + " Details: " + response.exceptionMessage).addClass('error').autoHide({ wait: 10000, removeClass: "error" });
-                        }
-                        window.onbeforeunload = null;
-                        charReasonCheck();
-                    },
-                    error: function (response, textStatus, AjaxException) {
-                        //alert("error");
-                        //$('').html(response.statusText);
-                        //$('').addClass('error');
-                        //autoHide(10000);
-                    }
-                });
-            });
-
-            // run check right away
-            charReasonCheck();
-            // run check after leaving input
-            //$("#ProjectAmendments_AmendmentReason, #ProjectAmendments_AmendmentCharacter").blur(function() {
-            //    charReasonCheck();
-            //});
-
-            function charReasonCheck() {
-                var reason = $("#ProjectAmendments_AmendmentReason").val();
-                var character = $("#ProjectAmendments_AmendmentCharacter").val();
-                var isPending = "<%= Model.ProjectSummary.IsPending.ToString() %>";
-                if ((isPending === "False" && reason === "") || character === "") {
-                    $("#btn-restore").addClass("ui-state-disabled");
-                } else { $("#btn-restore").removeClass("ui-state-disabled"); }
-            };
-
-
-
-        });
-
-        function confirmDelete() {
-            if (confirm('Are you sure you want to delete this amendment?'))
-                return true;
-            else
-                return false;
-        }
-        
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%= Model.ProjectSummary.TipYear %>';
+        App.pp.UpdateAmendmentDetailsUrl = '<%=Url.Action("UpdateAmendmentDetails","Project") %>';
+        App.pp.ProjectVersionId = parseInt('<%= Model.ProjectSummary.ProjectVersionId %>');
+        App.pp.PreviousVersionId = parseInt('<%= Model.ProjectSummary.PreviousVersionId %>');
+        App.pp.AmendmentIsPending = App.utility.parseBoolean('<%= Model.ProjectSummary.IsPending.ToString() %>');
+        App.pp.AmendmentStatusId = parseInt('<%= Model.ProjectAmendments.AmendmentStatusId %>');
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <% 
+        // we can only modify the top Amendment if it the very latest.
+        // this page specified the ID of the latest amendment to include. 
+        // if it is not the latest, we cannot modify the Amendment.
+        // why look at an earlier Amendment? I dunno...
+        bool isTopStatus = Model.ProjectSummary.IsTopStatus;
+        bool isEditable = Model.ProjectSummary.IsEditable() && isTopStatus;
+        string amendmentStatus = Model.ProjectSummary.AmendmentStatus;
+        bool isDeletable = Model.ProjectSummary.CanDelete(amendmentStatus);
+        bool isSubmitted = (amendmentStatus == "Submitted");
+        bool isProposed = (amendmentStatus == "Proposed");
+        bool isAdopted = (amendmentStatus == "Adopted");
+        bool isAmended = (amendmentStatus == "Amended");
+        bool isApproved = (amendmentStatus == "Approved");
+        string rightColumnStyle = "margin-left: 20px; margin-bottom: 10px;";
+        if (isSubmitted || isProposed)
+        {
+            rightColumnStyle += " position: absolute; right: 0px; margin-top: 10px;";
+        }
+   
+    %>
     <div class="view-content-container">
         <% Html.RenderPartial("~/Views/Project/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-content-container" style="height: 750px">
-            <div id="Div1" class="rightColumn" style="margin-left: 20px; margin-bottom: 10px;
-                <% if (new List<String> { "Submitted", "Proposed" }.Contains(Model.ProjectSummary.AmendmentStatus)) { %> position: absolute;
-                right: 0px; margin-top: 10px; <% } %>">
-                <%if (Model.ProjectSummary.IsTopStatus && Model.ProjectSummary.IsEditable())
-                  { %>
-                <% if (new List<String> { "Approved", "Amended", "Adopted" }.Contains(Model.ProjectSummary.AmendmentStatus))
+            <div id="Div1" class="rightColumn" style='<%= rightColumnStyle %>'>
+                <% if (isEditable)
+                   { 
+                %>
+                <% if (isAdopted || isAmended || isApproved)
+                   { 
+                %>
+                <button id="create-amendment">
+                    Create Amendment</button>
+                <% }
+                   else if (isSubmitted)
                    { %>
-                <a id="A2" class="confirmAmend fg-button w380 ui-state-default ui-corner-all" href="#">
-                    Create Amendment </a>
+                   <button id="move-to-proposed">Move To Proposed</button>
                 <% }
-                   else if (Model.ProjectSummary.AmendmentStatus.Equals("Submitted"))
-                   { %><%= Html.ActionLink("Move to Proposed", "Amend", "Project", new { projectVersionId = Model.ProjectSummary.ProjectVersionId, previousVersionId = Model.ProjectSummary.PreviousVersionId }, new { @id = "btn-restore", @class = "fg-button w380 ui-state-default ui-corner-all" })%>
-                <% }
-                   else if (Model.ProjectSummary.AmendmentStatus.Equals("Proposed"))
-                   { %><%= Html.ActionLink("Amend Project", "Amend", "Project", new { projectVersionId = Model.ProjectSummary.ProjectVersionId, previousVersionId = Model.ProjectSummary.PreviousVersionId }, new { @class = "fg-button w380 ui-state-default ui-corner-all" })%>
+                   else if (isProposed)
+                   { %>
+                   <button id="amend-project">Amend Project</button>
                 <% } %>
                 <% // Can only delete if IsEditable and the VersionModel says it is eligible for delete
-                   if (Model.ProjectSummary.IsEditable() && Model.ProjectSummary.CanDelete(Model.ProjectSummary.AmendmentStatus))
+                   if (isDeletable)
                    { %>
-                <%=Html.ActionLink("Delete Amendment", "DeleteAmendment", new { controller = "Project", projectVersionId = Model.ProjectSummary.ProjectVersionId, previousProjectVersionId = Model.ProjectSummary.PreviousVersionId, year = Model.ProjectSummary.TipYear }, new { @id = "confirm-delete", @class = "fg-button w380 ui-state-default ui-corner-all deleteAmendment", onclick = "return confirmDelete();" })%>
+                   <br />
+                   <button id="delete-amendment">Delete Amendment</button>
                 <% } %>
                 <% } %>
             </div>
-            <% if (new List<String> { "Submitted", "Proposed" }.Contains(Model.ProjectSummary.AmendmentStatus))
-               { %>
+            <% if (isSubmitted || isProposed)
+               { 
+            %>
             <div id="amendmentCharacter" class="box">
                 <p>
                     <label for="ProjectAmendments_AmendmentReason">
@@ -121,10 +89,7 @@
                 <p>
                     <%= Html.TextAreaFor(x => x.ProjectAmendments.AmendmentCharacter, new { @class = "w400" })%></p>
                 <div style="position: relative;">
-                    <span id="button-UpdateAmendmentDetails" class="fg-button w200 ui-state-default ui-corner-all"
-                        style="position: relative; top: -8px;">Update</span>
-                    <div id="result" style="position: absolute; margin: 0px; top: -50px; left: 500px;">
-                    </div>
+                   <button id="update-amendment">Update</button>
                 </div>
             </div>
             <% } %>
@@ -140,16 +105,39 @@
                     column.For(x => x.AmendmentStatus).Named("Amendment<br>Status");
                     column.For(x => x.VersionStatus).Named("Version<br>Status");
                     column.For(x => x.AmendmentCharacter).Named("Amendment<br>Character");
-                }).Attributes(id => "projectListGrid")%>
+                }).Attributes(id => "projectListGrid") %>
         </div>
     </div>
     <!-- This contains the hidden content for inline calls -->
     <div style='display: none'>
-        <div id='confirmDeleteContent' style='padding: 10px; background: #fff;'>
-            <% Html.RenderPartial("~/Views/Project/Partials/AmendProjectPartial.ascx", Model); %>
+        <div id="create-amendment-dialog" title="Amend Project">
+            <% using (Html.BeginForm("Amend", "Project", FormMethod.Post, new { @id = "create-amendment-form" }))
+               { 
+            %>
+            <fieldset>
+                <legend>New Amendment</legend>
+                <p>
+                    <label for="NewAmendment_AmendmentReason">
+                        Reason:</label>
+                    <%= Html.TextArea("NewAmendment.AmendmentReason")%>
+                </p>
+                <p>
+                    <label for="NewAmendment_AmendmentCharacter">
+                        Amendment Character:</label>
+                    <%= Html.TextArea("NewAmendment.AmendmentCharacter")%>
+                </p>
+                <p>
+                    <label for="AmendmentTypes">
+                        Amendment Type:</label>
+                    <%= Html.DropDownListFor(x => x.ProjectAmendments.AmendmentTypeId, new SelectList(Model.AmendmentTypes, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+                </p>
+            </fieldset>
+            <% } %>
+        </div>
+        <div id="delete-amendment-dialog" title="Confirm Delete">
+        <div>
+        Are you sure you want to delete this Amendment? This operation cannot be undone.
+        </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(".confirmAmend").colorbox({ width: "800px", height: "330px", inline: true, href: "#confirmDeleteContent" });
-    </script>
 </asp:Content>

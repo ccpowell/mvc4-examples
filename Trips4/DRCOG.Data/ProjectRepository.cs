@@ -1134,7 +1134,6 @@ namespace DRCOG.Data
         public IList<PoolProject> GetPoolProjects(int projectVersionID)
         {
             IList<PoolProject> poolList = new List<PoolProject>();
-            PoolProject pp = null;
 
             SqlCommand cmd = new SqlCommand("[dbo].[GetProjectVersionPoolProjects]");
             cmd.CommandType = CommandType.StoredProcedure;
@@ -1591,10 +1590,6 @@ namespace DRCOG.Data
                     if (!fileName.Equals(String.Empty) && !newName.Equals(String.Empty))
                     {
                         FileHandler.Copy(fileName, newName, model.LocationMapPath, model.LocationMapPath);
-                    }
-                    else
-                    {
-                        throw new NoNullAllowedException();
                     }
                 }
                 catch

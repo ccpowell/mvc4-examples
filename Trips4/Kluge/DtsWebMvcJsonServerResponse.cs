@@ -3,6 +3,10 @@ using System.Runtime.Serialization;
 
 namespace DTS.Web.MVC
 {
+    /// <summary>
+    /// This class replaces the version in DTS.Web.MVC assembly, as that assembly 
+    /// is obsolete.
+    /// </summary>
     [DataContract]
     public class JsonServerResponse
     {
@@ -20,6 +24,6 @@ namespace DTS.Web.MVC
         [DataMember(Name = "error")]
         public string Error { get; set; }
         [DataMember(Name = "sessionError")]
-        public bool? SessionError { get; set; }
+        public bool SessionError { get; set; }
     }
 }

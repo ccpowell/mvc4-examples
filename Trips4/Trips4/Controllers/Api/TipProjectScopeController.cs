@@ -9,6 +9,7 @@ using DRCOG.Domain.ViewModels.TIPProject;
 
 namespace Trips4.Controllers.Api
 {
+    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
     public class TipProjectScopeController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -23,7 +24,6 @@ namespace Trips4.Controllers.Api
             ProjectRepository = projectRepository;
         }
 
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void Put(ScopeViewModel viewModel)
         {
             //Send update to repo

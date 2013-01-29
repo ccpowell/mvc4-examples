@@ -29,22 +29,6 @@ namespace DRCOG.TIP.Services.TIP
              * Amend Project
              * Check if Previous Active Amendment needs to be changed to inactive
              * Return to details page
-            
-            ProjectAmendments amendment = new ProjectAmendments();
-            amendment = amendmentViewModel.ProjectAmendments;
-            if (amendment.RequiresProjectCopy(_projectRepository.GetProjectAmendmentStatus((Int32)amendment.ProjectVersionId)))
-            {
-                amendment.LocationMapPath = DRCOGConfig.GetConfig().LocationMapPath;
-                amendment.PreviousProjectVersionId = (Int32)amendment.ProjectVersionId; 
-                amendment.ProjectVersionId = _projectRepository.CopyProject(amendment.PreviousProjectVersionId);
-            }
-            amendment = amendment.AmendProject();
-            
-            _projectRepository.UpdateProjectAmendmentStatus(amendment);
-            if (amendment.RequireVersionStatusUpdate())
-            {
-                _projectRepository.UpdateProjectVersionStatusId((Int32)amendment.PreviousProjectVersionId, amendment.VersionStatusId);
-            }
         */
 
         public AmendmentStrategy(IProjectRepository repo, ProjectAmendments amendment)
@@ -52,17 +36,12 @@ namespace DRCOG.TIP.Services.TIP
             ProjectRepository = repo;
             Amendment = amendment;
         }
-
-        public int GetAmendmentStatusId(int projectVersionId)
-        {
-            return ProjectRepository.GetProjectAmendmentStatus(projectVersionId);
-        }
-
+        
         public IAmendmentStrategy PickStrategy()
         {
             IAmendmentStrategy strategy = null;
 
-            switch (GetAmendmentStatusId((Int32)Amendment.ProjectVersionId))
+            switch (Amendment.AmendmentStatusId)
             {
                 case 10734: // Amended
                 case (Int32)Enums.TIPAmendmentStatus.Amended:

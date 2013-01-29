@@ -9,6 +9,7 @@ using DRCOG.Domain.Interfaces;
 
 namespace Trips4.Controllers.Api
 {
+    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
     public class TipStatusController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -18,7 +19,6 @@ namespace Trips4.Controllers.Api
             TripsRepository = trepo;
         }
 
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void Put(DRCOG.Domain.Models.TipStatusModel model)
         {
             try

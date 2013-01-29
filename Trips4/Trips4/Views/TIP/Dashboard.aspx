@@ -25,7 +25,7 @@
             .Columns(column =>
             {
                 column.For(x => Html.ActionLink("View Projects", "ProjectList", new { controller = "Tip", year = Model.TipSummary.TipYear, df = x.ItemName, dft = Model.ListType })).Encode(false).Attributes(@style => "width: 100px;");
-                column.For(x => x.ItemName).Named(Model.ListType.ToPrettyString());
+                column.For(x => x.ItemName).Named(Model.ListType.ToString());
                 column.For(x => x.count).Named("Count").Attributes(@style => "width: 50px;");
             }).Attributes(@class => "grid w850").Render(); 
             %>

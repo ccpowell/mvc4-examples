@@ -12,6 +12,7 @@ using DRCOG.Domain.Models;
 
 namespace Trips4.Controllers.Api
 {
+    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
     public class TipProjectLocationController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
