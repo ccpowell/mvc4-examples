@@ -252,6 +252,18 @@ namespace Trips4.Controllers
             });
         }
 
+        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        public ActionResult Restore(string year, int id)
+        {
+            //Restore projectVersionID (ID) to the given TIPYear (year)
+            IRestoreStrategy strategy = new RestoreStrategy(this._projectRepository, id).PickStrategy();
+            int returnId = (int)strategy.Restore(year);
+            id = returnId != 0 ? returnId : id;
+
+            return RedirectToAction("Funding", new { controller = "Project", id = id, message = "Project restored successfully." });
+        }
+#if obsolete
+        
         /// <summary>
         /// Amend a project
         /// </summary>
@@ -300,17 +312,6 @@ namespace Trips4.Controllers
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public ActionResult Restore(string year, int id)
-        {
-            //Restore projectVersionID (ID) to the given TIPYear (year)
-            IRestoreStrategy strategy = new RestoreStrategy(this._projectRepository, id).PickStrategy();
-            int returnId = (int)strategy.Restore(year);
-            id = returnId != 0 ? returnId : id;
-
-            return RedirectToAction("Funding", new { controller = "Project", id = id, message = "Project restored successfully." });
-        }
-
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult DeleteAmendment(Int32 projectVersionId, Int32 previousProjectVersionId, string year)
         {
             ProjectAmendments amendment = new ProjectAmendments()
@@ -330,7 +331,7 @@ namespace Trips4.Controllers
             else
                 return RedirectToAction("ProjectList", new { controller = "Tip", tipYear = year });
         }
-
+#endif
         /// <summary>
         /// Update the eligible agencies associated with this TIP Project. DEPRECATED
         /// </summary>

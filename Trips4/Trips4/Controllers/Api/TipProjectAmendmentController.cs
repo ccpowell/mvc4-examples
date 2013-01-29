@@ -33,10 +33,18 @@ namespace Trips4.Controllers.Api
         // POST api/tipprojectamendment
         public int Post(ProjectAmendments amendment)
         {
-            amendment.LocationMapPath = Trips4.Configuration.DRCOGConfig.GetConfig().LocationMapPath;
-            IAmendmentStrategy strategy = new AmendmentStrategy(ProjectRepository, amendment).PickStrategy();
-            int projectVersionId = strategy.Amend();
-            return projectVersionId;
+            try
+            {
+                amendment.LocationMapPath = Trips4.Configuration.DRCOGConfig.GetConfig().LocationMapPath;
+                IAmendmentStrategy strategy = new AmendmentStrategy(ProjectRepository, amendment).PickStrategy();
+                int projectVersionId = strategy.Amend();
+                return projectVersionId;
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("Could not Post TIP Project Amendment", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
         }
 
         // Update an Amendment, with the ID of ProjectVersionId.
@@ -44,13 +52,21 @@ namespace Trips4.Controllers.Api
         // PUT api/tipprojectamendment
         public void Put(ProjectAmendments value)
         {
-            if (value.AmendmentStatusId != 0)
+            try
             {
-                ProjectRepository.UpdateProjectAmendmentStatus(value);
+                if (value.AmendmentStatusId != 0)
+                {
+                    ProjectRepository.UpdateProjectAmendmentStatus(value);
+                }
+                else
+                {
+                    ProjectRepository.UpdateAmendmentDetails(value);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ProjectRepository.UpdateAmendmentDetails(value);
+                Logger.WarnException("Could not Put TIP Project Amendment", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
             }
         }
 
@@ -59,15 +75,23 @@ namespace Trips4.Controllers.Api
         // DELETE api/tipprojectamendment/5
         public int Delete(int id)
         {
-            ProjectAmendments amendment = new ProjectAmendments()
+            try
             {
-                LocationMapPath = Trips4.Configuration.DRCOGConfig.GetConfig().LocationMapPath,
-                ProjectVersionId = id
-            };
+                ProjectAmendments amendment = new ProjectAmendments()
+                {
+                    LocationMapPath = Trips4.Configuration.DRCOGConfig.GetConfig().LocationMapPath,
+                    ProjectVersionId = id
+                };
 
-            IDeleteStrategy strategy = new DeleteStrategy(this.ProjectRepository, amendment).PickStrategy();
-            int returnId = strategy.Delete();
-            return returnId;
+                IDeleteStrategy strategy = new DeleteStrategy(this.ProjectRepository, amendment).PickStrategy();
+                int returnId = strategy.Delete();
+                return returnId;
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("Could not Delete TIP Project Amendment", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
         }
     }
 }
