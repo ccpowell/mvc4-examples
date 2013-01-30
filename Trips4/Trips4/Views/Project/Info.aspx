@@ -3,25 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Project General Information</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-    <link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet"
+    <link href="<%= Url.Content("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.popeye.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.popeye.style.css") %>" rel="stylesheet"
         type="text/css" />
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
-    <link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.sort.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
-        type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.popeye-2.0.4.min.js")%>"
-        type="text/javascript"></script>
-    <link href="<%= Page.ResolveUrl("~/Content/jquery.popeye.css") %>" rel="stylesheet"
-        type="text/css" />
-    <link href="<%= Page.ResolveUrl("~/Content/jquery.popeye.style.css") %>" rel="stylesheet"
-        type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
+    <link href="<%= Url.Content("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
+    <script src="<%= Url.Content("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.sort.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.growing-textarea.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.popeye-2.0.4.min.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
-        var isEditable = <%= Model.ProjectSummary.IsEditable().ToString().ToLower() %>;
-
+        var isEditable = App.utility.parseBoolean('<%= Model.ProjectSummary.IsEditable().ToString() %>');
         var add1url = '<%=Url.Action("AddCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         var remove1url = '<%=Url.Action("DropCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         var add2url = '<%=Url.Action("AddCurrent2Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
@@ -53,13 +48,6 @@
                 return false;
             });
 
-            $('#remove1').click(function () {
-                $('#Current1Agencies option:selected').each(function (i) {
-                    remove1Agency($(this).val());
-                });
-                return false;
-            });
-
             $('#add2').click(function () {
                 $('#AvailableAgencies option:selected').each(function (i) {
                     //make callback add to Eligible Agency list
@@ -76,29 +64,23 @@
             });
 
             function add1Agency(id) {
-
                 $.ajax({
                     type: "POST",
                     url: add1url,
                     dataType: "json",
                     data: { agencyId: id },
-                    success: function (response) {
-                        if ((response.Error == null) || (response.Error == "")) {
-                            //success
-                            var selector = "#AvailableAgencies option[value='" + id + "']";
-                            var sponsorId = $('#PrimarySponsorId');
-                            var oldPrimarySponsor = $('#PrimarySponsor').html();
+                    success: function () {
+                        var selector = "#AvailableAgencies option[value='" + id + "']";
+                        var sponsorId = $('#PrimarySponsorId');
+                        var oldPrimarySponsor = $('#PrimarySponsor').html();
 
-                            $('#AvailableAgencies').prepend('<option value="' + sponsorId.val() + '">' + oldPrimarySponsor + '</option>');
-                            $('#PrimarySponsor').html($(selector).text());
-                            $(selector).remove();
-                            sponsorId.val(id);
-                            $('#AvailableAgencies option').sort(function (a, b) {
-                                return $(a).text() > $(b).text() ? 1 : -1;
-                            });
-                        } else {
-                            ShowMessageDialog('Error adding Primary Sponsor', response.Error);
-                        }
+                        $('#AvailableAgencies').prepend('<option value="' + sponsorId.val() + '">' + oldPrimarySponsor + '</option>');
+                        $('#PrimarySponsor').html($(selector).text());
+                        $(selector).remove();
+                        sponsorId.val(id);
+                        $('#AvailableAgencies option').sort(function (a, b) {
+                            return $(a).text() > $(b).text() ? 1 : -1;
+                        });
                     }
                 });
             }
@@ -109,14 +91,9 @@
                     url: add2url,
                     dataType: "json",
                     data: { agencyId: id },
-                    success: function (response) {
-                        if ((response.Error == null) || (response.Error == "")) {
-                            //success
-                            var selector = "#AvailableAgencies option[value='" + id + "']";
-                            $(selector).remove().appendTo('#Current2Agencies');
-                        } else {
-                            ShowMessageDialog('Error adding Secondary Sponsor', response.Error);
-                        }
+                    success: function () {
+                        var selector = "#AvailableAgencies option[value='" + id + "']";
+                        $(selector).remove().appendTo('#Current2Agencies');
                     }
                 });
             }
@@ -127,18 +104,14 @@
                     url: remove2url,
                     dataType: "json",
                     data: { agencyId: id },
-                    success: function (response) {
-                        if ((response.Error == null) || (response.Error == "")) {
-                            //success
-                            var selector = "#Current2Agencies option[value='" + id + "']";
-                            var selector2 = "#AvailableAgencies";
-                            $(selector).remove().prependTo('#AvailableAgencies');
-                            $('#AvailableAgencies option').sort(function (a, b) {
-                                return $(a).text() > $(b).text() ? 1 : -1;
-                            });
-                        } else {
-                            ShowMessageDialog('Secondary Sponsor not Removed', response.Error);
-                        }
+                    success: function () {
+                        //success
+                        var selector = "#Current2Agencies option[value='" + id + "']";
+                        var selector2 = "#AvailableAgencies";
+                        $(selector).remove().prependTo('#AvailableAgencies');
+                        $('#AvailableAgencies option').sort(function (a, b) {
+                            return $(a).text() > $(b).text() ? 1 : -1;
+                        });
                     }
                 });
             }
@@ -195,9 +168,6 @@
                     dataType: "json",
                     success: function (response) {
                         $('#InfoModel_ProjectTypeId').val(response.id);
-                    },
-                    error: function (response) {
-                        $('#result').html(response.error);
                     }
                 });
             });
@@ -216,9 +186,6 @@
                         $('#InfoModel_ImprovementTypeId')
                         .fillSelect(response.data, { 'defaultOptionText': '-- Select Improvement Type --' })
                         .sortOptions();
-                    },
-                    error: function (response) {
-                        $('#result').html(response.data);
                     }
                 });
             });
@@ -236,7 +203,7 @@
             <% } %>
             <form method="put" action="/api/TipProjectInfo" id="dataForm">
             <fieldset>
-            <legend></legend>
+                <legend></legend>
                 <%= Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
                 <%= Html.Hidden("InfoModel.TipYear", Model.InfoModel.TipYear)%>
                 <%= Html.Hidden("InfoModel.ProjectVersionId", Model.ProjectSummary.ProjectVersionId)%>

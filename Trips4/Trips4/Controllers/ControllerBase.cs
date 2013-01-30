@@ -397,7 +397,6 @@ namespace Trips4.Controllers
             {
                 //var result = RtpProjectRepository.GetLookupSingle<String>("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Value", sqlParms);
                 var result = repo.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
-
                 return Json(new { id = result.First().Key, value = result.First().Value });
             }
             catch (Exception ex)
@@ -406,6 +405,21 @@ namespace Trips4.Controllers
                 jsr.Error = ex.Message;
                 return Json(jsr);
             }
+        }
+
+
+        /// <summary>
+        /// Gets ProjectTypeId from ImprovementTypeId
+        /// </summary>
+        /// <remarks>This version throws an exception if an error occurs.</remarks>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        protected JsonResult GetImprovementTypeMatch2(int id, ITransportationRepository repo)
+        {
+            IList<SqlParameter> sqlParms = new List<SqlParameter>();
+            sqlParms.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, ParameterName = "@Id", Value = id });
+            var result = repo.GetLookupCollection("dbo.Lookup_GetProjectTypeByImprovementTypeId", "Id", "Value", sqlParms);
+            return Json(new { id = result.First().Key, value = result.First().Value });
         }
 
         /// <summary>
@@ -431,6 +445,22 @@ namespace Trips4.Controllers
                 jsr.Error = ex.Message;
                 return Json(jsr);
             }
+        }
+
+        /// <summary>
+        /// Gets ImprovementTypeId from ProjectTypeId
+        /// </summary>
+        /// <remarks>This version throws an exception if an error occurs.</remarks>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        protected JsonResult GetProjectTypeMatch2(int id, ITransportationRepository repo)
+        {
+            var result = new List<SelectListItem>();
+            IList<SqlParameter> sqlParms = new List<SqlParameter>();
+            sqlParms.Add(new SqlParameter("@Id", id));
+            var items = repo.GetLookupCollection("[dbo].[Lookup_GetImprovementTypesByProjectId]", "Id", "Value", sqlParms);
+            items.ToList().ForEach(x => { result.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() }); });
+            return Json(new { data = result });
         }
 
 

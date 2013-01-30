@@ -49,12 +49,12 @@ namespace Trips4.Controllers
 
         public JsonResult GetImprovementTypeMatch(int id)
         {
-            return base.GetImprovementTypeMatch(id, _tipRepository);
+            return base.GetImprovementTypeMatch2(id, _tipRepository);
         }
 
         public JsonResult GetProjectTypeMatch(int id)
         {
-            return base.GetProjectTypeMatch(id, _tipRepository);
+            return base.GetProjectTypeMatch2(id, _tipRepository);
         }
 
 
@@ -82,7 +82,7 @@ namespace Trips4.Controllers
         {
             var model = new ProjectBaseViewModel();
             model = _projectRepository.GetDetailViewModel(id, year);
-            return View("reports", model);
+            return View(model);
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace Trips4.Controllers
             var model = new DetailViewModel();
             model = _projectRepository.GetDetailViewModel(id, year);
             ViewData["message"] = message;
-            return View("details", model);
+            return View(model);
         }
-
+#if unused
         public JsonResult CurrentTipIdDetails(string id, string year)
         {
 
@@ -153,7 +153,7 @@ namespace Trips4.Controllers
                 data = output
             }, JsonRequestBehavior.AllowGet);
         }
-
+#endif
 
         /// <summary>
         /// This takes you to the most current version of a project
@@ -375,11 +375,18 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
+        public void AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
-            var jsr = new JsonServerResponse();
-            jsr.Error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, true);
-            return Json(jsr);
+            var error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, true);
+            CheckError(error);
+        }
+
+        private void CheckError(string error)
+        {
+            if (!string.IsNullOrWhiteSpace(error))
+            {
+                throw new Exception(error);
+            }
         }
 
         /// <summary>
@@ -390,12 +397,10 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
+        public void AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
-
-            var jsr = new JsonServerResponse();
-            jsr.Error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, false);
-            return Json(jsr);
+            var error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, false);
+            CheckError(error);
         }
 
         /// <summary>
@@ -406,11 +411,10 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
+        public void DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
         {
-            var jsr = new JsonServerResponse();
-            jsr.Error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
-            return Json(jsr);
+            var error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
+            CheckError(error);
         }
 
         /// <summary>
@@ -421,11 +425,10 @@ namespace Trips4.Controllers
         /// <returns></returns>
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
+        public void DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
         {
-            var jsr = new JsonServerResponse();
-            jsr.Error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
-            return Json(jsr);
+            var error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
+            CheckError(error);
         }
 
         #endregion

@@ -6,11 +6,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Project Detailed Home</asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-<link href="<%= ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%= ResolveClientUrl("~/scripts/Slide.js")%>" type="text/javascript" ></script>
-
-<link href="<%= ResolveUrl("~/Content/tip.description.print.css") %>" rel="stylesheet" type="text/css" media="print" />
-
+<link href="<%= Url.Content("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
+<link href="<%= Url.Content("~/Content/tip.description.print.css") %>" rel="stylesheet" type="text/css" media="print" />
+<script src="<%= Url.Content("~/scripts/Slide.js")%>" type="text/javascript" ></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

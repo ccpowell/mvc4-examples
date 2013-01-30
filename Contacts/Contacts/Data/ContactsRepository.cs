@@ -11,12 +11,16 @@ namespace Contacts.Data
 {
     public class ContactsRepository : IDisposable
     {
-        private const string ConnectionString = "mongodb://localhost/?safe=true";
-        private MongoClient Mc { get; set; }
+        //private const string ConnectionString = "mongodb://localhost/?safe=true";
+        private static MongoClient Mc { get; set; }
+        static ContactsRepository()
+        {
+            var cs = System.Configuration.ConfigurationManager.ConnectionStrings["ContactsMongo"].ConnectionString;
+            Mc = new MongoClient(cs);
+        }
 
         public ContactsRepository()
         {
-            Mc = new MongoClient();
         }
 
         private MongoDatabase GetDb()
@@ -118,7 +122,7 @@ namespace Contacts.Data
             var result = clists.Remove(queryId);
             ThrowIfNotOk(result);
         }
-                
+
 
         public IEnumerable<Models.ContactList> GetContactLists()
         {
