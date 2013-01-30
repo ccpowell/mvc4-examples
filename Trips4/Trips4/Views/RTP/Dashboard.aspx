@@ -24,7 +24,7 @@ Inherits="System.Web.Mvc.ViewPage<RtpDashboardViewModel>" %>
             .Columns(column =>
             {
                 column.For(x => Html.ActionLink("View Projects", "ProjectList", new { controller = "RTP", year = Model.RtpSummary.RtpYear, df = x.ItemName, dft=Model.ListType })).Encode(false);
-                column.For(x => x.ItemName).Named(Model.ListType.ToPrettyString());
+                column.For(x => x.ItemName).Named(Model.ListType.ToString());
                 column.For(x => x.count).Named("Count");
             }).Attributes(@class =>"grid w400").Render();
             %>

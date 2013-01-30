@@ -59,7 +59,7 @@
             .Columns(column =>
             {
                 column.For(x => Html.ActionLink("View Projects", "ProjectList", new { controller = "Survey", year = Model.Current.Name, df = x.ItemName, dft = Model.ListType })).Encode(false);
-                column.For(x => x.ItemName).Named(Model.ListType.ToPrettyString());
+                column.For(x => x.ItemName).Named(Model.ListType.ToString());
                 column.For(x => x.count).Named("Count");
                 if (Model.ListType == DRCOG.Domain.Enums.SurveyDashboardListType.Sponsor)
                 {
