@@ -544,11 +544,11 @@ App.ui = (function ($) {
         function initView() {
             // we don't need anything at this point
             //if (true) {
+            //window.clearInterval(tid);
             initializeMain();
             initializeContactListDialog();
             initializeContactDialog();
             initializeAddContactsDialog();
-            window.clearInterval(tid);
 
             reloadContactTable();
             reloadContactListTable();
@@ -570,7 +570,8 @@ App.ui = (function ($) {
         // when all data arrived, initialize bindings
         App.viewmodel = new App.ViewModel(jQuery);
 
-        tid = window.setInterval(initView, 10);
+        //tid = window.setInterval(initView, 10);
+        initView();
     }
 
 
