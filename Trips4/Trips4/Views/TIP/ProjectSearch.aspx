@@ -9,7 +9,7 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.ProjectSearchViewM
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" language="jscript">
+<script type="text/javascript">
 
 function reset_form_elements(formElements) {
     $(formElements).find(':input').each(function() {  
@@ -29,6 +29,12 @@ function reset_form_elements(formElements) {
 } 
 
 </script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
 
 
 <div class="view-content-container">

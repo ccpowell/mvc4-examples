@@ -89,13 +89,18 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.SponsorsViewModel>
     
 </script>
 
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
 <div class="view-content-container">
-<%--<h2 ><%=Html.ActionLink("TIP List", "Index",new {controller="TIP"}) %> / TIP <%=Model.TipSummary.TipYear%></h2>--%>
 <div class="clear"></div>
 
 <%Html.RenderPartial("~/Views/TIP/Partials/TipTabPartial.ascx", Model.TipSummary); %>

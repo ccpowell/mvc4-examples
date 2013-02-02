@@ -28,45 +28,11 @@ namespace Trips4.Controllers.Api
         }
 
         [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public void Put(FormDataCollection form)
+        public void Put(LocationModel model)
         {
-            //Manually parse up the form b/c of the muni & county split stuff
-            int projectVersionId = Convert.ToInt32(form.Get("ProjectVersionId"));
-            string year = form.Get("TipYear");
-            //Get the existing model from the datagbase
-            LocationModel model = ProjectRepository.GetProjectLocationModel(projectVersionId, year);
-            //Update values
-            model.Limits = form.Get("Limits");
-            model.FacilityName = form.Get("FacilityName");
-            //model.CdotRegionId = 
-            int cdotRegion = default(int);
-            int delaysLocation = default(int);
-            Int32.TryParse(form.Get("TipProjectLocation.CdotRegionId"), out cdotRegion);
-            Int32.TryParse(form.Get("TipProjectLocation.AffectedProjectDelaysLocationId"), out delaysLocation);
-
-            model.CdotRegionId = cdotRegion;
-            model.AffectedProjectDelaysLocationId = delaysLocation;
-
-            //parse out the county & muni shares stuff...
-            var nvc = form.ReadAsNameValueCollection();
-            Dictionary<int, CountyShareModel> countyShares = ControllerBase.ExtractCountyShares(nvc);
-            Dictionary<int, MunicipalityShareModel> muniShares = ControllerBase.ExtractMuniShares(nvc);
-
-            //Send updates to repo
             try
             {
                 ProjectRepository.UpdateProjectLocationModel(model);
-                //Update the county shares
-                foreach (CountyShareModel m in countyShares.Values)
-                {
-                    ProjectRepository.UpdateCountyShare(m);
-                }
-                //Update the muni shares
-                foreach (MunicipalityShareModel m in muniShares.Values)
-                {
-                    ProjectRepository.UpdateMunicipalityShare(m);
-                }
-                //Ok, we're good.
             }
             catch (Exception ex)
             {

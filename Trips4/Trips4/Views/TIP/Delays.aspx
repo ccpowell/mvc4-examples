@@ -244,6 +244,12 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.DelaysViewModel>" 
         return html;
     }
 </script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
 
 
 </asp:Content>

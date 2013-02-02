@@ -26,12 +26,16 @@
         App.pp.UpdateAvailableSponsorContacts = '<%= Url.Action("UpdateAvailableSponsorContacts") %>/';
         App.pp.GetImprovementTypeMatch = '<%= Url.Action("GetImprovementTypeMatch") %>';
         App.pp.GetProjectTypeMatch = '<%= Url.Action("GetProjectTypeMatch") %>';
+        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
+        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
+
+        $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
     <script src="<%= Url.Content("~/scripts/TipProjectInfo.js")%>" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="tab-content-container">
-        <% Html.RenderPartial("~/Views/Project/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
+        <% Html.RenderPartial("~/Views/Project/Partials/TipProjectTabPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-form-container">
             <% if (ViewData["message"] != null)
                { %>

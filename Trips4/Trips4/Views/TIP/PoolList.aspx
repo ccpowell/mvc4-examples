@@ -4,6 +4,13 @@ Inherits="System.Web.Mvc.ViewPage<PoolListViewModel>" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">TIP Pool List</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

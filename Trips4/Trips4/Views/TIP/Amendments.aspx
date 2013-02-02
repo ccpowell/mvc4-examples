@@ -5,6 +5,13 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.AmendmentsViewMode
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

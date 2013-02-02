@@ -13,6 +13,14 @@
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
         type="text/javascript"></script>
     <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
+        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipProjectTabs);
+    </script>
+
+    <script type="text/javascript">
         var county_share_total;
         var isEditable = <%= Model.ProjectSummary.IsEditable().ToString().ToLower() %>;
         var AddPoolUrl = '<%=Url.Action("AddPoolProject" ) %>';
@@ -187,7 +195,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="tab-content-container">
-        <% Html.RenderPartial("~/Views/Project/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
+        <% Html.RenderPartial("~/Views/Project/Partials/TipProjectTabPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-form-container tab-scope">
             <form method="put" action="/api/TipProjectScope" id="dataForm">
             <fieldset>

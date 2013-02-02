@@ -12,9 +12,7 @@ using DRCOG.Domain.ServiceInterfaces;
 //using DRCOG.Domain.Models.TIPProject.Amendment;
 using DRCOG.Domain.ViewModels.TIPProject;
 using DRCOG.TIP.Services;
-using DRCOG.TIP.Services.DeleteStrategy.TIP;
 using DRCOG.TIP.Services.RestoreStrategy.TIP;
-using DRCOG.TIP.Services.TIP;
 using DTS.Web.MVC;
 using Trips4.Configuration;
 //using System.Runtime.Serialization.Json;
@@ -191,8 +189,6 @@ namespace Trips4.Controllers
         {
             int projectVersionId = Int32.Parse(collection["ProjectVersionId"]);
             string year = collection["Year"];
-            //Send update to repo
-            Guid mediaId = default(Guid);
             string message = String.Empty;
 
             try
@@ -204,9 +200,9 @@ namespace Trips4.Controllers
                 {
                     message = "No Image was selected.";
                 }
-                else if (file.ContentLength < 524288)
+                else if (file.ContentLength < (4 * 1024 * 1024))
                 {
-
+                    //Send update to repo
                     newImage.Name = file.FileName;
                     newImage.MediaType = file.ContentType;
 
@@ -215,42 +211,21 @@ namespace Trips4.Controllers
                     file.InputStream.Read(tempImage, 0, length);
                     newImage.Data = tempImage;
 
-                    mediaId = ImageService.Save(newImage, projectVersionId);
+                    ImageService.Save(newImage, projectVersionId);
                 }
                 else
                 {
-                    message = "Image must be smaller then 4mb.";
+                    message = "Image must be smaller then 4MB.";
                 }
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Location", new { controller = "Project", id = projectVersionId, tipyear = year, message = message.Equals(String.Empty) ? "Image was not updated." : message });
+                Logger.WarnException("Image was not updated when uploaded", ex);
+                message = String.IsNullOrWhiteSpace(message) ? "Image was not updated." : message;
             }
-            return RedirectToAction("Location", new { controller = "Project", id = projectVersionId, tipyear = year, message = message.Equals(String.Empty) ? "Image update successfully." : message });
+            return RedirectToAction("Location", new { controller = "Project", id = projectVersionId, tipyear = year, message = message });
         }
 
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public JsonResult DeleteLocationMap(int imageId, int projectVersionId)
-        {
-            try
-            {
-                ImageService.Delete(imageId, projectVersionId);
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    message = "Error while deleting Location Map.",
-                    error = "true",
-                    exceptionMessage = ex.Message
-                });
-            }
-            return Json(new
-            {
-                message = "Location Map successfully removed.",
-                error = "false"
-            });
-        }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Restore(string year, int id)
@@ -331,7 +306,7 @@ namespace Trips4.Controllers
             else
                 return RedirectToAction("ProjectList", new { controller = "Tip", tipYear = year });
         }
-#endif
+
         /// <summary>
         /// Update the eligible agencies associated with this TIP Project. DEPRECATED
         /// </summary>
@@ -366,70 +341,8 @@ namespace Trips4.Controllers
                 return Json(jsr);
             }
         }
-
-        /// <summary>
-        /// Add an agency to the current project as a Primary Sponsor
-        /// </summary>
-        /// <param name="projectVersionID"></param>
-        /// <param name="agencyId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public void AddCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
-        {
-            var error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, true);
-            CheckError(error);
-        }
-
-        private void CheckError(string error)
-        {
-            if (!string.IsNullOrWhiteSpace(error))
-            {
-                throw new Exception(error);
-            }
-        }
-
-        /// <summary>
-        /// Add an agency to the current project as a Secondary Sponsor
-        /// </summary>
-        /// <param name="projectVersionID"></param>
-        /// <param name="agencyId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public void AddCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
-        {
-            var error = _projectRepository.AddAgencyToTIPProject(projectVersionID, agencyId, false);
-            CheckError(error);
-        }
-
-        /// <summary>
-        /// Remove an Primary Sponsor from the current project
-        /// </summary>
-        /// <param name="projectVersionID"></param>
-        /// <param name="agencyId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public void DropCurrent1Agency(string tipYear, int projectVersionID, int agencyId)
-        {
-            var error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
-            CheckError(error);
-        }
-
-        /// <summary>
-        /// Remove an Secondary Sponsor from the current project
-        /// </summary>
-        /// <param name="projectVersionID"></param>
-        /// <param name="agencyId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
-        public void DropCurrent2Agency(string tipYear, int projectVersionID, int agencyId)
-        {
-            var error = _projectRepository.DropAgencyFromTIP(projectVersionID, agencyId);
-            CheckError(error);
-        }
+#endif
+        
 
         #endregion
 
@@ -447,7 +360,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-
+#if moved_to_api
         [HttpPost]
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult UpdateScope(ScopeViewModel viewModel)
@@ -481,7 +394,7 @@ namespace Trips4.Controllers
             }
             return Json(new { message = "Changes successfully saved." });
         }
-
+#endif
         /// <summary>
         /// Display the Location for a project
         /// </summary>
@@ -801,6 +714,7 @@ namespace Trips4.Controllers
         //    return PartialView("~/Views/Project/Partials/ProjectFundingDetailPartial.ascx", Model.FundingDetailPivotModel);
         //}
 
+#if moved_to_operations
         /// <summary>
         /// Add a county share record (ProjectCountyGeography table)
         /// </summary>
@@ -850,7 +764,6 @@ namespace Trips4.Controllers
             }
             return Json(new { message = "Record successfully dropped." });
         }
-
         /// <summary>
         /// Add a municipality share to the database
         /// </summary>
@@ -899,7 +812,7 @@ namespace Trips4.Controllers
             }
             return Json(new { message = "Record successfully dropped." });
         }
-
+#endif
         /// <summary>
         /// Parse the County Shares from the Form Parameter collection 
         /// </summary>

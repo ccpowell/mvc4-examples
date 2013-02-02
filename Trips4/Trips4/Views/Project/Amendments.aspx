@@ -21,6 +21,8 @@
         App.pp.PreviousVersionId = parseInt('<%= Model.ProjectSummary.PreviousVersionId %>');
         App.pp.AmendmentIsPending = App.utility.parseBoolean('<%= Model.ProjectSummary.IsPending.ToString() %>');
         App.pp.AmendmentStatusId = parseInt('<%= Model.ProjectAmendments.AmendmentStatusId %>');
+
+        $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -46,7 +48,7 @@
    
     %>
     <div class="view-content-container">
-        <% Html.RenderPartial("~/Views/Project/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
+        <% Html.RenderPartial("~/Views/Project/Partials/TipProjectTabPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-content-container" style="height: 750px">
             <div id="Div1" class="rightColumn" style='<%= rightColumnStyle %>'>
                 <% if (isEditable)

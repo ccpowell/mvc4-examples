@@ -3,98 +3,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Project Location</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-    <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
+    <link href="<%= Url.Content("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.popeye.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.popeye.style.css") %>" rel="stylesheet"
+        type="text/css" />
+    <script src="<%= Url.Content("~/scripts/jquery.growing-textarea.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
+    <script src="<%= Url.Content("~/scripts/jquery.popeye-2.0.4.min.js")%>" type="text/javascript"></script>
+    <!-- 
+    Slide was originally for a login panel, and maybe was to be used for a details panel
+    which is currently not implemented. At this point it just keeps the details panel hidden.
+    Remove ProjectSummaryBoxPartial and it will not be needed.
+     -->
     <link href="<%= ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
-        type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.popeye-2.0.4.min.js")%>"
-        type="text/javascript"></script>
-    <link href="<%= Page.ResolveUrl("~/Content/jquery.popeye.css") %>" rel="stylesheet"
-        type="text/css" />
-    <link href="<%= Page.ResolveUrl("~/Content/jquery.popeye.style.css") %>" rel="stylesheet"
-        type="text/css" />
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".growable").growing({ buffer: 5 });
-            var ppy1options = {
-                caption: true,
-                navigation: 'hover',
-                direction: 'left'
-            };
-
-            $('#ppy1').popeye(ppy1options);
-
-            // Prevent accidental navigation away
-            App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
-            $('#submitForm').button({ disabled: true });
-
-            /* TODO: do we want to allow this?
-            if ($('#submitImageForm')) {
-                $('#submitImageForm').click(function () { window.onbeforeunload = null; return true; });
-            }
-            */
-
-            //Delete location map image
-            $('.delete-image').live("click", function () {
-                //grab the values from the active form
-
-                var DeleteImageUrl = '<%=Url.Action("DeleteLocationMap","Project" ) %>';
-                var recordid = this.id.replace('delete_', '');
-                var image = $('#image_' + recordid);
-
-
-                //alert("Values: registrationId=" + registrationId + "&sponsorName=" + sponsorname + "&sponsorId=" + recordid);
-                $.ajax({
-                    type: "POST",
-                    url: DeleteImageUrl,
-                    data: "imageId=" + recordid
-                    + "&projectVersionId=<%=Model.TipProjectLocation.ProjectVersionId %>",
-                    dataType: "json",
-                    success: function (response) {
-                        $('#result-image').html(response.message);
-
-                        $(image).remove();
-                        $('.delete-image').remove();
-                        $('#upload-image').show();
-
-                        $('div#result-image').addClass('success');
-                    },
-                    error: function (response) {
-                        $('#result-image').html(response.error);
-                    }
-                });
-                return false;
-            });
-
-
-
-            var top_fullwidth_height = $("#top-fullwidth").height();
-            //        var uploadwrapperheight = $("#uploadwrapper").height();
-
-
-            $("#uploadwrapper").css('position', 'absolute');
-            $("#uploadwrapper").css('right', '0px');
-            $("#uploadwrapper").css('top', top_fullwidth_height + 40);
-            //alert(uploadtop + ' ' + uploadtop);
-
-            //        var pageheight = $(".page").height();
-            //        var pagesizeleft = (pageheight - (tabinforightheight + uploadwrapperheight + 40 + 193));
-
-            //        if (pagesizeleft < 0) {
-            //            // need to grow the size of the page
-            //            $(".page").height(pageheight + 40);
-            //        }
-        });
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
+        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
 
     </script>
+    <script src="<%= Url.Content("~/scripts/TipProjectLocation.js")%>" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="tab-content-container">
-        <% Html.RenderPartial("~/Views/Project/Partials/ProjectGenericPartial.ascx", Model.ProjectSummary); %>
+        <% Html.RenderPartial("~/Views/Project/Partials/TipProjectTabPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-form-container">
             <form method="put" action="/api/TipProjectLocation" id="dataForm">
             <%=Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>
@@ -114,7 +49,7 @@
                     <label>
                         Limits (cross streets) or Area of Project Description</label></p>
                 <p>
-                    <%= Html.TextArea2("Limits", Model.ProjectSummary.IsEditable(), Model.TipProjectLocation.Limits, 5, 10, new { @class = "longInputElement" }) %>
+                    <%= Html.TextArea2("Limits", Model.ProjectSummary.IsEditable(), Model.TipProjectLocation.Limits, 5, 10, new { @class = "longInputElement growable" }) %>
                     <%--<textarea class="longInputElement" name="Limits"><%=Model.TipProjectLocation.Limits %></textarea>--%>
                 </p>
                 <p>
@@ -129,7 +64,7 @@
                             Affected CDOT Region</h2>
                         <%if (Model.ProjectSummary.IsEditable())
                           { %>
-                        <%= Html.DropDownList("TipProjectLocation.CdotRegionId",
+                        <%= Html.DropDownList("CdotRegionId",
                             Model.ProjectSummary.IsEditable(),
                             new SelectList(Model.CDOTRegions, "value", "text", Model.TipProjectLocation.CdotRegionId),
                             "-- Select a CDOT Region --",
@@ -140,7 +75,7 @@
                         <% string value = "None Selected"; if (Model.TipProjectLocation.CdotRegionId != default(int)) { value = Model.CDOTRegions.FirstOrDefault(x => x.Value == Model.TipProjectLocation.CdotRegionId.ToString()).Text; } %>
                         <span class="fakeinput medium">
                             <%= Html.Encode(value)%></span>
-                        <%= Html.Hidden("TipProjectLocation.CdotRegionId", Model.TipProjectLocation.CdotRegionId)%>
+                        <%= Html.Hidden("CdotRegionId", Model.TipProjectLocation.CdotRegionId)%>
                         <br />
                         <% } %>
                     </p>
@@ -149,7 +84,7 @@
                             Affected Project Delays Location</h2>
                         <%if (Model.ProjectSummary.IsEditable())
                           { %>
-                        <%= Html.DropDownList("TipProjectLocation.AffectedProjectDelaysLocationId",
+                        <%= Html.DropDownList("AffectedProjectDelaysLocationId",
                             Model.ProjectSummary.IsEditable(),
                             new SelectList(Model.AffectedProjectDelaysLocation, "value", "text", Model.TipProjectLocation.AffectedProjectDelaysLocationId),
                             "-- Select a Location --",
@@ -160,7 +95,7 @@
                         <% string value = "None Selected"; if (Model.TipProjectLocation.AffectedProjectDelaysLocationId != default(int)) { value = Model.AffectedProjectDelaysLocation.FirstOrDefault(x => x.Value == Model.TipProjectLocation.AffectedProjectDelaysLocationId.ToString()).Text; } %>
                         <span class="fakeinput medium">
                             <%= Html.Encode(value)%></span>
-                        <%= Html.Hidden("TipProjectLocation.AffectedProjectDelaysLocationId", Model.TipProjectLocation.AffectedProjectDelaysLocationId)%>
+                        <%= Html.Hidden("AffectedProjectDelaysLocationId", Model.TipProjectLocation.AffectedProjectDelaysLocationId)%>
                         <br />
                         <% } %>
                     </p>
@@ -223,7 +158,7 @@
                           { %>
                         <td>
                             <button class="delete-county fg-button ui-state-default ui-priority-primary ui-corner-all"
-                                name="<%=cty.CountyName %>" id='delete_<%=cty.CountyId.ToString() %>'>
+                                data-name="<%= cty.CountyName %>" data-id="<%= cty.CountyId %>">
                                 Delete</button>
                         </td>
                         <%} %>
@@ -316,7 +251,7 @@
                           { %>
                         <td>
                             <button class="delete-muni fg-button ui-state-default ui-priority-primary ui-corner-all"
-                                name="<%=muni.MunicipalityName%>" id='delete_<%=muni.MunicipalityId.ToString() %>'>
+                                data-name="<%= muni.MunicipalityName %>" data-id='<%= muni.MunicipalityId %>'>
                                 Delete</button>
                         </td>
                         <%} %>
@@ -326,7 +261,7 @@
                       { %>
                     <tr id="muni-editor">
                         <td>
-                            <%= Html.CheckBox("IsPrimary", Model.ProjectSummary.IsEditable(), false, new { @id ="new_primary" })%>
+                            <%= Html.CheckBox("IsPrimary", Model.ProjectSummary.IsEditable(), false, new { @id = "new_muni_primary" })%>
                         </td>
                         <td>
                             <%= Html.DrcogTextBox("Share", Model.ProjectSummary.IsEditable(), 0, new { style = "width:30px;", @id = "mshare_new" })%>%
@@ -373,8 +308,6 @@
                     <%= Html.Hidden("LocationMapId", Model.TipProjectLocation.LocationMapId) %>
                     <%= Html.Hidden("Year", Model.TipProjectLocation.Year)%>
                     <%= Html.Hidden("ProjectVersionId", Model.TipProjectLocation.ProjectVersionId)%>
-                    <div id="result-image" style="display: none;">
-                    </div>
                     <% if (!Model.TipProjectLocation.LocationMapId.Equals(default(int)) && Model.TipProjectLocation.Image != null)
                        { %>
                     <div class="ppy" id="ppy1">
@@ -400,280 +333,35 @@
                             </div>
                         </div>
                     </div>
-                    <%if (Model.ProjectSummary.IsEditable())
-                      { %>
+                    <% if (Model.ProjectSummary.IsEditable())
+                       { %>
                     <br />
-                    <button id="delete_<%= Model.TipProjectLocation.LocationMapId %>" class="delete-image fg-button ui-state-default ui-priority-primary ui-corner-all">
+                    <button id="delete-image" data-imageid='<%= Model.TipProjectLocation.LocationMapId %>'>
                         Remove</button>
-                    <%} %>
                     <% } %>
-                    <%if (Model.ProjectSummary.IsEditable())
-                      { %>
-                    <div id="upload-image" <% if (!Model.TipProjectLocation.LocationMapId.Equals(default(int)) && Model.TipProjectLocation.Image != null) { %>
-                        style="display: none;" <% } %>>
+                    <% } %>
+                    <% if (Model.ProjectSummary.IsEditable())
+                       { %>
+                    <% if (Model.TipProjectLocation.LocationMapId.Equals(default(int)) && Model.TipProjectLocation.Image == null)
+                       { %>
+                    <div id="upload-image">
                         <p>
                             Maximum Upload Size: 4Mb<br />
                         </p>
                         <p>
-                            <input type="file" id="fileUpload" name="fileUpload" size="23" /></p>
+                            <input type="file" id="fileUpload" name="fileUpload" /></p>
                         <p>
                             <button type="submit" id="submitImageForm" class="fg-button ui-state-default ui-priority-primary ui-corner-all">
                                 Upload</button>
                         </p>
                     </div>
-                    <%} %>
-                    <%} %>
+                    <% } %>
+                    <% } %>
+                    <% } %>
                 </div>
             </div>
         </div>
         <div class="clear">
         </div>
     </div>
-    <script type="text/javascript">
-        var county_share_total;
-        var AddCountyUrl = '<%=Url.Action("AddCountyShare" ) %>';
-        var DropCountyUrl = '<%=Url.Action("RemoveCountyShare")%>';
-        var AddMuniUrl = '<%=Url.Action("AddMuniShare") %>';
-        var DropMuniUrl = '<%=Url.Action("RemoveMuniShare") %>';
-
-        $().ready(function () {
-
-            $('.delete-county').live("click", function () {
-                //get the countyId and project id
-                var pid = $('#ProjectId').val();
-                var ctyId = this.id.replace('delete_', '');
-                var name = $(this).attr("name");
-                $('#county_row_' + ctyId).empty();
-                $.ajax({
-                    type: "POST",
-                    url: DropCountyUrl,
-                    data: "projectId=" + pid + "&countyId=" + ctyId,
-                    dataType: "json",
-                    success: function (response) {
-                        $('#result').html(response.message);
-                        $('#new_county').addOption(ctyId, name).sortOptions();
-                        window.onbeforeunload = null;
-                        UpdateCountyShareTotal();
-                    }
-                });
-                //alert('Need XHR to Remove: county:' + ctyId + ' projectId:' + pid);
-                return false;
-            });
-
-            $('.delete-muni').live("click", function () {
-                //get the countyId and project id
-                var pid = $('#ProjectId').val();
-                var muniId = this.id.replace('delete_', '');
-                var name = $(this).attr("name");
-                $('#muni_row_' + muniId).empty();
-                $.ajax({
-                    type: "POST",
-                    url: DropMuniUrl,
-                    data: "projectId=" + pid + "&muniId=" + muniId,
-                    dataType: "json",
-                    success: function (response) {
-                        $('#result').html(response.message);
-                        $('#new_muni').addOption(muniId, name).sortOptions();
-                        window.onbeforeunload = null;
-                        UpdateMuniShareTotal();
-                    }
-                });
-                //alert('Need XHR to Remove: muni:' + muniId + ' projectId:' + pid);
-                return false;
-            });
-
-            UpdateCountyShareTotal();
-            UpdateMuniShareTotal();
-
-        });
-
-        function UpdateCountyShareTotal() {
-            county_share_total = 0;
-            var allocated_share = 0
-            var countyEditor = $("tr#county-editor");
-            //Sum the shares
-            $('input[id^=cshare], td span[id^=cshare]').each(function () {
-                var val = $(this).val();
-                if (val === '') {
-                    // try get the text version
-                    val = $(this).text();
-                    allocated_share += parseInt(val);
-                }
-                var parsed = parseInt(val);
-
-                county_share_total += !isNaN(parsed) ? parsed : 0;
-            });
-            $('#county-share-sum').html(county_share_total);
-            //Enable Add button...
-            var addButton = $('#add-county');
-            //alert(parseInt($('#cshare_new').val()) + " : " + $('#new_county option:selected').val());
-            if (county_share_total <= 100 && parseInt($('#cshare_new').val()) > 0 && $('#new_county option:selected').val() != '') {
-                addButton.removeClass('ui-state-disabled').removeAttr('disabled');
-            } else {
-
-                //add disabled class if it does not exist
-                if (!addButton.hasClass('ui-state-disabled')) {
-                    addButton.addClass('ui-state-disabled').attr('disabled', 'disabled');
-                }
-            }
-
-            if (allocated_share == 100) {
-                countyEditor.hide();
-            } else {
-                countyEditor.show();
-            }
-        }
-
-        function UpdateMuniShareTotal() {
-            var muni_share_total = 0;
-            var allocated_share = 0
-            var muniEditor = $("tr#muni-editor");
-
-            //Sum the shares
-            $('input[id^=mshare], td span[id^=mshare]').each(function () {
-                var val = $(this).val();
-                if (val === '') {
-                    // try get the text version
-                    val = $(this).text();
-                    allocated_share += parseInt(val);
-                }
-                var parsed = parseInt(val);
-
-                muni_share_total += !isNaN(parsed) ? parsed : 0;
-            });
-            $('#muni-share-sum').html(muni_share_total);
-
-            //Enable Add button...
-            var addButton = $('#add-muni');
-            if (muni_share_total <= 100 && $('#mshare_new').val() != 0 && $('#new_muni option:selected').val() != '') {
-                addButton.removeClass('ui-state-disabled').removeAttr('disabled');
-            } else {
-                //add disabled class if it does not exist
-                if (!addButton.hasClass('ui-state-disabled')) {
-                    addButton.addClass('ui-state-disabled').attr('disabled', 'disabled');
-                }
-            }
-
-            if (allocated_share == 100) {
-                muniEditor.hide();
-            } else {
-                muniEditor.show();
-            }
-        }
-
-        //Hook in the keyup event so we can keep track of changes to the shares
-        $('input[id^=cshare]').live('keyup', function () { UpdateCountyShareTotal(); });
-        $('input[id^=mshare]').live('keyup', function () { UpdateMuniShareTotal(); });
-        $('#new_muni').bind('change', function () { UpdateMuniShareTotal(); });
-        $('#new_county').bind('change', function () { UpdateCountyShareTotal(); });
-
-        //Add a county to the list
-        $('#add-county').click(function () {
-            //grab the values from the active form
-            var share = $('#cshare_new').val();
-            var primary = $('#new_primary').attr('checked');
-            var countyId = $('#new_county option:selected').val();
-            var countyName = $('#new_county option:selected').text();
-            var pid = $('#ProjectId').val();
-
-            //Remove selected option to ensure that we can't re-add it.
-            //this leaves a hole, in that you could add, then remove, 
-            //then want to re-add, and it would not be in the list.
-            $('#new_county option:selected').remove();
-            //reset the new share value to 0
-            $('#cshare_new').val(0);
-            //if primary is checked, see if primary is checked elsewhere, and warn user
-
-            //Do we try to see if the county is already listed?
-
-
-            primary = (primary === undefined) ? false : primary;
-
-            //alert('Need XHR to add ' + countyName + ' with share ' + share + ' primary ' + primary + ' and CountyId:' + countyId);
-            //Add to database via XHR
-
-            $.ajax({
-                type: "POST",
-                url: AddCountyUrl,
-                data: "projectId=" + pid + "&countyId=" + countyId + "&share=" + share + "&isPrimary=" + primary,
-                dataType: "json",
-                success: function (response) {
-                    $('#result').html(response.message);
-                    //Disable the add button
-                    $('#add-county').addClass('ui-state-disabled').attr('disabled', 'disabled');
-
-                    //Add into the DOM
-                    var content = "<tr id='county_row_" + countyId + "'>";
-                    if (primary == true) {
-                        content += "<td><input id='" + countyId + "_isPrimary' type='checkbox'  name='cty_" + countyId + "_IsPrimary' checked='checked'/></td>";
-                    } else {
-                        content += "<td><input id='" + countyId + "_isPrimary' type='checkbox'  name='cty_" + countyId + "_IsPrimary' /></td>";
-                    }
-                    content += "<td><span id='cshare_" + countyId + "'>" + share + "</span>%</td>";
-                    content += "<td>" + countyName + "</td>";
-                    content += "<td><button class='delete-county fg-button ui-state-default ui-priority-primary ui-corner-all' name='" + countyName + "' id='delete_" + countyId + "'>Delete</button></td></tr>";
-                    $('#county-editor').before(content);
-
-                    UpdateCountyShareTotal();
-                    window.onbeforeunload = null;
-                }
-            });
-
-
-            return false;
-        });
-
-        //Add a county to the list
-        $('#add-muni').click(function () {
-            //grab the values from the active form
-            var share = $('#mshare_new').val();
-            var primary = $('#new_primary').attr('checked');
-            var muniId = $('#new_muni option:selected').val();
-            var muniName = $('#new_muni option:selected').text();
-            var pid = $('#ProjectId').val();
-            //Remove selected option to ensure that we can't re-add it.
-            //this leaves a hole, in that you could add, then remove, 
-            //then want to re-add, and it would not be in the list.
-            $('#new_muni option:selected').remove();
-            //reset the new share value to 0
-            $('#mshare_new').val(0);
-            //if primary is checked, see if primary is checked elsewhere, and warn user
-
-            primary = (primary === undefined) ? false : primary;
-
-            //Do we try to see if the county is already listed?
-
-            //alert('Need XHR to add muni ' + muniName + ' with share ' + share + ' primary ' + primary + ' and muniId:' + muniId);
-            //Add to database via XHR
-            $.ajax({
-                type: "POST",
-                url: AddMuniUrl,
-                data: "projectId=" + pid + "&muniId=" + muniId + "&share=" + share + "&isPrimary=" + primary,
-                dataType: "json",
-                success: function (response) {
-                    $('#result').html(response.message);
-                    $('#add-muni').addClass('ui-state-disabled').attr('disabled', 'disabled');
-
-                    //Add into the DOM
-                    var content = "<tr id='muni_row_" + muniId + "'>";
-                    if (primary == true) {
-                        content += "<td><input id='" + muniId + "_isPrimary' type='checkbox'  name='muni_" + muniId + "_IsPrimary' checked='checked'/></td>";
-                    } else {
-                        content += "<td><input id='" + muniId + "_isPrimary' type='checkbox'  name='muni_" + muniId + "_IsPrimary' /></td>";
-                    }
-                    content += "<td><span id='mshare_" + muniId + "'>" + share + "</span>%</td>";
-                    content += "<td>" + muniName + "</td>";
-                    content += "<td><button class='delete-muni fg-button ui-state-default ui-priority-primary ui-corner-all' name='" + muniName + "' id='delete_" + muniId + "'>Delete</button></td></tr>";
-                    $('#muni-editor').before(content);
-
-                    UpdateMuniShareTotal();
-                    window.onbeforeunload = null;
-                }
-            });
-
-            return false;
-        });
-    
-
-    </script>
 </asp:Content>

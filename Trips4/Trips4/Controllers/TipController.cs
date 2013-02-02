@@ -288,10 +288,16 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public ActionResult Reports(string year)
         {
             LoadSession();
+
+            if (!System.Web.Security.Roles.IsUserInRole("Administrator") &&
+                !System.Web.Security.Roles.IsUserInRole("TIP Administrator"))
+            {
+                Redirect("http://www.drcog.org/index.cfm?page=TransportationImprovementProgram%28TIP%29");
+            }
+
             //Create the ViewModel
             ReportsViewModel model = new ReportsViewModel();
             model = _tipRepository.GetReportsViewModel(StringEnum.GetStringValue(CurrentSessionApplicationState.CurrentProgram), year);

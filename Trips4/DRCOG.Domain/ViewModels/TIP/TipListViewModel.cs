@@ -42,5 +42,16 @@ namespace DRCOG.Domain.ViewModels.TIP
             }
         }
 
+        public IEnumerable<System.Web.Mvc.SelectListItem> NotInTipYear(int tipYearId)
+        {
+            var list = new List<System.Web.Mvc.SelectListItem>();
+            list.AddRange(TIPs.Where(x => x.TimePeriodId != tipYearId).Select(t => new System.Web.Mvc.SelectListItem()
+                {
+                    Value = t.TimePeriodId.ToString(),
+                    Text = t.TipYear
+                }).OrderBy(t => t.Text));
+            return list;
+        }
+
     }
 }

@@ -26,5 +26,30 @@ namespace Contacts.Controllers
 
             return View();
         }
+
+        public ActionResult TestPage1()
+        {
+            return View("TestPage");
+        }
+        public ActionResult TestPage2()
+        {
+            return View("TestPage");
+        }
+        public ActionResult TestPage3()
+        {
+            return View("TestPage");
+        }
+        public ActionResult TestPage4()
+        {
+            return View("TestPage");
+        }
+        public ActionResult TestPage5()
+        {
+            return View("TestPage");
+        }
+        public ActionResult TestPage6()
+        {
+            return View("TestPage");
+        }
     }
 }

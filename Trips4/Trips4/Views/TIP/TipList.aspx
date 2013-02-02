@@ -18,6 +18,14 @@
         <% } %>
     });
 </script>
+   
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.TipYear = '<%=  Model.TipSummary.TipYear %>';
+        $(document).ready(App.tabs.initializeTipTabs);
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -40,7 +48,7 @@
 
     <a href="<%= Url.Action("Dashboard", "Tip", new {year = Model.CurrentTip.TipYear }) %>" title="Search Current TIP <%= Model.CurrentTip.TipYear %>">Search Current TIP <%= Model.CurrentTip.TipYear %></a>
 
-    <%= Html.DropDownListFor(model => model.TIPs, Model.TIPs.Where(x => x.TimePeriodId != Model.CurrentTip.TimePeriodId).ToSelectList("TimePeriodId", "TipYear"), new { @class = "mediumInputElement big" }) %>
+    <%= Html.DropDownListFor(model => model.TIPs, Model.NotInTipYear(Model.CurrentTip.TimePeriodId), new { @class = "mediumInputElement big" })%>
 
     <div class="clear"></div>
     <div class="belowTable">

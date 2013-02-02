@@ -11,6 +11,7 @@ var App = App || {};
 
 // POST an operation using JSON.
 // The data should be serialized using JSON.stringify.
+// NOTE: ajax(url, options) doesn't work with jquery 1.4
 App.postit = function (url, options) {
     'use strict';
 
@@ -22,12 +23,13 @@ App.postit = function (url, options) {
     }, options);
 
     // add application path if needed
-    if (url.toLowerCase().indexOf(App.env.applicationPath.toLowerCase()) != 0) {
+    if (url.toLowerCase().indexOf(App.env.applicationPath.toLowerCase()) !== 0) {
         url = App.env.applicationPath + url;
     }
+    poptions.url = url;
 
     // send it along
-    jQuery.ajax(url, poptions);
+    jQuery.ajax(poptions);
 };
 
 App.utility = (function ($) {
@@ -45,7 +47,7 @@ App.utility = (function ($) {
             $result.empty().hide();
             window.onbeforeunload = function unloadMessage() {
                 return 'You have entered new data on this page. If you navigate away from this page without first saving your data, the changes will be lost.';
-            }
+            };
         }
 
         // Bind inputs to enable the submit button
@@ -83,16 +85,67 @@ App.utility = (function ($) {
     }
 
     function parseBoolean(string) {
-        if (!string) {
-            return false;
+        if (string) {
+            switch (string.toLowerCase()) {
+                case "true": case "yes": case "1": return true;
+                default: return false;
+            }
         }
-        switch (string.toLowerCase()) {
-            case "true": case "yes": case "1": return true;
-            default: return false;
-        }
+        return false;
     }
+
+
     return {
         bindInputToConfirmUnload: bindInputToConfirmUnload,
         parseBoolean: parseBoolean
+    };
+} (jQuery));
+
+App.tabs = (function ($) {
+    "use strict";
+
+    function initializeTabs(makeUrl) {
+        var activeIndex = 0;
+
+        // find the index of the list item with the action
+        $("#page-tabs-list > li").each(function (index, el) {
+            if ($(el).data("action") === App.env.action) {
+                activeIndex = index;
+                return false;
+            }
+        });
+
+        $("#page-tabs").tabs({
+            active: activeIndex,
+            beforeActivate: function (event, ui) {
+                var action = ui.newTab.data("action"), url;
+                if (action) {
+                    url = makeUrl(action);
+                    if (url) {
+                        window.location.assign(url);
+                    }
+                }
+            }
+        });
+    }
+
+
+    function initializeTipProjectTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "Project", App.pp.TipYear, action, App.pp.ProjectVersionId];
+            return segments.join('/');
+        });
+    }
+
+    function initializeTipTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "TIP", App.pp.TipYear, action];
+            return segments.join('/');
+        });
+    }
+
+    return {
+        initializeTipProjectTabs: initializeTipProjectTabs,
+        initializeTipTabs: initializeTipTabs
     };
 } (jQuery));

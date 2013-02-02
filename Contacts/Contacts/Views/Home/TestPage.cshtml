@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "TestPage";
+}
+<h2>
+    TestPage</h2>
+<div id="tabs">
+    <ul>
+        <li data-action="TestPage1"><a href="#tab-testpage1">Test Page 1</a></li>
+        <li data-action="TestPage2"><a href="#tab-testpage2">Test Page 2</a></li>
+        <li data-action="TestPage3"><a href="#tab-testpage3">Test Page 3</a></li>
+        <li data-action="TestPage4"><a href="#tab-testpage4">Test Page 4</a></li>
+        <li data-action="TestPage5"><a href="#tab-testpage5">Test Page 5</a></li>
+        <li data-action="TestPage6"><a href="#tab-testpage6">Test Page 6</a></li>
+    </ul>
+    <div id="tab-testpage1">
+    </div>
+    <div id="tab-testpage2">
+    </div>
+    <div id="tab-testpage3">
+    </div>
+    <div id="tab-testpage4">
+    </div>
+    <div id="tab-testpage5">
+    </div>
+    <div id="tab-testpage6">
+    </div>
+    <div>
+    @Html.ViewContext.RouteData.Values["action"].ToString().ToLower()
+    </div>
+
+</div>
+@section scripts {
+    <script type="text/javascript">
+        var App = App || {};
+        App.action = '@Html.ViewContext.RouteData.Values["action"].ToString().ToLower()';
+    </script>
+    @Scripts.Render("~/Scripts/TestPage.js")
+}
