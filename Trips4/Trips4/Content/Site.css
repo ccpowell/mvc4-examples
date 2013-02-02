@@ -14,14 +14,14 @@ body
 #loader
 {
     z-index: 1001;
-    background: #FFFFFF url(images/ajax-loader.gif) no-repeat fixed center;    
+    background: #FFFFFF url(images/ajax-loader.gif) no-repeat fixed center;
     display: block;
 }
 
 #dijitContainer
 {
-    visibility:hidden;
-    height:450px;
+    visibility: hidden;
+    height: 450px;
 }
 
 a:link
@@ -49,15 +49,36 @@ p, ul
     line-height: 1.6em;
 }
 
-br { clear: both; }
+br
+{
+    clear: both;
+}
 
-.bg-green { background: #95C632; }
-.bg-green:hover { background: #8bb92f; }
+.bg-green
+{
+    background: #95C632;
+}
+.bg-green:hover
+{
+    background: #8bb92f;
+}
 
-.bg-red { background: #ff0015; }
-.bg-red:hover { background: #be000f; }
+.bg-red
+{
+    background: #ff0015;
+}
+.bg-red:hover
+{
+    background: #be000f;
+}
 
-.iremove { position: relative; height: 16px; width: 16px; background: url('/Content/Images/remove.png') #fff;}
+.iremove
+{
+    position: relative;
+    height: 16px;
+    width: 16px;
+    background: url('/Content/Images/remove.png') #fff;
+}
 
 
 /* HEADINGS   
@@ -96,48 +117,124 @@ h5, h6
 ----------------------------------------------------------*/
 .blockoff
 {
-	min-height: 1.2em;
+    min-height: 1.2em;
 }
-.box { border: 1px solid #CCC; margin: 5px 0; padding: 3px 6px;  }
-.hidden { visibility: hidden; display: none; }
-.clear { clear: both; }
-.error, .redfont { color:#ff0000; }
-.relative { display: block; position: relative; }
-.link { color: blue; text-decoration: underline; }
-.cursorPointer { cursor: pointer; }
-.boldFont { font-weight:bold; }
-.floatLeft { float:left; }
-.floatRight { float:right; }
-.noRightMargin { margin-right:0; }
-.grayFont { color:#C3C3C3; }
-.cursorPointer { cursor:pointer; }
-.totalWidth { width:93%; }
-.sevenEightsWidth { width:87%; }
-.halfWidth { width:50%; }
-.threeQuarterWidth { width: 75%; }
-.oneThird { width:30%; }
-.oneThirdAbsolute { width:33%; }
-.oneFourth { width:25%; }
-.oneFifth { width:15%; }
-.darkGrey { color: #4C4C4C; }
-.lightGrey { color: #CCC; }
+.box
+{
+    border: 1px solid #CCC;
+    margin: 5px 0;
+    padding: 3px 6px;
+}
+.hidden
+{
+    visibility: hidden;
+    display: none;
+}
+.clear
+{
+    clear: both;
+}
+.error, .redfont
+{
+    color: #ff0000;
+}
+.relative
+{
+    display: block;
+    position: relative;
+}
+.link
+{
+    color: blue;
+    text-decoration: underline;
+}
+.cursorPointer
+{
+    cursor: pointer;
+}
+.boldFont
+{
+    font-weight: bold;
+}
+.floatLeft
+{
+    float: left;
+}
+.floatRight
+{
+    float: right;
+}
+.noRightMargin
+{
+    margin-right: 0;
+}
+.grayFont
+{
+    color: #C3C3C3;
+}
+.cursorPointer
+{
+    cursor: pointer;
+}
+.totalWidth
+{
+    width: 93%;
+}
+.sevenEightsWidth
+{
+    width: 87%;
+}
+.halfWidth
+{
+    width: 50%;
+}
+.threeQuarterWidth
+{
+    width: 75%;
+}
+.oneThird
+{
+    width: 30%;
+}
+.oneThirdAbsolute
+{
+    width: 33%;
+}
+.oneFourth
+{
+    width: 25%;
+}
+.oneFifth
+{
+    width: 15%;
+}
+.darkGrey
+{
+    color: #4C4C4C;
+}
+.lightGrey
+{
+    color: #CCC;
+}
 
 /* IMAGE MAPPING   
 ----------------------------------------------------------*/
-.btnRight { 
-    background-image:url(images/16-arrow-right.png);
-    background-repeat:no-repeat;
-    height:18px;
-    text-align:center;
-    width:18px;
+.btnRight
+{
+    background-image: url(images/16-arrow-right.png);
+    background-repeat: no-repeat;
+    height: 18px;
+    text-align: center;
+    width: 18px;
 }
 
-.btnLeft { 
-    background-image:url(images/16-arrow-left.png);
-    background-repeat:no-repeat;
-    height:18px;
-    text-align:center;
-    width:18px;
+.btnLeft
+{
+    background-image: url(images/16-arrow-left.png);
+    background-repeat: no-repeat;
+    height: 18px;
+    text-align: center;
+    width: 18px;
 }
 
 /* this rule styles <h2> tags that are the 
@@ -157,16 +254,16 @@ first child of the left and right table columns */
 
 .rightColumn
 {
-    float:right;
-    width:400px;
-    margin:0 10px 0 10px;
+    float: right;
+    width: 400px;
+    margin: 0 10px 0 10px;
 }
 
 .leftColumn
 {
-    float:left;
-    width:400px;
-    margin:0 10px 0 10px;
+    float: left;
+    width: 400px;
+    margin: 0 10px 0 10px;
 }
 
 /* PRIMARY LAYOUT ELEMENTS   
@@ -179,53 +276,54 @@ page width. Or, you can specify an exact pixel width. */
     width: 900px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;  
+    margin-top: 10px;
     border: solid 1px #96AFCF;
     background-color: #FFF;
 }
 
 #main
 {
-	position: relative;
-    margin:1px 0px 20px 0px;    
+    position: relative;
+    margin: 1px 0px 20px 0px;
     padding: 10px 0 0 0;
     background-color: #fff;
-    border-top: 1px solid #000;
-    /*float:right;  ensures that #main contains other floated elements*/
-    width:900px;
+    border-top: 1px solid #000; /*float:right;  ensures that #main contains other floated elements*/
+    width: 900px;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 
-.actionButton {
-
-    font-weight: bold;    
+.actionButton
+{
+    font-weight: bold;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     margin: 5px 5px 7px 5px;
-    border:1px solid #96AFCF;
-    background-color:#CFDBE9;
+    border: 1px solid #96AFCF;
+    background-color: #CFDBE9;
     cursor: pointer;
 }
 
 .view-content-container, #errorDisplay
 {
-    margin:5px 10px;
+    margin: 5px 10px;
     min-height: 400px;
     _min-height: 400px;
 }
 
-.tab-form-container{
-    float:left;
-    width:860px;
-    margin:5px 10px;
+.tab-form-container
+{
+    float: left;
+    width: 860px;
+    margin: 5px 10px;
     text-align: left;
     position: relative;
     min-height: 300px;
 }
 
-.tab-content-container{    
-    margin:5px 10px;
+.tab-content-container
+{
+    margin: 5px 10px;
     position: relative;
 }
 
@@ -235,19 +333,17 @@ page width. Or, you can specify an exact pixel width. */
     margin-bottom: 0px;
     color: #000;
     padding: 0;
-    background-color: #fff; /*#263779;*/
-    /*background-image: url(images/header-fade.png);*/
-    /*background-repeat: repeat-x;*/
-    height:90px;
+    background-color: #fff; /*#263779;*/ /*background-image: url(images/header-fade.png);*/ /*background-repeat: repeat-x;*/
+    height: 90px;
     border-bottom: 3px solid #263779;
 }
 
 #title
 {
-    display:block;
-    float:left;
-    text-align:left;
-    margin-left:5px;
+    display: block;
+    float: left;
+    text-align: left;
+    margin-left: 5px;
 }
 
 #title-content
@@ -260,22 +356,22 @@ page width. Or, you can specify an exact pixel width. */
 }
 #breadCrumbs
 {
-	position: relative;
-	width: 670px;
-	z-index: 1000;
+    position: relative;
+    width: 670px;
+    z-index: 1000;
 }
 
 .belowTable
 {
-    clear:both;
-    margin-top:5px;
-    padding-bottom:10px;
+    clear: both;
+    margin-top: 5px;
+    padding-bottom: 10px;
 }
 
 #footer
 {
     color: #444;
-    padding: 10px 0;    
+    padding: 10px 0;
     line-height: normal;
     margin: 0;
     font-size: .9em;
@@ -285,42 +381,49 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul.topMenu li
 {
-    display:inline;
+    display: inline;
     position: relative;
 }
-ul.topMenu li span { position: absolute; top: 0px; left: 0px; text-align: center; width: 40px; font-weight: bold; color: #545454; }
+ul.topMenu li span
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    width: 40px;
+    font-weight: bold;
+    color: #545454;
+}
 ul.topMenu
 {
-    line-height:3em;
-    margin-bottom:0;
+    line-height: 3em;
+    margin-bottom: 0;
 }
 
 #menucontainer
 {
-	padding:0 5px 0 5px;
-	margin-left:5px;
-	 float:left;
+    padding: 0 5px 0 5px;
+    margin-left: 5px;
+    float: left;
 }
 
 
 #menucontainer h3
 {
-    color:White;
-    padding:0;
-    margin-left:5px;
-    margin-top:3px;
-    margin-bottom:2px;
-   
-
+    color: White;
+    padding: 0;
+    margin-left: 5px;
+    margin-top: 3px;
+    margin-bottom: 2px;
 }
 #tipMenu
 {
-    float:left;
+    float: left;
 }
 #projectMenu
 {
-    float:left;
-    margin-left:10px;    
+    float: left;
+    margin-left: 10px;
 }
 
 
@@ -381,24 +484,26 @@ ul#menu li.selected a
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
-fieldset {}
+fieldset
+{
+}
 
-fieldset p 
+fieldset p
 {
     margin: 2px 12px 10px 10px;
 }
 
-fieldset label 
+fieldset label
 {
     display: block;
 }
 
-fieldset label.inline 
+fieldset label.inline
 {
     display: inline;
 }
 
-legend 
+legend
 {
     font-size: 1.1em;
     font-weight: 600;
@@ -409,50 +514,63 @@ textarea
 {
     white-space: pre-wrap;
     overflow: auto;
-    overflow:  -moz-scrollbars-vertical;
-}    
+    overflow: -moz-scrollbars-vertical;
+}
 
 
 .faketextarea, textarea.growable
 {
     margin: 5px 0 0 3px;
 }
-.faketextarea { line-height: normal; display: block; }
+.faketextarea
+{
+    line-height: normal;
+    display: block;
+}
 
-input[type="text"], input[type="password"], select, textarea, .blockoff, .fakeinput, .faketextarea {
-    
-    font-family:Tahoma,Arial,Verdana,sans-serif;
-    font-size:1em;
-    padding:4px 4px 10px 4px;    
+input[type="text"], input[type="password"], select, textarea, .blockoff, .fakeinput, .faketextarea
+{
+    font-family: Tahoma,Arial,Verdana,sans-serif;
+    font-size: 1em;
+    padding: 4px 4px 10px 4px;
     border: 1px solid #CCC;
 }
-.fakeinput 
+.fakeinput
 {
     display: block;
     float: left;
-    min-height:20px;
+    min-height: 20px;
     border: 1px solid #ccc;
     padding: 2px 4px 2px 4px;
 }
 
 .fakeinput.medium
 {
-    width: 240px;
-    /*padding: 2px 4px;*/
+    width: 240px; /*padding: 2px 4px;*/
 }
-.fakeinput.longInputElement { width: 500px; }
-.fakeinput.mediumInputElement 
+.fakeinput.longInputElement
+{
+    width: 500px;
+}
+.fakeinput.mediumInputElement
 {
     width: 220px;
-    margin:3px 0 0 5px;
+    margin: 3px 0 0 5px;
 }
-input[type="text"],select,textarea,.growable { background-color: #F2F1FC !important; border-color: #4A419B; }
-input[type="text"].highlight-red, input[type="password"].highlight-red, select.highlight-red, textarea.highlight-red, .blockoff.highlight-red { border-color: #A60000; }
+input[type="text"], select, textarea, .growable
+{
+    background-color: #F2F1FC !important;
+    border-color: #4A419B;
+}
+input[type="text"].highlight-red, input[type="password"].highlight-red, select.highlight-red, textarea.highlight-red, .blockoff.highlight-red
+{
+    border-color: #A60000;
+}
 
 
 .dialog h2
 {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica" , "Arial" , sans-serif;
     font-size: 2.1em;
     font-weight: 700;
 }
@@ -461,42 +579,53 @@ input[type="text"].highlight-red, input[type="password"].highlight-red, select.h
     font-size: 1.8em;
 }
 .dialog input.big, .dialog select.big
-{ 
-    font-family: "Helvetica", "Arial", sans-serif;
+{
+    font-family: "Helvetica" , "Arial" , sans-serif;
     font-size: 1.8em;
     font-weight: 700;
     border: 1px solid #ccc;
     padding: 4px;
     color: #666;
 }
-.dialog label.big, .dialog span.big { font-size: 1.8em; padding: 5px 0 0 0; }
+.dialog label.big, .dialog span.big
+{
+    font-size: 1.8em;
+    padding: 5px 0 0 0;
+}
 
 .cboxBtn, .cboxLbl
 {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica" , "Arial" , sans-serif;
     font-size: 1.8em;
     font-weight: 700;
     position: relative;
     cursor: pointer;
     top: 4px;
-    color: #666; 
+    color: #666;
     padding-left: 8px;
     padding-right: 8px;
 }
 
-.disabled.cboxBtn, .disabled.cboxBtn:hover { color: #999; cursor: default; }
-.cboxBtn:hover { color: #333; }
+.disabled.cboxBtn, .disabled.cboxBtn:hover
+{
+    color: #999;
+    cursor: default;
+}
+.cboxBtn:hover
+{
+    color: #333;
+}
 
 .cboxLabel
 {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica" , "Arial" , sans-serif;
     font-size: 1.8em;
     font-weight: 700;
     position: relative;
     top: 4px;
     padding-left: 8px;
     padding-right: 8px;
-    color: #666; 
+    color: #666;
 }
 
 .cboxDivider
@@ -513,29 +642,42 @@ input[type="text"].highlight-red, input[type="password"].highlight-red, select.h
     bottom: -30px;
     right: 40px;
 }
-#cboxProjectCount.cboxLabel { left: 100px; font-size: 1.2em; top: 0px; }
+#cboxProjectCount.cboxLabel
+{
+    left: 100px;
+    font-size: 1.2em;
+    top: 0px;
+}
 .cboxInput
 {
 }
 
-p.readonly_field{
-    background-color:#EEE;
-    border:solid 1px #DDD;
+p.readonly_field
+{
+    background-color: #EEE;
+    border: solid 1px #DDD;
 }
-p { clear: both; }
+p
+{
+    clear: both;
+}
 
-label {
+label
+{
     margin: 2px;
 }
 
-.lower-label {
+.lower-label
+{
     font-size: 0.8em;
 }
 
-.label_top {
+.label_top
+{
     display: block;
 }
-.label_beside {
+.label_beside
+{
     display: inline;
 }
 
@@ -543,39 +685,48 @@ label {
 /* CSS TABS   
 ----------------------------------------------------------*/
 
-ul#tabnav { /* general settings */
+ul#tabnav
+{
+    /* general settings */
     text-align: left;
     margin: 1em 0 1em 0;
     font: normal 11px verdana, arial, sans-serif;
     border-bottom: 1px solid #CCC;
     list-style-type: none;
     padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
-    
 }
 
-ul#tabnav li { /* do not change */
+ul#tabnav li
+{
+    /* do not change */
     display: inline;
 }
 
-ul#tabnav li a { /* settings for all tab links */
+ul#tabnav li a
+{
+    /* settings for all tab links */
     padding: 6px 8px 5px 9px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
     border: 1px solid #CCC; /* set border COLOR as desired; usually matches border color specified in #tabnav */
     background-color: #263779; /* set unselected tab background color as desired */
     color: #263779;
     margin-right: 0px; /* set additional spacing between tabs as desired */
     text-decoration: none;
-    background:#E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0
+    background: #E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0;
 }
-ul#tabnav li.faketab { /* settings for all tab links */
+ul#tabnav li.faketab
+{
+    /* settings for all tab links */
     padding: 6px 8px 5px 9px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
     border: 1px solid #CCC; /* set border COLOR as desired; usually matches border color specified in #tabnav */
     background-color: #263779; /* set unselected tab background color as desired */
     color: #c6bebe; /* set unselected tab link color as desired */
     margin-right: 0px; /* set additional spacing between tabs as desired */
     text-decoration: none;
-    background:#E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0;
+    background: #E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0;
 }
-ul#tabnav li.notab { /* settings for all notab links */
+ul#tabnav li.notab
+{
+    /* settings for all notab links */
     padding: 6px 0px 5px 0px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
     border: none; /* set border COLOR as desired; usually matches border color specified in #tabnav */
     background-color: #fff !important; /* set unselected tab background color as desired */
@@ -584,60 +735,84 @@ ul#tabnav li.notab { /* settings for all notab links */
     text-decoration: none;
     position: relative;
 }
-ul#tabnav li.notab a 
+ul#tabnav li.notab a
 {
     border: none;
     background: none;
 }
-ul#tabnav li.notab a > img { position: absolute; display: block; top: 4px; left: 0px; }
-li.tab-w-image { padding: 6px 0px 5px 10px !important; }
-ul#tabnav a:hover { /* settings for hover effect */
+ul#tabnav li.notab a > img
+{
+    position: absolute;
+    display: block;
+    top: 4px;
+    left: 0px;
+}
+li.tab-w-image
+{
+    padding: 6px 0px 5px 10px !important;
+}
+ul#tabnav a:hover
+{
+    /* settings for hover effect */
     background: #fff; /* set desired hover color */
-    color:#263779;
+    color: #263779;
 }
 ul#tabnav a.activetab
 {
     background: #fff; /* set desired hover color */
-    color:#263779;
+    color: #263779;
     border-bottom: 1px solid #fff; /* set border color to page background color */
-
 }
 
 /* TABLE
 ----------------------------------------------------------*/
 
-table 
+table
 {
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
 }
 
-table td 
+table td
 {
-  padding: 5px;   
-  border: solid 1px #e8eef4;
-  vertical-align: top;
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    vertical-align: top;
 }
 
 table th
 {
-  padding: 6px 5px;
-  text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
 }
-td.highlight { background-color: #ff7373; border-style:solid;}
-tr.odd > td { background-color: #f8f8f8; }
-tr.new > td { background-color: #A8D3A3; }
-tr.selected > td { background-color: #ECFFB3; border-style:solid; }
+td.highlight
+{
+    background-color: #ff7373;
+    border-style: solid;
+}
+tr.odd > td
+{
+    background-color: #f8f8f8;
+}
+tr.new > td
+{
+    background-color: #A8D3A3;
+}
+tr.selected > td
+{
+    background-color: #ECFFB3;
+    border-style: solid;
+}
 
 #logindisplay
 {
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:0 10px;
-    color:#000;
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 0 10px;
+    color: #000;
 }
 
 #logindisplay a:link
@@ -711,9 +886,7 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
 {
     width: 135px;
     margin: 2px 5px 2px;
-    font-weight: bold;
-    /*float: left;
-    text-align: right;*/
+    font-weight: bold; /*float: left;     text-align: right;*/
 }
 
 .dijitDialog input
@@ -721,7 +894,8 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
     /*width: 100%;*/
     margin: 5px 0 10px;
 }
-.dijitDialog input.zeroBottomMargin{
+.dijitDialog input.zeroBottomMargin
+{
     margin-bottom: 0;
 }
 .dialogControls
@@ -735,8 +909,8 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
     font-weight: bold;
     width: 150px;
     float: right;
-    border:1px solid #96AFCF;
-    background-color:#CFDBE9;
+    border: 1px solid #96AFCF;
+    background-color: #CFDBE9;
     cursor: pointer;
 }
 .dialogControls .dialogCancelBtn
@@ -762,9 +936,8 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
 
 .dijitDialog
 {
-    
     /*width: 400px;*/
-    width:300px;
+    width: 300px;
 }
 
 #confirmMessageDiv
@@ -774,45 +947,45 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
 
 #confirmDeleteContent
 {
-	display: block;
-	position: relative;
+    display: block;
+    position: relative;
 }
 
 #confirmDeleteContent div.error
 {
-	position: absolute;
-	display: block;
-	top: 10px;
-	right: 20px;
-	background-color: Transparent;
+    position: absolute;
+    display: block;
+    top: 10px;
+    right: 20px;
+    background-color: Transparent;
 }
 
 #AmendmentForm
 {
-	position: relative;	
+    position: relative;
 }
 
-#AmendmentForm form#dataForm 
+#AmendmentForm form#dataForm
 {
-	position: relative;
-	display: block;
-	top: 10px;
+    position: relative;
+    display: block;
+    top: 10px;
 }
 
-#AmendmentForm textarea.error 
+#AmendmentForm textarea.error
 {
-	border: 2px dashed black;
+    border: 2px dashed black;
 }
 
 #tab-scope-singleprojects
 {
-	position: absolute;
-	float: right;
-	display: block;
-	height: 300px;
-	width: 250px;
-	right: 10px;
-	top: 75px;
+    position: absolute;
+    float: right;
+    display: block;
+    height: 300px;
+    width: 250px;
+    right: 10px;
+    top: 75px;
 }
 
 #tab-info-left
@@ -832,8 +1005,8 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
     right: 60px;
 }
 
-#uploadwrapper 
-{ 
+#uploadwrapper
+{
     /*border: #ccc 1px solid; */
     padding: 4px;
 }
@@ -841,22 +1014,22 @@ tr.selected > td { background-color: #ECFFB3; border-style:solid; }
 #uploadwrapper img.resize
 {
     width: 250px;
-    height : auto;
+    height: auto;
 }
 
 .tab-info-sponsor
 {
     position: relative;
     display: block;
-    width: 600px;   
+    width: 600px;
 }
 
 div#result
 {
-	position: absolute;
-	display: block;
-	left: 150px;
-	top: 0px;
+    position: absolute;
+    display: block;
+    left: 150px;
+    top: 0px;
 }
 
 div#submit-result
@@ -864,10 +1037,22 @@ div#submit-result
     position: relative;
 }
 
-#scenario-container { display: inline; position: relative; top: 5px; left: 45px; }
-#scenario-container label { display: inline; }
+#scenario-container
+{
+    display: inline;
+    position: relative;
+    top: 5px;
+    left: 45px;
+}
+#scenario-container label
+{
+    display: inline;
+}
 
-.relative { position: relative; }
+.relative
+{
+    position: relative;
+}
 
 .funding-tab #record-details
 {
@@ -882,29 +1067,34 @@ div#submit-result
 
 /* MESSAGE   
 ----------------------------------------------------------*/
-.info, .success, .warning, .error, .validation {
+.info, .success, .warning, .error, .validation
+{
     border: 1px solid;
     margin: 10px 0px;
-    padding:15px 10px 15px 50px;
+    padding: 15px 10px 15px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
 }
-.info {
+.info
+{
     color: #00529B;
     background-color: #BDE5F8;
     background-image: url('Images/message/info.png');
 }
-.success {
+.success
+{
     color: #4F8A10;
     background-color: #DFF2BF;
-    background-image:url('Images/message/success.png');
+    background-image: url('Images/message/success.png');
 }
-.warning {
+.warning
+{
     color: #9F6000;
     background-color: #FEEFB3;
     background-image: url('Images/message/warning.png');
 }
-.error {
+.error
+{
     color: #D8000C;
     background-color: #FFBABA;
     background-image: url('Images/message/error.png');
@@ -991,91 +1181,254 @@ div#submit-result
 }
 
 
-#register-success .userName { font-weight: bold; }
+#register-success .userName
+{
+    font-weight: bold;
+}
 
 /* boe: Details View   
 ----------------------------------------------------------*/
-#details { display: block; position: relative; line-height: 1.2em; font-size: .9em; margin: 0px; padding: 0px;}
-#details > div { margin: 5px 0; padding: 0px; }
-#details .blockoff { font-weight:normal;}
-#details hr { height: 1px; background-color: #CCC; border-style: none; }
-#details #notes .blockoff{ min-height: 70px; }
-#details fieldset > h3 { text-decoration: underline; }
-#details > fieldset div table tr td { padding-left: 0px; padding-right: 10px; vertical-align: top;}
-#details > fieldset { border: 1px solid #CCC; padding: 10px;}
-#details > fieldset legend { margin-left: 10px; }
-#details td.first { width: 150px; }
-
-#details #scope, #printarea #scope { position: relative; padding-bottom: 10px;}
-#details #scope.box, #printarea #scope.box { background-color: #ccc; margin: 10px 0; clear: both; }
-#details #scope.box #scope-info, #printarea #scope.box #scope-info { float: left; width: 500px; padding: 0 0 60px 0; }
-#details #scope.box #scope-info h3, #printarea #scope.box #scope-info h3 { text-align: center; }
-#details #scope.box #scope-affected, #printarea #scope.box #scope-affected { position: absolute; bottom: 0px; left: 0px; min-height: 50px; }
-#details table#projectListGrid { margin-top: 10px; }
-#scope-affected #scope-muni, #scope-affected #scope-county { float: left; margin: 0 10px; }
-#details #scope #location-image, #printarea #scope #location-image { background-color: #fff; float: right; }
-#details #scope > ul, #details ul#status-summary, #printarea #scope > ul, #printarea ul#status-summary 
-{ 
-    position: absolute;
-	top: -5px;
-	right: 0px;
-	border: 1px dashed #CCC;
-    margin: 0 5px; 
-    padding: 0px; 
+#details
+{
+    display: block;
+    position: relative;
+    line-height: 1.2em;
+    font-size: .9em;
+    margin: 0px;
+    padding: 0px;
 }
-#details ul#status-summary, #printarea ul#status-summary { position: relative; text-align: right; }
-#details #scope > ul li, #details ul#status-summary li, #printarea #scope > ul li, #printarea ul#status-summary li { display: inline; margin: 0 5px; padding: 0;}
-#details #regionTop { }
-#details #regionMLeft { float: left; width: 45%; }
-#details #regionMRight { float: right; width: 55%; }
-#details #notes { clear: both; }
-#details #notes > table td { width: 50%; }
+#details > div
+{
+    margin: 5px 0;
+    padding: 0px;
+}
+#details .blockoff
+{
+    font-weight: normal;
+}
+#details hr
+{
+    height: 1px;
+    background-color: #CCC;
+    border-style: none;
+}
+#details #notes .blockoff
+{
+    min-height: 70px;
+}
+#details fieldset > h3
+{
+    text-decoration: underline;
+}
+#details > fieldset div table tr td
+{
+    padding-left: 0px;
+    padding-right: 10px;
+    vertical-align: top;
+}
+#details > fieldset
+{
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+#details > fieldset legend
+{
+    margin-left: 10px;
+}
+#details td.first
+{
+    width: 150px;
+}
+
+#details #scope, #printarea #scope
+{
+    position: relative;
+    padding-bottom: 10px;
+}
+#details #scope.box, #printarea #scope.box
+{
+    background-color: #ccc;
+    margin: 10px 0;
+    clear: both;
+}
+#details #scope.box #scope-info, #printarea #scope.box #scope-info
+{
+    float: left;
+    width: 500px;
+    padding: 0 0 60px 0;
+}
+#details #scope.box #scope-info h3, #printarea #scope.box #scope-info h3
+{
+    text-align: center;
+}
+#details #scope.box #scope-affected, #printarea #scope.box #scope-affected
+{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    min-height: 50px;
+}
+#details table#projectListGrid
+{
+    margin-top: 10px;
+}
+#scope-affected #scope-muni, #scope-affected #scope-county
+{
+    float: left;
+    margin: 0 10px;
+}
+#details #scope #location-image, #printarea #scope #location-image
+{
+    background-color: #fff;
+    float: right;
+}
+#details #scope > ul, #details ul#status-summary, #printarea #scope > ul, #printarea ul#status-summary
+{
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    border: 1px dashed #CCC;
+    margin: 0 5px;
+    padding: 0px;
+}
+#details ul#status-summary, #printarea ul#status-summary
+{
+    position: relative;
+    text-align: right;
+}
+#details #scope > ul li, #details ul#status-summary li, #printarea #scope > ul li, #printarea ul#status-summary li
+{
+    display: inline;
+    margin: 0 5px;
+    padding: 0;
+}
+#details #regionTop
+{
+}
+#details #regionMLeft
+{
+    float: left;
+    width: 45%;
+}
+#details #regionMRight
+{
+    float: right;
+    width: 55%;
+}
+#details #notes
+{
+    clear: both;
+}
+#details #notes > table td
+{
+    width: 50%;
+}
 #details #notes > table div, #details #location > div
 {
-	margin: 5px 0 5px 5px;
+    margin: 5px 0 5px 5px;
 }
-#details #segments-wrapper { clear: both; padding-top: 10px; }
+#details #segments-wrapper
+{
+    clear: both;
+    padding-top: 10px;
+}
 
-#details #pool-project { position: relative; display: block; margin-top: 20px; }
+#details #pool-project
+{
+    position: relative;
+    display: block;
+    margin-top: 20px;
+}
 
 #details table, #details tr, #details td
 {
-	border: none;
-	vertical-align: middle;
+    border: none;
+    vertical-align: middle;
 }
-#details#detailsGeneralInfo { }
+#details#detailsGeneralInfo
+{
+}
 
-#details #summary-snapshot, #printarea #summary-snapshot { padding: 10px 0; }
-#details #summary-snapshot div, #printarea #summary-snapshot div { float:left; padding-right: 30px; }
+#details #summary-snapshot, #printarea #summary-snapshot
+{
+    padding: 10px 0;
+}
+#details #summary-snapshot div, #printarea #summary-snapshot div
+{
+    float: left;
+    padding-right: 30px;
+}
 
 
 
 /* RTP Search View   
 ----------------------------------------------------------*/
-	
-#dataForm-rtpsearch label { color: #1240AB; font-weight: normal; }
+
+#dataForm-rtpsearch label
+{
+    color: #1240AB;
+    font-weight: normal;
+}
 
 
 /* RTP Scope View: Generics
-----------------------------------------------------------*/	
-table#segments tr td table { border-style:none; }
-table#segments tr td table tr td { border-style:none; }
-#dialog-error { display: none; position: absolute; top: -60px; right: 40px; max-width: 400px; }
-#segmentDetails .fakeinput { margin: 2px auto; }
+----------------------------------------------------------*/
+table#segments tr td table
+{
+    border-style: none;
+}
+table#segments tr td table tr td
+{
+    border-style: none;
+}
+#dialog-error
+{
+    display: none;
+    position: absolute;
+    top: -60px;
+    right: 40px;
+    max-width: 400px;
+}
+#segmentDetails .fakeinput
+{
+    margin: 2px auto;
+}
 
-#button-hide-lrs { display: none; }
-	
+#button-hide-lrs
+{
+    display: none;
+}
 
 
-	
+
+
 /* TIP Funding View
 ----------------------------------------------------------*/
 
-#funding-container { position: relative; }
-#fundingRecords { width: 300px; position: relative; }
-#fundingRecords p { clear: both; display: block; position: relative; padding: 10px 0 3px 0; }
-#fundingRecords p > input, #projectCDOTDataForm table#CdotGeneralGroup tr td > input { float: right; }
-#fundingRecords p > label, #projectCDOTDataForm table#CdotGeneralGroup tr td > label, p > label { float: left; }
+#funding-container
+{
+    position: relative;
+}
+#fundingRecords
+{
+    width: 300px;
+    position: relative;
+}
+#fundingRecords p
+{
+    clear: both;
+    display: block;
+    position: relative;
+    padding: 10px 0 3px 0;
+}
+#fundingRecords p > input, #projectCDOTDataForm table#CdotGeneralGroup tr td > input
+{
+    float: right;
+}
+#fundingRecords p > label, #projectCDOTDataForm table#CdotGeneralGroup tr td > label, p > label
+{
+    float: left;
+}
 #fundingRecords p > .fakeinput, #projectCDOTDataForm table#CdotGeneralGroup tr td > .fakeinput
 {
     border: 1px solid #ccc;
@@ -1088,210 +1441,674 @@ table#segments tr td table tr td { border-style:none; }
 /* TIP Funding Sources
 ----------------------------------------------------------*/
 
-#dialog-create-funding-source form fieldset p label { font-size: 1.8em; width: 180px; }
-#dialog-create-funding-source form fieldset p input[type="checkbox"] { font-size: 1.8em; }
+#dialog-create-funding-source form fieldset p label
+{
+    font-size: 1.8em;
+    width: 180px;
+}
+#dialog-create-funding-source form fieldset p input[type="checkbox"]
+{
+    font-size: 1.8em;
+}
 
 /* TIP Report View
 ----------------------------------------------------------*/
 
-#amendmentSort-admin, #amendmentHold-admin, #amendmentSort-policy, #amendmentHold-policy { float: left; position: relative; }
-#amendmentSort-policy > div, #amendmentSort-admin > div { margin: 15px 0; }
-#amendmentSort-policy > div span, #amendmentSort-admin > div span { display: block; margin: 4px 0; width: 300px; padding: 7px 2px; }
+#amendmentSort-admin, #amendmentHold-admin, #amendmentSort-policy, #amendmentHold-policy
+{
+    float: left;
+    position: relative;
+}
+#amendmentSort-policy > div, #amendmentSort-admin > div
+{
+    margin: 15px 0;
+}
+#amendmentSort-policy > div span, #amendmentSort-admin > div span
+{
+    display: block;
+    margin: 4px 0;
+    width: 300px;
+    padding: 7px 2px;
+}
 
-#amendmentHold-policy > span, #amendmentHold-admin > span { position: absolute; border: 1px solid #CCC; background-color: #eee; padding: 2px 8px; display: block; top: -10px; right: 8px; }
+#amendmentHold-policy > span, #amendmentHold-admin > span
+{
+    position: absolute;
+    border: 1px solid #CCC;
+    background-color: #eee;
+    padding: 2px 8px;
+    display: block;
+    top: -10px;
+    right: 8px;
+}
 
-#sortableAmendmentProjects-admin, #sortableAmendmentProjects-policy { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 400px; min-height: 30px; }
-#sortableAmendmentHold-admin, #sortableAmendmentHold-policy { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 250px; min-height: 30px; }
-#sortableAmendmentProjects li { margin: 2px; padding: 2px; font-size: .8em; width: 388px; }
-#sortableAmendmentHold-admin li, #sortableAmendmentHold-policy li { margin: 2px; padding: 2px; font-size: .8em; width: 238px; }
-#sortableAmendmentProjects-admin.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-admin.connectedSortable li.ui-state-highlight
-, #sortableAmendmentProjects-policy.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-policy.connectedSortable li.ui-state-highlight
- { min-height: 20px; background-color: #ccc; font-size: .8em; margin: 2px; padding: 2px;}
+#sortableAmendmentProjects-admin, #sortableAmendmentProjects-policy
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 30px;
+    margin-top: 10px;
+    background: #eee;
+    padding: 2px;
+    width: 400px;
+    min-height: 30px;
+}
+#sortableAmendmentHold-admin, #sortableAmendmentHold-policy
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 30px;
+    margin-top: 10px;
+    background: #eee;
+    padding: 2px;
+    width: 250px;
+    min-height: 30px;
+}
+#sortableAmendmentProjects li
+{
+    margin: 2px;
+    padding: 2px;
+    font-size: .8em;
+    width: 388px;
+}
+#sortableAmendmentHold-admin li, #sortableAmendmentHold-policy li
+{
+    margin: 2px;
+    padding: 2px;
+    font-size: .8em;
+    width: 238px;
+}
+#sortableAmendmentProjects-admin.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-admin.connectedSortable li.ui-state-highlight, #sortableAmendmentProjects-policy.connectedSortable li.ui-state-highlight, #sortableAmendmentHold-policy.connectedSortable li.ui-state-highlight
+{
+    min-height: 20px;
+    background-color: #ccc;
+    font-size: .8em;
+    margin: 2px;
+    padding: 2px;
+}
 
-#sortableAmendmentHold-admin li span.pv_projectname, #sortableAmendmentHold-policy li span.pv_projectname { display: none; }
+#sortableAmendmentHold-admin li span.pv_projectname, #sortableAmendmentHold-policy li span.pv_projectname
+{
+    display: none;
+}
 
-#amendmentSortContainer-admin { position: relative; }
-.fixedHold { display: block; position: fixed !important; top: 4%; right: 5%; z-index:10000; background-color: Black; }
+#amendmentSortContainer-admin
+{
+    position: relative;
+}
+.fixedHold
+{
+    display: block;
+    position: fixed !important;
+    top: 4%;
+    right: 5%;
+    z-index: 10000;
+    background-color: Black;
+}
 
 /* TIP Dashboard View
 ----------------------------------------------------------*/
-.quickTasks 
+.quickTasks
 {
     position: absolute;
     top: 0px;
     right: 0px;
     min-height: 200px;
-    width: 250px; 
-    border:1px solid #CCC;   
-    padding:3px 10px;
-    background-color:#DDD;
-    color:#555;
-    
+    width: 250px;
+    border: 1px solid #CCC;
+    padding: 3px 10px;
+    background-color: #DDD;
+    color: #555;
 }
 
 /* CDOTData View
 ----------------------------------------------------------*/
 
-#projectCDOTDataForm p { padding: 0; margin: 1px 0; float: left; }
-#projectCDOTDataForm p label { display: block; width: 160px; }
-#projectCDOTDataForm .fakeinput { width: 125px; height: 18px; display: block; text-align: left; overflow: hidden; }
-#projectCDOTDataForm table { width: 630px; text-align: center; margin: 5px 0;}
+#projectCDOTDataForm p
+{
+    padding: 0;
+    margin: 1px 0;
+    float: left;
+}
+#projectCDOTDataForm p label
+{
+    display: block;
+    width: 160px;
+}
+#projectCDOTDataForm .fakeinput
+{
+    width: 125px;
+    height: 18px;
+    display: block;
+    text-align: left;
+    overflow: hidden;
+}
+#projectCDOTDataForm table
+{
+    width: 630px;
+    text-align: center;
+    margin: 5px 0;
+}
 
 
 
-#submit-container { position: relative; margin: 0 0 10px 0; }
-#submit-container.long { width: 320px; }
-#submit-container button { position: relative; margin-top: 0;  }
-#submit-container div { position: relative; left: 0; top: 10px; width: 100%; display: block; clear: both;}
+#submit-container
+{
+    position: relative;
+    margin: 0 0 10px 0;
+}
+#submit-container.long
+{
+    width: 320px;
+}
+#submit-container button
+{
+    position: relative;
+    margin-top: 0;
+}
+#submit-container div
+{
+    position: relative;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    display: block;
+    clear: both;
+}
 
 
 /* RTP Funding View
 ----------------------------------------------------------*/
-#fundingRecords .faketextarea { min-height: 80px; }
-#fundingRecords-section1 { position: relative; min-height: 230px; }
-#fundingRecords-section2 { position: relative; min-height: 230px;}
-#fundingRecords-section1 label { float: none; }
-#fundingRecords-section1 .faketextarea { display: block; position: relative;}
-#rtp-funding-planinfo.box { position: absolute; left: 330px; top: 5px; width: 300px; height: 200px; }
-#rtp-funding-planinfo.box h3, #rtp-funding-amendment.box h3 { text-decoration: underline; padding-bottom: 5px; }
-#rtp-funding-planinfo > div, #rtp-funding-amendment > div { margin: 4px 0; padding: 4px 0px;}
-#rtp-funding-planinfo label, #rtp-funding-amendment label { float: none; }
-#rtp-funding-planinfo .fakeinput, #rtp-funding-amendment .fakeinput { display:block; float: none; width: 125px; padding: 4px 5px 0px 5px; position: relative; margin: -20px 0 0 160px; }
-#rtp-funding-planinfo select { display:block; float: none; position: relative; margin: -20px 0 0 160px; width: 137px;}
+#fundingRecords .faketextarea
+{
+    min-height: 80px;
+}
+#fundingRecords-section1
+{
+    position: relative;
+    min-height: 230px;
+}
+#fundingRecords-section2
+{
+    position: relative;
+    min-height: 230px;
+}
+#fundingRecords-section1 label
+{
+    float: none;
+}
+#fundingRecords-section1 .faketextarea
+{
+    display: block;
+    position: relative;
+}
+#rtp-funding-planinfo.box
+{
+    position: absolute;
+    left: 330px;
+    top: 5px;
+    width: 300px;
+    height: 200px;
+}
+#rtp-funding-planinfo.box h3, #rtp-funding-amendment.box h3
+{
+    text-decoration: underline;
+    padding-bottom: 5px;
+}
+#rtp-funding-planinfo > div, #rtp-funding-amendment > div
+{
+    margin: 4px 0;
+    padding: 4px 0px;
+}
+#rtp-funding-planinfo label, #rtp-funding-amendment label
+{
+    float: none;
+}
+#rtp-funding-planinfo .fakeinput, #rtp-funding-amendment .fakeinput
+{
+    display: block;
+    float: none;
+    width: 125px;
+    padding: 4px 5px 0px 5px;
+    position: relative;
+    margin: -20px 0 0 160px;
+}
+#rtp-funding-planinfo select
+{
+    display: block;
+    float: none;
+    position: relative;
+    margin: -20px 0 0 160px;
+    width: 137px;
+}
 
-#rtp-funding-amendment.box { position: absolute; left: 330px; top: 5px; width: 300px; height: 200px; border: none;}
+#rtp-funding-amendment.box
+{
+    position: absolute;
+    left: 330px;
+    top: 5px;
+    width: 300px;
+    height: 200px;
+    border: none;
+}
 
-#update-inview { position: absolute; top: 0px; right: 0px; }
+#update-inview
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
 
 /* RTP Status View
 ----------------------------------------------------------*/
-#StatusForm-wrapper { float: left; width: 415px; }
-#plan-cycles { float: right; }
-#plan-cycles table { border: none; }
-#plan-cycles table tr td { border: none;}
-#plan-current-cycle.box { margin-top: 20px; position: relative; background-color: #fff;}
-#plan-next-cycle { position: absolute; right: 4px; bottom: 4px; }
-#plan-change-cycle { position: relative; display: block; left: 50px; margin: 10px 0 4px 0; }
-#process-cycle-step2 { display: none; }
-.dialog-bottom { position: absolute; display: block; bottom: 0px; left: 0px; width: 100%; height: 26px; background-color: #e6e6e6; }
-#button-process-cycle { position: absolute; left: 6px; top: -1px; }
-#plan-current-cycle.box .dialog-bottom #cboxClose { bottom: 0px; }
+#StatusForm-wrapper
+{
+    float: left;
+    width: 415px;
+}
+#plan-cycles
+{
+    float: right;
+}
+#plan-cycles table
+{
+    border: none;
+}
+#plan-cycles table tr td
+{
+    border: none;
+}
+#plan-current-cycle.box
+{
+    margin-top: 20px;
+    position: relative;
+    background-color: #fff;
+}
+#plan-next-cycle
+{
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+}
+#plan-change-cycle
+{
+    position: relative;
+    display: block;
+    left: 50px;
+    margin: 10px 0 4px 0;
+}
+#process-cycle-step2
+{
+    display: none;
+}
+.dialog-bottom
+{
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 26px;
+    background-color: #e6e6e6;
+}
+#button-process-cycle
+{
+    position: absolute;
+    left: 6px;
+    top: -1px;
+}
+#plan-current-cycle.box .dialog-bottom #cboxClose
+{
+    bottom: 0px;
+}
 
-#cycle-modifier ul li { padding: 2px; }
-#cycle-modifier ul li > span { margin-left: 10px; }
+#cycle-modifier ul li
+{
+    padding: 2px;
+}
+#cycle-modifier ul li > span
+{
+    margin-left: 10px;
+}
 
-li.ui-state-highlight.ui-state-disabled { font-weight: bold; color: #ccc; }
-#availableCycles, #currentCycles { float: left; position: relative; }
-#availableCycles > div { margin: 15px 0; }
-#availableCycles > div span { display: block; margin: 4px 0; width: 140px; padding: 7px 2px; }
+li.ui-state-highlight.ui-state-disabled
+{
+    font-weight: bold;
+    color: #ccc;
+}
+#availableCycles, #currentCycles
+{
+    float: left;
+    position: relative;
+}
+#availableCycles > div
+{
+    margin: 15px 0;
+}
+#availableCycles > div span
+{
+    display: block;
+    margin: 4px 0;
+    width: 140px;
+    padding: 7px 2px;
+}
 
-#sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0; margin-right: 30px; margin-top: 10px; background: #eee; padding: 2px; width: 136px; min-height: 35px; }
-#sortable1 li, #sortable2 li { margin: 2px; padding: 5px; font-size: 1.2em; width: 120px; }
-#sortable2.connectedSortable li.ui-state-highlight { min-height: 20px; background-color: #666; }
-#button-set-initial-cycle { position: absolute; top: 27px; left: 140px; }
-#StatusForm .fakeinput { width: 120px; margin: 2px auto; }
+#sortable1, #sortable2
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 30px;
+    margin-top: 10px;
+    background: #eee;
+    padding: 2px;
+    width: 136px;
+    min-height: 35px;
+}
+#sortable1 li, #sortable2 li
+{
+    margin: 2px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 120px;
+}
+#sortable2.connectedSortable li.ui-state-highlight
+{
+    min-height: 20px;
+    background-color: #666;
+}
+#button-set-initial-cycle
+{
+    position: absolute;
+    top: 27px;
+    left: 140px;
+}
+#StatusForm .fakeinput
+{
+    width: 120px;
+    margin: 2px auto;
+}
 
-table#planSurveys { width: 100%; }
+table#planSurveys
+{
+    width: 100%;
+}
 
 
 /* RTP Project List View
 ----------------------------------------------------------*/
-#button-container { display: block; position: absolute; right: 0px; top: 0px; }
-#dialog-restore-project { display: block; position: relative; }
-#RestoreListContainer { display: block; position: absolute; left: 0px; bottom: -130px; }
-#RestoreList { width: 400px; }
-#amendablelist .iremove { position: absolute; left: 0px; top: 4px; cursor: pointer; }
-#amendablelist li { padding: 2px 0 2px 20px; }
+#button-container
+{
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+#dialog-restore-project
+{
+    display: block;
+    position: relative;
+}
+#RestoreListContainer
+{
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: -130px;
+}
+#RestoreList
+{
+    width: 400px;
+}
+#amendablelist .iremove
+{
+    position: absolute;
+    left: 0px;
+    top: 4px;
+    cursor: pointer;
+}
+#amendablelist li
+{
+    padding: 2px 0 2px 20px;
+}
 /*#dialog-amend-project .dialog-result { position: absolute; z-index: 1000; top: -20px; left: 400px; margin-right: 30px; }*/
 
-#restoreProjects tr td { position: relative; }
-#availableProjectSearchForm { position: absolute; right: 0px; top: 0px; }
-#availableProjectSearchForm label { float: left; display: block; padding: 3px 5px 0 0; }
+#restoreProjects tr td
+{
+    position: relative;
+}
+#availableProjectSearchForm
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+#availableProjectSearchForm label
+{
+    float: left;
+    display: block;
+    padding: 3px 5px 0 0;
+}
 
-.w850{
-    width:850px;
+.w850
+{
+    width: 850px;
 }
-.w600{
-    width:600px;
+.w600
+{
+    width: 600px;
 }
-.w400{
-    width:400px;
+.w400
+{
+    width: 400px;
 }
-.w350 { width: 350px; }
-.w300 { width: 300px; }
-.w250 { width: 250px; }
-.w200 { width: 200px; }
-.w175 { width: 175px; }
-.w150 { width: 150px; }
-.w100 { width: 100px; }
-.w75 { width: 75px; }
+.w350
+{
+    width: 350px;
+}
+.w300
+{
+    width: 300px;
+}
+.w250
+{
+    width: 250px;
+}
+.w200
+{
+    width: 200px;
+}
+.w175
+{
+    width: 175px;
+}
+.w150
+{
+    width: 150px;
+}
+.w100
+{
+    width: 100px;
+}
+.w75
+{
+    width: 75px;
+}
 
-.fakelink { cursor: pointer; font-size: .8em; position: relative; display: block; padding-top: 3px; color: #4A419B; }
-.fakelink:hover { color: #EB0B16; }
+.fakelink
+{
+    cursor: pointer;
+    font-size: .8em;
+    position: relative;
+    display: block;
+    padding-top: 3px;
+    color: #4A419B;
+}
+.fakelink:hover
+{
+    color: #EB0B16;
+}
 
 
 /* Survey General
 ----------------------------------------------------------*/
 
-h2#status { position: relative; right: 0px; text-align: right; }
-div#actionbar.info { position: absolute; top: 40px; right: 200px; width: 600px; margin: 0px; padding: 10px 10px 10px 50px;}
-div#actionbar div { position: absolute; top: 6px; right: 10px; width: 125px; margin: 0;}
-div#actionbar span { position: relative; display: inline-block; padding-top: 0px;}
-.status-container { position: absolute; top: -2px; right: -8px; width: 415px; }
-.status-container .fg-button { float: right; }
+h2#status
+{
+    position: relative;
+    right: 0px;
+    text-align: right;
+}
+div#actionbar.info
+{
+    position: absolute;
+    top: 40px;
+    right: 200px;
+    width: 600px;
+    margin: 0px;
+    padding: 10px 10px 10px 50px;
+}
+div#actionbar div
+{
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    width: 125px;
+    margin: 0;
+}
+div#actionbar span
+{
+    position: relative;
+    display: inline-block;
+    padding-top: 0px;
+}
+.status-container
+{
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    width: 415px;
+}
+.status-container .fg-button
+{
+    float: right;
+}
 
 /* Survey Scope
 ----------------------------------------------------------*/
 
-div#timelapse { position: absolute; top: 25px; right: 0px; width: 310px; padding-top: 10px; padding-bottom: 10px; }
-div#timelapse p { margin: 0px; padding: 0 0 5px 4px; }
-div#timelapse p label { padding-top: 0px; width: 160px; }
+div#timelapse
+{
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    width: 310px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+div#timelapse p
+{
+    margin: 0px;
+    padding: 0 0 5px 4px;
+}
+div#timelapse p label
+{
+    padding-top: 0px;
+    width: 160px;
+}
 
 /* Survey Project Nav
 ----------------------------------------------------------*/
 
-#tabnav-container { position: relative; }
-
-#manager-ribbon { position: absolute; right: 0px; top: -50px; }
-#manager-ribbon span  
+#tabnav-container
 {
-    float: left; 
+    position: relative;
+}
+
+#manager-ribbon
+{
+    position: absolute;
+    right: 0px;
+    top: -50px;
+}
+#manager-ribbon span
+{
+    float: left;
     padding-top: 5px;
     margin: 4px 4px 0 0;
-    
 }
 
-#manager-ribbon .fg-button { float: left; }
-
-#completed { z-index: 10; position: relative; }
-
-#update-status { position: absolute; right: 0px; top: -46px; }
-
-
-#update-status select{
-    margin:0px !important;
+#manager-ribbon .fg-button
+{
+    float: left;
 }
 
-#completed-form label { display: block; padding-bottom: 10px; }
+#completed
+{
+    z-index: 10;
+    position: relative;
+}
 
-#dialog-create-project label { font-size: 1.4em; padding: 5px 0 0 0; }
-#dialog-create-project p { padding: 3px 0; }
-#dialog-create-project input, #dialog-create-project select { float: right; }
+#update-status
+{
+    position: absolute;
+    right: 0px;
+    top: -46px;
+}
 
-a:link#isSponsorlink { text-decoration: none; }
-a:hover#isSponsorlink { text-decoration: underline; }
 
-#details #poolwrapper, #details #amendmentwrapper { border-top: 1px solid #ccc; padding: 10px 0px; }
+#update-status select
+{
+    margin: 0px !important;
+}
+
+#completed-form label
+{
+    display: block;
+    padding-bottom: 10px;
+}
+
+#dialog-create-project label
+{
+    font-size: 1.4em;
+    padding: 5px 0 0 0;
+}
+#dialog-create-project p
+{
+    padding: 3px 0;
+}
+#dialog-create-project input, #dialog-create-project select
+{
+    float: right;
+}
+
+a:link#isSponsorlink
+{
+    text-decoration: none;
+}
+a:hover#isSponsorlink
+{
+    text-decoration: underline;
+}
+
+#details #poolwrapper, #details #amendmentwrapper
+{
+    border-top: 1px solid #ccc;
+    padding: 10px 0px;
+}
 
 /* tooltip styling. by default the element to be styled is .tooltip  */
-.tooltip {
-	display:none;
-	background:transparent url(images/jquery.tools/tooltip/black_arrow.png);
-	font-size:12px;
-	height:70px;
-	width:160px;
-	padding:25px;
-	color:#fff;	
+.tooltip
+{
+    display: none;
+    background: transparent url(images/jquery.tools/tooltip/black_arrow.png);
+    font-size: 12px;
+    height: 70px;
+    width: 160px;
+    padding: 25px;
+    color: #fff;
 }
 
 div.report-label
@@ -1332,24 +2149,25 @@ table.data-table tbody td.pointer
 }
 table.data-table tbody td.pointer:hover
 {
-    border: 1px solid #7ac0da;    
+    border: 1px solid #7ac0da;
     text-decoration: none;
 }
 
 /* Styling for tabs used in page headers */
-#page-tabs 
+#page-tabs
 {
     margin-top: 10px;
-	padding: 0px;
-	background: none;
-	border-width: 0px;
-	font-size: 1em;
+    padding: 0px;
+    background: none;
+    border-width: 0px;
+    font-size: 1em;
 }
 
-#page-tabs .ui-tabs-nav {
-	padding-left: 20px;
-	background: transparent;
-	border-width: 0px 0px 1px 0px;
+#page-tabs .ui-tabs-nav
+{
+    padding-left: 20px;
+    background: transparent;
+    border-width: 0px 0px 1px 0px;
 }
 /*
 
