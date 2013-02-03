@@ -7,6 +7,13 @@ Inherits="System.Web.Mvc.ViewPage<RtpDashboardViewModel>" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -38,7 +45,7 @@ Inherits="System.Web.Mvc.ViewPage<RtpDashboardViewModel>" %>
     </div>--%>
 
 <div class="clear"></div>
-
+</div>
 <script type="text/javascript">
     var baseUrl = '<%=Url.Action("Dashboard","RTP",new {year=Model.RtpSummary.RtpYear}) %>';
     $(document).ready(function() {

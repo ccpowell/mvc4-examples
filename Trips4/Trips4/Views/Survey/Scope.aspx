@@ -5,15 +5,18 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript" ></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript" ></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.meio.mask.min.js")%>" type="text/javascript" ></script>
     <link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript" ></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>" type="text/javascript" ></script>
-    <link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
     
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.SurveyName = '<%= Model.Current.Name %>';
+        App.pp.ProjectVersionId = <%= Model.Project.ProjectVersionId %>;
+        $(document).ready(App.tabs.initializeSurveyProjectTabs);
+    </script>
     <script type="text/javascript">
         var AddSegmentUrl = '<%=Url.Action("AddSegment") %>';
         var DropSegmentUrl = '<%=Url.Action("DeleteSegment")%>';

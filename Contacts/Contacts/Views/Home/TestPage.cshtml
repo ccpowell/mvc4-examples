@@ -27,12 +27,15 @@
     <div>
     @Html.ViewContext.RouteData.Values["action"].ToString().ToLower()
     </div>
-
+    <div>
+    @ViewBag.PageParameters
+    </div>
 </div>
 @section scripts {
     <script type="text/javascript">
         var App = App || {};
         App.action = '@Html.ViewContext.RouteData.Values["action"].ToString().ToLower()';
+        
     </script>
     @Scripts.Render("~/Scripts/TestPage.js")
 }

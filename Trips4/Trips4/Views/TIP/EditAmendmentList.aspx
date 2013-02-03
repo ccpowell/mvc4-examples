@@ -3,8 +3,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.ProjectListViewMod
 <%@ Import Namespace="MvcContrib.UI.Grid"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">Edit Amendments</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-    <link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
         $('#projectListGrid').dataTable({

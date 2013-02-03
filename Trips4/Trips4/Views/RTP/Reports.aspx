@@ -220,6 +220,13 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
+
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
+    </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>

@@ -11,14 +11,17 @@
         type="text/css" />
     <link href="<%= Url.Content("~/Content/buttonframework.css") %>" rel="stylesheet"
         type="text/css" />
-    <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/colorbox.css") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/Themes/default/theme.css") %>" rel="stylesheet"
         type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.dataTables.css") %>" rel="stylesheet"
+        type="text/css" />
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/themes/flick/jquery-ui.css" rel="stylesheet"
         type="text/css" />
+    <link href="<%= Url.Content("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.0/jquery-ui.min.js" type="text/javascript"></script>
+    <script src='<%= Url.Content("~/scripts/jquery.dataTables.min.js") %>' type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.colorbox-min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.dts.extensions.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/BrowserDetect.js")%>" type="text/javascript"></script>

@@ -21,6 +21,13 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.Project.LocationVi
         $('#submitForm').button({ disabled: true });
     });
 </script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%= Model.ProjectSummary.RtpYear %>';
+        App.pp.ProjectVersionId = <%= Model.ProjectSummary.ProjectVersionId %>;
+        $(document).ready(App.tabs.initializeRtpProjectTabs);
+    </script>
 
 </asp:Content>
 

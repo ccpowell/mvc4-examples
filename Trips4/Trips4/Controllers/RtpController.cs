@@ -1012,7 +1012,7 @@ namespace Trips4.Controllers
         ///// </summary>
         ///// <param name="year"></param>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //public ActionResult Reports(string year)
         //{
         //    //Create the ViewModel
@@ -1164,7 +1164,7 @@ namespace Trips4.Controllers
         #endregion
 
         /// <summary>
-        /// Get the Reports View
+        /// Get the Reports View, or redirect the user if he is not authorized
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
@@ -1172,6 +1172,12 @@ namespace Trips4.Controllers
         public ActionResult Reports(string year)
         {
             LoadSession();
+
+            if (!System.Web.Security.Roles.IsUserInRole("Administrator") &&
+                !System.Web.Security.Roles.IsUserInRole("RTP Administrator"))
+            {
+                Redirect("http://www.drcog.org/index.cfm?page=RegionalTransportationPlan(RTP)");
+            }
 
             //Create the ViewModel
             ReportsViewModel model = TripsRepository.GetReportsViewModel(year);

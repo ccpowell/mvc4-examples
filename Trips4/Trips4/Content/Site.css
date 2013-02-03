@@ -691,7 +691,7 @@ ul#tabnav
     text-align: left;
     margin: 1em 0 1em 0;
     font: normal 11px verdana, arial, sans-serif;
-    border-bottom: 1px solid #CCC;
+    /*border-bottom: 1px solid #CCC;*/
     list-style-type: none;
     padding: 3px 10px 5px 10px; /* THIRD number must change with respect to padding-top (X) below */
 }
@@ -709,7 +709,7 @@ ul#tabnav li a
     border: 1px solid #CCC; /* set border COLOR as desired; usually matches border color specified in #tabnav */
     background-color: #263779; /* set unselected tab background color as desired */
     color: #263779;
-    margin-right: 0px; /* set additional spacing between tabs as desired */
+    margin-right: 5px; /* set additional spacing between tabs as desired */
     text-decoration: none;
     background: #E2E2E2 url(images/tabEnabled.png) repeat-x scroll 0 0;
 }

@@ -197,6 +197,12 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.Survey.SponsorsViewMod
     
 </script>
 
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.SurveyName = '<%= Model.Current.Name %>';
+        $(document).ready(App.tabs.initializeSurveyTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

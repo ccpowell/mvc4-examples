@@ -7,9 +7,13 @@
     Regional Transportation Plan
     <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="HeaderContent" runat="server">
-    <link href="<%= Url.Content("~/Content/jquery.dataTables.css") %>" rel="stylesheet"
-        type="text/css" />
-    <script type="text/javascript" src='<%= Url.Content("~/scripts/jquery.dataTables.min.js") %>'></script>
+    
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
+    </script>
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpPlanCycles.js") %>'></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

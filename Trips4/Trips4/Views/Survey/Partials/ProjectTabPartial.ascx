@@ -11,15 +11,18 @@
     <% } %>
 </div>
 <% } %>
-<ul id="tabnav">
-    <li class="notab tab-w-image"><a href="<%=Url.Action("ProjectList","Survey",new {year=Model.Current.Name}) %>"><% var url = Html.ResolveUrl("~/content/marker/16/previous.png"); %><%=Html.Image(url.ToString(), "Survey Project List", null) %><%= Model.Current.Name%> Project List</a></li>
-	<li ><a <%=Html.IsActionCurrent("Info") ? "class='activetab'" : "" %> href="<%= Url.Action("Info", "Survey", new { year = Model.Current.Name, id = Model.Project.ProjectVersionId }) %>">General Info</a></li>
-	<li ><a <%=Html.IsActionCurrent("Scope") ? "class='activetab'" : "" %> href="<%= Url.Action("Scope", "Survey", new { year = Model.Current.Name, id = Model.Project.ProjectVersionId }) %>">Scope Details</a></li>
-	<%--<li ><a <%=Html.IsActionCurrent("Funding") ? "class='activetab'" : "" %> href="<%= Url.Action("Funding", "Survey", new { year = Model.Current.Name, id = Model.Project.ProjectVersionId }) %>">Funding</a></li>
-	<li ><a <%=Html.IsActionCurrent("Location") ? "class='activetab'" : "" %> href="<%= Url.Action("Location", "Survey", new { year = Model.Current.Name, id = Model.Project.ProjectVersionId }) %>">Location</a></li>--%>
-	
-</ul>
 
+<div>
+<a href="<%=Url.Action("ProjectList","Survey",new {year=Model.Current.Name}) %>"><%=Html.Image(Url.Content("~/content/marker/16/previous.png"), "Survey Project List", null)%><%= Model.Current.Name%> Project List</a>
+</div>
 
+<div id="page-tabs">
+    <ul id="page-tabs-list">
+        <li data-action="info"><a href="#tab-contents">General Info</a></li>
+        <li data-action="scope"><a href="#tab-contents">Scope Details</a></li>
+    </ul>
+    <div id="tab-contents">
+    </div>
+</div>
 
 </div>

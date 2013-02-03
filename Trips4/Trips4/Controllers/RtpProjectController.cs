@@ -59,7 +59,7 @@ namespace Trips4.Controllers
             base.LoadSession(Enums.ApplicationState.RTP);
         }
 
-
+#if needed
         /// <summary>
         /// The reports tab for a project
         /// </summary>
@@ -69,11 +69,17 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Reports(int id, string year)
         {
+            if (!System.Web.Security.Roles.IsUserInRole("Administrator") &&
+                !System.Web.Security.Roles.IsUserInRole("RTP Administrator"))
+            {
+                Redirect("http://www.drcog.org/index.cfm?page=RegionalTransportationPlan(RTP)");
+            }
+
             var model = new ProjectBaseViewModel();
             model = _rtpProjectRepository.GetDetailViewModel(id, year);
             return View("reports",model);
         }
-
+#endif
         /// <summary>
         /// The Details tab for a project
         /// </summary>

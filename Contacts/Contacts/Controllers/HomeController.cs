@@ -29,10 +29,16 @@ namespace Contacts.Controllers
 
         public ActionResult TestPage1()
         {
+            var pp = new Dictionary<string, object>();
+            pp.Add("Hoover", "sucks");
+            pp.Add("Number", 42);
+            ViewBag.PageParameters = Newtonsoft.Json.JsonConvert.SerializeObject(pp);
             return View("TestPage");
         }
         public ActionResult TestPage2()
         {
+            var pp = new { Hoover = "sucks", Number = 42 };
+            ViewBag.PageParameters = Newtonsoft.Json.JsonConvert.SerializeObject(pp);
             return View("TestPage");
         }
         public ActionResult TestPage3()

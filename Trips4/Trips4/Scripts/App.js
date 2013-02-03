@@ -125,6 +125,7 @@ App.tabs = (function ($) {
                         window.location.assign(url);
                     }
                 }
+                return true;
             }
         });
     }
@@ -144,8 +145,42 @@ App.tabs = (function ($) {
         });
     }
 
+    function initializeRtpTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "RTP", App.pp.RtpYear, action];
+            return segments.join('/');
+        });
+    }
+
+    function initializeRtpProjectTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "RtpProject", App.pp.RtpYear, action, App.pp.ProjectVersionId];
+            return segments.join('/');
+        });
+    }
+
+
+    function initializeSurveyTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "Survey", App.pp.SurveyName, action];
+            return segments.join('/');
+        });
+    }
+
+    function initializeSurveyProjectTabs() {
+        initializeTabs(function (action) {
+            var segments = [App.env.applicationPath, "Survey", App.pp.SurveyName, action, App.pp.ProjectVersionId];
+            return segments.join('/');
+        });
+    }
+
+
     return {
         initializeTipProjectTabs: initializeTipProjectTabs,
-        initializeTipTabs: initializeTipTabs
+        initializeTipTabs: initializeTipTabs,
+        initializeRtpProjectTabs: initializeRtpProjectTabs,
+        initializeRtpTabs: initializeRtpTabs,
+        initializeSurveyProjectTabs: initializeSurveyProjectTabs,
+        initializeSurveyTabs: initializeSurveyTabs
     };
 } (jQuery));

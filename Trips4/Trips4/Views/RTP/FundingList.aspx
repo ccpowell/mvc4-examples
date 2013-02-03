@@ -6,8 +6,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.FundingSourceListV
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">RTP Funding List</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="BannerContent" runat="server">Regional Transportation Plan <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="HeaderContent" runat="server">
-<link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
         $('#fundingListGrid').dataTable({
@@ -17,6 +15,13 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.FundingSourceListV
         });
     });
 </script>
+
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
+    </script>
 </asp:Content>
 
 

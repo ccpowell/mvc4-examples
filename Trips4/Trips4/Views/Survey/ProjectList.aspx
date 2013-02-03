@@ -9,12 +9,16 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.Survey.ProjectListView
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 
-<link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
 <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript" ></script>
-
 <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.quicksearch.js")%>" type="text/javascript" ></script>
 <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>" type="text/javascript" ></script>
+    
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.SurveyName = '<%= Model.Current.Name %>';
+        $(document).ready(App.tabs.initializeSurveyTabs);
+    </script>
 
 <script type="text/javascript" charset="utf-8">
     var oProjectListGrid;

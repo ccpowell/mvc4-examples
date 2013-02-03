@@ -5,8 +5,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 <link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript" ></script>
-<script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript" ></script>
 <link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
 <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript" ></script>
 <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.sort.js")%>" type="text/javascript" ></script>
@@ -111,6 +109,13 @@
         });
     });
 </script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%= Model.ProjectSummary.RtpYear %>';
+        App.pp.ProjectVersionId = <%= Model.ProjectSummary.ProjectVersionId %>;
+        $(document).ready(App.tabs.initializeRtpProjectTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

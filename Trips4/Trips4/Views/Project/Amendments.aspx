@@ -6,10 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= Url.Content("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-    <link href="<%= Url.Content("~/Content/jquery.dataTables.css") %>" rel="stylesheet"
-        type="text/css" />
     <link href="<%= Url.Content("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%= Url.Content("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/TipProjectAmendments.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">

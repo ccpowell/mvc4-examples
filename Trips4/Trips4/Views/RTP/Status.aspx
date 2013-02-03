@@ -7,13 +7,6 @@
     <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-    <link href="<%= ResolveUrl("~/Content/jquery.contextMenu.css") %>" rel="stylesheet"
-        type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery-ui-1.8.5.custom.min.js")%>"
-        type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.contextMenu.js")%>" type="text/javascript"></script>
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.growing-textarea.js")%>"
         type="text/javascript"></script>
@@ -441,13 +434,16 @@
 
    
     </script>
+
+    
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <ul id="myMenu" class="contextMenu">
-        <li class="edit"><a href="#edit">Edit</a> </li>
-        <li class="copy disabled separator"><a href="#add">Add</a> </li>
-        <li class="delete disabled"><a href="#remove">Remove</a> </li>
-    </ul>
     <div class="view-content-container">
         <%--<h2 ><%=Html.ActionLink("RTP List", "Index",new {controller="RTP"}) %> / RTP <%=Model.RtpSummary.RtpYear%></h2>--%>
         <div class="clear">

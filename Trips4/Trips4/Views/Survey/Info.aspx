@@ -8,8 +8,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= Page.ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet"
         type="text/css" />
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-    <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
     <link href="<%= Page.ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.sort.js")%>" type="text/javascript"></script>
@@ -20,6 +18,14 @@
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskMoney.js")%>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>"
         type="text/javascript"></script>
+        
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.SurveyName = '<%= Model.Current.Name %>';
+        App.pp.ProjectVersionId = <%= Model.Project.ProjectVersionId %>;
+        $(document).ready(App.tabs.initializeSurveyProjectTabs);
+    </script>
     <script type="text/javascript">
     var isDirty = false, formSubmittion = false;
     var add1url = '<%=Url.Action("AddCurrent1Agency","RtpProject", new {year=Model.Current.Name, projectVersionId=Model.Project.ProjectVersionId}) %>';

@@ -1,43 +1,32 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DRCOG.Domain.Models.RTP.RtpSummary>" %>
-<ul id="tabnav">
-    <%if (!Html.IsActionCurrent("Index"))
-      { %><li class="notab tab-w-image"><a href="<%=Url.Action("Index",new {controller="RTP"}) %>">
-          <% var url = Html.ResolveUrl("~/content/marker/16/previous.png"); %><%=Html.Image(url.ToString(), "RTP Plan List", null) %>Plans</a></li>
-    <% } %>
-    <li><a <%=Html.IsActionCurrent("Dashboard") ? "class='activetab'" : "" %> href="<%=Url.Action("Dashboard","RTP",new {year=Model.RtpYear}) %>">
-        <%= Model.RtpYear%>
-        Breakdown</a></li>
-    <li><a <%=Html.IsActionCurrent("ProjectSearch") ? "class='activetab'" : "" %> href="<%=Url.Action("ProjectSearch","RTP", new {year=Model.RtpYear}) %>">
-        Project Search</a></li>
-    <% if (String.IsNullOrEmpty(Model.Cycle.Id.ToString()) || Model.Cycle.Id == 0)
-       { %>
-    <li class="faketab">Projects</li>
-    <% }
-       else
-       { %>
-    <li><a <%=Html.IsActionCurrent("ProjectList") ? "class='activetab'" : "" %> href="<%=Url.Action("ProjectList","RTP", new {year=Model.RtpYear}) %>">
-        Projects</a></li>
-    <% } %>
-    <% if (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator"))
-       { %>
-    <li><a <%=Html.IsActionCurrent("Reports") ? "class='activetab'" : "" %> href="<%=Url.Action("Reports","RTP", new {year=Model.RtpYear}) %>">
-        Reports</a></li>
-    <% }
-       else
-       { %>
-       <li>
-        <a href="http://www.drcog.org/index.cfm?page=RegionalTransportationPlan(RTP)"
-            target="_blank" title="RTP Reports">Reports</a></li>
-    <% } %>
-    <% if (HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator"))
-       { %>
-    <li><a <%=Html.IsActionCurrent("Agencies") ? "class='activetab'" : "" %> href="<%=Url.Action("Agencies","RTP", new {year=Model.RtpYear}) %>">
-        Sponsors</a></li>
-    <li><a <%=Html.IsActionCurrent("FundingList") ? "class='activetab'" : "" %> href="<%=Url.Action("FundingList","RTP", new {year=Model.RtpYear}) %>">
-        Funding Sources</a></li>
-    <li><a <%=Html.IsActionCurrent("PlanCycles") ? "class='activetab'" : "" %> href="<%=Url.Action("PlanCycles","RTP", new {year=Model.RtpYear}) %>">
-        Plan Cycles</a></li>
-    <li><a <%=Html.IsActionCurrent("Status") ? "class='activetab'" : "" %> href="<%=Url.Action("Status","RTP", new {year=Model.RtpYear}) %>">
-        RTP Status</a></li>
-    <% } %>
-</ul>
+
+<div>
+    <a href='<%= Url.Action("Index",new {controller="RTP"}) %>'>
+          <%= Html.Image(Url.Content("~/content/marker/16/previous.png"), "Plans", null) %>Plans</a>
+</div>
+
+<%
+    bool isAdmin = HttpContext.Current.User.IsInRole("RTP Administrator") || HttpContext.Current.User.IsInRole("Administrator");
+ %>
+
+<div id="page-tabs">
+    <ul id="page-tabs-list">
+        <li data-action="dashboard"><a href="#tab-contents">
+            <%= Model.RtpYear %>
+            Breakdown</a></li>
+        <li data-action="projectsearch"><a href="#tab-contents">Project Search</a></li>
+        <li data-action="projectlist"><a href="#tab-contents">Projects</a></li>
+        <% if (isAdmin) { %>
+        <li data-action="amendments"><a href="#tab-contents">Amendments</a></li>
+        <% } %>
+        <li data-action="reports"><a href="#tab-contents">Reports</a></li>
+        <% if (isAdmin) { %>
+        <li data-action="agencies"><a href="#tab-contents">Sponsors</a></li>
+        <li data-action="fundinglist"><a href="#tab-contents">Funding Sources</a></li>
+        <li data-action="plancycles"><a href="#tab-contents">Plan Cycles</a></li>
+        <li data-action="status"><a href="#tab-contents">RTP Status</a></li>
+        <% } %>
+    </ul>
+    <div id="tab-contents">
+    </div>
+</div>

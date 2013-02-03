@@ -1,37 +1,54 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DRCOG.Domain.Models.Survey.Survey>" %>
-<%@ Import Namespace="MvcContrib.UI.Grid"%>
+<%@ Import Namespace="MvcContrib.UI.Grid" %>
 <%@ Import Namespace="MvcContrib.UI.Grid.ActionSyntax" %>
-
 <ul id="tabnav">
-    <%if (!Html.IsActionCurrent("Index") && Model.IsAdmin()) { %><li class="notab tab-w-image"><a href="<%=Url.Action("Index",new {controller="Survey"}) %>"><% var url = Html.ResolveUrl("~/content/marker/16/previous.png"); %><%=Html.Image(url.ToString(), "Survey List", null) %>Surveys</a></li> <% } %>
-    <%if (Html.IsActionCurrent("Index") && Model.IsAdmin()) { %><li><a href="<%= Url.Action("Status", "RTP", new { year = 0 }) %>">Create a new Survey through the current RTP</a></li> <% } %>
-    <%if ((Model.IsAdmin() || !Request.IsAuthenticated) && Model.Id != default(int)) { %><li ><a <%=Html.IsActionCurrent("Dashboard") ? "class='activetab'" : "" %> href="<%=Url.Action("Dashboard","Survey",new {year=Model.Name}) %>"><%= Model.Name %> Breakdown</a></li><% } %>
-	<% if (Model.IsAdmin()&& Model.Id != default(int)) { %>
-	    <li><a <%=Html.IsActionCurrent("Agencies") ? "class='activetab'" : "" %> href="<%=Url.Action("Agencies","Survey", new {year=Model.Name}) %>">Sponsors</a></li>
-	<% } %>
-    <%--<li ><a <%=Html.IsActionCurrent("ProjectSearch") ? "class='activetab'" : "" %> href="<%=Url.Action("ProjectSearch","Survey", new {year=Model.Name}) %>">Project Search</a></li>--%>
-	<%if (Model.IsEditable() && ((Model.SponsorsOrganization != null && !Model.SponsorsOrganization.OrganizationId.Equals(default(int))) || Model.IsAdmin()) && !Model.Id.Equals(default(int))) { %>
-        <li>
-            <a id="button-create-project" href="#" class="">
-                Add Project<% if (Model.SponsorsOrganization != null && !Model.SponsorsOrganization.OrganizationId.Equals(default(int))) { %> for <%= Model.SponsorsOrganization.OrganizationName.ToString()%><% } %>
-            </a>
-        </li>
+    <% if (!Html.IsActionCurrent("Index") && Model.IsAdmin())
+       { %><li class="notab tab-w-image"><a href="<%=Url.Action("Index",new {controller="Survey"}) %>">
+          <% var url = Html.ResolveUrl("~/content/marker/16/previous.png"); %><%=Html.Image(url.ToString(), "Survey List", null) %>Surveys</a></li>
     <% } %>
-    <%if (Model.IsAdmin() && !Model.Id.Equals(default(int))) { %><li><a id="btn-includemore" href="#" class="" title="Include more Projects">Include More</a></li><% } %>
-    
-    <% if (Model.AgencyProjectList != null) { %>
-        <% if (Model.AgencyProjectList.Count > 0) { %>
-            <%if (Model.ShowCertification){ %><li><a href="#" class="pricing" title="Print Certificaton Form">Print <%= Model.AgencyProjectList.FirstOrDefault().SponsorName.ToString()%> Certification</a></li><% } %>
-        <% } %>
+    <% if (Html.IsActionCurrent("Index") && Model.IsAdmin())
+       { %><li><a href="<%= Url.Action("Status", "RTP", new { year = 0 }) %>">Create a new
+          Survey through the current RTP</a></li>
     <% } %>
-    <%if (Model.IsAdmin() && Model.Id != default(int)) { %><li ><a href="#" id="survey-overview" title="Survey Overview">Survey Overview</a></li><% } %>
-    <%if (Model.IsAdmin() && Model.Id != default(int)) { %><li ><a href="#" id="report-modelerextract-xls">Modeler Extract</a></li><% } %>
+    <% if (Model.IsEditable() && ((Model.SponsorsOrganization != null && !Model.SponsorsOrganization.OrganizationId.Equals(default(int))) || Model.IsAdmin()) && !Model.Id.Equals(default(int)))
+       { %>
+    <li><a id="button-create-project" href="#" class="">Add Project<% if (Model.SponsorsOrganization != null && !Model.SponsorsOrganization.OrganizationId.Equals(default(int)))
+                                                                      { %>
+        for
+        <%= Model.SponsorsOrganization.OrganizationName.ToString()%><% } %>
+    </a></li>
+    <% } %>
+    <% if (Model.IsAdmin() && !Model.Id.Equals(default(int)))
+       { %><li><a id="btn-includemore" href="#" class="" title="Include more Projects">Include
+          More</a></li><% } %>
+    <% if (Model.AgencyProjectList != null)
+       { %>
+    <% if (Model.AgencyProjectList.Count > 0)
+       { %>
+    <% if (Model.ShowCertification)
+       { %><li><a href="#" class="pricing" title="Print Certificaton Form">Print
+          <%= Model.AgencyProjectList.FirstOrDefault().SponsorName.ToString()%>
+          Certification</a></li><% } %>
+    <% } %>
+    <% } %>
+    <% if (Model.IsAdmin() && Model.Id != default(int))
+       { %><li><a href="#" id="survey-overview" title="Survey Overview">Survey Overview</a></li><% } %>
+    <% if (Model.IsAdmin() && Model.Id != default(int))
+       { %><li><a href="#" id="report-modelerextract-xls">Modeler Extract</a></li><% } %>
 </ul>
-
-<%--<% if (Request.IsAuthenticated) { %>
-    <span style="position: absolute; top: 0px; right: 30px;"><a id="isSponsorlink" href="#">Do you have a sponsor code to enter?</a></span>
-<% } %>--%>
-
+<% if (Model.IsAdmin() && Model.Id != default(int))
+   { %>
+<div id="page-tabs">
+    <ul id="page-tabs-list">
+        <li data-action="dashboard"><a href="#tab-contents">
+            <%= Model.Name %>
+            Breakdown</a></li>
+        <li data-action="agencies"><a href="#tab-contents">Sponsors</a></li>
+    </ul>
+    <div id="tab-contents">
+    </div>
+</div>
+<% } %>
 <script type="text/javascript">
 var GetAmendableProjects = App.env.applicationPath + '/Operation/Misc/SurveyGetAmendableProjects'; 
 var AmendProjects = '<%=Url.Action("AmendForNewSurvey","Survey") %>';
@@ -143,10 +160,8 @@ $(document).ready(function() {
     <% } %>
 <% } %>
 </script>
-
 <div style='display: none'>
     <div id='price_report'>
-
         <script type="text/javascript">
             //<!--
 
@@ -186,23 +201,25 @@ $(document).ready(function() {
 
             //-->
         </script>
-
-        <iframe id='ifrmPrint' src='#' style="width:0pt; height:0pt; border: none;"></iframe>
-
-    <% if (Model.AgencyProjectList != null && Model.AgencyProjectList.Count > 0) { %>
+        <iframe id='ifrmPrint' src='#' style="width: 0pt; height: 0pt; border: none;"></iframe>
+        <% if (Model.AgencyProjectList != null && Model.AgencyProjectList.Count > 0)
+           { %>
         <div id="pricingPrintArea">
-           <div class="myreport">
+            <div class="myreport">
                 <div id="logo">
                     <% var url = Html.ResolveUrl("~/content/images/drcog_logo_print.jpg"); %>
                     <%=Html.Image(url.ToString(), "D.R.C.O.G. Logo", null) %>
                 </div>
-                <h2><%= Model.AgencyProjectList.FirstOrDefault().SponsorName.ToString()%> Certification and Project List</h2>
-                
-                <h4>Verify the project list below, then print and sign this form and submit to DRCOG to complete the Transportation Improvement Survey response.</h4>
-                <h3>Agency Technical Contact Person(s):</h3>
-                
+                <h2>
+                    <%= Model.AgencyProjectList.FirstOrDefault().SponsorName.ToString()%>
+                    Certification and Project List</h2>
+                <h4>
+                    Verify the project list below, then print and sign this form and submit to DRCOG
+                    to complete the Transportation Improvement Survey response.</h4>
+                <h3>
+                    Agency Technical Contact Person(s):</h3>
                 <% if (Model.AgencySponsorContacts != null && Model.AgencySponsorContacts.Count > 0)
-                  { %>
+                   { %>
                 <% Html.Grid(Model.AgencySponsorContacts).Columns(column =>
                    {
                        column.For(x => x.FullName).Named("Name");
@@ -212,21 +229,21 @@ $(document).ready(function() {
                        column.For(x => x.Email).Named("Email Address");
                    }).Attributes(new Dictionary<string, object> { { "id", "ContactListGrid" }, { "border", "0" } }).Render(); %>
                 <% }
-                  else
-                  { %>
+                   else
+                   { %>
                 No projects matching these search criteria were found.
                 <% }  %>
-                
                 <% 
-                    System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("en-US", false).NumberFormat;
-                    nfi.CurrencyGroupSeparator = ",";
-                    nfi.CurrencySymbol = "$";
-	            %>
-               <h3>Project List</h3>
-               <% if (Model.AgencyProjectList.Count > 0)
-                  { %>
-                    <% if (Model.AgencyProjectList[0].Funding != null)
-                       { %>
+                   System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("en-US", false).NumberFormat;
+                   nfi.CurrencyGroupSeparator = ",";
+                   nfi.CurrencySymbol = "$";
+                %>
+                <h3>
+                    Project List</h3>
+                <% if (Model.AgencyProjectList.Count > 0)
+                   { %>
+                <% if (Model.AgencyProjectList[0].Funding != null)
+                   { %>
                 <% Html.Grid(Model.AgencyProjectList).Columns(column =>
                    {
                        column.For(x => x.ProjectName).Named("Project Name").Attributes(@class => "projectname");
@@ -235,103 +252,149 @@ $(document).ready(function() {
                        column.For(x => x.ReportOnlyOpenDate).Named("Opened to Public");
                        column.For(x => x.Funding.TotalCost.ToString("C0", nfi)).Named("Total Cost<br/><span style=\"font-size: 8pt\">(in $1,000's)</span>");
                    }).Attributes(id => "MyProjectListGrid").Render(); %>
-                   <% } %>
+                <% } %>
                 <% }
-                  else
-                  { %>
+                   else
+                   { %>
                 No projects matching these search criteria were found.
                 <% }  %>
-                
-                <h3>Certification:</h3>
+                <h3>
+                    Certification:</h3>
                 <p>
-                    I,________________________________________________________, certify that I have 
-                    reviewed the projects listed 
-                    above and that (a) the information provided in the database is correct to 
-                    the best of our knowledge and (b) there are adequate revenues for the projects 
-                    lised as open to the public by 2025 or earlier.
+                    I,________________________________________________________, certify that I have
+                    reviewed the projects listed above and that (a) the information provided in the
+                    database is correct to the best of our knowledge and (b) there are adequate revenues
+                    for the projects lised as open to the public by 2025 or earlier.
                 </p>
-                <p>Signature:____________________________________________________________ Date:___________________</p>
-                <p>Name (please print):_______________________________________________________________________</p>
+                <p>
+                    Signature:____________________________________________________________ Date:___________________</p>
+                <p>
+                    Name (please print):_______________________________________________________________________</p>
                 <p>
                     Title:___________________________________________________________________<br />
                     <span style="padding: 0 0 0 35px;">(Transportation Director or Manager)</span>
-                </p>  
-                
+                </p>
                 <p>
                     Thank you for completing the 2013 Transportation Improvement Survey!
                     <br />
                     You may be contacted if further information is needed.
-                </p>              
-                
-           </div>
+                </p>
+            </div>
         </div>
-
-
         <div id="PrintAreaTest">
-           <div class="myreport">
-                <h2>Test Print</h2>            
-           </div>
+            <div class="myreport">
+                <h2>
+                    Test Print</h2>
+            </div>
         </div>
-    <% } %>
-
+        <% } %>
     </div>
-
     <div id='survey-overview-inline'>
         <table id="survey-overview-table" class="display primary">
-	        <caption></caption>
-	        <colgroup />
-	        <colgroup span="2" title="title" />
-	        <thead>
-		        <tr>
-			        <th scope="col">Project Name</th>
-                    <th scope="col">Sponsor</th>
-                    <th scope="col">COGID</th>
-			        <th scope="col">Improvement Type</th>
-                    <th scope="col">Network</th>
-                    <th scope="col">OpenYear</th>
-                    <th scope="col">Facility Name</th>
-                    <th scope="col">Start At</th>
-                    <th scope="col">End At</th>
-                    <th scope="col">Lanes Base</th>
-                    <th scope="col">Lanes Future</th>
-                    <th scope="col">Facility Type</th>
-                    <th scope="col">Modeling Check</th>
-                    <th scope="col">LRS RouteName</th>
-                    <th scope="col">LRS Begin</th>
-                    <th scope="col">LRS End</th>
-		        </tr>
-	        </thead>
-	        <tfoot>
-		        <tr>
-			        <td></td>
-                    <td></td>
-                    <td></td>
-			        <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-		        </tr>
-	        </tfoot>
-	        <tbody>
-	        </tbody>
+            <caption>
+            </caption>
+            <colgroup />
+            <colgroup span="2" title="title" />
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Project Name
+                    </th>
+                    <th scope="col">
+                        Sponsor
+                    </th>
+                    <th scope="col">
+                        COGID
+                    </th>
+                    <th scope="col">
+                        Improvement Type
+                    </th>
+                    <th scope="col">
+                        Network
+                    </th>
+                    <th scope="col">
+                        OpenYear
+                    </th>
+                    <th scope="col">
+                        Facility Name
+                    </th>
+                    <th scope="col">
+                        Start At
+                    </th>
+                    <th scope="col">
+                        End At
+                    </th>
+                    <th scope="col">
+                        Lanes Base
+                    </th>
+                    <th scope="col">
+                        Lanes Future
+                    </th>
+                    <th scope="col">
+                        Facility Type
+                    </th>
+                    <th scope="col">
+                        Modeling Check
+                    </th>
+                    <th scope="col">
+                        LRS RouteName
+                    </th>
+                    <th scope="col">
+                        LRS Begin
+                    </th>
+                    <th scope="col">
+                        LRS End
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+            </tbody>
         </table>
     </div>
 </div>
-
-<%if (!Model.Id.Equals(default(int)) && Request.IsAuthenticated && Model.IsEditable()) { %>
-    <%--<% Html.RenderPartial("~/Views/Survey/Partials/CreatePartial.ascx", Model); %>--%>
-    <% Html.RenderAction("CreatePartial", "Survey", new { model = Model }); %>
+<%if (!Model.Id.Equals(default(int)) && Request.IsAuthenticated && Model.IsEditable())
+  { %>
+<%--<% Html.RenderPartial("~/Views/Survey/Partials/CreatePartial.ascx", Model); %>--%>
+<% Html.RenderAction("CreatePartial", "Survey", new { model = Model }); %>
 <% } %>
-<%if (Model.IsAdmin()) { %>
-    <% Html.RenderPartial("~/Views/Survey/Partials/AmendPartial.ascx"); %>
+<%if (Model.IsAdmin())
+  { %>
+<% Html.RenderPartial("~/Views/Survey/Partials/AmendPartial.ascx"); %>
 <% } %>
 <%--<%if (Request.IsAuthenticated) { Html.RenderAction("BecomeASpsonsor"); } %>--%>

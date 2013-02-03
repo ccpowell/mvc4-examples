@@ -10,13 +10,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-
-<link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
 <link href="<%= ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
 <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
-<%--<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.amendement.validate.js")%>" type="text/javascript"></script>--%>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
         $('#projectListGrid').dataTable({
@@ -29,6 +24,13 @@
         
 </script>
 
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%= Model.ProjectSummary.RtpYear %>';
+        App.pp.ProjectVersionId = <%= Model.ProjectSummary.ProjectVersionId %>;
+        $(document).ready(App.tabs.initializeRtpProjectTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

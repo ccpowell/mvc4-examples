@@ -8,9 +8,6 @@
     Regional Transportation Plan
     <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
-    <link href="<%= Url.Content("~/Content/jquery.dataTables.css") %>" rel="stylesheet"
-        type="text/css" />
-    <script src="<%= Url.Content("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.quicksearch.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/RtpProjectList.js")%>" type="text/javascript"></script>
@@ -26,6 +23,12 @@
         function confirmDelete() {
             return !!(confirm('Are you sure you want to delete this amendment?'));
         }
+    </script>
+    <script type="text/javascript">
+        var App = App || {};
+        App.pp = App.pp || {};
+        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
+        $(document).ready(App.tabs.initializeRtpTabs);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

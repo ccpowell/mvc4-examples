@@ -5,8 +5,6 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.TIP.FundingSourceListV
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">TIP Funding List</asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="HeaderContent" runat="server">
-<link href="<%= ResolveUrl("~/Content/jquery.dataTables.css") %>" rel="stylesheet" type="text/css" />
-<script src="<%=Page.ResolveClientUrl("~/scripts/jquery.dataTables.min.js")%>" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
         $('#fundingListGrid').dataTable({
