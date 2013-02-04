@@ -11,11 +11,8 @@ $(document).ready(function () {
     'use strict';
 
     function add1Agency(id) {
-        $.ajax({
-            type: "POST",
-            url: App.pp.add1url,
-            dataType: "json",
-            data: { agencyId: id },
+        App.postit("/Operation/TipProjectOperation/AddCurrent1Agency", {
+            data: JSON.stringify({ AgencyId: id, ProjectVersionId: App.pp.ProjectVersionId }),
             success: function () {
                 var selector = "#AvailableAgencies option[value='" + id + "']";
                 var sponsorId = $('#PrimarySponsorId');
@@ -33,11 +30,8 @@ $(document).ready(function () {
     }
 
     function add2Agency(id) {
-        $.ajax({
-            type: "POST",
-            url: App.pp.add2url,
-            dataType: "json",
-            data: { agencyId: id },
+        App.postit("/Operation/TipProjectOperation/AddCurrent2Agency", {
+            data: JSON.stringify({ AgencyId: id, ProjectVersionId: App.pp.ProjectVersionId }),
             success: function () {
                 var selector = "#AvailableAgencies option[value='" + id + "']";
                 $(selector).remove().appendTo('#Current2Agencies');
@@ -46,11 +40,8 @@ $(document).ready(function () {
     }
 
     function remove2Agency(id) {
-        $.ajax({
-            type: "POST",
-            url: App.pp.remove2url,
-            dataType: "json",
-            data: { agencyId: id },
+        App.postit("/Operation/TipProjectOperation/DropCurrent2Agency", {
+            data: JSON.stringify({ AgencyId: id, ProjectVersionId: App.pp.ProjectVersionId }),
             success: function () {
                 //success
                 var selector = "#Current2Agencies option[value='" + id + "']";

@@ -17,6 +17,7 @@ using Trips4.Configuration;
 
 namespace Trips4.Controllers.Operation
 {
+    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
     public class TipProjectOperationController : ApiController
     {
 
@@ -51,7 +52,6 @@ namespace Trips4.Controllers.Operation
         }
 
         [HttpPost]
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void DeleteLocationMap(DeleteLocationMapRequest request)
         {
             try
@@ -76,7 +76,7 @@ namespace Trips4.Controllers.Operation
 
         public class AgencyRequest
         {
-            public int ProjectVersionID { get; set; }
+            public int ProjectVersionId { get; set; }
             public int AgencyId { get; set; }
         }
 
@@ -87,10 +87,9 @@ namespace Trips4.Controllers.Operation
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void AddCurrent1Agency(AgencyRequest request)
         {
-            var error = ProjectRepository.AddAgencyToTIPProject(request.ProjectVersionID, request.AgencyId, true);
+            var error = ProjectRepository.AddAgencyToTIPProject(request.ProjectVersionId, request.AgencyId, true);
             CheckError(error);
         }
 
@@ -102,10 +101,9 @@ namespace Trips4.Controllers.Operation
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void AddCurrent2Agency(AgencyRequest request)
         {
-            var error = ProjectRepository.AddAgencyToTIPProject(request.ProjectVersionID, request.AgencyId, false);
+            var error = ProjectRepository.AddAgencyToTIPProject(request.ProjectVersionId, request.AgencyId, false);
             CheckError(error);
         }
 
@@ -116,10 +114,9 @@ namespace Trips4.Controllers.Operation
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void DropCurrent1Agency(AgencyRequest request)
         {
-            var error = ProjectRepository.DropAgencyFromTIP(request.ProjectVersionID, request.AgencyId);
+            var error = ProjectRepository.DropAgencyFromTIP(request.ProjectVersionId, request.AgencyId);
             CheckError(error);
         }
 
@@ -130,10 +127,9 @@ namespace Trips4.Controllers.Operation
         /// <param name="agencyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public void DropCurrent2Agency(AgencyRequest request)
         {
-            var error = ProjectRepository.DropAgencyFromTIP(request.ProjectVersionID, request.AgencyId);
+            var error = ProjectRepository.DropAgencyFromTIP(request.ProjectVersionId, request.AgencyId);
             CheckError(error);
         }
 
@@ -146,7 +142,7 @@ namespace Trips4.Controllers.Operation
         /// <param name="share"></param>
         /// <param name="isPrimary"></param>
         /// <returns></returns>
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        [HttpPost]
         public void AddMuniShare(MunicipalityShareModel model)
         {
             try
@@ -166,7 +162,7 @@ namespace Trips4.Controllers.Operation
         /// <param name="projectId"></param>
         /// <param name="muniId"></param>
         /// <returns></returns>
-        [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        [HttpPost]
         public void RemoveMuniShare(MunicipalityShareModel model)
         {
             try
@@ -183,7 +179,7 @@ namespace Trips4.Controllers.Operation
         /// <summary>
         /// Add a county share record (ProjectCountyGeography table)
         /// </summary>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        [HttpPost]
         public void AddCountyShare(CountyShareModel model)
         {
             try
@@ -203,12 +199,54 @@ namespace Trips4.Controllers.Operation
         /// <param name="projectId"></param>
         /// <param name="countyId"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+        [HttpPost]
         public void RemoveCountyShare(CountyShareModel model)
         {
             try
             {
                 ProjectRepository.DropCountyShare(model.ProjectId.Value, model.CountyId.Value);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public int AddPoolProject(PoolProject model)
+        {
+            try
+            {
+                int poolProjectId = ProjectRepository.AddPoolProject(model);
+                if (poolProjectId == 0)
+                    throw new Exception("Returned 0 on poolMasterVersionId " + model.PoolMasterVersionID);
+                return poolProjectId;
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public void DeletePoolProject(PoolProject model)
+        {
+            try
+            {
+                ProjectRepository.DeletePoolProject(model.PoolProjectID);
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public void UpdatePoolProject(PoolProject model)
+        {
+            try
+            {
+                ProjectRepository.UpdatePoolProject(model);
             }
             catch (Exception ex)
             {

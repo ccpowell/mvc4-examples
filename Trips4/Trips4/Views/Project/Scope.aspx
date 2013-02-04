@@ -18,15 +18,11 @@
 
     <script type="text/javascript">
         var county_share_total;
-        var isEditable = <%= Model.ProjectSummary.IsEditable().ToString().ToLower() %>;
-        var AddPoolUrl = '<%=Url.Action("AddPoolProject" ) %>';
-        var DropPoolUrl = '<%=Url.Action("DeletePoolProject")%>';
-        var EditPoolUrl = '<%=Url.Action("UpdatePoolProject")%>';
 
         //Wireup the change handlers to enable the save button...
         $().ready(function () {
             // Prevent accidental navigation away
-            if (isEditable) {
+            if (App.pp.isEditable) {
                 App.utility.bindInputToConfirmUnload('#dataForm', '#submitForm', '#submit-result');
                 $('#submitForm').button({ disabled: true });
             }
@@ -38,22 +34,21 @@
                 if (confirm("Would you like to proceed with the deletion of this pool project?")) {
                     var poolid = this.id.replace('delete_', '');
                     var row = $('#pool_row_' + poolid);
+                    var stuff = { PoolProjectId: poolid };
                     //$('#pool_row_' + poolid).empty();
-                    $.ajax({
-                        type: "POST",
-                        url: DropPoolUrl,
-                        data: "poolProjectId=" + poolid,
-                        dataType: "json",
-                        success: function (response) {
+                    App.postit("/Operation/TipProjectOperation/DeletePoolProject", {
+                        data: JSON.stringify(stuff),
+                        success: function () {
                             //var div = $('#pool_div_' + poolid);
                             $(row).empty();
-                            $('#submit-result').html(response.message).addClass('success');
+                            $('#submit-result').html("Pool project deleted").addClass('success');
                             autoHide();
                         }
                     });
                 }
                 return false;
             });
+
 
             //Update a pool in the list
             $('.update-pool').live("click", function () {
@@ -64,18 +59,20 @@
                 var poolbeginat = $('#poolproject_' + poolprojectid + '_BeginAt').val();
                 var poolendat = $('#poolproject_' + poolprojectid + '_EndAt').val();
                 var poolcost = $('#poolproject_' + poolprojectid + '_Cost').val();
+                var stuff = {
+                    PoolProjectID: poolprojectid,
+                    ProjectName: poolname,
+                    Description: pooldesc,
+                    BeginAt: poolbeginat,
+                    EndAt: poolendat,
+                    Cost: poolcost
+                };
 
                 //Do we try to see if the pool name is already listed?
-
-                //Add to database via XHR
-                //alert('Need XHR Big Test to Add: poolProjectId=' + poolprojectid + '&projectName=' + poolname + '&description=' + pooldesc + '&beginAt=' + poolbeginat + '&endAt=' + poolendat + '&cost=' + poolcost);
-                $.ajax({
-                    type: "POST",
-                    url: EditPoolUrl,
-                    data: "poolProjectId=" + poolprojectid + "&projectName=" + poolname + "&description=" + pooldesc + "&beginAt=" + poolbeginat + "&endAt=" + poolendat + "&cost=" + poolcost,
-                    dataType: "json",
-                    success: function (response) {
-                        $('#submit-result').html(response.message).addClass('success');
+                App.postit("/Operation/TipProjectOperation/UpdatePoolProject", {
+                    data: JSON.stringify(stuff),
+                    success: function () {
+                        $('#submit-result').html("Pool project updated").addClass('success');
                         autoHide();
 
                         //Disable the add button
@@ -111,6 +108,15 @@
                 var poolprojectid;
                 var poolmasterid = $('#TipProjectScope_ProjectVersionId').val();
 
+                var stuff = {
+                    PoolProjectID: poolprojectid,
+                    ProjectName: poolname,
+                    Description: pooldesc,
+                    BeginAt: poolbeginat,
+                    EndAt: poolendat,
+                    Cost: poolcost,
+                    PoolMasterVersionID: poolmasterid
+                };
                 //reset the new share value to 0
                 $('#new_poolname').val("");
                 $('#new_pooldesc').val("");
@@ -124,17 +130,14 @@
 
                 //alert('Need XHR Big Test to Add: poolMasterVersionId=' + poolmasterid + '&projectName=' + poolname + '&description=' + pooldesc + '&beginAt=' + poolbeginat + '&endAt=' + poolendat + '&cost=' + poolcost);
 
-                $.ajax({
-                    type: "POST",
-                    url: AddPoolUrl,
-                    data: "poolMasterVersionId=" + poolmasterid + "&projectName=" + poolname + "&description=" + pooldesc + "&beginAt=" + poolbeginat + "&endAt=" + poolendat + "&cost=" + poolcost,
-                    dataType: "json",
-                    success: function (response) {
-                        $('#submit-result').html(response.message).addClass('success');
+
+                App.postit("/Operation/TipProjectOperation/AddPoolProject", {
+                    data: JSON.stringify(stuff),
+                    success: function (poolprojectid) {
+                        $('#submit-result').html("Pool project added").addClass('success');
                         autoHide();
 
                         //Add into the DOM
-                        poolprojectid = response.poolprojectid;
                         var content = "<tr id='pool_row_" + poolprojectid + "'>";
                         content += "<td><input id='poolproject_" + poolprojectid + "' type='text' value='" + poolname + "' style='width: 200px;' name='poolproject_" + poolprojectid + "_ProjectName' maxlength = 255/></td>";
                         content += "<td><input type='text' value='" + pooldesc + "' style='width: 150px;' name='poolproject_" + poolprojectid + "_Description' maxlength = 75/></td>";
@@ -193,7 +196,7 @@
     <div class="tab-content-container">
         <% Html.RenderPartial("~/Views/Project/Partials/TipProjectTabPartial.ascx", Model.ProjectSummary); %>
         <div class="tab-form-container tab-scope">
-            <form method="put" action="/api/TipProjectScope" id="dataForm">
+            <form method="put" action="/Trips/api/TipProjectScope" id="dataForm">
             <fieldset>
                 <legend></legend>
                 <%=Html.ValidationSummary("Unable to update. Please correct the errors and try again.")%>

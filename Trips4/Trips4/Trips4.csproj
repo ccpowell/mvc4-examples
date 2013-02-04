@@ -599,9 +599,6 @@
     <Content Include="Views\Pool\Detail.aspx" />
     <Content Include="Views\Project\Amendments.aspx" />
     <Content Include="Views\Project\CDOTData.aspx" />
-    <Content Include="Views\Project\Create.aspx" />
-    <Content Include="Views\Project\Create_2.aspx" />
-    <Content Include="Views\Project\Create_original.aspx" />
     <Content Include="Views\Project\Details.aspx" />
     <Content Include="Views\Project\Funding.aspx" />
     <Content Include="Views\Project\Funding_obs.aspx" />

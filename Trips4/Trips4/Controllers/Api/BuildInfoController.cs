@@ -10,10 +10,11 @@ namespace Trips4.Controllers.Api
 {
     public class BuildInfoController : ApiController
     {
+        private static readonly string BuildInfo = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/Content/build.txt"));
         [AllowAnonymous]
         public string Get()
         {
-            return System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/Content/build.txt"));
+            return BuildInfo;
         }
     }
 }

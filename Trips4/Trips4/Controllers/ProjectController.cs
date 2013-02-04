@@ -178,6 +178,11 @@ namespace Trips4.Controllers
         {
             var viewModel = _projectRepository.GetProjectInfoViewModel(id, year);
             ViewData["message"] = message;
+
+            var pp = CreatePageParameters();
+            pp.Add("isEditable", viewModel.ProjectSummary.IsEditable());
+            pp.Add("ProjectVersionId", viewModel.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
             return View(viewModel);
         }
 
@@ -358,6 +363,11 @@ namespace Trips4.Controllers
             var viewModel = _projectRepository.GetScopeViewModel(id, year);
             //viewModel.ProjectSummary.IsEditable = false;            
 
+            var pp = CreatePageParameters();
+            pp.Add("isEditable", viewModel.ProjectSummary.IsEditable());
+            pp.Add("ProjectVersionId", viewModel.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
             return View(viewModel);
         }
 
@@ -407,7 +417,7 @@ namespace Trips4.Controllers
             return View(viewModel);
         }
 
-
+#if moved_to_operation
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult AddPoolProject(int poolMasterVersionId, string projectName, string description, string beginAt, string endAt, decimal cost)
         {
@@ -486,7 +496,7 @@ namespace Trips4.Controllers
             }
             return Json(new { message = "Pool Project successfully updated." });
         }
-
+#endif
         /*
         public JsonResult AddFinancialRecord(decimal previous, decimal future, decimal tipfunding, decimal federaltotal, decimal statetotal, decimal localtotal, decimal totalcost)
         {
@@ -813,7 +823,6 @@ namespace Trips4.Controllers
             }
             return Json(new { message = "Record successfully dropped." });
         }
-#endif
         /// <summary>
         /// Parse the County Shares from the Form Parameter collection 
         /// </summary>
@@ -923,6 +932,7 @@ namespace Trips4.Controllers
             }
             return shares;
         }
+#endif
 
         public JsonResult MuniShares(string tipYear, int id)
         {

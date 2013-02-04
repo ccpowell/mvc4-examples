@@ -16,17 +16,13 @@
     <script src="<%= Url.Content("~/scripts/jquery.popeye-2.0.4.min.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
+    
         var App = App || {};
         App.pp = App.pp || {};
-        App.pp.isEditable = App.utility.parseBoolean('<%= Model.ProjectSummary.IsEditable().ToString() %>');
-        App.pp.add1url = '<%= Url.Action("AddCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
-        App.pp.remove1url = '<%= Url.Action("DropCurrent1Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
-        App.pp.add2url = '<%= Url.Action("AddCurrent2Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
-        App.pp.remove2url = '<%= Url.Action("DropCurrent2Agency","Project", new {tipYear=Model.InfoModel.TipYear, projectVersionId=Model.InfoModel.ProjectVersionId}) %>';
         App.pp.UpdateAvailableSponsorContacts = '<%= Url.Action("UpdateAvailableSponsorContacts") %>/';
         App.pp.GetImprovementTypeMatch = '<%= Url.Action("GetImprovementTypeMatch") %>';
         App.pp.GetProjectTypeMatch = '<%= Url.Action("GetProjectTypeMatch") %>';
-
+        
         $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
     <script src="<%= Url.Content("~/scripts/TipProjectInfo.js")%>" type="text/javascript"></script>
