@@ -45,6 +45,7 @@ using OfficeOpenXml;
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.RouteData]
     public class TipController : ControllerBase
     {
 

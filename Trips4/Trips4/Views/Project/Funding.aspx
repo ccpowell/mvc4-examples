@@ -9,10 +9,6 @@
     <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
     <link href="<%= Url.Content("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
-        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
         var EditFinancialRecordUrl = '<%=Url.Action("UpdateFinancialRecord")%>';
         var EditFinancialRecordDetailUrl = '<%=Url.Action("UpdateFinancialRecordDetail")%>';
         var AddFinancialRecordDetailUrl = '<%=Url.Action("AddFinancialRecordDetail")%>';

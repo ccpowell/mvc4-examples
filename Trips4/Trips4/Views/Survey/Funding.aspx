@@ -22,6 +22,9 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.Survey.FundingViewMode
         var updateFundingSource = '<%= Url.Action("UpdateFundingSource")%>'
         var UpdateProjectUpdateStatusUrl = '<%=Url.Action("UpdateProjectUpdateStatus")%>';
     </script>
+    <script type="text/javascript">
+        $(document).ready(App.tabs.initializeSurveyProjectTabs);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

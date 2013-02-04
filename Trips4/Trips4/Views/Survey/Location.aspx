@@ -7,13 +7,14 @@
     <%= Model.Current.Name %></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.form.js")%>" type="text/javascript"></script>
-    <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.validate.pack.js")%>" type="text/javascript"></script>
     <link href="<%= ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
     <script src="<%=Page.ResolveClientUrl("~/scripts/jquery.selectboxes.min.js")%>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>"
         type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(App.tabs.initializeSurveyProjectTabs);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="tab-content-container">

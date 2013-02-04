@@ -9,9 +9,6 @@ Inherits="System.Web.Mvc.ViewPage<RtpDashboardViewModel>" %>
 <link href="<%= ResolveUrl("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
         $(document).ready(App.tabs.initializeRtpTabs);
     </script>
 </asp:Content>

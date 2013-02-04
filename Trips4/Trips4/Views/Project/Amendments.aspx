@@ -10,9 +10,6 @@
     <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/TipProjectAmendments.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var App = App || {};
-        App.route = JSON.parse('<%= Html.Raw(ViewBag.RouteData) %>' || '{}');
-        App.pp = JSON.parse('<%= Html.Raw(ViewBag.PageParameters) %>' || '{}');
         $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
 </asp:Content>

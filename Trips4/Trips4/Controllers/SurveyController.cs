@@ -36,6 +36,7 @@ using DTS.Web.MVC;
 
 namespace Trips4.Controllers
 {
+    [Trips4.Filters.RouteData]
     public class SurveyController : ControllerBase
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -373,6 +374,12 @@ namespace Trips4.Controllers
 
             // TODO: the following line can/should be set in the repo
             //viewModel.ListType = dashboardListType;
+            
+            var pp = CreatePageParameters();
+            pp.Add("SurveyYear", viewModel.Year);
+            pp.Add("SurveyId", viewModel.Current.Id);
+            pp.Add("SurveyName", viewModel.Current.Name);
+            SetPageParameters(pp);
 
             return View(viewModel);
         }
@@ -1439,7 +1446,10 @@ namespace Trips4.Controllers
             //viewModel.ProjectSummary.IsEditable = false;     
             viewModel.Project.IsSponsorContact = viewModel.Project.IsContributor(CurrentSessionApplicationState.CurrentUser.profile.PersonID);
             //viewModel.Project.IsSponsorContact = LoadSessionData(viewModel.Project);
-
+            var pp = CreatePageParameters();
+            pp.Add("SurveyName", viewModel.Current.Name);
+            pp.Add("ProjectVersionId", viewModel.Project.ProjectVersionId);
+            SetPageParameters(pp);
             return View(viewModel);
         }
 

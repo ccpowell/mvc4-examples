@@ -34,7 +34,10 @@
         var App = App || {};
         App.env = App.env || {};
         App.env.applicationPath = '<%= Request.ApplicationPath %>';
+        // we could just use App.routeData
         App.env.action = '<%= Html.ViewContext.RouteData.Values["action"].ToString().ToLower() %>';
+        App.pp = JSON.parse('<%= Html.Raw(ViewBag.PageParameters) %>' || '{}');
+        App.routeData = JSON.parse('<%= Html.Raw(ViewBag.RouteData) %>' || '{}');
 
         jQuery(document).ready(function () {
             "use strict";

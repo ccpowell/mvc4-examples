@@ -11,10 +11,6 @@
     <script src="<%= Page.ResolveClientUrl("~/scripts/jquery.maskedinput-1.2.2.min.js")%>" type="text/javascript" ></script>
     
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.SurveyName = '<%= Model.Current.Name %>';
-        App.pp.ProjectVersionId = <%= Model.Project.ProjectVersionId %>;
         $(document).ready(App.tabs.initializeSurveyProjectTabs);
     </script>
     <script type="text/javascript">

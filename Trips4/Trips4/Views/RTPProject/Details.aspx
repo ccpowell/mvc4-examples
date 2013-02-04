@@ -8,11 +8,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
     <link href="<%= ResolveUrl("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%= ResolveClientUrl("~/scripts/Slide.js")%>" type="text/javascript"></script>
+
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.RtpYear = '<%= Model.ProjectSummary.RtpYear %>';
-        App.pp.ProjectVersionId = <%= Model.ProjectSummary.ProjectVersionId %>;
         $(document).ready(App.tabs.initializeRtpProjectTabs);
     </script>
 </asp:Content>

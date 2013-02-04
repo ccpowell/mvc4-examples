@@ -12,13 +12,6 @@
     <link href="<%= Url.Content("~/Content/SingleView.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%= Url.Content("~/scripts/SurveyDashboard.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var App = App || {};
-        App.pp = {
-            SurveyYear: '<%= Model.Year %>',
-            SurveyId: <%= Model.Current.Id %>,
-            SurveyName: '<%= Model.Current.Name %>'
-        };
-
         $(document).ready(function () {
             var baseUrl = '<%=Url.Action("Dashboard","Survey",new {year=Model.Current.Name}) %>';
             function refresh() {

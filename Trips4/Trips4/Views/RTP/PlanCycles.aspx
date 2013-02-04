@@ -7,11 +7,7 @@
     Regional Transportation Plan
     <%= Model.RtpSummary.RtpYear %></asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="HeaderContent" runat="server">
-    
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
         $(document).ready(App.tabs.initializeRtpTabs);
     </script>
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/RtpPlanCycles.js") %>'></script>

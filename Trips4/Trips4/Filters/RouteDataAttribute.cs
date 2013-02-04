@@ -10,7 +10,12 @@ namespace Trips4.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var pp = new Dictionary<string, object>(filterContext.Controller.ControllerContext.RouteData.Values);
+            var pp = new Dictionary<string, object>();
+            var kvps = filterContext.Controller.ControllerContext.RouteData.Values;
+            foreach (var kvp in kvps)
+            {
+                pp.Add(kvp.Key.ToLower(), kvp.Value);
+            }
             filterContext.Controller.ViewBag.RouteData = Newtonsoft.Json.JsonConvert.SerializeObject(pp);
             base.OnActionExecuting(filterContext);
         }

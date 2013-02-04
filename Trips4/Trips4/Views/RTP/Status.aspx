@@ -16,7 +16,6 @@
     //var removeurl = '<%=Url.Action("DropCycle","RTP") %>';
     //var createCycleUrl = '<%=Url.Action("CreateCycle","RTP") %>';
     var GetPlanAvailableProjects = '<%=Url.Action("GetPlanAvailableProjects","RTP") %>';
-    var AmendProjects = '<%=Url.Action("Amend","RTP") %>';
     //var SetActiveCycle = '<%=Url.Action("SetActiveCycle","RTP") %>';
     //var updateCycleSortUrl = '<%=Url.Action("UpdateCycleSort","RTP") %>';
     var updateTimePeriodStatusIdUrl = '<%=Url.Action("UpdateTimePeriodStatusId","RTP") %>';
@@ -26,7 +25,6 @@
     var CloseSurveyNowUrl = '<%=Url.Action("CloseSurveyNow","RTP") %>';
 
     var GetAmendableProjects = '<%=Url.Action("GetAmendableSurveyProjects","RTP") %>'; //GetAvailableRestoreProjects
-    var AmendProjects = '<%=Url.Action("AmendForNewSurvey","RTP") %>';
     var timePeriodId = "<%= Model.RtpStatus.TimePeriodId %>";
     var CreateSurveyUrl = '<%=Url.Action("CreateSurvey","RTP") %>';
 
@@ -434,12 +432,8 @@
 
    
     </script>
-
     
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.RtpYear = '<%=  Model.RtpSummary.RtpYear %>';
         $(document).ready(App.tabs.initializeRtpTabs);
     </script>
 </asp:Content>

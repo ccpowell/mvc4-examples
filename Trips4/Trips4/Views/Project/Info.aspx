@@ -26,8 +26,6 @@
         App.pp.UpdateAvailableSponsorContacts = '<%= Url.Action("UpdateAvailableSponsorContacts") %>/';
         App.pp.GetImprovementTypeMatch = '<%= Url.Action("GetImprovementTypeMatch") %>';
         App.pp.GetProjectTypeMatch = '<%= Url.Action("GetProjectTypeMatch") %>';
-        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
-        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
 
         $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>

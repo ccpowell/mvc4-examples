@@ -51,7 +51,6 @@
 <% } %>
 <script type="text/javascript">
 var GetAmendableProjects = App.env.applicationPath + '/Operation/Misc/SurveyGetAmendableProjects'; 
-var AmendProjects = '<%=Url.Action("AmendForNewSurvey","Survey") %>';
 var SurveyOverview = '<%=Url.Action("GetDetailsOverview","Survey") %>';
 var timePeriodId = "<%= Model.Id %>";
 

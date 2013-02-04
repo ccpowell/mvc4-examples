@@ -9,10 +9,6 @@
         type="text/css" media="print" />
     <script src="<%= Url.Content("~/scripts/Slide.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
-        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
         $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
 </asp:Content>

@@ -133,28 +133,28 @@ App.tabs = (function ($) {
 
     function initializeTipProjectTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "Project", App.pp.TipYear, action, App.pp.ProjectVersionId];
+            var segments = [App.env.applicationPath, "Project", App.routeData.year, action, App.routeData.id];
             return segments.join('/');
         });
     }
 
     function initializeTipTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "TIP", App.pp.TipYear, action];
+            var segments = [App.env.applicationPath, "TIP", App.routeData.year, action];
             return segments.join('/');
         });
     }
 
     function initializeRtpTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "RTP", App.pp.RtpYear, action];
+            var segments = [App.env.applicationPath, "RTP", App.routeData.year, action];
             return segments.join('/');
         });
     }
 
     function initializeRtpProjectTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "RtpProject", App.pp.RtpYear, action, App.pp.ProjectVersionId];
+            var segments = [App.env.applicationPath, "RtpProject", App.routeData.year, action, App.routeData.id];
             return segments.join('/');
         });
     }
@@ -162,14 +162,14 @@ App.tabs = (function ($) {
 
     function initializeSurveyTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "Survey", App.pp.SurveyName, action];
+            var segments = [App.env.applicationPath, "Survey", App.routeData.year, action];
             return segments.join('/');
         });
     }
 
     function initializeSurveyProjectTabs() {
         initializeTabs(function (action) {
-            var segments = [App.env.applicationPath, "Survey", App.pp.SurveyName, action, App.pp.ProjectVersionId];
+            var segments = [App.env.applicationPath, "Survey", App.routeData.year, action, App.routeData.id];
             return segments.join('/');
         });
     }

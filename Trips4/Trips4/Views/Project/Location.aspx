@@ -19,11 +19,7 @@
     <script src="<%=Page.ResolveClientUrl("~/scripts/slide.js")%>" type="text/javascript"></script>
 
     <script type="text/javascript">
-        var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.ProjectVersionId = parseInt('<%=  Model.ProjectSummary.ProjectVersionId %>');
-        App.pp.TipYear = '<%=  Model.ProjectSummary.TipYear %>';
-
+        $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
     <script src="<%= Url.Content("~/scripts/TipProjectLocation.js")%>" type="text/javascript"></script>
 </asp:Content>

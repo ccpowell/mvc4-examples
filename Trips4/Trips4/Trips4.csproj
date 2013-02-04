@@ -215,7 +215,6 @@
     <Compile Include="Controllers\RtpProjectController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\TipController.cs" />
-    <Compile Include="Controllers\TransactionScope.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ListItem.cs" />

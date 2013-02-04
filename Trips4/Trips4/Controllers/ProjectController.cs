@@ -20,6 +20,7 @@ using Trips4.Configuration;
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.RouteData]
     public class ProjectController : ControllerBase
     {
         private readonly ITipRepository _tipRepository;

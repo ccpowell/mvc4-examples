@@ -40,6 +40,7 @@ using Trips4.Configuration;
 namespace Trips4.Controllers
 {
     [Trips4.Filters.SessionAuthorizeAttribute]
+    [Trips4.Filters.RouteData]
     public class RtpProjectController : ControllerBase
     {
         private readonly IRtpRepository _rtpRepository;
@@ -90,8 +91,14 @@ namespace Trips4.Controllers
         {
             var model = new DetailViewModel();
             model = _rtpProjectRepository.GetDetailViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
             
-            return View("details", model);
+            return View(model);
         }
 
 #region General Info
@@ -103,8 +110,15 @@ namespace Trips4.Controllers
         /// <returns></returns>
         public ActionResult Info(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetProjectInfoViewModel(id, year);
-            return View(viewModel);            
+            var model = _rtpProjectRepository.GetProjectInfoViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);            
         }
 
 
@@ -172,7 +186,7 @@ namespace Trips4.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Get)]
         //public ActionResult Create(string year)
         //{
@@ -184,7 +198,7 @@ namespace Trips4.Controllers
         //    return View(viewModel);
         //}
 
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult Create( ProjectVersionGeneralInfoModel model, string year)
         //{
@@ -209,7 +223,7 @@ namespace Trips4.Controllers
         ///// to /Project/{tipyear}/Info/{pvid]
         ///// </summary>
         ///// <returns></returns>
-        [Trips4.Filters.SessionAuthorizeAttribute]
+        //[Trips4.Filters.SessionAuthorizeAttribute]
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult Create_orginal(InfoViewModel model)
         //{
@@ -475,10 +489,16 @@ namespace Trips4.Controllers
         /// <returns></returns>
         public ActionResult Scope(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetScopeViewModel(id, year);
+            var model = _rtpProjectRepository.GetScopeViewModel(id, year);
             //viewModel.ProjectSummary.IsEditable = false;            
 
-            return View(viewModel);
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
@@ -523,8 +543,13 @@ namespace Trips4.Controllers
         /// <returns></returns>
         public ActionResult Location(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetProjectLocationViewModel(id, year);        
-            return View(viewModel);
+            var model = _rtpProjectRepository.GetProjectLocationViewModel(id, year);
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+            return View(model);
         }
 
 
@@ -1090,14 +1115,28 @@ namespace Trips4.Controllers
         [Trips4.Filters.SessionAuthorizeAttribute]
         public ActionResult Amendments(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
-            return View(viewModel);
+            var model = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.RtpSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.RtpSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);
         }
 
         public ActionResult Funding(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetFundingViewModel(id, year);
-            return View(viewModel);
+            var model = _rtpProjectRepository.GetFundingViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);
         }
 
         public JsonResult GetPlanReportGroupingCategoryDetails(int id)
@@ -1114,17 +1153,31 @@ namespace Trips4.Controllers
                 return Json(jsr);
             }
         }
-
+#if wtf
         public ActionResult Modeling(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
-            return View(viewModel);
-        }
+            var model = _rtpProjectRepository.GetAmendmentsViewModel(id, year);
 
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);
+        }
+#endif
         public ActionResult CDOTData(string year, int id)
         {
-            var viewModel = _rtpProjectRepository.GetCDOTDataViewModel(id, year);
-            return View(viewModel);
+            var model = _rtpProjectRepository.GetCDOTDataViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("RtpYear", model.ProjectSummary.RtpYear);
+            pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
+            return View(model);
         }
 
         [Trips4.Filters.SessionAuthorizeAttribute]
