@@ -56,6 +56,32 @@ namespace Trips4.Controllers
             _userRepository = userRepository;
         }
 
+        /// <summary>
+        /// Create a dictionary and populate it with the given values.
+        /// </summary>
+        /// <returns>populated dictionary</returns>
+        protected Dictionary<string, object> CreatePageParameters()
+        {
+            return new Dictionary<string, object>();
+        }
+        /// <summary>
+        /// Create a dictionary and populate it with the given values.
+        /// </summary>
+        /// <returns>populated dictionary</returns>
+        protected Dictionary<string, object> CreatePageParameters(IDictionary<string, Object> dic)
+        {
+            return new Dictionary<string, object>(dic);
+        }
+
+        /// <summary>
+        /// Save the given dictionary in ViewBag.PageParameters so it can
+        /// be retrieved and parsed by the page's javascript.
+        /// </summary>
+        /// <param name="pp">page parameters</param>
+        protected void SetPageParameters(Dictionary<string, object> pp)
+        {
+            ViewBag.PageParameters = Newtonsoft.Json.JsonConvert.SerializeObject(pp);
+        }
 
         public ITripsUserRepository UserService
         {

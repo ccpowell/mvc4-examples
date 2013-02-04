@@ -65,7 +65,7 @@ App.ui = (function ($) {
     function addCycle() {
         setEditPlanCycle({});
         $dlgAddCycle.dialog("open")
-            .dialog("option", {title: "Add New Plan Cycle"})
+            .dialog("option", { title: "Add New Plan Cycle" })
             .find("form").validate().resetForm();
         return false;
     }
@@ -103,6 +103,12 @@ App.ui = (function ($) {
     // stash the IDs from the hidden first column
     // The order is predetermined by Status and cannot be changed.
     function initializeCycleTable() {
+        // remove empty row from toolkit
+        if (($('#cyclesGrid tbody tr').length == 1) && ($('#cyclesGrid tbody tr td').length < 2)) {
+            alert("no Plan Cycles");
+            return;
+        }
+
         $('#cyclesGrid').dataTable({
             "bPaginate": true,
             "bLengthChange": false,

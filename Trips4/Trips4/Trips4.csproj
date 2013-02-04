@@ -219,6 +219,7 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ListItem.cs" />
+    <Compile Include="Filters\RouteDataAttribute.cs" />
     <Compile Include="Filters\SessionAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

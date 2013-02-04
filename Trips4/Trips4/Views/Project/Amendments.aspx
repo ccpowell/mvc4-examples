@@ -11,14 +11,8 @@
     <script src="<%= Url.Content("~/scripts/TipProjectAmendments.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
         var App = App || {};
-        App.pp = App.pp || {};
-        App.pp.TipYear = '<%= Model.ProjectSummary.TipYear %>';
-        App.pp.UpdateAmendmentDetailsUrl = '<%=Url.Action("UpdateAmendmentDetails","Project") %>';
-        App.pp.ProjectVersionId = parseInt('<%= Model.ProjectSummary.ProjectVersionId %>');
-        App.pp.PreviousVersionId = parseInt('<%= Model.ProjectSummary.PreviousVersionId %>');
-        App.pp.AmendmentIsPending = App.utility.parseBoolean('<%= Model.ProjectSummary.IsPending.ToString() %>');
-        App.pp.AmendmentStatusId = parseInt('<%= Model.ProjectAmendments.AmendmentStatusId %>');
-
+        App.route = JSON.parse('<%= Html.Raw(ViewBag.RouteData) %>' || '{}');
+        App.pp = JSON.parse('<%= Html.Raw(ViewBag.PageParameters) %>' || '{}');
         $(document).ready(App.tabs.initializeTipProjectTabs);
     </script>
 </asp:Content>

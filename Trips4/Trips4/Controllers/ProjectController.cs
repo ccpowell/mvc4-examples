@@ -932,6 +932,15 @@ namespace Trips4.Controllers
         public ActionResult Amendments(string year, int id)
         {
             var viewModel = _projectRepository.GetAmendmentsViewModel(id, year);
+
+            // set page parameters for javascript
+            var pp = CreatePageParameters();
+            pp.Add("TipYear", viewModel.ProjectSummary.TipYear);
+            pp.Add("ProjectVersionId", viewModel.ProjectSummary.ProjectVersionId);
+            pp.Add("PreviousVersionId", viewModel.ProjectSummary.PreviousVersionId);
+            pp.Add("AmendmentIsPending", viewModel.ProjectSummary.IsPending);
+            pp.Add("AmendmentStatusId", viewModel.ProjectAmendments.AmendmentStatusId);
+            SetPageParameters(pp);
             return View(viewModel);
         }
 

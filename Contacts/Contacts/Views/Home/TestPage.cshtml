@@ -30,12 +30,14 @@
     <div>
     @ViewBag.PageParameters
     </div>
+    <div id="pp-text"></div>
 </div>
 @section scripts {
     <script type="text/javascript">
         var App = App || {};
         App.action = '@Html.ViewContext.RouteData.Values["action"].ToString().ToLower()';
-        
+        App.pp = JSON.parse('@Html.Raw(ViewBag.PageParameters)' || '{}');
+        $(function() { $("#pp-text").text(JSON.stringify(App.pp))});
     </script>
     @Scripts.Render("~/Scripts/TestPage.js")
 }

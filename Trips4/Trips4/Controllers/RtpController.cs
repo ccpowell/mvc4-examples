@@ -102,9 +102,11 @@ namespace Trips4.Controllers
         /// <param name="listType"></param>
         /// <returns></returns>
         [Trips4.Filters.SessionAuthorizeAttribute]
+        [Trips4.Filters.RouteData]
         public ActionResult Dashboard(string year, string listType)
         {
             LoadSession();
+
             //RTPApplicationState appSession = (RTPApplicationState)Session[DRCOGApp.SessionIdentifier];
 
             if (String.IsNullOrEmpty(year))
