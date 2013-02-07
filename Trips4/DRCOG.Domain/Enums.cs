@@ -188,19 +188,9 @@ namespace DRCOG.Domain
 
         public enum RtpTimePeriodStatus
         {
-            Current = 12763
-            ,
-            Pending = 12764
-            ,
-            CurrentUnlocked = 12765
-            ,
-            CurrentLocked = 12766
-            ,
-            Abandoned = 12767
-            ,
+            Current = 12763,
+            Pending = 12764,
             Inactive = 12768
-            ,
-            New = 12769
         }
 
         public enum SurveyUpdateStatus

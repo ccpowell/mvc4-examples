@@ -210,6 +210,40 @@ namespace Trips4.Data
             }
         }
 
+
+        /// <summary>
+        /// Get the ID of the RTP Plan Cycle used as a source from which to copy projects.
+        /// It is the Active cycle in the Current plan.
+        /// </summary>
+        /// <returns>id of active cycle of current plan</returns>
+        public int GetRtpActivePlanCycleId()
+        {
+            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            {
+                // get current plan, RtpTimePeriodStatus.Current
+                var plan = db.ProgramInstances.FirstOrDefault(
+                    tp => tp.StatusId == (int)Enums.RtpTimePeriodStatus.Current &&
+                    tp.ProgramID == (int)Enums.TimePeriodType.TimePeriod);
+                if (plan == null)
+                {
+                    throw new Exception("There is no Current RTP Plan");
+                }
+                var currentPlanId = plan.TimePeriodID;
+                // we need to join Cycles and TimePeriodCycles to get Cycle
+                var cycle = db.Cycles.Join(db.TimePeriodCycles,
+                    c => c.id,
+                    tpc => tpc.CycleId,
+                    (c, tpc) => new { StatusId = c.statusId, CycleId = c.id, PlanId = tpc.TimePeriodId })
+                    .Where(x => x.StatusId == (int)Enums.RTPCycleStatus.Active && x.PlanId == currentPlanId)
+                    .FirstOrDefault();
+                if (cycle == null)
+                {
+                    throw new Exception("No Active Cycle in Current RTP Plan");
+                }
+                return cycle.CycleId;
+            }
+        }
+
         /// <summary>
         /// Delete RTP Plan Cycle from RTP Year and then from Cycles. Not currently used in production,
         /// but useful for testing.
@@ -260,11 +294,12 @@ namespace Trips4.Data
 
                 // if this is not the first cycle in the time period, attach it to the end
                 // of the two lists - ListOrder and priorCycleId
-                if (db.TimePeriodCycles.Count() > 0)
+                var planCycles = db.TimePeriodCycles.Where(tpc => tpc.TimePeriodId == rtpYearId);
+                if (planCycles.Count() > 0)
                 {
                     // find last cycle in this time period. "last" means highest ListOrder.
-                    var lo = db.TimePeriodCycles.Where(tpc => tpc.TimePeriodId == rtpYearId).Max(tpc => tpc.ListOrder);
-                    var prior = db.TimePeriodCycles.First(tpc => tpc.TimePeriodId == rtpYearId && tpc.ListOrder == lo);
+                    var lo = planCycles.Max(tpc => tpc.ListOrder);
+                    var prior = planCycles.First(tpc => tpc.ListOrder == lo);
                     priorCycleId = prior.CycleId;
                     listOrder = lo ?? 0;
                 }

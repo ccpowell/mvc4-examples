@@ -76,7 +76,6 @@ namespace DRCOG.Domain.Models.RTP
         public bool IsTimePeriodEditable()
         {
             if (TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Current) ||
-                TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.CurrentUnlocked) ||
                 TimePeriodStatusId.Equals((int)Enums.RtpTimePeriodStatus.Pending))
             {
                 return true;
@@ -168,22 +167,14 @@ namespace DRCOG.Domain.Models.RTP
         {
             switch (TimePeriodStatusId)
             {
-                case (int)Enums.RtpTimePeriodStatus.Abandoned:
-                    return "Abandoned";
                 case (int)Enums.RtpTimePeriodStatus.Current:
                     return "Current";
-                case (int)Enums.RtpTimePeriodStatus.CurrentLocked:
-                    return "Current Locked";
-                case (int)Enums.RtpTimePeriodStatus.CurrentUnlocked:
-                    return "Current Unlocked";
                 case (int)Enums.RtpTimePeriodStatus.Inactive:
                     return "Inactive";
-                case (int)Enums.RtpTimePeriodStatus.New:
-                    return "New";
                 case (int)Enums.RtpTimePeriodStatus.Pending:
                     return "Pending";
                 default:
-                    return "not set";
+                    return TimePeriodStatusId.ToString();
             }
         }
 
@@ -202,24 +193,6 @@ namespace DRCOG.Domain.Models.RTP
         {
             switch (TimePeriodStatusId)
             {
-                case (int)Enums.RtpTimePeriodStatus.Current:
-                    _nextStatusText = "Lock Plan";
-                    return (int)Enums.RtpTimePeriodStatus.CurrentLocked;
-                case (int)Enums.RtpTimePeriodStatus.CurrentLocked:
-                    _nextStatusText = "Unlock Plan";
-                    return (int)Enums.RtpTimePeriodStatus.CurrentUnlocked;
-                case (int)Enums.RtpTimePeriodStatus.CurrentUnlocked:
-                    _nextStatusText = "Lock Plan";
-                    return (int)Enums.RtpTimePeriodStatus.CurrentLocked;
-                case (int)Enums.RtpTimePeriodStatus.Inactive:
-                    _nextStatusText = "Set Pending";
-                    return (int)Enums.RtpTimePeriodStatus.Pending;
-                case (int)Enums.RtpTimePeriodStatus.New:
-                    _nextStatusText = "Set Pending";
-                    return (int)Enums.RtpTimePeriodStatus.Pending;
-                case (int)Enums.RtpTimePeriodStatus.Abandoned:
-                    _nextStatusText = "Set Pending";
-                    return (int)Enums.RtpTimePeriodStatus.Pending;
                 case (int)Enums.RtpTimePeriodStatus.Pending:
                     _nextStatusText = "Set Current";
                     return (int)Enums.RtpTimePeriodStatus.Current;

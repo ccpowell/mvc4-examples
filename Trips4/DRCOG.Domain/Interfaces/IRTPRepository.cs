@@ -76,8 +76,7 @@ namespace DRCOG.Domain.Interfaces
 
         int CreateProject(string projectName, string facilityName, string plan, int sponsorOrganizationId, int? cycleId);
 
-        IList<RtpSummary> GetAmendableProjects(int timePeriodId, int cycleId, bool excludeHasPending);
-        IList<RtpSummary> GetAmendableProjects(int timePeriodId, int cycleId, bool excludeHasPending, bool showScenerio);
+        IList<RtpSummary> GetAmendableProjects(int cycleId, bool excludeHasPending);
         IList<Cycle> GetPlanCycles(int timePeriodId);
 
         Cycle GetCycleDetails(int timePeriodId);

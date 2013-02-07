@@ -250,6 +250,11 @@ namespace Trips4.Controllers
             // set page parameters for javascript
             var pp = CreatePageParameters();
             pp.Add("RtpYear", viewModel.RtpSummary.RtpYear);
+            pp.Add("CurrentCycleId", viewModel.RtpSummary.Cycle.Id);
+            pp.Add("PreviousCycleId", viewModel.RtpSummary.Cycle.PriorCycleId);
+            pp.Add("NextCycleId", viewModel.RtpSummary.Cycle.NextCycleId);
+            pp.Add("RtpPlanYear", viewModel.RtpSummary.RtpYear);
+            pp.Add("RtpPlanYearId", viewModel.RtpSummary.RTPYearTimePeriodID);
             SetPageParameters(pp);
 
             return View(viewModel);
@@ -304,6 +309,8 @@ namespace Trips4.Controllers
             });
         }
 
+#if obsolete
+
         public JsonResult GetAmendableProjects(string plan, int cycleId)
         {
             var result = new List<SelectListItem>();
@@ -323,8 +330,6 @@ namespace Trips4.Controllers
             }
             return Json(result);
         }
-
-#if obsolete
 
         // TODO: moved to /operation/misc/GetAmendablePendingProjects
         public JsonResult GetAmendablePendingProjects(string plan, int cycleId)

@@ -46,14 +46,19 @@ namespace Trips4.Controllers.Operation
             public int cycleId;
         }
 
+        /// <summary>
+        /// Get the list of projects in the Active Cycle of the Current Plan.
+        /// TODO: don't need input object.
+        /// </summary>
+        /// <returns>list of projects</returns>
         [HttpPost]
         public IEnumerable<System.Web.Mvc.SelectListItem> RtpGetAmendableProjects(RtpGetAmendableProjectsRequest request)
         {
             var results = new List<System.Web.Mvc.SelectListItem>();
             try
             {
-                // TODO: shouldn't need cycleId
-                var availableProjects = RtpRepository.GetAmendableProjects(request.rtpPlanYearId, request.cycleId, true, true).ToList();
+                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId();
+                var availableProjects = RtpRepository.GetAmendableProjects(currentCycleId, true).ToList();
                 availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
             }
             catch (Exception ex)
@@ -89,7 +94,8 @@ namespace Trips4.Controllers.Operation
         {
             try
             {
-                return RtpRepository.GetAmendableProjects(request.rtpPlanYearId, request.cycleId, false);
+                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId();
+                return RtpRepository.GetAmendableProjects(currentCycleId, false);
             }
             catch (Exception ex)
             {

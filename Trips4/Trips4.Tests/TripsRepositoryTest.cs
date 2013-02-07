@@ -139,10 +139,23 @@ namespace Trips4.Tests
                 target.TryCatchError();
                 Assert.Fail("TryCatchError did not throw an error!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Assert.IsTrue(true, "it's okay");
             }
+        }
+
+        /// <summary>
+        ///A test for GetRtpAmendableProjectsCycle
+        ///</summary>
+        [TestMethod()]
+        [Ignore]
+        public void GetRtpActivePlanCycleIdTest()
+        {
+            TripsRepository target = new TripsRepository();
+            int actual;
+            actual = target.GetRtpActivePlanCycleId();
+            Assert.IsTrue(actual > 0);
         }
     }
 }

@@ -12,14 +12,6 @@
     <script src="<%= Url.Content("~/scripts/jquery.quicksearch.js")%>" type="text/javascript"></script>
     <script src="<%= Url.Content("~/scripts/RtpProjectList.js")%>" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-        var App = App || {};
-        App.pp = {
-            CurrentCycleId: <%= Model.RtpSummary.Cycle.Id %>,
-            PreviousCycleId: <%= Model.RtpSummary.Cycle.PriorCycleId %>,
-            NextCycleId: <%= Model.RtpSummary.Cycle.NextCycleId %>,
-            RtpPlanYear: '<%= Model.RtpSummary.RtpYear %>',
-            RtpPlanYearId: <%= Model.RtpSummary.RTPYearTimePeriodID %>
-        };
         function confirmDelete() {
             return !!(confirm('Are you sure you want to delete this amendment?'));
         }

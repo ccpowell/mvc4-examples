@@ -148,7 +148,7 @@ namespace DRCOG.Data
             SqlCommand cmd = new SqlCommand("[RTP].[CreatePlan]");
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TimePeriod ", timePeriod);
-            cmd.Parameters.AddWithValue("@StatusId ", Enums.RtpTimePeriodStatus.New);
+            cmd.Parameters.AddWithValue("@StatusId ", Enums.RtpTimePeriodStatus.Pending);
             this.ExecuteNonQuery(cmd);
         }
 
@@ -458,13 +458,8 @@ namespace DRCOG.Data
 
             return list;
         }
-
-        public IList<RtpSummary> GetAmendableProjects(int timePeriodId, int cycleId, bool excludeHasPending)
-        {
-            return GetAmendableProjects(timePeriodId, cycleId, excludeHasPending, false);
-        }
-
-        public IList<RtpSummary> GetAmendableProjects(int timePeriodId, int cycleId, bool excludeHasPending, bool showScenerio)
+        
+        public IList<RtpSummary> GetAmendableProjects(int cycleId, bool excludeHasPending)
         {
             IList<RtpSummary> list = new List<RtpSummary>();
 
@@ -472,10 +467,8 @@ namespace DRCOG.Data
             {
                 using (SqlCommand command = new SqlCommand("[RTP].[GetProjects]") { CommandType = CommandType.StoredProcedure })
                 {
-                    command.Parameters.AddWithValue("@YearID", timePeriodId);
                     command.Parameters.AddWithValue("@CycleId", cycleId);
                     command.Parameters.AddWithValue("@ExcludeHasPending", excludeHasPending);
-                    command.Parameters.AddWithValue("@ShowScenario", showScenerio);
                     command.Parameters.AddWithValue("@ExcludeCancelled", true);
 
                     using (IDataReader rdr = this.ExecuteReader(command))
