@@ -490,7 +490,6 @@ namespace Trips4.Controllers
         public ActionResult Scope(string year, int id)
         {
             var model = _rtpProjectRepository.GetScopeViewModel(id, year);
-            //viewModel.ProjectSummary.IsEditable = false;            
 
             // set page parameters for javascript
             var pp = CreatePageParameters();
