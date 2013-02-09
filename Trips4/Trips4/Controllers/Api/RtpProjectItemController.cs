@@ -38,7 +38,20 @@ namespace Trips4.Controllers.Api
         // POST api/rtpproject
         public int Post(PostData project)
         {
-            return RtpRepository.CreateProject(project.projectName, project.facilityName, project.plan, project.sponsorOrganizationId, project.cycleId);
+           try
+            {
+                var id = RtpRepository.CreateProject(project.projectName, project.facilityName, project.plan, project.sponsorOrganizationId, project.cycleId);
+                if (id <= 0)
+                {
+                    throw new Exception("Project creation failed.");
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnException("Could not create RTP Project", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed) { ReasonPhrase = "Project creation failed." });
+            }
         }
     }
 }

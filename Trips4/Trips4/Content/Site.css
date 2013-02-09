@@ -567,6 +567,10 @@ input[type="text"].highlight-red, input[type="password"].highlight-red, select.h
     border-color: #A60000;
 }
 
+input[type="text"].w380
+{
+    width: 380px;
+}
 
 .dialog h2
 {

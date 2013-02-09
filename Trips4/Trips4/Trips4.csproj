@@ -208,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Operation\MiscController.cs" />
+    <Compile Include="Controllers\Operation\RtpOperationController.cs" />
     <Compile Include="Controllers\Operation\TipProjectOperationController.cs" />
     <Compile Include="Controllers\PoolController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />

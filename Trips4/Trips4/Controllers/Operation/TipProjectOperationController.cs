@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -8,11 +6,7 @@ using DRCOG.Common.Services;
 using DRCOG.Domain.Interfaces;
 using DRCOG.Domain.Models;
 using DRCOG.Domain.Models.TIPProject;
-using DRCOG.Domain.ServiceInterfaces;
-using DRCOG.Domain.ViewModels.TIPProject;
 using DRCOG.TIP.Services;
-using DRCOG.TIP.Services.RestoreStrategy.TIP;
-using DTS.Web.MVC;
 using Trips4.Configuration;
 
 namespace Trips4.Controllers.Operation
