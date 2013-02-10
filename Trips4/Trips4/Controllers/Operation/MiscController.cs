@@ -60,7 +60,9 @@ namespace Trips4.Controllers.Operation
                 var currentCycleId = TripsRepository.GetRtpActivePlanCycleId(request.rtpPlanYearId);
                 if (currentCycleId == 0)
                 {
-                    currentCycleId = TripsRepository.GetRtpCurrentPlanId();
+                    Logger.Debug("Getting projects from Current Plan");
+                    var planId = TripsRepository.GetRtpCurrentPlanId();
+                    currentCycleId = TripsRepository.GetRtpActivePlanCycleId(planId);
                 }
                 if (currentCycleId == 0)
                 {
