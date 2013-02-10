@@ -71,30 +71,6 @@ namespace Trips4.Controllers
             return View("Rtplist", viewModel);
         }
 
-        /// <summary>
-        /// Create a new RTP
-        /// </summary>
-        /// <param name="planName"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
-        public JsonResult CreateRtp(string planName)
-        {
-            JsonServerResponse jsr = new JsonServerResponse();
-            //string newPlanName = //startYear.ToString() + "-" + endYear.ToString();
-            try
-            {
-                _rtpRepository.CreateRtp(planName);
-                jsr.Data = true;
-            }
-            catch (Exception ex)
-            {
-                jsr.Error = "An error occured creating the RTP Plan";
-            }
-
-            return Json(jsr);
-        }
-
 
 
         #endregion
@@ -592,17 +568,17 @@ namespace Trips4.Controllers
         /// Store the criteria and redirect to the ProjectList
         /// which will then apply the new criteria.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="projectSearchViewModel"></param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ProjectSearch(ProjectSearchViewModel model)
+        public ActionResult ProjectSearch(ProjectSearchViewModel projectSearchViewModel)
         {
             LoadSession();
 
             //Save search options to session
             if (CurrentSessionApplicationState.ProjectSearchModel != null) CurrentSessionApplicationState.ProjectSearchModel = null;
             //if (Session["ProjectSearchModel"] != null) Session.Remove("ProjectSearchModel");
-            CurrentSessionApplicationState.ProjectSearchModel = model.ProjectSearchModel;
+            CurrentSessionApplicationState.ProjectSearchModel = projectSearchViewModel.ProjectSearchModel;
             //Session.Add("ProjectSearchModel", model.ProjectSearchModel);
 
             //Redirect to the project list. Determine RTP Year (text) for redirect from appSession

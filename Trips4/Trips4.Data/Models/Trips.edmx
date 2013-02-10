@@ -765,6 +765,7 @@
           <Property Name="FederalTotal" Type="nchar" MaxLength="10" />
           <Property Name="ShowNetObligation" Type="bit" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="BikePedElement" Type="bit" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -4472,8 +4473,10 @@
           <Parameter Name="Description" Type="varchar" Mode="In" />
         </Function>
         <Function Name="CreatePlan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="RTP">
-          <Parameter Name="TimePeriod" Type="varchar" Mode="In" />
-          <Parameter Name="StatusId" Type="int" Mode="In" />
+          <Parameter Name="PlanName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CycleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CycleDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="TimePeriodId" Type="int" Mode="InOut" />
         </Function>
         <Function Name="CreateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="RTP">
           <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
@@ -6176,6 +6179,12 @@
             <Parameter Name="DestinationYear" Mode="In" Type="String" />
             <Parameter Name="NewProjectVersionId" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="RtpCreatePlan">
+            <Parameter Name="PlanName" Mode="In" Type="String" />
+            <Parameter Name="CycleName" Mode="In" Type="String" />
+            <Parameter Name="CycleDescription" Mode="In" Type="String" />
+            <Parameter Name="TimePeriodId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Processed">
           <Key>
@@ -6222,6 +6231,7 @@
           <Property Name="FederalTotal" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
           <Property Name="ShowNetObligation" Type="Boolean" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Type="Boolean" Name="BikePedElement" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -9508,7 +9518,8 @@
             <ScalarProperty Name="ReportYear" ColumnName="ReportYear" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ReportOverrides"><EntityTypeMapping TypeName="Trips4.Data.Models.ReportOverride"><MappingFragment StoreEntitySet="ReportOverrides">
-            <ScalarProperty Name="TipId" ColumnName="TipId" />
+            <ScalarProperty Name="BikePedElement" ColumnName="BikePedElement" />
+                <ScalarProperty Name="TipId" ColumnName="TipId" />
             <ScalarProperty Name="FundingTypeId" ColumnName="FundingTypeId" />
             <ScalarProperty Name="ReportFY" ColumnName="ReportFY" />
             <ScalarProperty Name="NetObligation" ColumnName="NetObligation" />
@@ -10656,6 +10667,7 @@
           <FunctionImportMapping FunctionImportName="TryCatchError" FunctionName="TripsModel.Store.TryCatchError" />
           <FunctionImportMapping FunctionImportName="RtpSetActiveCycle" FunctionName="TripsModel.Store.SetActiveCycle" />
           <FunctionImportMapping FunctionImportName="SurveyCopyProject" FunctionName="TripsModel.Store.CopyProject1" />
+          <FunctionImportMapping FunctionImportName="RtpCreatePlan" FunctionName="TripsModel.Store.CreatePlan" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

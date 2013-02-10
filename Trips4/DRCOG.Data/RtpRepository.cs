@@ -135,7 +135,7 @@ namespace DRCOG.Data
 
 
         #region IRtpRepository Members
-
+#if obsolete
         /// <summary>
         /// Create a new RTP Plan
         /// </summary>
@@ -151,7 +151,7 @@ namespace DRCOG.Data
             cmd.Parameters.AddWithValue("@StatusId ", Enums.RtpTimePeriodStatus.Pending);
             this.ExecuteNonQuery(cmd);
         }
-
+#endif
         public void SetPlanCurrent(int timePeriodId)
         {
             SqlCommand cmd = new SqlCommand("[RTP].[SetPlanCurrent]");

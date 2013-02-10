@@ -63,7 +63,7 @@ namespace DRCOG.Domain.Interfaces
         string RemoveCycleFromTimePeriod(int cycleId);
         string CreateCycle(string cycle);
         string UpdateCycleName(int cycleId, string cycle);
-        void CreateRtp(string timePeriod);
+        //void CreateRtp(string timePeriod);
         IDictionary<int, string> GetPlanAvailableProjects(int planId, int cycleId);
 
         IDictionary<int, string> GetPlanScenariosByCycleId(int cycleId);

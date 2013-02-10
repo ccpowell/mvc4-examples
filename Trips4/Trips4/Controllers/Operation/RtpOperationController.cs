@@ -34,14 +34,11 @@ namespace Trips4.Controllers.Operation
             return message.message;
         }
 
-        public class CreatePlanRequest
-        {
-            public string PlanName { get; set; }
-        }
 
-        public int CreatePlan(CreatePlanRequest request)
+        [HttpPost]
+        public int CreatePlan(Trips4.Data.TripsRepository.RtpCreatePlanRequest request)
         {
-            return 42;
+            return TripsRepository.RtpCreatePlan(request);
         }
     }
 }

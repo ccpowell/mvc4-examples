@@ -184,10 +184,11 @@ Inherits="System.Web.Mvc.ViewPage<DRCOG.Domain.ViewModels.RTP.ProjectSearchViewM
                         Exclude
                     </span>
                     <br /> <%--needed to push scenario-container below when actived by jquery--%>
+                    <%-- 
                 <span id="scenario-container" style="display: none; ">
                     <label for="ProjectSearchModel.NetworkID">Scenario:</label>
                     <select class="mediumInputElement not-required highlight-red" id="ProjectSearchModel_NetworkID" name="ProjectSearchModel.NetworkID" size="1"></select>
-                    <%--<label>Cycle:</label>
+                    --%><%--<label>Cycle:</label>
                     <%= Html.DropDownList("ProjectSearchModel.AmendmentStatusID", 
                         true,
                         new SelectList(Model.AvailableAmendmentStatuses, "key", "value", Model.ProjectSearchModel.AmendmentStatusID),

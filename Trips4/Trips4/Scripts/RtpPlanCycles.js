@@ -47,7 +47,6 @@ App.ui = (function ($) {
             type: type,
             data: pc,
             success: function (data, textStatus, jqXHR) {
-                alert("okay");
                 window.location.reload();
             }
         });
@@ -72,10 +71,10 @@ App.ui = (function ($) {
 
     // Edit the cycle just fetched from the server
     function editCycle(cycle) {
-        setEditPlanCycle(cycle);
         $dlgAddCycle.dialog("open")
             .dialog("option", { title: "Edit Plan Cycle" })
             .find("form").validate().resetForm();
+        setEditPlanCycle(cycle);
         return false;
     }
 

@@ -68,40 +68,45 @@
         </form>
     </div>
     <script type="text/javascript">
-    var createRtpUrl = "<%=Url.Action("CreateRtp","RTP")%>";
-    
-    $(document).ready(function() {
-        var planName = $("#planName"),
-            //startYear = $("#startYear"),
-			//endYear = $("#endYear"),
-			allFields = $([]).add(planName),//.add(startYear).add(startYear),
-			rtps = $("#validateRtps");
-            
-        function CreateRtpCallback(){
-            $("#dialog").dialog('close');
-            location.reload();
-        }
-
-        //wire up the button
-        $('#create-rtp').button().click(function() {
-            $('#dialog').dialog('open');
-        });
-
-        $("#dialog").dialog({
-            bgiframe: true,
-            autoOpen: false,
-            width: 650,
-            modal: true,
-            buttons: {
-                'Create New RTP': function() {
-                    $.post(createRtpUrl, {planName:planName.val()}, CreateRtpCallback);
-                },
-                Cancel: function() {
-                    $(this).dialog('close');
-                }
+        $(document).ready(function () {
+            function CreateRtpCallback() {
+                $("#dialog").dialog('close');
+                location.reload();
             }
+
+            //wire up the button
+            $('#create-rtp').button().click(function () {
+                $('#dialog').dialog('open')
+                    .find("form").validate().resetForm();
+            });
+
+            $("#dialog").dialog({
+                bgiframe: true,
+                autoOpen: false,
+                width: 650,
+                modal: true,
+                buttons: {
+                    'Create New RTP': function () {
+                        var stuff = {
+                            PlanName: $("#planName").val(),
+                            CycleName: $("#cycle-name").val(),
+                            CycleDescription: $("#cycle-description").val()
+                        };
+                        if (!$('#dialog form').valid()) {
+                            alert('invalid form');
+                            return;
+                        }
+                        App.postit("/Operation/RtpOperation/CreatePlan", {
+                            data: JSON.stringify(stuff),
+                            success: CreateRtpCallback
+                        });
+                    },
+                    Cancel: function () {
+                        $(this).dialog('close');
+                    }
+                }
+            });
         });
-    });
 
     </script>
 </asp:Content>

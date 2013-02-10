@@ -57,7 +57,15 @@ namespace Trips4.Controllers.Operation
             var results = new List<System.Web.Mvc.SelectListItem>();
             try
             {
-                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId();
+                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId(request.rtpPlanYearId);
+                if (currentCycleId == 0)
+                {
+                    currentCycleId = TripsRepository.GetRtpCurrentPlanId();
+                }
+                if (currentCycleId == 0)
+                {
+                    throw new Exception("There is no Current Plan, or it has no Active Cycle");
+                }
                 var availableProjects = RtpRepository.GetAmendableProjects(currentCycleId, true).ToList();
                 availableProjects.ForEach(x => { results.Add(new System.Web.Mvc.SelectListItem { Text = x.Cycle.Name + ": " + x.ProjectName, Value = x.ProjectVersionId.ToString() }); });
             }
@@ -94,7 +102,17 @@ namespace Trips4.Controllers.Operation
         {
             try
             {
-                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId();
+                var currentCycleId = TripsRepository.GetRtpActivePlanCycleId(request.rtpPlanYearId);
+                if (currentCycleId == 0)
+                {
+                    Logger.Debug("Getting projects from Current Plan");
+                    var planId = TripsRepository.GetRtpCurrentPlanId();
+                    currentCycleId = TripsRepository.GetRtpActivePlanCycleId(planId);
+                }
+                if (currentCycleId == 0)
+                {
+                    throw new Exception("There is no Current Plan, or it has no Active Cycle");
+                }
                 return RtpRepository.GetAmendableProjects(currentCycleId, false);
             }
             catch (Exception ex)

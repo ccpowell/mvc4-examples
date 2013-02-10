@@ -15,7 +15,7 @@ namespace Trips4.Data
 
         public int GetRtpPlanYearId(string rtpYear)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var tper = db.TimePeriods.FirstOrDefault(tp => tp.TimePeriod1 == rtpYear && tp.TimePeriodTypeID == 3);
                 if (tper == null)
@@ -28,7 +28,7 @@ namespace Trips4.Data
 
         public int GetTipYearId(string year)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var tper = db.TimePeriods.FirstOrDefault(tp => tp.TimePeriod1 == year && tp.TimePeriodTypeID == 2);
                 if (tper == null)
@@ -42,7 +42,7 @@ namespace Trips4.Data
         public IEnumerable<DRCOG.Domain.ViewModels.RTP.PlanCycle> GetRtpPlanCycles(int rtpYearId)
         {
             var result = new List<DRCOG.Domain.ViewModels.RTP.PlanCycle>();
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var tpcs = db.TimePeriodCycles.Where(t => t.TimePeriodId == rtpYearId).OrderByDescending(t => t.ListOrder);
                 foreach (var tpc in tpcs)
@@ -61,7 +61,7 @@ namespace Trips4.Data
 
         public byte[] GetRtpModelerExtractDocument(int? timePeriodId, int? excludeBeforeYear)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var extracts = db.RtpModelerExtract(timePeriodId, excludeBeforeYear);
                 var results = extracts.ToArray();
@@ -80,7 +80,7 @@ namespace Trips4.Data
 
         public byte[] GetSurveyModelerExtractDocument(int? timePeriodId)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var extracts = db.SurveyModelerExtract(timePeriodId);
                 var results = extracts.ToArray();
@@ -99,7 +99,7 @@ namespace Trips4.Data
 
         public IEnumerable<SelectListItem> GetFundingIncrements(int tipYearId)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var tps = db.TimePeriods.Where(tp => tp.TimePeriodID == tipYearId).SingleOrDefault();
                 if (tps == null)
@@ -118,7 +118,7 @@ namespace Trips4.Data
         {
             var result = new DRCOG.Domain.ViewModels.RTP.ReportsViewModel();
 
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 result.RtpSummary = new DRCOG.Domain.Models.RTP.RtpSummary();
                 var summary = db.RtpGetSummary(year, null).FirstOrDefault();
@@ -178,7 +178,7 @@ namespace Trips4.Data
 
         public void UpdateRtpPlanCycle(DRCOG.Domain.ViewModels.RTP.PlanCycle cycle)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var found = db.Cycles.FirstOrDefault(c => c.id == cycle.Id);
                 if (found == null)
@@ -193,7 +193,7 @@ namespace Trips4.Data
 
         public DRCOG.Domain.ViewModels.RTP.PlanCycle GetRtpPlanCycle(int id)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var found = db.Cycles.FirstOrDefault(c => c.id == id);
                 if (found == null)
@@ -211,34 +211,39 @@ namespace Trips4.Data
         }
 
 
-        /// <summary>
-        /// Get the ID of the RTP Plan Cycle used as a source from which to copy projects.
-        /// It is the Active cycle in the Current plan.
-        /// </summary>
-        /// <returns>id of active cycle of current plan</returns>
-        public int GetRtpActivePlanCycleId()
+        public int GetRtpCurrentPlanId()
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
-                // get current plan, RtpTimePeriodStatus.Current
                 var plan = db.ProgramInstances.FirstOrDefault(
-                    tp => tp.StatusId == (int)Enums.RtpTimePeriodStatus.Current &&
-                    tp.ProgramID == (int)Enums.TimePeriodType.TimePeriod);
+                        tp => tp.StatusId == (int)Enums.RtpTimePeriodStatus.Current &&
+                        tp.ProgramID == (int)Enums.TimePeriodType.TimePeriod);
                 if (plan == null)
                 {
-                    throw new Exception("There is no Current RTP Plan");
+                    return 0;
                 }
-                var currentPlanId = plan.TimePeriodID;
+                return plan.TimePeriodID;
+            }
+        }
+
+        /// <summary>
+        /// Get the ID of the Active cycle in the Current plan.
+        /// </summary>
+        /// <returns>id of active cycle of current plan</returns>
+        public int GetRtpActivePlanCycleId(int planId)
+        {
+            using (var db = new Models.TRIPSEntities())
+            {
                 // we need to join Cycles and TimePeriodCycles to get Cycle
                 var cycle = db.Cycles.Join(db.TimePeriodCycles,
                     c => c.id,
                     tpc => tpc.CycleId,
                     (c, tpc) => new { StatusId = c.statusId, CycleId = c.id, PlanId = tpc.TimePeriodId })
-                    .Where(x => x.StatusId == (int)Enums.RTPCycleStatus.Active && x.PlanId == currentPlanId)
+                    .Where(x => x.StatusId == (int)Enums.RTPCycleStatus.Active && x.PlanId == planId)
                     .FirstOrDefault();
                 if (cycle == null)
                 {
-                    throw new Exception("No Active Cycle in Current RTP Plan");
+                    return 0;
                 }
                 return cycle.CycleId;
             }
@@ -251,7 +256,7 @@ namespace Trips4.Data
         /// <param name="id"></param>
         public void DeleteRtpPlanCycle(int id)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var cycle = db.Cycles.FirstOrDefault(c => c.id == id);
                 if (cycle == null)
@@ -276,7 +281,7 @@ namespace Trips4.Data
         /// <returns>ID of created Plan Cycle</returns>
         public int CreateRtpPlanCycle(DRCOG.Domain.ViewModels.RTP.PlanCycle cycle, int rtpYearId)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 // there can be only one cycle in this plan year with a status of New
                 var stId = db.StatusTypes.First(st => st.StatusType1 == "Cycle Status").StatusTypeID;
@@ -338,10 +343,10 @@ namespace Trips4.Data
         /// <remarks>TODO: cache the Funding Increment labels and IDs?</remarks>
         private class FundingIncrementSetter
         {
-            private Trips4.Data.Models.TRIPSEntities Db { get; set; }
+            private Models.TRIPSEntities Db { get; set; }
             private Models.TimePeriod Tp { get; set; }
 
-            public FundingIncrementSetter(Trips4.Data.Models.TRIPSEntities db, Models.TimePeriod tp)
+            public FundingIncrementSetter(Models.TRIPSEntities db, Models.TimePeriod tp)
             {
                 Db = db;
                 Tp = tp;
@@ -378,7 +383,7 @@ namespace Trips4.Data
         public DRCOG.Domain.Models.TipStatusModel GetTipStatus(int rtpYearId)
         {
             var model = new DRCOG.Domain.Models.TipStatusModel();
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var p = db.ProgramInstances.Single(pi => pi.TimePeriodID == rtpYearId);
                 var tp = db.TimePeriods.Single(t => t.TimePeriodID == rtpYearId);
@@ -422,7 +427,7 @@ namespace Trips4.Data
         /// <param name="model"></param>
         public void UpdateTipStatus(DRCOG.Domain.Models.TipStatusModel model)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var p = db.ProgramInstances.Single(pi => pi.TimePeriodID == model.TimePeriodId);
                 var tp = db.TimePeriods.Single(t => t.TimePeriodID == model.TimePeriodId);
@@ -456,7 +461,7 @@ namespace Trips4.Data
 
         // either find the current pending cycle or promote the new cycle. 
         // if neither exists, throw an exception.
-        private Models.Cycle RtpAssurePendingCycle(Trips4.Data.Models.TRIPSEntities db, int rtpPlanYearId)
+        private Models.Cycle RtpAssurePendingCycle(Models.TRIPSEntities db, int rtpPlanYearId)
         {
             var tp = db.TimePeriods.First(t => t.TimePeriodID == rtpPlanYearId);
             var pc = tp.TimePeriodCycles.FirstOrDefault(tpc => tpc.Cycle.statusId == (int)Enums.RTPCycleStatus.Pending);
@@ -479,7 +484,7 @@ namespace Trips4.Data
         /// <param name="projects">list of RTP ProjectVersion IDs</param>
         public void RtpAmendProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
                 Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
@@ -522,7 +527,7 @@ namespace Trips4.Data
         /// <param name="projects">list of RTP ProjectVersion IDs</param>
         public void RtpAdoptProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
                 Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
@@ -571,7 +576,7 @@ namespace Trips4.Data
         /// <param name="projects">list of RTP ProjectVersion IDs</param>
         public void RtpRestoreProjects(int rtpPlanYearId, IEnumerable<int> projects)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 var pc = RtpAssurePendingCycle(db, rtpPlanYearId);
                 Logger.Debug("RTP Pending Cycle is " + pc.id.ToString());
@@ -610,9 +615,12 @@ namespace Trips4.Data
 
         public IEnumerable<SelectListItem> RtpGetSponsorOrganizations(int rtpPlanYearId)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
+                // we need to fetch these or the ToString will be sent to SQL server (and fail)
                 var orgs = db.RTPProgramInstanceSponsors.Where(s => s.TimePeriodID == rtpPlanYearId).Select(r => r.SponsorOrganization.Organization).ToArray();
+                
+                // make a list
                 return orgs.Select(o => new SelectListItem()
                 {
                     Text = o.OrganizationName,
@@ -623,7 +631,7 @@ namespace Trips4.Data
 
         public void TryCatchError()
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 db.TryCatchError();
             }
@@ -637,7 +645,7 @@ namespace Trips4.Data
         /// <param name="projects"></param>
         public void SurveyAmendProjects(int surveyId, IEnumerable<int> projects)
         {
-            using (var db = new Trips4.Data.Models.TRIPSEntities())
+            using (var db = new Models.TRIPSEntities())
             {
                 foreach (var pid in projects)
                 {
@@ -660,5 +668,110 @@ namespace Trips4.Data
                 db.SaveChanges();
             }
         }
+
+        public class RtpCreatePlanRequest
+        {
+            public string PlanName { get; set; }
+            public string CycleName { get; set; }
+            public string CycleDescription { get; set; }
+        }
+        
+        public int RtpCreatePlan(RtpCreatePlanRequest request)
+        {
+            using (var db = new Models.TRIPSEntities())
+            {
+                var ov = new System.Data.Objects.ObjectParameter("TimePeriodId", typeof(int));
+                db.RtpCreatePlan(request.PlanName, request.CycleName, request.CycleDescription, ov);
+                return (int)ov.Value;
+            }
+        }
+
+#if using_ef_for_this
+        public int RtpCreatePlan(RtpCreatePlanRequest request)
+        {
+            using (var db = new Models.TRIPSEntities())
+            {
+                // create a time period for the plan
+                var tp = new Models.TimePeriod()
+                {
+                    TimePeriodTypeID = (int)Enums.TimePeriodType.PlanYear,
+                    TimePeriod1 = request.PlanName
+                };
+                db.TimePeriods.AddObject(tp);
+
+                // create pieces of the plan, with a status of Pending
+                var pi = new Models.ProgramInstance()
+                {
+                    StatusId = (int)Enums.RtpTimePeriodStatus.Pending,
+                    ProgramID = 2,
+                    TimePeriod = tp
+                };
+                db.ProgramInstances.AddObject(pi);
+
+                var rtpi = new Models.RTPProgramInstance()
+                {
+                    ProgramInstance = pi,
+                    TimePeriod = tp
+                };
+                db.RTPProgramInstances.AddObject(rtpi);
+                
+                db.SaveChanges();
+                Logger.Debug("created RTP Program Instance " + rtpi.RTPProgramID.ToString() + ", " + rtpi.TimePeriodID.ToString());
+
+                // we had to save the changes to get IDs for the created objects,
+                // since the TimePeriodID is part of a compound key.
+
+                // TODO: get active plan
+                int activePlan = 78;
+
+                // copy the sponsors from the current plan
+                foreach (var sponsor in db.RTPProgramInstanceSponsors.Where(r => r.TimePeriodID == activePlan))
+                {
+                    // first create a base ProgramInstanceSponsor
+                    var pis = new Models.ProgramInstanceSponsor()
+                    {
+                        ProgramID = sponsor.RTPProgramID,
+                        SponsorID = sponsor.SponsorID,
+                        TimePeriodID = tp.TimePeriodID
+                    };
+                    db.ProgramInstanceSponsors.AddObject(pis);
+
+                    var copy = new Models.RTPProgramInstanceSponsor()
+                    {
+                        EmailDate = sponsor.EmailDate,
+                        FormPrintedDate = sponsor.FormPrintedDate,
+                        ReadyDate = sponsor.ReadyDate,
+                        RTPProgramID = sponsor.RTPProgramID,
+                        SponsorID = sponsor.SponsorID,
+                        TimePeriodID = tp.TimePeriodID
+                    };
+                    db.RTPProgramInstanceSponsors.AddObject(copy);
+                }
+
+                // create a pending cycle
+                var mcycle = new Models.Cycle()
+                {
+                    cycle1 = request.CycleName,
+                    Description = request.CycleDescription,
+                    statusId = (int)Enums.RTPCycleStatus.Pending,
+                    priorCycleId = null
+                };
+                db.Cycles.AddObject(mcycle);
+
+                var mtpc = new Models.TimePeriodCycle()
+                {
+                    Cycle = mcycle,
+                    TimePeriodId = tp.TimePeriodID,
+                    ListOrder = 1
+                };
+                db.TimePeriodCycles.AddObject(mtpc);
+                db.SaveChanges();
+                Logger.Debug("copied sponsors from RTP Plan " + activePlan.ToString());
+                Logger.Debug("created RTP Plan Cycle " + mcycle.id.ToString());
+
+                return tp.TimePeriodID;
+            }
+        }
+#endif
     }
 }

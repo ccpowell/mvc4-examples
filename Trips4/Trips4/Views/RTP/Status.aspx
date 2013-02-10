@@ -382,7 +382,8 @@
             dataType: "json",
             success: function(response, textStatus, XMLHttpRequest) {
                 $('#availableProjects').clearSelect().addItems(response);
-                $('#scenario-container').show();
+                // scenario sql broken in RTP.tfn_GetProjects 
+                // $('#scenario-container').show();
             },
             error: function(response, textStatus, AjaxException) {
                 alert("error");

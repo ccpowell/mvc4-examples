@@ -25,7 +25,7 @@ function getScenarios(selected) {
         dataType: "json",
         success: function(response, textStatus, XMLHttpRequest) {
             $('#ProjectSearchModel_NetworkID').clearSelect().addItems(response);
-            $('#scenario-container').show();
+            //$('#scenario-container').show();
         },
         error: function(response, textStatus, AjaxException) {
             alert("error");

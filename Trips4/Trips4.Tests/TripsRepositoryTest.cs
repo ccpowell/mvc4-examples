@@ -42,10 +42,25 @@ namespace Trips4.Tests
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext testContext)
+        {
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var target = new NLog.Targets.DebuggerTarget();
+
+            config.AddTarget("debugger", target);
+
+            var rule = new NLog.Config.LoggingRule("*", NLog.LogLevel.Debug, target);
+
+            config.LoggingRules.Add(rule);
+
+            NLog.LogManager.Configuration = config;
+
+            var _logger = NLog.LogManager.GetCurrentClassLogger();
+
+            _logger.Debug("Using programmatic config");
+        }
         //
         //Use ClassCleanup to run code after all tests in a class have run
         //[ClassCleanup()]
@@ -154,7 +169,25 @@ namespace Trips4.Tests
         {
             TripsRepository target = new TripsRepository();
             int actual;
-            actual = target.GetRtpActivePlanCycleId();
+            actual = target.GetRtpActivePlanCycleId(78);
+            Assert.IsTrue(actual > 0);
+        }
+
+        /// <summary>
+        ///A test for RtpCreatePlan
+        ///</summary>
+        [TestMethod()]
+        public void RtpCreatePlanTest()
+        {
+            TripsRepository target = new TripsRepository(); 
+            TripsRepository.RtpCreatePlanRequest request = new TripsRepository.RtpCreatePlanRequest()
+            {
+                PlanName = "2200",
+                CycleName = "2200-1",
+                CycleDescription = "test cycle for test RTP"
+            };
+            int actual;
+            actual = target.RtpCreatePlan(request);
             Assert.IsTrue(actual > 0);
         }
     }

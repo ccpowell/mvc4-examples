@@ -3118,6 +3118,48 @@ namespace Trips4.Data.Models
     
             return base.ExecuteFunction("SurveyCopyProject", projectVersionIDParameter, surveyIdParameter, destinationYearParameter, newProjectVersionId);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="planName">No Metadata Documentation available.</param>
+        /// <param name="cycleName">No Metadata Documentation available.</param>
+        /// <param name="cycleDescription">No Metadata Documentation available.</param>
+        /// <param name="timePeriodId">No Metadata Documentation available.</param>
+        public int RtpCreatePlan(global::System.String planName, global::System.String cycleName, global::System.String cycleDescription, ObjectParameter timePeriodId)
+        {
+            ObjectParameter planNameParameter;
+            if (planName != null)
+            {
+                planNameParameter = new ObjectParameter("PlanName", planName);
+            }
+            else
+            {
+                planNameParameter = new ObjectParameter("PlanName", typeof(global::System.String));
+            }
+    
+            ObjectParameter cycleNameParameter;
+            if (cycleName != null)
+            {
+                cycleNameParameter = new ObjectParameter("CycleName", cycleName);
+            }
+            else
+            {
+                cycleNameParameter = new ObjectParameter("CycleName", typeof(global::System.String));
+            }
+    
+            ObjectParameter cycleDescriptionParameter;
+            if (cycleDescription != null)
+            {
+                cycleDescriptionParameter = new ObjectParameter("CycleDescription", cycleDescription);
+            }
+            else
+            {
+                cycleDescriptionParameter = new ObjectParameter("CycleDescription", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("RtpCreatePlan", planNameParameter, cycleNameParameter, cycleDescriptionParameter, timePeriodId);
+        }
 
         #endregion
     }
@@ -21589,6 +21631,30 @@ namespace Trips4.Data.Models
         private global::System.DateTime _DateCreated;
         partial void OnDateCreatedChanging(global::System.DateTime value);
         partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> BikePedElement
+        {
+            get
+            {
+                return _BikePedElement;
+            }
+            set
+            {
+                OnBikePedElementChanging(value);
+                ReportPropertyChanging("BikePedElement");
+                _BikePedElement = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BikePedElement");
+                OnBikePedElementChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _BikePedElement;
+        partial void OnBikePedElementChanging(Nullable<global::System.Boolean> value);
+        partial void OnBikePedElementChanged();
 
         #endregion
     
