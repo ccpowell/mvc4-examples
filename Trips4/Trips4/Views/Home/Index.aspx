@@ -26,24 +26,10 @@
             Robert Spotts: <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#115;&#112;&#111;&#116;&#116;&#115;&#64;&#100;&#114;&#99;&#111;&#103;&#46;&#111;&#114;&#103;'>&#114;&#115;&#112;&#111;&#116;&#116;&#115;&#64;&#100;&#114;&#99;&#111;&#103;&#46;&#111;&#114;&#103;</a> | 303.480.5626 for TIP Projects
         </li>
         <li>
-            Fred Sandal: <a href='&#102;&#115;&#097;&#110;&#100;&#097;&#108;&#064;&#100;&#114;&#099;&#111;&#103;&#046;&#111;&#114;&#103;'>&#102;&#115;&#097;&#110;&#100;&#097;&#108;&#064;&#100;&#114;&#099;&#111;&#103;&#046;&#111;&#114;&#103;</a> | 303.480.6731 for RTP projects
-        </li>
-        <li>
             Lawrence Tilong: <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#116;&#105;&#108;&#111;&#110;&#103;&#64;&#100;&#114;&#99;&#111;&#103;&#46;&#111;&#114;&#103;'>&#108;&#116;&#105;&#108;&#111;&#110;&#103;&#64;&#100;&#114;&#99;&#111;&#103;&#46;&#111;&#114;&#103;</a> | 303.480.6761 for Survey projects
         </li>
     </ul>
     
-    <%--<h2>Operations</h2>--%>
-    <%--<p>Based on your permissions you can access the following functions:</p>--%>
-    
-    <%--<div>
-        <ul class="topMenu">
-            <li><a href="<%= Url.Action("Index", "Tip") %>"><img src="<%=ResolveUrl("~/content/images/i_tip_list.png") %>" alt="Jump to TIP List"/></a><span>TIP</span></li>
-            <li><a href="<%= Url.Action("Index", "RTP") %>"><img src="<%=ResolveUrl("~/content/images/i_rtp_list.png") %>" alt="Jump to RTP List"/></a><span>RTP</span></li>
-            <li><a href="<%= Url.Action("Index", "Survey", new {year="0"})%>"><img src="<%=ResolveUrl("~/content/images/i_survey_list.png") %>" alt="Jump to Survey List"/></a><span>Survey</span></li>
-        </ul>
-    </div>--%>
-
     <p>
         <div class="boldFont">Summary of Projects in the Transportation Improvement Program (TIP)</div><br />
         The Transportation Improvement Program (TIP) identifies all federally funded transportation projects in the Denver region over a six-year period.  It is prepared by DRCOG every four years, and must show it meets air quality requirements.  The most recently adopted TIP covers federal fiscal years 2012-2017.
