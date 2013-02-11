@@ -20,6 +20,9 @@ namespace DRCOG.TIP.Services.TIP
 {
     public class AmendmentStrategy
     {
+
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
         protected readonly IProjectRepository ProjectRepository;
         protected readonly ProjectAmendments Amendment;
 
@@ -31,34 +34,38 @@ namespace DRCOG.TIP.Services.TIP
              * Return to details page
         */
 
-        public AmendmentStrategy(IProjectRepository repo, ProjectAmendments amendment)
+        protected AmendmentStrategy(IProjectRepository repo, ProjectAmendments amendment)
         {
             ProjectRepository = repo;
             Amendment = amendment;
         }
-        
-        public IAmendmentStrategy PickStrategy()
+
+        public static IAmendmentStrategy PickStrategy(IProjectRepository repo, ProjectAmendments amendment)
         {
             IAmendmentStrategy strategy = null;
 
-            switch (Amendment.AmendmentStatusId)
+            switch (amendment.AmendmentStatusId)
             {
                 case 10734: // Amended
                 case (Int32)Enums.TIPAmendmentStatus.Amended:
                 case (Int32)Enums.TIPAmendmentStatus.Adopted:
-                    strategy = new AmendedToSubmitted(ProjectRepository, Amendment);
+                    strategy = new AmendedToSubmitted(repo, amendment);
                     break;
                 case 10736: // Approved
                 case 1769:
-                    strategy = new ApprovalToSubmitted(ProjectRepository, Amendment);
+                    strategy = new ApprovalToSubmitted(repo, amendment);
                     break;
                 case 10740: // Proposed
                 case 1767:
-                    strategy = new ProposedToAmended(ProjectRepository, Amendment);
+                    strategy = new ProposedToAmended(repo, amendment);
                     break;
                 case 10742: // Submitted
                 case 1770:
-                    strategy = new SubmittedToProposed(ProjectRepository, Amendment);
+                    strategy = new SubmittedToProposed(repo, amendment);
+                    break;
+
+                default:
+                    Logger.Warn("Unknown TIP Amendment status " + amendment.AmendmentStatusId);
                     break;
             }
             return strategy;

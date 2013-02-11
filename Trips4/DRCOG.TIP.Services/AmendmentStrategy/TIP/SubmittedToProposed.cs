@@ -32,24 +32,14 @@ namespace DRCOG.TIP.Services.TIP
         protected ProjectAmendments UpdateStatus(ProjectAmendments amendment)
         {
             amendment.AmendmentStatusId = (Int32)Enums.TIPAmendmentStatus.Proposed;
-            //amendment.AmendmentTypeId = (Int32)Enums.AmendmentType.Administrative;
             amendment.VersionStatusId = (Int32)Enums.TIPVersionStatus.Pending;
             return amendment;
         }
-
-        protected void Copy()
-        {
-            Amendment.PreviousProjectVersionId = (Int32)Amendment.ProjectVersionId;
-            Amendment.ProjectVersionId = ProjectRepository.CopyProject(Amendment.PreviousProjectVersionId);
-        }
-
-
+        
         #region IAmendmentStrategy Members
 
         public Int32 Amend()
         {
-            Copy();
-
             ProjectRepository.UpdateProjectAmendmentStatus(Amendment);
             return (Int32)Amendment.ProjectVersionId;
         }

@@ -36,7 +36,11 @@ namespace Trips4.Controllers.Api
             try
             {
                 amendment.LocationMapPath = Trips4.Configuration.DRCOGConfig.GetConfig().LocationMapPath;
-                IAmendmentStrategy strategy = new AmendmentStrategy(ProjectRepository, amendment).PickStrategy();
+                IAmendmentStrategy strategy = AmendmentStrategy.PickStrategy(ProjectRepository, amendment);
+                if (strategy == null)
+                {
+                    throw new Exception("Cannot process this amendment status");
+                }
                 int projectVersionId = strategy.Amend();
                 return projectVersionId;
             }

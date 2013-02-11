@@ -1234,6 +1234,7 @@ namespace Trips4.Controllers
             return Json(result);
         }
 
+#if moved_to_api
         [Trips4.Filters.SessionAuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
         public JsonResult Amend(int projectVersionId)
         {
@@ -1274,7 +1275,7 @@ namespace Trips4.Controllers
             });
 
         }
-
+#endif
         public ActionResult ResetSearchModel(string year)
         {
             LoadSession();
