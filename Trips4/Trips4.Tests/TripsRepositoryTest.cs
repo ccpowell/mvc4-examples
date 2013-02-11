@@ -177,6 +177,7 @@ namespace Trips4.Tests
         ///A test for RtpCreatePlan
         ///</summary>
         [TestMethod()]
+        [Ignore]
         public void RtpCreatePlanTest()
         {
             TripsRepository target = new TripsRepository(); 
