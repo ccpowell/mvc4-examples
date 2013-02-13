@@ -8,8 +8,8 @@ using DRCOG.Domain.Models;
 
 namespace Trips4.Tests
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for TripsRepositoryTest and is intended
     ///to contain all TripsRepositoryTest Unit Tests
@@ -121,8 +121,8 @@ namespace Trips4.Tests
         [TestMethod()]
         public void GetTipStatusTest()
         {
-            TripsRepository target = new TripsRepository(); 
-            int rtpYearId = 80; 
+            TripsRepository target = new TripsRepository();
+            int rtpYearId = 80;
             TipStatusModel actual;
             actual = target.GetTipStatus(rtpYearId);
             Assert.IsNotNull(actual);
@@ -156,10 +156,10 @@ namespace Trips4.Tests
             }
             catch (Exception)
             {
-                Assert.IsTrue(true, "it's okay");
+                thrown = true;
             }
 
-                Assert.Fail("TryCatchError did not throw an error!");
+            Assert.IsTrue(thrown, "TryCatchError did not throw an error!");
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Trips4.Tests
         [Ignore]
         public void RtpCreatePlanTest()
         {
-            TripsRepository target = new TripsRepository(); 
+            TripsRepository target = new TripsRepository();
             TripsRepository.RtpCreatePlanRequest request = new TripsRepository.RtpCreatePlanRequest()
             {
                 PlanName = "2200",
