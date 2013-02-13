@@ -307,7 +307,7 @@ App.ui = (function ($) {
                 aoColumns: [
                     { sTitle: "Name", mData: "Name" },
                     { sTitle: "Operations", mData: "Name", bSortable: false, mRender: function (field, op, oData) {
-                        return '<span class="table-button">View Members</span';
+                        return '<span class="table-button">View Members</span>';
                     }
                     }
                 ]

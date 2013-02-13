@@ -149,15 +149,17 @@ namespace Trips4.Tests
         public void TryCatchErrorTest()
         {
             TripsRepository target = new TripsRepository();
+            bool thrown = false;
             try
             {
                 target.TryCatchError();
-                Assert.Fail("TryCatchError did not throw an error!");
             }
             catch (Exception)
             {
                 Assert.IsTrue(true, "it's okay");
             }
+
+                Assert.Fail("TryCatchError did not throw an error!");
         }
 
         /// <summary>

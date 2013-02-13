@@ -11,7 +11,7 @@ using Trips4.Data;
 
 namespace Trips4.Controllers.Operation
 {
-    [AuthorizeAttribute(Roles = "Administrator, TIP Administrator")]
+    [AuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
     public class RtpOperationController : ApiController
     {
         private readonly IRtpRepository RtpRepository;
