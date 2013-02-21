@@ -150,12 +150,12 @@
             <p>
                 <label for="facilityName">
                     Facility Name:</label>
-                <input type="text" name="facilityName" class="big required" id="facilityName" />
+                <input type="text" name="facilityName" class="big required w400" id="facilityName" />
             </p>
             <p>
                 <label for="projectName">
                     Project Name:</label>
-                <input type="text" name="projectName" class="big required" id="projectName" />
+                <input type="text" name="projectName" class="big required w400" id="projectName" />
             </p>
             <p>
                 <label for="availableSponsors">

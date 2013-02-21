@@ -2180,3 +2180,7 @@ table.data-table tbody td.pointer:hover
 	border-width: 0px 1px 1px 1px;
 }
 */
+#segment-details-dialog label
+{
+    width: 140px;
+}

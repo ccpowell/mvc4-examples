@@ -455,6 +455,8 @@
     <Content Include="Scripts\boxy.js" />
     <Content Include="Scripts\BrowserDetect.js" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Copy of RtpProjectScope.js" />
+    <Content Include="Scripts\RtpProjectScope.js" />
     <Content Include="Scripts\_PageScriptPrototype.js" />
     <Content Include="Scripts\TipProjectLocation.js" />
     <Content Include="Scripts\jquery.dts.extensions.js" />
@@ -775,6 +777,7 @@
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
