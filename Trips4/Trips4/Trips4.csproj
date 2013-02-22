@@ -190,6 +190,8 @@
     <Compile Include="Configuration\DRCOGConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BuildInfoController.cs" />
+    <Compile Include="Controllers\Api\RtpProjectLrsController.cs" />
+    <Compile Include="Controllers\Api\RtpProjectSegmentController.cs" />
     <Compile Include="Controllers\Api\RtpProjectItemController.cs" />
     <Compile Include="Controllers\Api\TipProjectAmendmentController.cs" />
     <Compile Include="Controllers\Api\TipProjectScopeController.cs" />

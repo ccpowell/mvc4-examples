@@ -6,6 +6,7 @@ using OfficeOpenXml;
 using System.Web.Mvc;
 using DRCOG.Domain;
 using System.Transactions;
+using System.Xml.Linq;
 
 namespace Trips4.Data
 {
@@ -619,7 +620,7 @@ namespace Trips4.Data
             {
                 // we need to fetch these or the ToString will be sent to SQL server (and fail)
                 var orgs = db.RTPProgramInstanceSponsors.Where(s => s.TimePeriodID == rtpPlanYearId).Select(r => r.SponsorOrganization.Organization).ToArray();
-                
+
                 // make a list
                 return orgs.Select(o => new SelectListItem()
                 {
@@ -675,7 +676,7 @@ namespace Trips4.Data
             public string CycleName { get; set; }
             public string CycleDescription { get; set; }
         }
-        
+
         public int RtpCreatePlan(RtpCreatePlanRequest request)
         {
             using (var db = new Models.TRIPSEntities())
@@ -685,6 +686,113 @@ namespace Trips4.Data
                 return (int)ov.Value;
             }
         }
+
+        private Models.LR CompileLrs(DRCOG.Domain.Models.LRS lrs)
+        {
+            var xdoc = new XDocument(new XElement("item",
+                   new XElement("BEGINMEASU", lrs.BEGINMEASU),
+                   new XElement("Comments", lrs.Comments),
+                   new XElement("ENDMEASURE", lrs.ENDMEASURE),
+                   new XElement("Improvetype", lrs.Improvetype),
+                   new XElement("Network", lrs.Network),
+                   new XElement("Routename", lrs.Routename)));
+            var model = new Models.LR()
+            {
+                ProjectSegmentId = lrs.SegmentId,
+                Data = xdoc.ToString(),
+                LRSSchemeId = 1 // our only schema
+            };
+            return model;
+        }
+
+        /// <summary>
+        /// Update the XML data in an RTP Project LRS record.
+        /// </summary>
+        /// <param name="lrs">data</param>
+        public void RtpUpdateLrs(DRCOG.Domain.Models.LRS lrs)
+        {
+            var model = CompileLrs(lrs);
+            using (var db = new Models.TRIPSEntities())
+            {
+                var record = db.LRS.First(l => l.Id == lrs.Id);
+                record.Data = model.Data;
+                db.SaveChanges();
+            }
+        }
+
+        public int RtpCreateLrs(DRCOG.Domain.Models.LRS lrs)
+        {
+            var model = CompileLrs(lrs);
+            using (var db = new Models.TRIPSEntities())
+            {
+                db.LRS.AddObject(model);
+                db.SaveChanges();
+                return model.Id;
+            }
+        }
+
+        private DRCOG.Domain.Models.LRS ParseLrs(Models.LR lrs)
+        {
+            try
+            {
+                XDocument xdoc = XDocument.Parse(lrs.Data);
+                var xitem = xdoc.Root;
+                var model = new DRCOG.Domain.Models.LRS()
+                {
+                    Id = lrs.Id,
+                    SegmentId = lrs.ProjectSegmentId,
+                    BEGINMEASU = (double)xitem.Element("BEGINMEASU"),
+                    Comments = (string)xitem.Element("Comments"),
+                    ENDMEASURE = (double)xitem.Element("ENDMEASURE"),
+                    Improvetype = (string)xitem.Element("Improvetype"),
+                    Network = (string)xitem.Element("Network"),
+                    Routename = (string)xitem.Element("Routename"),
+                };
+                return model;
+            }
+            catch (Exception)
+            {
+                Logger.Warn("Invalid LRS data " + lrs.Id.ToString());
+            }
+            return null;
+        }
+
+        public DRCOG.Domain.Models.LRS RtpGetLrs(int id)
+        {
+            using (var db = new Models.TRIPSEntities())
+            {
+                var lrs = ParseLrs(db.LRS.First(l => id == l.Id));
+                if (lrs == null)
+                {
+                    throw new Exception("Invalid data in LRS " + id.ToString());
+                }
+                return lrs;
+            }
+        }
+
+        public void RtpDeleteLrs(int id)
+        {
+            using (var db = new Models.TRIPSEntities())
+            {
+                var lrs = db.LRS.FirstOrDefault(l => id == l.Id);
+                if (lrs != null)
+                {
+                    db.LRS.DeleteObject(lrs);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public IEnumerable<DRCOG.Domain.Models.LRS> RtpGetLrsForSegment(int segmentId)
+        {
+            var lrsl = new List<DRCOG.Domain.Models.LRS>(); using (var db = new Models.TRIPSEntities())
+            {
+                lrsl.AddRange(db.LRS.Where(l => l.ProjectSegmentId == segmentId).ToArray().Select(lrs => ParseLrs(lrs)).Where(l => l != null));
+            }
+            return lrsl;
+        }
+
+
 
 #if using_ef_for_this
         public int RtpCreatePlan(RtpCreatePlanRequest request)

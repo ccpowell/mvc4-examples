@@ -12,6 +12,7 @@ using DRCOG.Domain.ViewModels.RTP.Project;
 
 namespace Trips4.Controllers.Api
 {
+    [AuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
     public class RtpProjectInfoController : ApiController
     {
         private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -26,7 +27,6 @@ namespace Trips4.Controllers.Api
             RtpProjectRepository = rprepo;
         }
 
-        [AuthorizeAttribute(Roles = "Administrator, RTP Administrator")]
         public void Put(InfoViewModel viewModel)
         {
             // copy this one since it is not on the form

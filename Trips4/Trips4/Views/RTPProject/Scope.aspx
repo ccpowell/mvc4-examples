@@ -134,10 +134,8 @@
                         <td>
                             <%if (Model.ProjectSummary.IsEditable())
                               { %>
-                            <button data-segment-details='<%=item.SegmentId.ToString() %>'>
-                                Details</button>
-                            <button data-segment-delete='<%=item.SegmentId.ToString() %>'>
-                                Delete</button>
+                            <span class="table-button" data-segment-details='<%=item.SegmentId.ToString() %>'>Details</span>
+                            <span class="table-button" data-segment-delete='<%=item.SegmentId.ToString() %>'>Delete</span>
                             <% } %>
                         </td>
                     </tr>
@@ -239,6 +237,52 @@
                     </td>
                 </tr>
             </table>
+            <button id="segment-details-add-lrs">Add LRS Record</button>
+            <table id="segment-details-lrs-table">
+                <caption>
+                    LRS Records</caption>
+                <thead>
+                    <tr>
+                        <th>
+                            Route Name
+                        </th>
+                        <th>
+                            Measures
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="segment-lrs-dialog" title="LRS">
+            <p>
+                <label for="segment-lrs-Routename">
+                    Route Name</label>
+                <input type="text" id="segment-lrs-Routename" class="w200" />
+            </p>
+            <p>
+                <label for="segment-lrs-BEGINMEASU">
+                    Begin Measure</label>
+                <input type="text" id="segment-lrs-BEGINMEASU" class="w100" />
+            </p>
+            <p>
+                <label for="segment-lrs-ENDMEASURE">
+                    End Measure</label>
+                <input type="text" id="segment-lrs-ENDMEASURE" class="w100" />
+            </p>
+            <p>
+                <label for="segment-lrs-Comments">
+                    Comments</label>
+                <input type="text" id="segment-lrs-Comments" class="w200" />
+            </p>
+            <p>
+                <label for="segment-lrs-Offset">
+                    Offset</label>
+                <input type="text" id="segment-lrs-Offset" class="w100" />
+            </p>
         </div>
     </div>
 </asp:Content>

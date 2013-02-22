@@ -537,7 +537,7 @@ namespace DRCOG.Data
                             ,
                             DisplayType = rdr["DISPLAY_TYPE"].ToString()
                             ,
-                            MaxLenght = rdr["CHARACTER_MAXIMUM_LENGTH"].ToString().SmartParseDefault<int>(default(int))
+                            MaxLength = rdr["CHARACTER_MAXIMUM_LENGTH"].ToString().SmartParseDefault<int>(default(int))
                             ,
                             ColumnDefault = rdr["COLUMN_DEFAULT"].ToString()
                             ,

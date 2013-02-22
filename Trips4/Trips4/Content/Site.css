@@ -2151,10 +2151,29 @@ table.data-table tbody td.pointer
     color: #009ce0;
     text-decoration: underline;
 }
+
 table.data-table tbody td.pointer:hover
 {
     border: 1px solid #7ac0da;
     text-decoration: none;
+}
+
+/* a better way to make table buttons */
+span.table-button
+{
+    cursor: pointer;
+    font-size: .85em;
+    border: 1px solid #333;
+    padding: 2px 3px;
+    margin-left: 10px;
+    color: #22f;
+}
+
+span.table-button:hover
+{
+    border: 1px solid #7ac0da;
+    background-color: #22f;
+    color: #ffffff;
 }
 
 /* Styling for tabs used in page headers */
@@ -2181,6 +2200,11 @@ table.data-table tbody td.pointer:hover
 }
 */
 #segment-details-dialog label
+{
+    width: 140px;
+}
+
+#segment-lrs-dialog label
 {
     width: 140px;
 }

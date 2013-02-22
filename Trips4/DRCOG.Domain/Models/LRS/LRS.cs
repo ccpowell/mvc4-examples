@@ -9,14 +9,16 @@ namespace DRCOG.Domain.Models
 {
     public class LRS
     {
-        public string RouteName { get; set; }
-        public double BeginMeasure { get; set; }
-        public double EndMeasure { get; set; }
-        public string ImprovementType { get; set; }
+        public string Routename { get; set; }
+        public double BEGINMEASU { get; set; }
+        public double ENDMEASURE { get; set; }
+        public int? ImproveId { get; set; }
+        public string Improvetype { get; set; }
         public string Comments { get; set; }
-        public int NetworkId { get; set; }
+        public string Network { get; set; }
         public int Offset { get; set; }
-
+        public int? SegmentId { get; set; }
+        public int Id { get; set; }
     }
 
     public class LRSRecord
@@ -38,7 +40,7 @@ namespace DRCOG.Domain.Models
         public string FriendlyName { get; set; }
         public string DataType { get; set; }
         public string DisplayType { get; set; }
-        public int MaxLenght { get; set; }
+        public int MaxLength { get; set; }
         public string ColumnDefault { get; set; }
         public bool IsNullable { get; set; }
         public bool IsRequired { get; set; }

@@ -193,5 +193,65 @@ namespace Trips4.Tests
             actual = target.RtpCreatePlan(request);
             Assert.IsTrue(actual > 0);
         }
+
+        /// <summary>
+        ///A test for RtpCreateLrs
+        ///</summary>
+        [TestMethod()]
+        public void RtpCreateLrsTest()
+        {
+            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
+            LRS lrs = new LRS()
+            {
+                BEGINMEASU = 1,
+                Comments = "your comment here",
+                ENDMEASURE = .8,
+                Improvetype = "Point",
+                Network = "my friends",
+                Routename = "Haggerty Blvd",
+                SegmentId = 76413
+            };
+
+            int actual;
+            actual = target.RtpCreateLrs(lrs);
+            Assert.AreNotSame(0, actual);
+        }
+
+        /// <summary>
+        ///A test for RtpDeleteLrs
+        ///</summary>
+        [TestMethod()]
+        public void RtpDeleteLrsTest()
+        {
+            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
+            int id = 21128; // TODO: Initialize to an appropriate value
+            target.RtpDeleteLrs(id);
+        }
+
+        /// <summary>
+        ///A test for RtpGetLrs
+        ///</summary>
+        [TestMethod()]
+        public void RtpGetLrsTest()
+        {
+            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
+            int id = 21129; // TODO: Initialize to an appropriate value
+            LRS actual;
+            actual = target.RtpGetLrs(id);
+            Assert.IsNotNull(actual);
+        }
+
+        /// <summary>
+        ///A test for RtpGetLrsForSegment
+        ///</summary>
+        [TestMethod()]
+        public void RtpGetLrsForSegmentTest()
+        {
+            TripsRepository target = new TripsRepository(); // TODO: Initialize to an appropriate value
+            int segmentId = 76413; // TODO: Initialize to an appropriate value
+            IEnumerable<LRS> actual;
+            actual = target.RtpGetLrsForSegment(segmentId);
+            Assert.IsTrue(actual.Count() > 0);
+        }
     }
 }
