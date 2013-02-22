@@ -28,11 +28,8 @@ namespace Trips4.Controllers.Api
             RtpProjectRepository = rprepo;
         }
 
-        public class Query
-        {
-            public int? SegmentId { get; set; }
-        }
 
+        // Get the set of LRS records for a segment.
         public IEnumerable<LRS> Get(int segmentId, int x)
         {
             try

@@ -153,18 +153,19 @@
     <!-- This contains the hidden content for inline calls -->
     <div style='display: none'>
         <div id="segment-details-dialog" title="Segment">
+            <form id="segment-details-form" action="">
             <table>
                 <tr>
                     <td>
                         <p>
                             <label for="segment-details-FacilityName">
                                 Facility Name</label>
-                            <input type="text" id="segment-details-FacilityName" class="w200" />
+                            <input type="text" id="segment-details-FacilityName" class="w200 required" />
                         </p>
                         <p>
                             <label for="segment-details-StartAt">
                                 Start At</label>
-                            <input type="text" id="segment-details-StartAt" class="w200" />
+                            <input type="text" id="segment-details-StartAt" class="w200 required" />
                         </p>
                         <p>
                             <label for="segment-details-EndAt">
@@ -237,25 +238,29 @@
                     </td>
                 </tr>
             </table>
-            <button id="segment-details-add-lrs">Add LRS Record</button>
-            <table id="segment-details-lrs-table">
-                <caption>
-                    LRS Records</caption>
-                <thead>
-                    <tr>
-                        <th>
-                            Route Name
-                        </th>
-                        <th>
-                            Measures
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            </form>
+            <div id="segment-details-lrs-section">
+                <table id="segment-details-lrs-table">
+                    <caption>
+                        LRS Records
+                        <button id="segment-details-add-lrs">
+                            Add LRS Record</button></caption>
+                    <thead>
+                        <tr>
+                            <th>
+                                Route Name
+                            </th>
+                            <th>
+                                Measures
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div id="segment-lrs-dialog" title="LRS">
             <p>

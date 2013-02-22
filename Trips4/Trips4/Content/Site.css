@@ -358,7 +358,6 @@ page width. Or, you can specify an exact pixel width. */
 {
     position: relative;
     width: 670px;
-    z-index: 1000;
 }
 
 .belowTable
