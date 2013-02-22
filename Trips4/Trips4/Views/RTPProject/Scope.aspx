@@ -10,22 +10,6 @@
     <script src="<%= Url.Content("~/scripts/jquery.meio.mask.min.js")%>" type="text/javascript"></script>
     <link href="<%= Url.Content("~/Content/slide.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%= Url.Content("~/scripts/slide.js")%>" type="text/javascript"></script>
-    <script type="text/javascript">
-        var AddSegmentUrl = '<%=Url.Action("AddSegment") %>';
-        var DropSegmentUrl = '<%=Url.Action("DeleteSegment")%>';
-        var EditSegmentUrl = '<%=Url.Action("UpdateSegment")%>';
-        var EditSegmentSummaryUrl = '<%=Url.Action("UpdateSegmentSummary")%>';
-        var EditLRSUrl = '<%=Url.Action("UpdateLRSRecord")%>';
-        var AddLRSUrl = '<%=Url.Action("AddLRSRecord")%>';
-        var DeleteLRSUrl = '<%=Url.Action("DeleteLRSRecord")%>';
-
-
-        var GetSegmentDetailsUrl = '<%=Url.Action("GetSegmentDetails")%>';
-        var GetSegmentLRSUrl = '<%=Url.Action("GetSegmentLRS")%>';
-        var GetSegmentLRSDetailsUrl = '<%=Url.Action("GetSegmentLRSDetails")%>';
-        var isEditable = '<%= Model.ProjectSummary.IsEditable() %>';
-        
-    </script>
     <script src="<%= Url.Content("~/scripts/RtpProjectScope.js")%>" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(App.tabs.initializeRtpProjectTabs);
@@ -132,9 +116,9 @@
                             new { @class = "not-required", title = "Please select a network" })%>
                         </td>
                         <td>
+                            <span class="table-button" data-segment-details='<%=item.SegmentId.ToString() %>'>Details</span>
                             <%if (Model.ProjectSummary.IsEditable())
                               { %>
-                            <span class="table-button" data-segment-details='<%=item.SegmentId.ToString() %>'>Details</span>
                             <span class="table-button" data-segment-delete='<%=item.SegmentId.ToString() %>'>Delete</span>
                             <% } %>
                         </td>

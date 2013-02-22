@@ -495,6 +495,7 @@ namespace Trips4.Controllers
             var pp = CreatePageParameters();
             pp.Add("RtpYear", model.ProjectSummary.RtpYear);
             pp.Add("ProjectVersionId", model.ProjectSummary.ProjectVersionId);
+            pp.Add("IsEditable", model.ProjectSummary.IsEditable());
             SetPageParameters(pp);
 
             return View(model);

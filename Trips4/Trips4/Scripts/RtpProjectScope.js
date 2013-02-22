@@ -101,6 +101,11 @@ App.ui = (function ($) {
                     $row.data("lrs-id", item.Id);
                     $lrsBody.append($row);
                 });
+
+                if (!App.pp.IsEditable) {
+                    // delete segment table button
+                    $('span[data-command="delete"]', $lrsBody).remove();
+                }
             });
         }
     }
@@ -199,24 +204,37 @@ App.ui = (function ($) {
             return false;
         });
 
-        $table.on('click', 'span[data-segment-delete]', function (e) {
-            var id = $(this).data('segment-delete');
-            App.postit("/api/RtpProjectSegment/" + id, {
-                type: "DELETE",
-                success: function () {
-                    window.location.reload();
-                }
+        if (App.pp.IsEditable) {
+            $table.on('click', 'span[data-segment-delete]', function (e) {
+                var id = $(this).data('segment-delete');
+                App.postit("/api/RtpProjectSegment/" + id, {
+                    type: "DELETE",
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+
+                return false;
             });
 
-            return false;
-        });
+            // Add LRS button
+            $('#segment-details-add-lrs').button().click(function () {
+                targetLrs = null;
+                openLrs();
+                return false;
+            });
+        } else {
+            // Add LRS button
+            $('#segment-details-add-lrs').hide();
 
-        // Add LRS button
-        $('#segment-details-add-lrs').button().click(function () {
-            targetLrs = null;
-            openLrs();
-            return false;
-        });
+            // set inputs readonly
+            $('form input', $dlg).prop('readonly', true);
+
+            // delete segment table button
+            $('span[data-segment-delete]', $table).remove();
+
+            $dlg.dialog("option", "buttons", null);
+        }
 
         // buttons in LRS table
         $('table#segment-details-lrs-table tbody').on('click', 'span.table-button', function (e) {
@@ -242,7 +260,8 @@ App.ui = (function ($) {
     }
 
     function initializeLrsDialog() {
-        $('#segment-lrs-dialog').dialog({
+        var $dlg = $('#segment-lrs-dialog');
+        $dlg.dialog({
             autoOpen: false,
             width: 600,
             height: 600,
@@ -257,7 +276,11 @@ App.ui = (function ($) {
                 }
             }
         });
-        //
+
+        if (!App.pp.IsEditable) {
+            $('input', $dlg).prop('readonly', true);
+            $dlg.dialog("option", "buttons", null);
+        }
     }
 
     function initialize() {
