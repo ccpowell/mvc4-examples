@@ -59,10 +59,9 @@ App.utility = (function ($) {
             .unbind("keyup");
 
         // fix the URL
-        if (url.indexOf(App.env.applicationPath) !== 0) {
+        if (url.toLowerCase().indexOf(App.env.applicationPath.toLowerCase()) !== 0) {
             url = App.env.applicationPath + url;
         }
-        //alert("submitting to " + url);
 
         //Setup the Ajax form post (allows us to have a nice "Changes Saved" message)
         $form.validate({

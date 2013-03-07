@@ -414,6 +414,11 @@ namespace Trips4.Controllers
         public ActionResult Location(string year, int id)
         {
             var viewModel = _projectRepository.GetProjectLocationViewModel(id, year);
+
+            var pp = CreatePageParameters();
+            pp.Add("ProjectVersionId", viewModel.ProjectSummary.ProjectVersionId);
+            SetPageParameters(pp);
+
             return View(viewModel);
         }
 
