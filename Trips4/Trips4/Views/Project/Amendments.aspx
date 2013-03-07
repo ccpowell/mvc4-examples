@@ -119,7 +119,7 @@
                 <p>
                     <label for="AmendmentTypes">
                         Amendment Type:</label>
-                    <%= Html.DropDownListFor(x => x.ProjectAmendments.AmendmentTypeId, new SelectList(Model.AmendmentTypes, "Key", "Value"), new { @class = "mediumInputElement big" })%>
+                    <%= Html.DropDownList("NewAmendment.AmendmentTypeId", new SelectList(Model.AmendmentTypes, "Key", "Value"), new { @class = "mediumInputElement big" })%>
                 </p>
             </fieldset>
             <% } %>
